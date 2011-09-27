@@ -4,3 +4,6 @@
 [submodule "libraries/Erfurt"]
 	path = libraries/Erfurt
 	url = git@github.com:AKSW/Erfurt.git
+[submodule "extensions/formgenerator"]
+	path = extensions/formgenerator
+	url = git@github.com:AKSW/forms.ontowiki.git
