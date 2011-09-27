@@ -1,9 +1,0 @@
-SELECT ?suggest  count(?suggest) as ?count WHERE {
-	?what ?pred ?suggest . 
- 	FILTER 
-((((?suggest LIKE 'http://dbpedia.org/resource/[T|t]e%' ) || 
-(?suggest LIKE '[T|t]e%' )
-))
-) .
-} LIMIT 10
-
