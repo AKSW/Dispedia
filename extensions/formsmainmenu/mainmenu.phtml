@@ -1,3 +1,4 @@
+<!-- User is not logged in -->
 <?php if ( false == $this->loggedIn ) { ?>
 
 <div>
@@ -7,11 +8,12 @@
     </a>
 </div>
 
+<!-- User is logged in -->
 <?php } else { ?>
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>columns.png" border="0" align="absmiddle"/>
-    <a href="<?php echo $this->url; ?>model/info/?m=http%3A%2F%2Fals.dispedia.info%2F">
+    <a href="<?php echo $this->url; ?>resource/instances/?m=http%3A%2F%2Fals.dispedia.info%2F">
         <?php echo $this->_translate->_('Overview'); ?>
     </a>
 </div>
