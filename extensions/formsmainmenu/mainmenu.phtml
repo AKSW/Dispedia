@@ -1,57 +1,99 @@
-<?php 
-$style = '' == $this->showMenu
-         ? 'font-weight:bold; font-size:16px;'
-         : '' ; 
-?>
-    
-    
-    <div style="<?php echo $style; ?>">
-        <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
-            <?php echo $this->_translate->_('Patient view'); ?>
-        </a>
-    </div>
+<?php if ( false == $this->loggedIn ) { ?>
 
-    <div style="<?php echo $style; ?>">
-        <a href="<?php echo $this->actionUrl ?>?showMenu=doctor">
-            <?php echo $this->_translate->_('Doctor view'); ?>
-        </a>
-    </div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>columns.png" border="0" align="absmiddle"/>
+    <a href="">
+        <?php echo $this->_translate->_('Overview'); ?>
+    </a>
+</div>
 
-    <div style="<?php echo $style; ?>">
-        <a href="<?php echo $this->actionUrl; ?>?showMenu=patient">
-            <?php echo $this->_translate->_('Therapist'); ?>
-        </a>
-    </div>
-    
+<?php } else { ?>
+
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>columns.png" border="0" align="absmiddle"/>
+    <a href="<?php echo $this->url; ?>resource/instances">
+        <?php echo $this->_translate->_('Overview'); ?>
+    </a>
+</div>
+
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user.png" border="0" align="absmiddle"/>
+    <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
+        <?php echo $this->_translate->_('Patient view'); ?>
+    </a>
+</div>
+
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user_doctor.png" border="0" align="absmiddle"/>
+    <a href="<?php echo $this->actionUrl ?>?showMenu=doctor">
+        <?php echo $this->_translate->_('Doctor view'); ?>
+    </a>
+</div>
+
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>ow_logo.png" border="0" align="absmiddle" width="16"/>
+    <a href="<?php echo $this->actionUrl ?>?showMenu=ontowiki">
+        <?php echo $this->_translate->_('System'); ?>
+    </a>
+</div>
+
 <?php if ( 'patient' == $this->showMenu ) { ?>
 
-    <hr/>
-    <br/>
+<br/>
 
 <!-- Submenu -->
 
-    <div style="font-weight:bold; font-size:16px;">
-        <?php echo $this->_translate->_('Patient view'); ?>
-    </div>
+<div style="font-weight:bold; font-size:16px;">
+    <?php echo $this->_translate->_('Patient view'); ?>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
+    <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
+        <?php echo $this->_translate->_('Add a new patient'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>        
+    <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
+        <?php echo $this->_translate->_('Edit patient information'); ?></a>
+</div>
 
-    <div>
-        <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
-            <?php echo $this->_translate->_('Master data'); ?>
-        </a>
-    </div>
+<?php } elseif ( 'ontowiki' == $this->showMenu ) { ?>
 
-    <div>
-        <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
-            <?php echo $this->_translate->_('Family status'); ?>
-        </a>
-    </div>
+<br/>
 
-    <div>
-        <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
-            <?php echo $this->_translate->_('supervised by'); ?>
-        </a>
-    </div>
-    
-    <br/>
+<!-- Submenu -->
+
+<div style="font-weight:bold; font-size:16px;">
+    <?php echo $this->_translate->_('OntoWiki'); ?>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
+    <a href="<?php echo $this->applicationUrl ?>register">
+        <?php echo $this->_translate->_('Register a new user'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>database_add.png" border="0" align="absmiddle"/>    
+    <a href="<?php echo $this->url ?>model/create">
+        <?php echo $this->_translate->_('Add a new knowledgebase'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>wrench.png" border="0" align="absmiddle"/>        
+    <a href="<?php echo $this->applicationUrl ?>preferences">
+        <?php echo $this->_translate->_('Preferences'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>package.png" border="0" align="absmiddle"/>        
+    <a href="<?php echo $this->url ?>exconf/list">
+        <?php echo $this->_translate->_('Extensions'); ?></a>
+</div>
+
+<br/>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>door_in.png" border="0" align="absmiddle"/>        
+    <a href="<?php echo $this->applicationUrl ?>logout">
+        <?php echo $this->_translate->_('Logout'); ?></a>
+</div>
+
+<?php } ?>
 
 <?php } ?>

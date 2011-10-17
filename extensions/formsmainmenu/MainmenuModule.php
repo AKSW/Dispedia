@@ -66,7 +66,17 @@ class MainMenuModule extends OntoWiki_Module
      */
     public function getContents()
     {
-        return $this->render('mainmenu', array ());
+        $data ['url'] = $this->_config->urlBase;
+        $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
+        $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
+        
+        if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
+            $data ['loggedIn'] = false;
+        } else {
+            $data ['loggedIn'] = true;
+        }
+        
+        return $this->render('mainmenu', $data);
     }
     
     public function allowCaching()
