@@ -11,7 +11,7 @@
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>columns.png" border="0" align="absmiddle"/>
-    <a href="<?php echo $this->url; ?>resource/instances">
+    <a href="<?php echo $this->url; ?>model/info/?m=http%3A%2F%2Fals.dispedia.info%2F">
         <?php echo $this->_translate->_('Overview'); ?>
     </a>
 </div>
@@ -45,6 +45,11 @@
 
 <div style="font-weight:bold; font-size:16px;">
     <?php echo $this->_translate->_('Patient view'); ?>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user_gray.png" border="0" align="absmiddle"/>    
+    <a href="<?php echo $this->url; ?>formgenerator/form?file=person">
+        <?php echo $this->_translate->_('Add a new person'); ?></a>
 </div>
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
