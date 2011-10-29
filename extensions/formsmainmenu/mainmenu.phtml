@@ -4,8 +4,7 @@
 <div>
     <img src="<?php echo $this->imagesUrl; ?>dispedia_logo.png" border="0" align="absmiddle"/>
     <a href="">
-        <?php echo $this->_translate->_('Overview'); ?>
-    </a>
+        <?php echo $this->_translate->_('Overview'); ?></a>
 </div>
 
 <!-- User is logged in -->
@@ -13,27 +12,28 @@
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>dispedia_logo.png" border="0" align="absmiddle"/>
+    &nbsp;
     <a href="<?php echo $this->url; ?>resource/instances/?m=http%3A%2F%2Fals.dispedia.info%2F">
-        <?php echo $this->_translate->_('Overview'); ?>
-    </a>
+        <?php echo $this->_translate->_('Overview'); ?></a>
 </div>
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user.png" border="0" align="absmiddle"/>
+    &nbsp;
     <a href="<?php echo $this->url; ?>?showMenu=patient">
-        <?php echo $this->_translate->_('Patient view'); ?>
-    </a>
+        <?php echo $this->_translate->_('Patient view'); ?></a>
 </div>
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user_doctor.png" border="0" align="absmiddle"/>
+    &nbsp;
     <a href="<?php echo $this->url; ?>?showMenu=doctor">
-        <?php echo $this->_translate->_('Doctor view'); ?>
-    </a>
+        <?php echo $this->_translate->_('Doctor view'); ?></a>
 </div>
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>ow_logo.png" border="0" align="absmiddle" width="16"/>
+    &nbsp;
     <a href="<?php echo $this->url; ?>?showMenu=ontowiki">
         <?php echo $this->_translate->_('System'); ?>
     </a>
@@ -50,22 +50,41 @@
 </div>
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
+    &nbsp;
     <a href="<?php echo $this->url ?>formgenerator/form?file=patient">
         <?php echo $this->_translate->_('Add a new patient'); ?></a>
 </div>
-<br/>
-<div style="font-weight:bold; font-size:13px;">
-    <?php echo $this->_translate->_('Edit patient information'); ?>
-</div>
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>    
+    &nbsp;
     <a href="<?php echo $this->url ?>formgenerator/form?file=patientEdit">
-        <?php echo $this->_translate->_('Master data'); ?></a>
+        <?php echo $this->_translate->_('Edit patient information'); ?></a>
+</div>
+
+<br/>
+<div style="font-weight:bold; font-size:13px;">
+    <?php echo $this->_translate->_('Edit family status'); ?>
 </div>
 <div>
     <img src="<?php echo $this->imagesUrl; ?>family.png" border="0" align="absmiddle"/>    
+    &nbsp;
     <a href="<?php echo $this->url ?>formgenerator/form?file=familystatus">
         <?php echo $this->_translate->_('Family status'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
+    &nbsp;
+    <?php echo $this->_translate->_('Living relations'); ?>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>spouse.png" border="0" align="absmiddle"/>    
+    &nbsp;
+    <?php echo $this->_translate->_('Life partner / spouse'); ?>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>tux.png" border="0" align="absmiddle"/>    
+    &nbsp;
+    <?php echo $this->_translate->_('Pets'); ?>
 </div>
 
 
