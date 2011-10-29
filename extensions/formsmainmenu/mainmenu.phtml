@@ -49,20 +49,25 @@
     <?php echo $this->_translate->_('Patient view'); ?>
 </div>
 <div>
-    <img src="<?php echo $this->imagesUrl; ?>user_gray.png" border="0" align="absmiddle"/>    
-    <a href="<?php echo $this->url; ?>formgenerator/form?file=person">
-        <?php echo $this->_translate->_('Add a new person'); ?></a>
-</div>
-<div>
     <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
-    <a href="<?php echo $this->actionUrl ?>formgenerator/form?file=patient">
+    <a href="<?php echo $this->url ?>formgenerator/form?file=patient">
         <?php echo $this->_translate->_('Add a new patient'); ?></a>
 </div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>        
-    <a href="<?php echo $this->actionUrl ?>?showMenu=patient">
-        <?php echo $this->_translate->_('Edit patient information'); ?></a>
+<br/>
+<div style="font-weight:bold; font-size:13px;">
+    <?php echo $this->_translate->_('Edit patient information'); ?>
 </div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>    
+    <a href="<?php echo $this->url ?>formgenerator/form?file=patientEdit">
+        <?php echo $this->_translate->_('Master data'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>family.png" border="0" align="absmiddle"/>    
+    <a href="<?php echo $this->url ?>formgenerator/form?file=familystatus">
+        <?php echo $this->_translate->_('Family status'); ?></a>
+</div>
+
 
 <?php } elseif ( 'ontowiki' == $this->showMenu ) { ?>
 

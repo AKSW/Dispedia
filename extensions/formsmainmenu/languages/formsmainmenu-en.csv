@@ -1,11 +1,13 @@
-Formgenerator;Formula generator
-Patient view;Patient view 
-OntoWiki;OntoWiki
-System;System
+Add a new knowledge base;Add a new knowledge base
+Add a new patient;Add a new patient
+Edit patient information;Edit patient information
 Extension;Extension
 Extensions;Extensions
-Preferences;Preferences
+Family status;Family status
+Formgenerator;Formula generator
+Master data;Master data
+OntoWiki;OntoWiki
 Overview;Overview
-Add a new patient;Add a new patient
-Add a new person;Add a new person
-Add a new knowledge base;Add a new knowledge base
+Patient view;Patient view 
+Preferences;Preferences
+System;System
