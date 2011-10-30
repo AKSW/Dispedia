@@ -1,17 +1,31 @@
 Add a new patient;Neuen Patienten anlegen
 Add a new knowledge base;Neue Wissensbasis anlegen
+Add pet;Haustier hinzufügen
+Children;Kinder
+Diet;Ernährung
 Edit family status;Ändere Familienverhältnisse
+Edit housing situation;Ändere Wohnsituation
+Edit medical condition;Ändere Gesundheitzustand
 Edit patient information;Ändere Patientendaten
+Edit professional situation;Ändere berufliche Situation
 Extension;Erweiterung
 Extensions;Erweiterungen
 Family status;Familienverhältnisse
 Formgenerator;Formular generator
+Hobbies;Hobbys
+Housing situation;Wohnsituation
+Job;Job
 Life partner / spouse;Lebensgefährte / Ehepartner
 Living relations;Lebende Verwandte
+Movement;Bewegung
 Master data;Stammdaten
 OntoWiki;OntoWiki
 Overview;Überblick
 Patient view;Patientansicht 
 Pets;Haustiere 
 Preferences;Einstellungen
+Set Address;Setze Addresse
+Set pets;Haustiere verwalten
+Silbings;Geschwister
+Social situation;Soziale Situation
 System;System
