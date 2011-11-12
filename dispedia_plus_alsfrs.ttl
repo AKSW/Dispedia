@@ -1,0 +1,1046 @@
+# Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
+
+@base <http://als.dispedia.info/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ns0: <http://als.dispedia.info/architecture/c/20110504/> .
+@prefix ns1: <http://als.dispedia.info/architecture/c/20110827/> .
+@prefix wrapperalsfrs: <http://als.dispedia.info/wrapperAlsfrs/c/20111105/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix alsfrs: <http://als.dispedia.info/frs/o/> .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/ICFPropertySet> a owl:Class .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/ICFSymptomSet> a owl:Class .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/ICFHealthState> a owl:Class .
+
+<http://als.dispedia.info/wrapperIcd/c/20110827/ICDDisease> a owl:Class .
+
+<http://als.dispedia.info/wrapperIcd/c/20110827/ALS> a owl:Class .
+
+ns1:Decision a owl:Class .
+
+ns1:ProposalAllocation a owl:Class .
+
+ns1:Action a owl:Class .
+
+ns1:Allocation a owl:Class .
+
+ns1:Agent a owl:Class .
+
+ns1:Costs a owl:Class .
+
+ns1:Formality a owl:Class .
+
+ns1:Patient a owl:Class .
+
+ns1:Person a owl:Class .
+
+ns1:AssistiveProduct a owl:Class .
+
+ns1:Proposal a owl:Class .
+
+ns1:TherapistType a owl:Class .
+
+ns1:PropertySet a owl:Class .
+
+ns1:SymptomSet a owl:Class .
+
+ns1:DiseaseSection a owl:Class .
+
+ns1:HealthState a owl:Class .
+
+ns1:Address a owl:Class .
+
+ns1:Information a owl:Class .
+
+ns1:PatientType a owl:Class .
+
+ns1:Pet a owl:Class .
+
+ns1:CareRelation a owl:Class .
+
+ns1:ActionAllocation a owl:Class .
+
+ns1:Type a owl:Class .
+
+wrapperalsfrs:ALSFRSPropertySet a owl:Class .
+
+wrapperalsfrs:ALSFRSSymptomSet a owl:Class .
+
+wrapperalsfrs:ALSFRSHealthState a owl:Class .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/> a owl:Ontology .
+
+<http://als.dispedia.info/wrapperIcd/c/20110827/> a owl:Ontology .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/> a owl:Ontology .
+
+<http://als.dispedia.info/architecture/c/20110827/> a owl:Ontology .
+
+<http://als.dispedia.info/wrapperAlsfrs/c/20111105/> a owl:Ontology .
+
+rdfs:label a owl:AnnotationProperty .
+
+rdfs:comment a owl:AnnotationProperty .
+
+owl:versionInfo a owl:AnnotationProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/affectedActivity> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/affects> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damaged> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunction> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength1> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength2> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength3> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength4> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength5> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructure> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength1> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength2> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength3> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength4> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength5> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/includes> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/includesAffectedICFProperties> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/includesICFSymptoms> a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcd/c/20110827/hasICDCode> a owl:ObjectProperty .
+
+ns1:accepts a owl:ObjectProperty .
+
+ns1:denies a owl:ObjectProperty .
+
+ns1:age a owl:ObjectProperty .
+
+ns1:allocates a owl:ObjectProperty .
+
+ns1:allocatesAction a owl:ObjectProperty .
+
+ns1:allocatesActiveAgent a owl:ObjectProperty .
+
+ns1:allocatesAgent a owl:ObjectProperty .
+
+ns1:allocatesCosts a owl:ObjectProperty .
+
+ns1:allocatesFormality a owl:ObjectProperty .
+
+ns1:allocatesPassiveAgent a owl:ObjectProperty .
+
+ns1:allocatesPatient a owl:ObjectProperty .
+
+ns1:allocatesPerson a owl:ObjectProperty .
+
+ns1:allocatesProduct a owl:ObjectProperty .
+
+ns1:allocatesProposal a owl:ObjectProperty .
+
+ns1:allocatesTherapistType a owl:ObjectProperty .
+
+ns1:appropriateFor a owl:ObjectProperty .
+
+ns1:appropriateForProperties a owl:ObjectProperty .
+
+ns1:appropriateForSymptoms a owl:ObjectProperty .
+
+ns1:belongsToDiseaseSection a owl:ObjectProperty .
+
+ns1:city a owl:ObjectProperty .
+
+ns1:comprises a owl:ObjectProperty .
+
+ns1:connectedTo a owl:ObjectProperty .
+
+ns1:contains a owl:ObjectProperty .
+
+ns1:containsAction a owl:ObjectProperty .
+
+ns1:containsCosts a owl:ObjectProperty .
+
+ns1:containsFormality a owl:ObjectProperty .
+
+ns1:containsHealthState a owl:ObjectProperty .
+
+ns1:containsProduct a owl:ObjectProperty .
+
+ns1:country a owl:ObjectProperty .
+
+ns1:executedBy a owl:ObjectProperty .
+
+ns1:executes a owl:ObjectProperty .
+
+ns1:firstName a owl:ObjectProperty .
+
+ns1:gender a owl:ObjectProperty .
+
+ns1:has a owl:ObjectProperty .
+
+ns1:hasAddress a owl:ObjectProperty .
+
+ns1:hasDiseaseSection a owl:ObjectProperty .
+
+ns1:hasEmployer a owl:ObjectProperty .
+
+ns1:hasInformation a owl:ObjectProperty .
+
+ns1:hasPatientType a owl:ObjectProperty .
+
+ns1:hasPet a owl:ObjectProperty .
+
+ns1:hasTherapistType a owl:ObjectProperty .
+
+ns1:includes a owl:ObjectProperty .
+
+ns1:includesAffectedProperties a owl:ObjectProperty .
+
+ns1:includesSymptoms a owl:ObjectProperty .
+
+ns1:isActiveIn a owl:ObjectProperty .
+
+ns1:isDoctorOf a owl:ObjectProperty .
+
+ns1:isFamilyDoctorOf a owl:ObjectProperty .
+
+ns1:isFriendOf a owl:ObjectProperty .
+
+ns1:isInARelationshipWith a owl:ObjectProperty .
+
+ns1:isOccupationalTherapistOf a owl:ObjectProperty .
+
+ns1:isParentOf a owl:ObjectProperty .
+
+ns1:isRelatedTo a owl:ObjectProperty .
+
+ns1:isPassiveIn a owl:ObjectProperty .
+
+ns1:isPending a owl:ObjectProperty .
+
+ns1:isPhysioTherapistOf a owl:ObjectProperty .
+
+ns1:isSiblingOf a owl:ObjectProperty .
+
+ns1:isSpeechTherapistOf a owl:ObjectProperty .
+
+ns1:knows a owl:ObjectProperty .
+
+ns1:lastName a owl:ObjectProperty .
+
+ns1:linkedTo a owl:ObjectProperty .
+
+ns1:linkedToActionInfo a owl:ObjectProperty .
+
+ns1:linkedToProposalInfo a owl:ObjectProperty .
+
+ns1:makes a owl:ObjectProperty .
+
+ns1:needs a owl:ObjectProperty .
+
+ns1:needsInformation a owl:ObjectProperty .
+
+ns1:needsProposal a owl:ObjectProperty .
+
+ns1:pays a owl:ObjectProperty .
+
+ns1:refuses a owl:ObjectProperty .
+
+ns1:providedBy a owl:ObjectProperty .
+
+ns1:refersTo a owl:ObjectProperty .
+
+ns1:successorOf a owl:ObjectProperty .
+
+ns1:successorOfAction a owl:ObjectProperty .
+
+ns1:successorOfAddress a owl:ObjectProperty .
+
+ns1:successorOfDiseaseSection a owl:ObjectProperty .
+
+ns1:suitableFor a owl:ObjectProperty .
+
+ns1:usefulFor a owl:ObjectProperty .
+
+wrapperalsfrs:containsPropertyOption a owl:ObjectProperty .
+
+wrapperalsfrs:containsSymptomOption a owl:ObjectProperty .
+
+<http://als.dispedia.info/wrapperIcf/c/20110827/hasDate> a owl:DatatypeProperty .
+
+ns1:addressDate a owl:DatatypeProperty .
+
+ns1:adressText a owl:DatatypeProperty .
+
+ns1:allocationNote a owl:DatatypeProperty .
+
+ns1:beginningDate a owl:DatatypeProperty .
+
+ns1:birthName a owl:DatatypeProperty .
+
+ns1:birthPlace a owl:DatatypeProperty .
+
+ns1:birthdate a owl:DatatypeProperty .
+
+ns1:careDuration a owl:DatatypeProperty .
+
+ns1:carePercentage a owl:DatatypeProperty .
+
+ns1:careTask a owl:DatatypeProperty .
+
+ns1:careTimeEnd a owl:DatatypeProperty .
+
+ns1:careTimeStart a owl:DatatypeProperty .
+
+ns1:content a owl:DatatypeProperty .
+
+ns1:decisionDate a owl:DatatypeProperty .
+
+ns1:divorced a owl:DatatypeProperty .
+
+ns1:familyState a owl:DatatypeProperty .
+
+ns1:education a owl:DatatypeProperty .
+
+ns1:endingDate a owl:DatatypeProperty .
+
+ns1:hasGarden a owl:DatatypeProperty .
+
+ns1:hasLift a owl:DatatypeProperty .
+
+ns1:hasStairs a owl:DatatypeProperty .
+
+ns1:hasWheelChairSize a owl:DatatypeProperty .
+
+ns1:hobby a owl:DatatypeProperty .
+
+ns1:homeFlatType a owl:DatatypeProperty .
+
+ns1:homeHousingType a owl:DatatypeProperty .
+
+ns1:homeLawType a owl:DatatypeProperty .
+
+ns1:homeLevel a owl:DatatypeProperty .
+
+ns1:homeMainResidence a owl:DatatypeProperty .
+
+ns1:homeSecondaryResidence a owl:DatatypeProperty .
+
+ns1:inARelationship a owl:DatatypeProperty .
+
+ns1:isBarrierFree a owl:DatatypeProperty .
+
+ns1:isSuitableForOlderPersons a owl:DatatypeProperty .
+
+ns1:issueDate a owl:DatatypeProperty .
+
+ns1:journeyToWork a owl:DatatypeProperty .
+
+ns1:married a owl:DatatypeProperty .
+
+ns1:medicalTreatmentSince a owl:DatatypeProperty .
+
+ns1:movementDescription a owl:DatatypeProperty .
+
+ns1:nutritionDescription a owl:DatatypeProperty .
+
+ns1:originator a owl:DatatypeProperty .
+
+ns1:patientNumber a owl:DatatypeProperty .
+
+ns1:petName a owl:DatatypeProperty .
+
+ns1:recipient a owl:DatatypeProperty .
+
+ns1:single a owl:DatatypeProperty .
+
+ns1:socialContact a owl:DatatypeProperty .
+
+ns1:spezies a owl:DatatypeProperty .
+
+ns1:street a owl:DatatypeProperty .
+
+ns1:subject a owl:DatatypeProperty .
+
+ns1:zipCode a owl:DatatypeProperty .
+
+wrapperalsfrs:hasDate a owl:DatatypeProperty .
+
+<http://als.dispedia.info/i/Patient/20111103/a8a455/AdamRiese> a ns1:Patient .
+
+<http://als.dispedia.info/i/Person/20111103/76b796/BerndBrot> a ns1:Person .
+
+<http://als.dispedia.info/i/Person/20111103/859422/KerstinMüller> a ns1:Person .
+
+<http://als.dispedia.info/i/Address/20111102/bcced9/Alsterstr.Hamburg> a ns1:Address .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Active> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/ApplyForSHP> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/DurationSHPApplying> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/DeglutitionTraining> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Prescription> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Doctor> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/DurationHouseHunting> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Sensitive> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Social> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/FeedingCup> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/HandlingDiagnosisShock> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/HouseHunting> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Logo> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/LogoTherapy> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Logopedics> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/MedicalSupplyStore> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Move> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Neuro> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Occupational> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/OccupationalTherapy> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/PhysicalTherapy> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Physio> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/PrescribeFeedingCup> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/PrescribeWalkingFrame> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/PrescribeWheelChair> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/QuitWork> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/Rehabilitation> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/SeverelyHandicappedPass> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/StomachTube> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/SupplyWalkingFrame> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/WalkingFrame> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/SupplyWheelChair> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/WheelChair> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/SupportGroup> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/UseFeedingCup> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/UseWalkingFrame> a owl:NamedIndividual .
+
+<http://als.dispedia.info/ekbProposal/i/20110707/UseWheelChair> a owl:NamedIndividual .
+
+<http://purl.bioontology.org/ontology/SNOMEDCT/86044005> a <http://xmlns.com/foaf/0.1/Document> .
+
+<http://purl.bioontology.org/ontology/MSH/D000690> a <http://xmlns.com/foaf/0.1/Document> .
+
+<http://purl.bioontology.org/ontology/MEDLINEPLUS/T135> a <http://xmlns.com/foaf/0.1/Document> .
+
+<http://als.dispedia.info/#b10300> a owl:AllDisjointProperties .
+
+<http://als.dispedia.info/#b10301> a owl:AllDisjointProperties .
+
+<http://als.dispedia.info/i/Person/20111025/d8067d/KonradAbicht> a "http://als.dispedia.info/architecture/c/20110504/Person" .
+
+<http://als.dispedia.info/i/Person/20111028/3200e6/MichaelMartin> a "http://als.dispedia.info/architecture/c/20110504/Person" .
+
+<http://als.dispedia.info/i/Address/20111025/96bfbd/Teststreet1Leipzig> a "http://als.dispedia.info/architecture/c/20110504/Address" .
+
+<http://als.dispedia.info/i/Address/20111028/9e0eac/Johannisgasse26Leipzig> a "http://als.dispedia.info/architecture/c/20110504/Address" .
+
+<> rdfs:label "ALS Dispedia" .
+
+<http://als.dispedia.info/wrapperAlsfrs/c/20111105/> rdfs:label "Gesundheitsstatus auf Basis des ALSFRS"@de, "HealthState based on the ALSFRS"@en .
+
+wrapperalsfrs:containsPropertyOption rdfs:label "enthält Beschreibung eingeschränkter Eigenschaft"@de, "contains affected property"@en .
+
+wrapperalsfrs:containsSymptomOption rdfs:label "enthält Symptombeschreibung"@de, "contains symptom"@en .
+
+wrapperalsfrs:hasDate rdfs:label "hat Datum"@de, "has date"@en .
+
+wrapperalsfrs:ALSFRSHealthState rdfs:label "Gesundheitsstatus mit ALSFRS-Skalierung"@de, "Health state with ALSFRS scaling"@en .
+
+wrapperalsfrs:ALSFRSPropertySet rdfs:label "Eigenschaftsmenge mit ALSFRS-Skalierung"@de, "Property set with ALSFRS scaling"@en .
+
+wrapperalsfrs:ALSFRSSymptomSet rdfs:label "Symptommenge mit ALSFRS-Skalierung"@de, "Symptom set with ALSFRS scaling"@en .
+
+<http://als.dispedia.info/#b10302> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength1> .
+
+<http://als.dispedia.info/#b10303> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength2> .
+
+<http://als.dispedia.info/#b10304> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength3> .
+
+<http://als.dispedia.info/#b10305> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength4> .
+
+<http://als.dispedia.info/#b10306> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyFunctionStrength5> .
+
+<http://als.dispedia.info/#b10307> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength1> .
+
+<http://als.dispedia.info/#b10308> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength2> .
+
+<http://als.dispedia.info/#b10309> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength3> .
+
+<http://als.dispedia.info/#b10310> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength4> .
+
+<http://als.dispedia.info/#b10311> rdf:first <http://als.dispedia.info/wrapperIcf/c/20110827/damagedBodyStructureStrength5> ;
+                                   rdf:rest rdf:nil .
+
+wrapperalsfrs:containsPropertyOption rdfs:domain wrapperalsfrs:ALSFRSPropertySet .
+
+wrapperalsfrs:containsSymptomOption rdfs:domain wrapperalsfrs:ALSFRSSymptomSet .
+
+wrapperalsfrs:hasDate rdfs:domain wrapperalsfrs:ALSFRSHealthState .
+
+wrapperalsfrs:containsPropertyOption rdfs:range alsfrs:Option .
+
+wrapperalsfrs:containsSymptomOption rdfs:range alsfrs:Option .
+
+wrapperalsfrs:hasDate rdfs:range xsd:dateTime .
+
+<http://als.dispedia.info/wrapperAlsfrs/c/20111105/> owl:imports <frs> ;
+                                                     rdfs:comment "Diese Ontologie bildet die verschiedenen Aspekte des Gesundheitszustandes einer Person auf einen bestimmten Zeitpunkt, den Gesundheitsstatus, ab. Grundlage dafür sind die Bewertungen der Skala der ALSFRS."@de, "This ontology is able to map the health conditions based on the different rankings by ALSFRS at a certain point of time into one object, the HealthState. "@en ;
+                                                     owl:versionInfo "0.1"^^rdf:PlainLiteral .
+
+wrapperalsfrs:ALSFRSPropertySet rdfs:subClassOf ns1:PropertySet .
+
+wrapperalsfrs:ALSFRSSymptomSet rdfs:subClassOf ns1:SymptomSet .
+
+wrapperalsfrs:ALSFRSHealthState rdfs:subClassOf ns1:HealthState .    
+                                                                     
+                                             
+<http://als.dispedia.info/frs/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://als.dispedia.info/frs/> <http://www.w3.org/2000/01/rdf-schema#label> "ALSFRS extended"@en .
+<http://als.dispedia.info/frs/> <http://www.w3.org/2000/01/rdf-schema#comment> "TODO: This Ontology looks like a suitable use case for the survey vocabulary http://ns.aksw.org/survey/. I will check this soon."@en .
+<http://als.dispedia.info/frs/> <http://creativecommons.org/ns#license> <http://creativecommons.org/licenses/by/3.0/> .
+<http://als.dispedia.info/frs/> <http://purl.org/dc/terms/contributor> "Romy Elze" . 
+<http://als.dispedia.info/frs/> <http://purl.org/dc/terms/publisher> "Michael Martin" .
+
+<http://als.dispedia.info/frs/o/Topic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://als.dispedia.info/frs/o/Topic> <http://www.w3.org/2000/01/rdf-schema#label> "Topic"@en .
+<http://als.dispedia.info/frs/o/Topic> <http://www.w3.org/2000/01/rdf-schema#label> "Thema"@de .
+
+<http://als.dispedia.info/frs/o/Score> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://als.dispedia.info/frs/o/Score> <http://www.w3.org/2000/01/rdf-schema#label> "Score"@en .
+<http://als.dispedia.info/frs/o/Score> <http://www.w3.org/2000/01/rdf-schema#label> "Wertung"@de .
+
+<http://als.dispedia.info/frs/o/Option> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://als.dispedia.info/frs/o/Option> <http://www.w3.org/2000/01/rdf-schema#label> "Option"@en .
+<http://als.dispedia.info/frs/o/Option> <http://www.w3.org/2000/01/rdf-schema#label> "Option"@de .
+
+<http://als.dispedia.info/frs/o/hasOption> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://als.dispedia.info/frs/o/hasOption> <http://www.w3.org/2000/01/rdf-schema#label> "references Option"@en .
+<http://als.dispedia.info/frs/o/hasOption> <http://www.w3.org/2000/01/rdf-schema#label> "referenziert Option"@de .
+
+<http://als.dispedia.info/frs/o/hasScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://als.dispedia.info/frs/o/hasScore> <http://www.w3.org/2000/01/rdf-schema#label> "scored with"@en .
+<http://als.dispedia.info/frs/o/hasScore> <http://www.w3.org/2000/01/rdf-schema#label> "wird gewertet mit"@de .
+
+<http://als.dispedia.info/frs/o/suggestedQuestion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://als.dispedia.info/frs/o/suggestedQuestion> <http://www.w3.org/2000/01/rdf-schema#label> "suggested Question"@en .
+<http://als.dispedia.info/frs/o/suggestedQuestion> <http://www.w3.org/2000/01/rdf-schema#label> "Vorschlag zur Fragestellung"@de .
+
+<http://als.dispedia.info/frs/i/score/s0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Score> .
+<http://als.dispedia.info/frs/i/score/s0> <http://www.w3.org/2000/01/rdf-schema#label> "0"^^<http://www.w3.org/2001/XMLSchema#int> .
+<http://als.dispedia.info/frs/i/score/s0> <http://www.w3.org/2000/01/rdf-schema#comment> "niedrigste Bewertung auf der Skala"@de .
+
+<http://als.dispedia.info/frs/i/score/s1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Score> .
+<http://als.dispedia.info/frs/i/score/s1> <http://www.w3.org/2000/01/rdf-schema#label> "1"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<http://als.dispedia.info/frs/i/score/s2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Score> .
+<http://als.dispedia.info/frs/i/score/s2> <http://www.w3.org/2000/01/rdf-schema#label> "2"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<http://als.dispedia.info/frs/i/score/s3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Score> .
+<http://als.dispedia.info/frs/i/score/s3> <http://www.w3.org/2000/01/rdf-schema#label> "3"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<http://als.dispedia.info/frs/i/score/s4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Score> .
+<http://als.dispedia.info/frs/i/score/s4> <http://www.w3.org/2000/01/rdf-schema#label> "4"^^<http://www.w3.org/2001/XMLSchema#int> .
+<http://als.dispedia.info/frs/i/score/s4> <http://www.w3.org/2000/01/rdf-schema#comment> "besteste Bewertung auf der Skala"@de .
+
+<http://als.dispedia.info/frs/i/topic/t1>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t1> <http://www.w3.org/2000/01/rdf-schema#label> "Sprechen"@de .
+<http://als.dispedia.info/frs/i/topic/t1> <http://www.w3.org/2000/01/rdf-schema#label> "Speech"@en .
+<http://als.dispedia.info/frs/i/topic/t1> <http://als.dispedia.info/frs/o/suggestedQuestion> "Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Sprechens vor ? "@de .
+<http://als.dispedia.info/frs/i/topic/t1> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o1_4> .
+<http://als.dispedia.info/frs/i/topic/t1> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o1_3> .
+<http://als.dispedia.info/frs/i/topic/t1> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o1_2> .
+<http://als.dispedia.info/frs/i/topic/t1> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o1_1> .
+<http://als.dispedia.info/frs/i/topic/t1> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o1_0> .
+
+<http://als.dispedia.info/frs/i/option/o1_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o1_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normaler Sprechfluss"@de .
+<http://als.dispedia.info/frs/i/option/o1_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal speech processes"@en .
+<http://als.dispedia.info/frs/i/option/o1_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o1_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o1_3> <http://www.w3.org/2000/01/rdf-schema#label> "Wahrnehmbare Sprechstörung"@de .
+<http://als.dispedia.info/frs/i/option/o1_3> <http://www.w3.org/2000/01/rdf-schema#label> "Detectable speech disturbance"@en .
+<http://als.dispedia.info/frs/i/option/o1_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o1_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o1_2> <http://www.w3.org/2000/01/rdf-schema#label> "Verständlich bei Wiederholung"@de .
+<http://als.dispedia.info/frs/i/option/o1_2> <http://www.w3.org/2000/01/rdf-schema#label> "Intelligible with repeating"@en .
+<http://als.dispedia.info/frs/i/option/o1_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o1_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o1_1> <http://www.w3.org/2000/01/rdf-schema#label> "Sprechen kombiniert mit nonverbaler Kommunikation"@de .
+<http://als.dispedia.info/frs/i/option/o1_1> <http://www.w3.org/2000/01/rdf-schema#label> "Speech combined with nonvocal communication"@en .
+<http://als.dispedia.info/frs/i/option/o1_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o1_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o1_0> <http://www.w3.org/2000/01/rdf-schema#label> "Verlust des verständlichen Sprechens"@de .
+<http://als.dispedia.info/frs/i/option/o1_0> <http://www.w3.org/2000/01/rdf-schema#label> "Loss of useful speech"@en .
+<http://als.dispedia.info/frs/i/option/o1_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t2>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t2> <http://www.w3.org/2000/01/rdf-schema#label> "Speichelfluss"@de .
+<http://als.dispedia.info/frs/i/topic/t2> <http://www.w3.org/2000/01/rdf-schema#label> "Salivation"@en .
+<http://als.dispedia.info/frs/i/topic/t2> <http://als.dispedia.info/frs/o/suggestedQuestion> "Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Speichelflusses vor?"@de .
+<http://als.dispedia.info/frs/i/topic/t2> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o2_4> .
+<http://als.dispedia.info/frs/i/topic/t2> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o2_3> .
+<http://als.dispedia.info/frs/i/topic/t2> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o2_2> .
+<http://als.dispedia.info/frs/i/topic/t2> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o2_1> .
+<http://als.dispedia.info/frs/i/topic/t2> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o2_0> .
+
+<http://als.dispedia.info/frs/i/option/o2_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o2_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normaler Speichelfluss"@de .
+<http://als.dispedia.info/frs/i/option/o2_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal Salivation"@en .
+<http://als.dispedia.info/frs/i/option/o2_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o2_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o2_3> <http://www.w3.org/2000/01/rdf-schema#label> "Geringfügig, aber eindeutig mit Übermaß an Speichel im Mund, nachts Speichelverlust möglich"@de .
+<http://als.dispedia.info/frs/i/option/o2_3> <http://www.w3.org/2000/01/rdf-schema#label> "Slight but definite excess of saliva in mouth; may have nighttime drooling"@en .
+<http://als.dispedia.info/frs/i/option/o2_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o2_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o2_2> <http://www.w3.org/2000/01/rdf-schema#label> "Mäßig vermehrter Speichelfluss, geringer Speichelverlust möglich"@de .
+<http://als.dispedia.info/frs/i/option/o2_2> <http://www.w3.org/2000/01/rdf-schema#label> "Moderately excessive saliva; may have minimal drooling"@en .
+<http://als.dispedia.info/frs/i/option/o2_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o2_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o2_1> <http://www.w3.org/2000/01/rdf-schema#label> "Deutlich vermehrter Speichelfluss, häufig mit Speichelverlust"@de .
+<http://als.dispedia.info/frs/i/option/o2_1> <http://www.w3.org/2000/01/rdf-schema#label> "Marked excess of saliva with some drooling"@en .
+<http://als.dispedia.info/frs/i/option/o2_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o2_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o2_0> <http://www.w3.org/2000/01/rdf-schema#label> "Deutlicher Speichelfluss, Taschentuch ständig erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o2_0> <http://www.w3.org/2000/01/rdf-schema#label> "Marked drooling; requires constant tissue or handkerchief"@en .
+<http://als.dispedia.info/frs/i/option/o2_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t3>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t3> <http://www.w3.org/2000/01/rdf-schema#label> "Schlucken"@de .
+<http://als.dispedia.info/frs/i/topic/t3> <http://www.w3.org/2000/01/rdf-schema#label> "Swallowing"@en .
+<http://als.dispedia.info/frs/i/topic/t3> <http://als.dispedia.info/frs/o/suggestedQuestion> "Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Schluckens vor?"@de .
+<http://als.dispedia.info/frs/i/topic/t3> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o3_4> .
+<http://als.dispedia.info/frs/i/topic/t3> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o3_3> .
+<http://als.dispedia.info/frs/i/topic/t3> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o3_2> .
+<http://als.dispedia.info/frs/i/topic/t3> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o3_1> .
+<http://als.dispedia.info/frs/i/topic/t3> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o3_0> .
+
+<http://als.dispedia.info/frs/i/option/o3_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o3_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normale Essgewohnheiten"@de .
+<http://als.dispedia.info/frs/i/option/o3_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal eating habits"@en .
+<http://als.dispedia.info/frs/i/option/o3_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o3_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o3_3> <http://www.w3.org/2000/01/rdf-schema#label> "Beginnende Essprobleme mit gelegentlichem verschlucken"@de .
+<http://als.dispedia.info/frs/i/option/o3_3> <http://www.w3.org/2000/01/rdf-schema#label> "Early eating problems — occasional choking"@en .
+<http://als.dispedia.info/frs/i/option/o3_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o3_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o3_2> <http://www.w3.org/2000/01/rdf-schema#label> "Änderung der Nahrungskonsistenz"@de .
+<http://als.dispedia.info/frs/i/option/o3_2> <http://www.w3.org/2000/01/rdf-schema#label> "Dietary consistency changes"@en .
+<http://als.dispedia.info/frs/i/option/o3_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o3_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o3_1> <http://www.w3.org/2000/01/rdf-schema#label> "Ergänzende Sondenernährung erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o3_1> <http://www.w3.org/2000/01/rdf-schema#label> "Needs supplemental tube feeding"@en .
+<http://als.dispedia.info/frs/i/option/o3_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o3_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o3_0> <http://www.w3.org/2000/01/rdf-schema#label> "Keine orale Nahrungsaufnahme, ausschließlich PEG-Sondennahrung"@de .
+<http://als.dispedia.info/frs/i/option/o3_0> <http://www.w3.org/2000/01/rdf-schema#label> "NPO (exclusively parenteral or enteral feeding)"@en .
+<http://als.dispedia.info/frs/i/option/o3_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t4>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t4> <http://www.w3.org/2000/01/rdf-schema#label> "Handschrift"@de .
+<http://als.dispedia.info/frs/i/topic/t4> <http://www.w3.org/2000/01/rdf-schema#label> "Handwriting"@en .
+<http://als.dispedia.info/frs/i/topic/t4> <http://als.dispedia.info/frs/o/suggestedQuestion> "Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung der Handschrift zu sehen?"@de .
+<http://als.dispedia.info/frs/i/topic/t4> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o4_4> .
+<http://als.dispedia.info/frs/i/topic/t4> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o4_3> .
+<http://als.dispedia.info/frs/i/topic/t4> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o4_2> .
+<http://als.dispedia.info/frs/i/topic/t4> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o4_1> .
+<http://als.dispedia.info/frs/i/topic/t4> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o4_0> .
+
+<http://als.dispedia.info/frs/i/option/o4_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o4_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normale Handschrift"@de .
+<http://als.dispedia.info/frs/i/option/o4_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal handwriting"@en .
+<http://als.dispedia.info/frs/i/option/o4_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o4_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o4_3> <http://www.w3.org/2000/01/rdf-schema#label> "Langsam oder unordentlich, alle Wörter lesbar"@de .
+<http://als.dispedia.info/frs/i/option/o4_3> <http://www.w3.org/2000/01/rdf-schema#label> "Slow or sloppy: all words are legible"@en .
+<http://als.dispedia.info/frs/i/option/o4_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o4_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o4_2> <http://www.w3.org/2000/01/rdf-schema#label> "Nicht alle Wörter lesbar"@de .
+<http://als.dispedia.info/frs/i/option/o4_2> <http://www.w3.org/2000/01/rdf-schema#label> "Not all words are legible"@en .
+<http://als.dispedia.info/frs/i/option/o4_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o4_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o4_1> <http://www.w3.org/2000/01/rdf-schema#label> "Kann Stift halten"@de .
+<http://als.dispedia.info/frs/i/option/o4_1> <http://www.w3.org/2000/01/rdf-schema#label> "Able to grip pen but unable to write"@en .
+<http://als.dispedia.info/frs/i/option/o4_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o4_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o4_0> <http://www.w3.org/2000/01/rdf-schema#label> "Kann Stift nicht halten"@de .
+<http://als.dispedia.info/frs/i/option/o4_0> <http://www.w3.org/2000/01/rdf-schema#label> "Unable to grip pen"@en .
+<http://als.dispedia.info/frs/i/option/o4_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t5a> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://www.w3.org/2000/01/rdf-schema#label> "Gebrauch von Besteck (bei Patienten ohne Gastrostomie)"@de .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://www.w3.org/2000/01/rdf-schema#label> "Cutting food and handling utensils (patients without gastrostomy)"@en .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://als.dispedia.info/frs/o/suggestedQuestion> "Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung im Umgang mit Besteck nachweisbar?"@de .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5a_4> .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5a_3> .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5a_2> .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5a_1> .
+<http://als.dispedia.info/frs/i/topic/t5a> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5a_0> .
+
+<http://als.dispedia.info/frs/i/option/o5a_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5a_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@de .
+<http://als.dispedia.info/frs/i/option/o5a_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@en .
+<http://als.dispedia.info/frs/i/option/o5a_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o5a_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5a_3> <http://www.w3.org/2000/01/rdf-schema#label> "Etwas langsam und unbeholfen, aber keine Hilfe erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o5a_3> <http://www.w3.org/2000/01/rdf-schema#label> "Somewhat slow and clumsy, but no help needed"@en .
+<http://als.dispedia.info/frs/i/option/o5a_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o5a_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5a_2> <http://www.w3.org/2000/01/rdf-schema#label> "Kann das Essen meistens schneiden, aber langsam und unbeholfen"@de .
+<http://als.dispedia.info/frs/i/option/o5a_2> <http://www.w3.org/2000/01/rdf-schema#label> "Can cut most foods, although clumsy and slow; some help needed"@en .
+<http://als.dispedia.info/frs/i/option/o5a_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o5a_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5a_1> <http://www.w3.org/2000/01/rdf-schema#label> "Essen muss mundgerecht vorbereitet werden, kann aber noch langsam allein essen"@de .
+<http://als.dispedia.info/frs/i/option/o5a_1> <http://www.w3.org/2000/01/rdf-schema#label> "Food must be cut by someone, but can still feed slowly"@en .
+<http://als.dispedia.info/frs/i/option/o5a_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o5a_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5a_0> <http://www.w3.org/2000/01/rdf-schema#label> "Essen muss angereicht werden/Muss gefüttert werden"@de .
+<http://als.dispedia.info/frs/i/option/o5a_0> <http://www.w3.org/2000/01/rdf-schema#label> "Needs to be fed"@en .
+<http://als.dispedia.info/frs/i/option/o5a_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t5b>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://www.w3.org/2000/01/rdf-schema#label> "Essen schneiden und Besteck gebrauchen (Alternative Skala für Patienten mit Gastrostomie)"@de .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://www.w3.org/2000/01/rdf-schema#label> "Cutting food and handling utensils (alternate scale for patients with gastrostomy)"@en .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://als.dispedia.info/frs/o/suggestedQuestion> "Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung im Umgang mit Besteck nachweisbar?"@de .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5b_4> .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5b_3> .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5b_2> .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5b_1> .
+<http://als.dispedia.info/frs/i/topic/t5b> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o5b_0> .
+
+<http://als.dispedia.info/frs/i/option/o5b_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5b_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@de .
+<http://als.dispedia.info/frs/i/option/o5b_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@en .
+<http://als.dispedia.info/frs/i/option/o5b_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o5b_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5b_3> <http://www.w3.org/2000/01/rdf-schema#label> "Unbeholfen, kann aber alle Handgriffe selbstständig ausführen"@de .
+<http://als.dispedia.info/frs/i/option/o5b_3> <http://www.w3.org/2000/01/rdf-schema#label> "Clumsy but able to perform all manipulations independently"@en .
+<http://als.dispedia.info/frs/i/option/o5b_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o5b_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5b_2> <http://www.w3.org/2000/01/rdf-schema#label> "Teilweise Hilfe erforderlich bei Verschlüssen und Deckeln"@de .
+<http://als.dispedia.info/frs/i/option/o5b_2> <http://www.w3.org/2000/01/rdf-schema#label> "Some help needed with closures and fasteners"@en .
+<http://als.dispedia.info/frs/i/option/o5b_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o5b_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5b_1> <http://www.w3.org/2000/01/rdf-schema#label> "Kann den Pflegenden minimal unterstützen"@de .
+<http://als.dispedia.info/frs/i/option/o5b_1> <http://www.w3.org/2000/01/rdf-schema#label> "Provides minimal assistance to caregiver"@en .
+<http://als.dispedia.info/frs/i/option/o5b_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o5b_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o5b_0> <http://www.w3.org/2000/01/rdf-schema#label> "Unfähig diese Aufgabe auszuführen"@de .
+<http://als.dispedia.info/frs/i/option/o5b_0> <http://www.w3.org/2000/01/rdf-schema#label> "Unable to perform any aspect of task"@en .
+<http://als.dispedia.info/frs/i/option/o5b_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t6>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t6> <http://www.w3.org/2000/01/rdf-schema#label> "Ankleiden und Körperpflege"@de .
+<http://als.dispedia.info/frs/i/topic/t6> <http://www.w3.org/2000/01/rdf-schema#label> "Dressing and hygiene"@en .
+<http://als.dispedia.info/frs/i/topic/t6> <http://als.dispedia.info/frs/o/suggestedQuestion> "Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung in Bezug auf Ankleiden und Körperpflege nachweisbar?"@de .
+<http://als.dispedia.info/frs/i/topic/t6> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o6_4> .
+<http://als.dispedia.info/frs/i/topic/t6> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o6_3> .
+<http://als.dispedia.info/frs/i/topic/t6> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o6_2> .
+<http://als.dispedia.info/frs/i/topic/t6> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o6_1> .
+<http://als.dispedia.info/frs/i/topic/t6> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o6_0> .
+
+<http://als.dispedia.info/frs/i/option/o6_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o6_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@de .
+<http://als.dispedia.info/frs/i/option/o6_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal function"@en .
+<http://als.dispedia.info/frs/i/option/o6_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o6_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o6_3> <http://www.w3.org/2000/01/rdf-schema#label> "Unabhängige und vollständige Selbstpflege mit Mühe"@de .
+<http://als.dispedia.info/frs/i/option/o6_3> <http://www.w3.org/2000/01/rdf-schema#label> "Independent and complete self-care with effort or decreased efficiency"@en .
+<http://als.dispedia.info/frs/i/option/o6_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o6_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o6_2> <http://www.w3.org/2000/01/rdf-schema#label> "Zeitweilige Hilfe oder Hilfsverfahren"@de .
+<http://als.dispedia.info/frs/i/option/o6_2> <http://www.w3.org/2000/01/rdf-schema#label> "Intermittent assistance or substitute methods"@en .
+<http://als.dispedia.info/frs/i/option/o6_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o6_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o6_1> <http://www.w3.org/2000/01/rdf-schema#label> "Zur Selbsthilfe ist eine Hilfsperson erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o6_1> <http://www.w3.org/2000/01/rdf-schema#label> "Needs attendant for self-care"@en .
+<http://als.dispedia.info/frs/i/option/o6_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o6_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o6_0> <http://www.w3.org/2000/01/rdf-schema#label> "Vollständige Abhängigkeit"@de .
+<http://als.dispedia.info/frs/i/option/o6_0> <http://www.w3.org/2000/01/rdf-schema#label> "Total dependence"@en .
+<http://als.dispedia.info/frs/i/option/o6_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t7>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t7> <http://www.w3.org/2000/01/rdf-schema#label> "Umdrehen im Bett und Bettzeug richten"@de .
+<http://als.dispedia.info/frs/i/topic/t7> <http://www.w3.org/2000/01/rdf-schema#label> "Turning in bed and adjusting bed clothes"@en .
+<http://als.dispedia.info/frs/i/topic/t7> <http://als.dispedia.info/frs/o/suggestedQuestion> "Ist im Vergleich zur Zeit vor Ihrer Erkrankung die Fähigkeit zum Umdrehen im Bett und Bettzeug richten verändert?"@de .
+<http://als.dispedia.info/frs/i/topic/t7> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o7_4> .
+<http://als.dispedia.info/frs/i/topic/t7> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o7_3> .
+<http://als.dispedia.info/frs/i/topic/t7> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o7_2> .
+<http://als.dispedia.info/frs/i/topic/t7> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o7_1> .
+<http://als.dispedia.info/frs/i/topic/t7> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o7_0> .
+
+<http://als.dispedia.info/frs/i/option/o7_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o7_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@de .
+<http://als.dispedia.info/frs/i/option/o7_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@en .
+<http://als.dispedia.info/frs/i/option/o7_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o7_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o7_3> <http://www.w3.org/2000/01/rdf-schema#label> "Etwas langsam und unbeholfen, aber keine Hilfe erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o7_3> <http://www.w3.org/2000/01/rdf-schema#label> "Somewhat slow and clumsy, but no help needed"@en .
+<http://als.dispedia.info/frs/i/option/o7_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o7_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o7_2> <http://www.w3.org/2000/01/rdf-schema#label> "Kann sich allein umdrehen und Bettlaken richten, aber mit großer Mühe"@de .
+<http://als.dispedia.info/frs/i/option/o7_2> <http://www.w3.org/2000/01/rdf-schema#label> "Can turn alone or adjust sheets, but with great difficulty"@en .
+<http://als.dispedia.info/frs/i/option/o7_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o7_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o7_1> <http://www.w3.org/2000/01/rdf-schema#label> "Kann die Drehung bzw. das Richten des Bettlakens beginnen, aber nicht allein beenden"@de .
+<http://als.dispedia.info/frs/i/option/o7_1> <http://www.w3.org/2000/01/rdf-schema#label> "Can initiate, but not turn or adjust sheets alone"@en .
+<http://als.dispedia.info/frs/i/option/o7_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o7_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o7_0> <http://www.w3.org/2000/01/rdf-schema#label> "Vollständige Abhängigkeit"@de .
+<http://als.dispedia.info/frs/i/option/o7_0> <http://www.w3.org/2000/01/rdf-schema#label> "Helpless"@en .
+<http://als.dispedia.info/frs/i/option/o7_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t8>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t8> <http://www.w3.org/2000/01/rdf-schema#label> "Gehen"@de .
+<http://als.dispedia.info/frs/i/topic/t8> <http://www.w3.org/2000/01/rdf-schema#label> "Walking"@en .
+<http://als.dispedia.info/frs/i/topic/t8> <http://als.dispedia.info/frs/o/suggestedQuestion> "Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Gehens vor?"@de .
+<http://als.dispedia.info/frs/i/topic/t8> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o8_4> .
+<http://als.dispedia.info/frs/i/topic/t8> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o8_3> .
+<http://als.dispedia.info/frs/i/topic/t8> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o8_2> .
+<http://als.dispedia.info/frs/i/topic/t8> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o8_1> .
+<http://als.dispedia.info/frs/i/topic/t8> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o8_0> .
+
+<http://als.dispedia.info/frs/i/option/o8_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o8_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@de .
+<http://als.dispedia.info/frs/i/option/o8_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@en .
+<http://als.dispedia.info/frs/i/option/o8_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o8_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o8_3> <http://www.w3.org/2000/01/rdf-schema#label> "Beginnde Gehschwierigkeiten durch Schwäche der Beine"@de .
+<http://als.dispedia.info/frs/i/option/o8_3> <http://www.w3.org/2000/01/rdf-schema#label> "Early ambulation difficulties"@en .
+<http://als.dispedia.info/frs/i/option/o8_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o8_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o8_2> <http://www.w3.org/2000/01/rdf-schema#label> "Deutliche Gangstörung; Nur mit Unterstützung oder Gebrauch von Hilfsmitteln möglich"@de .
+<http://als.dispedia.info/frs/i/option/o8_2> <http://www.w3.org/2000/01/rdf-schema#label> "Walks with assistance"@en .
+<http://als.dispedia.info/frs/i/option/o8_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o8_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o8_1> <http://www.w3.org/2000/01/rdf-schema#label> "Nicht gehfähig, aber gezielte Bewegungen der Beine möglich"@de .
+<http://als.dispedia.info/frs/i/option/o8_1> <http://www.w3.org/2000/01/rdf-schema#label> "Nonambulatory functional movement"@en .
+<http://als.dispedia.info/frs/i/option/o8_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o8_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o8_0> <http://www.w3.org/2000/01/rdf-schema#label> "Keine zielgerichteten Beinbewegungen"@de .
+<http://als.dispedia.info/frs/i/option/o8_0> <http://www.w3.org/2000/01/rdf-schema#label> "No purposeful leg movement"@en .
+<http://als.dispedia.info/frs/i/option/o8_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t9>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t9> <http://www.w3.org/2000/01/rdf-schema#label> "Treppensteigen"@de .
+<http://als.dispedia.info/frs/i/topic/t9> <http://www.w3.org/2000/01/rdf-schema#label> "Climbing stairs"@en .
+<http://als.dispedia.info/frs/i/topic/t9> <http://als.dispedia.info/frs/o/suggestedQuestion> "Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung in der Fahigkeit des Treppensteigens vor?"@de .
+<http://als.dispedia.info/frs/i/topic/t9> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o9_4> .
+<http://als.dispedia.info/frs/i/topic/t9> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o9_3> .
+<http://als.dispedia.info/frs/i/topic/t9> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o9_2> .
+<http://als.dispedia.info/frs/i/topic/t9> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o9_1> .
+<http://als.dispedia.info/frs/i/topic/t9> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o9_0> .
+
+<http://als.dispedia.info/frs/i/option/o9_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o9_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@de .
+<http://als.dispedia.info/frs/i/option/o9_4> <http://www.w3.org/2000/01/rdf-schema#label> "Normal"@en .
+<http://als.dispedia.info/frs/i/option/o9_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o9_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o9_3> <http://www.w3.org/2000/01/rdf-schema#label> "Langsam"@de .
+<http://als.dispedia.info/frs/i/option/o9_3> <http://www.w3.org/2000/01/rdf-schema#label> "Slow"@en .
+<http://als.dispedia.info/frs/i/option/o9_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o9_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o9_2> <http://www.w3.org/2000/01/rdf-schema#label> "Leichte Unsicherheit oder Ermüdung"@de .
+<http://als.dispedia.info/frs/i/option/o9_2> <http://www.w3.org/2000/01/rdf-schema#label> "Mild unsteadiness or fatigue"@en .
+<http://als.dispedia.info/frs/i/option/o9_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o9_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o9_1> <http://www.w3.org/2000/01/rdf-schema#label> "Braucht Unterstützung"@de .
+<http://als.dispedia.info/frs/i/option/o9_1> <http://www.w3.org/2000/01/rdf-schema#label> "Needs assistance"@en .
+<http://als.dispedia.info/frs/i/option/o9_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o9_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o9_0> <http://www.w3.org/2000/01/rdf-schema#label> "Nicht möglich"@de .
+<http://als.dispedia.info/frs/i/option/o9_0> <http://www.w3.org/2000/01/rdf-schema#label> "Cannot do"@en .
+<http://als.dispedia.info/frs/i/option/o9_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t10>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t10> <http://www.w3.org/2000/01/rdf-schema#label> "Luftnot"@de .
+<http://als.dispedia.info/frs/i/topic/t10> <http://www.w3.org/2000/01/rdf-schema#label> "Dyspnea (new)"@en .
+<http://als.dispedia.info/frs/i/topic/t10> <http://als.dispedia.info/frs/o/suggestedQuestion> "Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung Veränderungen in Bezug auf die Atmung vor?"@de .
+<http://als.dispedia.info/frs/i/topic/t10> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o10_4> .
+<http://als.dispedia.info/frs/i/topic/t10> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o10_3> .
+<http://als.dispedia.info/frs/i/topic/t10> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o10_2> .
+<http://als.dispedia.info/frs/i/topic/t10> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o10_1> .
+<http://als.dispedia.info/frs/i/topic/t10> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o10_0> .
+
+<http://als.dispedia.info/frs/i/option/o10_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o10_4> <http://www.w3.org/2000/01/rdf-schema#label> "Keine"@de .
+<http://als.dispedia.info/frs/i/option/o10_4> <http://www.w3.org/2000/01/rdf-schema#label> "None"@en .
+<http://als.dispedia.info/frs/i/option/o10_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o10_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o10_3> <http://www.w3.org/2000/01/rdf-schema#label> "Beim Gehen"@de .
+<http://als.dispedia.info/frs/i/option/o10_3> <http://www.w3.org/2000/01/rdf-schema#label> "Occurs when walking"@en .
+<http://als.dispedia.info/frs/i/option/o10_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o10_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o10_2> <http://www.w3.org/2000/01/rdf-schema#label> "Bei Aktivitäten des täglichen Lebens: Essen, Baden, Ankleiden"@de .
+<http://als.dispedia.info/frs/i/option/o10_2> <http://www.w3.org/2000/01/rdf-schema#label> "Occurs with one or more of the following: eating, bathing, dressing (ADL)"@en .
+<http://als.dispedia.info/frs/i/option/o10_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o10_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o10_1> <http://www.w3.org/2000/01/rdf-schema#label> "Leichte Atemnot im Sitzen"@de .
+<http://als.dispedia.info/frs/i/option/o10_1> <http://www.w3.org/2000/01/rdf-schema#label> "Occurs at rest, difficulty breathing when either sitting or lying"@en .
+<http://als.dispedia.info/frs/i/option/o10_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o10_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o10_0> <http://www.w3.org/2000/01/rdf-schema#label> "Schwere Atemnot im Sitzen"@de .
+<http://als.dispedia.info/frs/i/option/o10_0> <http://www.w3.org/2000/01/rdf-schema#label> "Significant difficulty, considering using mechanical respiratory support"@en .
+<http://als.dispedia.info/frs/i/option/o10_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t11>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t11> <http://www.w3.org/2000/01/rdf-schema#label> "Luftnot im Liegen"@de .
+<http://als.dispedia.info/frs/i/topic/t11> <http://www.w3.org/2000/01/rdf-schema#label> "Orthopnea (new)"@en .
+<http://als.dispedia.info/frs/i/topic/t11> <http://als.dispedia.info/frs/o/suggestedQuestion> "Sind im Vergleich zur Zeit vor Ihrer Erkrankung in liegender Körperposition Veränderungen der Atmung zu bemerken?"@de .
+<http://als.dispedia.info/frs/i/topic/t11> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o11_4> .
+<http://als.dispedia.info/frs/i/topic/t11> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o11_3> .
+<http://als.dispedia.info/frs/i/topic/t11> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o11_2> .
+<http://als.dispedia.info/frs/i/topic/t11> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o11_1> .
+<http://als.dispedia.info/frs/i/topic/t11> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o11_0> .
+
+<http://als.dispedia.info/frs/i/option/o11_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o11_4> <http://www.w3.org/2000/01/rdf-schema#label> "Keine"@de .
+<http://als.dispedia.info/frs/i/option/o11_4> <http://www.w3.org/2000/01/rdf-schema#label> "None"@en .
+<http://als.dispedia.info/frs/i/option/o11_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o11_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o11_3> <http://www.w3.org/2000/01/rdf-schema#label> "Wiederholte nächtliche Luftnot, aber flaches Liegen"@de .
+<http://als.dispedia.info/frs/i/option/o11_3> <http://www.w3.org/2000/01/rdf-schema#label> "Some difficulty sleeping at night due to shortness of breath, does not routinely use more than two pillows"@en .
+<http://als.dispedia.info/frs/i/option/o11_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o11_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o11_2> <http://www.w3.org/2000/01/rdf-schema#label> "Regelmäßige Verwendung von mehr als zwei Kissen zum Schlafen erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o11_2> <http://www.w3.org/2000/01/rdf-schema#label> "Needs extra pillows in order to sleep (more than two)"@en .
+<http://als.dispedia.info/frs/i/option/o11_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o11_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o11_1> <http://www.w3.org/2000/01/rdf-schema#label> "Kann nur im Sitzen schlafen"@de .
+<http://als.dispedia.info/frs/i/option/o11_1> <http://www.w3.org/2000/01/rdf-schema#label> "Can only sleep sitting up"@en .
+<http://als.dispedia.info/frs/i/option/o11_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o11_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o11_0> <http://www.w3.org/2000/01/rdf-schema#label> "Hochgradige Schlafstörungen"@de .
+<http://als.dispedia.info/frs/i/option/o11_0> <http://www.w3.org/2000/01/rdf-schema#label> "Unable to sleep"@en .
+<http://als.dispedia.info/frs/i/option/o11_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
+
+<http://als.dispedia.info/frs/i/topic/t12>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic> .
+<http://als.dispedia.info/frs/i/topic/t12> <http://www.w3.org/2000/01/rdf-schema#label> "Atemhilfen"@de .
+<http://als.dispedia.info/frs/i/topic/t12> <http://www.w3.org/2000/01/rdf-schema#label> "Respiratory insufficiency (new)"@en .
+<http://als.dispedia.info/frs/i/topic/t12> <http://als.dispedia.info/frs/o/suggestedQuestion> "Besteht eine Behandlung mit einem Beatmungsgerät?"@de .
+<http://als.dispedia.info/frs/i/topic/t12> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o12_4> .
+<http://als.dispedia.info/frs/i/topic/t12> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o12_3> .
+<http://als.dispedia.info/frs/i/topic/t12> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o12_2> .
+<http://als.dispedia.info/frs/i/topic/t12> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o12_1> .
+<http://als.dispedia.info/frs/i/topic/t12> <http://als.dispedia.info/frs/o/hasOption> <http://als.dispedia.info/frs/i/option/o12_0> .
+
+<http://als.dispedia.info/frs/i/option/o12_4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o12_4> <http://www.w3.org/2000/01/rdf-schema#label> "Keine Atemhilfe erforderlich"@de .
+<http://als.dispedia.info/frs/i/option/o12_4> <http://www.w3.org/2000/01/rdf-schema#label> "None"@en .
+<http://als.dispedia.info/frs/i/option/o12_4> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s4> .
+
+<http://als.dispedia.info/frs/i/option/o12_3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o12_3> <http://www.w3.org/2000/01/rdf-schema#label> "Atemhilfe durch Maskenbeatmung weniger als 8h pro Tag"@de .
+<http://als.dispedia.info/frs/i/option/o12_3> <http://www.w3.org/2000/01/rdf-schema#label> "Intermittent use of BiPAP"@en .
+<http://als.dispedia.info/frs/i/option/o12_3> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s3> .
+
+<http://als.dispedia.info/frs/i/option/o12_2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o12_2> <http://www.w3.org/2000/01/rdf-schema#label> "Atemhilfe durch Maskenbeatmung mit mehr als 8h aber weniger als 20h pro Tag"@de .
+<http://als.dispedia.info/frs/i/option/o12_2> <http://www.w3.org/2000/01/rdf-schema#label> "Continuous use of BiPAP during the night"@en .
+<http://als.dispedia.info/frs/i/option/o12_2> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s2> .
+
+<http://als.dispedia.info/frs/i/option/o12_1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o12_1> <http://www.w3.org/2000/01/rdf-schema#label> "Atemhilfe durch Maskenbeatmung mehr als 20h pro Tag"@de .
+<http://als.dispedia.info/frs/i/option/o12_1> <http://www.w3.org/2000/01/rdf-schema#label> "Continuous use of BiPAP during the night and day"@en .
+<http://als.dispedia.info/frs/i/option/o12_1> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s1> .
+
+<http://als.dispedia.info/frs/i/option/o12_0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option> .
+<http://als.dispedia.info/frs/i/option/o12_0> <http://www.w3.org/2000/01/rdf-schema#label> "Künstliche Beatmung durch Luftröhrenschnitt (Tracheotomie)"@de .
+<http://als.dispedia.info/frs/i/option/o12_0> <http://www.w3.org/2000/01/rdf-schema#label> "Invasive mechanical ventilation by intubation or tracheostomy"@en .
+<http://als.dispedia.info/frs/i/option/o12_0> <http://als.dispedia.info/frs/o/hasScore> <http://als.dispedia.info/frs/i/score/s0> .
