@@ -1,7 +1,12 @@
+Add address;Addresse hinzufügen
 Add a new patient;Neuen Patienten anlegen
 Add a new knowledge base;Neue Wissensbasis anlegen
 Add pet;Haustier hinzufügen
+ALSFSR;ALSFSR
+By classification;Nach Klassifikation
+By free text;Nach Freitext
 Children;Kinder
+Doctor view;Doktoransicht
 Diet;Ernährung
 Edit family status;Ändere Familienverhältnisse
 Edit housing situation;Ändere Wohnsituation
@@ -14,6 +19,7 @@ Family status;Familienverhältnisse
 Formgenerator;Formular generator
 Hobbies;Hobbys
 Housing situation;Wohnsituation
+ICF;ICF
 Job;Job
 Life partner / spouse;Lebensgefährte / Ehepartner
 Living relations;Lebende Verwandte
@@ -24,6 +30,7 @@ Overview;Überblick
 Patient view;Patientansicht 
 Pets;Haustiere 
 Preferences;Einstellungen
+Register a new user;Registriere einen neuen Benutzer
 Set Address;Setze Addresse
 Set pets;Haustiere verwalten
 Silbings;Geschwister

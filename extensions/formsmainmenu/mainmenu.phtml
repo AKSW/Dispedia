@@ -37,7 +37,7 @@
     <a href="<?php echo $this->url; ?>?showMenu=ontowiki">
         <?php echo $this->_translate->_('System'); ?></a>
         
-    ( <a href="?lang=de">de</a> / <a href="?lang=en">en</a> )
+    ( <a href="?lang=de&showMenu=<?php echo $this->showMenu; ?>">de</a> / <a href="?lang=en&showMenu=<?php echo $this->showMenu; ?>">en</a> )
 </div>
 
 <?php if ( 'patient' == $this->showMenu ) { ?>
@@ -116,23 +116,6 @@
 
 <br/>
 <div style="font-weight:bold; font-size:13px;">
-    <?php echo $this->_translate->_('Edit medical condition'); ?>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>aim.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=movement">
-        <?php echo $this->_translate->_('Movement'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>cart.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=diet">
-        <?php echo $this->_translate->_('Diet'); ?></a>
-</div>
-
-<br/>
-<div style="font-weight:bold; font-size:13px;">
     <?php echo $this->_translate->_('Edit professional situation'); ?>
 </div>
 <div>
@@ -153,6 +136,49 @@
     <a href="<?php echo $this->url ?>formgenerator/form?file=hobbies">
         <?php echo $this->_translate->_('Hobbies'); ?></a>
 </div>
+
+
+
+
+
+<?php } elseif ( 'doctor' == $this->showMenu ) { ?>
+
+<br/>
+<div style="font-weight:bold;font-size:14px;">
+    <?php echo $this->_translate->_('Edit medical condition'); ?>
+</div>
+
+<br/>
+
+<div style="font-weight:bold;font-size:12px;">
+    <?php echo $this->_translate->_('By classification'); ?>
+    <br/>
+    <li><a href="<?php echo $this->url ?>formgenerator/form?file=alsfsr">
+        <?php echo $this->_translate->_('ALSFSR'); ?></a></li>
+    <li><a href="">
+        <?php echo $this->_translate->_('ICF'); ?></a></li>
+</div>
+
+
+<br/>
+<div style="font-weight:bold;font-size:12px;">
+    <?php echo $this->_translate->_('By free text'); ?>
+</div>
+
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>aim.png" border="0" align="absmiddle"/>    
+    &nbsp;
+    <a href="<?php echo $this->url ?>formgenerator/form?file=movement">
+        <?php echo $this->_translate->_('Movement'); ?></a>
+</div>
+<div>
+    <img src="<?php echo $this->imagesUrl; ?>cart.png" border="0" align="absmiddle"/>    
+    &nbsp;
+    <a href="<?php echo $this->url ?>formgenerator/form?file=diet">
+        <?php echo $this->_translate->_('Diet'); ?></a>
+</div>
+
+
 
 
 <?php } elseif ( 'ontowiki' == $this->showMenu ) { ?>

@@ -1,7 +1,12 @@
+Add address;Add address
 Add a new knowledge base;Add a new knowledge base
 Add a new patient;Add a new patient
 Add pet;Add pet
+ALSFSR;ALSFSR
+By classification;By classification
+By free text;By free text
 Children;Children
+Doctor view;Doctor view
 Diet;Diet
 Edit family status;Edit family status
 Edit housing situation;Edit housing situation
@@ -14,6 +19,7 @@ Family status;Family status
 Formgenerator;Formula generator
 Hobbies;Hobbies
 Housing situation;Wohnsituation
+ICF;ICF
 Job;Job
 Life partner / spouse;Life partner / spouse
 Living relations;Living relations
@@ -24,6 +30,7 @@ Overview;Overview
 Patient view;Patient view 
 Pets;Pets
 Preferences;Preferences
+Register a new user;Register a new user
 Set Address;Set Address
 Set pets;Set pets
 Silbings;Silbings

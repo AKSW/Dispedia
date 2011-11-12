@@ -32,7 +32,7 @@ class MainMenuModule extends OntoWiki_Module
      */
     public function getTitle()
     {
-        return 'Main Menu';
+        return 'Dispedia Menu';
     }
 
     /**
