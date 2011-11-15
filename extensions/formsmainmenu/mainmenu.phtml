@@ -20,204 +20,219 @@
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user.png" border="0" align="absmiddle"/>
     &nbsp;
-    <a href="<?php echo $this->url; ?>?showMenu=patient">
+    <a id="apatient" href="javascript: void(0)">
         <?php echo $this->_translate->_('Patient view'); ?></a>
 </div>
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>user_doctor.png" border="0" align="absmiddle"/>
     &nbsp;
-    <a href="<?php echo $this->url; ?>?showMenu=doctor">
+    <a id="adoctor" href="javascript: void(0)">
         <?php echo $this->_translate->_('Doctor view'); ?></a>
 </div>
 
 <div>
     <img src="<?php echo $this->imagesUrl; ?>ow_logo.png" border="0" align="absmiddle" width="16"/>
     &nbsp;
-    <a href="<?php echo $this->url; ?>?showMenu=ontowiki">
+    <a id="asystem" href="javascript: void(0)">
         <?php echo $this->_translate->_('System'); ?></a>
         
     ( <a href="?lang=de&showMenu=<?php echo $this->showMenu; ?>">de</a> / <a href="?lang=en&showMenu=<?php echo $this->showMenu; ?>">en</a> )
 </div>
 
-<?php if ( 'patient' == $this->showMenu ) { ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        <?php if ( 'patient' != $this->showMenu ) echo "$('#divpatient').addClass('hidden');" ?>
+        <?php if ( 'doctor' != $this->showMenu ) echo "$('#divdoctor').addClass('hidden');" ?>
+        <?php if ( 'ontowiki' != $this->showMenu ) echo "$('#divsystem').addClass('hidden');" ?>
+    });
+    $('#apatient').click(function() {
+        $('#divpatient').removeClass('hidden');
+        $('#divdoctor').addClass('hidden');
+        $('#divsystem').addClass('hidden');
+    });
+    $('#adoctor').click(function() {
+        $('#divpatient').addClass('hidden');
+        $('#divdoctor').removeClass('hidden');
+        $('#divsystem').addClass('hidden');
+    });
+    $('#asystem').click(function() {
+        $('#divpatient').addClass("hidden");
+        $('#divdoctor').addClass("hidden");
+        $('#divsystem').removeClass("hidden");
+    });
+</script>
 
-<br/>
-
-<!-- Submenu -->
-
-<div style="font-weight:bold; font-size:16px;">
-    <?php echo $this->_translate->_('Patient view'); ?>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=patient">
-        <?php echo $this->_translate->_('Add a new patient'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=patientEdit">
-        <?php echo $this->_translate->_('Edit patient information'); ?></a>
-</div>
-
-<br/>
-<div style="font-weight:bold; font-size:13px;">
-    <?php echo $this->_translate->_('Edit family status'); ?>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>family.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=familystatus">
-        <?php echo $this->_translate->_('Family status'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=livingRelations">
-        <?php echo $this->_translate->_('Living relations'); ?></a> / 
-    <a href="<?php echo $this->url ?>formgenerator/form?file=children">
-        <?php echo $this->_translate->_('Children'); ?></a> / 
-    <a href="<?php echo $this->url ?>formgenerator/form?file=silbings">
-        <?php echo $this->_translate->_('Silbings'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>spouse.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=lifePartnerSpouse">
-        <?php echo $this->_translate->_('Life partner / spouse'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>tux.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=pet">
-        <?php echo $this->_translate->_('Add pet'); ?></a> /
-    <a href="<?php echo $this->url ?>formgenerator/form?file=setPets">
-        <?php echo $this->_translate->_('Set Pets'); ?></a>
-</div>
-
-<br/>
-<div style="font-weight:bold; font-size:13px;">
-    <?php echo $this->_translate->_('Edit housing situation'); ?>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>house.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=address">
-        <?php echo $this->_translate->_('Add address'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>user_house.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=setAddress">
-        <?php echo $this->_translate->_('Set Address'); ?></a>
-</div>
-
-<br/>
-<div style="font-weight:bold; font-size:13px;">
-    <?php echo $this->_translate->_('Edit professional situation'); ?>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>wrench.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=job">
-        <?php echo $this->_translate->_('Job'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=socialSituation">
-        <?php echo $this->_translate->_('Social situation'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>sport_basketball.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=hobbies">
-        <?php echo $this->_translate->_('Hobbies'); ?></a>
-</div>
-
-
-
-
-
-<?php } elseif ( 'doctor' == $this->showMenu ) { ?>
-
-<br/>
-<div style="font-weight:bold;font-size:14px;">
-    <?php echo $this->_translate->_('Edit medical condition'); ?>
-</div>
-
-<br/>
-
-<div style="font-weight:bold;font-size:12px;">
-    <?php echo $this->_translate->_('By classification'); ?>
+<div id="divpatient">
     <br/>
-    <li><a href="<?php echo $this->url ?>formgenerator/form?file=alsfrs">
-        <?php echo $this->_translate->_('ALSFRS'); ?></a></li>
-    <li><a href="">
-        <?php echo $this->_translate->_('ICF'); ?></a></li>
+    
+    <!-- Submenu -->
+    
+    <div style="font-weight:bold; font-size:16px;">
+        <?php echo $this->_translate->_('Patient view'); ?>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=patient">
+            <?php echo $this->_translate->_('Add a new patient'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=patientEdit">
+            <?php echo $this->_translate->_('Edit patient information'); ?></a>
+    </div>
+    
+    <br/>
+    <div style="font-weight:bold; font-size:13px;">
+        <?php echo $this->_translate->_('Edit family status'); ?>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>family.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=familystatus">
+            <?php echo $this->_translate->_('Family status'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=livingRelations">
+            <?php echo $this->_translate->_('Living relations'); ?></a> / 
+        <a href="<?php echo $this->url ?>formgenerator/form?file=children">
+            <?php echo $this->_translate->_('Children'); ?></a> / 
+        <a href="<?php echo $this->url ?>formgenerator/form?file=silbings">
+            <?php echo $this->_translate->_('Silbings'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>spouse.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=lifePartnerSpouse">
+            <?php echo $this->_translate->_('Life partner / spouse'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>tux.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=pet">
+            <?php echo $this->_translate->_('Add pet'); ?></a> /
+        <a href="<?php echo $this->url ?>formgenerator/form?file=setPets">
+            <?php echo $this->_translate->_('Set Pets'); ?></a>
+    </div>
+    
+    <br/>
+    <div style="font-weight:bold; font-size:13px;">
+        <?php echo $this->_translate->_('Edit housing situation'); ?>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>house.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=address">
+            <?php echo $this->_translate->_('Add address'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>user_house.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=setAddress">
+            <?php echo $this->_translate->_('Set Address'); ?></a>
+    </div>
+    
+    <br/>
+    <div style="font-weight:bold; font-size:13px;">
+        <?php echo $this->_translate->_('Edit professional situation'); ?>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>wrench.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=job">
+            <?php echo $this->_translate->_('Job'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=socialSituation">
+            <?php echo $this->_translate->_('Social situation'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>sport_basketball.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=hobbies">
+            <?php echo $this->_translate->_('Hobbies'); ?></a>
+    </div>
+
 </div>
 
-
-<br/>
-<div style="font-weight:bold;font-size:12px;">
-    <?php echo $this->_translate->_('By free text'); ?>
+<div id="divdoctor">
+    <br/>
+    <div style="font-weight:bold;font-size:14px;">
+        <?php echo $this->_translate->_('Edit medical condition'); ?>
+    </div>
+    
+    <br/>
+    
+    <div style="font-weight:bold;font-size:12px;">
+        <?php echo $this->_translate->_('By classification'); ?>
+        <br/>
+        <li><a href="<?php echo $this->url ?>formgenerator/form?file=alsfrs">
+            <?php echo $this->_translate->_('ALSFRS'); ?></a></li>
+        <li><a href="">
+            <?php echo $this->_translate->_('ICF'); ?></a></li>
+    </div>
+    
+    
+    <br/>
+    <div style="font-weight:bold;font-size:12px;">
+        <?php echo $this->_translate->_('By free text'); ?>
+    </div>
+    
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>aim.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=movement">
+            <?php echo $this->_translate->_('Movement'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>cart.png" border="0" align="absmiddle"/>    
+        &nbsp;
+        <a href="<?php echo $this->url ?>formgenerator/form?file=diet">
+            <?php echo $this->_translate->_('Diet'); ?></a>
+    </div>
 </div>
 
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>aim.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=movement">
-        <?php echo $this->_translate->_('Movement'); ?></a>
+<div id="divsystem">
+    <br/>
+    
+    <!-- Submenu -->
+    
+    <div style="font-weight:bold; font-size:16px;">
+        <?php echo $this->_translate->_('OntoWiki'); ?>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
+        <a href="<?php echo $this->applicationUrl ?>register">
+            <?php echo $this->_translate->_('Register a new user'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>database_add.png" border="0" align="absmiddle"/>    
+        <a href="<?php echo $this->url ?>model/create">
+            <?php echo $this->_translate->_('Add a new knowledge base'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>wrench.png" border="0" align="absmiddle"/>        
+        <a href="<?php echo $this->applicationUrl ?>preferences">
+            <?php echo $this->_translate->_('Preferences'); ?></a>
+    </div>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>package.png" border="0" align="absmiddle"/>        
+        <a href="<?php echo $this->url ?>exconf/list">
+            <?php echo $this->_translate->_('Extensions'); ?></a>
+    </div>
+    
+    <br/>
+    <div>
+        <img src="<?php echo $this->imagesUrl; ?>door_in.png" border="0" align="absmiddle"/>        
+        <a href="<?php echo $this->applicationUrl ?>logout">
+            <?php echo $this->_translate->_('Logout'); ?></a>
+    </div>
 </div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>cart.png" border="0" align="absmiddle"/>    
-    &nbsp;
-    <a href="<?php echo $this->url ?>formgenerator/form?file=diet">
-        <?php echo $this->_translate->_('Diet'); ?></a>
-</div>
-
-
-
-
-<?php } elseif ( 'ontowiki' == $this->showMenu ) { ?>
-
-<br/>
-
-<!-- Submenu -->
-
-<div style="font-weight:bold; font-size:16px;">
-    <?php echo $this->_translate->_('OntoWiki'); ?>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>user_add.png" border="0" align="absmiddle"/>    
-    <a href="<?php echo $this->applicationUrl ?>register">
-        <?php echo $this->_translate->_('Register a new user'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>database_add.png" border="0" align="absmiddle"/>    
-    <a href="<?php echo $this->url ?>model/create">
-        <?php echo $this->_translate->_('Add a new knowledge base'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>wrench.png" border="0" align="absmiddle"/>        
-    <a href="<?php echo $this->applicationUrl ?>preferences">
-        <?php echo $this->_translate->_('Preferences'); ?></a>
-</div>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>package.png" border="0" align="absmiddle"/>        
-    <a href="<?php echo $this->url ?>exconf/list">
-        <?php echo $this->_translate->_('Extensions'); ?></a>
-</div>
-
-<br/>
-<div>
-    <img src="<?php echo $this->imagesUrl; ?>door_in.png" border="0" align="absmiddle"/>        
-    <a href="<?php echo $this->applicationUrl ?>logout">
-        <?php echo $this->_translate->_('Logout'); ?></a>
-</div>
-
-<?php } ?>
 
 <?php } ?>
