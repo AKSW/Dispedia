@@ -27,8 +27,13 @@
 	height:20000em;
 }
 
-.proposalItem {
+.proposalItemSelected {
     font-weight:bold;
     font-size:14px;
+    margin-left:30px;
+}
+
+.proposalItem {
+    font-size:13px;
     margin-left:20px;
 }

@@ -54,6 +54,7 @@ class PropallocController extends OntoWiki_Controller_Component
         $p = new Proposal ();
         
         $this->view->proposals = (array) $p->getAllProposals ();        
+        $this->view->proposal = $p; 
         
         // -------------------------------------------------------------
         if ( '' != $this->getParam ('proposal') ) 

@@ -37,8 +37,15 @@ $(function() {
 			<td>
 				<?php foreach ( $this->proposals as $proposal ) { ?>
 					
+					<?php 
+					if ( $proposal ['uri'] == $this->proposal->getProposalUri ( $this->currentProposal ) ) { 
+						$css = 'proposalItemSelected';
+					} else { 
+						$css = 'proposalItem';
+					} ?>
+					
 					<br/>
-					<div class="proposalItem">
+					<div class="<?php echo $css; ?>">						
 						<a href="<?php echo $this->url; ?>?proposal=<?php echo $proposal ['shortcut']; ?>">
 							<?php echo $proposal ['label']; ?></a>
 					</div>
@@ -49,8 +56,11 @@ $(function() {
 			<!-- ALSFRS topics and their options -->
 			<td>
 				<?php if ( '' != $this->currentProposal ) { ?>
-					<div class="scrollable vertical">                
+				
+					<div class="scrollable vertical">             
+					   
 						<div class="items">
+							
 							<?php foreach ( $this->topics as $topic ) { ?>
 								
 								<div>
@@ -82,8 +92,11 @@ $(function() {
 								</div>
 							
 							<?php } ?>
+							
 						</div>
+						
 					</div>        
+					
 				<?php } ?>
 			</td>
 		</tr>
