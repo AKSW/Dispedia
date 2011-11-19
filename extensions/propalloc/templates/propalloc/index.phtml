@@ -23,13 +23,23 @@ $(function() {
 
 <table style="width:100%">
     <tr>
-        <td style="width:50%;" valign="top"></td>
-        <td style="width:50%;" valign="top"></td>
+        <td style="width:35%;" valign="top"></td>
+        <td style="width:65%;" valign="top"></td>
     </tr>
     <tr>
-        <td></td>
+        <!-- Proposals -->
+        <td>
+            <?php foreach ( $this->proposals as $proposal ) { ?>
+                
+                <br/>
+                <div class="proposalItem">
+                    <?php echo $proposal ['label']; ?>
+                </div>
+            
+            <?php } ?>
+        </td>
         
-        <!-- ALSFRS options -->
+        <!-- ALSFRS topics and their options -->
         <td>
             <div class="scrollable vertical">                
                 <div class="items">

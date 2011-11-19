@@ -26,3 +26,9 @@
 	/* this time we have very large space for the height */
 	height:20000em;
 }
+
+.proposalItem {
+    font-weight:bold;
+    font-size:14px;
+    margin-left:20px;
+}

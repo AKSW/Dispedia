@@ -31,13 +31,19 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
         
-        // -------------------------------------------------------------
-        
         // set standard language
         $lang = true == isset ($_SESSION ['selectedLanguage'])
             ? $_SESSION ['selectedLanguage']
-            : 'de';        
-            
+            : 'de';    
+        
+        // -------------------------------------------------------------
+        
+        $p = new Proposal ();
+        
+        $this->view->proposals = $p->getAllProposals ();        
+        
+        
+        // -------------------------------------------------------------
         
         $t = new Topic ($lang);
         $o = new Option ($lang);
