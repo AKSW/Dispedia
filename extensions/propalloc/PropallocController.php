@@ -16,6 +16,9 @@ require 'classes/Topic.php';
  */ 
 class PropallocController extends OntoWiki_Controller_Component
 {
+	protected $_url;
+	protected $_selectedModel;
+	
     /**
      * init controller
      */     
@@ -23,6 +26,11 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         parent::init();
         $this->_url = $this->_request->uri;    
+        
+        $model = new Erfurt_Rdf_Model ($this->_privateConfig->defaultModel);
+        $this->_selectedModel = $model;
+        $this->_selectedModelUri = (string) $model;
+        $this->_owApp->selectedModel = $model;
     }
     
     public function indexAction ()
@@ -41,15 +49,33 @@ class PropallocController extends OntoWiki_Controller_Component
         
         // -------------------------------------------------------------
         
+		$t = new Topic ($lang);
+		$o = new Option ($lang, $this->_selectedModel);
         $p = new Proposal ();
         
-        $this->view->proposals = $p->getAllProposals ();        
-        
+        $this->view->proposals = (array) $p->getAllProposals ();        
         
         // -------------------------------------------------------------
-        if ( '' != $this->getParam ('proposal') ) {
-            $t = new Topic ($lang);
-            $o = new Option ($lang);
+        if ( '' != $this->getParam ('proposal') ) 
+        {
+			$options = array ();
+			
+			if ( 'save' == $this->getParam ('do') )
+			{
+				foreach ( $_REQUEST as $key => $value )
+				{
+					if ( 'selectedOption' == $value ) {
+						$options [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
+					}
+				}
+				
+				$o->saveOptions ( 
+					$p->getProposalUri ( $this->getParam ('proposal') ),
+					$options, 
+					$p->getSettings ( $this->getParam ('proposal') ) 
+				);
+			}  
+						
             $topics = array ();
             
             foreach ( $t->getAllTopics () as $topic ) {
@@ -70,6 +96,9 @@ class PropallocController extends OntoWiki_Controller_Component
             }
             
             $this->view->topics = $topics;
+            
+            // get saved settings
+            $this->view->settings = $p->getSettings ( $this->getParam ('proposal') );
         }
     }
 }

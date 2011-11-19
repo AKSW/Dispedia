@@ -21,54 +21,88 @@ $(function() {
 });
 </script>
 
-<table style="width:100%">
-    <tr>
-        <td style="width:35%;" valign="top"></td>
-        <td style="width:65%;" valign="top"></td>
-    </tr>
-    <tr>
-        <!-- Proposals -->
-        <td>
-            <?php foreach ( $this->proposals as $proposal ) { ?>
-                
-                <br/>
-                <div class="proposalItem">
-                    <a href="<?php echo $this->url; ?>?proposal=<?php echo $proposal ['shortcut']; ?>">
-                        <?php echo $proposal ['label']; ?></a>
-                </div>
-            
-            <?php } ?>
-        </td>
-        
-        <!-- ALSFRS topics and their options -->
-        <td>
-            <?php if ( '' != $this->currentProposal ) { ?>
-                <div class="scrollable vertical">                
-                    <div class="items">
-                        <?php foreach ( $this->topics as $topic ) { ?>
-                            
-                            <div>
-                                <div class="item">
-                                    <!-- Topic label -->
-                                    <h2><?php echo $topic ['label']; ?></h2>
-                                    
-                                    <!-- Options -->
-                                    <ul>
-                                    
-                                    <?php foreach ( $topic ['options'] as $option ) { ?>
-                                    
-                                        <li><?php echo $option ['label']; ?></li>
-                                    
-                                    <?php } ?>
-                                    
-                                    </ul>
-                                </div>
-                            </div>
-                        
-                        <?php } ?>
-                    </div>
-                </div>        
-            <?php } ?>
-        </td>
-    </tr>
-</table>
+<form method="post" action="" id="propalloc">
+	
+	<table style="width:100%">
+		
+		<?php if ( 0 < count ( $this->proposals ) ) { ?>
+		
+		<tr>
+			<td style="width:35%;" valign="top"></td>
+			<td style="width:65%;" valign="top"></td>
+		</tr>
+		
+		<tr>
+			<!-- Proposals -->
+			<td>
+				<?php foreach ( $this->proposals as $proposal ) { ?>
+					
+					<br/>
+					<div class="proposalItem">
+						<a href="<?php echo $this->url; ?>?proposal=<?php echo $proposal ['shortcut']; ?>">
+							<?php echo $proposal ['label']; ?></a>
+					</div>
+				
+				<?php } ?>
+			</td>
+			
+			<!-- ALSFRS topics and their options -->
+			<td>
+				<?php if ( '' != $this->currentProposal ) { ?>
+					<div class="scrollable vertical">                
+						<div class="items">
+							<?php foreach ( $this->topics as $topic ) { ?>
+								
+								<div>
+									<div class="item">
+										<!-- Topic label -->
+										<h2><?php echo $topic ['label']; ?></h2>
+										
+										<!-- Options -->
+										
+										<?php foreach ( $topic ['options'] as $option ) { ?>
+										
+											<br/>
+										
+											<?php if ( true == in_array ( $option ['uri'], $this->settings ) ) { ?>
+										
+											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption" checked="checked"/> &nbsp;
+											
+											<?php } else { ?>
+										
+											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption"/> &nbsp;
+											
+											<?php } ?>
+										
+											<?php echo $option ['label']; ?>
+										
+										<?php } ?>
+										
+									</div>
+								</div>
+							
+							<?php } ?>
+						</div>
+					</div>        
+				<?php } ?>
+			</td>
+		</tr>
+		
+		<?php } else { ?>
+		
+		<tr>
+			<td>
+				<a href="<?php echo $this->url; ?>formgenerator/form/?file=proposal">
+					<?php echo $this->_translate->_('Create Proposal'); ?></a></td>
+		</tr>
+		
+		<?php } ?>
+		 
+	</table>
+			
+	<input type="hidden" name="do" value="save"/>
+	<input type="hidden" name="proposal" value="<?php echo $this->currentProposal; ?>"/>
+
+	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
+		<?php echo $this->_translate->_('Save'); ?></a>
+</form>

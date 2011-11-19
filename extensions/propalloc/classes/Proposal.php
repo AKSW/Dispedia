@@ -17,6 +17,10 @@ class Proposal
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
+    
+    /**
+     * 
+     */
     public function getAllProposals ()
     {
         $tmp = $this->_store->sparqlQuery (
@@ -27,6 +31,8 @@ class Proposal
              };'
         );
         
+        $proposals = array ();
+        
         foreach ( $tmp as $proposal ) {
             $proposal ['shortcut'] = md5 ( $proposal ['uri'] );
             
@@ -35,5 +41,51 @@ class Proposal
         
         return $proposals;
     }
+    
+    
+    /**
+     * 
+     */
+    public function getSettings ( $proposalMd5 ) 
+    {
+		$proposalUri = $this->getProposalUri ( $proposalMd5 );
+		
+		$appropriateForSymptoms = $this->_store->sparqlQuery (
+            'SELECT ?optionUri
+              WHERE {
+                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?optionUri .
+             };'
+        );
+        
+		$appropriateForProperties = $this->_store->sparqlQuery (
+            'SELECT ?optionUri
+              WHERE {
+                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?optionUri .
+             };'
+        );
+        
+        $optionUris = array ();
+        
+        foreach ( $appropriateForProperties as $p )
+			$optionUris [] = $p ['optionUri'];
+        
+        foreach ( $appropriateForSymptoms as $p )
+			$optionUris [] = $p ['optionUri'];
+			
+		return $optionUris;
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public function getProposalUri ( $md5 )
+	{
+		foreach ( $this->getAllProposals () as $p )
+		{
+			if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
+		}
+		return null;
+	}
 }
 

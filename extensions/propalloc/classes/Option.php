@@ -10,13 +10,72 @@
  */ 
 class Option
 {
-    private $_lang;
-    private $_store;
+    protected $_lang;
+    protected $_store;
+    protected $_pertainsToPropertySet;
     
-    public function __construct ( $lang )
+    public function __construct ( $lang, $model )
     {
         $this->_lang = $lang;
-        $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
+        
+        $this->_selectedModel = $model;
+        $this->_selectedModelUri = (string) $model;
+        
+        $this->_store = Erfurt_App::getInstance()->getStore();
+        
+        $this->_pertainsToPropertySet = array (
+            'http://als.dispedia.info/frs/i/topic/t1',
+            'http://als.dispedia.info/frs/i/topic/t3',
+            'http://als.dispedia.info/frs/i/topic/t5a',
+            'http://als.dispedia.info/frs/i/topic/t5b',
+            'http://als.dispedia.info/frs/i/topic/t6',
+            'http://als.dispedia.info/frs/i/topic/t7',
+            'http://als.dispedia.info/frs/i/topic/t9',
+            'http://als.dispedia.info/frs/i/topic/t12'
+        );
+        
+        $this->_optionsPropertySet = array (
+            'http://als_dispedia_info/frs/i/option/o1_0',
+            'http://als_dispedia_info/frs/i/option/o1_1',
+            'http://als_dispedia_info/frs/i/option/o1_2',
+            'http://als_dispedia_info/frs/i/option/o1_3',
+            'http://als_dispedia_info/frs/i/option/o1_4',
+            'http://als_dispedia_info/frs/i/option/o3_0',
+            'http://als_dispedia_info/frs/i/option/o3_1',
+            'http://als_dispedia_info/frs/i/option/o3_2',
+            'http://als_dispedia_info/frs/i/option/o3_3',
+            'http://als_dispedia_info/frs/i/option/o3_4',
+            'http://als_dispedia_info/frs/i/option/o5a_0',
+            'http://als_dispedia_info/frs/i/option/o5a_1',
+            'http://als_dispedia_info/frs/i/option/o5a_2',
+            'http://als_dispedia_info/frs/i/option/o5a_3',
+            'http://als_dispedia_info/frs/i/option/o5a_4',
+            'http://als_dispedia_info/frs/i/option/o5b_0',
+            'http://als_dispedia_info/frs/i/option/o5b_1',
+            'http://als_dispedia_info/frs/i/option/o5b_2',
+            'http://als_dispedia_info/frs/i/option/o5b_3',
+            'http://als_dispedia_info/frs/i/option/o5b_4',
+            'http://als_dispedia_info/frs/i/option/o6_0',
+            'http://als_dispedia_info/frs/i/option/o6_1',
+            'http://als_dispedia_info/frs/i/option/o6_2',
+            'http://als_dispedia_info/frs/i/option/o6_3',
+            'http://als_dispedia_info/frs/i/option/o6_4',
+            'http://als_dispedia_info/frs/i/option/o7_0',
+            'http://als_dispedia_info/frs/i/option/o7_1',
+            'http://als_dispedia_info/frs/i/option/o7_2',
+            'http://als_dispedia_info/frs/i/option/o7_3',
+            'http://als_dispedia_info/frs/i/option/o7_4',
+            'http://als_dispedia_info/frs/i/option/o9_0',
+            'http://als_dispedia_info/frs/i/option/o9_1',
+            'http://als_dispedia_info/frs/i/option/o9_2',
+            'http://als_dispedia_info/frs/i/option/o9_3',
+            'http://als_dispedia_info/frs/i/option/o9_4',
+            'http://als_dispedia_info/frs/i/option/o12_0',
+            'http://als_dispedia_info/frs/i/option/o12_1',
+            'http://als_dispedia_info/frs/i/option/o12_2',
+            'http://als_dispedia_info/frs/i/option/o12_3',
+            'http://als_dispedia_info/frs/i/option/o12_4',
+        );
     }
     
     public function getOptions ( $topicUri )
@@ -25,19 +84,6 @@ class Option
             return array ();
         
         else {
-            
-            $pertainsToPropertySet = array (
-                'http://als.dispedia.info/frs/i/topic/t1',
-                'http://als.dispedia.info/frs/i/topic/t3',
-                'http://als.dispedia.info/frs/i/topic/t5a',
-                'http://als.dispedia.info/frs/i/topic/t5b',
-                'http://als.dispedia.info/frs/i/topic/t6',
-                'http://als.dispedia.info/frs/i/topic/t7',
-                'http://als.dispedia.info/frs/i/topic/t9',
-                'http://als.dispedia.info/frs/i/topic/t12'
-            );
-            // if an option is not in pertainsToPropertySet than its 
-            // automatically in pertainsToSymptomSet
             
             // get all options of the given topic
             $tmp = $this->_store->sparqlQuery (        
@@ -53,7 +99,7 @@ class Option
             foreach ( $tmp as $option ) {
                 
                 // set belonging
-                if ( true == in_array ( $option ['uri'], $pertainsToPropertySet ) )
+                if ( true == in_array ( $option ['uri'], $this->_pertainsToPropertySet ) )
                     $option ['pertainsTo'] = 'propertySet';
                 else
                     $option ['pertainsTo'] = 'symptomSet';
@@ -63,6 +109,83 @@ class Option
             
             return $options; 
         }
+    }
+    
+    
+    /**
+     * 
+     */
+    public function saveOptions ( $proposalUri, $newOptions, $oldOptions )
+    {
+        // delete old options
+        foreach ( $oldOptions as $option ) 
+        {            
+            if ( true == in_array ( $option, $this->_optionsPropertySet ) )
+                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForProperties';
+            else
+                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms';
+                
+            $this->removeStmt ( 
+                $proposalUri,
+                $p,
+                $option
+            );
+        }
+				
+        // save new options
+        foreach ( $newOptions as $option ) 
+        {            
+            if ( true == in_array ( $option, $this->_optionsPropertySet ) )
+                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForProperties';
+            else
+                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms';
+                
+            $this->addStmt ( 
+                $proposalUri,
+                $p,
+                $option
+            );
+        }
+    }
+    
+    
+    /**
+     * adds a triple to datastore
+     */
+    public function addStmt($s, $p, $o)
+    {
+        // set type(uri or literal)
+        $type = true == Erfurt_Uri::check($o) 
+            ? 'uri'
+            : 'literal';
+        
+        // add a triple to datastore
+        return $this->_store->addStatement(
+            $this->_selectedModelUri, 
+            $s,
+            $p, 
+            array('value' => $o, 'type' => $type)
+       );
+    }
+    
+    
+    /**
+     *
+     */
+    public function removeStmt($s, $p, $o)
+    {
+        // set type(uri or literal)
+        $type = true == Erfurt_Uri::check($o) 
+            ? 'uri'
+            : 'literal';
+            
+        // aremove a triple form datastore
+        return $this->_store->deleteMatchingStatements(
+            $this->_selectedModelUri,
+            $s,
+            $p,
+            array('value' => $o, 'type' => $type)
+       );
     }
 }
 
