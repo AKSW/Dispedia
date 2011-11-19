@@ -19,13 +19,21 @@ class Proposal
     
     public function getAllProposals ()
     {
-        return $this->_store->sparqlQuery (
+        $tmp = $this->_store->sparqlQuery (
             'SELECT ?uri ?label
               WHERE {
                  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/architecture/c/20110827/Proposal>.
                  ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
              };'
         );
+        
+        foreach ( $tmp as $proposal ) {
+            $proposal ['shortcut'] = md5 ( $proposal ['uri'] );
+            
+            $proposals [] = $proposal;
+        }
+        
+        return $proposals;
     }
 }
 

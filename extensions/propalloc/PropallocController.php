@@ -22,7 +22,7 @@ class PropallocController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
-    
+        $this->_url = $this->_request->uri;    
     }
     
     public function indexAction ()
@@ -30,6 +30,9 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
+        
+        $this->view->url = $this->_url;
+        $this->view->currentProposal = $this->getParam ('proposal');
         
         // set standard language
         $lang = true == isset ($_SESSION ['selectedLanguage'])
@@ -44,29 +47,30 @@ class PropallocController extends OntoWiki_Controller_Component
         
         
         // -------------------------------------------------------------
-        
-        $t = new Topic ($lang);
-        $o = new Option ($lang);
-        $topics = array ();
-        
-        foreach ( $t->getAllTopics () as $topic ) {
+        if ( '' != $this->getParam ('proposal') ) {
+            $t = new Topic ($lang);
+            $o = new Option ($lang);
+            $topics = array ();
             
-            $entry = array ();
-            $entry ['label'] = $topic ['label'];
-            
-            foreach ( $o->getOptions ( $topic ['uri'] ) as $option ) {
+            foreach ( $t->getAllTopics () as $topic ) {
                 
-                $entry ['options'][] = array (
-                    'label' => $option ['label'],
-                    'uri' => $option ['uri'],
-                    'score' => $option ['score']
-                );                
+                $entry = array ();
+                $entry ['label'] = $topic ['label'];
+                
+                foreach ( $o->getOptions ( $topic ['uri'] ) as $option ) {
+                    
+                    $entry ['options'][] = array (
+                        'label' => $option ['label'],
+                        'uri' => $option ['uri'],
+                        'score' => $option ['score']
+                    );                
+                }
+                
+                $topics [] = $entry;
             }
             
-            $topics [] = $entry;
+            $this->view->topics = $topics;
         }
-        
-        $this->view->topics = $topics;
     }
 }
 

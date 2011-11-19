@@ -33,7 +33,8 @@ $(function() {
                 
                 <br/>
                 <div class="proposalItem">
-                    <?php echo $proposal ['label']; ?>
+                    <a href="<?php echo $this->url; ?>?proposal=<?php echo $proposal ['shortcut']; ?>">
+                        <?php echo $proposal ['label']; ?></a>
                 </div>
             
             <?php } ?>
@@ -41,31 +42,33 @@ $(function() {
         
         <!-- ALSFRS topics and their options -->
         <td>
-            <div class="scrollable vertical">                
-                <div class="items">
-                    <?php foreach ( $this->topics as $topic ) { ?>
-                        
-                        <div>
-                            <div class="item">
-                                <!-- Topic label -->
-                                <h2><?php echo $topic ['label']; ?></h2>
-                                
-                                <!-- Options -->
-                                <ul>
-                                
-                                <?php foreach ( $topic ['options'] as $option ) { ?>
-                                
-                                    <li><?php echo $option ['label']; ?></li>
-                                
-                                <?php } ?>
-                                
-                                </ul>
+            <?php if ( '' != $this->currentProposal ) { ?>
+                <div class="scrollable vertical">                
+                    <div class="items">
+                        <?php foreach ( $this->topics as $topic ) { ?>
+                            
+                            <div>
+                                <div class="item">
+                                    <!-- Topic label -->
+                                    <h2><?php echo $topic ['label']; ?></h2>
+                                    
+                                    <!-- Options -->
+                                    <ul>
+                                    
+                                    <?php foreach ( $topic ['options'] as $option ) { ?>
+                                    
+                                        <li><?php echo $option ['label']; ?></li>
+                                    
+                                    <?php } ?>
+                                    
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    
-                    <?php } ?>
-                </div>
-            </div>        
+                        
+                        <?php } ?>
+                    </div>
+                </div>        
+            <?php } ?>
         </td>
     </tr>
 </table>
