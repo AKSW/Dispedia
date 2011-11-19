@@ -23,9 +23,25 @@ class Option
     {
         if ( false == Erfurt_Uri::check ( $topicUri ) ) 
             return array ();
-        else
-            return $this->_store->sparqlQuery (        
-                'SELECT ?uri ?label ?score
+        
+        else {
+            
+            $pertainsToPropertySet = array (
+                'http://als.dispedia.info/frs/i/topic/t1',
+                'http://als.dispedia.info/frs/i/topic/t3',
+                'http://als.dispedia.info/frs/i/topic/t5a',
+                'http://als.dispedia.info/frs/i/topic/t5b',
+                'http://als.dispedia.info/frs/i/topic/t6',
+                'http://als.dispedia.info/frs/i/topic/t7',
+                'http://als.dispedia.info/frs/i/topic/t9',
+                'http://als.dispedia.info/frs/i/topic/t12'
+            );
+            // if an option is not in pertainsToPropertySet than its 
+            // automatically in pertainsToSymptomSet
+            
+            // get all options of the given topic
+            $tmp = $this->_store->sparqlQuery (        
+               'SELECT ?uri ?label ?score
                   WHERE {
                      <'. $topicUri .'> <http://als.dispedia.info/frs/o/hasOption> ?uri.
                      ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
@@ -33,6 +49,20 @@ class Option
                      FILTER (langmatches(lang(?label), "'. $this->_lang .'"))
                  };'
             );
+            
+            foreach ( $tmp as $option ) {
+                
+                // set belonging
+                if ( true == in_array ( $option ['uri'], $pertainsToPropertySet ) )
+                    $option ['pertainsTo'] = 'propertySet';
+                else
+                    $option ['pertainsTo'] = 'symptomSet';
+                
+                $options [] = $option;
+            }
+            
+            return $options; 
+        }
     }
 }
 

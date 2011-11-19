@@ -46,21 +46,21 @@ $(function() {
                     <?php foreach ( $this->topics as $topic ) { ?>
                         
                         <div>
-                        <div class="item">
-                            <!-- Topic label -->
-                            <h2><?php echo $topic ['label']; ?></h2>
-                            
-                            <!-- Options -->
-                            <ul>
-                            
-                            <?php foreach ( $topic ['options'] as $option ) { ?>
-                            
-                                <li><?php echo $option ['label']; ?></li>
-                            
-                            <?php } ?>
-                            
-                            </ul>
-                        </div>
+                            <div class="item">
+                                <!-- Topic label -->
+                                <h2><?php echo $topic ['label']; ?></h2>
+                                
+                                <!-- Options -->
+                                <ul>
+                                
+                                <?php foreach ( $topic ['options'] as $option ) { ?>
+                                
+                                    <li><?php echo $option ['label']; ?></li>
+                                
+                                <?php } ?>
+                                
+                                </ul>
+                            </div>
                         </div>
                     
                     <?php } ?>
