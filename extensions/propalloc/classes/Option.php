@@ -10,25 +10,29 @@
  */ 
 class Option
 {
+    private $_lang;
     private $_store;
     
-    public function __construct ()
+    public function __construct ( $lang )
     {
+        $this->_lang = $lang;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
-    public function getAllOptions ()
+    public function getOptions ( $topicUri )
     {
-        var_dump ( $this->_store->sparqlQuery (
-        
-            'SELECT ?optionUri ?label ?score
-              WHERE {
-                 ?optionUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Option>.
-                 ?optionUri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
-                 ?optionUri <http://als.dispedia.info/frs/o/hasScore> ?score .
-             };'
-        
-        ) );
+        if ( false == Erfurt_Uri::check ( $topicUri ) ) 
+            return array ();
+        else
+            return $this->_store->sparqlQuery (        
+                'SELECT ?uri ?label ?score
+                  WHERE {
+                     <'. $topicUri .'> <http://als.dispedia.info/frs/o/hasOption> ?uri.
+                     ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
+                     ?uri <http://als.dispedia.info/frs/o/hasScore> ?score .
+                     FILTER (langmatches(lang(?label), "'. $this->_lang .'"))
+                 };'
+            );
     }
 }
 

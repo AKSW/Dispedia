@@ -1,7 +1,8 @@
 <?php
 
-require 'classes/Proposal.php';
 require 'classes/Option.php';
+require 'classes/Proposal.php';
+require 'classes/Topic.php';
 
 /**
  * Controller for Propalloc.
@@ -26,9 +27,40 @@ class PropallocController extends OntoWiki_Controller_Component
     
     public function indexAction ()
     {
-        $option = new Option ();
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         
-        $option->getAllOptions ();
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
+        
+        // -------------------------------------------------------------
+        
+        // set standard language
+        $lang = true == isset ($_SESSION ['selectedLanguage'])
+            ? $_SESSION ['selectedLanguage']
+            : 'de';        
+            
+        
+        $t = new Topic ($lang);
+        $o = new Option ($lang);
+        $topics = array ();
+        
+        foreach ( $t->getAllTopics () as $topic ) {
+            
+            $entry = array ();
+            $entry ['label'] = $topic ['label'];
+            
+            foreach ( $o->getOptions ( $topic ['uri'] ) as $option ) {
+                
+                $entry ['options'][] = array (
+                    'label' => $option ['label'],
+                    'uri' => $option ['uri'],
+                    'score' => $option ['score']
+                );                
+            }
+            
+            $topics [] = $entry;
+        }
+        
+        $this->view->topics = $topics;
     }
 }
 

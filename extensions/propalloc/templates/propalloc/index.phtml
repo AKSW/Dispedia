@@ -10,6 +10,17 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
+<script>
+// http://flowplayer.org/tools/demos/scrollable/vertical.html
+// execute your scripts when DOM is ready. this is a good habit
+$(function() {		
+		
+	// initialize scrollable with mousewheel support
+	$(".scrollable").scrollable({ vertical: true, mousewheel: true });	
+	
+});
+</script>
+
 <table style="width:100%">
     <tr>
         <td style="width:50%;" valign="top"></td>
@@ -19,6 +30,32 @@
         <td></td>
         
         <!-- ALSFRS options -->
-        <td></td>
+        <td>
+            <div class="scrollable vertical">                
+                <div class="items">
+                    <?php foreach ( $this->topics as $topic ) { ?>
+                        
+                        <div>
+                        <div class="item">
+                            <!-- Topic label -->
+                            <h2><?php echo $topic ['label']; ?></h2>
+                            
+                            <!-- Options -->
+                            <ul>
+                            
+                            <?php foreach ( $topic ['options'] as $option ) { ?>
+                            
+                                <li><?php echo $option ['label']; ?></li>
+                            
+                            <?php } ?>
+                            
+                            </ul>
+                        </div>
+                        </div>
+                    
+                    <?php } ?>
+                </div>
+            </div>        
+        </td>
     </tr>
 </table>
