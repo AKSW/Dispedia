@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY patients "http://patients.dispedia.de/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY alsfrs "http://als.dispedia.de/frs/" >
+    <!ENTITY icf "http://who.int/icf#" >
+    <!ENTITY icd10 "http://www.owl-ontologies.com/icd10/#" >
+    <!ENTITY diswrap-alsfrs "http://www.dispedia.de/wrapper/alsfrs/" >
+    <!ENTITY diswrap-icd10 "http://www.dispedia.de/wrapper/icd10/" >
+    <!ENTITY diswrap-icf "http://www.dispedia.de/wrapper/Icf/" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY ekb "http://als.dispedia.de/" >
+    <!ENTITY ekbi "http://als.dispedia.de/i/" >
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+]>
+
+
+<rdf:RDF xmlns="&patients;"
+     xml:base="&patients;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:foaf="&foaf;"
+     xmlns:owl="&owl;"
+     xmlns:xsd="&xsd;"
+     xmlns:rdf="&rdf;"
+     xmlns:ccns="&ccns;"
+     xmlns:dct="&dct;"
+     xmlns:dispedia="&dispedia;"
+     xmlns:dispediao="&dispediao;"
+     xmlns:alsfrs="&alsfrs;"
+     xmlns:icd10="&icd10;"
+     xmlns:icf="&icf;"
+     xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
+     xmlns:diswrap-icd10="&diswrap-icd10;"
+     xmlns:diswrap-icf="&diswrap-icf;"
+     xmlns:ekb="&ekb;"
+     xmlns:ekbi="&ekbi;"
+>
+
+    <owl:Ontology rdf:about="http://patients.dispedia.de/">
+        <rdfs:label xml:lang="de">Diese Ontology enthält exemplarische Patienten-Resourcen zur Evaluation des Systemmodels. </rdfs:label>
+        <rdfs:label xml:lang="en">This Ontology contains exemplarily patient resources to evaluate and to showcase the systemmodel.</rdfs:label>
+        <owl:imports rdf:resource="http://www.dispedia.de/"/>
+        <owl:imports rdf:resource="http://als.dispedia.de/"/>
+        <dct:contributor>Romy Elze</dct:contributor>
+        <dct:contributor>Michael Martin</dct:contributor>
+        <dct:contributor>Tom-Michael Hesse</dct:contributor>
+        <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+    </owl:Ontology>
+
+</rdf:RDF>
+

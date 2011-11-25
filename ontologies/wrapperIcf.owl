@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY icf "http://who.int/icf#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY diswrap-icf "http://www.dispedia.de/wrapper/Icf/" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+]>
+
+
+<rdf:RDF xmlns="&dispedia;"
+     xml:base="&dispedia;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:owl="&owl;"
+     xmlns:xsd="&xsd;"
+     xmlns:diswrap-icf="&diswrap-icf;"
+     xmlns:rdf="&rdf;"
+     xmlns:dispediao="&dispediao;"
+>
+
+    <owl:Ontology rdf:about="&dispedia;">
+        <owl:imports rdf:resource="&icf;"/>
+    </owl:Ontology>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;affectedActivity">
+        <rdfs:label xml:lang="de">beeinträchtigte Aktivität</rdfs:label>
+        <rdfs:label xml:lang="en">affected activity</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFPropertySet"/>
+        <rdfs:range rdf:resource="&icf;d"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;affects">
+        <rdfs:label xml:lang="de">beeinträchtigt</rdfs:label>
+        <rdfs:label xml:lang="en">affects</rdfs:label>
+        <rdfs:domain rdf:resource="&icf;ICFCategory"/>
+        <rdfs:range rdf:resource="&icf;ICFCategory"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damaged">
+        <rdfs:label xml:lang="de">beschädigt</rdfs:label>
+        <rdfs:label xml:lang="en">damaged</rdfs:label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyFunction">
+        <rdfs:label xml:lang="de">beschädigte Körperfunktion</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body function</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damaged"/>
+        <rdfs:range rdf:resource="&icf;b"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyFunctionStrength1">
+        <rdfs:label xml:lang="de">beschädigte Körperfunktion Stärke 1</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body function strength 1</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyFunction"/>
+        <rdfs:range rdf:resource="&icf;b"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyFunctionStrength2">
+        <rdfs:label xml:lang="de">beschädigte Körperfunktion Stärke 2</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body function strength 2</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyFunction"/>
+        <rdfs:range rdf:resource="&icf;b"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyFunctionStrength3">
+        <rdfs:label xml:lang="de">beschädigte Körperfunktion Stärke 3</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body function strength 3</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyFunction"/>
+        <rdfs:range rdf:resource="&icf;b"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyFunctionStrength4">
+        <rdfs:label xml:lang="de">beschädigte Körperfunktion Stärke 4</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body function strength 4</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyFunction"/>
+        <rdfs:range rdf:resource="&icf;b"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyFunctionStrength5">
+        <rdfs:label xml:lang="de">beschädigte Körperfunktion Stärke 5</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body function strength 5</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyFunction"/>
+        <rdfs:range rdf:resource="&icf;b"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyStructure">
+        <rdfs:label xml:lang="de">beschädigte Körperstruktur</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body structure</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damaged"/>
+        <rdfs:range rdf:resource="&icf;s"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyStructureStrength1">
+        <rdfs:label xml:lang="de">beschädigte Körperstruktur Stärke 1</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body structure strength 1</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyStructure"/>
+        <rdfs:range rdf:resource="&icf;s"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyStructureStrength2">
+        <rdfs:label xml:lang="de">beschädigte Körperstruktur Stärke 2</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body structure strength 2</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyStructure"/>
+        <rdfs:range rdf:resource="&icf;s"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyStructureStrength3">
+        <rdfs:label xml:lang="de">beschädigte Körperstruktur Stärke 3</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body structure strength 3</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyStructure"/>
+        <rdfs:range rdf:resource="&icf;s"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyStructureStrength4">
+        <rdfs:label xml:lang="de">beschädigte Körperstruktur Stärke 4</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body structure strength 4</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyStructure"/>
+        <rdfs:range rdf:resource="&icf;s"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;damagedBodyStructureStrength5">
+        <rdfs:label xml:lang="de">beschädigte Körperstruktur Stärke 5</rdfs:label>
+        <rdfs:label xml:lang="en">damaged body structure strength 5</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;damagedBodyStructure"/>
+        <rdfs:range rdf:resource="&icf;s"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;includes">
+        <rdfs:label xml:lang="de">beeinhaltet</rdfs:label>
+        <rdfs:label xml:lang="en">includes</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;includes"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;includesAffectedICFProperties">
+        <rdfs:label xml:lang="de">beinhaltet beeinträchtigte Eigenschaften mit ICF-Codes</rdfs:label>
+        <rdfs:label xml:lang="en">includes affected properties with ICF codes</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFHealthState"/>
+        <rdfs:range rdf:resource="&diswrap-icf;ICFPropertySet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;includes"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;includesAffectedProperties"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-icf;includesICFSymptoms">
+        <rdfs:label xml:lang="de">beeinhaltet Symptome mit ICF-Codes</rdfs:label>
+        <rdfs:label xml:lang="en">includes affected symptoms with ICF codes</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFHealthState"/>
+        <rdfs:range rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <rdfs:subPropertyOf rdf:resource="&diswrap-icf;includes"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;includesSymptoms"/>
+    </owl:ObjectProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:DatatypeProperty rdf:about="&diswrap-icf;hasDate">
+        <rdfs:label xml:lang="de">hat Datum</rdfs:label>
+        <rdfs:label xml:lang="en">has date</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-icf;ICFHealthState"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class rdf:about="&diswrap-icf;ICFHealthState">
+        <rdfs:label xml:lang="de">Gesundheitsstatus mit ICF-Klassifikation</rdfs:label>
+        <rdfs:label xml:lang="en">Health state with ICF-classification</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;HealthState"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&diswrap-icf;ICFPropertySet">
+        <rdfs:label xml:lang="de">Eigenschaftsmenge mit ICF-Klassifikation</rdfs:label>
+        <rdfs:label xml:lang="en">Property set with ICF-classification</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;PropertySet"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&diswrap-icf;ICFSymptomSet">
+        <rdfs:label xml:lang="de">Symptommenge mit ICF-Klassifikation</rdfs:label>
+        <rdfs:label xml:lang="en">Symptom set with ICF-classification</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;SymptomSet"/>
+    </owl:Class>
+
+</rdf:RDF>
+
