@@ -6,6 +6,7 @@ ALSFRS;ALSFRS
 By classification;Nach Klassifikation
 By free text;Nach Freitext
 Children;Kinder
+Create Proposal;Neuer Vorschlag
 Doctor view;Doktoransicht
 Diet;Ernährung
 Edit family status;Ändere Familienverhältnisse
@@ -13,6 +14,7 @@ Edit housing situation;Ändere Wohnsituation
 Edit medical condition;Ändere Gesundheitzustand
 Edit patient information;Ändere Patientendaten
 Edit professional situation;Ändere berufliche Situation
+Edit proposal allocations;Ändere Vorschlagszuweisungen
 Extension;Erweiterung
 Extensions;Erweiterungen
 Family status;Familienverhältnisse
@@ -31,6 +33,7 @@ Overview;Überblick
 Patient view;Patientansicht 
 Pets;Haustiere 
 Preferences;Einstellungen
+Proposal and proposal allocations;Vorschlagszuweisung
 Register a new user;Registriere einen neuen Benutzer
 Set Address;Setze Addresse
 Set pets;Haustiere verwalten

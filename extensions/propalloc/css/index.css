@@ -1,0 +1,39 @@
+/**
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+ 
+/* root element for scrollable */
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+
+	/* vertical scrollables have typically larger height than width but not now */
+	height: 450px;
+	width: 100%;
+}
+
+/* root element for scrollable items */
+.scrollable .items {
+	position:absolute;
+
+	/* this time we have very large space for the height */
+	height:20000em;
+}
+
+.proposalItemSelected {
+    font-weight:bold;
+    font-size:14px;
+    margin-left:30px;
+}
+
+.proposalItem {
+    font-size:13px;
+    margin-left:20px;
+}
