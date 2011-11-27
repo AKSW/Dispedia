@@ -53,14 +53,16 @@ class Proposal
 		$appropriateForSymptoms = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?optionUri .
+                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?ss .
+                 ?ss <http://als.dispedia.info/architecture/c/20110827/includesSymptoms> ?optionUri .
              };'
-        );
+        );        
         
 		$appropriateForProperties = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?optionUri .
+                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?ps .
+                 ?ps <http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties> ?optionUri .
              };'
         );
         
