@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY alsfrs "http://www.dispedia.de/frs/o/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY alsfrs "http://als.dispedia.de/frs/" >
+    <!ENTITY alsfrso "http://als.dispedia.de/frs/o/" >
+    <!ENTITY diswrap-alsfrs "http://www.dispedia.de/wrapper/alsfrs/" >
+]>
+
+<rdf:RDF xmlns="&dispedia;"
+     xml:base="&dispedia;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:owl="&owl;"
+     xmlns:xsd="&xsd;"
+     xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
+     xmlns:rdf="&rdf;"
+     xmlns:dispediao="&dispediao;"
+     xmlns:ccns="&ccns;"
+     xmlns:dct="&dct;"
+     xmlns:alsfrso="&alsfrso;">
+
+<owl:Ontology rdf:about="&dispedia;">
+    <owl:imports rdf:about="&alsfrs;" />
+</owl:Ontology>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:ObjectProperty rdf:about="&diswrap-alsfrs;containsPropertyOption">
+        <rdfs:label xml:lang="de">enthält Beschreibung eingeschränkter Eigenschaft</rdfs:label>
+        <rdfs:label xml:lang="en">contains affected property</rdfs:label>
+        <rdfs:range rdf:resource="&alsfrso;Option"/>
+        <rdfs:domain rdf:resource="&diswrap-alsfrs;ALSFRSPropertySet"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&diswrap-alsfrs;containsSymptomOption">
+        <rdfs:label xml:lang="de">enthält Symptombeschreibung</rdfs:label>
+        <rdfs:label xml:lang="en">contains symptom</rdfs:label>
+        <rdfs:range rdf:resource="&alsfrso;Option"/>
+        <rdfs:domain rdf:resource="&diswrap-alsfrs;ALSFRSSymptomSet"/>
+    </owl:ObjectProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:DatatypeProperty rdf:about="&diswrap-alsfrs;hasDate">
+        <rdfs:label xml:lang="de">hat Datum</rdfs:label>
+        <rdfs:label xml:lang="en">has date</rdfs:label>
+        <rdfs:domain rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class rdf:about="&diswrap-alsfrs;ALSFRSHealthState">
+        <rdfs:label xml:lang="de">Gesundheitsstatus mit ALSFRS-Skalierung</rdfs:label>
+        <rdfs:label xml:lang="en">Health state with ALSFRS scaling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;HealthState"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&diswrap-alsfrs;ALSFRSPropertySet">
+        <rdfs:label xml:lang="de">Eigenschaftsmenge mit ALSFRS-Skalierung</rdfs:label>
+        <rdfs:label xml:lang="en">Property set with ALSFRS scaling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;PropertySet"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&diswrap-alsfrs;ALSFRSSymptomSet">
+        <rdfs:label xml:lang="de">Symptommenge mit ALSFRS-Skalierung</rdfs:label>
+        <rdfs:label xml:lang="en">Symptom set with ALSFRS scaling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;SymptomSet"/>
+    </owl:Class>
+
+</rdf:RDF>
+
+
+
+

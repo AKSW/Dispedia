@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY patients "http://patients.dispedia.de/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+
+    <!ENTITY alsfrs "http://als.dispedia.de/frs/" >
+    <!ENTITY icf "http://who.int/icf#" >
+    <!ENTITY icd10 "http://www.owl-ontologies.com/icd10/#" >
+
+    <!ENTITY diswrap-alsfrs "http://www.dispedia.de/wrapper/alsfrs/" >
+    <!ENTITY diswrap-icd10 "http://www.dispedia.de/wrapper/icd10/" >
+    <!ENTITY diswrap-icf "http://www.dispedia.de/wrapper/Icf/" >
+
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+
+    <!ENTITY ekb "http://als.dispedia.de/" >
+    <!ENTITY ekbi "http://als.dispedia.de/i/" >
+
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+]>
+
+
+<rdf:RDF xmlns="&patients;"
+     xml:base="&patients;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:foaf="&foaf;"
+     xmlns:owl="&owl;"
+     xmlns:xsd="&xsd;"
+     xmlns:rdf="&rdf;"
+     xmlns:ccns="&ccns;"
+     xmlns:dct="&dct;"
+     xmlns:dispedia="&dispedia;"
+     xmlns:dispediao="&dispediao;"
+     xmlns:alsfrs="&alsfrs;"
+     xmlns:icd10="&icd10;"
+     xmlns:icf="&icf;"
+     xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
+     xmlns:diswrap-icd10="&diswrap-icd10;"
+     xmlns:diswrap-icf="&diswrap-icf;"
+     xmlns:ekb="&ekb;"
+     xmlns:ekbi="&ekbi;"
+>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:NamedIndividual rdf:about="&patients;AAMaxMustermann1">
+        <rdf:type rdf:resource="&dispediao;ActionAllocation"/>
+        <rdfs:label xml:lang="de">Belegung: Rollator verschreiben</rdfs:label>
+        <dispediao:allocatesTherapistType rdf:resource="&ekbi;Neuro"/>
+        <dispediao:allocatesAction rdf:resource="&ekbi;PrescribeWalkingFrame"/>
+        <dispediao:allocatesFormality rdf:resource="&ekbi;Prescription"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;AAMaxMustermann2">
+        <rdf:type rdf:resource="&dispediao;ActionAllocation"/>
+        <rdfs:label xml:lang="de">Belegung: Rollator liefern</rdfs:label>
+        <dispediao:allocatesActiveAgent rdf:resource="&ekbi;MedicalSupplyStore"/>
+        <dispediao:allocatesAction rdf:resource="&ekbi;SupplyWalkingFrame"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;AAMaxMustermann3">
+        <rdf:type rdf:resource="&dispediao;ActionAllocation"/>
+        <rdfs:label xml:lang="de">Belegung: Schnabeltasse verschreiben</rdfs:label>
+        <dispediao:allocatesActiveAgent rdf:resource="&ekbi;Doctor"/>
+        <dispediao:allocatesAction rdf:resource="&ekbi;PrescribeFeedingCup"/>
+        <dispediao:allocatesFormality rdf:resource="&ekbi;Prescription"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;AAMaxMustermann4">
+        <rdf:type rdf:resource="&dispediao;ActionAllocation"/>
+        <rdfs:label xml:lang="de">Belegung: Schlucktraining durchführen</rdfs:label>
+        <dispediao:allocatesAction rdf:resource="&ekbi;DeglutitionTraining"/>
+        <dispediao:allocatesActiveAgent rdf:resource="&ekbi;Doctor"/>
+        <dispediao:allocatesTherapistType rdf:resource="&ekbi;Logo"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;AAMaxMustermann5">
+        <rdf:type rdf:resource="&dispediao;ActionAllocation"/>
+        <rdfs:label xml:lang="de">Belegung: Rollstuhl verschreiben</rdfs:label>
+        <dispediao:allocatesActiveAgent rdf:resource="&ekbi;Doctor"/>
+        <dispediao:allocatesAction rdf:resource="&ekbi;PrescribeWheelChair"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;AAMaxMustermann6">
+        <rdf:type rdf:resource="&dispediao;ActionAllocation"/>
+        <rdfs:label xml:lang="de">Belegung: Rollstuhl anpassen/liefern</rdfs:label>
+        <dispediao:allocatesActiveAgent rdf:resource="&ekbi;MedicalSupplyStore"/>
+        <dispediao:allocatesAction rdf:resource="&ekbi;SupplyWheelChair"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;ALSCodeG12_2">
+        <rdf:type rdf:resource="&icd10;G12_2"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;ALSInstance">
+        <rdf:type rdf:resource="&diswrap-icd10;ALS"/>
+        <diswrap-icd10:hasICDCode rdf:resource="&patients;ALSCodeG12_2"/>
+        <dispediao:comprises rdf:resource="&patients;DSMaxMustermann1"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;AddressMaxMustermann">
+        <rdf:type rdf:resource="&dispediao;Address"/>
+        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.02.2011</dispediao:addressDate>
+        <dispediao:homeLevel rdf:datatype="&xsd;int">4</dispediao:homeLevel>
+        <dispediao:adressText>Musterstr. 1, Musterstadt</dispediao:adressText>
+        <dispediao:street>Musterstr. 1</dispediao:street>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;CraftProducer">
+        <rdf:type rdf:resource="&dispediao;Agent"/>
+        <rdfs:label xml:lang="de">Handwerksbetrieb</rdfs:label>
+        <rdfs:label xml:lang="en">Craft producer</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;DSMaxMustermann1">
+        <rdf:type rdf:resource="&dispediao;DiseaseSection"/>
+        <dispediao:beginningDate rdf:datatype="&xsd;dateTime">13.02.2010</dispediao:beginningDate>
+        <dispediao:endingDate rdf:datatype="&xsd;dateTime">20.04.2010</dispediao:endingDate>
+        <dispediao:containsHealthState rdf:resource="&patients;HSMaxMustermann13022010"/>
+        <dispediao:containsHealthState rdf:resource="&patients;HSMaxMustermann20042010"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;HSMaxMustermann13022010">
+        <rdf:type rdf:resource="&diswrap-icf;ICFHealthState"/>
+        <icf:hasDate rdf:datatype="&xsd;dateTime">13.02.2010</icf:hasDate>
+        <dispediao:belongsToDiseaseSection rdf:resource="&patients;DSMaxMustermann1"/>
+        <icf:includesAffectedProperties rdf:resource="&patients;PSMaxMustermann1"/>
+        <icf:includesSymptoms rdf:resource="&patients;SySMaxMustermann1"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;HSMaxMustermann20042010">
+        <rdf:type rdf:resource="&diswrap-icf;ICFHealthState"/>
+        <icf:hasDate rdf:datatype="&xsd;dateTime">20.04.2010</icf:hasDate>
+        <dispediao:belongsToDiseaseSection rdf:resource="&patients;DSMaxMustermann1"/>
+        <icf:includesSymptoms rdf:resource="&patients;SySMaxMustermann2"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann1">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS13022010, &quot;Stolpern&quot;: Umzug</rdfs:label>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;Move"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann2">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS13022010, &quot;Stolpern&quot;: Schwerbehindertenausweis</rdfs:label>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;SeverelyHandicappedPass"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann3">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS13022010, &quot;Stolpern&quot;: Rollator</rdfs:label>
+        <dispediao:connectedTo rdf:resource="&patients;AAMaxMustermann1"/>
+        <dispediao:connectedTo rdf:resource="&patients;AAMaxMustermann2"/>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;UseWalkingFrame"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann4">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS13022010, &quot;Schlucken&quot;: Schnabeltasse</rdfs:label>
+        <dispediao:connectedTo rdf:resource="&patients;AAMaxMustermann3"/>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;UseFeedingCup"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann5">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS13022010, &quot;Schlucken&quot;: Logopädie</rdfs:label>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;Logopedics"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann6">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS20042010, &quot;Stolpern&quot;: Rollstuhl</rdfs:label>
+        <dispediao:connectedTo rdf:resource="&patients;AAMaxMustermann5"/>
+        <dispediao:connectedTo rdf:resource="&patients;AAMaxMustermann6"/>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;UseWheelChair"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PAMaxMustermann7">
+        <rdf:type rdf:resource="&dispediao;ProposalAllocation"/>
+        <rdfs:label xml:lang="de">Belegung zu HS120042010, &quot;Schlucken&quot;: Magensonde</rdfs:label>
+        <dispediao:allocatesPatient rdf:resource="&patients;MaxMustermann"/>
+        <dispediao:allocatesProposal rdf:resource="&ekbi;StomachTube"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PSMaxMustermann1">
+        <rdf:type rdf:resource="&diswrap-icf;ICFPropertySet"/>
+        <icf:affectedActivity rdf:resource="&icf;d450"/>
+        <icf:affectedActivity rdf:resource="&icf;d460"/>
+        <icf:affectedActivity rdf:resource="&icf;d465"/>
+        <icf:affectedActivity rdf:resource="&icf;d469"/>
+        <icf:affectedActivity rdf:resource="&icf;d470"/>
+        <icf:affectedActivity rdf:resource="&icf;d475"/>
+        <icf:affectedActivity rdf:resource="&icf;d6505"/>
+        <icf:affectedActivity rdf:resource="&icf;e350"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;MaxMustermann">
+        <rdf:type rdf:resource="&dispediao;Patient"/>
+        <dispediao:single rdf:datatype="&xsd;boolean">true</dispediao:single>
+        <dispediao:firstName>Max</dispediao:firstName>
+        <dispediao:lastName>Mustermann</dispediao:lastName>
+        <dispediao:education>Handwerker</dispediao:education>
+        <dispediao:gender xml:lang="en">male</dispediao:gender>
+        <dispediao:hasAddress rdf:resource="&patients;AddressMaxMustermann"/>
+        <dispediao:hasEmployer rdf:resource="&patients;CraftProducer"/>
+        <dispediao:hasDiseaseSection rdf:resource="&patients;DSMaxMustermann1"/>
+        <dispediao:hasPet rdf:resource="&patients;MaxMustermannDog"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;MaxMustermannDog">
+        <rdf:type rdf:resource="&dispediao;Pet"/>
+        <dispediao:spezies rdf:datatype="&xsd;string">Hund</dispediao:spezies>
+        <dispediao:petName rdf:datatype="&xsd;string">Hund von Max Mustermann</dispediao:petName>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;SySMaxMustermann1">
+        <rdf:type rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <icf:damagedBodyFunctionStrength3 rdf:resource="&icf;b510"/>
+        <icf:damagedBodyFunctionStrength3 rdf:resource="&icf;b7301"/>
+        <icf:damagedBodyFunctionStrength3 rdf:resource="&icf;b7303"/>
+        <icf:damagedBodyStructureStrength3 rdf:resource="&icf;s750"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;SySMaxMustermann2">
+        <rdf:type rdf:resource="&diswrap-icf;ICFSymptomSet"/>
+        <icf:damagedBodyFunctionStrength2 rdf:resource="&icf;b510"/>
+        <icf:damagedBodyFunctionStrength2 rdf:resource="&icf;b7301"/>
+        <icf:damagedBodyFunctionStrength2 rdf:resource="&icf;b7303"/>
+        <icf:damagedBodyStructureStrength2 rdf:resource="&icf;s750"/>
+    </owl:NamedIndividual>
+    
+</rdf:RDF>
+
