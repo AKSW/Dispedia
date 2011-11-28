@@ -8,7 +8,7 @@ require 'classes/Topic.php';
  * Controller for Propalloc.
  *
  * @category   OntoWiki
- * @package    OntoWiki_extensions_formgenerator
+ * @package    OntoWiki_extensions_propalloc
  * @author     Lars Eidam <larseidam@googlemail.com>
  * @author     Konrad Abicht <konrad@inspirito.de>
  * @copyright  Copyright (c) 2011
