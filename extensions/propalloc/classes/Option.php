@@ -117,18 +117,6 @@ class Option
      */
     public function saveOptions ( $proposalUri, $newOptions, $oldOptions )
     {
-        /**
-         * Delete all old options of the propertySet- and symptomSet instance
-         * 
-         * - get propertySet- and symptomSet instances
-         * - if not exists, create it
-         * - delete old options
-         * 
-         * - 
-         * 
-         */
-        
-        
         // get propertySet instance
         $propertySetInstance = $this->_store->sparqlQuery (
             'SELECT ?uri
