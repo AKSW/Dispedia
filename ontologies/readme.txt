@@ -1,14 +1,26 @@
-Hallo Micha,
+Create Ontology Readme
+======================
 
-im Anhang die geänderten Dateien, wie gerade besprochen. Folgende Zuordnung müsste erfolgen:
+Please create the following 6 ontologies and upload/add the given owl files to the respective ontology.
 
-wrapperIcf.owl, wrapperIcd.owl, wrapperAlsfrs.owl, architecture.owl und alsfrs.nt     nach:     www.dispedia.de
+1. http://www.dispedia.de/
+  a) dispediaCore.owl
+  b) wrapperAlsfrs.owl
+  c) wrapperIcd.owl
+  d) wrapperIcf.owl
 
-afmaxmustermann.owl     nach:     patients.dispedia.de
+2. http://als.dispedia.de/
+  a) ekbProposals.owl
 
-ekbProposal.owl     nach:     als.dispedia.de
+3. http://patients.dispedia.de/
+  a) patients.owl
+  b) jonDoes.owl
 
-So sollte der Aufbau dann wie im Paper beschrieben aussehen. Das Powerpoint-PDF sende ich gleich nochmal separat.
+4. http://als.dispedia.de/frs/
+  a) alsfrs.nt
 
-Viele Grüße
-Tom 
+5. http://www.owl-ontologies.com/icd10/#
+  a) icd10.owl
+
+6. http://who.int/icf#
+  a) icf.owl
