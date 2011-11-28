@@ -28,7 +28,7 @@
      xmlns:alsfrso="&alsfrso;">
 
 <owl:Ontology rdf:about="&dispedia;">
-    <owl:imports rdf:about="&alsfrs;" />
+    <owl:imports rdf:resource="&alsfrs;" />
 </owl:Ontology>
 
 

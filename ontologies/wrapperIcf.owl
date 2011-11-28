@@ -10,7 +10,6 @@
     <!ENTITY dispedia "http://www.dispedia.de/" >
 ]>
 
-
 <rdf:RDF xmlns="&dispedia;"
      xml:base="&dispedia;"
      xmlns:rdfs="&rdfs;"
@@ -187,7 +186,6 @@
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
 
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -215,4 +213,3 @@
     </owl:Class>
 
 </rdf:RDF>
-

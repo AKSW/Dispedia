@@ -24,7 +24,7 @@
 >
 
 <owl:Ontology rdf:about="&dispedia;">
-    <owl:imports rdf:about="&ic10;" />
+    <owl:imports rdf:resource="&icd10;" />
 </owl:Ontology>
 
 

@@ -44,8 +44,10 @@
 >
 
     <owl:Ontology rdf:about="http://patients.dispedia.de/">
-        <rdfs:label xml:lang="de">Diese Ontology enthält exemplarische Patienten-Resourcen zur Evaluation des Systemmodels. </rdfs:label>
-        <rdfs:label xml:lang="en">This Ontology contains exemplarily patient resources to evaluate and to showcase the systemmodel.</rdfs:label>
+        <rdfs:label xml:lang="de">ALS-Patienten</rdfs:label>
+        <rdfs:label xml:lang="en">ALS patients</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese Ontology enthält exemplarische Patienten-Resourcen zur Evaluation des Systemmodels. </rdfs:comment>
+        <rdfs:comment xml:lang="en">This Ontology contains exemplarily patient resources to evaluate and to showcase the systemmodel.</rdfs:comment>
         <owl:imports rdf:resource="http://www.dispedia.de/"/>
         <owl:imports rdf:resource="http://als.dispedia.de/"/>
         <dct:contributor>Romy Elze</dct:contributor>
