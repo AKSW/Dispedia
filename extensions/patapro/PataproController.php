@@ -48,14 +48,13 @@ class PataproController extends OntoWiki_Controller_Component
             ? $_SESSION ['selectedLanguage']
             : 'de';
         
+        $this->view->uri = $this->_url;
         $patient = new Patient($lang);
         $this->view->patients = $patient->getAllPatients();
-        
-        
         $this->view->options = $patient->getPatientOptions($this->getParam('patientUri'));
-        $this->view->uri = $this->_url;
-            
-        
+	
+	$proposal = new Proposal();
+        $this->view->proposals = $proposal->getAllProposals();
     }
 }
 

@@ -10,27 +10,36 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
-<table>
-    <tr>
-        <td width="20%">
-            <br /><br />
-            <?php foreach ($this->patients as $patient) { ?>
+<form>
+    <table>
+        <tr>
+            <td width="20%">
+                <br /><br />
+                <?php foreach ($this->patients as $patient) { ?>
+                    
+                <div><a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>"><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></a></div><br />
                 
-            <div><a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>"><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></a></div><br />
-            
-            <?php } ?>
-        </td>
-        <td width="40%">
-            <?php foreach ($this->options as $option) { ?>
+                <?php } ?>
+            </td>
+            <td width="40%">
+                <?php foreach ($this->options as $topicLabel => $topic) { ?>
+                    <div><h2><?php echo $topicLabel; ?></h2></div><br />
+                    <?php foreach ($topic as $option) { ?>
+                        
+                    <div><?php echo $option['optionLabel']; ?></div><br />
+                    
+                    <?php } ?>
+                <?php } ?>
+            </td>
+            <td width="40%">
+                <?php foreach ($this->proposals as $proposal) { ?>
+                    
+                <div><input type="checkbox">&nbsp&nbsp<?php echo $proposal['label']; ?></div><br />
                 
-            <div><?php echo $option['label']; ?></div><br />
-            
-            <?php } ?>
-        </td>
-        <td width="40%">
-            Rollstuhl<br />
-            Testament<br />
-            Fahr zur Hölle<br />
-        </td>
-    </tr>
-</table>
+                <?php } ?>
+            </td>
+        </tr>
+    </table>
+    <a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
+		<?php echo $this->_translate->_('Save'); ?></a>
+</form>

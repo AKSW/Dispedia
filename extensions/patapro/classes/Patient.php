@@ -23,32 +23,38 @@ class Patient
     {
         $options = array();
         $appropriateForSymptoms = $this->_store->sparqlQuery (
-            'SELECT ?optionUri ?label
+            'SELECT ?optionUri ?optionLabel ?topicLabel
               WHERE {
 
                   <' . $patientUri . '> <has> ?hs .
                 ?hs <http://als.dispedia.info/architecture/c/20110827/includesSymptoms> ?ss .
                 ?ss <http://als.dispedia.info/wrapperAlsfrs/c/20111105/containsSymptomOption> ?optionUri .
-                ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?label .
-                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
+                ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
+                ?topicUri <http://als.dispedia.info/frs/o/hasOption> ?optionUri .
+                ?topicUri <http://www.w3.org/2000/01/rdf-schema#label> ?topicLabel .
+                FILTER (langmatches(lang(?optionLabel), "' . $this->_lang . '"))
+                FILTER (langmatches(lang(?topicLabel), "' . $this->_lang . '"))
              };'
         );        
         
 		$appropriateForProperties = $this->_store->sparqlQuery (
-            'SELECT ?optionUri ?label
+            'SELECT ?optionUri ?optionLabel ?topicLabel
               WHERE {
 
                   <' . $patientUri . '> <has> ?hs .
                 ?hs <http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties> ?ps .
                 ?ps <http://als.dispedia.info/wrapperAlsfrs/c/20111105/containsPropertyOption> ?optionUri .
-                ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?label .
-                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
+                ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
+                ?topicUri <http://als.dispedia.info/frs/o/hasOption> ?optionUri .
+                ?topicUri <http://www.w3.org/2000/01/rdf-schema#label> ?topicLabel .
+                FILTER (langmatches(lang(?optionLabel), "' . $this->_lang . '"))
+                FILTER (langmatches(lang(?topicLabel), "' . $this->_lang . '"))
              };'
         );
         $appropriateForSymptoms = array_merge($appropriateForSymptoms, $appropriateForProperties);
         
         foreach ($appropriateForSymptoms as $symptom) {
-            $options[] = $symptom;
+            $options[$symptom['topicLabel']][] = $symptom;
         }
         return $options;
     }
