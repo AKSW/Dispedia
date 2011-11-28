@@ -117,31 +117,123 @@ class Option
      */
     public function saveOptions ( $proposalUri, $newOptions, $oldOptions )
     {
+        /**
+         * Delete all old options of the propertySet- and symptomSet instance
+         * 
+         * - get propertySet- and symptomSet instances
+         * - if not exists, create it
+         * - delete old options
+         * 
+         * - 
+         * 
+         */
+        
+        
+        // get propertySet instance
+        $propertySetInstance = $this->_store->sparqlQuery (
+            'SELECT ?uri
+              WHERE {
+                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?uri .
+             };'
+        );
+        
+        if (0 < count ($propertySetInstance))
+            $propertySetInstance = $propertySetInstance [0]['uri'];
+                          
+        // get symptomSet instance
+        $symptomSetInstance = $this->_store->sparqlQuery (
+            'SELECT ?uri
+              WHERE {
+                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?uri .
+             };'
+        );  
+                
+        if (0 < count ($symptomSetInstance))
+            $symptomSetInstance = $symptomSetInstance [0]['uri'];   
+        
+                
         // delete old options
         foreach ( $oldOptions as $option ) 
         {            
-            if ( true == in_array ( $option, $this->_optionsPropertySet ) )
-                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForProperties';
-            else
-                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms';
+            if ( true == in_array ( $option, $this->_optionsPropertySet ) ) {
+                $s = $propertySetInstance;
+                $p = 'http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties';
+            }
+            else {
+                $s = $symptomSetInstance;
+                $p = 'http://als.dispedia.info/architecture/c/20110827/includesSymptoms';
+            }
                 
             $this->removeStmt ( 
-                $proposalUri,
+                $s,
                 $p,
                 $option
             );
         }
-				
+        
+        
+        // -------------------------------------------------------------
+        
+        
+        // if propertySet instance does not exist, create it!
+        if (true == is_array ($propertySetInstance) && 0 == count ($propertySetInstance)) {
+            $newUri = 'http://als.dispedia.info/wrapperAlsfrs/i/20111105/';
+            $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+            
+            // create propertySet instance
+            $this->addStmt (
+                $newUri,
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                'http://als.dispedia.info/wrapperAlsfrs/c/20111105/ALSFRSPropertySet'
+            );
+            
+            // connect propertySet instance to proposalUri
+            $this->addStmt (
+                $proposalUri,
+                'http://als.dispedia.info/architecture/c/20110827/appropriateForProperties',
+                $newUri
+            );
+            
+            $propertySetInstance = $newUri;
+        }
+        
+        
+        // if symptomSet instance does not exist, create it!
+        if (true == is_array ($symptomSetInstance) && 0 == count ($symptomSetInstance)) {
+            $newUri = 'http://als.dispedia.info/wrapperAlsfrs/i/20111105/';
+            $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+            
+            // create symptomSet instance
+            $this->addStmt (
+                $newUri,
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                'http://als.dispedia.info/wrapperAlsfrs/c/20111105/ALSFRSSymptomSet'
+            );
+            
+            // connect propertySet instance to proposalUri
+            $this->addStmt (
+                $proposalUri,
+                'http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms',
+                $newUri
+            );
+            
+            $symptomSetInstance = $newUri;
+        }
+        				
         // save new options
         foreach ( $newOptions as $option ) 
         {            
-            if ( true == in_array ( $option, $this->_optionsPropertySet ) )
-                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForProperties';
-            else
-                $p = 'http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms';
-                
+            if ( true == in_array ( $option, $this->_optionsPropertySet ) ) {
+                $s = $propertySetInstance;
+                $p = 'http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties';
+            }
+            else {
+                $s = $symptomSetInstance;
+                $p = 'http://als.dispedia.info/architecture/c/20110827/includesSymptoms';
+            }
+                        
             $this->addStmt ( 
-                $proposalUri,
+                $s,
                 $p,
                 $option
             );

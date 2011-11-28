@@ -71,14 +71,13 @@ $(function() {
 								
 								<div>
 									<div class="item">
-										<!-- Topic label -->
+                                        
+                                        <!-- Topic label -->
 										<h2><?php echo $topic ['label']; ?></h2>
 										
 										<!-- Options -->
 										
 										<?php foreach ( $topic ['options'] as $option ) { ?>
-										
-											<br/>
 										
 											<?php if ( true == in_array ( $option ['uri'], $this->settings ) ) { ?>
 										
@@ -91,8 +90,12 @@ $(function() {
 											<?php } ?>
 										
 											<?php echo $option ['label']; ?>
+                                            
+                                            <br/>
 										
 										<?php } ?>
+                                        
+                                        <br/>
 										
 									</div>
 								</div>
