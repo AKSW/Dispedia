@@ -10,4 +10,35 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
+<table>
+    <tr>
+        <td width="20%">
+            <br /><br />
+            <?php foreach ($this->patients as $patient) { ?>
+                
+            <div><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></div><br />
+            
+            <?php } ?>
+        </td>
+        <td width="40%">
+            <h2>Treppensteigen</h2>
+            Nicht möglich<br />
+            Braucht Unterstützung<br />
+          Leichte Unsicherheit oder Ermüdung<br />
+          Langsam<br />
+          Normal<br />
 
+        <h2>Gehen</h2>
+          Keine zielgerichteten Beinbewegungen<br />
+          Nicht gehfähig, aber gezielte Bewegungen der Beine möglich<br />
+          Deutliche Gangstörung; Nur mit Unterstützung oder Gebrauch von Hilfsmitteln möglich<br />
+          Beginnde Gehschwierigkeiten durch Schwäche der Beine<br />
+          Normal<br />
+        </td>
+        <td width="40%">
+            Rollstuhl<br />
+            Testament<br />
+            Fahr zur Hölle<br />
+        </td>
+    </tr>
+</table>
