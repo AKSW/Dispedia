@@ -11,10 +11,46 @@
 class Patient
 {
     private $_model;
+    protected $_lang;
     
-    public function __construct ()
+    public function __construct ($lang)
     {
+        $this->_lang = $lang;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
+    }
+    
+    public function getPatientOptions($patientUri)
+    {
+        $options = array();
+        $appropriateForSymptoms = $this->_store->sparqlQuery (
+            'SELECT ?optionUri ?label
+              WHERE {
+
+                  <' . $patientUri . '> <has> ?hs .
+                ?hs <http://als.dispedia.info/architecture/c/20110827/includesSymptoms> ?ss .
+                ?ss <http://als.dispedia.info/wrapperAlsfrs/c/20111105/containsSymptomOption> ?optionUri .
+                ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
+             };'
+        );        
+        
+		$appropriateForProperties = $this->_store->sparqlQuery (
+            'SELECT ?optionUri ?label
+              WHERE {
+
+                  <' . $patientUri . '> <has> ?hs .
+                ?hs <http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties> ?ps .
+                ?ps <http://als.dispedia.info/wrapperAlsfrs/c/20111105/containsPropertyOption> ?optionUri .
+                ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
+             };'
+        );
+        $appropriateForSymptoms = array_merge($appropriateForSymptoms, $appropriateForProperties);
+        
+        foreach ($appropriateForSymptoms as $symptom) {
+            $options[] = $symptom;
+        }
+        return $options;
     }
     
     

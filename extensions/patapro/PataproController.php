@@ -26,7 +26,7 @@ class PataproController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
-        $this->_url = $this->_request->uri;    
+        $this->_url = $this->_request->uri;   
         
         $model = new Erfurt_Rdf_Model ($this->_privateConfig->defaultModel);
         $this->_selectedModel = $model;
@@ -43,13 +43,19 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->url = $this->_url;
         $this->view->currentProposal = $this->getParam ('proposal');
         
-        
-        $patient = new Patient();
-        $this->view->patients = $patient->getAllPatients();
         // set standard language
         $lang = true == isset ($_SESSION ['selectedLanguage'])
             ? $_SESSION ['selectedLanguage']
             : 'de';
+        
+        $patient = new Patient($lang);
+        $this->view->patients = $patient->getAllPatients();
+        
+        
+        $this->view->options = $patient->getPatientOptions($this->getParam('patientUri'));
+        $this->view->uri = $this->_url;
+            
+        
     }
 }
 

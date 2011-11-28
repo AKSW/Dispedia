@@ -2,7 +2,7 @@
 
 /**
  * @category   OntoWiki
- * @package    OntoWiki_extensions_proppalloc
+ * @package    OntoWiki_extensions_patapro
  * @author     Lars Eidam <larseidam@googlemail.com>
  * @author     Konrad Abicht <konrad@inspirito.de>
  * @copyright  Copyright (c) 2011

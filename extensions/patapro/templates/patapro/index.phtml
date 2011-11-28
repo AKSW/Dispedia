@@ -16,24 +16,16 @@
             <br /><br />
             <?php foreach ($this->patients as $patient) { ?>
                 
-            <div><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></div><br />
+            <div><a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>"><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></a></div><br />
             
             <?php } ?>
         </td>
         <td width="40%">
-            <h2>Treppensteigen</h2>
-            Nicht möglich<br />
-            Braucht Unterstützung<br />
-          Leichte Unsicherheit oder Ermüdung<br />
-          Langsam<br />
-          Normal<br />
-
-        <h2>Gehen</h2>
-          Keine zielgerichteten Beinbewegungen<br />
-          Nicht gehfähig, aber gezielte Bewegungen der Beine möglich<br />
-          Deutliche Gangstörung; Nur mit Unterstützung oder Gebrauch von Hilfsmitteln möglich<br />
-          Beginnde Gehschwierigkeiten durch Schwäche der Beine<br />
-          Normal<br />
+            <?php foreach ($this->options as $option) { ?>
+                
+            <div><?php echo $option['label']; ?></div><br />
+            
+            <?php } ?>
         </td>
         <td width="40%">
             Rollstuhl<br />
