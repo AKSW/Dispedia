@@ -2,7 +2,7 @@
 
 /**
  * @category   OntoWiki
- * @package    OntoWiki_extensions_proppalloc
+ * @package    OntoWiki_extensions_patapro
  * @author     Lars Eidam <larseidam@googlemail.com>
  * @author     Konrad Abicht <konrad@inspirito.de>
  * @copyright  Copyright (c) 2011
@@ -10,10 +10,12 @@
  */ 
 class Proposal
 {
-    private $_model;
+    private $_selectedModel;
+    private $_store;
     
-    public function __construct ()
+    public function __construct ($model)
     {
+        $this->_selectedModel = $model;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
@@ -34,8 +36,6 @@ class Proposal
         $proposals = array ();
         
         foreach ( $tmp as $proposal ) {
-            $proposal ['shortcut'] = md5 ( $proposal ['uri'] );
-            
             $proposals [] = $proposal;
         }
         
@@ -46,48 +46,117 @@ class Proposal
     /**
      * 
      */
-    public function getSettings ( $proposalMd5 ) 
+    public function saveProposal ( $patientUri, $proposalUris ) 
     {
-		$proposalUri = $this->getProposalUri ( $proposalMd5 );
-		
-		$appropriateForSymptoms = $this->_store->sparqlQuery (
-            'SELECT ?optionUri
-              WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?ss .
-                 ?ss <http://als.dispedia.info/architecture/c/20110827/includesSymptoms> ?optionUri .
-             };'
-        );        
-        
-		$appropriateForProperties = $this->_store->sparqlQuery (
-            'SELECT ?optionUri
-              WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?ps .
-                 ?ps <http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties> ?optionUri .
-             };'
-        );
-        
-        $optionUris = array ();
-        
-        foreach ( $appropriateForProperties as $p )
-			$optionUris [] = $p ['optionUri'];
-        
-        foreach ( $appropriateForSymptoms as $p )
-			$optionUris [] = $p ['optionUri'];
-			
-		return $optionUris;
-	}
+	foreach ($proposalUris as $proposalUri) {
+//	// get decision instances
+//        $decisions = $this->_store->sparqlQuery (
+//            'SELECT ?uri
+//              WHERE {
+//                 <'. $patientUri .'> <http://als.dispedia.info/architecture/c/20110827/makes> ?uri .
+//             };'
+//        );
+//	
+//	
+//	// remove decision instances
+//	$this->removeStmt ( 
+//                $patientUri,
+//                $p,
+//                $option
+//            );
 	
-	
-	/**
-	 * 
-	 */
-	public function getProposalUri ( $md5 )
-	{
-		foreach ( $this->getAllProposals () as $p )
-		{
-			if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
-		}
-		return null;
+	    // new Decision URI
+	    //http://als.dispedia.info/architecture/c/20110827/
+	    //http://als.dispedia.info/i/Patient/20111115/ea1236/LarsEidam
+	    $newDecisionUri = 'http://als.dispedia.info/i/Decision/20110827/';
+	    $newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+	    
+	    // create Decision instance
+	    $this->addStmt (
+		$newDecisionUri,
+		'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+		'http://als.dispedia.info/architecture/c/20110827/Decision'
+	    );
+	    
+	    // connect Patient instance to Decision instance
+	    $this->addStmt (
+		$patientUri,
+		'http://als.dispedia.info/architecture/c/20110827/makes',
+		$newDecisionUri
+	    );
+	    
+	    // new ProposalAllocation URI
+	    $newProposalAllocationUri = 'http://als.dispedia.info/i/ProposalAllocation/20110827/';
+	    $newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+	    
+	    // create ProposalAllocation instance
+	    $this->addStmt (
+		$newProposalAllocationUri,
+		'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+		'http://als.dispedia.info/architecture/c/20110827/ProposalAllocation'
+	    );
+	    
+	    // connect Decision instance to ProposalAllocation instance
+	    $this->addStmt (
+		$newDecisionUri,
+		'http://als.dispedia.info/architecture/c/20110827/isPending',
+		$newProposalAllocationUri
+	    );
+	    
+	    // connect ProposalAllocation instance to Proposal instance
+	    $this->addStmt (
+		$newProposalAllocationUri,
+		'http://als.dispedia.info/architecture/c/20110827/allocatesProposal',
+		$proposalUri
+	    );
+	    
+	    // connect ProposalAllocation instance to Patient instance
+	    $this->addStmt (
+		$newProposalAllocationUri,
+		'http://als.dispedia.info/architecture/c/20110827/allocatesPatient',
+		$patientUri
+	    );
 	}
+    }
+
+/**
+     * adds a triple to datastore
+     */
+    public function addStmt($s, $p, $o)
+    {
+        // set type(uri or literal)
+        $type = true == Erfurt_Uri::check($o) 
+            ? 'uri'
+            : 'literal';
+        
+        // add a triple to datastore
+        return $this->_store->addStatement(
+            (string) $this->_selectedModel, 
+            $s,
+            $p, 
+            array('value' => $o, 'type' => $type)
+       );
+    }
+    
+    
+    /**
+     *
+     */
+    public function removeStmt($s, $p, $o)
+    {
+        // set type(uri or literal)
+        $type = true == Erfurt_Uri::check($o) 
+            ? 'uri'
+            : 'literal';
+            
+        // aremove a triple form datastore
+        return $this->_store->deleteMatchingStatements(
+            (string) $this->_selectedModel,
+            $s,
+            $p,
+            array('value' => $o, 'type' => $type)
+       );
+    }
+
 }
 

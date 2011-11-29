@@ -10,7 +10,7 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
-<form>
+<form method="post" action="" id="patapro">
     <table>
         <tr>
             <td width="20%">
@@ -22,6 +22,7 @@
                 <?php } ?>
             </td>
             <td width="40%">
+                <br /><br />
                 <?php foreach ($this->options as $topicLabel => $topic) { ?>
                     <div><h2><?php echo $topicLabel; ?></h2></div><br />
                     <?php foreach ($topic as $option) { ?>
@@ -32,14 +33,19 @@
                 <?php } ?>
             </td>
             <td width="40%">
-                <?php foreach ($this->proposals as $proposal) { ?>
+                <br /><br />
+                <?php if ("" != $this->currentPatient)
+                      foreach ($this->proposals as $proposal) { ?>
                     
-                <div><input type="checkbox">&nbsp&nbsp<?php echo $proposal['label']; ?></div><br />
+                <div><input type="checkbox" name="<?php echo $proposal['uri']; ?>" value="selectedOption">&nbsp&nbsp<?php echo $proposal['label']; ?></div><br />
                 
                 <?php } ?>
             </td>
         </tr>
     </table>
-    <a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
+    
+    <input type="hidden" name="do" value="save"/>
+    
+    <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
 		<?php echo $this->_translate->_('Save'); ?></a>
 </form>

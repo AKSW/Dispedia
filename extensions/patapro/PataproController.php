@@ -48,12 +48,38 @@ class PataproController extends OntoWiki_Controller_Component
             ? $_SESSION ['selectedLanguage']
             : 'de';
         
-        $this->view->uri = $this->_url;
-        $patient = new Patient($lang);
-        $this->view->patients = $patient->getAllPatients();
-        $this->view->options = $patient->getPatientOptions($this->getParam('patientUri'));
+        $currentPatient = $this->getParam('patientUri');
 	
-	$proposal = new Proposal();
+        $patient = new Patient($lang);
+	$proposal = new Proposal($this->_selectedModel);
+	
+	if ( '' != $currentPatient ) 
+        {
+		$proposals = array ();
+		
+		if ( 'save' == $this->getParam ('do') )
+		{
+			foreach ( $_REQUEST as $key => $value )
+			{
+				if ( 'selectedOption' == $value ) {
+					$proposals [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
+				}
+			}
+			var_dump($proposals);
+			$proposal->saveProposal (
+				$currentPatient,
+				$proposals
+			);
+		}
+	}
+	
+	
+        $this->view->uri = $this->_url;
+        $this->view->patients = $patient->getAllPatients();
+	$this->view->currentPatient = $currentPatient;
+	$this->view->options = $patient->getPatientOptions($currentPatient);
+	
+	
         $this->view->proposals = $proposal->getAllProposals();
     }
 }
