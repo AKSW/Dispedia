@@ -65,8 +65,8 @@ class PataproController extends OntoWiki_Controller_Component
 					$proposals [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
 				}
 			}
-			var_dump($proposals);
-			$proposal->saveProposal (
+			//TODO: auf Erfolg prüfen
+			$proposal->saveProposals (
 				$currentPatient,
 				$proposals
 			);
