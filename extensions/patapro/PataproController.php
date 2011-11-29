@@ -79,8 +79,7 @@ class PataproController extends OntoWiki_Controller_Component
 	$this->view->currentPatient = $currentPatient;
 	$this->view->options = $patient->getPatientOptions($currentPatient);
 	
-	
-        $this->view->proposals = $proposal->getAllProposals();
+        $this->view->proposals = $proposal->getAllProposals($currentPatient);
     }
 }
 

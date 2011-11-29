@@ -23,21 +23,20 @@ class Proposal
     /**
      * 
      */
-    public function getAllProposals ()
+    public function getAllProposals ($patientUri)
     {
-        $tmp = $this->_store->sparqlQuery (
-            'SELECT ?uri ?label
-              WHERE {
-                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/architecture/c/20110827/Proposal>.
-                 ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
-             };'
+        $proposals = $this->_store->sparqlQuery (
+            'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
+	    SELECT ?proposalUri ?proposalLabel ?proposalAllocation
+	    WHERE {
+		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
+		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
+		OPTIONAL {
+		    ?proposalAllocation ns1:allocatesProposal ?proposalUri .
+		    ?proposalAllocation ns1:allocatesPatient <http://als.dispedia.info/i/Patient/20111115/ea1236/LarsEidam> .
+		}
+	    };'
         );
-        
-        $proposals = array ();
-        
-        foreach ( $tmp as $proposal ) {
-            $proposals [] = $proposal;
-        }
         
         return $proposals;
     }
