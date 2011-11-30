@@ -1,0 +1,5 @@
+[default] 
+baseuri = "http://localhost/ontowiki/"
+user = "root"
+password = ""
+defaultmodel = "http://www.dispedia.de/"

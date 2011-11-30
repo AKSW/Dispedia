@@ -40,6 +40,10 @@ help:
 	@echo "     'make cs-check-commit-intensive' (run complete code checking with"
 	@echo "             stricter coding standard)"
 	@echo "     'make cs-check-blame' (get blame list)"
+	@echo ""
+	@echo "   Dispedia:"
+	@echo "     'make owcli-install' (install owcli)"
+	@echo "     'make kb-install' (install/update knowledgebases)"
 
 
 # top level target
@@ -171,3 +175,11 @@ cs-check-blame:
 
 cs-check-blame-full:
 	phpcs --report=gitblame -s --extensions=$(FILETYPES) --severity=$(SEVERITY_INTENSIVE) -s -p --standard=$(CSPATH) *
+	
+# Dispedia
+
+owcli-install:
+	install/install_script.sh -i
+
+kb-install:
+	install/install_script.sh -k

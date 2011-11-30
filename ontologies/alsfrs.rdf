@@ -1,0 +1,781 @@
+
+<!-- Processed by Id: cwm.py,v 1.197 2007/12/13 15:38:39 syosi Exp -->
+<!--     using base file:///home/lars/Uni/public_html/ow_als/ontologies/alsfrs.nt-->
+
+
+<rdf:RDF xmlns="http://als.dispedia.de/frs/o/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:te="http://purl.org/dc/terms/">
+
+    <owl:Ontology rdf:about="http://als.dispedia.de/frs/">
+        <license xmlns="http://creativecommons.org/ns#"
+            rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
+        <te:contributor>Romy Elze</te:contributor>
+        <te:publisher>Michael Martin</te:publisher>
+        <comment xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">TODO: This Ontology looks like a suitable use case for the survey vocabulary http://ns.aksw.org/survey/. I will check this soon.</comment>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">ALSFRS extended</label>
+    </owl:Ontology>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o10_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Schwere Atemnot im Sitzen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Significant difficulty, considering using mechanical respiratory support</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o10_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Leichte Atemnot im Sitzen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Occurs at rest, difficulty breathing when either sitting or lying</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o10_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Bei Aktivitäten des täglichen Lebens: Essen, Baden, Ankleiden</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Occurs with one or more of the following: eating, bathing, dressing (ADL)</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o10_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Beim Gehen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Occurs when walking</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o10_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Keine</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">None</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o11_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Hochgradige Schlafstörungen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Unable to sleep</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o11_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Can only sleep sitting up</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann nur im Sitzen schlafen</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o11_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Needs extra pillows in order to sleep (more than two)</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Regelmäßige Verwendung von mehr als zwei Kissen zum Schlafen erforderlich</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o11_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Some difficulty sleeping at night due to shortness of breath, does not routinely use more than two pillows</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Wiederholte nächtliche Luftnot, aber flaches Liegen</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o11_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Keine</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">None</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o12_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Invasive mechanical ventilation by intubation or tracheostomy</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Künstliche Beatmung durch Luftröhrenschnitt (Tracheotomie)</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o12_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Atemhilfe durch Maskenbeatmung mehr als 20h pro Tag</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Continuous use of BiPAP during the night and day</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o12_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Atemhilfe durch Maskenbeatmung mit mehr als 8h aber weniger als 20h pro Tag</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Continuous use of BiPAP during the night</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o12_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Atemhilfe durch Maskenbeatmung weniger als 8h pro Tag</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Intermittent use of BiPAP</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o12_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Keine Atemhilfe erforderlich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">None</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o1_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Loss of useful speech</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Verlust des verständlichen Sprechens</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o1_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Speech combined with nonvocal communication</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Sprechen kombiniert mit nonverbaler Kommunikation</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o1_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Intelligible with repeating</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Verständlich bei Wiederholung</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o1_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Detectable speech disturbance</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Wahrnehmbare Sprechstörung</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o1_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal speech processes</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normaler Sprechfluss</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o2_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Deutlicher Speichelfluss, Taschentuch ständig erforderlich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Marked drooling; requires constant tissue or handkerchief</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o2_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Deutlich vermehrter Speichelfluss, häufig mit Speichelverlust</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Marked excess of saliva with some drooling</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o2_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Moderately excessive saliva; may have minimal drooling</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Mäßig vermehrter Speichelfluss, geringer Speichelverlust möglich</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o2_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Geringfügig, aber eindeutig mit Übermaß an Speichel im Mund, nachts Speichelverlust möglich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Slight but definite excess of saliva in mouth; may have nighttime drooling</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o2_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal Salivation</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normaler Speichelfluss</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o3_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Keine orale Nahrungsaufnahme, ausschließlich PEG-Sondennahrung</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">NPO (exclusively parenteral or enteral feeding)</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o3_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Ergänzende Sondenernährung erforderlich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Needs supplemental tube feeding</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o3_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Dietary consistency changes</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Änderung der Nahrungskonsistenz</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o3_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Beginnende Essprobleme mit gelegentlichem verschlucken</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Early eating problems — occasional choking</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o3_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal eating habits</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normale Essgewohnheiten</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o4_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann Stift nicht halten</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Unable to grip pen</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o4_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Able to grip pen but unable to write</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann Stift halten</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o4_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Nicht alle Wörter lesbar</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Not all words are legible</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o4_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Langsam oder unordentlich, alle Wörter lesbar</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Slow or sloppy: all words are legible</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o4_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal handwriting</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normale Handschrift</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5a_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Essen muss angereicht werden/Muss gefüttert werden</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Needs to be fed</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5a_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Essen muss mundgerecht vorbereitet werden, kann aber noch langsam allein essen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Food must be cut by someone, but can still feed slowly</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5a_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Can cut most foods, although clumsy and slow; some help needed</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann das Essen meistens schneiden, aber langsam und unbeholfen</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5a_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Etwas langsam und unbeholfen, aber keine Hilfe erforderlich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Somewhat slow and clumsy, but no help needed</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5a_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normal</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5b_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Unable to perform any aspect of task</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Unfähig diese Aufgabe auszuführen</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5b_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann den Pflegenden minimal unterstützen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Provides minimal assistance to caregiver</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5b_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Some help needed with closures and fasteners</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Teilweise Hilfe erforderlich bei Verschlüssen und Deckeln</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5b_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Clumsy but able to perform all manipulations independently</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Unbeholfen, kann aber alle Handgriffe selbstständig ausführen</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o5b_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normal</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o6_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Total dependence</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Vollständige Abhängigkeit</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o6_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Needs attendant for self-care</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Zur Selbsthilfe ist eine Hilfsperson erforderlich</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o6_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Intermittent assistance or substitute methods</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Zeitweilige Hilfe oder Hilfsverfahren</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o6_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Independent and complete self-care with effort or decreased efficiency</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Unabhängige und vollständige Selbstpflege mit Mühe</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o6_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normal</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal function</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o7_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Helpless</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Vollständige Abhängigkeit</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o7_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Can initiate, but not turn or adjust sheets alone</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann die Drehung bzw. das Richten des Bettlakens beginnen, aber nicht allein beenden</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o7_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Can turn alone or adjust sheets, but with great difficulty</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Kann sich allein umdrehen und Bettlaken richten, aber mit großer Mühe</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o7_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Etwas langsam und unbeholfen, aber keine Hilfe erforderlich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Somewhat slow and clumsy, but no help needed</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o7_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normal</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o8_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Keine zielgerichteten Beinbewegungen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">No purposeful leg movement</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o8_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Nicht gehfähig, aber gezielte Bewegungen der Beine möglich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Nonambulatory functional movement</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o8_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Deutliche Gangstörung; Nur mit Unterstützung oder Gebrauch von Hilfsmitteln möglich</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Walks with assistance</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o8_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Beginnde Gehschwierigkeiten durch Schwäche der Beine</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Early ambulation difficulties</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o8_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normal</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o9_0">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s0"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Cannot do</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Nicht möglich</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o9_1">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s1"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Braucht Unterstützung</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Needs assistance</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o9_2">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s2"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Leichte Unsicherheit oder Ermüdung</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Mild unsteadiness or fatigue</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o9_3">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s3"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Langsam</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Slow</label>
+    </Option>
+
+    <Option rdf:about="http://als.dispedia.de/frs/i/option/o9_4">
+        <hasScore rdf:resource="http://als.dispedia.de/frs/i/score/s4"/>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Normal</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Normal</label>
+    </Option>
+
+    <Score rdf:about="http://als.dispedia.de/frs/i/score/s0">
+        <comment xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">niedrigste Bewertung auf der Skala</comment>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</label>
+    </Score>
+
+    <Score rdf:about="http://als.dispedia.de/frs/i/score/s1">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</label>
+    </Score>
+
+    <Score rdf:about="http://als.dispedia.de/frs/i/score/s2">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</label>
+    </Score>
+
+    <Score rdf:about="http://als.dispedia.de/frs/i/score/s3">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</label>
+    </Score>
+
+    <Score rdf:about="http://als.dispedia.de/frs/i/score/s4">
+        <comment xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">besteste Bewertung auf der Skala</comment>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</label>
+    </Score>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t1">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_4"/>
+        <suggestedQuestion xml:lang="de">Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Sprechens vor ? </suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Speech</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Sprechen</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t10">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o10_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o10_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o10_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o10_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o10_4"/>
+        <suggestedQuestion xml:lang="de">Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung Veränderungen in Bezug auf die Atmung vor?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Dyspnea (new)</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Luftnot</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t11">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o11_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o11_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o11_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o11_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o11_4"/>
+        <suggestedQuestion xml:lang="de">Sind im Vergleich zur Zeit vor Ihrer Erkrankung in liegender Körperposition Veränderungen der Atmung zu bemerken?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Luftnot im Liegen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Orthopnea (new)</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t12">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_4"/>
+        <suggestedQuestion xml:lang="de">Besteht eine Behandlung mit einem Beatmungsgerät?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Atemhilfen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Respiratory insufficiency (new)</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t2">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_4"/>
+        <suggestedQuestion xml:lang="de">Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Speichelflusses vor?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Salivation</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Speichelfluss</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t3">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o3_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o3_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o3_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o3_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o3_4"/>
+        <suggestedQuestion xml:lang="de">Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Schluckens vor?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Schlucken</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Swallowing</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t4">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o4_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o4_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o4_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o4_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o4_4"/>
+        <suggestedQuestion xml:lang="de">Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung der Handschrift zu sehen?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Handschrift</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Handwriting</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t5a">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5a_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5a_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5a_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5a_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5a_4"/>
+        <suggestedQuestion xml:lang="de">Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung im Umgang mit Besteck nachweisbar?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Cutting food and handling utensils (patients without gastrostomy)</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Gebrauch von Besteck (bei Patienten ohne Gastrostomie)</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t5b">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_4"/>
+        <suggestedQuestion xml:lang="de">Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung im Umgang mit Besteck nachweisbar?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Cutting food and handling utensils (alternate scale for patients with gastrostomy)</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Essen schneiden und Besteck gebrauchen (Alternative Skala für Patienten mit Gastrostomie)</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t6">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_4"/>
+        <suggestedQuestion xml:lang="de">Ist im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung in Bezug auf Ankleiden und Körperpflege nachweisbar?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Ankleiden und Körperpflege</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Dressing and hygiene</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t7">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o7_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o7_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o7_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o7_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o7_4"/>
+        <suggestedQuestion xml:lang="de">Ist im Vergleich zur Zeit vor Ihrer Erkrankung die Fähigkeit zum Umdrehen im Bett und Bettzeug richten verändert?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Turning in bed and adjusting bed clothes</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Umdrehen im Bett und Bettzeug richten</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t8">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o8_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o8_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o8_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o8_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o8_4"/>
+        <suggestedQuestion xml:lang="de">Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung des Gehens vor?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Gehen</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Walking</label>
+    </Topic>
+
+    <Topic rdf:about="http://als.dispedia.de/frs/i/topic/t9">
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o9_0"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o9_1"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o9_2"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o9_3"/>
+        <hasOption rdf:resource="http://als.dispedia.de/frs/i/option/o9_4"/>
+        <suggestedQuestion xml:lang="de">Liegt bei Ihnen im Vergleich zur Zeit vor Ihrer Erkrankung eine Veränderung in der Fahigkeit des Treppensteigens vor?</suggestedQuestion>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Climbing stairs</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Treppensteigen</label>
+    </Topic>
+
+    <owl:Class rdf:about="http://als.dispedia.de/frs/o/Option">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Option</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Option</label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://als.dispedia.de/frs/o/Score">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Score</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Wertung</label>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://als.dispedia.de/frs/o/Topic">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Thema</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">Topic</label>
+    </owl:Class>
+
+    <owl:ObjectProperty rdf:about="http://als.dispedia.de/frs/o/hasOption">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">references Option</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">referenziert Option</label>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://als.dispedia.de/frs/o/hasScore">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">scored with</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">wird gewertet mit</label>
+    </owl:ObjectProperty>
+
+    <owl:DatatypeProperty rdf:about="http://als.dispedia.de/frs/o/suggestedQuestion">
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="de">Vorschlag zur Fragestellung</label>
+        <label xmlns="http://www.w3.org/2000/01/rdf-schema#"
+            xml:lang="en">suggested Question</label>
+    </owl:DatatypeProperty>
+</rdf:RDF>
