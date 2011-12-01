@@ -17,6 +17,15 @@ function owcli-install() {
         cp -n .owcli ~/.owcli;
         nano ~/.owcli;
         rm -rf owcli;
+        
+        # install raptor
+        sudo apt-get install raptor-utils;
+        
+        # install pear and other PHP utils
+        sudo apt-get install php5-curl;
+        sudo apt-get install php-pear;
+        sudo pear install Console_Getargs;
+        sudo pear install Console_Table;
     else
         echo " owcli already installed.";
         return_value=1
@@ -34,6 +43,12 @@ function kb-install() {
     read CONFIRM;
     if [[ $CONFIRM == "y" ]]
     then
+		
+		# start essential services
+		sudo service apache2 start;
+		sudo service mysql start;
+    
+    
         owcli -m http://www.dispedia.de/ -e model:drop;
         owcli -m http://als.dispedia.de/ -e model:drop;
         owcli -m http://patients.dispedia.de/ -e model:drop;
