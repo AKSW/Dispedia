@@ -6,7 +6,7 @@ ALSFRS;ALSFRS
 By classification;Nach Klassifikation
 By free text;Nach Freitext
 Children;Kinder
-Create Proposal;Neuer Vorschlag
+Create proposal;Neuer Vorschlag
 Create proposal allocation;Neue Vorschlagszuweisung
 Patient proposal allocation;Patientenvorschläge
 Doctor view;Doktoransicht
@@ -36,6 +36,8 @@ Patient view;Patientansicht
 Pets;Haustiere 
 Preferences;Einstellungen
 Proposal and proposal allocations;Vorschlagszuweisung
+Proposals;Vorschläge
+Decisions;Entscheidungen
 Register a new user;Registriere einen neuen Benutzer
 Set Address;Setze Addresse
 Set pets;Haustiere verwalten

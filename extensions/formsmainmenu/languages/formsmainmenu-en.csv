@@ -6,7 +6,7 @@ ALSFRS;ALSFRS
 By classification;By classification
 By free text;By free text
 Children;Children
-Create Proposal;Create Proposal
+Create proposal;Create proposal
 Create proposal allocation;Create proposal allocation
 Patient proposal allocation;Patient proposal allocation
 Doctor view;Doctor view
@@ -36,6 +36,8 @@ Patient view;Patient view
 Pets;Pets
 Preferences;Preferences
 Proposal and proposal allocations;Proposal and Proposal Allocations
+Proposals;Proposals
+Decisions;Decisions
 Register a new user;Register a new user
 Set Address;Set Address
 Set pets;Set pets
