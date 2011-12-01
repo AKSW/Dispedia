@@ -43,12 +43,6 @@ function kb-install() {
     read CONFIRM;
     if [[ $CONFIRM == "y" ]]
     then
-		
-		# start essential services
-		sudo service apache2 start;
-		sudo service mysql start;
-    
-    
         owcli -m http://www.dispedia.de/ -e model:drop;
         owcli -m http://als.dispedia.de/ -e model:drop;
         owcli -m http://patients.dispedia.de/ -e model:drop;
