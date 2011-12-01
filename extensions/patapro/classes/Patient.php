@@ -37,7 +37,7 @@ class Patient
              };'
         );        
         
-		$appropriateForProperties = $this->_store->sparqlQuery (
+        $appropriateForProperties = $this->_store->sparqlQuery (
             'SELECT ?optionUri ?optionLabel ?topicLabel
               WHERE {
 
@@ -65,7 +65,7 @@ class Patient
      */
     public function getAllPatients ()
     {
-        $tmp = $this->_store->sparqlQuery (
+        $patients = $this->_store->sparqlQuery (
             'SELECT ?uri ?firstName ?lastName
               WHERE {
                  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/architecture/c/20110827/Patient>.
@@ -73,14 +73,7 @@ class Patient
                  ?uri <http://als.dispedia.info/architecture/c/20110827/lastName> ?lastName.
              };'
         );
-        
-        $patients = array ();
-        
-        foreach ( $tmp as $patient ) {
-            
-            $patients [] = $patient;
-        }
-        
+
         return $patients;
     }
 }

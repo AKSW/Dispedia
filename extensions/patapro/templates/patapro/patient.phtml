@@ -1,0 +1,66 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_patapro
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<form method="POST" action="" id="patapro">
+    <?php if (isset($this->currentPatient)) { ?>
+    Proposals
+    <div>
+        <?php foreach ($this->decisionProposals as $proposal) { ?>
+        <?php if ("http://als.dispedia.info/architecture/c/20110827/isPending" == $proposal['status']) { ?>
+            <div>
+            <?php echo $proposal['proposalLabel'] ?>
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"> accept
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"> denies
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"> undecided
+            </div>
+            <br />
+        <?php } ?>
+        <?php } ?>
+    </div>
+    accepted Proposals
+    <div>
+        <?php foreach ($this->decisionProposals as $proposal) { ?>
+        <?php if ("http://als.dispedia.info/architecture/c/20110827/accepts" == $proposal['status']) { ?>
+            <div><?php echo $proposal['proposalLabel'] ?>
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"> denies
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"> undecided
+            </div>
+            <br />
+        <?php } ?>
+        <?php } ?>
+    </div>
+    rejected Proposals
+    <div>
+        <?php foreach ($this->decisionProposals as $proposal) { ?>
+        <?php if ("http://als.dispedia.info/architecture/c/20110827/denies" == $proposal['status']) { ?>
+            <div><?php echo $proposal['proposalLabel'] ?>
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"> accept
+            <input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"> undecided
+            </div>
+            <br />
+        <?php } ?>
+        <?php } ?>
+    </div>
+    <input type="hidden" name="do" value="save"/>
+    
+    <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
+            <?php echo $this->_translate->_('Save'); ?></a>
+    <?php } else {?>
+        <br /><br />
+    <?php foreach ($this->patients as $patient) { ?>
+            
+        <div><a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>"><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></a></div><br />
+            
+    <?php } ?>
+    <?php } ?>
+</form>
+

@@ -17,9 +17,12 @@ require 'classes/Patient.php';
  */ 
 class PataproController extends OntoWiki_Controller_Component
 {
-	protected $_url;
-	protected $_selectedModel;
-	
+    private $_url;
+    private $_selectedModel;
+    private $_lang;
+        private $_patient;
+        private $_proposal;
+    
     /**
      * init controller
      */     
@@ -28,58 +31,83 @@ class PataproController extends OntoWiki_Controller_Component
         parent::init();
         $this->_url = $this->_request->uri;   
         
+    
         $model = new Erfurt_Rdf_Model ($this->_privateConfig->defaultModel);
         $this->_selectedModel = $model;
         $this->_selectedModelUri = (string) $model;
         $this->_owApp->selectedModel = $model;
+    
+    // set standard language
+        $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
+            ? $_SESSION ['selectedLanguage']
+            : 'de';
+        
+        $this->_patient = new Patient($this->_lang);
+    $this->_proposal = new Proposal($this->_selectedModel);
+    
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
+        
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
     
     public function indexAction ()
     {
-        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
-        
-        $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
         
         $this->view->url = $this->_url;
         $this->view->currentProposal = $this->getParam ('proposal');
-        
-        // set standard language
-        $lang = true == isset ($_SESSION ['selectedLanguage'])
-            ? $_SESSION ['selectedLanguage']
-            : 'de';
-        
+
         $currentPatient = $this->getParam('patientUri');
-	
-        $patient = new Patient($lang);
-	$proposal = new Proposal($this->_selectedModel);
-	
-	if ( '' != $currentPatient ) 
+
+    if ( '' != $currentPatient ) 
+    {
+        $proposals = array ();
+        
+        if ( 'save' == $this->getParam ('do') )
         {
-		$proposals = array ();
-		
-		if ( 'save' == $this->getParam ('do') )
-		{
-			foreach ( $_REQUEST as $key => $value )
-			{
-				if ( 'selectedOption' == $value ) {
-					$proposals [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
-				}
-			}
-			//TODO: auf Erfolg prüfen
-			$proposal->saveProposals (
-				$currentPatient,
-				$proposals
-			);
-		}
-	}
-	
-	
-        $this->view->uri = $this->_url;
-        $this->view->patients = $patient->getAllPatients();
-	$this->view->currentPatient = $currentPatient;
-	$this->view->options = $patient->getPatientOptions($currentPatient);
-	
-        $this->view->proposals = $proposal->getAllProposals($currentPatient);
+            foreach ( $_REQUEST as $key => $value )
+            {
+                if ( 'selectedOption' == $value ) {
+                    $proposals [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
+                }
+            }
+            //TODO: auf Erfolg prüfen
+            $this->_proposal->saveProposals (
+                $currentPatient,
+                $proposals
+            );
+        }
+    }
+
+        $this->view->patients = $this->_patient->getAllPatients();
+    $this->view->currentPatient = $currentPatient;
+    $this->view->options = $this->_patient->getPatientOptions($currentPatient);
+    
+        $this->view->proposals = $this->_proposal->getAllProposals($currentPatient);
+    }
+    public function patientAction ()
+    {
+        $this->view->url = $this->_url;
+        $currentPatient = $this->getParam('patientUri');
+        if ( '' != $currentPatient ) 
+        {
+            if ( 'save' == $this->getParam ('do') )
+            {
+                $decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
+                foreach ($decisionProposals as $decisionProposal)
+                {
+                    $decision = $this->getParam(base64_encode($decisionProposal['decision']));
+                    if (isset($decision))
+                        //TODO: auf Erfolg prüfen
+                        $this->_proposal->saveDecision($decisionProposal['proposalAllocation'], $decisionProposal['decision'], $decision);
+                }
+            }
+            $this->view->decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
+        }
+        else
+        {
+            $this->view->patients = $this->_patient->getAllPatients();
+        }
+        $this->view->currentPatient = $currentPatient;
     }
 }
 
