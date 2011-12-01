@@ -25,19 +25,27 @@ class Proposal
      */
     public function getAllProposals ($patientUri)
     {
-        $proposals = $this->_store->sparqlQuery (
+        $proposals = array();
+        $results = $this->_store->sparqlQuery (
             'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
 	    SELECT ?proposalUri ?proposalLabel ?proposalAllocation
 	    WHERE {
-		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
-		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
-		OPTIONAL {
+		{
+		    ?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
+		    ?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .}
+		UNION{
 		    ?proposalAllocation ns1:allocatesProposal ?proposalUri .
-		    ?proposalAllocation ns1:allocatesPatient <http://als.dispedia.info/i/Patient/20111115/ea1236/LarsEidam> .
+		    ?proposalAllocation ns1:allocatesPatient <' . $patientUri . '> .
 		}
 	    };'
         );
-        
+        foreach ($results as $result)
+	{
+	    if ("" != $result['proposalLabel'])
+		$proposals[$result['proposalUri']]['label'] = $result['proposalLabel'];
+	    if ("" != $result['proposalAllocation'])
+		$proposals[$result['proposalUri']]['checked'] = $result['proposalAllocation'];
+	}
         return $proposals;
     }
     
@@ -51,9 +59,10 @@ class Proposal
     {
 	$return_value = true;
 	$return_value &= $this->removeProposals($patientUri);
-	foreach ($proposalUris as $proposalUri) {
-	    $this->addProposal ($patientUri, $proposalUri);
-	}
+	if ($return_value)
+	    foreach ($proposalUris as $proposalUri) {
+		$this->addProposal ($patientUri, $proposalUri);
+	    }
 	return $return_value;
     }
 

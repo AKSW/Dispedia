@@ -35,9 +35,9 @@
             <td width="40%">
                 <br /><br />
                 <?php if ("" != $this->currentPatient)
-                      foreach ($this->proposals as $proposal) { ?>
+                      foreach ($this->proposals as $proposalUri => $proposal) { ?>
                     
-                <div><input type="checkbox" name="<?php echo $proposal['proposalUri']; ?>" value="selectedOption" <?php echo ("" != $proposal['proposalAllocation'] ? "checked=\"checked\"" : ""); ?>>&nbsp&nbsp<?php echo $proposal['proposalLabel']; ?></div><br />
+                    <div><input type="checkbox" name="<?php echo $proposalUri; ?>" value="selectedOption" <?php echo (isset($proposal['checked']) ? "checked=\"checked\"" : ""); ?>>&nbsp&nbsp<?php echo $proposal['label']; ?></div><br />
                 
                 <?php } ?>
             </td>
