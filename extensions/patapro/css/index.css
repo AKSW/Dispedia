@@ -7,33 +7,62 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
  
-/* root element for scrollable */
-.scrollable {
 
-	/* required settings */
-	position:relative;
-	overflow:hidden;
-
-	/* vertical scrollables have typically larger height than width but not now */
-	height: 450px;
-	width: 100%;
+table {
+    margin-top:10px;
+}
+th{
+    padding-left:20px !important;
+    padding-bottom:20px !important;
+}
+#patientCol {
+    width:20%;
+}
+#healthstateCol {
+    width:50%;
+}
+#proposalCol {
+    width:30%;
 }
 
-/* root element for scrollable items */
-.scrollable .items {
-	position:absolute;
-
-	/* this time we have very large space for the height */
-	height:20000em;
+.patient {
+    font-size:13px;
+    margin-left:30px;
+    height:40px;
+}
+.patientSelected {
+    font-weight:bold;
+    font-size:14px !important;
+    margin-left:40px !important;
 }
 
-.proposalItemSelected {
+#healthstate {
+    border: 1px solid black;
+    height:300px;
+    padding:20px;
+    overflow-y:scroll;
+}
+.topic {
     font-weight:bold;
     font-size:14px;
+    margin-bottom:5px;
+}
+.option {
+    margin-left:40px;
+    margin-bottom:15px;
+}
+.proposal {
+    height:30px;
     margin-left:30px;
+    padding-top:10x !important;
+    1line-height:30px;
+}
+.proposal span {
+    margin-left:5px;
 }
 
-.proposalItem {
-    font-size:13px;
-    margin-left:20px;
+#formButtons {
+    text-align:right;
+    margin-bottom:30px;
+    margin-right:30px;
 }

@@ -13,39 +13,56 @@
 <form method="post" action="" id="patapro">
     <table>
         <tr>
-            <td width="20%">
-                <br /><br />
+            <th>Patient</th>
+            <?php if ("" != $this->currentPatient) { ?>
+                <th>Healthstate</th>
+                <th>Proposals</th>
+            <?php } ?>
+        </tr>
+        <tr> 
+            <td id="patientCol">
                 <?php foreach ($this->patients as $patient) { ?>
-                    
-                <div><a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>"><?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?></a></div><br />
-                
+                    <?php
+                        $patientCss = '';
+                        if ($patient ['uri'] == $this->currentPatient)
+                            $patientCss = 'patientSelected';
+		    ?>
+                    <div class="patient <?php echo $patientCss; ?>">
+                        <a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>">
+                            <?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?>
+                        </a>
+                    </div>
                 <?php } ?>
             </td>
-            <td width="40%">
-                <br /><br />
-                <?php foreach ($this->options as $topicLabel => $topic) { ?>
-                    <div><h2><?php echo $topicLabel; ?></h2></div><br />
-                    <?php foreach ($topic as $option) { ?>
-                        
-                    <div><?php echo $option['optionLabel']; ?></div><br />
-                    
+            <?php if ("" != $this->currentPatient) { ?>
+                <td id="healthstateCol">
+                    <div id="healthstate">
+                        <?php foreach ($this->options as $topicLabel => $topic) { ?>
+                            <div class="topic"><?php echo $topicLabel; ?></div>
+                            <?php foreach ($topic as $option) { ?>
+                                
+                            <div class="option"><?php echo $option['optionLabel']; ?></div>
+                            
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                </td>
+                <td id="proposalCol">
+                    <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
+                    <div class="proposal">
+                        <input type="checkbox" name="<?php echo $proposalUri; ?>" value="selectedOption" <?php echo (isset($proposal['checked']) ? "checked=\"checked\"" : ""); ?>>
+                        <span><?php echo $proposal['label']; ?></span>
+                    </div>
                     <?php } ?>
-                <?php } ?>
-            </td>
-            <td width="40%">
-                <br /><br />
-                <?php if ("" != $this->currentPatient)
-                      foreach ($this->proposals as $proposalUri => $proposal) { ?>
-                    
-                    <div><input type="checkbox" name="<?php echo $proposalUri; ?>" value="selectedOption" <?php echo (isset($proposal['checked']) ? "checked=\"checked\"" : ""); ?>>&nbsp&nbsp<?php echo $proposal['label']; ?></div><br />
-                
-                <?php } ?>
-            </td>
+                </td>
+            <?php } ?>
         </tr>
     </table>
     
     <input type="hidden" name="do" value="save"/>
     
-    <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
-        <?php echo $this->_translate->_('Save'); ?></a>
+    <?php if ("" != $this->currentPatient) { ?>
+        <div id="formButtons"><a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/></span>
+            <?php echo $this->_translate->_('Save'); ?></a>
+    <?php } ?>
 </form>
