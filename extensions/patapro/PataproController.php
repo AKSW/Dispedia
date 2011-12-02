@@ -44,14 +44,13 @@ class PataproController extends OntoWiki_Controller_Component
         
         $this->_patient = new Patient($this->_lang);
     $this->_proposal = new Proposal($this->_selectedModel);
-    
-        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
-        
+            
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
     
     public function indexAction ()
     {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         
         $this->view->url = $this->_url;
         $this->view->currentProposal = $this->getParam ('proposal');
@@ -86,6 +85,7 @@ class PataproController extends OntoWiki_Controller_Component
     }
     public function patientAction ()
     {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');
         $this->view->url = $this->_url;
         $currentPatient = $this->getParam('patientUri');
         if ( '' != $currentPatient ) 
@@ -103,10 +103,7 @@ class PataproController extends OntoWiki_Controller_Component
             }
             $this->view->decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
         }
-        else
-        {
-            $this->view->patients = $this->_patient->getAllPatients();
-        }
+        $this->view->patients = $this->_patient->getAllPatients();
         $this->view->currentPatient = $currentPatient;
     }
 }

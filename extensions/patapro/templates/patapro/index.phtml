@@ -13,13 +13,13 @@
 <form method="post" action="" id="patapro">
     <table>
         <tr>
-            <th>Patient</th>
+            <th><div>Patients</div></th>
             <?php if ("" != $this->currentPatient) { ?>
-                <th>Healthstate</th>
-                <th>Proposals</th>
+                <th><div>Healthstate</div></th>
+                <th><div>Proposals</div></th>
             <?php } ?>
         </tr>
-        <tr> 
+        <tr>
             <td id="patientCol">
                 <?php foreach ($this->patients as $patient) { ?>
                     <?php

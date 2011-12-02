@@ -25,11 +25,8 @@ th div {
 #patientCol {
     width:20%;
 }
-#healthstateCol {
-    width:50%;
-}
-#proposalCol {
-    width:30%;
+#DecisionCol {
+    width:80%;
 }
 
 .patient {
@@ -42,31 +39,39 @@ th div {
     font-size:14px !important;
     margin-left:40px !important;
 }
-
-#healthstate {
-    border: 1px solid black;
-    height:300px;
-    padding:20px;
-    overflow-y:scroll;
+.sectionHeadline, .section {
     margin: 0px 10px;
 }
-.topic {
+.sectionHeadline {
     font-weight:bold;
     font-size:14px;
-    margin-bottom:5px;
+    padding-left:10px;
 }
-.option {
-    margin-left:40px;
-    margin-bottom:15px;
+.section {
+    border: 1px solid black;
+    padding:20px;
+    margin-bottom:30px;
+}
+.section div, clear {
+    min-height:30px;
+    line-height:30px;
+    overflow:hidden;
+}
+.proposal, .decision {
+    float:left;
+    
 }
 .proposal {
-    height:30px;
-    margin-left:30px;
-    padding-top:10x !important;
-    1line-height:30px;
+    font-weight:bold;
+    width:200px;
 }
-.proposal span {
-    margin-left:5px;
+.decision {
+    padding-left:20px;
+    width:100px;
+}
+.clear {
+    float:none;
+    width:100px;
 }
 
 #formButtons {
