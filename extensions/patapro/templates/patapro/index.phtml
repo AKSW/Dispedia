@@ -13,10 +13,10 @@
 <form method="post" action="" id="patapro">
     <table id="main">
         <tr>
-            <th><div>Patients</div></th>
+            <th><div><?php echo $this->_translate->_('patients'); ?></div></th>
             <?php if ("" != $this->currentPatient) { ?>
-                <th><div>Healthstate</div></th>
-                <th><div>Proposals</div></th>
+                <th><div><?php echo $this->_translate->_('healthstate'); ?></div></th>
+                <th><div><?php echo $this->_translate->_('proposals'); ?></div></th>
             <?php } ?>
         </tr>
         <tr>
@@ -51,8 +51,8 @@
                     <table id="proposal">
                         <tr>
                             <th></th>
-                            <th>Proposal</th>
-                            <th>Status</th>
+                            <th><?php echo $this->_translate->_('proposal'); ?></th>
+                            <th><?php echo $this->_translate->_('status'); ?></th>
                         </tr>
                         <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
                              <tr>
@@ -67,7 +67,7 @@
                                     <span><?php echo $proposal['proposalLabel']; ?></span>
                                 </td>
                                 <td id="proposalStatus">
-                                    <span><?php echo (isset($proposal['status']) ? $proposal['status'] : ""); ?></span>
+                                    <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -82,7 +82,7 @@
     <?php if ("" != $this->currentPatient) { ?>
         <div id="formButtons">
             <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
-            <?php echo $this->_translate->_('Save'); ?></a>
+            <?php echo $this->_translate->_('save'); ?></a>
         </div>
     <?php } ?>
 </form>

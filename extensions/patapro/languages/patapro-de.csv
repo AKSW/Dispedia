@@ -1,4 +1,16 @@
-Create Proposal;Neuer Vorschlag
-indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordnen. 
-Proposal allocation administration;Verwaltung von Vorschlagszuweisungen
-Save;Speichern
+patients;Patienten
+healthstate;Gesundheitszustand
+proposal;Vorschlag
+proposals;Vorschläge
+status;Status
+isPending;wartend
+accepted;angenommen
+denied;abgelehnt
+decisions;Entscheidungen
+new:neue
+accepts;angenommene
+denieds;abgelehnte
+pending;unentschlossen
+accept;annehmen
+denies;ablehnen
+save;Speichern

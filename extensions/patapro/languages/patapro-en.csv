@@ -1,4 +1,16 @@
-Create Proposal;Create proposal
-indexDescriptionText;At this page you can assign proposals.
-Proposal allocation administration;Proposal allocation administration
-Save;Save
+patients;Patients
+healthstate;Healthstate
+proposal;Proposal
+proposals;Proposals
+status;Status
+isPending;pending
+accepted;accepted
+denied;denied
+decisions;Decisions
+new:new
+accepts;accepted
+denieds;denied
+pending;undecided
+accept;accept
+denis;denies
+save;Save

@@ -63,11 +63,14 @@ th div {
 }
 .proposal {
     font-weight:bold;
-    width:200px;
+    width:250px;
 }
 .decision {
     padding-left:20px;
-    width:100px;
+    width:130px;
+}
+.decision span {
+    padding-left:10px;
 }
 .clear {
     float:none;
