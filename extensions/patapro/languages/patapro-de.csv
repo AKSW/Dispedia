@@ -1,3 +1,5 @@
+patient proposal allocation;Patienten Vorschlagszuweisung
+allocate proposals to a patient;Patienten Vorschläge zuweisen.
 patients;Patienten
 healthstate;Gesundheitszustand
 proposal;Vorschlag
@@ -7,6 +9,7 @@ isPending;wartend
 accepted;angenommen
 denied;abgelehnt
 decisions;Entscheidungen
+make your decisions;Triff deine Entscheidungen zu den Vorschlägen.
 new:neue
 accepts;angenommene
 denieds;abgelehnte

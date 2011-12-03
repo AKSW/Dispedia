@@ -1,3 +1,5 @@
+patient proposal allocation;Patient proposal allocation
+allocate proposals to a patient;Allocate proposals to a patient.
 patients;Patients
 healthstate;Healthstate
 proposal;Proposal
@@ -7,6 +9,7 @@ isPending;pending
 accepted;accepted
 denied;denied
 decisions;Decisions
+make your decisions;Make your decisions about the proposals.
 new:new
 accepts;accepted
 denieds;denied

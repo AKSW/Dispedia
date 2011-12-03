@@ -6,10 +6,19 @@
  * @copyright  Copyright (c) 2011
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
- 
+
+.firstHeadline {
+    font-size:22px;
+    margin-left:10px;
+    margin-top:10px;
+}
+.secondHeadline {
+    margin-top:5px;
+    margin-left:20px;
+}
 
 table#main {
-    margin-top:10px;
+    margin-top:20px;
 }
 table#main th{
     font-weight:bold;
