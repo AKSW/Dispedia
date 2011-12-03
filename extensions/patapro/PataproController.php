@@ -1,8 +1,6 @@
 <?php
 
-require 'classes/Option.php';
 require 'classes/Proposal.php';
-require 'classes/Topic.php';
 require 'classes/Patient.php';
 
 /**
@@ -20,8 +18,8 @@ class PataproController extends OntoWiki_Controller_Component
     private $_url;
     private $_selectedModel;
     private $_lang;
-        private $_patient;
-        private $_proposal;
+    private $_patient;
+    private $_proposal;
     
     /**
      * init controller
@@ -37,13 +35,13 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_selectedModelUri = (string) $model;
         $this->_owApp->selectedModel = $model;
     
-    // set standard language
+        // set standard language
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
             ? $_SESSION ['selectedLanguage']
             : 'de';
         
         $this->_patient = new Patient($this->_lang);
-    $this->_proposal = new Proposal($this->_selectedModel);
+        $this->_proposal = new Proposal($this->_selectedModel);
             
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
@@ -59,8 +57,6 @@ class PataproController extends OntoWiki_Controller_Component
 
         if ( '' != $currentPatient ) 
         {
-            $proposals = array ();
-            
             if ( 'save' == $this->getParam ('do') )
             {
                 //TODO: auf Erfolg prüfen

@@ -195,7 +195,7 @@ class Proposal
     }
 
     /**
-     * get all proposals with decision from a patient
+     * save a decision from patient
      */
     public function saveDecision ($proposalAllocation, $decisionUri, $decision)
     {
