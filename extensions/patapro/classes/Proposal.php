@@ -23,29 +23,21 @@ class Proposal
     /**
      * get all proposals from a patient
      */
-    public function getAllProposals ($patientUri)
+    public function getAllProposals ()
     {
         $proposals = array();
         $results = $this->_store->sparqlQuery (
             'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
-        SELECT ?proposalUri ?proposalLabel ?proposalAllocation
-        WHERE {
-        {
-            ?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
-            ?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .}
-        UNION{
-            ?proposalAllocation ns1:allocatesProposal ?proposalUri .
-            ?proposalAllocation ns1:allocatesPatient <' . $patientUri . '> .
-        }
-        };'
+	    SELECT ?proposalUri ?proposalLabel
+	    WHERE {
+		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
+		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
+	    };'
         );
         foreach ($results as $result)
-    {
-        if ("" != $result['proposalLabel'])
-        $proposals[$result['proposalUri']]['label'] = $result['proposalLabel'];
-        if ("" != $result['proposalAllocation'])
-        $proposals[$result['proposalUri']]['checked'] = $result['proposalAllocation'];
-    }
+	{
+	    $proposals[$result['proposalUri']] = $result;
+	}
         return $proposals;
     }
     
@@ -54,13 +46,15 @@ class Proposal
      * first version delete and add all proposalallocations through a update
      * TODO: better version for updateing proposalallocations
      */
-    public function saveProposals ( $patientUri, $proposalUris ) 
+    public function saveProposals ($patientUri, $proposalUris) 
     {
     $return_value = true;
-    $return_value &= $this->removeProposals($patientUri);
-    if ($return_value)
+    $proposalUris = $this->removeProposals($patientUri, $proposalUris);
+    if (false == $proposalUris)
+	$return_value = false;
+    if ($return_value && 0 < count($proposalUris))
         foreach ($proposalUris as $proposalUri) {
-        $this->addProposal ($patientUri, $proposalUri);
+        $this->addProposal($patientUri, urldecode($proposalUri));
         }
     return $return_value;
     }
@@ -71,86 +65,106 @@ class Proposal
      */
     private function addProposal ( $patientUri, $proposalUri )
     {
-    // new Decision URI
-    //http://als.dispedia.info/architecture/c/20110827/
-    //http://als.dispedia.info/i/Patient/20111115/ea1236/LarsEidam
-    $newDecisionUri = 'http://als.dispedia.info/i/Decision/20110827/';
-    $newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
-    
-    // create Decision instance
-    $this->addStmt (
-        $newDecisionUri,
-        'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-        'http://als.dispedia.info/architecture/c/20110827/Decision'
-    );
-    
-    // connect Patient instance to Decision instance
-    $this->addStmt (
-        $patientUri,
-        'http://als.dispedia.info/architecture/c/20110827/makes',
-        $newDecisionUri
-    );
-    
-    // new ProposalAllocation URI
-    $newProposalAllocationUri = 'http://als.dispedia.info/i/ProposalAllocation/20110827/';
-    $newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
-    
-    // create ProposalAllocation instance
-    $this->addStmt (
-        $newProposalAllocationUri,
-        'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-        'http://als.dispedia.info/architecture/c/20110827/ProposalAllocation'
-    );
-    
-    // connect Decision instance to ProposalAllocation instance
-    $this->addStmt (
-        $newDecisionUri,
-        'http://als.dispedia.info/architecture/c/20110827/isPending',
-        $newProposalAllocationUri
-    );
-    
-    // connect ProposalAllocation instance to Proposal instance
-    $this->addStmt (
-        $newProposalAllocationUri,
-        'http://als.dispedia.info/architecture/c/20110827/allocatesProposal',
-        $proposalUri
-    );
-    
-    // connect ProposalAllocation instance to Patient instance
-    $this->addStmt (
-        $newProposalAllocationUri,
-        'http://als.dispedia.info/architecture/c/20110827/allocatesPatient',
-        $patientUri
-    );
+	// new Decision URI
+	//http://als.dispedia.info/architecture/c/20110827/
+	//http://als.dispedia.info/i/Patient/20111115/ea1236/LarsEidam
+	$newDecisionUri = 'http://als.dispedia.info/i/Decision/20110827/';
+	$newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+	
+	// create Decision instance
+	$this->addStmt (
+	    $newDecisionUri,
+	    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+	    'http://als.dispedia.info/architecture/c/20110827/Decision'
+	);
+	
+	// connect Patient instance to Decision instance
+	$this->addStmt (
+	    $patientUri,
+	    'http://als.dispedia.info/architecture/c/20110827/makes',
+	    $newDecisionUri
+	);
+	
+	// new ProposalAllocation URI
+	$newProposalAllocationUri = 'http://als.dispedia.info/i/ProposalAllocation/20110827/';
+	$newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+	
+	// create ProposalAllocation instance
+	$this->addStmt (
+	    $newProposalAllocationUri,
+	    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+	    'http://als.dispedia.info/architecture/c/20110827/ProposalAllocation'
+	);
+	
+	// connect Decision instance to ProposalAllocation instance
+	$this->addStmt (
+	    $newDecisionUri,
+	    'http://als.dispedia.info/architecture/c/20110827/isPending',
+	    $newProposalAllocationUri
+	);
+	
+	// connect ProposalAllocation instance to Proposal instance
+	$this->addStmt (
+	    $newProposalAllocationUri,
+	    'http://als.dispedia.info/architecture/c/20110827/allocatesProposal',
+	    $proposalUri
+	);
+	
+	// connect ProposalAllocation instance to Patient instance
+	$this->addStmt (
+	    $newProposalAllocationUri,
+	    'http://als.dispedia.info/architecture/c/20110827/allocatesPatient',
+	    $patientUri
+	);
     }
     
     /**
      * remove all proposalallocations to a specific patient in the knowlegebase
      */
-    private function removeProposals($patientUri)
+    private function removeProposals($patientUri, $proposalUris)
     {
-    $return_value = true;
-    // get all Decisions and ProposalAllocation instances
-    // get symptomSet instance
+	$return_value = true;
+	// get all Decisions and ProposalAllocation instances
+	// get symptomSet instance
         $decproalls = $this->_store->sparqlQuery (
             'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
-         SELECT ?decision ?proposalallocation
-         WHERE {
-          <' . $patientUri . '> ns1:makes ?decision .
-          ?decision ns1:isPending ?proposalallocation .
-        };'
+	    SELECT ?decision ?proposalallocation ?proposalUri
+	    WHERE {
+		<' . $patientUri . '> ns1:makes ?decision .
+		?decision ns1:isPending ?proposalallocation .
+		?proposalallocation ns1:allocatesProposal ?proposalUri .
+	    };'
         );
-    foreach ($decproalls as $decproall)
-    {
-        $removedStmt = 0;
-        $removedStmt += $this->removeStmt($decproall['decision'], null, null);
-        $removedStmt += $this->removeStmt(null, null, $decproall['decision']);
-        $removedStmt += $this->removeStmt($decproall['proposalallocation'], null, null);
-
-        if (6 != $removedStmt)
-        $return_value &= false;
-    }
-    return $return_value;
+	foreach ($decproalls as $decproall)
+	{
+	    $proposalAlreadyExists = false;
+	    foreach ($proposalUris as $key => $proposalUri)
+	    {
+		if (urlencode($decproall['proposalUri']) == $proposalUri)
+		{
+		    $proposalAlreadyExists = true;
+		    unset($proposalUris[$key]);
+		    break;
+		}
+	    }
+	    if (!$proposalAlreadyExists)
+	    {
+		$removedStmt = 0;
+		$removedStmt += $this->removeStmt($decproall['decision'], null, null);
+		$removedStmt += $this->removeStmt(null, null, $decproall['decision']);
+		$removedStmt += $this->removeStmt($decproall['proposalallocation'], null, null);
+		
+		if (6 != $removedStmt)
+		    $return_value = false;
+		
+		echo "<pre>";
+		var_dump("Delete");
+		echo "</pre>";
+	    }
+	}
+	if ($return_value)
+	    $return_value = $proposalUris;
+	return $return_value;
     }
     
     /**
@@ -158,19 +172,26 @@ class Proposal
      */
     public function getAllDecisinProposals ($patientUri)
     {
-        $proposals = $this->_store->sparqlQuery (
+        $proposals = array();
+        $results = $this->_store->sparqlQuery (
             'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
-        SELECT ?proposalUri ?proposalLabel ?proposalAllocation ?decision ?status
-        WHERE {
-          ?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
-          ?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
-          ?proposalAllocation ns1:allocatesProposal ?proposalUri .
-          ?proposalAllocation ns1:allocatesPatient <' . $patientUri . '> .
-          <' . $patientUri . '> ns1:makes ?decision .
-          ?decision ?status ?proposalAllocation .
-        }'
+	    SELECT ?proposalUri ?proposalLabel ?proposalAllocation ?decision ?statusUri
+	    WHERE {
+		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
+		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
+		?proposalAllocation ns1:allocatesProposal ?proposalUri .
+		?proposalAllocation ns1:allocatesPatient <' . $patientUri . '> .
+		<' . $patientUri . '> ns1:makes ?decision .
+		?decision ?statusUri ?proposalAllocation .
+	    }'
         );
-    return $proposals;
+	
+        foreach ($results as $result)
+	{
+	    $result['status'] = preg_replace('/http:\/\/als.dispedia.info\/architecture\/c\/20110827\//', '', $result['statusUri']);
+	    $proposals[$result['proposalUri']] = $result;
+	}
+	return $proposals;
     }
 
     /**

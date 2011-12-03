@@ -8,16 +8,16 @@
  */
  
 
-table {
+table#main {
     margin-top:10px;
 }
-th{
+table#main th{
     font-weight:bold;
     font-size:15px;
     padding-left:10px !important;
     padding-bottom:10px !important;
 }
-th div {
+table#main th div {
     background-color:#eee;
     padding-left:10px !important;
     padding-bottom:10px !important;
@@ -26,10 +26,10 @@ th div {
     width:20%;
 }
 #healthstateCol {
-    width:50%;
+    width:30%;
 }
 #proposalCol {
-    width:30%;
+    width:50%;
 }
 
 .patient {
@@ -44,7 +44,6 @@ th div {
 }
 
 #healthstate {
-    border: 1px solid black;
     height:300px;
     padding:20px;
     overflow-y:scroll;
@@ -58,6 +57,21 @@ th div {
 .option {
     margin-left:40px;
     margin-bottom:15px;
+}
+
+table#proposal th{
+    font-weight:bold;
+    font-size:13px;
+}
+#proposalCheck {
+    text-align:center;
+    width:10%;
+}
+#proposalName {
+    width:70%;
+}
+#proposalStatus {
+    width:20%;
 }
 .proposal {
     height:30px;

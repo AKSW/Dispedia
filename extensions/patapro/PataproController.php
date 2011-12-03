@@ -57,31 +57,33 @@ class PataproController extends OntoWiki_Controller_Component
 
         $currentPatient = $this->getParam('patientUri');
 
-    if ( '' != $currentPatient ) 
-    {
-        $proposals = array ();
-        
-        if ( 'save' == $this->getParam ('do') )
+        if ( '' != $currentPatient ) 
         {
-            foreach ( $_REQUEST as $key => $value )
+            $proposals = array ();
+            
+            if ( 'save' == $this->getParam ('do') )
             {
-                if ( 'selectedOption' == $value ) {
-                    $proposals [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
-                }
+                //TODO: auf Erfolg prüfen
+                $this->_proposal->saveProposals (
+                    $currentPatient,
+                    $this->getParam ('proposals')
+                );
             }
-            //TODO: auf Erfolg prüfen
-            $this->_proposal->saveProposals (
-                $currentPatient,
-                $proposals
-            );
         }
-    }
 
         $this->view->patients = $this->_patient->getAllPatients();
-    $this->view->currentPatient = $currentPatient;
-    $this->view->options = $this->_patient->getPatientOptions($currentPatient);
-    
-        $this->view->proposals = $this->_proposal->getAllProposals($currentPatient);
+        $this->view->currentPatient = $currentPatient;
+        $this->view->options = $this->_patient->getPatientOptions($currentPatient);
+        
+        $allProposals = $this->_proposal->getAllProposals();
+        $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
+        
+        foreach ($allProposals as $proposalUri => $proposal)
+        {
+            if (isset($patientProposals[$proposalUri]))
+            $allProposals[$proposalUri] = $patientProposals[$proposalUri];
+        }
+        $this->view->proposals = $allProposals;
     }
     public function patientAction ()
     {

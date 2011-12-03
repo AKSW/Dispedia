@@ -11,7 +11,7 @@
  */
 ?>
 <form method="post" action="" id="patapro">
-    <table>
+    <table id="main">
         <tr>
             <th><div>Patients</div></th>
             <?php if ("" != $this->currentPatient) { ?>
@@ -48,12 +48,30 @@
                     </div>
                 </td>
                 <td id="proposalCol">
-                    <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
-                    <div class="proposal">
-                        <input type="checkbox" name="<?php echo $proposalUri; ?>" value="selectedOption" <?php echo (isset($proposal['checked']) ? "checked=\"checked\"" : ""); ?>>
-                        <span><?php echo $proposal['label']; ?></span>
-                    </div>
-                    <?php } ?>
+                    <table id="proposal">
+                        <tr>
+                            <th></th>
+                            <th>Proposal</th>
+                            <th>Status</th>
+                        </tr>
+                        <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
+                             <tr>
+                                <td id="proposalCheck">
+                                    <input type="checkbox"
+                                        <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
+                                        name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
+                                        <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); ?>
+                                    >
+                                </td>
+                                <td id="proposalName">
+                                    <span><?php echo $proposal['proposalLabel']; ?></span>
+                                </td>
+                                <td id="proposalStatus">
+                                    <span><?php echo (isset($proposal['status']) ? $proposal['status'] : ""); ?></span>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </table>
                 </td>
             <?php } ?>
         </tr>
@@ -62,7 +80,9 @@
     <input type="hidden" name="do" value="save"/>
     
     <?php if ("" != $this->currentPatient) { ?>
-        <div id="formButtons"><a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/></span>
+        <div id="formButtons">
+            <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
             <?php echo $this->_translate->_('Save'); ?></a>
+        </div>
     <?php } ?>
 </form>

@@ -38,7 +38,7 @@
 		    <div class="sectionHeadline">Proposals</div>
 		    <div class="section">
 			<?php foreach ($this->decisionProposals as $proposal) { ?>
-			<?php if ("http://als.dispedia.info/architecture/c/20110827/isPending" == $proposal['status']) { ?>
+			<?php if ("isPending" == $proposal['status']) { ?>
 			    <div>
 				<div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
 				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"> accept</div>
@@ -52,7 +52,7 @@
 		    <div class="sectionHeadline">accepted Proposals</div>
 		    <div class="section">
 			<?php foreach ($this->decisionProposals as $proposal) { ?>
-			    <?php if ("http://als.dispedia.info/architecture/c/20110827/accepts" == $proposal['status']) { ?>
+			    <?php if ("accepts" == $proposal['status']) { ?>
 				<div>
 				    <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
 				    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"> denies</div>
@@ -65,7 +65,7 @@
 		    <div class="sectionHeadline">rejected Proposals</div>
 		    <div class="section">
 			<?php foreach ($this->decisionProposals as $proposal) { ?>
-			<?php if ("http://als.dispedia.info/architecture/c/20110827/denies" == $proposal['status']) { ?>
+			<?php if ("denies" == $proposal['status']) { ?>
 			    <div>
 				<div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
 				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"> accept</div>
@@ -82,8 +82,10 @@
     <input type="hidden" name="do" value="save"/>
     
     <?php if ("" != $this->currentPatient) { ?>
-        <div id="formButtons"><a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/></span>
+        <div id="formButtons">
+	    <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
             <?php echo $this->_translate->_('Save'); ?></a>
+	</div>
     <?php } ?>
 </form>
 
