@@ -65,21 +65,27 @@
         <rdfs:domain rdf:resource="&dispediao;Decision"/>
         <rdfs:range rdf:resource="&dispediao;ProposalAllocation"/>
         <owl:propertyDisjointWith rdf:resource="&dispediao;denies"/>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft akzeptiert kennzeichnet einen zugewiesenen Vorschlag als akzeptierte Entscheidung.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty accepts idicates an alllocated proposal as accepted decision.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;age">
         <rdfs:label xml:lang="de">Alter</rdfs:label>
         <rdfs:label xml:lang="en">age</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&foaf;age"/>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft Alter ist eine Untereigenschaft der DataTypeProperty foaf:age vom Typ Text und bezeichnet das Alter in Jahren eines Agenten.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty age is a subProperty of the DataTypeProperty foaf:age and means the age in years of some agent.</rdfs:comment>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&dispediao;allocates">
-        <rdfs:label xml:lang="de">belegt</rdfs:label>
+        <rdfs:label xml:lang="de">weist zu</rdfs:label>
         <rdfs:label xml:lang="en">allocates</rdfs:label>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist zu gruppiert alle weistZu-Eigenschaften, die einem konkreten Patienten konkrete Objekte zuordnet.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty allocates groups all allocates-Properties, which allocate a concrete Objekt to a concrete patient.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;allocatesAction">
-        <rdfs:label xml:lang="de">belegt Handlung</rdfs:label>
+        <rdfs:label xml:lang="de">weist Handlung zu</rdfs:label>
         <rdfs:label xml:lang="en">allocates action</rdfs:label>
         <rdfs:range rdf:resource="&dispediao;Action"/>
         <rdfs:domain rdf:resource="&dispediao;Allocation"/>
