@@ -90,6 +90,8 @@
         <rdfs:range rdf:resource="&dispediao;Action"/>
         <rdfs:domain rdf:resource="&dispediao;Allocation"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;allocates"/>
+        <rdfs:comment xml:lang="de">Durch die Objekteigenschaft weist Handlung zu wird der konkreten Zuweisung eine konkrete Handlung zugewiesen.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty allocates connect the concrete allocation with a concrete action.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;allocatesActiveAgent">
