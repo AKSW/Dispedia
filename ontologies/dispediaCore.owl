@@ -65,23 +65,23 @@
         <rdfs:domain rdf:resource="&dispediao;Decision"/>
         <rdfs:range rdf:resource="&dispediao;ProposalAllocation"/>
         <owl:propertyDisjointWith rdf:resource="&dispediao;denies"/>
-        <rdfs:comment xml:lang="de">Die Objekteigenschaft akzeptiert kennzeichnet einen zugewiesenen Vorschlag als akzeptierte Entscheidung.</rdfs:comment>
-        <rdfs:comment xml:lang="en">The ObjectProperty accepts idicates an alllocated proposal as accepted decision.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'akzeptiert' kennzeichnet einen zugewiesenen Vorschlag als akzeptierte Entscheidung.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty 'accepts' idicates an alllocated proposal as accepted decision.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;age">
         <rdfs:label xml:lang="de">Alter</rdfs:label>
         <rdfs:label xml:lang="en">age</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&foaf;age"/>
-        <rdfs:comment xml:lang="de">Die Objekteigenschaft Alter ist eine Untereigenschaft der DataTypeProperty foaf:age vom Typ Text und bezeichnet das Alter in Jahren eines Agenten.</rdfs:comment>
-        <rdfs:comment xml:lang="en">The ObjectProperty age is a subProperty of the DataTypeProperty foaf:age and means the age in years of some agent.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'Alter' ist eine Untereigenschaft der DataTypeProperty foaf:age vom Typ Text und bezeichnet das Alter in Jahren eines Agenten.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty 'age' is a subProperty of the DataTypeProperty foaf:age and means the age in years of some agent.</rdfs:comment>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&dispediao;allocates">
         <rdfs:label xml:lang="de">weist zu</rdfs:label>
         <rdfs:label xml:lang="en">allocates</rdfs:label>
-        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist zu gruppiert alle weistZu-Eigenschaften, die einem konkreten Patienten konkrete Objekte zuordnet.</rdfs:comment>
-        <rdfs:comment xml:lang="en">The ObjectProperty allocates groups all allocates-Properties, which allocate a concrete Objekt to a concrete patient.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'weist zu' gruppiert alle weistZu-Eigenschaften, die einem konkreten Patienten konkrete Objekte zuordnet.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty 'allocates' groups all allocates-Properties, which allocate a concrete object to a concrete patient.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;allocatesAction">
@@ -90,8 +90,8 @@
         <rdfs:range rdf:resource="&dispediao;Action"/>
         <rdfs:domain rdf:resource="&dispediao;Allocation"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;allocates"/>
-        <rdfs:comment xml:lang="de">Durch die Objekteigenschaft weist Handlung zu wird der konkreten Zuweisung eine konkrete Handlung zugewiesen.</rdfs:comment>
-        <rdfs:comment xml:lang="en">The ObjectProperty allocates connect the concrete allocation with a concrete action.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Durch die Objekteigenschaft 'weist Handlung zu' wird der konkreten Zuweisung eine konkrete Handlung zugewiesen.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty 'allocatesAction' connects the concrete allocation with a concrete action.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;allocatesActiveAgent">
@@ -193,6 +193,13 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;appropriateFor"/>
     </owl:ObjectProperty>
 
+    <owl:ObjectProperty rdf:about="&dispediao;associatedWithDisease">
+        <rdfs:label xml:lang="de">zugeordnet zur Krankheit</rdfs:label>
+        <rdfs:label xml:lang="en">associated with disease</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;DiseaseSection"/>
+        <rdfs:range rdf:resource="&dbpedia;Disease"/>
+    </owl:ObjectProperty>
+
     <owl:ObjectProperty rdf:about="&dispediao;belongsToDiseaseSection">
         <rdfs:label xml:lang="de">gehört zu Krankheitsabschnitt</rdfs:label>
         <rdfs:label xml:lang="en">belongs to disease section</rdfs:label>
@@ -205,13 +212,6 @@
         <rdfs:label xml:lang="en">city</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
         <rdfs:range rdf:resource="&dispediao;City"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;comprises">
-        <rdfs:label xml:lang="de">umfasst</rdfs:label>
-        <rdfs:label xml:lang="en">comprises</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;DiseaseSection"/>
-        <rdfs:domain rdf:resource="&dispediao;Disease"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;connectedTo">
