@@ -10,12 +10,14 @@
  */ 
 class Proposal
 {
-    private $_selectedModel;
+    private $_lang;
+    private $_patientModel;
     private $_store;
     
-    public function __construct ($model)
+    public function __construct ($patientModel, $lang)
     {
-        $this->_selectedModel = $model;
+        $this->_lang = $lang;
+	$this->_patientModel = $patientModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
@@ -27,11 +29,12 @@ class Proposal
     {
         $proposals = array();
         $results = $this->_store->sparqlQuery (
-            'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
 	    SELECT ?proposalUri ?proposalLabel
 	    WHERE {
-		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
+		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
 		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
+                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
 	    };'
         );
         foreach ($results as $result)
@@ -49,6 +52,8 @@ class Proposal
     public function saveProposals ($patientUri, $proposalUris) 
     {
     $return_value = true;
+    if (!isset($proposalUris))
+	$proposalUris = array();
     $proposalUris = $this->removeProposals($patientUri, $proposalUris);
     if (false == $proposalUris)
 	$return_value = false;
@@ -67,53 +72,53 @@ class Proposal
     {
 	// new Decision URI
 	//http://als.dispedia.info/architecture/c/20110827/
-	//http://als.dispedia.info/i/Patient/20111115/ea1236/LarsEidam
-	$newDecisionUri = 'http://als.dispedia.info/i/Decision/20110827/';
+	//http://patients.dispedia.de/i/Patient/20111115/ea1236/LarsEidam
+	$newDecisionUri = 'http://patients.dispedia.de/i/Decision/';
 	$newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
 	
 	// create Decision instance
 	$this->addStmt (
 	    $newDecisionUri,
 	    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-	    'http://als.dispedia.info/architecture/c/20110827/Decision'
+	    'http://www.dispedia.de/o/Decision'
 	);
 	
 	// connect Patient instance to Decision instance
 	$this->addStmt (
 	    $patientUri,
-	    'http://als.dispedia.info/architecture/c/20110827/makes',
+	    'http://www.dispedia.de/o/makes',
 	    $newDecisionUri
 	);
 	
 	// new ProposalAllocation URI
-	$newProposalAllocationUri = 'http://als.dispedia.info/i/ProposalAllocation/20110827/';
+	$newProposalAllocationUri = 'http://patients.dispedia.de/i/ProposalAllocation/';
 	$newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
 	
 	// create ProposalAllocation instance
 	$this->addStmt (
 	    $newProposalAllocationUri,
 	    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-	    'http://als.dispedia.info/architecture/c/20110827/ProposalAllocation'
+	    'http://www.dispedia.de/o/ProposalAllocation'
 	);
 	
 	// connect Decision instance to ProposalAllocation instance
 	$this->addStmt (
 	    $newDecisionUri,
-	    'http://als.dispedia.info/architecture/c/20110827/isPending',
+	    'http://www.dispedia.de/o/isPending',
 	    $newProposalAllocationUri
 	);
 	
 	// connect ProposalAllocation instance to Proposal instance
 	$this->addStmt (
 	    $newProposalAllocationUri,
-	    'http://als.dispedia.info/architecture/c/20110827/allocatesProposal',
+	    'http://www.dispedia.de/o/allocatesProposal',
 	    $proposalUri
 	);
 	
 	// connect ProposalAllocation instance to Patient instance
 	$this->addStmt (
 	    $newProposalAllocationUri,
-	    'http://als.dispedia.info/architecture/c/20110827/allocatesPatient',
+	    'http://www.dispedia.de/o/allocatesPatient',
 	    $patientUri
 	);
     }
@@ -127,12 +132,12 @@ class Proposal
 	// get all Decisions and ProposalAllocation instances
 	// get symptomSet instance
         $decproalls = $this->_store->sparqlQuery (
-            'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
 	    SELECT ?decision ?proposalallocation ?proposalUri
 	    WHERE {
-		<' . $patientUri . '> ns1:makes ?decision .
-		?decision ns1:isPending ?proposalallocation .
-		?proposalallocation ns1:allocatesProposal ?proposalUri .
+		<' . $patientUri . '> dispediao:makes ?decision .
+		?decision dispediao:isPending ?proposalallocation .
+		?proposalallocation dispediao:allocatesProposal ?proposalUri .
 	    };'
         );
 	foreach ($decproalls as $decproall)
@@ -156,10 +161,6 @@ class Proposal
 		
 		if (6 != $removedStmt)
 		    $return_value = false;
-		
-		echo "<pre>";
-		var_dump("Delete");
-		echo "</pre>";
 	    }
 	}
 	if ($return_value)
@@ -174,21 +175,22 @@ class Proposal
     {
         $proposals = array();
         $results = $this->_store->sparqlQuery (
-            'PREFIX ns1:<http://als.dispedia.info/architecture/c/20110827/>
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
 	    SELECT ?proposalUri ?proposalLabel ?proposalAllocation ?decision ?statusUri
 	    WHERE {
-		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ns1:Proposal .
+		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
 		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
-		?proposalAllocation ns1:allocatesProposal ?proposalUri .
-		?proposalAllocation ns1:allocatesPatient <' . $patientUri . '> .
-		<' . $patientUri . '> ns1:makes ?decision .
+		?proposalAllocation dispediao:allocatesProposal ?proposalUri .
+		?proposalAllocation dispediao:allocatesPatient <' . $patientUri . '> .
+		<' . $patientUri . '> dispediao:makes ?decision .
 		?decision ?statusUri ?proposalAllocation .
+                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
 	    }'
         );
 	
         foreach ($results as $result)
 	{
-	    $result['status'] = preg_replace('/http:\/\/als.dispedia.info\/architecture\/c\/20110827\//', '', $result['statusUri']);
+	    $result['status'] = preg_replace('/http:\/\/www.dispedia.de\/o\//', '', $result['statusUri']);
 	    $proposals[$result['proposalUri']] = $result;
 	}
 	return $proposals;
@@ -227,17 +229,17 @@ class Proposal
     
     $removedStmt += $this->removeStmt(
         $decisionUri,
-        "http://als.dispedia.info/architecture/c/20110827/" . $removePropertyOne,
+        "http://www.dispedia.de/o/" . $removePropertyOne,
         $proposalAllocation
     );
     $removedStmt += $this->removeStmt(
         $decisionUri,
-        "http://als.dispedia.info/architecture/c/20110827/" . $removePropertyTwo,
+        "http://www.dispedia.de/o/" . $removePropertyTwo,
         $proposalAllocation
     );
     $this->addStmt (
         $decisionUri,
-        "http://als.dispedia.info/architecture/c/20110827/" . $addProperty,
+        "http://www.dispedia.de/o/" . $addProperty,
         $proposalAllocation
     );
     
@@ -258,7 +260,7 @@ class Proposal
         
         // add a triple to datastore
         return $this->_store->addStatement(
-            (string) $this->_selectedModel, 
+            (string) $this->_patientModel, 
             $s,
             $p, 
             array('value' => $o, 'type' => $type)
@@ -292,7 +294,7 @@ class Proposal
     }
         // aremove a triple form datastore
         return $this->_store->deleteMatchingStatements(
-            (string) $this->_selectedModel,
+            (string) $this->_patientModel,
             $s,
             $p,
         $o,

@@ -10,8 +10,7 @@
  */ 
 class Patient
 {
-    private $_model;
-    protected $_lang;
+    private $_lang;
     
     public function __construct ($lang)
     {
@@ -27,10 +26,10 @@ class Patient
               WHERE {
 
                   <' . $patientUri . '> <has> ?hs .
-                ?hs <http://als.dispedia.info/architecture/c/20110827/includesSymptoms> ?ss .
-                ?ss <http://als.dispedia.info/wrapperAlsfrs/c/20111105/containsSymptomOption> ?optionUri .
+                ?hs <http://www.dispedia.de/o/includesSymptoms> ?ss .
+                ?ss <http://www.dispedia.de/wrapper/alsfrs/containsSymptomOption> ?optionUri .
                 ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
-                ?topicUri <http://als.dispedia.info/frs/o/hasOption> ?optionUri .
+                ?topicUri <http://als.dispedia.de/frs/o/hasOption> ?optionUri .
                 ?topicUri <http://www.w3.org/2000/01/rdf-schema#label> ?topicLabel .
                 FILTER (langmatches(lang(?optionLabel), "' . $this->_lang . '"))
                 FILTER (langmatches(lang(?topicLabel), "' . $this->_lang . '"))
@@ -42,10 +41,10 @@ class Patient
               WHERE {
 
                   <' . $patientUri . '> <has> ?hs .
-                ?hs <http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties> ?ps .
-                ?ps <http://als.dispedia.info/wrapperAlsfrs/c/20111105/containsPropertyOption> ?optionUri .
+                ?hs <http://www.dispedia.de/o/includesAffectedProperties> ?ps .
+                ?ps <http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption> ?optionUri .
                 ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
-                ?topicUri <http://als.dispedia.info/frs/o/hasOption> ?optionUri .
+                ?topicUri <http://als.dispedia.de/frs/o/hasOption> ?optionUri .
                 ?topicUri <http://www.w3.org/2000/01/rdf-schema#label> ?topicLabel .
                 FILTER (langmatches(lang(?optionLabel), "' . $this->_lang . '"))
                 FILTER (langmatches(lang(?topicLabel), "' . $this->_lang . '"))
@@ -68,9 +67,9 @@ class Patient
         $patients = $this->_store->sparqlQuery (
             'SELECT ?uri ?firstName ?lastName
               WHERE {
-                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/architecture/c/20110827/Patient>.
-                 ?uri <http://als.dispedia.info/architecture/c/20110827/firstName> ?firstName.
-                 ?uri <http://als.dispedia.info/architecture/c/20110827/lastName> ?lastName.
+                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Patient>.
+                 ?uri <http://www.dispedia.de/o/firstName> ?firstName.
+                 ?uri <http://www.dispedia.de/o/lastName> ?lastName.
              };'
         );
 

@@ -16,6 +16,9 @@ require 'classes/Patient.php';
 class PataproController extends OntoWiki_Controller_Component
 {
     private $_url;
+    private $_patientModel;
+    private $_dispediaModel;
+    private $_alsfrsModel;
     private $_selectedModel;
     private $_lang;
     private $_patient;
@@ -29,11 +32,10 @@ class PataproController extends OntoWiki_Controller_Component
         parent::init();
         $this->_url = $this->_request->uri;   
         
-    
-        $model = new Erfurt_Rdf_Model ($this->_privateConfig->defaultModel);
-        $this->_selectedModel = $model;
-        $this->_selectedModelUri = (string) $model;
-        $this->_owApp->selectedModel = $model;
+        $this->_patientModel = new Erfurt_Rdf_Model ($this->_privateConfig->patientModel);
+        $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
+        $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
+        $this->_owApp->selectedModel = $this->_patientModel;
     
         // set standard language
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
@@ -41,7 +43,7 @@ class PataproController extends OntoWiki_Controller_Component
             : 'de';
         
         $this->_patient = new Patient($this->_lang);
-        $this->_proposal = new Proposal($this->_selectedModel);
+        $this->_proposal = new Proposal($this->_patientModel, $this->_lang);
             
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
@@ -51,7 +53,6 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         
         $this->view->url = $this->_url;
-        $this->view->currentProposal = $this->getParam ('proposal');
 
         $currentPatient = $this->getParam('patientUri');
 
@@ -65,21 +66,24 @@ class PataproController extends OntoWiki_Controller_Component
                     $this->getParam ('proposals')
                 );
             }
+            
+            $this->view->currentPatient = $currentPatient;
+            $this->view->options = $this->_patient->getPatientOptions($currentPatient);
+            
+            $allProposals = $this->_proposal->getAllProposals();
+            $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
+            
+            foreach ($allProposals as $proposalUri => $proposal)
+            {
+                if (isset($patientProposals[$proposalUri]))
+                $allProposals[$proposalUri] = $patientProposals[$proposalUri];
+            }
+            $this->view->proposals = $allProposals;
         }
-
+        else
+            $this->view->currentPatient = $currentPatient;
+        
         $this->view->patients = $this->_patient->getAllPatients();
-        $this->view->currentPatient = $currentPatient;
-        $this->view->options = $this->_patient->getPatientOptions($currentPatient);
-        
-        $allProposals = $this->_proposal->getAllProposals();
-        $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
-        
-        foreach ($allProposals as $proposalUri => $proposal)
-        {
-            if (isset($patientProposals[$proposalUri]))
-            $allProposals[$proposalUri] = $patientProposals[$proposalUri];
-        }
-        $this->view->proposals = $allProposals;
     }
     public function patientAction ()
     {
