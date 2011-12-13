@@ -9,8 +9,9 @@ Children;Kinder
 Create proposal;Neuer Vorschlag
 Create proposal allocation;Neue Vorschlagszuweisung
 Patient proposal allocation;Patienten Vorschlagszuweisung
-Doctor view;Doktoransicht
+Decisions;Entscheidungen
 Diet;Ernährung
+Doctor view;Doktoransicht
 Edit family status;Ändere Familienverhältnisse
 Edit housing situation;Ändere Wohnsituation
 Edit medical condition;Ändere Gesundheitzustand
@@ -37,7 +38,7 @@ Pets;Haustiere
 Preferences;Einstellungen
 Proposal and proposal allocations;Vorschlagszuweisung
 Proposals;Vorschläge
-Decisions;Entscheidungen
+QueryEditor;Query editor
 Register a new user;Registriere einen neuen Benutzer
 Set Address;Setze Addresse
 Set pets;Haustiere verwalten

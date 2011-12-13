@@ -9,8 +9,9 @@ Children;Children
 Create proposal;Create proposal
 Create proposal allocation;Create proposal allocation
 Patient proposal allocation;Patient proposal allocation
-Doctor view;Doctor view
+Decisions;Decisions
 Diet;Diet
+Doctor view;Doctor view
 Edit family status;Edit family status
 Edit housing situation;Edit housing situation
 Edit medical condition;Edit medical condition
@@ -37,7 +38,7 @@ Pets;Pets
 Preferences;Preferences
 Proposal and proposal allocations;Proposal and Proposal Allocations
 Proposals;Proposals
-Decisions;Decisions
+QueryEditor;Query editor
 Register a new user;Register a new user
 Set Address;Set Address
 Set pets;Set pets
