@@ -50,7 +50,7 @@ class PropallocController extends OntoWiki_Controller_Component
         // -------------------------------------------------------------
         
 		$t = new Topic ($lang);
-		$o = new Option ($lang, $this->_selectedModel);
+		$o = new Option ($lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
         $p = new Proposal ();
         
         $this->view->proposals = (array) $p->getAllProposals ();        
@@ -66,11 +66,12 @@ class PropallocController extends OntoWiki_Controller_Component
 				foreach ( $_REQUEST as $key => $value )
 				{
 					if ( 'selectedOption' == $value ) {
-						$options [] = str_replace ( 'als_dispedia_info', 'als.dispedia.info', $key );
+						$options [] = str_replace ( 'als_dispedia_de', 'als.dispedia.de', $key );
 					}
 				}
 				
 				$o->saveOptions ( 
+                    new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel),
 					$p->getProposalUri ( $this->getParam ('proposal') ),
 					$options, 
 					$p->getSettings ( $this->getParam ('proposal') ) 

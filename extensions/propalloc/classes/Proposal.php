@@ -26,7 +26,7 @@ class Proposal
         $tmp = $this->_store->sparqlQuery (
             'SELECT ?uri ?label
               WHERE {
-                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/architecture/c/20110827/Proposal>.
+                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Proposal>.
                  ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
              };'
         );
@@ -53,16 +53,16 @@ class Proposal
 		$appropriateForSymptoms = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?ss .
-                 ?ss <http://als.dispedia.info/architecture/c/20110827/includesSymptoms> ?optionUri .
+                 <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?ss .
+                 ?ss <http://www.dispedia.de/o/includesSymptoms> ?optionUri .
              };'
         );        
         
 		$appropriateForProperties = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?ps .
-                 ?ps <http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties> ?optionUri .
+                 <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?ps .
+                 ?ps <http://www.dispedia.de/o/includesAffectedProperties> ?optionUri .
              };'
         );
         

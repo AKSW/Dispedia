@@ -12,69 +12,72 @@ class Option
 {
     protected $_lang;
     protected $_store;
+    protected $_selectedModel;
+    protected $_patientsModel;
     protected $_pertainsToPropertySet;
     
-    public function __construct ( $lang, $model )
+    public function __construct ( $lang, $model, $patientsModel )
     {
         $this->_lang = $lang;
         
         $this->_selectedModel = $model;
+        $this->_patientsModel = $patientsModel;
         $this->_selectedModelUri = (string) $model;
         
         $this->_store = Erfurt_App::getInstance()->getStore();
         
         $this->_pertainsToPropertySet = array (
-            'http://als.dispedia.info/frs/i/topic/t1',
-            'http://als.dispedia.info/frs/i/topic/t3',
-            'http://als.dispedia.info/frs/i/topic/t5a',
-            'http://als.dispedia.info/frs/i/topic/t5b',
-            'http://als.dispedia.info/frs/i/topic/t6',
-            'http://als.dispedia.info/frs/i/topic/t7',
-            'http://als.dispedia.info/frs/i/topic/t9',
-            'http://als.dispedia.info/frs/i/topic/t12'
+            'http://als.dispedia.de/frs/i/topic/t1',
+            'http://als.dispedia.de/frs/i/topic/t3',
+            'http://als.dispedia.de/frs/i/topic/t5a',
+            'http://als.dispedia.de/frs/i/topic/t5b',
+            'http://als.dispedia.de/frs/i/topic/t6',
+            'http://als.dispedia.de/frs/i/topic/t7',
+            'http://als.dispedia.de/frs/i/topic/t9',
+            'http://als.dispedia.de/frs/i/topic/t12'
         );
         
         $this->_optionsPropertySet = array (
-            'http://als_dispedia_info/frs/i/option/o1_0',
-            'http://als_dispedia_info/frs/i/option/o1_1',
-            'http://als_dispedia_info/frs/i/option/o1_2',
-            'http://als_dispedia_info/frs/i/option/o1_3',
-            'http://als_dispedia_info/frs/i/option/o1_4',
-            'http://als_dispedia_info/frs/i/option/o3_0',
-            'http://als_dispedia_info/frs/i/option/o3_1',
-            'http://als_dispedia_info/frs/i/option/o3_2',
-            'http://als_dispedia_info/frs/i/option/o3_3',
-            'http://als_dispedia_info/frs/i/option/o3_4',
-            'http://als_dispedia_info/frs/i/option/o5a_0',
-            'http://als_dispedia_info/frs/i/option/o5a_1',
-            'http://als_dispedia_info/frs/i/option/o5a_2',
-            'http://als_dispedia_info/frs/i/option/o5a_3',
-            'http://als_dispedia_info/frs/i/option/o5a_4',
-            'http://als_dispedia_info/frs/i/option/o5b_0',
-            'http://als_dispedia_info/frs/i/option/o5b_1',
-            'http://als_dispedia_info/frs/i/option/o5b_2',
-            'http://als_dispedia_info/frs/i/option/o5b_3',
-            'http://als_dispedia_info/frs/i/option/o5b_4',
-            'http://als_dispedia_info/frs/i/option/o6_0',
-            'http://als_dispedia_info/frs/i/option/o6_1',
-            'http://als_dispedia_info/frs/i/option/o6_2',
-            'http://als_dispedia_info/frs/i/option/o6_3',
-            'http://als_dispedia_info/frs/i/option/o6_4',
-            'http://als_dispedia_info/frs/i/option/o7_0',
-            'http://als_dispedia_info/frs/i/option/o7_1',
-            'http://als_dispedia_info/frs/i/option/o7_2',
-            'http://als_dispedia_info/frs/i/option/o7_3',
-            'http://als_dispedia_info/frs/i/option/o7_4',
-            'http://als_dispedia_info/frs/i/option/o9_0',
-            'http://als_dispedia_info/frs/i/option/o9_1',
-            'http://als_dispedia_info/frs/i/option/o9_2',
-            'http://als_dispedia_info/frs/i/option/o9_3',
-            'http://als_dispedia_info/frs/i/option/o9_4',
-            'http://als_dispedia_info/frs/i/option/o12_0',
-            'http://als_dispedia_info/frs/i/option/o12_1',
-            'http://als_dispedia_info/frs/i/option/o12_2',
-            'http://als_dispedia_info/frs/i/option/o12_3',
-            'http://als_dispedia_info/frs/i/option/o12_4',
+            'http://als_dispedia_de/frs/i/option/o1_0',
+            'http://als_dispedia_de/frs/i/option/o1_1',
+            'http://als_dispedia_de/frs/i/option/o1_2',
+            'http://als_dispedia_de/frs/i/option/o1_3',
+            'http://als_dispedia_de/frs/i/option/o1_4',
+            'http://als_dispedia_de/frs/i/option/o3_0',
+            'http://als_dispedia_de/frs/i/option/o3_1',
+            'http://als_dispedia_de/frs/i/option/o3_2',
+            'http://als_dispedia_de/frs/i/option/o3_3',
+            'http://als_dispedia_de/frs/i/option/o3_4',
+            'http://als_dispedia_de/frs/i/option/o5a_0',
+            'http://als_dispedia_de/frs/i/option/o5a_1',
+            'http://als_dispedia_de/frs/i/option/o5a_2',
+            'http://als_dispedia_de/frs/i/option/o5a_3',
+            'http://als_dispedia_de/frs/i/option/o5a_4',
+            'http://als_dispedia_de/frs/i/option/o5b_0',
+            'http://als_dispedia_de/frs/i/option/o5b_1',
+            'http://als_dispedia_de/frs/i/option/o5b_2',
+            'http://als_dispedia_de/frs/i/option/o5b_3',
+            'http://als_dispedia_de/frs/i/option/o5b_4',
+            'http://als_dispedia_de/frs/i/option/o6_0',
+            'http://als_dispedia_de/frs/i/option/o6_1',
+            'http://als_dispedia_de/frs/i/option/o6_2',
+            'http://als_dispedia_de/frs/i/option/o6_3',
+            'http://als_dispedia_de/frs/i/option/o6_4',
+            'http://als_dispedia_de/frs/i/option/o7_0',
+            'http://als_dispedia_de/frs/i/option/o7_1',
+            'http://als_dispedia_de/frs/i/option/o7_2',
+            'http://als_dispedia_de/frs/i/option/o7_3',
+            'http://als_dispedia_de/frs/i/option/o7_4',
+            'http://als_dispedia_de/frs/i/option/o9_0',
+            'http://als_dispedia_de/frs/i/option/o9_1',
+            'http://als_dispedia_de/frs/i/option/o9_2',
+            'http://als_dispedia_de/frs/i/option/o9_3',
+            'http://als_dispedia_de/frs/i/option/o9_4',
+            'http://als_dispedia_de/frs/i/option/o12_0',
+            'http://als_dispedia_de/frs/i/option/o12_1',
+            'http://als_dispedia_de/frs/i/option/o12_2',
+            'http://als_dispedia_de/frs/i/option/o12_3',
+            'http://als_dispedia_de/frs/i/option/o12_4',
         );
     }
     
@@ -89,9 +92,9 @@ class Option
             $tmp = $this->_store->sparqlQuery (        
                'SELECT ?uri ?label ?score
                   WHERE {
-                     <'. $topicUri .'> <http://als.dispedia.info/frs/o/hasOption> ?uri.
+                     <'. $topicUri .'> <http://als.dispedia.de/frs/o/hasOption> ?uri.
                      ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
-                     ?uri <http://als.dispedia.info/frs/o/hasScore> ?score .
+                     ?uri <http://als.dispedia.de/frs/o/hasScore> ?score .
                      FILTER (langmatches(lang(?label), "'. $this->_lang .'"))
                  };'
             );
@@ -115,13 +118,13 @@ class Option
     /**
      * 
      */
-    public function saveOptions ( $proposalUri, $newOptions, $oldOptions )
+    public function saveOptions ( $dataModel, $proposalUri, $newOptions, $oldOptions )
     {
         // get propertySet instance
-        $propertySetInstance = $this->_store->sparqlQuery (
+        $propertySetInstance = $dataModel->sparqlQuery (
             'SELECT ?uri
               WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForProperties> ?uri .
+                 <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?uri .
              };'
         );
         
@@ -129,10 +132,10 @@ class Option
             $propertySetInstance = $propertySetInstance [0]['uri'];
                           
         // get symptomSet instance
-        $symptomSetInstance = $this->_store->sparqlQuery (
+        $symptomSetInstance = $dataModel->sparqlQuery (
             'SELECT ?uri
               WHERE {
-                 <'. $proposalUri .'> <http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms> ?uri .
+                 <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?uri .
              };'
         );  
                 
@@ -145,11 +148,11 @@ class Option
         {            
             if ( true == in_array ( $option, $this->_optionsPropertySet ) ) {
                 $s = $propertySetInstance;
-                $p = 'http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties';
+                $p = 'http://www.dispedia.de/o/includesAffectedProperties';
             }
             else {
                 $s = $symptomSetInstance;
-                $p = 'http://als.dispedia.info/architecture/c/20110827/includesSymptoms';
+                $p = 'http://www.dispedia.de/o/includesSymptoms';
             }
                 
             $this->removeStmt ( 
@@ -165,20 +168,20 @@ class Option
         
         // if propertySet instance does not exist, create it!
         if (true == is_array ($propertySetInstance) && 0 == count ($propertySetInstance)) {
-            $newUri = 'http://als.dispedia.info/wrapperAlsfrs/i/20111105/';
+            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/';
             $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create propertySet instance
             $this->addStmt (
                 $newUri,
                 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                'http://als.dispedia.info/wrapperAlsfrs/c/20111105/ALSFRSPropertySet'
+                'http://www.dispedia.de/wrapper/alsfrs/ALSFRSPropertySet'
             );
             
             // connect propertySet instance to proposalUri
             $this->addStmt (
                 $proposalUri,
-                'http://als.dispedia.info/architecture/c/20110827/appropriateForProperties',
+                'http://www.dispedia.de/o/appropriateForProperties',
                 $newUri
             );
             
@@ -188,20 +191,20 @@ class Option
         
         // if symptomSet instance does not exist, create it!
         if (true == is_array ($symptomSetInstance) && 0 == count ($symptomSetInstance)) {
-            $newUri = 'http://als.dispedia.info/wrapperAlsfrs/i/20111105/';
+            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/';
             $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create symptomSet instance
             $this->addStmt (
                 $newUri,
                 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                'http://als.dispedia.info/wrapperAlsfrs/c/20111105/ALSFRSSymptomSet'
+                'http://www.dispedia.de/wrapper/alsfrs/ALSFRSSymptomSet'
             );
             
             // connect propertySet instance to proposalUri
             $this->addStmt (
                 $proposalUri,
-                'http://als.dispedia.info/architecture/c/20110827/appropriateForSymptoms',
+                'http://www.dispedia.de/o/appropriateForSymptoms',
                 $newUri
             );
             
@@ -213,11 +216,11 @@ class Option
         {            
             if ( true == in_array ( $option, $this->_optionsPropertySet ) ) {
                 $s = $propertySetInstance;
-                $p = 'http://als.dispedia.info/architecture/c/20110827/includesAffectedProperties';
+                $p = 'http://www.dispedia.de/o/includesAffectedProperties';
             }
             else {
                 $s = $symptomSetInstance;
-                $p = 'http://als.dispedia.info/architecture/c/20110827/includesSymptoms';
+                $p = 'http://www.dispedia.de/o/includesSymptoms';
             }
                         
             $this->addStmt ( 
@@ -240,8 +243,7 @@ class Option
             : 'literal';
         
         // add a triple to datastore
-        return $this->_store->addStatement(
-            $this->_selectedModelUri, 
+        return $this->_patientsModel->addStatement(
             $s,
             $p, 
             array('value' => $o, 'type' => $type)
@@ -260,8 +262,7 @@ class Option
             : 'literal';
             
         // aremove a triple form datastore
-        return $this->_store->deleteMatchingStatements(
-            $this->_selectedModelUri,
+        return $this->_patientsModel->deleteMatchingStatements(
             $s,
             $p,
             array('value' => $o, 'type' => $type)

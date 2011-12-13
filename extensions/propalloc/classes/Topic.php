@@ -24,7 +24,7 @@ class Topic
          return $this->_store->sparqlQuery (
             'SELECT ?uri ?label
               WHERE {
-                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.info/frs/o/Topic>.
+                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://als.dispedia.de/frs/o/Topic>.
                  ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
                  FILTER (langmatches(lang(?label), "'. $this->_lang .'"))
              };'
