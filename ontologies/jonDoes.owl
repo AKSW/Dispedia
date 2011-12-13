@@ -105,10 +105,9 @@
         <rdf:type rdf:resource="&icd10;G12_2"/>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&patients;ALSInstance">
+    <owl:NamedIndividual rdf:about="&patients;ALSDisease">
         <rdf:type rdf:resource="&diswrap-icd10;ALS"/>
         <diswrap-icd10:hasICDCode rdf:resource="&patients;ALSCodeG12_2"/>
-        <dispediao:comprises rdf:resource="&patients;DSMaxMustermann1"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&patients;AddressMaxMustermann">
@@ -131,6 +130,7 @@
         <dispediao:endingDate rdf:datatype="&xsd;dateTime">20.04.2010</dispediao:endingDate>
         <dispediao:containsHealthState rdf:resource="&patients;HSMaxMustermann13022010"/>
         <dispediao:containsHealthState rdf:resource="&patients;HSMaxMustermann20042010"/>
+        <dispediao:associatedWithDisease rdf:resource="&patients;ALSDisease"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&patients;HSMaxMustermann13022010">
