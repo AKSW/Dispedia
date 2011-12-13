@@ -11,9 +11,11 @@
 class Proposal
 {
     private $_model;
+    private $_lang;
     
-    public function __construct ()
+    public function __construct ($lang)
     {
+        $this->_lang = $lang;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
@@ -28,6 +30,7 @@ class Proposal
               WHERE {
                  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Proposal>.
                  ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
+                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
              };'
         );
         
