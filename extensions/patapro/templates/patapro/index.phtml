@@ -44,7 +44,7 @@
                             <div class="topic"><?php echo $topicLabel; ?></div>
                             <?php foreach ($topic as $option) { ?>
                                 
-                            <div class="option"><?php echo $option['optionLabel']; ?></div>
+                            <div class="option"><?php echo $option; ?></div>
                             
                             <?php } ?>
                         <?php } ?>
@@ -56,6 +56,7 @@
                             <th></th>
                             <th><?php echo $this->_translate->_('proposal'); ?></th>
                             <th><?php echo $this->_translate->_('status'); ?></th>
+                            <th><?php echo $this->_translate->_('correspondence'); ?></th>
                         </tr>
                         <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
                              <tr>
@@ -67,10 +68,13 @@
                                     >
                                 </td>
                                 <td id="proposalName">
-                                    <span><?php echo $proposal['proposalLabel']; ?></span>
+                                    <span<?php echo (0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['proposalLabel']; ?></span>
                                 </td>
                                 <td id="proposalStatus">
                                     <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
+                                </td>
+                                <td id="proposalCorrespondence">
+                                    <div class="correspondence corDivBottom"></div><div style="width:<?php echo $proposal['correspondence']; ?>px" class="correspondence corDivTop"></div>
                                 </td>
                             </tr>
                         <?php } ?>

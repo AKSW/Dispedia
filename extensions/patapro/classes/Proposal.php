@@ -44,6 +44,71 @@ class Proposal
         return $proposals;
     }
     
+       /**
+     * 
+     */
+    public function getSettings ( $proposalUri ) 
+    {
+	$appropriateForSymptoms = $this->_store->sparqlQuery (
+            'SELECT ?optionUri
+              WHERE {
+                 <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?ss .
+                 ?ss <http://www.dispedia.de/o/includesSymptoms> ?optionUri .
+             };'
+        );        
+        
+		$appropriateForProperties = $this->_store->sparqlQuery (
+            'SELECT ?optionUri
+              WHERE {
+                 <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?ps .
+                 ?ps <http://www.dispedia.de/o/includesAffectedProperties> ?optionUri .
+             };'
+        );
+        
+        $optionUris = array ();
+        
+        foreach ( $appropriateForProperties as $p )
+	    $optionUris [] = $p ['optionUri'];
+        
+        foreach ( $appropriateForSymptoms as $p )
+	    $optionUris [] = $p ['optionUri'];
+	return $optionUris;
+    }
+    
+    /**
+     *
+     *
+     */
+    public function calcCorrespondenceProposals($patientOptions, $allProposals)
+    {
+	$sortArray = array();
+	$correspondenceProposals = array();
+	foreach ($allProposals as $proposalUri => $proposal)
+	{
+	    $correspondence = 0;
+	    $proposalOptions = $this->getSettings($proposalUri);
+	    if (0 < count($proposalOptions))
+	    {
+		foreach ($proposalOptions as $proposalOptionUri)
+		{
+		    if (true == in_array($proposalOptionUri, $patientOptions))
+			$correspondence++;
+		}
+		$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
+	    }
+	    else
+		$proposal['correspondence'] = 0;
+	    $sortArray[$proposalUri] = $proposal['correspondence'];
+	    $correspondenceProposals[$proposalUri] = $proposal;
+	}
+	$allProposals = array();
+	arsort ($sortArray);
+	foreach ($sortArray as $proposalUri => $value)
+	    $allProposals[$proposalUri] = $correspondenceProposals[$proposalUri];
+	    
+	return $allProposals;
+    }
+    
     /**
      * save proposals to the knowlegebase
      * first version delete and add all proposalallocations through a update
@@ -248,6 +313,7 @@ class Proposal
     
     return $return_value;
     }
+    
     /**
      * adds a triple to datastore
      */

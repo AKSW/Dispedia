@@ -68,7 +68,8 @@ class PataproController extends OntoWiki_Controller_Component
             }
             
             $this->view->currentPatient = $currentPatient;
-            $this->view->options = $this->_patient->getPatientOptions($currentPatient);
+            $patientOptions = $this->_patient->getPatientOptions($currentPatient);
+            $this->view->options = $patientOptions['sorted'];
             
             $allProposals = $this->_proposal->getAllProposals();
             $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
@@ -78,7 +79,11 @@ class PataproController extends OntoWiki_Controller_Component
                 if (isset($patientProposals[$proposalUri]))
                 $allProposals[$proposalUri] = $patientProposals[$proposalUri];
             }
+            $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
             $this->view->proposals = $allProposals;
+            echo "<pre>";
+            var_dump($patientOptions['sorted']);
+            echo "</pre>";
         }
         else
             $this->view->currentPatient = $currentPatient;

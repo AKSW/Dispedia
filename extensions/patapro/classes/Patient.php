@@ -51,9 +51,11 @@ class Patient
              };'
         );
         $appropriateForSymptoms = array_merge($appropriateForSymptoms, $appropriateForProperties);
-        
+        $options['sorted'] = array();
+        $options['uriList'] = array();
         foreach ($appropriateForSymptoms as $symptom) {
-            $options[$symptom['topicLabel']][] = $symptom;
+            $options['sorted'][$symptom['topicLabel']][] = $symptom['optionLabel'];
+            $options['uriList'][] = $symptom['optionUri'];
         }
         return $options;
     }

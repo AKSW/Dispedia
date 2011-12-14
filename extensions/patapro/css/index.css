@@ -69,27 +69,36 @@ table#main th div {
 }
 
 table#proposal th{
-    font-weight:bold;
-    font-size:13px;
+    font-weight:normal;
+    font-style:italic;
+    font-size:14px;
 }
 #proposalCheck {
     text-align:center;
     width:10%;
 }
 #proposalName {
-    width:70%;
+    width:50%;
 }
 #proposalStatus {
     width:20%;
 }
-.proposal {
-    height:30px;
-    margin-left:30px;
-    padding-top:10x !important;
-    1line-height:30px;
+#proposalCorrespondence {
+    width:10%;
 }
-.proposal span {
-    margin-left:5px;
+.correspondence {
+    position:absolute;
+    height:10px;
+    margin-left:10px;
+}
+.corDivBottom {
+    background-color:#f00;
+    width:100px;
+    z-index:1;
+}
+.corDivTop {
+    background-color:#0f0;
+    z-index:2;
 }
 
 #formButtons {

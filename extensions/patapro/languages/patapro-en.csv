@@ -8,6 +8,7 @@ status;Status
 isPending;pending
 accepted;accepted
 denied;denied
+correspondence;Correspondence
 decisions;Decisions
 make your decisions;Make your decisions about the proposals.
 new:new
