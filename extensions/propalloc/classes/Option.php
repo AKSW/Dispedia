@@ -115,7 +115,7 @@ class Option
         
         // if propertySet instance does not exist, create it!
         if (true == is_array ($propertySetInstance) && 0 == count ($propertySetInstance)) {
-            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/';
+            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/ALSFRSPropertySet/';
             $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create propertySet instance
@@ -138,7 +138,7 @@ class Option
         
         // if symptomSet instance does not exist, create it!
         if (true == is_array ($symptomSetInstance) && 0 == count ($symptomSetInstance)) {
-            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/';
+            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/ALSFRSSymptomSet/';
             $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create symptomSet instance
