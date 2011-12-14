@@ -14,7 +14,7 @@ class Option
     protected $_store;
     protected $_selectedModel;
     protected $_patientsModel;
-    protected $_pertainsToPropertySet;
+    private $_propertyRegEx;
     
     public function __construct ( $lang, $model, $patientsModel )
     {
@@ -26,59 +26,7 @@ class Option
         
         $this->_store = Erfurt_App::getInstance()->getStore();
         
-        $this->_pertainsToPropertySet = array (
-            'http://als.dispedia.de/frs/i/topic/t1',
-            'http://als.dispedia.de/frs/i/topic/t3',
-            'http://als.dispedia.de/frs/i/topic/t5a',
-            'http://als.dispedia.de/frs/i/topic/t5b',
-            'http://als.dispedia.de/frs/i/topic/t6',
-            'http://als.dispedia.de/frs/i/topic/t7',
-            'http://als.dispedia.de/frs/i/topic/t9',
-            'http://als.dispedia.de/frs/i/topic/t12'
-        );
-        
-        $this->_optionsPropertySet = array (
-            'http://als_dispedia_de/frs/i/option/o1_0',
-            'http://als_dispedia_de/frs/i/option/o1_1',
-            'http://als_dispedia_de/frs/i/option/o1_2',
-            'http://als_dispedia_de/frs/i/option/o1_3',
-            'http://als_dispedia_de/frs/i/option/o1_4',
-            'http://als_dispedia_de/frs/i/option/o3_0',
-            'http://als_dispedia_de/frs/i/option/o3_1',
-            'http://als_dispedia_de/frs/i/option/o3_2',
-            'http://als_dispedia_de/frs/i/option/o3_3',
-            'http://als_dispedia_de/frs/i/option/o3_4',
-            'http://als_dispedia_de/frs/i/option/o5a_0',
-            'http://als_dispedia_de/frs/i/option/o5a_1',
-            'http://als_dispedia_de/frs/i/option/o5a_2',
-            'http://als_dispedia_de/frs/i/option/o5a_3',
-            'http://als_dispedia_de/frs/i/option/o5a_4',
-            'http://als_dispedia_de/frs/i/option/o5b_0',
-            'http://als_dispedia_de/frs/i/option/o5b_1',
-            'http://als_dispedia_de/frs/i/option/o5b_2',
-            'http://als_dispedia_de/frs/i/option/o5b_3',
-            'http://als_dispedia_de/frs/i/option/o5b_4',
-            'http://als_dispedia_de/frs/i/option/o6_0',
-            'http://als_dispedia_de/frs/i/option/o6_1',
-            'http://als_dispedia_de/frs/i/option/o6_2',
-            'http://als_dispedia_de/frs/i/option/o6_3',
-            'http://als_dispedia_de/frs/i/option/o6_4',
-            'http://als_dispedia_de/frs/i/option/o7_0',
-            'http://als_dispedia_de/frs/i/option/o7_1',
-            'http://als_dispedia_de/frs/i/option/o7_2',
-            'http://als_dispedia_de/frs/i/option/o7_3',
-            'http://als_dispedia_de/frs/i/option/o7_4',
-            'http://als_dispedia_de/frs/i/option/o9_0',
-            'http://als_dispedia_de/frs/i/option/o9_1',
-            'http://als_dispedia_de/frs/i/option/o9_2',
-            'http://als_dispedia_de/frs/i/option/o9_3',
-            'http://als_dispedia_de/frs/i/option/o9_4',
-            'http://als_dispedia_de/frs/i/option/o12_0',
-            'http://als_dispedia_de/frs/i/option/o12_1',
-            'http://als_dispedia_de/frs/i/option/o12_2',
-            'http://als_dispedia_de/frs/i/option/o12_3',
-            'http://als_dispedia_de/frs/i/option/o12_4',
-        );
+        $this->_propertyRegEx = "/\/[ot][135679][^01]/";
     }
     
     public function getOptions ( $topicUri )
@@ -102,7 +50,7 @@ class Option
             foreach ( $tmp as $option ) {
                 
                 // set belonging
-                if ( true == in_array ( $option ['uri'], $this->_pertainsToPropertySet ) )
+                if ( 1 == preg_match($this->_propertyRegEx, $option['uri']) )
                     $option ['pertainsTo'] = 'propertySet';
                 else
                     $option ['pertainsTo'] = 'symptomSet';
@@ -142,11 +90,10 @@ class Option
         if (0 < count ($symptomSetInstance))
             $symptomSetInstance = $symptomSetInstance [0]['uri'];   
         
-                
         // delete old options
         foreach ( $oldOptions as $option ) 
         {            
-            if ( true == in_array ( $option, $this->_optionsPropertySet ) ) {
+            if ( 1 == preg_match($this->_propertyRegEx, $option) ) {
                 $s = $propertySetInstance;
                 $p = 'http://www.dispedia.de/o/includesAffectedProperties';
             }
@@ -214,7 +161,7 @@ class Option
         // save new options
         foreach ( $newOptions as $option ) 
         {            
-            if ( true == in_array ( $option, $this->_optionsPropertySet ) ) {
+            if ( 1 == preg_match($this->_propertyRegEx, $option) ) {
                 $s = $propertySetInstance;
                 $p = 'http://www.dispedia.de/o/includesAffectedProperties';
             }
