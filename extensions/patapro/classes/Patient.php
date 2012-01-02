@@ -21,12 +21,24 @@ class Patient
     public function getPatientOptions($patientUri)
     {
         $options = array();
+        $healthstate = $this->_store->sparqlQuery (
+            'SELECT ?healthstate
+            WHERE {
+                <' . $patientUri . '> <has> ?healthstate .
+                ?healthstate <http://purl.org/dc/terms/created> ?hsts .                                                     
+            }
+            ORDER BY DESC(?hsts)
+            LIMIT 1;'
+        );
+        if (isset ($healthstate[0]['healthstate']))
+            $healthstateUri = $healthstate[0]['healthstate'];
+        else
+            $healthstateUri = "";
+        
         $appropriateForSymptoms = $this->_store->sparqlQuery (
             'SELECT ?optionUri ?optionLabel ?topicLabel
               WHERE {
-
-                  <' . $patientUri . '> <has> ?hs .
-                ?hs <http://www.dispedia.de/o/includesSymptoms> ?ss .
+                <' . $healthstateUri . '> <http://www.dispedia.de/o/includesSymptoms> ?ss .
                 ?ss <http://www.dispedia.de/wrapper/alsfrs/containsSymptomOption> ?optionUri .
                 ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
                 ?topicUri <http://als.dispedia.de/frs/o/hasOption> ?optionUri .
@@ -39,9 +51,7 @@ class Patient
         $appropriateForProperties = $this->_store->sparqlQuery (
             'SELECT ?optionUri ?optionLabel ?topicLabel
               WHERE {
-
-                  <' . $patientUri . '> <has> ?hs .
-                ?hs <http://www.dispedia.de/o/includesAffectedProperties> ?ps .
+                <' . $healthstateUri . '> <http://www.dispedia.de/o/includesAffectedProperties> ?ps .
                 ?ps <http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption> ?optionUri .
                 ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
                 ?topicUri <http://als.dispedia.de/frs/o/hasOption> ?optionUri .
