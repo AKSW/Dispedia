@@ -10,12 +10,13 @@
  */ 
 class Proposal
 {
-    private $_model;
+    private $_patientsModel;
     private $_lang;
     
-    public function __construct ($lang)
+    public function __construct ($lang, $patientsModel)
     {
         $this->_lang = $lang;
+        $this->_patientsModel = $patientsModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
@@ -92,5 +93,41 @@ class Proposal
 		}
 		return null;
 	}
+    
+    /**
+	 * 
+	 */
+    public function saveProposal($proposalName, $proposalText)
+    {
+        $proposalNameNoSpaces = str_replace (' ', '', $proposalName);
+        $ProposalInstance = 'http://patients.dispedia.de/' . $proposalNameNoSpaces . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+        $this->addStmt ($ProposalInstance,
+                        'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                        'http://www.dispedia.de/o/Proposal');
+        $this->addStmt ($ProposalInstance,
+                        'http://www.w3.org/2000/01/rdf-schema#label',
+                        $proposalName);
+        $this->addStmt ($ProposalInstance,
+                        'http://www.w3.org/2004/02/skos/core#note',
+                        $proposalText);
+    }
+    
+    /**
+     * adds a triple to datastore
+     */
+    public function addStmt($s, $p, $o)
+    {
+        // set type(uri or literal)
+        $type = true == Erfurt_Uri::check($o) 
+            ? 'uri'
+            : 'literal';
+        
+        // add a triple to datastore
+        return $this->_patientsModel->addStatement(
+            $s,
+            $p, 
+            array('value' => $o, 'type' => $type)
+       );
+    }
 }
 

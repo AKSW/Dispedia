@@ -2,3 +2,5 @@ Create Proposal;Neuer Vorschlag
 indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordnen. 
 Proposal allocation administration;Verwaltung von Vorschlagszuweisungen
 Save;Speichern
+ProposalName;Vorschlagsname
+ProposalText;Vorschlagsbeschreibung

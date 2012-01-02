@@ -27,7 +27,7 @@ class PropallocController extends OntoWiki_Controller_Component
         parent::init();
         $this->_url = $this->_request->uri;    
         
-        $model = new Erfurt_Rdf_Model ($this->_privateConfig->defaultModel);
+        $model = new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel);
         $this->_selectedModel = $model;
         $this->_selectedModelUri = (string) $model;
         $this->_owApp->selectedModel = $model;
@@ -102,6 +102,26 @@ class PropallocController extends OntoWiki_Controller_Component
             // get saved settings
             $this->view->settings = $p->getSettings ( $this->getParam ('proposal') );
         }
+    }
+    
+    public function addAction ()
+    {
+        // set standard language
+        $lang = true == isset ($_SESSION ['selectedLanguage'])
+            ? $_SESSION ['selectedLanguage']
+            : 'de';    
+        
+        // -------------------------------------------------------------
+        
+        $p = new Proposal ($lang, $this->_selectedModel);
+        
+        if ( 'save' == $this->getParam ('do') )
+        {
+            $p->saveProposal ( 
+                $this->getParam ('proposalName'),
+                $this->getParam ('proposalText') 
+            );
+        }  
     }
 }
 

@@ -1,0 +1,28 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>  
+
+<h1><?php echo $this->_translate->_('Create Proposal'); ?></h1>
+
+<div><?php echo $this->_translate->_('indexDescriptionText'); ?></div>
+
+<br/>
+<form method="post" action="" id="propalloc">
+	
+    <?php echo $this->_translate->_('ProposalName'); ?>:<input type="text" name="proposalName" /><br />
+    <?php echo $this->_translate->_('ProposalText'); ?>:<textarea name="proposalText"></textarea><br />
+			
+	<input type="hidden" name="do" value="save"/>
+
+	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
+		<?php echo $this->_translate->_('Save'); ?></a>
+</form>
