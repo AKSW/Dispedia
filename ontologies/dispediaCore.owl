@@ -641,7 +641,7 @@
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;adressText">
+    <owl:DatatypeProperty rdf:about="&dispediao;addressText">
         <rdfs:label xml:lang="de">Adresstext</rdfs:label>
         <rdfs:label xml:lang="en">address text</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
