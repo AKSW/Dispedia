@@ -243,13 +243,36 @@ $(document).ready(function() {
             document.forms[$(this).attr('name')].reset();
         })
     });
-    
+
     // init new resource based on type
-    $('.init-resource').click(function() {
-        var type       = $(this).closest('.window').find('*[typeof]').eq(0).attr('typeof');
-        createInstanceFromClassURI('http://xmlns.com/foaf/0.1/Person');
+    $('.init-resource').click(function(event) {
+        var instances = {};
+        var size = 0;
+        var key = "";
+        $('.resource-list a').each(function() {
+          var element    = $(this).attr('typeof').split(' ');
+          for (var t in element) {
+            var type         = element[t];
+            var label        = $(this).parent().find('span.Resource').eq(t).text();
+            var namespace    = type.split(':')[0];
+            var instance     = type.split(':')[1];
+            var namespaceUri = $('.resource-list').attr('xmlns:'+namespace);
+            instances[label] = namespaceUri+instance;
+          };
+        })
+        // get size of types
+        for (key in instances) {
+          size++;
+        }
+        // if only one type is available open immediately the add instance dialog
+        // otherwise show context menu
+        if ( size == 1 ) {
+            createInstanceFromClassURI(instances[key]);
+        } else {
+            showAddInstanceMenu(event, instances);
+        }
     });
-    
+
     $('.edit.save').click(function() {
         RDFauthor.commit();
     });
@@ -432,8 +455,8 @@ $(document).ready(function() {
                         }
                     }
                 });
-                
-                RDFauthor.start();
+                //workaround: don't load widget
+                RDFauthor.start($('head'));
                 $('.edit-enable').addClass('active');
                 setTimeout("addProperty()",500);
             });
@@ -548,6 +571,10 @@ $(document).ready(function() {
         $(this).createResourceMenuToggle();
     });
 
+    $('.init-resource').livequery(function() {
+        $(this).createResourceMenuToggle();
+    });
+
     // All RDFa elements with @about or @resource attribute are resources
     $('*[about]').livequery(function() {
         $(this).addClass('Resource');
@@ -600,7 +627,7 @@ $(document).ready(function() {
         }).mouseout(function() {
             showHref($(this).parent())
         });
-    })
+    });
     
     var loadChildren = function(li) {
         var ul;
