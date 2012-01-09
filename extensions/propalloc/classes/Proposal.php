@@ -106,16 +106,18 @@ class Proposal
                         'http://www.dispedia.de/o/Proposal');
         $this->addStmt ($ProposalInstance,
                         'http://www.w3.org/2000/01/rdf-schema#label',
-                        $proposalName);
+                        $proposalName,
+                        'de');
         $this->addStmt ($ProposalInstance,
                         'http://www.w3.org/2004/02/skos/core#note',
-                        $proposalText);
+                        $proposalText,
+                        'de');
     }
     
     /**
      * adds a triple to datastore
      */
-    public function addStmt($s, $p, $o)
+    public function addStmt($s, $p, $o, $lang = 'de')
     {
         // set type(uri or literal)
         $type = true == Erfurt_Uri::check($o) 
@@ -126,7 +128,7 @@ class Proposal
         return $this->_patientsModel->addStatement(
             $s,
             $p, 
-            array('value' => $o, 'type' => $type)
+            array('value' => $o, 'type' => $type, 'lang' => $lang)
        );
     }
 }
