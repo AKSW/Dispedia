@@ -10,13 +10,15 @@
  */ 
 class Proposal
 {
+    private $_dispediaModel;
     private $_patientsModel;
     private $_lang;
     
-    public function __construct ($lang, $patientsModel)
+    public function __construct ($lang, $patientsModel, $dispediaModel)
     {
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
+        $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
@@ -129,9 +131,49 @@ class Proposal
     }
     
     /**
+	 * 
+	 */
+    public function remove($proposalUri)
+    {              
+        $proposal = $this->_patientsModel->sparqlQuery (
+            "SELECT ?action ?label ?text
+              WHERE {
+                <". $proposalUri ."> <http://www.dispedia.de/o/containsAction> ?action .
+                <". $proposalUri ."> <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+                <". $proposalUri ."> <http://www.w3.org/2004/02/skos/core#note> ?text .
+              };"
+        );
+        
+        $this->removeStmt ($proposalUri,
+                        'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+                        'http://www.dispedia.de/o/Proposal');
+        
+        // save with language tag DE
+        $this->removeStmt ($proposalUri,
+                        'http://www.w3.org/2000/01/rdf-schema#label',
+                        $proposal [0] ['label'] ,
+                        'de');
+        $this->removeStmt ($proposalUri,
+                        'http://www.w3.org/2004/02/skos/core#note',
+                        $proposal [0] ['text'],
+                        'de');
+                        
+        // save with language tag EN
+        $this->removeStmt ($proposalUri,
+                        'http://www.w3.org/2000/01/rdf-schema#label',
+                        $proposal [0] ['label'] ,
+                        'en');
+        $this->removeStmt ($proposalUri,
+                        'http://www.w3.org/2004/02/skos/core#note',
+                        $proposal [0] ['text'],
+                        'en');
+    }
+    
+    
+    /**
      * adds a triple to datastore
      */
-    public function addStmt($s, $p, $o, $lang = 'de')
+    public function addStmt($s, $p, $o, $lang = '')
     {
         // set type(uri or literal)
         $type = true == Erfurt_Uri::check($o) 
@@ -139,11 +181,44 @@ class Proposal
             : 'literal';
         
         // add a triple to datastore
-        return $this->_patientsModel->addStatement(
-            $s,
-            $p, 
-            array('value' => $o, 'type' => $type, 'lang' => $lang)
-       );
+        if ( '' == $lang )
+            return $this->_patientsModel->addStatement(
+                $s,
+                $p, 
+                array('value' => $o, 'type' => $type)
+            );
+        else
+            return $this->_patientsModel->addStatement(
+                $s,
+                $p, 
+                array('value' => $o, 'type' => $type, 'lang' => $lang)
+            );
+    }
+    
+    
+    /**
+     *
+     */
+    public function removeStmt($s, $p, $o, $lang = '')
+    {
+        // set type(uri or literal)
+        $type = true == Erfurt_Uri::check($o) 
+            ? 'uri'
+            : 'literal';
+            
+        // remove a triple form datastore
+        if ( '' == $lang )
+            return $this->_patientsModel->deleteMatchingStatements(
+                $s,
+                $p,
+                array('value' => $o, 'type' => $type)
+            );
+        else
+            return $this->_patientsModel->deleteMatchingStatements(
+                $s,
+                $p,
+                array('value' => $o, 'type' => $type, 'lang' => $lang)
+            );
     }
 }
 

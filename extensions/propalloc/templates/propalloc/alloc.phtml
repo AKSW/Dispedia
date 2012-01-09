@@ -1,0 +1,130 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<script>
+// http://flowplayer.org/tools/demos/scrollable/vertical.html
+// execute your scripts when DOM is ready. this is a good habit
+$(function() {		
+		
+	// initialize scrollable with mousewheel support
+	$(".scrollable").scrollable({ vertical: true, mousewheel: true });	
+	
+});
+</script>
+
+<h1><?php echo $this->_translate->_('Proposal allocation administration'); ?></h1>
+
+<div><?php echo $this->_translate->_('indexDescriptionText'); ?></div>
+
+<br/>
+
+<form method="post" action="" id="propalloc">
+	
+	<table style="width:100%">
+		
+		<?php if ( 0 < count ( $this->proposals ) ) { ?>
+		
+		<tr>
+			<td style="width:35%;" valign="top"></td>
+			<td style="width:65%;" valign="top"></td>
+		</tr>
+		
+		<tr>
+			<!-- Proposals -->
+			<td>
+				<?php foreach ( $this->proposals as $proposal ) { ?>
+					
+					<?php 
+					if ( $proposal ['uri'] == $this->proposal->getProposalUri ( $this->currentProposal ) ) { 
+						$css = 'proposalItemSelected';
+					} else { 
+						$css = 'proposalItem';
+					} ?>
+					
+					<br/>
+					<div class="<?php echo $css; ?>">						
+						<a href="<?php echo $this->url; ?>?proposal=<?php echo $proposal ['shortcut']; ?>">
+							<?php echo $proposal ['label']; ?></a>
+					</div>
+				
+				<?php } ?>
+			</td>
+			
+			<!-- ALSFRS topics and their options -->
+			<td>
+				<?php if ( '' != $this->currentProposal ) { ?>
+				
+					<div class="scrollable vertical">             
+					   
+						<div class="items">
+							
+							<?php foreach ( $this->topics as $topic ) { ?>
+								
+								<div>
+									<div class="item">
+                                        
+                                        <!-- Topic label -->
+										<h2><?php echo $topic ['label']; ?></h2>
+										
+										<!-- Options -->
+										
+										<?php foreach ( $topic ['options'] as $option ) { ?>
+										
+											<?php if ( true == in_array ( $option ['uri'], $this->settings ) ) { ?>
+										
+											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption" checked="checked"/> &nbsp;
+											
+											<?php } else { ?>
+										
+											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption"/> &nbsp;
+											
+											<?php } ?>
+										
+											<?php echo $option ['label']; ?>
+                                            
+                                            <br/>
+										
+										<?php } ?>
+                                        
+                                        <br/>
+										
+									</div>
+								</div>
+							
+							<?php } ?>
+							
+						</div>
+						
+					</div>        
+					
+				<?php } ?>
+			</td>
+		</tr>
+		
+		<?php } else { ?>
+		
+		<tr>
+			<td>
+				<a href="<?php echo $this->url; ?>formgenerator/form/?file=proposal">
+					<?php echo $this->_translate->_('Create Proposal'); ?></a></td>
+		</tr>
+		
+		<?php } ?>
+		 
+	</table>
+			
+	<input type="hidden" name="do" value="save"/>
+	<input type="hidden" name="proposal" value="<?php echo $this->currentProposal; ?>"/>
+
+	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
+		<?php echo $this->_translate->_('Save'); ?></a>
+</form>

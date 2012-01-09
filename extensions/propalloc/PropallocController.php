@@ -19,6 +19,7 @@ class PropallocController extends OntoWiki_Controller_Component
 {
 	protected $_url;
 	protected $_selectedModel;
+	protected $_dispediaModel;
 	
     /**
      * init controller
@@ -26,15 +27,44 @@ class PropallocController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
-        $this->_url = $this->_request->uri;    
+        $this->_url = $this->_config->urlBase .'propalloc/'; 
+        
+        $dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
+        $this->_dispediaModel = $dispediaModel;
         
         $model = new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel);
         $this->_selectedModel = $model;
         $this->_selectedModelUri = (string) $model;
+        
         $this->_owApp->selectedModel = $model;
     }
     
-    public function indexAction ()
+    
+    /**
+     * 
+     */
+    public function indexAction()
+    {
+        // set standard language
+        $lang = true == isset ($_SESSION ['selectedLanguage'])
+            ? $_SESSION ['selectedLanguage']
+            : 'de'; 
+            
+        $t = new Topic ($lang);
+		$o = new Option ($lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
+        $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
+        
+        $this->view->proposals = (array) $p->getAllProposals ();        
+        $this->view->proposal = $p;
+        $this->view->url = $this->_url;
+        $this->view->imagesUrl = $this->_config->urlBase . 'extensions/propalloc/resources/images/';
+    }
+    
+    
+    /**
+     * 
+     */
+    public function allocAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         
@@ -105,6 +135,7 @@ class PropallocController extends OntoWiki_Controller_Component
         }
     }
     
+    
     public function addAction ()
     {
         // set standard language
@@ -116,19 +147,34 @@ class PropallocController extends OntoWiki_Controller_Component
         
         if ( 'save' == $this->getParam ('do') )
         {
-            $p = new Proposal ($lang, $this->_selectedModel);
+            $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
             $proposalUri = $p->saveProposal ( 
                 $this->getParam ('proposalName'),
                 $this->getParam ('proposalText') 
             );
             
             if ( '' != $this->getParam ('actionTitle') ) {            
-                $action = new Action ($lang, $this->_selectedModel);
+                $action = new Action ($lang, $this->_selectedModel, $this->_dispediaModel);
                 $action->add ( 
                     $proposalUri, $this->getParam ('actionTitle'), $this->getParam ('actionText') 
                 );
             }
         }  
+    }
+    
+    
+    public function removeAction ()
+    {
+        // set standard language
+        $lang = true == isset ($_SESSION ['selectedLanguage'])
+            ? $_SESSION ['selectedLanguage']
+            : 'de';  
+                    
+        $a = new Action ($lang, $this->_selectedModel, $this->_dispediaModel);
+        $a->remove ( $this->getParam ('uri') );
+        
+        $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
+        $p->remove ( $this->getParam ('uri') );
     }
 }
 

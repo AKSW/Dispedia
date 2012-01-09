@@ -10,22 +10,18 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
-<script>
-// http://flowplayer.org/tools/demos/scrollable/vertical.html
-// execute your scripts when DOM is ready. this is a good habit
-$(function() {		
-		
-	// initialize scrollable with mousewheel support
-	$(".scrollable").scrollable({ vertical: true, mousewheel: true });	
-	
-});
-</script>
 
-<h1><?php echo $this->_translate->_('Proposal allocation administration'); ?></h1>
-
-<div><?php echo $this->_translate->_('indexDescriptionText'); ?></div>
+<h1><?php echo $this->_translate->_('Proposal administration'); ?></h1>
 
 <br/>
+
+<a href="<?php echo $this->url; ?>add">
+    <strong style="font-size:17px;"><?php echo $this->_translate->_('Create Proposal'); ?></strong>
+</a>
+
+<br/>
+<br/>
+<hr/>
 
 <form method="post" action="" id="propalloc">
 	
@@ -42,80 +38,16 @@ $(function() {
 			<!-- Proposals -->
 			<td>
 				<?php foreach ( $this->proposals as $proposal ) { ?>
-					
-					<?php 
-					if ( $proposal ['uri'] == $this->proposal->getProposalUri ( $this->currentProposal ) ) { 
-						$css = 'proposalItemSelected';
-					} else { 
-						$css = 'proposalItem';
-					} ?>
-					
-					<br/>
-					<div class="<?php echo $css; ?>">						
-						<a href="<?php echo $this->url; ?>?proposal=<?php echo $proposal ['shortcut']; ?>">
-							<?php echo $proposal ['label']; ?></a>
+                
+					<div class="proposalItem">		
+                        <a href="<?php echo $this->url; ?>remove/?uri=<?php echo $proposal ['uri']; ?>">
+                            <img src="<?php echo $this->imagesUrl; ?>cross.png" align="absmiddle"/></a>
+                        &nbsp; <?php echo $proposal ['label']; ?>
 					</div>
 				
 				<?php } ?>
 			</td>
-			
-			<!-- ALSFRS topics and their options -->
-			<td>
-				<?php if ( '' != $this->currentProposal ) { ?>
-				
-					<div class="scrollable vertical">             
-					   
-						<div class="items">
-							
-							<?php foreach ( $this->topics as $topic ) { ?>
-								
-								<div>
-									<div class="item">
-                                        
-                                        <!-- Topic label -->
-										<h2><?php echo $topic ['label']; ?></h2>
-										
-										<!-- Options -->
-										
-										<?php foreach ( $topic ['options'] as $option ) { ?>
-										
-											<?php if ( true == in_array ( $option ['uri'], $this->settings ) ) { ?>
-										
-											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption" checked="checked"/> &nbsp;
-											
-											<?php } else { ?>
-										
-											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption"/> &nbsp;
-											
-											<?php } ?>
-										
-											<?php echo $option ['label']; ?>
-                                            
-                                            <br/>
-										
-										<?php } ?>
-                                        
-                                        <br/>
-										
-									</div>
-								</div>
-							
-							<?php } ?>
-							
-						</div>
-						
-					</div>        
-					
-				<?php } ?>
-			</td>
-		</tr>
-		
-		<?php } else { ?>
-		
-		<tr>
-			<td>
-				<a href="<?php echo $this->url; ?>formgenerator/form/?file=proposal">
-					<?php echo $this->_translate->_('Create Proposal'); ?></a></td>
+        
 		</tr>
 		
 		<?php } ?>
