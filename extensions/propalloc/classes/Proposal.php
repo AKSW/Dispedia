@@ -104,6 +104,8 @@ class Proposal
         $this->addStmt ($ProposalInstance,
                         'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
                         'http://www.dispedia.de/o/Proposal');
+                        
+        // save with language tag DE
         $this->addStmt ($ProposalInstance,
                         'http://www.w3.org/2000/01/rdf-schema#label',
                         $proposalName,
@@ -112,6 +114,18 @@ class Proposal
                         'http://www.w3.org/2004/02/skos/core#note',
                         $proposalText,
                         'de');
+                        
+        // save with language tag EN
+        $this->addStmt ($ProposalInstance,
+                        'http://www.w3.org/2000/01/rdf-schema#label',
+                        $proposalName,
+                        'en');
+        $this->addStmt ($ProposalInstance,
+                        'http://www.w3.org/2004/02/skos/core#note',
+                        $proposalText,
+                        'en');
+                        
+        return $ProposalInstance;
     }
     
     /**

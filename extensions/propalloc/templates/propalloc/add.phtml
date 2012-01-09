@@ -24,7 +24,7 @@
                 <strong><?php echo $this->_translate->_('ProposalName'); ?></strong>
             </td>
             <td>
-                <input type="text" name="proposalName" />
+                <input type="text" name="proposalName" style="width:400px;"/>
             </td>
         </tr>
         <tr>
@@ -32,10 +32,38 @@
                 <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
             </td>
             <td>
-                <textarea name="proposalText"></textarea><br />
+                <textarea style="width:400px; height:150px;" name="proposalText"></textarea>
             </td>
         </tr>
     </table>
+    <hr>
+    <br/>
+    
+    <!-- ########################################################### -->
+    
+    <table>
+        <tr>
+            <td style="width:15%">
+                <strong><?php echo $this->_translate->_('ActionTitle'); ?></strong>
+            </td>
+            <td>
+                <input type="text" name="actionTitle" style="width:250px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <strong><?php echo $this->_translate->_('ActionText'); ?></strong>
+            </td>
+            <td>
+                <textarea style="min-width:250px; width:250px; min-height:70px; height:70;" name="actionText"></textarea>
+            </td>
+        </tr>
+    </table>
+    
+    
+    <input type="hidden" name="actionUri" value=""/>
+    
+    <!-- ########################################################### -->
     
     <input type="hidden" name="do" value="save"/>
 

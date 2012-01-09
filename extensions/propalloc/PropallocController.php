@@ -1,5 +1,6 @@
 <?php
 
+require 'classes/Action.php';
 require 'classes/Option.php';
 require 'classes/Proposal.php';
 require 'classes/Topic.php';
@@ -113,14 +114,20 @@ class PropallocController extends OntoWiki_Controller_Component
         
         // -------------------------------------------------------------
         
-        $p = new Proposal ($lang, $this->_selectedModel);
-        
         if ( 'save' == $this->getParam ('do') )
         {
-            $p->saveProposal ( 
+            $p = new Proposal ($lang, $this->_selectedModel);
+            $proposalUri = $p->saveProposal ( 
                 $this->getParam ('proposalName'),
                 $this->getParam ('proposalText') 
             );
+            
+            if ( '' != $this->getParam ('actionTitle') ) {            
+                $action = new Action ($lang, $this->_selectedModel);
+                $action->add ( 
+                    $proposalUri, $this->getParam ('actionTitle'), $this->getParam ('actionText') 
+                );
+            }
         }  
     }
 }
