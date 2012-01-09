@@ -18,10 +18,26 @@
 <br/>
 <form method="post" action="" id="propalloc">
 	
-    <?php echo $this->_translate->_('ProposalName'); ?>:<input type="text" name="proposalName" /><br />
-    <?php echo $this->_translate->_('ProposalText'); ?>:<textarea name="proposalText"></textarea><br />
-			
-	<input type="hidden" name="do" value="save"/>
+    <table>
+        <tr>
+            <td style="width:15%">
+                <strong><?php echo $this->_translate->_('ProposalName'); ?></strong>
+            </td>
+            <td>
+                <input type="text" name="proposalName" />
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
+            </td>
+            <td>
+                <textarea name="proposalText"></textarea><br />
+            </td>
+        </tr>
+    </table>
+    
+    <input type="hidden" name="do" value="save"/>
 
 	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
 		<?php echo $this->_translate->_('Save'); ?></a>
