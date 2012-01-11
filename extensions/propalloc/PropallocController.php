@@ -82,7 +82,7 @@ class PropallocController extends OntoWiki_Controller_Component
         
 		$t = new Topic ($lang);
 		$o = new Option ($lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
-        $p = new Proposal ($lang, $this->_selectedModel);
+        $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
         
         $this->view->proposals = (array) $p->getAllProposals ();        
         $this->view->proposal = $p; 
