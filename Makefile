@@ -38,13 +38,6 @@ help:
 	@echo "     'make cs-check (run complete code checking)"
 	@echo "     'make cs-check-intensive' (run complete code checking with"
 	@echo "             stricter coding standard)"
-<<<<<<< HEAD
-	@echo "     'make cs-check-blame' (get blame list)"
-	@echo ""
-	@echo "   Dispedia:"
-	@echo "     'make owcli-install' (install owcli)"
-	@echo "     'make kb-install' (install/update knowledgebases)"
-=======
 	@echo "     'make cs-check-full' (run complete code checking with detailed output)"
 	@echo "     'make cs-check-emacs' (run complete code checking with with emacs output)"
 	@echo "     'make cs-check-blame' (run complete code checking with blame list output)"
@@ -53,8 +46,10 @@ help:
 	@echo "     'FPATH=<path>' (run code checking on specific relative path)"
 	@echo "     'SNIFFS=<sniff 1>,<sniff 2>' (run code checking on specific sniffs)"
 	@echo "     'OPTIONS=<option>' (run code checking with specific CodeSniffer options)"
-	
->>>>>>> a3c880efb24f471cc9319987e816e4a09cf1e6bb
+	@echo ""
+	@echo "   Dispedia:"
+	@echo "     'make owcli-install' (install owcli)"
+	@echo "     'make kb-install' (install/update knowledgebases)"
 
 
 # top level target
@@ -194,20 +189,6 @@ cs-check-full:
 cs-check-emacs:
 	$(CSSPATH)cs-scripts.sh -c "--report=emacs $(REQUESTSTR)"
 cs-check-blame:
-<<<<<<< HEAD
-	phpcs --report=gitblame -v --extensions=$(FILETYPES) --severity=$(SEVERITY_INTENSIVE) -s -p --standard=$(CSPATH) *
-
-cs-check-blame-full:
-	phpcs --report=gitblame -s --extensions=$(FILETYPES) --severity=$(SEVERITY_INTENSIVE) -s -p --standard=$(CSPATH) *
-	
-# Dispedia
-
-owcli-install:
-	install/install_script.sh -i
-
-kb-install:
-	install/install_script.sh -k
-=======
 	$(CSSPATH)cs-scripts.sh -s -c "--report=gitblame $(REQUESTSTR)"
 
 cs-submodule-check:
@@ -216,4 +197,12 @@ ifndef MPATH
 	@echo "Example: MPATH=path/to/the/submodule/"
 	@exit 1 
 endif
->>>>>>> a3c880efb24f471cc9319987e816e4a09cf1e6bb
+
+
+# Dispedia
+
+owcli-install:
+	install/install_script.sh -i
+
+kb-install:
+	install/install_script.sh -k
