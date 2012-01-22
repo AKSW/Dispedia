@@ -65,7 +65,7 @@ class Action
      */
     public function remove($proposalUri)
     {
-        $action = $this->_patientsModel->sparqlQuery (
+        $actions = $this->_patientsModel->sparqlQuery (
             "SELECT ?uri ?label ?text
               WHERE {
                 <". $proposalUri ."> <http://www.dispedia.de/o/containsAction> ?uri .
@@ -75,23 +75,11 @@ class Action
         );
          
         
-        // ---------
+        foreach($actions as $action)
         
-        $this->removeStmt ($action [0] ['uri'],
-                        'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                       'http://www.dispedia.de/o/Action');
-        
-        $this->removeStmt ($proposalUri,
-                        'http://www.dispedia.de/o/containsAction',
-                       $action [0] ['uri']);
-        
-        $this->removeStmt ($action [0] ['uri'],
-                        'http://www.w3.org/2000/01/rdf-schema#label',
-                       $action [0] ['label']);
-        
-        $this->removeStmt ($action [0] ['uri'],
-                        'http://www.dispedia.de/o/linkedToActionInfo',
-                       $action [0] ['text']);
+        $this->removeStmt ($action['uri'],
+            null,
+            null);
     }
     
     

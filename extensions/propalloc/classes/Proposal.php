@@ -54,9 +54,9 @@ class Proposal
      */
     public function getSettings ( $proposalMd5 ) 
     {
-		$proposalUri = $this->getProposalUri ( $proposalMd5 );
+	$proposalUri = $this->getProposalUri ( $proposalMd5 );
 		
-		$appropriateForSymptoms = $this->_store->sparqlQuery (
+	$appropriateForSymptoms = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?ss .
@@ -64,7 +64,7 @@ class Proposal
              };'
         );        
         
-		$appropriateForProperties = $this->_store->sparqlQuery (
+	$appropriateForProperties = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?ps .
@@ -75,30 +75,72 @@ class Proposal
         $optionUris = array ();
         
         foreach ( $appropriateForProperties as $p )
-			$optionUris [] = $p ['optionUri'];
+            $optionUris [] = $p ['optionUri'];
         
         foreach ( $appropriateForSymptoms as $p )
-			$optionUris [] = $p ['optionUri'];
-			
-		return $optionUris;
-	}
+            $optionUris [] = $p ['optionUri'];
 	
-	
-	/**
-	 * 
-	 */
-	public function getProposalUri ( $md5 )
-	{
-		foreach ( $this->getAllProposals () as $p )
-		{
-			if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
-		}
-		return null;
-	}
+        return $optionUris;
+    }
+
+    /**
+     * 
+     */
+    public function getProposalUri ( $md5 )
+    {
+            foreach ( $this->getAllProposals () as $p )
+            {
+                    if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
+            }
+            return null;
+    }
     
     /**
-	 * 
-	 */
+     * Fucntion get get all Information of a Proposal.
+     * Info, Actions aso.
+     */
+    public function getInformations($proposalUri)
+    {
+        $proposalInformations = array();
+        $proposalInfosResult = $this->_store->sparqlQuery (
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
+            PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+            SELECT ?proposalLabel ?informationUri ?informationLabel
+            WHERE {
+                <' . $proposalUri . '> rdfs:label ?proposalLabel.
+              OPTIONAL{
+                <' . $proposalUri . '> dispediao:linkedToProposalInfo ?informationUri.
+                ?informationUri rdfs:label ?informationLabel.}
+                FILTER (langmatches(lang(?informationLabel), "' . $this->_lang . '")) || !BOUND(?informationLabel)
+                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
+            };'
+        );
+        
+        $proposalInformations['proposalUri'] = $proposalUri;
+        
+        if (isset ($proposalInfosResult[0]['proposalLabel']))
+            $proposalInformations['proposalLabel'] = $proposalInfosResult[0]['proposalLabel'];
+        $proposalInformations['proposalInfos'] = array();
+        foreach ($proposalInfosResult as $proposalInfo)
+        {
+            if ("" != $proposalInfo['informationUri'])
+            {
+                $proposalInformation = array();
+                $proposalInformation['uri'] = $proposalInfo['informationUri'];
+                $proposalInformation['label'] = $proposalInfo['informationLabel'];
+                $proposalInformations['proposalInfos'][] = $proposalInformation;
+            }
+        }
+        
+        return $proposalInformations;
+        //?informationUri dispediao:content ?informationContent.
+        //?informationUri dispediao:suitableFor ?informationPatientType.
+        //?informationUri dispediao:usefulFor ?informationTherapistType.
+    }
+    
+    /**
+    * 
+    */
     public function saveProposal($proposalName, $proposalText)
     {
         $proposalNameNoSpaces = str_replace (' ', '', $proposalName);
@@ -145,28 +187,8 @@ class Proposal
         );
         
         $this->removeStmt ($proposalUri,
-                        'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-                        'http://www.dispedia.de/o/Proposal');
-        
-        // save with language tag DE
-        $this->removeStmt ($proposalUri,
-                        'http://www.w3.org/2000/01/rdf-schema#label',
-                        $proposal [0] ['label'] ,
-                        'de');
-        $this->removeStmt ($proposalUri,
-                        'http://www.w3.org/2004/02/skos/core#note',
-                        $proposal [0] ['text'],
-                        'de');
-                        
-        // save with language tag EN
-        $this->removeStmt ($proposalUri,
-                        'http://www.w3.org/2000/01/rdf-schema#label',
-                        $proposal [0] ['label'] ,
-                        'en');
-        $this->removeStmt ($proposalUri,
-                        'http://www.w3.org/2004/02/skos/core#note',
-                        $proposal [0] ['text'],
-                        'en');
+                        null,
+                        null);
     }
     
     

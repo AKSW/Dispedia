@@ -17,9 +17,10 @@ require 'classes/Topic.php';
  */ 
 class PropallocController extends OntoWiki_Controller_Component
 {
-	protected $_url;
-	protected $_selectedModel;
-	protected $_dispediaModel;
+	private $_url;
+        private $_lang;
+	private $_selectedModel;
+	private $_dispediaModel;
 	
     /**
      * init controller
@@ -37,32 +38,31 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->_selectedModelUri = (string) $model;
         
         $this->_owApp->selectedModel = $model;
+        
+        // set standard language
+        $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
+            ? $_SESSION ['selectedLanguage']
+            : 'de';
     }
     
     
     /**
-     * 
+     * Action to view the Proposal overview
      */
     public function indexAction()
     {
-        // set standard language
-        $lang = true == isset ($_SESSION ['selectedLanguage'])
-            ? $_SESSION ['selectedLanguage']
-            : 'de'; 
-            
-        $t = new Topic ($lang);
-		$o = new Option ($lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
-        $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
+        $t = new Topic ($this->_lang);
+        $o = new Option ($this->_lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
+        $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
         
-        $this->view->proposals = (array) $p->getAllProposals ();        
-        $this->view->proposal = $p;
+        $this->view->proposals = (array) $p->getAllProposals ();
         $this->view->url = $this->_url;
         $this->view->imagesUrl = $this->_config->urlBase . 'extensions/propalloc/resources/images/';
     }
     
     
     /**
-     * 
+     * Action to edit the Proposal Allocations
      */
     public function allocAction ()
     {
@@ -73,16 +73,11 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->view->url = $this->_url;
         $this->view->currentProposal = $this->getParam ('proposal');
         
-        // set standard language
-        $lang = true == isset ($_SESSION ['selectedLanguage'])
-            ? $_SESSION ['selectedLanguage']
-            : 'de';    
-        
         // -------------------------------------------------------------
         
-		$t = new Topic ($lang);
-		$o = new Option ($lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
-        $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
+        $t = new Topic ($this->_lang);
+        $o = new Option ($this->_lang, $this->_selectedModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
+        $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
         
         $this->view->proposals = (array) $p->getAllProposals ();        
         $this->view->proposal = $p; 
@@ -135,26 +130,30 @@ class PropallocController extends OntoWiki_Controller_Component
         }
     }
     
-    
-    public function addAction ()
+    /**
+     * Action to make add a new Proposal
+     */
+    public function editAction ()
     {
-        // set standard language
-        $lang = true == isset ($_SESSION ['selectedLanguage'])
-            ? $_SESSION ['selectedLanguage']
-            : 'de';    
+        $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+        $currentProposal = urldecode($this->getParam ('proposalUri'));
         
-        // -------------------------------------------------------------
+        if (isset($currentProposal))
+        {
+            echo "<pre>";
+            var_dump($p->getInformations($currentProposal));
+            echo "</pre>";
+        }
         
         if ( 'save' == $this->getParam ('do') )
         {
-            $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
             $proposalUri = $p->saveProposal ( 
                 $this->getParam ('proposalName'),
                 $this->getParam ('proposalText') 
             );
             
             if ( '' != $this->getParam ('actionTitle') ) {            
-                $action = new Action ($lang, $this->_selectedModel, $this->_dispediaModel);
+                $action = new Action ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
                 $action->add ( 
                     $proposalUri, $this->getParam ('actionTitle'), $this->getParam ('actionText') 
                 );
@@ -162,19 +161,16 @@ class PropallocController extends OntoWiki_Controller_Component
         }  
     }
     
-    
+    /**
+     * Action to remove Proposal
+     */
     public function removeAction ()
-    {
-        // set standard language
-        $lang = true == isset ($_SESSION ['selectedLanguage'])
-            ? $_SESSION ['selectedLanguage']
-            : 'de';  
-                    
-        $a = new Action ($lang, $this->_selectedModel, $this->_dispediaModel);
-        $a->remove ( $this->getParam ('uri') );
+    {   
+        $a = new Action ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+        $a->remove ( urldecode($this->getParam ('proposalUri')) );
         
-        $p = new Proposal ($lang, $this->_selectedModel, $this->_dispediaModel);
-        $p->remove ( $this->getParam ('uri') );
+        $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+        $p->remove ( urldecode($this->getParam ('proposalUri')) );
     }
 }
 
