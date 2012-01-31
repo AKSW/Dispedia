@@ -101,8 +101,9 @@ class Proposal
      */
     public function getInformations($proposalUri)
     {
+       // get proposalLabel, inforationUri and informationLabel
         $proposalInformations = array();
-        $proposalInfosResult = $this->_store->sparqlQuery (
+        $proposalInfosResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
             SELECT ?proposalLabel ?informationUri ?informationLabel
@@ -116,19 +117,57 @@ class Proposal
             };'
         );
         
+        
+        // order the resultset
         $proposalInformations['proposalUri'] = $proposalUri;
         
-        if (isset ($proposalInfosResult[0]['proposalLabel']))
-            $proposalInformations['proposalLabel'] = $proposalInfosResult[0]['proposalLabel'];
+        if (isset ($proposalInfosResults[0]['proposalLabel']))
+            $proposalInformations['proposalLabel'] = $proposalInfosResults[0]['proposalLabel'];
         $proposalInformations['proposalInfos'] = array();
-        foreach ($proposalInfosResult as $proposalInfo)
+        foreach ($proposalInfosResults as $proposalInfo)
         {
             if ("" != $proposalInfo['informationUri'])
             {
                 $proposalInformation = array();
                 $proposalInformation['uri'] = $proposalInfo['informationUri'];
                 $proposalInformation['label'] = $proposalInfo['informationLabel'];
-                $proposalInformations['proposalInfos'][] = $proposalInformation;
+                $proposalInformations['proposalInfos'][$proposalInfo['informationUri']] = $proposalInformation;
+            }
+        }
+        
+        // get informtionContent, informtionSuitableFor, informtionUsefulFor
+        foreach ($proposalInformations['proposalInfos'] as $proposalInfo)
+        {
+            $proposalInfosResults = $this->_store->sparqlQuery (
+                'PREFIX dispediao:<http://www.dispedia.de/o/>
+                PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+                SELECT ?informtionContent ?informtionSuitableFor ?informtionUsefulFor
+                WHERE {
+                  {<' . $proposalInfo['uri'] . '> dispediao:content ?informtionContent.}
+                  UNION
+                  {<' . $proposalInfo['uri'] . '> dispediao:suitableFor ?informtionSuitableFor.}
+                  UNION
+                  {<' . $proposalInfo['uri'] . '> dispediao:usefulFor ?informtionUsefulFor.}
+                };'
+            );
+            
+            $proposalInformations['proposalInfos'][$proposalInfo['uri']]['suitableFor'] = array();
+            $proposalInformations['proposalInfos'][$proposalInfo['uri']]['usefulFor'] = array();
+            // order the resultset
+            foreach ($proposalInfosResults as $proposalInfosResult)
+            {
+                if ("" != $proposalInfosResult['informtionContent'])
+                {
+                    $proposalInformations['proposalInfos'][$proposalInfo['uri']]['content'] = $proposalInfosResult['informtionContent'];
+                }
+                if ("" != $proposalInfosResult['informtionSuitableFor'])
+                {
+                    $proposalInformations['proposalInfos'][$proposalInfo['uri']]['suitableFor'][$proposalInfosResult['informtionSuitableFor']] = "";
+                }
+                if ("" != $proposalInfosResult['informtionUsefulFor'])
+                {
+                    $proposalInformations['proposalInfos'][$proposalInfo['uri']]['usefulFor'][$proposalInfosResult['informtionUsefulFor']] = "";
+                }
             }
         }
         

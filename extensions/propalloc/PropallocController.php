@@ -3,6 +3,7 @@
 require 'classes/Action.php';
 require 'classes/Option.php';
 require 'classes/Proposal.php';
+require 'classes/Patient.php';
 require 'classes/Topic.php';
 
 /**
@@ -129,19 +130,26 @@ class PropallocController extends OntoWiki_Controller_Component
             $this->view->settings = $p->getSettings ( $this->getParam ('proposal') );
         }
     }
-    
+
     /**
      * Action to make add a new Proposal
      */
     public function editAction ()
     {
         $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
-        $currentProposal = urldecode($this->getParam ('proposalUri'));
+        $currentProposalUri = urldecode($this->getParam ('proposalUri'));
         
-        if (isset($currentProposal))
+        if (isset($currentProposalUri))
         {
+            $patient = new Patient ($this->_lang);
+            $this->view->patientTypes = $patient->getAllPatientTypes();
+            $this->view->therapistTypes = $patient->getAllTherapistTypes();
             echo "<pre>";
-            var_dump($p->getInformations($currentProposal));
+            var_dump($this->view->therapistTypes);
+            echo "</pre>";
+            $this->view->currentProposal = $p->getInformations($currentProposalUri);
+            echo "<pre>";
+            var_dump($this->view->currentProposal);
             echo "</pre>";
         }
         

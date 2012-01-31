@@ -24,17 +24,16 @@
                 <strong><?php echo $this->_translate->_('ProposalName'); ?></strong>
             </td>
             <td>
-                <input type="text" name="proposalName" style="width:400px;"/>
+                <input type="text" name="proposalLabel" style="width:400px;" value="<?php echo (isset($this->currentProposal['proposalLabel']) ? $this->currentProposal['proposalLabel'] : ""); ?>" />
             </td>
         </tr>
-        <tr>
-            <td valign="top">
-                <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
-            </td>
-            <td>
-                <textarea style="width:400px; height:150px;" name="proposalText"></textarea>
-            </td>
-        </tr>
+        
+        <?php
+            // Loop for proposal infomations
+            foreach ($this->currentProposal['proposalInfos'] as $this->proposalInfo) {
+                echo $this->render('propalloc/edit_information.phtml');
+            }
+        ?>
     </table>
     <hr>
     <br/>
