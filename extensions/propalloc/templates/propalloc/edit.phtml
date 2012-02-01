@@ -9,7 +9,12 @@
  * @copyright  Copyright (c) 2011
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
-?>  
+?>
+
+<!-- important variables -->
+<script type="text/javascript">       
+    var url = '<?php echo $this->url; ?>';
+</script>
 
 <h1><?php echo $this->_translate->_('Create Proposal'); ?></h1>
 
@@ -18,7 +23,7 @@
 <br/>
 <form method="post" action="" id="propalloc">
 	
-    <table>
+    <table id="editProposalTable">
         <tr>
             <td style="width:15%">
                 <strong><?php echo $this->_translate->_('ProposalName'); ?></strong>
@@ -26,12 +31,17 @@
             <td>
                 <input type="text" name="proposalLabel" style="width:400px;" value="<?php echo (isset($this->currentProposal['proposalLabel']) ? $this->currentProposal['proposalLabel'] : ""); ?>" />
             </td>
+            <td>
+                <a id="addInformation" class="button" onclick="addInformation();"/>
+                    <?php echo $this->_translate->_('add information'); ?>
+                </a>
+            </td>
         </tr>
         
         <?php
             // Loop for proposal infomations
             foreach ($this->currentProposal['proposalInfos'] as $this->proposalInfo) {
-                echo $this->render('propalloc/edit_information.phtml');
+                echo $this->render('propalloc/information.phtml');
             }
         ?>
     </table>
@@ -58,9 +68,6 @@
             </td>
         </tr>
     </table>
-    
-    
-    <input type="hidden" name="actionUri" value=""/>
     
     <!-- ########################################################### -->
     

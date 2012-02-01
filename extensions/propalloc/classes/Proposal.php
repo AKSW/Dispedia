@@ -129,6 +129,8 @@ class Proposal
             if ("" != $proposalInfo['informationUri'])
             {
                 $proposalInformation = array();
+                //TODO: muss schon aus dem store kommen, aber momentan gibt es noch instanzen ohne hash
+                $proposalInformation['hash'] = substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
                 $proposalInformation['uri'] = $proposalInfo['informationUri'];
                 $proposalInformation['label'] = $proposalInfo['informationLabel'];
                 $proposalInformations['proposalInfos'][$proposalInfo['informationUri']] = $proposalInformation;
@@ -175,6 +177,17 @@ class Proposal
         //?informationUri dispediao:content ?informationContent.
         //?informationUri dispediao:suitableFor ?informationPatientType.
         //?informationUri dispediao:usefulFor ?informationTherapistType.
+    }
+    
+     /**
+    * 
+    */
+    public function getNewProposalInformation()
+    {
+        $result = array();
+        $result['hash'] = substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+        $result['uri'] = "http://als.dispedia.de/i/Information/" . $result['hash'];
+        return $result;
     }
     
     /**

@@ -1,0 +1,45 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<?php $proposalInfo = $this->proposalInfo ?>
+<tr class="<?php echo "information" . $proposalInfo['hash']; ?>">
+    <td valign="top">
+        <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
+    </td>
+    <td>
+        <input type="text" name="InformationLabel" style="width:400px;" value="<?php echo (isset($proposalInfo['label']) ? $proposalInfo['label'] : ""); ?>" />
+    </td>
+    <td>
+        <a id="removeInformation" class="button" onclick="removeInformation('<?php echo "information" . $proposalInfo['hash']; ?>');">
+            <?php echo $this->_translate->_('remove information'); ?>
+        </a>
+    </td>
+</tr>
+<tr class="<?php echo "information" . $proposalInfo['hash']; ?>">
+    <td valign="top">
+        <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
+    </td>
+    <td>
+        <textarea style="width:400px; height:150px;" name="InformationContent"><?php echo (isset($proposalInfo['content']) ? $proposalInfo['content'] : ""); ?></textarea>
+    </td>
+    <td>
+        
+        <?php foreach ($this->patientTypes as $patientTypeUri => $patientTypeLabel) { ?>
+            <input type="checkbox" name="patientType" style="width:400px;" value="<?php echo $patientTypeUri; ?>" <?php echo (isset($proposalInfo['suitableFor'][$patientTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $patientTypeLabel; ?><br />
+        <?php } ?>
+    </td>
+    <td>
+        <?php foreach ($this->therapistTypes as $therapistTypeUri => $therapistTypeLabel) { ?>
+            <input type="checkbox" name="therapistType" style="width:400px;" value="<?php echo $therapistTypeUri; ?>" <?php echo (isset($proposalInfo['usefulFor'][$therapistTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistTypeLabel; ?><br />
+        <?php } ?>
+    </td>
+</tr>

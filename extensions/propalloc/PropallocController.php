@@ -44,6 +44,8 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
             ? $_SESSION ['selectedLanguage']
             : 'de';
+            
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
     
     
@@ -67,9 +69,8 @@ class PropallocController extends OntoWiki_Controller_Component
      */
     public function allocAction ()
     {
-        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/alloc.css');
         
-        $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
         
         $this->view->url = $this->_url;
         $this->view->currentProposal = $this->getParam ('proposal');
@@ -136,6 +137,10 @@ class PropallocController extends OntoWiki_Controller_Component
      */
     public function editAction ()
     {
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'js/edit.js');
+        
+        $this->view->url = $this->_url;
+        
         $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
         $currentProposalUri = urldecode($this->getParam ('proposalUri'));
         
@@ -179,6 +184,19 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
         $p->remove ( urldecode($this->getParam ('proposalUri')) );
+    }
+    
+    
+    /**
+     * get the Information Layout for dynamicly add information to a proposal
+     */
+    public function informationAction ()
+    {
+        $proposal = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+        $this->view->proposalInfo = $proposal->getNewProposalInformation();
+        $patient = new Patient ($this->_lang);
+        $this->view->patientTypes = $patient->getAllPatientTypes();
+        $this->view->therapistTypes = $patient->getAllTherapistTypes();
     }
 }
 
