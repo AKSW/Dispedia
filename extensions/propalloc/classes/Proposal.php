@@ -48,6 +48,20 @@ class Proposal
         return $proposals;
     }
     
+    /**
+     * 
+     */
+    public function getProposalLabel ($proposalUri)
+    {
+        $proposalLabelResult = $this->_store->sparqlQuery (
+            'SELECT ?proposalLabel
+              WHERE {
+                 <' . $proposalUri . '> <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel.
+                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
+             };'
+        );
+        return $proposalLabelResult[0]['proposalLabel'];
+    }
     
     /**
      * 
@@ -102,78 +116,68 @@ class Proposal
     public function getInformations($proposalUri)
     {
        // get proposalLabel, inforationUri and informationLabel
-        $proposalInformations = array();
-        $proposalInfosResults = $this->_store->sparqlQuery (
+        $informationResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
             SELECT ?proposalLabel ?informationUri ?informationLabel
             WHERE {
-                <' . $proposalUri . '> rdfs:label ?proposalLabel.
-              OPTIONAL{
                 <' . $proposalUri . '> dispediao:linkedToProposalInfo ?informationUri.
                 ?informationUri rdfs:label ?informationLabel.}
                 FILTER (langmatches(lang(?informationLabel), "' . $this->_lang . '")) || !BOUND(?informationLabel)
-                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
             };'
         );
         
-        
-        // order the resultset
-        $proposalInformations['proposalUri'] = $proposalUri;
-        
-        if (isset ($proposalInfosResults[0]['proposalLabel']))
-            $proposalInformations['proposalLabel'] = $proposalInfosResults[0]['proposalLabel'];
-        $proposalInformations['proposalInfos'] = array();
-        foreach ($proposalInfosResults as $proposalInfo)
+        $informations = array();
+        foreach ($informationResults as $informationResult)
         {
-            if ("" != $proposalInfo['informationUri'])
+            if ("" != $informationResult['informationUri'])
             {
-                $proposalInformation = array();
+                $information = array();
                 //TODO: muss schon aus dem store kommen, aber momentan gibt es noch instanzen ohne hash
-                $proposalInformation['hash'] = substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
-                $proposalInformation['uri'] = $proposalInfo['informationUri'];
-                $proposalInformation['label'] = $proposalInfo['informationLabel'];
-                $proposalInformations['proposalInfos'][$proposalInfo['informationUri']] = $proposalInformation;
+                $information['hash'] = substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+                $information['uri'] = $informationResult['informationUri'];
+                $information['label'] = $informationResult['informationLabel'];
+                $informations[$informationResult['informationUri']] = $information;
             }
         }
         
         // get informtionContent, informtionSuitableFor, informtionUsefulFor
-        foreach ($proposalInformations['proposalInfos'] as $proposalInfo)
+        foreach ($informations as $information)
         {
-            $proposalInfosResults = $this->_store->sparqlQuery (
+            $informationResults = $this->_store->sparqlQuery (
                 'PREFIX dispediao:<http://www.dispedia.de/o/>
                 PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
                 SELECT ?informtionContent ?informtionSuitableFor ?informtionUsefulFor
                 WHERE {
-                  {<' . $proposalInfo['uri'] . '> dispediao:content ?informtionContent.}
+                  {<' . $information['uri'] . '> dispediao:content ?informtionContent.}
                   UNION
-                  {<' . $proposalInfo['uri'] . '> dispediao:suitableFor ?informtionSuitableFor.}
+                  {<' . $information['uri'] . '> dispediao:suitableFor ?informtionSuitableFor.}
                   UNION
-                  {<' . $proposalInfo['uri'] . '> dispediao:usefulFor ?informtionUsefulFor.}
+                  {<' . $information['uri'] . '> dispediao:usefulFor ?informtionUsefulFor.}
                 };'
             );
             
-            $proposalInformations['proposalInfos'][$proposalInfo['uri']]['suitableFor'] = array();
-            $proposalInformations['proposalInfos'][$proposalInfo['uri']]['usefulFor'] = array();
+            $informations[$information['uri']]['suitableFor'] = array();
+            $informations[$information['uri']]['usefulFor'] = array();
             // order the resultset
-            foreach ($proposalInfosResults as $proposalInfosResult)
+            foreach ($informationResults as $informationResult)
             {
-                if ("" != $proposalInfosResult['informtionContent'])
+                if ("" != $informationResult['informtionContent'])
                 {
-                    $proposalInformations['proposalInfos'][$proposalInfo['uri']]['content'] = $proposalInfosResult['informtionContent'];
+                    $informations[$information['uri']]['content'] = $informationResult['informtionContent'];
                 }
-                if ("" != $proposalInfosResult['informtionSuitableFor'])
+                if ("" != $informationResult['informtionSuitableFor'])
                 {
-                    $proposalInformations['proposalInfos'][$proposalInfo['uri']]['suitableFor'][$proposalInfosResult['informtionSuitableFor']] = "";
+                    $informations[$information['uri']]['suitableFor'][$informationResult['informtionSuitableFor']] = "";
                 }
-                if ("" != $proposalInfosResult['informtionUsefulFor'])
+                if ("" != $informationResult['informtionUsefulFor'])
                 {
-                    $proposalInformations['proposalInfos'][$proposalInfo['uri']]['usefulFor'][$proposalInfosResult['informtionUsefulFor']] = "";
+                    $informations[$information['uri']]['usefulFor'][$informationResult['informtionUsefulFor']] = "";
                 }
             }
         }
         
-        return $proposalInformations;
+        return $informations;
         //?informationUri dispediao:content ?informationContent.
         //?informationUri dispediao:suitableFor ?informationPatientType.
         //?informationUri dispediao:usefulFor ?informationTherapistType.

@@ -10,36 +10,41 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
-<?php $proposalInfo = $this->proposalInfo ?>
-<tr class="<?php echo "information" . $proposalInfo['hash']; ?>">
+<?php $information = $this->information ?>
+<?php $informationName = "information" . $information['hash']; ?>
+<tr class="<?php echo $informationName; ?>">
     <td valign="top">
         <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
     </td>
     <td>
-        <input type="text" name="InformationLabel" style="width:400px;" value="<?php echo (isset($proposalInfo['label']) ? $proposalInfo['label'] : ""); ?>" />
+    
+        <input type="hidden" name="currentProposal[informations][]" value="<?php echo $informationName; ?>" />
+        <input type="hidden" name="<?php echo $informationName; ?>[uri]" value="<?php echo $information['uri']; ?>" />
+        <input type="hidden" name="<?php echo $informationName; ?>[hash]" value="<?php echo $information['hash']; ?>" />
+        <input type="text" name="<?php echo $informationName; ?>[InformationLabel]" style="width:400px;" value="<?php echo (isset($information['label']) ? $information['label'] : ""); ?>" />
     </td>
     <td>
-        <a id="removeInformation" class="button" onclick="removeInformation('<?php echo "information" . $proposalInfo['hash']; ?>');">
+        <a id="removeInformation" class="button" onclick="removeInformation('<?php echo "information" . $information['hash']; ?>');">
             <?php echo $this->_translate->_('remove information'); ?>
         </a>
     </td>
 </tr>
-<tr class="<?php echo "information" . $proposalInfo['hash']; ?>">
+<tr class="<?php echo "information" . $information['hash']; ?>">
     <td valign="top">
         <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
     </td>
     <td>
-        <textarea style="width:400px; height:150px;" name="InformationContent"><?php echo (isset($proposalInfo['content']) ? $proposalInfo['content'] : ""); ?></textarea>
+        <textarea style="width:400px; height:150px;" name="<?php echo "information" . $information['hash']; ?>[InformationContent]"><?php echo (isset($information['content']) ? $information['content'] : ""); ?></textarea>
     </td>
     <td>
         
         <?php foreach ($this->patientTypes as $patientTypeUri => $patientTypeLabel) { ?>
-            <input type="checkbox" name="patientType" style="width:400px;" value="<?php echo $patientTypeUri; ?>" <?php echo (isset($proposalInfo['suitableFor'][$patientTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $patientTypeLabel; ?><br />
+            <input type="checkbox" name="<?php echo "information" . $information['hash']; ?>[patientType][]" style="width:400px;" value="<?php echo $patientTypeUri; ?>" <?php echo (isset($information['suitableFor'][$patientTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $patientTypeLabel; ?><br />
         <?php } ?>
     </td>
     <td>
         <?php foreach ($this->therapistTypes as $therapistTypeUri => $therapistTypeLabel) { ?>
-            <input type="checkbox" name="therapistType" style="width:400px;" value="<?php echo $therapistTypeUri; ?>" <?php echo (isset($proposalInfo['usefulFor'][$therapistTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistTypeLabel; ?><br />
+            <input type="checkbox" name="<?php echo "information" . $information['hash']; ?>[therapistType][]" style="width:400px;" value="<?php echo $therapistTypeUri; ?>" <?php echo (isset($information['usefulFor'][$therapistTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistTypeLabel; ?><br />
         <?php } ?>
     </td>
 </tr>

@@ -133,7 +133,7 @@ class PropallocController extends OntoWiki_Controller_Component
     }
 
     /**
-     * Action to make add a new Proposal
+     * Action to make add a new Proposal, with inforamtions and actions
      */
     public function editAction ()
     {
@@ -143,28 +143,41 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $currentProposalUri = urldecode($this->getParam ('proposalUri'));
         
-        if (isset($currentProposalUri))
+        if (isset($currentProposalUri) && "" != $currentProposalUri)
         {
+            $proposal = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+            $currentProposal = array();
+            $currentProposal['uri'] = $currentProposalUri;
+            $currentProposal['label'] = $proposal->getProposalLabel($currentProposalUri);
+
             $this->informationAction($currentProposalUri);
+            $currentProposal['informations'] = $this->view->informations;
+            $this->view->currentProposal = $currentProposal;
             echo "<pre>";
-            var_dump($this->view->currentProposal);
+                var_dump($this->view->currentProposal);
             echo "</pre>";
         }
+        else
+            $this->view->currentProposal = 0;
         
         if ( 'save' == $this->getParam ('do') )
         {
-            $p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
-            $proposalUri = $p->saveProposal ( 
-                $this->getParam ('proposalName'),
-                $this->getParam ('proposalText') 
-            );
+            echo "<pre>";
+            var_dump($_REQUEST);
+            echo "</pre>";
+            //$p = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+            //$proposalUri = $p->saveProposal ( 
+            //    $this->getParam ('proposalName'),
+            //    $this->getParam ('proposalText') 
+            //);
             
-            if ( '' != $this->getParam ('actionTitle') ) {            
-                $action = new Action ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
-                $action->add ( 
-                    $proposalUri, $this->getParam ('actionTitle'), $this->getParam ('actionText') 
-                );
-            }
+            //if ( '' != $this->getParam ('actionTitle') )
+            //{            
+            //    $action = new Action ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
+            //    $action->add ( 
+            //        $proposalUri, $this->getParam ('actionTitle'), $this->getParam ('actionText') 
+            //    );
+            //}
         }  
     }
     
@@ -182,15 +195,15 @@ class PropallocController extends OntoWiki_Controller_Component
     
     
     /**
-     * get the Information Layout for dynamicly add information to a proposal
+     * get the Information Layout for dynamicly add new or existing information to a edit proposal Layout
      */
     public function informationAction ($currentProposalUri = false)
     {
         $proposal = new Proposal ($this->_lang, $this->_selectedModel, $this->_dispediaModel);
         if (false == $currentProposalUri)
-            $this->view->proposalInfo = $proposal->getNewProposalInformation();
+            $this->view->information = $proposal->getNewProposalInformation();
         else
-            $this->view->currentProposal = $proposal->getInformations($currentProposalUri);
+            $this->view->informations = $proposal->getInformations($currentProposalUri);
             
         $patient = new Patient ($this->_lang);
         $this->view->patientTypes = $patient->getAllPatientTypes();
