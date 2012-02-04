@@ -15,7 +15,7 @@
 
 <br/>
 
-<a href="<?php echo $this->url; ?>add">
+<a href="<?php echo $this->url; ?>edit">
     <strong style="font-size:17px;"><?php echo $this->_translate->_('Create Proposal'); ?></strong>
 </a>
 
@@ -41,7 +41,7 @@
 					<div class="proposalItem">
                         <a href="<?php echo $this->url; ?>edit/?proposalUri=<?php echo urlencode($proposal['uri']); ?>">
                             <img src="<?php echo $this->imagesUrl; ?>edit.png" align="absmiddle"/></a>&nbsp;
-                        <a href="<?php echo $this->url; ?>remove/?proposalUri=<?php echo urlencode($proposal['uri']); ?>">
+                        <a href="<?php echo $this->url; ?>remove/?currentProposal[uri]=<?php echo urlencode($proposal['uri']); ?>">
                             <img src="<?php echo $this->imagesUrl; ?>cross.png" align="absmiddle"/></a>&nbsp;
                         <?php echo $proposal ['label']; ?>
 					</div>

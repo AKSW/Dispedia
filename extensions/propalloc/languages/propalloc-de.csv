@@ -9,3 +9,6 @@ ProposalName;Vorschlagsname
 ProposalText;Vorschlagsbeschreibung
 add information;Information hinzufügen
 remove information;Information entfernen
+successProposalEdit;Vorschlag wurde gespeichert.
+successProposalDelete;Vorschlag gelöscht.
+errorProposalDelete;Vorschlag konnte nicht gelöscht werden.

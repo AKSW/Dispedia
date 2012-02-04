@@ -9,3 +9,6 @@ ProposalName;Proposal Name
 ProposalText;Proposal Info
 add information;add Information
 remove information;remove Information
+successProposalEdit;Proposal saved.
+successProposalDelete;Proposal deleted.
+errorProposalDelete:Proposal not deleted.

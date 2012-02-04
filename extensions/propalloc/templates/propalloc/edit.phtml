@@ -29,7 +29,8 @@
                 <strong><?php echo $this->_translate->_('ProposalName'); ?></strong>
             </td>
             <td>
-                <input type="text" name="proposalLabel" style="width:400px;" value="<?php echo (isset($this->currentProposal['label']) ? $this->currentProposal['label'] : ""); ?>" />
+                <input type="hidden" name="currentProposal[uri]" value="<?php echo $this->currentProposal['uri']?>" />
+                <input type="text" name="currentProposal[label]" style="width:400px;" value="<?php echo (isset($this->currentProposal['label']) ? $this->currentProposal['label'] : ""); ?>" />
             </td>
             <td>
                 <a id="addInformation" class="button" onclick="addInformation();"/>
