@@ -339,31 +339,31 @@ class Proposal
      */
     private function removeStmt($s, $p, $o)
     {
-    $options = array();
-    // set subjecttype(uri or literal)
-    if (isset($s))
-        $options['subject_type'] = true == Erfurt_Uri::check($s)
-        ? Erfurt_Store::TYPE_IRI
-        : Erfurt_Store::TYPE_LITERAL;
-        // set type(uri or literal)
-    if (isset($o))
-    {
-        $options['object_type'] = true == Erfurt_Uri::check($o)
-        ? Erfurt_Store::TYPE_IRI
-        : Erfurt_Store::TYPE_LITERAL;
-        // TODO: Fehler im Erfurt, Übergabe eines Arrays für das Object ist laut doc nicht vorgesehen wird aber vom Backend benötigt
-        // set type(uri or literal)
-        $type = Erfurt_Store::TYPE_IRI == $options['object_type'] 
-            ? 'uri'
-            : 'literal';
-        $o = array('value' => $o, 'type' => $type);
-    }
+        $options = array();
+        // set subjecttype(uri or literal)
+        if (isset($s))
+            $options['subject_type'] = true == Erfurt_Uri::check($s)
+            ? Erfurt_Store::TYPE_IRI
+            : Erfurt_Store::TYPE_LITERAL;
+            // set type(uri or literal)
+        if (isset($o))
+        {
+            $options['object_type'] = true == Erfurt_Uri::check($o)
+            ? Erfurt_Store::TYPE_IRI
+            : Erfurt_Store::TYPE_LITERAL;
+            // TODO: Fehler im Erfurt, Übergabe eines Arrays für das Object ist laut doc nicht vorgesehen wird aber vom Backend benötigt
+            // set type(uri or literal)
+            $type = Erfurt_Store::TYPE_IRI == $options['object_type'] 
+                ? 'uri'
+                : 'literal';
+            $o = array('value' => $o, 'type' => $type);
+        }
         // aremove a triple form datastore
         return $this->_store->deleteMatchingStatements(
             (string) $this->_patientModel,
             $s,
             $p,
-        $o,
+            $o,
             $options
        );
     }
