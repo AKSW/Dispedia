@@ -12,13 +12,14 @@
 /**
 * 
 */
-function addInformation ()
+function addInformation (informationOverClass)
 {
     $.ajax({
         async:true,
         dataType: "html",
-        context: $("#editProposalTable"),
         type: "POST",
+        data: {informationOverClass : informationOverClass},
+        context: $("#editProposalTable"),
         url: url + "information",
             // complete, no errors
         success: function ( res ) 

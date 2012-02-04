@@ -104,20 +104,42 @@ class Proposal
     */
     public function saveProposal($currentProposal)
     {
+        //get old Data
+        $currentProposal['oldData'] = json_decode(urldecode($currentProposal['oldData']), true);
+        
+        // array for output messages
         $messages = array();
-        $this->_dispediaModel->addStatement(
-            $currentProposal['uri'],
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
-            array('value' => 'http://www.dispedia.de/o/Proposal', 'type' => 'uri')
-        );
+        
+        // make 'type' relation
+        if ("new" == $currentProposal['status'])
+        {
+            $this->_dispediaModel->addStatement(
+                $currentProposal['uri'],
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
+                array('value' => 'http://www.dispedia.de/o/Proposal', 'type' => 'uri')
+            );
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Proposal created: ' . $currentProposal['uri'] . ' => rdfs:type => http://www.dispedia.de/o/Proposal', OntoWiki_Message::INFO);
+        }
+        
+        // make or update 'label' relation
+        if ($currentProposal['label'] != $currentProposal['oldData']['label'])
+        {
+            $this->_dispediaModel->deleteMatchingStatements
+            (
+                $currentProposal['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => null, 'type' => 'literal', 'lang' => $this->_lang)
+            );
+            $this->_dispediaModel->addStatement(
+                $currentProposal['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => $currentProposal['label'], 'type' => 'literal', 'lang' => $this->_lang)
+            );
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Proposal label update: ' . $currentProposal['uri'] . ' => rdfs:label => ' . $currentProposal['label'] . ' (old: ' . $currentProposal['oldData']['label'] . ')', OntoWiki_Message::INFO);
+        }
 
-        $this->_dispediaModel->addStatement(
-            $currentProposal['uri'],
-            'http://www.w3.org/2000/01/rdf-schema#label', 
-            array('value' => $currentProposal['label'], 'type' => 'literal', 'lang' => $this->_lang)
-        );
-        if (defined('_OWDEBUG'))
-            $messages[] = new OntoWiki_Message('Proposal created: ' . $currentProposal['uri'], OntoWiki_Message::INFO);
         $messages[] = new OntoWiki_Message('successProposalEdit', OntoWiki_Message::SUCCESS);
         return $messages;
     }

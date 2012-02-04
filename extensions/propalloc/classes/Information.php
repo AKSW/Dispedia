@@ -47,11 +47,12 @@ class Information
             if ("" != $informationResult['informationUri'])
             {
                 $information = array();
-                //TODO: muss schon aus dem store kommen, aber momentan gibt es noch instanzen ohne hash
-                $information['hash'] = substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
                 $information['uri'] = $informationResult['informationUri'];
+                //TODO: muss schon aus dem store kommen, aber momentan gibt es noch instanzen ohne hash
+                $information['hash'] = substr ( md5 ($informationResult['informationUri']), 0, 8 );
                 $information['label'] = $informationResult['informationLabel'];
-                $informations[$informationResult['informationUri']] = $information;
+                $information['status'] = "edit";
+                $informations['information' . $information['hash']] = $information;
             }
         }
         
@@ -71,22 +72,22 @@ class Information
                 };'
             );
             
-            $informations[$information['uri']]['suitableFor'] = array();
-            $informations[$information['uri']]['usefulFor'] = array();
+            $informations['information' . $information['hash']]['suitableFor'] = array();
+            $informations['information' . $information['hash']]['usefulFor'] = array();
             // order the resultset
             foreach ($informationResults as $informationResult)
             {
                 if ("" != $informationResult['informtionContent'])
                 {
-                    $informations[$information['uri']]['content'] = $informationResult['informtionContent'];
+                    $informations['information' . $information['hash']]['content'] = $informationResult['informtionContent'];
                 }
                 if ("" != $informationResult['informtionSuitableFor'])
                 {
-                    $informations[$information['uri']]['suitableFor'][$informationResult['informtionSuitableFor']] = "";
+                    $informations['information' . $information['hash']]['suitableFor'][$informationResult['informtionSuitableFor']] = "";
                 }
                 if ("" != $informationResult['informtionUsefulFor'])
                 {
-                    $informations[$information['uri']]['usefulFor'][$informationResult['informtionUsefulFor']] = "";
+                    $informations['information' . $information['hash']]['usefulFor'][$informationResult['informtionUsefulFor']] = "";
                 }
             }
         }

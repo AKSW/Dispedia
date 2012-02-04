@@ -144,10 +144,12 @@ class PropallocController extends OntoWiki_Controller_Component
         {
             $currentProposal = array();
             $currentProposal['uri'] = $currentProposalUri;
+            $currentProposal['hash'] = substr ( md5 ($currentProposalUri), 0, 8 );
             $currentProposal['label'] = $resource->getLabel($currentProposalUri);
+            $currentProposal['status'] = "edit";
 
             $this->informationAction($currentProposalUri);
-            $currentProposal['informations'] = $this->view->informations;
+            $currentProposal['informations'] = array_keys($this->view->informations);
             $this->view->currentProposal = $currentProposal;
         }
         else
@@ -158,8 +160,17 @@ class PropallocController extends OntoWiki_Controller_Component
         if ( 'save' == $this->getParam ('do') )
         {
             $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
-            $this->showMessage($proposal->saveProposal ($this->getParam ('currentProposal')));
+            $this->showMessage($proposal->saveProposal (
+                $this->getParam ('currentProposal')
+            ));
             $this->_forward('index');
+            //TODO: remove this output
+            echo "<pre>";
+            $temp = $this->getParam ('currentProposal');
+            var_dump($temp);
+            var_dump(json_decode(urldecode($temp['oldData']), true));
+            //var_dump($_REQUEST);
+            echo "</pre>";
         }
     }
     
@@ -182,6 +193,7 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         if (false == $currentProposalUri)
         {
+            $this->view->informationOverClass = $this->getParam('informationOverClass');
             $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
             $this->view->information = $resource->getNewInstance("Information");
         }
