@@ -161,16 +161,16 @@ class PropallocController extends OntoWiki_Controller_Component
         {
             $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
             $this->showMessage($proposal->saveProposal (
-                $this->getParam ('currentProposal')
+                $this->getParam ('currentProposal'),
+                json_decode(urldecode($this->getParam ('currentProposalOldData')), true)
             ));
             $this->_forward('index');
             //TODO: remove this output
-            echo "<pre>";
-            $temp = $this->getParam ('currentProposal');
-            var_dump($temp);
-            var_dump(json_decode(urldecode($temp['oldData']), true));
-            //var_dump($_REQUEST);
-            echo "</pre>";
+            //echo "<pre>";
+            //$temp = $this->getParam ('currentProposal');
+            //var_dump("currentProposal",$temp);
+            //var_dump("OLDDATA",json_decode(urldecode($this->getParam ('currentProposalOldData')), true));
+            //echo "</pre>";
         }
     }
     

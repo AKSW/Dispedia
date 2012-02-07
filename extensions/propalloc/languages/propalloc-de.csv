@@ -12,3 +12,6 @@ remove information;Information entfernen
 successProposalEdit;Vorschlag wurde gespeichert.
 successProposalDelete;Vorschlag gelöscht.
 errorProposalDelete;Vorschlag konnte nicht gelöscht werden.
+successInformationEdit;Information wurde gespeichert.
+successInformationDelete;Information gelöscht.
+errorInformationDelete;Information konnte nicht gelöscht werden.

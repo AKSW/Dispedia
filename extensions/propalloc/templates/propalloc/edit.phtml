@@ -78,7 +78,7 @@
     <!-- ########################################################### -->
     
     <input type="hidden" name="currentProposal[status]" value="<?php echo $this->currentProposal['status']?>"/>
-    <input type="hidden" name="currentProposal[oldData]" value="<?php echo urlencode(json_encode($this->currentProposal)); ?>"/>
+    <input type="hidden" name="currentProposalOldData" value="<?php echo urlencode(json_encode($this->currentProposal)); ?>"/>
     <input type="hidden" name="do" value="save"/>
 
 	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>

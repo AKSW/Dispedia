@@ -12,3 +12,6 @@ remove information;remove Information
 successProposalEdit;Proposal saved.
 successProposalDelete;Proposal deleted.
 errorProposalDelete:Proposal not deleted.
+successInformationEdit;Information saved.
+successInformationDelete;Information deleted.
+errorInformationDelete;Information not deleted.

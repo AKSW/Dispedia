@@ -1,5 +1,6 @@
 <?php
 require_once 'Resource.php';
+require_once 'Information.php';
 
 /**
  * @category   OntoWiki
@@ -13,6 +14,7 @@ class Proposal
 {
     private $_controller;
     private $_resource;
+    private $_information;
     private $_dispediaModel;
     private $_patientsModel;
     private $_lang;
@@ -21,6 +23,7 @@ class Proposal
     {
         $this->_controller = $controller;
         $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
+        $this->_information = new Information ($lang, $patientsModel, $dispediaModel);
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
@@ -102,11 +105,8 @@ class Proposal
     /**
     * 
     */
-    public function saveProposal($currentProposal)
-    {
-        //get old Data
-        $currentProposal['oldData'] = json_decode(urldecode($currentProposal['oldData']), true);
-        
+    public function saveProposal($currentProposal, $currentProposalOldData)
+    {        
         // array for output messages
         $messages = array();
         
@@ -123,7 +123,7 @@ class Proposal
         }
         
         // make or update 'label' relation
-        if ($currentProposal['label'] != $currentProposal['oldData']['label'])
+        if ($currentProposal['label'] != $currentProposalOldData['label'])
         {
             $this->_dispediaModel->deleteMatchingStatements
             (
@@ -137,9 +137,49 @@ class Proposal
                 array('value' => $currentProposal['label'], 'type' => 'literal', 'lang' => $this->_lang)
             );
             if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Proposal label update: ' . $currentProposal['uri'] . ' => rdfs:label => ' . $currentProposal['label'] . ' (old: ' . $currentProposal['oldData']['label'] . ')', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message('Proposal label update: ' . $currentProposal['uri'] . ' => rdfs:label => ' . $currentProposal['label'] . ' (old: ' . $currentProposalOldData['label'] . ')', OntoWiki_Message::INFO);
         }
-
+        
+        if (isset($currentProposal['informations']))
+        {
+            foreach ($currentProposal['informations'] as $informationName)
+            {
+                $information = $this->_controller->getParam($informationName);
+            
+                $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
+                if ("new" == $information['status'])
+                {
+                    $this->_dispediaModel->addStatement(
+                        $currentProposal['uri'],
+                        'http://www.dispedia.de/o/linkedToProposalInfo', 
+                        array('value' => $information['uri'], 'type' => 'uri')
+                    );
+                    if (defined('_OWDEBUG'))
+                        $messages[] = new OntoWiki_Message('Proposal to Information: ' . $currentProposal['uri'] . ' => dispediao:linkedToProposalInfo => ' . $information['uri'], OntoWiki_Message::INFO);
+                }
+                $messages = array_merge($messages, $this->_information->saveInformation($information, $informationOldData));
+            }
+            if (isset($currentProposalOldData['informations']))
+            {
+                foreach (array_diff($currentProposalOldData['informations'], $currentProposal['informations']) as $information)
+                {
+                    $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
+                    $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
+                }
+            }
+        }
+        else
+        {
+            if (isset($currentProposalOldData['informations']))
+            {
+                foreach ($currentProposalOldData['informations'] as $information)
+                {
+                    $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
+                    $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
+                }
+            }
+        }
+        
         $messages[] = new OntoWiki_Message('successProposalEdit', OntoWiki_Message::SUCCESS);
         return $messages;
     }

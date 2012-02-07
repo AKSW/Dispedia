@@ -32,6 +32,7 @@ class Resource
         $result['hash'] = substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
         $result['uri'] = "http://als.dispedia.de/i/" . $result['hash'] . "/" . $class;
         $result['status'] = "new";
+        $result['label'] = "";
         return $result;
     }
     

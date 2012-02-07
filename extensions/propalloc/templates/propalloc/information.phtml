@@ -12,19 +12,19 @@
 ?>
 <?php $information = $this->information ?>
 <?php $informationName = "information" . $information['hash']; ?>
+<tr><td><input type="hidden" name="<?php echo $informationName; ?>OldData" value="<?php echo urlencode(json_encode($information)); ?>"/></td></tr>
 <tr class="<?php echo $informationName; ?>">
     <td valign="top">
         <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
     </td>
     <td>
         <input type="hidden" name="<?php echo $informationName; ?>[status]" value="<?php echo $this->information['status']?>"/>
-        <input type="hidden" name="<?php echo $informationName; ?>[oldData]" value="<?php echo urlencode(json_encode($information)); ?>"/>
         <?php if(isset($this->informationOverClass)) { ?>
             <input type="hidden" name="<?php echo $this->informationOverClass ?>[]" value="<?php echo $informationName; ?>" />
         <?php } ?>
         <input type="hidden" name="<?php echo $informationName; ?>[uri]" value="<?php echo $information['uri']; ?>" />
         <input type="hidden" name="<?php echo $informationName; ?>[hash]" value="<?php echo $information['hash']; ?>" />
-        <input type="text" name="<?php echo $informationName; ?>[InformationLabel]" style="width:400px;" value="<?php echo (isset($information['label']) ? $information['label'] : ""); ?>" />
+        <input type="text" name="<?php echo $informationName; ?>[label]" style="width:400px;" value="<?php echo (isset($information['label']) ? $information['label'] : ""); ?>" />
     </td>
     <td>
         <a id="removeInformation" class="button" onclick="removeInformation('<?php echo $informationName; ?>');">
