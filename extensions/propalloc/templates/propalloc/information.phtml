@@ -17,7 +17,7 @@
         <strong><?php echo $this->_translate->_('ProposalText'); ?></strong>
     </td>
     <td>
-        <input type="hidden" name="<?php echo $informationName; ?>[status]" value="<?php echo $this->$information['status']?>"/>
+        <input type="hidden" name="<?php echo $informationName; ?>[status]" value="<?php echo $this->information['status']?>"/>
         <input type="hidden" name="<?php echo $informationName; ?>[oldData]" value="<?php echo urlencode(json_encode($information)); ?>"/>
         <?php if(isset($this->informationOverClass)) { ?>
             <input type="hidden" name="<?php echo $this->informationOverClass ?>[]" value="<?php echo $informationName; ?>" />
