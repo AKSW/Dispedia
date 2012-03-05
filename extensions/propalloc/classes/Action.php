@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Resource.php';
+require_once 'Information.php';
 
 /**
  * @category   OntoWiki
@@ -12,18 +13,40 @@ require_once 'Resource.php';
  */ 
 class Action
 {
+    private $_lang;
+    private $_controller;
+    private $_resource;
+    private $_information;
     private $_dispediaModel;
     private $_patientsModel;
-    private $_resource;
-    private $_lang;
     
-    public function __construct ($lang, $patientsModel, $dispediaModel)
+    public function __construct ($controller, $lang, $patientsModel, $dispediaModel)
     {
         $this->_lang = $lang;
+        $this->_controller = $controller;
         $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
+        $this->_information = new Information ($lang, $patientsModel, $dispediaModel);
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
+    }
+    
+    /*
+     * function getInformations
+     * @param $actionUri
+     */
+    
+    function getInformations($actionUri) {
+        // get informationUri
+        $informationResults = $this->_store->sparqlQuery (
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
+            SELECT ?uri
+            WHERE {
+                <' . $actionUri . '> dispediao:containsInformation ?uri.
+            };'
+        );
+
+        return $informationResults;
     }
     
     /**
@@ -94,6 +117,70 @@ class Action
                 $messages[] = new OntoWiki_Message('Action label update: ' . $currentAction['uri'] . ' => rdfs:label => ' . $currentAction['label'] . ' (old: ' . $currentActionOldData['label'] . ')', OntoWiki_Message::INFO);
         }
 
+        if (isset($currentAction['informations']))
+        {
+            foreach ($currentAction['informations'] as $informationName)
+            {
+                $information = $this->_controller->getParam($informationName);
+            
+                $informationOldData = json_decode(urldecode($this->_controller->getParam($informationName . 'OldData')), true);
+                if ("new" == $information['status'])
+                {
+                    $this->_dispediaModel->addStatement(
+                        $currentAction['uri'],
+                        'http://www.dispedia.de/o/containsInformation', 
+                        array('value' => $information['uri'], 'type' => 'uri')
+                    );
+                    if (defined('_OWDEBUG'))
+                        $messages[] = new OntoWiki_Message('Action to Information created: ' . $currentAction['uri'] . ' => dispediao:containsInformation => ' . $information['uri'], OntoWiki_Message::INFO);
+                }
+                $messages = array_merge($messages, $this->_information->saveInformation($information, $informationOldData));
+            }
+
+            if (isset($currentActionOldData['informations']))
+            {
+                foreach (array_diff($currentActionOldData['informations'], $currentAction['informations']) as $information)
+                {
+                    $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
+                    $deletedStatements = $this->_resource->removeStmt
+                    (
+                        $currentAction['uri'],
+                        'http://www.dispedia.de/o/containsInformation', 
+                        $informationOldData['uri']
+                    );
+                    
+                    if (defined('_OWDEBUG'))
+                    {
+                        $messages[] = new OntoWiki_Message('Action to Information deleted: ' . $currentAction['uri'] . ' => dispediao:containsInformation => ' . $informationOldData['uri'], OntoWiki_Message::INFO);
+                        $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+                    }
+                    $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
+                }
+            }
+        }
+        else
+        {
+            if (isset($currentActionOldData['informations']))
+            {
+                foreach ($currentActionOldData['informations'] as $information)
+                {
+                    $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
+                    $deletedStatements = $this->_resource->removeStmt
+                    (
+                        $currentAction['uri'],
+                        'http://www.dispedia.de/o/containsInformation', 
+                        $informationOldData['uri']
+                    );
+                    if (defined('_OWDEBUG'))
+                    {
+                        $messages[] = new OntoWiki_Message('Action to Information deleted: ' . $currentAction['uri'] . ' => dispediao:containsInformation => ' . $informationOldData['uri'], OntoWiki_Message::INFO);
+                        $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+                    }
+                    $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
+                }
+            }
+        }
+        
         $messages[] = new OntoWiki_Message('successActionEdit', OntoWiki_Message::SUCCESS);
         return $messages;
     }

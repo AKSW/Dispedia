@@ -134,6 +134,7 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/proposal.css');
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/action.css');
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/information.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/edit.js');
         
         $this->view->url = $this->_url;
@@ -142,7 +143,6 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
         $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);   
-        $actionClass = new Action ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
         
         if (isset($currentProposalUri) && "" != $currentProposalUri)
         {
@@ -154,11 +154,11 @@ class PropallocController extends OntoWiki_Controller_Component
             $actions = $proposal->getActions($currentProposalUri);
             if (0 < count($actions))
             {
+                $currentProposal['actions'] = array();
                 foreach ($actions as $action)
                 {
-                    $this->actionAction($action['uri']);
-                }
-                $currentProposal['actions'] = array_keys($this->view->actions);
+                    $currentProposal['actions'][] = $this->actionAction($action['uri']);
+                };
             }
             $this->view->currentProposal = $currentProposal;
         }
@@ -198,16 +198,27 @@ class PropallocController extends OntoWiki_Controller_Component
         {
             $this->view->actionOverClass = $this->getParam('entityOverClass');
             $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
-            $this->view->action = $resource->getNewInstance("action");
+            $this->view->action = $resource->getNewInstance("Action");
         }
         else
         {
-            $actionHelper = new Action ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $actionHelper = new Action ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
             if (!isset($this->view->actions))
                 $this->view->actions = array();
+                
             $action = $actionHelper->getAction($actionUri);
+            
+            $informations = $actionHelper->getInformations($actionUri);
+            if (0 < count($informations))
+            {
+                $action['informations'] = array();
+                foreach ($informations as $information)
+                {
+                    $action['informations'][] = $this->informationAction($information['uri']);
+                }
+            }
             $this->view->actions['action' . $action['hash']] = $action;
-        return $action['hash'];
+            return 'action' . $action['hash'];
         }
     }
     
@@ -215,23 +226,28 @@ class PropallocController extends OntoWiki_Controller_Component
     /**
      * get the Information Layout for dynamicly add new or existing information to a edit proposal Layout
      */
-    public function informationAction ($currentProposalUri = false)
+    public function informationAction ($informationUri = false)
     {
-        if (false == $currentProposalUri)
-        {
-            $this->view->informationOverClass = $this->getParam('informationOverClass');
-            $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
-            $this->view->information = $resource->getNewInstance("Information");
-        }
-        else
-        {
-            $information = new Information ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
-            $this->view->informations = $information->getInformations($currentProposalUri);
-        }
-            
         $patient = new Patient ($this->_lang);
         $this->view->patientTypes = $patient->getAllPatientTypes();
         $this->view->therapistTypes = $patient->getAllTherapistTypes();
+        
+        if (false == $informationUri)
+        {
+            $this->view->informationOverClass = $this->getParam('entityOverClass');
+            $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $this->view->information = $resource->getNewInstance("Information");
+            $this->view->information['content'] = "";
+        }
+        else
+        {
+            $informationHelper = new Information ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            if (!isset($this->view->informations))
+                $this->view->informations = array();
+            $information = $informationHelper->getInformation($informationUri);
+            $this->view->informations['information' . $information['hash']] = $information;
+            return 'information' . $information['hash'];
+        }
     }
     
     /**

@@ -1,6 +1,6 @@
 <?php
 require_once 'Resource.php';
-require_once 'Information.php';
+require_once 'Action.php';
 
 /**
  * @category   OntoWiki
@@ -15,7 +15,6 @@ class Proposal
     private $_controller;
     private $_resource;
     private $_action;
-    private $_information;
     private $_dispediaModel;
     private $_patientsModel;
     private $_lang;
@@ -24,8 +23,7 @@ class Proposal
     {
         $this->_controller = $controller;
         $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
-        $this->_information = new Information ($lang, $patientsModel, $dispediaModel);
-        $this->_action = new Action ($lang, $patientsModel, $dispediaModel);
+        $this->_action = new Action ($controller, $lang, $patientsModel, $dispediaModel);
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
@@ -110,15 +108,14 @@ class Proposal
      */
     
     function getActions($proposalUri) {
-        
-        // get inforationUri
+        // get actionUri
         $actionResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             SELECT ?uri
             WHERE {
                 <' . $proposalUri . '> dispediao:containsAction ?uri.
             };'
-        );//TODO: remove this output
+        );
 
         return $actionResults;
     }

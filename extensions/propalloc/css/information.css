@@ -11,9 +11,6 @@
     font-size: 18px;
     font-weight: bold;
 }
-table.action tr.tablehead {
+table.information tr.tablehead {
     border-bottom: solid 1px black;
-}
-.actionInformations {
-    margin-left: 20px;
 }

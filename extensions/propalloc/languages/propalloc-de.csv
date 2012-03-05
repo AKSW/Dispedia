@@ -11,6 +11,7 @@ ProposalText;Vorschlagsbeschreibung
 action;Aktion
 add action;Aktion hinzufügen
 remove action;Aktion entfernen
+information;Information
 add information;Information hinzufügen
 remove information;Information entfernen
 successProposalEdit;Vorschlag wurde gespeichert.
@@ -22,3 +23,4 @@ errorActionDelete;Aktion konnte nicht gelöscht werden.
 successInformationEdit;Information wurde gespeichert.
 successInformationDelete;Information gelöscht.
 errorInformationDelete;Information konnte nicht gelöscht werden.
+content;Inhalt

@@ -17,7 +17,6 @@
     <tr class="tablehead">
         <th>
             <span class="headline"><?php echo $this->_translate->_('action'); ?></span>
-            <input type="hidden" name="<?php echo $actionName; ?>OldData" value="<?php echo urlencode(json_encode($action)); ?>"/>
         </th>
     </tr>
     <tr>
@@ -37,6 +36,22 @@
             <a id="removeaction" class="button" onclick="removeEntity('<?php echo $actionName; ?>');">
                 <?php echo $this->_translate->_('remove action'); ?>
             </a>
+            <a id="addInformation" class="button" onclick="addEntity('Information', '<?php echo $actionName; ?>[informations]', '<?php echo $actionName; ?>Informations');">
+                <?php echo $this->_translate->_('add information'); ?>
+            </a>
         </td>
     </tr>
 </table>
+<div class="<?php echo $actionName; ?> actionInformations" id="<?php echo $actionName; ?>Informations">
+    <?php
+        if (isset($this->informations))
+        {
+            $this->informationOverClass = $actionName . "[informations]";
+            //Loop for action informations
+            foreach ($this->informations as $this->information) {
+                if (false !== array_search("information" . $this->information['hash'], $this->action['informations']))
+                    echo $this->render('propalloc/information.phtml');
+            }
+        }
+    ?>
+</div>

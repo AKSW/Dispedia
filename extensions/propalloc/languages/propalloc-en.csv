@@ -11,6 +11,7 @@ ProposalText;Proposal Info
 action;Action
 add action;add Action
 remove action;remove Action
+information;Information
 add information;add Information
 remove information;remove Information
 successProposalEdit;Proposal saved.
@@ -22,3 +23,4 @@ errorActionDelete;Action not deleted.
 successInformationEdit;Information saved.
 successInformationDelete;Information deleted.
 errorInformationDelete;Information not deleted.
+content;Content

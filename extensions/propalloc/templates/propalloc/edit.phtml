@@ -36,7 +36,7 @@
                     <input type="text" name="currentProposal[label]" style="width:400px;" value="<?php echo (isset($this->currentProposal['label']) ? $this->currentProposal['label'] : ""); ?>" />
                 </td>
                 <td>
-                    <a id="addActions" class="button" onclick="addEntity('Action', 'currentProposal[actions]', 'proposalActions');"/>
+                    <a id="addActions" class="button" onclick="addEntity('Action', 'currentProposal[actions]', 'proposalActions');">
                         <?php echo $this->_translate->_('add action'); ?>
                     </a>
                 </td>
@@ -49,7 +49,8 @@
                     $this->actionOverClass = "currentProposal[actions]";
                     //Loop for proposal actions
                     foreach ($this->actions as $this->action) {
-                        echo $this->render('propalloc/action.phtml');
+                        if (false !== array_search('action' . $this->action['hash'], $this->currentProposal['actions']))
+                            echo $this->render('propalloc/action.phtml');
                     }
                 }
             ?>
