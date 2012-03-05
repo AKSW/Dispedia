@@ -5,13 +5,20 @@ indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordne
 Proposal allocation administration;Verwaltung von Vorschlagszuweisungen
 Proposal administration;Vorschlagsverwaltung
 Save;Speichern
+label;Name
 ProposalName;Vorschlagsname
 ProposalText;Vorschlagsbeschreibung
+action;Aktion
+add action;Aktion hinzufügen
+remove action;Aktion entfernen
 add information;Information hinzufügen
 remove information;Information entfernen
 successProposalEdit;Vorschlag wurde gespeichert.
 successProposalDelete;Vorschlag gelöscht.
 errorProposalDelete;Vorschlag konnte nicht gelöscht werden.
+successActionEdit;Aktion wurde gespeichert.
+successActionDelete;Aktion gelöscht.
+errorActionDelete;Aktion konnte nicht gelöscht werden.
 successInformationEdit;Information wurde gespeichert.
 successInformationDelete;Information gelöscht.
 errorInformationDelete;Information konnte nicht gelöscht werden.

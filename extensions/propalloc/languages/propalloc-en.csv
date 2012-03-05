@@ -5,13 +5,20 @@ indexDescriptionText;At this page you can assign proposals.
 Proposal allocation administration;Proposal allocation administration
 Proposal administration;Proposal administration
 Save;Save
+label;Name
 ProposalName;Proposal Name
 ProposalText;Proposal Info
+action;Action
+add action;add Action
+remove action;remove Action
 add information;add Information
 remove information;remove Information
 successProposalEdit;Proposal saved.
 successProposalDelete;Proposal deleted.
 errorProposalDelete:Proposal not deleted.
+successActionEdit;Action saved.
+successActionDelete;Action deleted.
+errorActionDelete;Action not deleted.
 successInformationEdit;Information saved.
 successInformationDelete;Information deleted.
 errorInformationDelete;Information not deleted.

@@ -12,15 +12,15 @@
 /**
 * 
 */
-function addInformation (informationOverClass)
+function addEntity (entity, entityOverClass, context)
 {
     $.ajax({
         async:true,
         dataType: "html",
         type: "POST",
-        data: {informationOverClass : informationOverClass},
-        context: $("#editProposalTable"),
-        url: url + "information",
+        data: {entityOverClass : entityOverClass},
+        context: $("#" + context),
+        url: url + entity,
             // complete, no errors
         success: function ( res ) 
         {
@@ -39,8 +39,8 @@ function addInformation (informationOverClass)
 /**
 * 
 */
-function removeInformation (informationHash)
+function removeEntity (entityHash)
 {
-    console.log ("remove " + informationHash);
-    $("." + informationHash).remove();
+    console.log ("remove " + entityHash);
+    $("." + entityHash).remove();
 }

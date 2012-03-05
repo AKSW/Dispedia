@@ -26,18 +26,17 @@ class Information
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
 
-    
     /**
-     * Fucntion get get all Information of a Proposal.
+     * Function get get all Information of a Proposal.
      * Info, Actions aso.
      */
     public function getInformations($proposalUri)
     {
-       // get proposalLabel, inforationUri and informationLabel
+        // get inforationUri and informationLabel
         $informationResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?proposalLabel ?informationUri ?informationLabel
+            SELECT ?informationUri ?informationLabel
             WHERE {
                 <' . $proposalUri . '> dispediao:linkedToProposalInfo ?informationUri.
                 ?informationUri rdfs:label ?informationLabel.
@@ -60,7 +59,7 @@ class Information
             }
         }
         
-        // get informtionContent, informtionSuitableFor, informtionUsefulFor
+        // get informationContent, informationSuitableFor, informationUsefulFor
         foreach ($informations as $information)
         {
             $informationResults = $this->_store->sparqlQuery (

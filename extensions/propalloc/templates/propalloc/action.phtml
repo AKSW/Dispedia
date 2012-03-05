@@ -1,0 +1,42 @@
+<?php 
+/**
+ * Template for action action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<?php $action = $this->action ?>
+<?php $actionName = "action" . $action['hash']; ?>
+<input type="hidden" name="<?php echo $actionName; ?>OldData" value="<?php echo urlencode(json_encode($action)); ?>"/>
+<table class="<?php echo $actionName; ?> action">
+    <tr class="tablehead">
+        <th>
+            <span class="headline"><?php echo $this->_translate->_('action'); ?></span>
+            <input type="hidden" name="<?php echo $actionName; ?>OldData" value="<?php echo urlencode(json_encode($action)); ?>"/>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <strong><?php echo $this->_translate->_('label'); ?></strong>
+        </td>
+        <td>
+            <input type="hidden" name="<?php echo $actionName; ?>[status]" value="<?php echo $this->action['status']?>"/>
+            <?php if(isset($this->actionOverClass)) { ?>
+                <input type="hidden" name="<?php echo $this->actionOverClass ?>[]" value="<?php echo $actionName; ?>" />
+            <?php } ?>
+            <input type="hidden" name="<?php echo $actionName; ?>[uri]" value="<?php echo $action['uri']; ?>" />
+            <input type="hidden" name="<?php echo $actionName; ?>[hash]" value="<?php echo $action['hash']; ?>" />
+            <input type="text" name="<?php echo $actionName; ?>[label]" style="width:400px;" value="<?php echo (isset($action['label']) ? $action['label'] : ""); ?>" />
+        </td>
+        <td>
+            <a id="removeaction" class="button" onclick="removeEntity('<?php echo $actionName; ?>');">
+                <?php echo $this->_translate->_('remove action'); ?>
+            </a>
+        </td>
+    </tr>
+</table>

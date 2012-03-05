@@ -16,71 +16,51 @@
     var url = '<?php echo $this->url; ?>';
 </script>
 
-<h1><?php echo $this->_translate->_('Create Proposal'); ?></h1>
-
-<div><?php echo $this->_translate->_('indexDescriptionText'); ?></div>
-
-<br/>
+<div class="proposalFirstline">
+    <span><?php echo $this->_translate->_('Create Proposal'); ?></span>
+</div>
+<div class="proposalSecondline">
+<span><?php echo $this->_translate->_('indexDescriptionText'); ?></span>
+</div>
 <form method="post" action="" id="propalloc">
-	
-    <table id="editProposalTable">
-        <tr>
-            <td style="width:15%">
-                <strong><?php echo $this->_translate->_('ProposalName'); ?></strong>
-            </td>
-            <td>
-                <input type="hidden" name="currentProposal[uri]" value="<?php echo $this->currentProposal['uri']?>" />
-                <input type="hidden" name="currentProposal[hash]" value="<?php echo $this->currentProposal['hash']; ?>" />
-                <input type="text" name="currentProposal[label]" style="width:400px;" value="<?php echo (isset($this->currentProposal['label']) ? $this->currentProposal['label'] : ""); ?>" />
-            </td>
-            <td>
-                <a id="addInformation" class="button" onclick="addInformation('currentProposal[informations]');"/>
-                    <?php echo $this->_translate->_('add information'); ?>
-                </a>
-            </td>
-        </tr>
-        
-        <?php
-            if (isset($this->informations))
-            {
-                $this->informationOverClass = "currentProposal[informations]";
-                //Loop for proposal infomations
-                foreach ($this->informations as $informationName => $this->information) {
-                    echo $this->render('propalloc/information.phtml');
+    
+    <div id="editProposal">
+        <table>
+            <tr>
+                <td>
+                    <strong><?php echo $this->_translate->_('label'); ?></strong>
+                </td>
+                <td>
+                    <input type="hidden" name="currentProposal[uri]" value="<?php echo $this->currentProposal['uri']?>" />
+                    <input type="hidden" name="currentProposal[hash]" value="<?php echo $this->currentProposal['hash']; ?>" />
+                    <input type="text" name="currentProposal[label]" style="width:400px;" value="<?php echo (isset($this->currentProposal['label']) ? $this->currentProposal['label'] : ""); ?>" />
+                </td>
+                <td>
+                    <a id="addActions" class="button" onclick="addEntity('Action', 'currentProposal[actions]', 'proposalActions');"/>
+                        <?php echo $this->_translate->_('add action'); ?>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div id="proposalActions">
+            <?php
+                if (isset($this->actions))
+                {
+                    $this->actionOverClass = "currentProposal[actions]";
+                    //Loop for proposal actions
+                    foreach ($this->actions as $this->action) {
+                        echo $this->render('propalloc/action.phtml');
+                    }
                 }
-            }
-        ?>
-    </table>
-    <!--<hr>
-    <br/>-->
-    
-    <!-- ########################################################### -->
-    
-    <!--<table>
-        <tr>
-            <td style="width:15%">
-                <strong><?php //echo $this->_translate->_('ActionTitle'); ?></strong>
-            </td>
-            <td>
-                <input type="text" name="actionTitle" style="width:250px;"/>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top">
-                <strong><?php //echo $this->_translate->_('ActionText'); ?></strong>
-            </td>
-            <td>
-                <textarea style="min-width:250px; width:250px; min-height:70px; height:70;" name="actionText"></textarea>
-            </td>
-        </tr>
-    </table>-->
-    
-    <!-- ########################################################### -->
+            ?>
+        </div>
+    </div>
     
     <input type="hidden" name="currentProposal[status]" value="<?php echo $this->currentProposal['status']?>"/>
     <input type="hidden" name="currentProposalOldData" value="<?php echo urlencode(json_encode($this->currentProposal)); ?>"/>
     <input type="hidden" name="do" value="save"/>
 
-	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
-		<?php echo $this->_translate->_('Save'); ?></a>
+    <a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
+        <?php echo $this->_translate->_('Save'); ?>
+    </a>
 </form>

@@ -14,6 +14,7 @@ class Proposal
 {
     private $_controller;
     private $_resource;
+    private $_action;
     private $_information;
     private $_dispediaModel;
     private $_patientsModel;
@@ -24,6 +25,7 @@ class Proposal
         $this->_controller = $controller;
         $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
         $this->_information = new Information ($lang, $patientsModel, $dispediaModel);
+        $this->_action = new Action ($lang, $patientsModel, $dispediaModel);
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
@@ -102,6 +104,25 @@ class Proposal
             return null;
     }
     
+    /*
+     * function getActions
+     * @param $proposalUri
+     */
+    
+    function getActions($proposalUri) {
+        
+        // get inforationUri
+        $actionResults = $this->_store->sparqlQuery (
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
+            SELECT ?uri
+            WHERE {
+                <' . $proposalUri . '> dispediao:containsAction ?uri.
+            };'
+        );//TODO: remove this output
+
+        return $actionResults;
+    }
+    
     /**
     * 
     */
@@ -140,42 +161,65 @@ class Proposal
                 $messages[] = new OntoWiki_Message('Proposal label update: ' . $currentProposal['uri'] . ' => rdfs:label => ' . $currentProposal['label'] . ' (old: ' . $currentProposalOldData['label'] . ')', OntoWiki_Message::INFO);
         }
         
-        if (isset($currentProposal['informations']))
+        if (isset($currentProposal['actions']))
         {
-            foreach ($currentProposal['informations'] as $informationName)
+            foreach ($currentProposal['actions'] as $actionName)
             {
-                $information = $this->_controller->getParam($informationName);
+                $action = $this->_controller->getParam($actionName);
             
-                $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
-                if ("new" == $information['status'])
+                $actionOldData = json_decode(urldecode($this->_controller->getParam($actionName . 'OldData')), true);
+                if ("new" == $action['status'])
                 {
                     $this->_dispediaModel->addStatement(
                         $currentProposal['uri'],
-                        'http://www.dispedia.de/o/linkedToProposalInfo', 
-                        array('value' => $information['uri'], 'type' => 'uri')
+                        'http://www.dispedia.de/o/containsAction', 
+                        array('value' => $action['uri'], 'type' => 'uri')
                     );
                     if (defined('_OWDEBUG'))
-                        $messages[] = new OntoWiki_Message('Proposal to Information: ' . $currentProposal['uri'] . ' => dispediao:linkedToProposalInfo => ' . $information['uri'], OntoWiki_Message::INFO);
+                        $messages[] = new OntoWiki_Message('Proposal to Action created: ' . $currentProposal['uri'] . ' => dispediao:containsAction => ' . $action['uri'], OntoWiki_Message::INFO);
                 }
-                $messages = array_merge($messages, $this->_information->saveInformation($information, $informationOldData));
+                $messages = array_merge($messages, $this->_action->saveAction($action, $actionOldData));
             }
-            if (isset($currentProposalOldData['informations']))
+
+            if (isset($currentProposalOldData['actions']))
             {
-                foreach (array_diff($currentProposalOldData['informations'], $currentProposal['informations']) as $information)
+                foreach (array_diff($currentProposalOldData['actions'], $currentProposal['actions']) as $action)
                 {
-                    $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
-                    $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
+                    $actionOldData = json_decode(urldecode($this->_controller->getParam($action . 'OldData')), true);
+                    $deletedStatements = $this->_resource->removeStmt
+                    (
+                        $currentProposal['uri'],
+                        'http://www.dispedia.de/o/containsAction', 
+                        $actionOldData['uri']
+                    );
+                    if (defined('_OWDEBUG'))
+                    {
+                        $messages[] = new OntoWiki_Message('Proposal to Action deleted: ' . $currentProposal['uri'] . ' => dispediao:containsAction => ' . $actionOldData['uri'], OntoWiki_Message::INFO);
+                        $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+                    }
+                    $messages = array_merge($messages, $this->_action->removeAction($actionOldData));
                 }
             }
         }
         else
         {
-            if (isset($currentProposalOldData['informations']))
+            if (isset($currentProposalOldData['actions']))
             {
-                foreach ($currentProposalOldData['informations'] as $information)
+                foreach ($currentProposalOldData['actions'] as $action)
                 {
-                    $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
-                    $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
+                    $actionOldData = json_decode(urldecode($this->_controller->getParam($action . 'OldData')), true);
+                    $deletedStatements = $this->_resource->removeStmt
+                    (
+                        $currentProposal['uri'],
+                        'http://www.dispedia.de/o/containsAction', 
+                        $actionOldData['uri']
+                    );
+                    if (defined('_OWDEBUG'))
+                    {
+                        $messages[] = new OntoWiki_Message('Proposal to Action deleted: ' . $currentProposal['uri'] . ' => dispediao:containsAction => ' . $actionOldData['uri'], OntoWiki_Message::INFO);
+                        $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+                    }
+                    $messages = array_merge($messages, $this->_action->removeAction($actionOldData));
                 }
             }
         }

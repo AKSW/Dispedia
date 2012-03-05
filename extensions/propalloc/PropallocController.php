@@ -132,6 +132,8 @@ class PropallocController extends OntoWiki_Controller_Component
      */
     public function editAction ()
     {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/proposal.css');
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/action.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/edit.js');
         
         $this->view->url = $this->_url;
@@ -139,6 +141,8 @@ class PropallocController extends OntoWiki_Controller_Component
         $currentProposalUri = urldecode($this->getParam ('proposalUri'));
         
         $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+        $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);   
+        $actionClass = new Action ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
         
         if (isset($currentProposalUri) && "" != $currentProposalUri)
         {
@@ -147,9 +151,15 @@ class PropallocController extends OntoWiki_Controller_Component
             $currentProposal['hash'] = substr ( md5 ($currentProposalUri), 0, 8 );
             $currentProposal['label'] = $resource->getLabel($currentProposalUri);
             $currentProposal['status'] = "edit";
-
-            $this->informationAction($currentProposalUri);
-            $currentProposal['informations'] = array_keys($this->view->informations);
+            $actions = $proposal->getActions($currentProposalUri);
+            if (0 < count($actions))
+            {
+                foreach ($actions as $action)
+                {
+                    $this->actionAction($action['uri']);
+                }
+                $currentProposal['actions'] = array_keys($this->view->actions);
+            }
             $this->view->currentProposal = $currentProposal;
         }
         else
@@ -159,18 +169,11 @@ class PropallocController extends OntoWiki_Controller_Component
         
         if ( 'save' == $this->getParam ('do') )
         {
-            $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
             $this->showMessage($proposal->saveProposal (
                 $this->getParam ('currentProposal'),
                 json_decode(urldecode($this->getParam ('currentProposalOldData')), true)
             ));
             $this->_forward('index');
-            //TODO: remove this output
-            //echo "<pre>";
-            //$temp = $this->getParam ('currentProposal');
-            //var_dump("currentProposal",$temp);
-            //var_dump("OLDDATA",json_decode(urldecode($this->getParam ('currentProposalOldData')), true));
-            //echo "</pre>";
         }
     }
     
@@ -183,6 +186,29 @@ class PropallocController extends OntoWiki_Controller_Component
         $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
         $this->showMessage($proposal->removeProposal($this->getParam('currentProposal')));
         $this->_forward('index');
+    }
+    
+    
+    /**
+     * get the Action Layout for dynamicly add new or existing action to a edit proposal Layout
+     */
+    public function actionAction ($actionUri = false)
+    {
+        if (false == $actionUri)
+        {
+            $this->view->actionOverClass = $this->getParam('entityOverClass');
+            $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $this->view->action = $resource->getNewInstance("action");
+        }
+        else
+        {
+            $actionHelper = new Action ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            if (!isset($this->view->actions))
+                $this->view->actions = array();
+            $action = $actionHelper->getAction($actionUri);
+            $this->view->actions['action' . $action['hash']] = $action;
+        return $action['hash'];
+        }
     }
     
     
