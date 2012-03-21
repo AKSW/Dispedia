@@ -70,6 +70,13 @@ class MainMenuModule extends OntoWiki_Module
         $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
         $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
         
+        $this->view->patients = $this->getAllPatients();
+        
+        if (isset ($_SESSION['selectedPatientUri']))
+            $this->view->currentPatientUri = $_SESSION['selectedPatientUri'];
+        else
+            $this->view->currentPatientUri = false;
+        
         if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
             $data ['loggedIn'] = false;
         } else {
@@ -78,6 +85,24 @@ class MainMenuModule extends OntoWiki_Module
         
         return $this->render('mainmenu', $data);
     }
+    
+    /**
+     * 
+     */
+    private function getAllPatients ()
+    {
+        $patients = $this->_store->sparqlQuery (
+            'SELECT ?uri ?firstName ?lastName
+              WHERE {
+                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Patient>.
+                 ?uri <http://www.dispedia.de/o/firstName> ?firstName.
+                 ?uri <http://www.dispedia.de/o/lastName> ?lastName.
+             };'
+        );
+
+        return $patients;
+    }
+    
     
     public function allowCaching()
     {

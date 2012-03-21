@@ -58,6 +58,15 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->view->imagesUrl = $this->_config->urlBase . 'extensions/propalloc/resources/images/';
     }
     
+    /**
+     * Action change patient in session
+     */
+     public function changepatientAction()
+     {
+        $currentPatientUri = urldecode($this->getParam ('curentPatientUri'));
+        $_SESSION['selectedPatientUri'] = $currentPatientUri;
+     }
+    
     
     /**
      * Action to edit the Proposal Allocations

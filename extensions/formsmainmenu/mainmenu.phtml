@@ -10,6 +10,45 @@
 <!-- User is logged in -->
 <?php } else { ?>
 
+<!-- patient select box -->
+<div id="divSelectPatient">
+    <form method="post" action="#">
+        <select name="selectPatient" id="selectPatient">
+            <option value="">No Patient selected</option>
+            <?php foreach ($this->patients as $patient) { ?>
+                <option value="<?php echo urldecode($patient['uri']); ?>"<?php echo ($this->currentPatientUri == $patient['uri'] ? 'selected="selected"' : ""); ?>><?php echo $patient['firstName']; echo " " . $patient['lastName']; ?></option>
+            <?php }; ?>
+        </select>
+    </form>
+</div>
+
+<script>
+    $("#selectPatient").trigger('change');
+    $("#selectPatient").change(function () {
+        var uri = "";
+        uri =  $("#selectPatient option:selected").val();
+        $.ajax({
+            async:true,
+            dataType: "html",
+            type: "POST",
+            data: {curentPatientUri : uri},
+            url: "http://localhost/ow_als/propalloc/changePatient",
+            // complete, no errors
+            success: function ( res ) 
+            {
+                location.reload();
+            },
+            
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                console.log (jqXHR);
+                console.log (textStatus);
+                console.log (errorThrown);
+            }
+        });
+        })
+</script>
+
 <div>
     <img src="<?php echo $this->imagesUrl; ?>dispedia_logo.png" border="0" align="absmiddle"/>
     &nbsp;
