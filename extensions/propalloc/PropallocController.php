@@ -5,6 +5,8 @@ require_once 'classes/Proposal.php';
 require_once 'classes/Patient.php';
 require_once 'classes/Information.php';
 require_once 'classes/Resource.php';
+require_once 'classes/Topic.php';
+require_once 'classes/Option.php';
 
 /**
  * Controller for Propalloc.
@@ -83,7 +85,7 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $t = new Topic ($this->_lang);
         $o = new Option ($this->_lang, $this->_patientsModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
-        $p = new Proposal ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+        $p = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
         
         $this->view->proposals = (array) $p->getAllProposals ();        
         $this->view->proposal = $p; 
