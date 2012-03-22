@@ -23,6 +23,8 @@ class PataproController extends OntoWiki_Controller_Component
     private $_lang;
     private $_patient;
     private $_proposal;
+    private $_titleHelper;
+    private $_translate;
     
     /**
      * init controller
@@ -36,6 +38,8 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
         $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
         $this->_owApp->selectedModel = $this->_patientModel;
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_patientModel);
+        $this->_translate = $this->_owApp->translate;
     
         // set standard language
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
@@ -48,14 +52,18 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
     
+    /**
+      * Action to make proposal for a patient
+      */
     public function indexAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         
         $this->view->url = $this->_url;
 
-        $currentPatient = $this->getParam('patientUri');
-
+        $currentPatient = $_SESSION['selectedPatientUri'];
+        
+        $this->view->currentPatient = $currentPatient;
         if ( '' != $currentPatient ) 
         {
             if ( 'save' == $this->getParam ('do') )
@@ -67,7 +75,6 @@ class PataproController extends OntoWiki_Controller_Component
                 );
             }
             
-            $this->view->currentPatient = $currentPatient;
             $patientOptions = $this->_patient->getPatientOptions($currentPatient);
             $this->view->options = $patientOptions['sorted'];
             
@@ -83,9 +90,10 @@ class PataproController extends OntoWiki_Controller_Component
             $this->view->proposals = $allProposals;
         }
         else
-            $this->view->currentPatient = $currentPatient;
-        
-        $this->view->patients = $this->_patient->getAllPatients();
+        {
+            $message = new OntoWiki_Message($this->_translate->_('nopatientselected'), OntoWiki_Message::WARNING);
+            $this->_owApp->appendMessage($message);
+        }
     }
     public function patientAction ()
     {

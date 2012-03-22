@@ -31,25 +31,12 @@ table#main th div {
     padding-left:10px !important;
     padding-bottom:10px !important;
 }
-#patientCol {
-    width:20%;
-}
+
 #healthstateCol {
-    width:30%;
+    width:50%;
 }
 #proposalCol {
     width:50%;
-}
-
-.patient {
-    font-size:13px;
-    margin-left:30px;
-    height:40px;
-}
-.patientSelected {
-    font-weight:bold;
-    font-size:14px !important;
-    margin-left:40px !important;
 }
 
 #healthstate {

@@ -13,83 +13,63 @@
 
 <div class="firstHeadline"><?php echo $this->_translate->_('patient proposal allocation'); ?></div>
 <div class="secondHeadline"><?php echo $this->_translate->_('allocate proposals to a patient'); ?></div>
+<?php if ("" != $this->currentPatient) { ?>
 <form method="post" action="" id="patapro">
     <table id="main">
         <tr>
-            <th><div><?php echo $this->_translate->_('patients'); ?></div></th>
-            <?php if ("" != $this->currentPatient) { ?>
                 <th><div><?php echo $this->_translate->_('healthstate'); ?></div></th>
                 <th><div><?php echo $this->_translate->_('proposals'); ?></div></th>
-            <?php } ?>
         </tr>
         <tr>
-            <td id="patientCol">
-                <?php foreach ($this->patients as $patient) { ?>
-                    <?php
-                        $patientCss = '';
-                        if ($patient ['uri'] == $this->currentPatient)
-                            $patientCss = 'patientSelected';
-		    ?>
-                    <div class="patient <?php echo $patientCss; ?>">
-                        <a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>">
-                            <?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?>
-                        </a>
-                    </div>
-                <?php } ?>
-            </td>
-            <?php if ("" != $this->currentPatient) { ?>
-                <td id="healthstateCol">
-                    <div id="healthstate">
-                        <?php foreach ($this->options as $topicLabel => $topic) { ?>
-                            <div class="topic"><?php echo $topicLabel; ?></div>
-                            <?php foreach ($topic as $option) { ?>
-                                
-                            <div class="option"><?php echo $option; ?></div>
+            <td id="healthstateCol">
+                <div id="healthstate">
+                    <?php foreach ($this->options as $topicLabel => $topic) { ?>
+                        <div class="topic"><?php echo $topicLabel; ?></div>
+                        <?php foreach ($topic as $option) { ?>
                             
-                            <?php } ?>
+                        <div class="option"><?php echo $option; ?></div>
+                        
                         <?php } ?>
-                    </div>
-                </td>
-                <td id="proposalCol">
-                    <table id="proposal">
-                        <tr>
-                            <th></th>
-                            <th><?php echo $this->_translate->_('proposal'); ?></th>
-                            <th><?php echo $this->_translate->_('status'); ?></th>
-                            <th><?php echo $this->_translate->_('correspondence'); ?></th>
+                    <?php } ?>
+                </div>
+            </td>
+            <td id="proposalCol">
+                <table id="proposal">
+                    <tr>
+                        <th></th>
+                        <th><?php echo $this->_translate->_('proposal'); ?></th>
+                        <th><?php echo $this->_translate->_('status'); ?></th>
+                        <th><?php echo $this->_translate->_('correspondence'); ?></th>
+                    </tr>
+                    <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
+                         <tr>
+                            <td id="proposalCheck">
+                                <input type="checkbox"
+                                    <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
+                                    name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
+                                    <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); ?>
+                                >
+                            </td>
+                            <td id="proposalName">
+                                <span<?php echo (0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['proposalLabel']; ?></span>
+                            </td>
+                            <td id="proposalStatus">
+                                <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
+                            </td>
+                            <td id="proposalCorrespondence">
+                                <div class="correspondence corDivBottom"></div><div style="width:<?php echo $proposal['correspondence']; ?>px" class="correspondence corDivTop"></div>
+                            </td>
                         </tr>
-                        <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
-                             <tr>
-                                <td id="proposalCheck">
-                                    <input type="checkbox"
-                                        <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
-                                        name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
-                                        <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); ?>
-                                    >
-                                </td>
-                                <td id="proposalName">
-                                    <span<?php echo (0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['proposalLabel']; ?></span>
-                                </td>
-                                <td id="proposalStatus">
-                                    <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
-                                </td>
-                                <td id="proposalCorrespondence">
-                                    <div class="correspondence corDivBottom"></div><div style="width:<?php echo $proposal['correspondence']; ?>px" class="correspondence corDivTop"></div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-                </td>
-            <?php } ?>
+                    <?php } ?>
+                </table>
+            </td>
         </tr>
     </table>
     
     <input type="hidden" name="do" value="save"/>
-    
-    <?php if ("" != $this->currentPatient) { ?>
-        <div id="formButtons">
-            <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
-            <?php echo $this->_translate->_('save'); ?></a>
-        </div>
-    <?php } ?>
+    <div id="formButtons">
+        <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
+        <?php echo $this->_translate->_('save'); ?></a>
+    </div>
 </form>
+<?php } ?>
