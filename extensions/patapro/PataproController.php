@@ -99,7 +99,7 @@ class PataproController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');
         $this->view->url = $this->_url;
-        $currentPatient = $this->getParam('patientUri');
+        $currentPatient = $_SESSION['selectedPatientUri'];
         if ( '' != $currentPatient ) 
         {
             if ( 'save' == $this->getParam ('do') )
@@ -115,7 +115,11 @@ class PataproController extends OntoWiki_Controller_Component
             }
             $this->view->decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
         }
-        $this->view->patients = $this->_patient->getAllPatients();
+        else
+        {
+            $message = new OntoWiki_Message($this->_translate->_('nopatientselected'), OntoWiki_Message::WARNING);
+            $this->_owApp->appendMessage($message);
+        }
         $this->view->currentPatient = $currentPatient;
     }
 }

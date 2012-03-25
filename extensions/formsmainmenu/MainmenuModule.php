@@ -75,7 +75,7 @@ class MainMenuModule extends OntoWiki_Module
         if (isset ($_SESSION['selectedPatientUri']))
             $this->view->currentPatientUri = $_SESSION['selectedPatientUri'];
         else
-            $this->view->currentPatientUri = false;
+            $this->view->currentPatientUri = "";
         
         if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
             $data ['loggedIn'] = false;

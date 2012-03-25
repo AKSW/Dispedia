@@ -20,34 +20,10 @@
 table {
     margin-top:10px;
 }
-th{
-    font-weight:bold;
-    font-size:15px;
-    padding-left:10px !important;
-    padding-bottom:10px !important;
-}
-th div {
-    background-color:#eee;
-    padding-left:10px !important;
-    padding-bottom:10px !important;
-}
-#patientCol {
-    width:20%;
-}
 #DecisionCol {
-    width:80%;
+    width:100%;
 }
 
-.patient {
-    font-size:13px;
-    margin-left:30px;
-    height:40px;
-}
-.patientSelected {
-    font-weight:bold;
-    font-size:14px !important;
-    margin-left:40px !important;
-}
 .sectionHeadline, .section {
     margin: 0px 10px;
 }

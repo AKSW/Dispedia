@@ -13,82 +13,62 @@
 
 <div class="firstHeadline"><?php echo $this->_translate->_('decisions'); ?></div>
 <div class="secondHeadline"><?php echo $this->_translate->_('make your decisions'); ?></div>
-<form method="POST" action="" id="patapro">
-    <table>
-	<tr>
-	    <th><div><?php echo $this->_translate->_('patients'); ?></div></th>
-	    <?php if ("" != $this->currentPatient) { ?>
-		<th><div><?php echo $this->_translate->_('decisions'); ?></div></th>
-	    <?php } ?>
-	</tr>
-	<tr> 
-	    <td id="patientCol">
-		<?php foreach ($this->patients as $patient) { ?>
-		    <?php
-			$patientCss = '';
-			if ($patient ['uri'] == $this->currentPatient)
-			    $patientCss = 'patientSelected';
-		    ?>
-		    <div class="patient <?php echo $patientCss; ?>">
-			<a href="<?php echo $this->url . '?patientUri=' . $patient['uri']; ?>">
-			    <?php echo $patient['firstName'] . ' ' . $patient['lastName']; ?>
-			</a>
-		    </div>
-		<?php } ?>
-	    </td>
-	    <?php if (isset($this->currentPatient)) { ?>
-		<td id="decisionCol">
-		    <div class="sectionHeadline"><?php echo $this->_translate->_('new'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
-		    <div class="section">
-			<?php foreach ($this->decisionProposals as $proposal) { ?>
-			<?php if ("isPending" == $proposal['status']) { ?>
-			    <div>
-				<div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
-				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
-				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
-				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
-				<div class="clear"></div>
-			    </div>
-			<?php } ?>
-			<?php } ?>
-		    </div>
-		    <div class="sectionHeadline"><?php echo $this->_translate->_('accepts'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
-		    <div class="section">
-			<?php foreach ($this->decisionProposals as $proposal) { ?>
-			    <?php if ("accepts" == $proposal['status']) { ?>
-				<div>
-				    <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
-				    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
-				    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
-				<div class="clear"></div>
-				</div>
-			    <?php } ?>
-			<?php } ?>
-		    </div>
-		    <div class="sectionHeadline"><?php echo $this->_translate->_('denieds'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
-		    <div class="section">
-			<?php foreach ($this->decisionProposals as $proposal) { ?>
-			<?php if ("denies" == $proposal['status']) { ?>
-			    <div>
-				<div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
-				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
-				<div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
-				<div class="clear"></div>
-			    </div>
-			<?php } ?>
-			<?php } ?>
-		    </div>
-		</td>
-	    <?php } ?>
-	</tr>
-    </table>
-    <input type="hidden" name="do" value="save"/>
-    
-    <?php if ("" != $this->currentPatient) { ?>
-        <div id="formButtons">
-	    <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
-            <?php echo $this->_translate->_('save'); ?></a>
-	</div>
-    <?php } ?>
-</form>
+<?php if ("" != $this->currentPatient) { ?>
+    <form method="POST" action="" id="patapro">
+        <table>
+            <tr>
+                <td id="decisionCol">
+                    <div class="sectionHeadline"><?php echo $this->_translate->_('new'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
+                    <div class="section">
+                        <?php foreach ($this->decisionProposals as $proposal) { ?>
+                        <?php if ("isPending" == $proposal['status']) { ?>
+                            <div>
+                                <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                <div class="clear"></div>
+                            </div>
+                        <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <div class="sectionHeadline"><?php echo $this->_translate->_('accepts'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
+                    <div class="section">
+                        <?php foreach ($this->decisionProposals as $proposal) { ?>
+                            <?php if ("accepts" == $proposal['status']) { ?>
+                                <div>
+                                    <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
+                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
+                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                <div class="clear"></div>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <div class="sectionHeadline"><?php echo $this->_translate->_('denieds'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
+                    <div class="section">
+                        <?php foreach ($this->decisionProposals as $proposal) { ?>
+                        <?php if ("denies" == $proposal['status']) { ?>
+                            <div>
+                                <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                <div class="clear"></div>
+                            </div>
+                        <?php } ?>
+                        <?php } ?>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="do" value="save"/>
+        
+        <?php if ("" != $this->currentPatient) { ?>
+            <div id="formButtons">
+                <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();"/>
+                <?php echo $this->_translate->_('save'); ?></a>
+            </div>
+        <?php } ?>
+    </form>
+<?php } ?>
 
