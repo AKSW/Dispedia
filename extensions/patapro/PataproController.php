@@ -58,6 +58,7 @@ class PataproController extends OntoWiki_Controller_Component
     public function indexAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'js/index.js');
         
         $this->view->url = $this->_url;
 
@@ -75,11 +76,16 @@ class PataproController extends OntoWiki_Controller_Component
                 );
             }
             
-            $patientOptions = $this->_patient->getPatientOptions($currentPatient);
-            $this->view->options = $patientOptions['sorted'];
+            // get a list of all healthstates
+            $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
+            
+            // get last healthstate
+            $patientOptions = $this->healthstateAction(array_shift(array_keys($this->view->healthstates)));
             
             $allProposals = $this->_proposal->getAllProposals();
             $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
+            
+            
             
             foreach ($allProposals as $proposalUri => $proposal)
             {
@@ -95,6 +101,27 @@ class PataproController extends OntoWiki_Controller_Component
             $this->_owApp->appendMessage($message);
         }
     }
+    
+    public function healthstateAction($healthstateUri = null)
+    {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/healthstate.css');
+        
+        if (false == isset ($healthstateUri))
+            $healthstateUri = $this->getParam ('healthstateUri');
+        if ('' != $healthstateUri)
+        {
+            $patientOptions = $this->_patient->getHealthstate($healthstateUri);
+            $this->view->options = $patientOptions['sorted'];
+        }
+        else
+        {
+            $message = new OntoWiki_Message("Parameter for healthstate view is missing (healthstateUri)", OntoWiki_Message::ERROR);
+            $this->_owApp->appendMessage($message);
+        }
+        
+        return $patientOptions;
+    }
+    
     public function patientAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');

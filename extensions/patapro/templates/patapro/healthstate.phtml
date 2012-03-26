@@ -1,0 +1,24 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_patapro
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<!-- important variables -->
+<script type="text/javascript">       
+    var url = '<?php echo $this->url; ?>';
+</script>
+<?php foreach ($this->options as $topicLabel => $topic) { ?>
+    <div class="topic"><?php echo $topicLabel; ?></div>
+        <?php foreach ($topic as $option) { ?>
+
+            <div class="option"><?php echo $option; ?></div>
+    
+        <?php } ?>
+<?php } ?>

@@ -18,22 +18,29 @@ class Patient
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
-    public function getPatientOptions($patientUri)
+    public function getAllHealthstates($patientUri)
+    {
+        $healthstates = array();
+        $healthstatesResult = $this->_store->sparqlQuery (
+            'SELECT ?uri ?timestamp
+            WHERE {
+                <' . $patientUri . '> <has> ?uri .
+                ?uri <http://purl.org/dc/terms/created> ?timestamp .                                                     
+            }
+            ORDER BY DESC(?timestamp);'
+        );
+        
+        foreach ($healthstatesResult as $healthstate)
+        {
+            $healthstates[$healthstate['uri']] = $healthstate['timestamp'];
+        }
+        
+        return $healthstates;
+    }
+    
+    public function getHealthstate($healthstateUri)
     {
         $options = array();
-        $healthstate = $this->_store->sparqlQuery (
-            'SELECT ?healthstate
-            WHERE {
-                <' . $patientUri . '> <has> ?healthstate .
-                ?healthstate <http://purl.org/dc/terms/created> ?hsts .                                                     
-            }
-            ORDER BY DESC(?hsts)
-            LIMIT 1;'
-        );
-        if (isset ($healthstate[0]['healthstate']))
-            $healthstateUri = $healthstate[0]['healthstate'];
-        else
-            $healthstateUri = "";
         
         $appropriateForSymptoms = $this->_store->sparqlQuery (
             'SELECT ?optionUri ?optionLabel ?topicLabel

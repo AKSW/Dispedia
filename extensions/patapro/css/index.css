@@ -20,6 +20,14 @@
 table#main {
     margin-top:20px;
 }
+
+#healthstateCol {
+    width:50%;
+}
+#proposalCol {
+    width:50%;
+}
+
 table#main th{
     font-weight:bold;
     font-size:15px;
@@ -32,11 +40,10 @@ table#main th div {
     padding-bottom:10px !important;
 }
 
-#healthstateCol {
-    width:50%;
-}
-#proposalCol {
-    width:50%;
+#selectHealthstate {
+    margin-left:10em;
+    margin-bottom:0px;
+    margin-top:1px;
 }
 
 #healthstate {
@@ -44,15 +51,6 @@ table#main th div {
     padding:20px;
     overflow-y:scroll;
     margin: 0px 10px;
-}
-.topic {
-    font-weight:bold;
-    font-size:14px;
-    margin-bottom:5px;
-}
-.option {
-    margin-left:40px;
-    margin-bottom:15px;
 }
 
 table#proposal th{

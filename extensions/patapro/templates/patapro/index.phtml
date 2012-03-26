@@ -17,20 +17,22 @@
     <form method="post" action="" id="patapro">
         <table id="main">
             <tr>
-                    <th><div><?php echo $this->_translate->_('healthstate'); ?></div></th>
-                    <th><div><?php echo $this->_translate->_('proposals'); ?></div></th>
+                <th>
+                    <div>
+                        <span><?php echo $this->_translate->_('healthstate'); ?></span>
+                        <select name="selectHealthstate" id="selectHealthstate" onchange="getHealthstate('selectHealthstate');">
+                            <?php foreach ($this->healthstates as $healthstateUri => $healthstateTS) { ?>
+                                <option value="<?php echo $healthstateUri?>"><?php echo $healthstateTS ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </th>
+                <th><div><?php echo $this->_translate->_('proposals'); ?></div></th>
             </tr>
             <tr>
                 <td id="healthstateCol">
                     <div id="healthstate">
-                        <?php foreach ($this->options as $topicLabel => $topic) { ?>
-                            <div class="topic"><?php echo $topicLabel; ?></div>
-                            <?php foreach ($topic as $option) { ?>
-                                
-                            <div class="option"><?php echo $option; ?></div>
-                            
-                            <?php } ?>
-                        <?php } ?>
+                        <?php echo $this->render('patapro/healthstate.phtml'); ?>
                     </div>
                 </td>
                 <td id="proposalCol">
