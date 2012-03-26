@@ -1,3 +1,21 @@
+<?php 
+/**
+ * Template for main menu
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_formgenerator
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+
+<!-- important variables -->
+<script type="text/javascript">       
+    var url = '<?php echo $this->url; ?>';
+</script>
+
 <!-- User is not logged in -->
 <?php if ( false == $this->loggedIn ) { ?>
 
@@ -32,7 +50,7 @@
             dataType: "html",
             type: "POST",
             data: {curentPatientUri : uri},
-            url: "http://localhost/ow_als/propalloc/changePatient",
+            url: url + "propalloc/changePatient",
             // complete, no errors
             success: function ( res ) 
             {
