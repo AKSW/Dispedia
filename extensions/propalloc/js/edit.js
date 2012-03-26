@@ -20,7 +20,7 @@ function addEntity (entity, entityOverClass, context)
         type: "POST",
         data: {entityOverClass : entityOverClass},
         context: $("#" + context),
-        url: url + entity,
+        url: url + "propalloc/" + entity,
             // complete, no errors
         success: function ( res ) 
         {
