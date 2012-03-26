@@ -16,14 +16,16 @@ class Proposal
     private $_resource;
     private $_action;
     private $_dispediaModel;
-    private $_patientsModel;
+    private $_patientsModel; 
+    private $_titleHelper;
     private $_lang;
     
-    public function __construct ($controller, $lang, $patientsModel, $dispediaModel)
+    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $titleHelper)
     {
         $this->_controller = $controller;
         $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
         $this->_action = new Action ($controller, $lang, $patientsModel, $dispediaModel);
+        $this->_titleHelper = $titleHelper;
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
@@ -34,7 +36,7 @@ class Proposal
     /**
      * 
      */
-    public function getAllProposals ($titleHelper)
+    public function getAllProposals ()
     {
         $proposalResult = $this->_store->sparqlQuery (
             'SELECT ?uri
@@ -47,13 +49,13 @@ class Proposal
         
         foreach ( $proposalResult as $proposal )
         {
-            $titleHelper->addResource ($proposal['uri']);
+            $this->_titleHelper->addResource ($proposal['uri']);
         }
         foreach ( $proposalResult as $proposal )
         {
             $newProposal['shortcut'] = md5 ( $proposal ['uri'] );
             $newProposal['uri'] = $proposal['uri'];
-            $newProposal['label'] = $titleHelper->getTitle($proposal['uri']);
+            $newProposal['label'] = $this->_titleHelper->getTitle($proposal['uri']);
             $proposals[] = $newProposal;
         }
 

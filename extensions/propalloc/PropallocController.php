@@ -22,7 +22,8 @@ class PropallocController extends OntoWiki_Controller_Component
 {
         private $_url;
         private $_lang;
-        private $_patientsModel;
+        private $_proposal;
+        private $_patientModel;
         private $_dispediaModel;
         private $_titleHelper;
 	
@@ -38,9 +39,11 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->_dispediaModel = $dispediaModel;
         
         $model = new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel);
-        $this->_patientsModel = $model;
+        $this->_patientModel = $model;
         
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_dispediaModel);
+        
+        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_titleHelper);
         
         // set standard language
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
@@ -56,9 +59,7 @@ class PropallocController extends OntoWiki_Controller_Component
      */
     public function indexAction()
     {
-        $p = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
-        
-        $this->view->proposals = $p->getAllProposals ($this->_titleHelper);
+        $this->view->proposals = $this->_proposal->getAllProposals ();
         
         $this->view->url = $this->_url;
         $this->view->imagesUrl = $this->_config->urlBase . 'extensions/propalloc/resources/images/';
@@ -88,11 +89,10 @@ class PropallocController extends OntoWiki_Controller_Component
         // -------------------------------------------------------------
         
         $t = new Topic ($this->_lang);
-        $o = new Option ($this->_lang, $this->_patientsModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
-        $p = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
+        $o = new Option ($this->_lang, $this->_patientModel, new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel));
         
-        $this->view->proposals = (array) $p->getAllProposals ();        
-        $this->view->proposal = $p; 
+        $this->view->proposals = (array) $this->_proposal->getAllProposals ();        
+        $this->view->proposal = $this->_proposal; 
         
         // -------------------------------------------------------------
         if ( '' != $this->getParam ('proposal') ) 
@@ -110,9 +110,9 @@ class PropallocController extends OntoWiki_Controller_Component
 				
 				$o->saveOptions ( 
                     new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel),
-					$p->getProposalUri ( $this->getParam ('proposal') ),
+					$this->_proposal->getProposalUri ( $this->getParam ('proposal') ),
 					$options, 
-					$p->getSettings ( $this->getParam ('proposal') ) 
+					$this->_proposal->getSettings ( $this->getParam ('proposal') ) 
 				);
 			}  
 						
@@ -138,7 +138,7 @@ class PropallocController extends OntoWiki_Controller_Component
             $this->view->topics = $topics;
             
             // get saved settings
-            $this->view->settings = $p->getSettings ( $this->getParam ('proposal') );
+            $this->view->settings = $this->_proposal->getSettings ( $this->getParam ('proposal') );
         }
     }
 
@@ -156,8 +156,7 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $currentProposalUri = urldecode($this->getParam ('proposalUri'));
         
-        $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
-        $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);   
+        $resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
         
         if (isset($currentProposalUri) && "" != $currentProposalUri)
         {
@@ -166,7 +165,7 @@ class PropallocController extends OntoWiki_Controller_Component
             $currentProposal['hash'] = substr ( md5 ($currentProposalUri), 0, 8 );
             $currentProposal['label'] = $resource->getLabel($currentProposalUri);
             $currentProposal['status'] = "edit";
-            $actions = $proposal->getActions($currentProposalUri);
+            $actions = $this->_proposal->getActions($currentProposalUri);
             if (0 < count($actions))
             {
                 $currentProposal['actions'] = array();
@@ -198,8 +197,7 @@ class PropallocController extends OntoWiki_Controller_Component
      */
     public function removeAction ()
     {       
-        $proposal = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
-        $this->showMessage($proposal->removeProposal($this->getParam('currentProposal')));
+        $this->showMessage($this->_proposal->removeProposal($this->getParam('currentProposal')));
         $this->_forward('index');
     }
     
@@ -212,12 +210,12 @@ class PropallocController extends OntoWiki_Controller_Component
         if (false == $actionUri)
         {
             $this->view->actionOverClass = $this->getParam('entityOverClass');
-            $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
             $this->view->action = $resource->getNewInstance("Action");
         }
         else
         {
-            $actionHelper = new Action ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $actionHelper = new Action ($this, $this->_lang, $this->_patientModel, $this->_dispediaModel);
             if (!isset($this->view->actions))
                 $this->view->actions = array();
                 
@@ -250,13 +248,13 @@ class PropallocController extends OntoWiki_Controller_Component
         if (false == $informationUri)
         {
             $this->view->informationOverClass = $this->getParam('entityOverClass');
-            $resource = new Resource ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
             $this->view->information = $resource->getNewInstance("Information");
             $this->view->information['content'] = "";
         }
         else
         {
-            $informationHelper = new Information ($this->_lang, $this->_patientsModel, $this->_dispediaModel);
+            $informationHelper = new Information ($this->_lang, $this->_patientModel, $this->_dispediaModel);
             if (!isset($this->view->informations))
                 $this->view->informations = array();
             $information = $informationHelper->getInformation($informationUri);
