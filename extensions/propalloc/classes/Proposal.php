@@ -34,25 +34,29 @@ class Proposal
     /**
      * 
      */
-    public function getAllProposals ()
+    public function getAllProposals ($titleHelper)
     {
-        $tmp = $this->_store->sparqlQuery (
-            'SELECT ?uri ?label
+        $proposalResult = $this->_store->sparqlQuery (
+            'SELECT ?uri
               WHERE {
                  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Proposal>.
-                 ?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label.
-                FILTER (langmatches(lang(?label), "' . $this->_lang . '") || !BOUND(?label))
              };'
         );
         
         $proposals = array ();
         
-        foreach ( $tmp as $proposal ) {
-            $proposal ['shortcut'] = md5 ( $proposal ['uri'] );
-            
-            $proposals [] = $proposal;
+        foreach ( $proposalResult as $proposal )
+        {
+            $titleHelper->addResource ($proposal['uri']);
         }
-        
+        foreach ( $proposalResult as $proposal )
+        {
+            $newProposal['shortcut'] = md5 ( $proposal ['uri'] );
+            $newProposal['uri'] = $proposal['uri'];
+            $newProposal['label'] = $titleHelper->getTitle($proposal['uri']);
+            $proposals[] = $newProposal;
+        }
+
         return $proposals;
     }
     

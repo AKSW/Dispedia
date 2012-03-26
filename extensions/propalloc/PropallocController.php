@@ -20,10 +20,11 @@ require_once 'classes/Option.php';
  */ 
 class PropallocController extends OntoWiki_Controller_Component
 {
-	private $_url;
+        private $_url;
         private $_lang;
-	private $_patientsModel;
-	private $_dispediaModel;
+        private $_patientsModel;
+        private $_dispediaModel;
+        private $_titleHelper;
 	
     /**
      * init controller
@@ -38,6 +39,8 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $model = new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel);
         $this->_patientsModel = $model;
+        
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_dispediaModel);
         
         // set standard language
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
@@ -55,7 +58,8 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         $p = new Proposal ($this, $this->_lang, $this->_patientsModel, $this->_dispediaModel);
         
-        $this->view->proposals = (array) $p->getAllProposals ();
+        $this->view->proposals = $p->getAllProposals ($this->_titleHelper);
+        
         $this->view->url = $this->_url;
         $this->view->imagesUrl = $this->_config->urlBase . 'extensions/propalloc/resources/images/';
     }
