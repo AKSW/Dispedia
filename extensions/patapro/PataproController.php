@@ -62,7 +62,9 @@ class PataproController extends OntoWiki_Controller_Component
         
         $this->view->url = $this->_url;
 
-        $currentPatient = $_SESSION['selectedPatientUri'];
+        $currentPatient = "";
+        if (isset($_SESSION['selectedPatientUri']))
+            $currentPatient = $_SESSION['selectedPatientUri'];
         
         $this->view->currentPatient = $currentPatient;
         if ( '' != $currentPatient ) 
@@ -126,7 +128,9 @@ class PataproController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');
         $this->view->url = $this->_url;
-        $currentPatient = $_SESSION['selectedPatientUri'];
+        $currentPatient = "";
+        if (isset($_SESSION['selectedPatientUri']))
+            $currentPatient = $_SESSION['selectedPatientUri'];
         if ( '' != $currentPatient ) 
         {
             if ( 'save' == $this->getParam ('do') )
