@@ -12,12 +12,12 @@ Patient proposal allocation;Patienten Vorschlagszuweisung
 Decisions;Entscheidungen
 Diet;Ernährung
 Doctor view;Doktoransicht
-Edit family status;Ändere Familienverhältnisse
-Edit housing situation;Ändere Wohnsituation
-Edit medical condition;Ändere Gesundheitzustand
-Edit patient information;Ändere Patientendaten
-Edit professional situation;Ändere berufliche Situation
-Edit proposal allocations;Ändere Vorschlagszuweisungen
+Edit family status;aendere Familienverhältnisse
+Edit housing situation;aendere Wohnsituation
+medical condition;Gesundheitzustand
+Edit patient information;aendere Patientendaten
+Edit professional situation;aendere berufliche Situation
+Edit proposal allocations;aendere Vorschlagszuweisungen
 Extension;Erweiterung
 Extensions;Erweiterungen
 Family status;Familienverhältnisse
@@ -32,12 +32,12 @@ Living relations;Lebende Verwandte
 Movement;Bewegung
 Master data;Stammdaten
 OntoWiki;OntoWiki
-Overview;Überblick
+Overview;Ueberblick
 Patient view;Patientansicht 
 Pets;Haustiere 
 Preferences;Einstellungen
 Proposal and proposal allocations;Vorschlagszuweisung
-Proposal overview; Vorschlagsuebersicht
+Proposal overview; Vorschlagsübersicht
 Proposals;Vorschlaege
 QueryEditor;Query editor
 Register a new user;Registriere einen neuen Benutzer
@@ -46,3 +46,5 @@ Set pets;Haustiere verwalten
 Silbings;Geschwister
 Social situation;Soziale Situation
 System;System
+therapists;Therapeuten
+newtherapistclass;neue Therapeuten Klasse

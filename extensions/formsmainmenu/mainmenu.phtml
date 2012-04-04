@@ -221,6 +221,19 @@
 <div id="divdoctor">
     <br/>
     <div style="font-weight:bold;font-size:14px;">
+        <?php echo $this->_translate->_('therapists'); ?>
+    </div>
+    <br/>
+    
+    <div style="font-size:12px;">
+        <img src="<?php echo $this->imagesUrl; ?>user_doctor.png" border="0" align="absmiddle"/>
+        &nbsp;&nbsp;
+        <a href="<?php echo $this->url ?>propalloc/therapist">
+            <?php echo $this->_translate->_('newtherapistclass'); ?></a>
+    </div>
+    
+    <br/>
+    <div style="font-weight:bold;font-size:14px;">
         <?php echo $this->_translate->_('Proposal and proposal allocations'); ?>
     </div>
     <br/>
@@ -254,7 +267,7 @@
     <br/>
     
     <div style="font-weight:bold;font-size:14px;">
-        <?php echo $this->_translate->_('Edit medical condition'); ?>
+        <?php echo $this->_translate->_('medical condition'); ?>
     </div>
     
     <br/>

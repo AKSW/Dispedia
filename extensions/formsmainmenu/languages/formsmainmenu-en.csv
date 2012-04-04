@@ -14,7 +14,7 @@ Diet;Diet
 Doctor view;Doctor view
 Edit family status;Edit family status
 Edit housing situation;Edit housing situation
-Edit medical condition;Edit medical condition
+medical condition;medical condition
 Edit patient information;Edit patient information
 Edit professional situation;Edit professional situation
 Edit proposal allocations;Edit proposal allocations
@@ -46,3 +46,5 @@ Set pets;Set pets
 Silbings;Silbings
 Social situation;Social situation
 System;System
+therapists;Therapisten
+newtherapistclass;new Therapist class
