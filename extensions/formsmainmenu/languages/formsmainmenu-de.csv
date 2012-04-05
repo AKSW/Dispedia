@@ -1,4 +1,5 @@
 Add address;Addresse hinzufügen
+Add a new person;Neuen Person anlegen
 Add a new patient;Neuen Patienten anlegen
 Add a new knowledge base;Neue Wissensbasis anlegen
 Add pet;Haustier hinzufügen
@@ -11,13 +12,13 @@ Create proposal allocation;Neue Vorschlagszuweisung
 Patient proposal allocation;Patienten Vorschlagszuweisung
 Decisions;Entscheidungen
 Diet;Ernährung
-Doctor view;Doktoransicht
-Edit family status;aendere Familienverhältnisse
-Edit housing situation;aendere Wohnsituation
+Doctor view;Doktormenü
+Edit family status;Familienverhältnisse
+Edit housing situation;Wohnsituation
 medical condition;Gesundheitzustand
-Edit patient information;aendere Patientendaten
-Edit professional situation;aendere berufliche Situation
-Edit proposal allocations;aendere Vorschlagszuweisungen
+Edit patient information;Patientendaten
+Edit professional situation;berufliche Situation
+Edit proposal allocations;Vorschlagszuweisungen
 Extension;Erweiterung
 Extensions;Erweiterungen
 Family status;Familienverhältnisse
@@ -33,12 +34,12 @@ Movement;Bewegung
 Master data;Stammdaten
 OntoWiki;OntoWiki
 Overview;Ueberblick
-Patient view;Patientansicht 
+Patient view;Patientmenü
 Pets;Haustiere 
 Preferences;Einstellungen
 Proposal and proposal allocations;Vorschlagszuweisung
 Proposal overview; Vorschlagsübersicht
-Proposals;Vorschlaege
+Proposals;Vorschläge
 QueryEditor;Query editor
 Register a new user;Registriere einen neuen Benutzer
 Set Address;Setze Addresse
@@ -47,4 +48,6 @@ Silbings;Geschwister
 Social situation;Soziale Situation
 System;System
 therapists;Therapeuten
-newtherapistclass;neue Therapeuten Klasse
+newtherapistclass;Neue Therapeuten Klasse anlegen
+Admin view;Administratormenü
+user;Benutzer

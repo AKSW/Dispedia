@@ -1,6 +1,7 @@
 Add address;Add address
-Add a new knowledge base;Add a new knowledge base
+Add a new person;Add a new person
 Add a new patient;Add a new patient
+Add a new knowledge base;Add a new knowledge base
 Add pet;Add pet
 ALSFRS;ALSFRS
 By classification;By classification
@@ -11,13 +12,13 @@ Create proposal allocation;Create proposal allocation
 Patient proposal allocation;Patient proposal allocation
 Decisions;Decisions
 Diet;Diet
-Doctor view;Doctor view
-Edit family status;Edit family status
-Edit housing situation;Edit housing situation
+Doctor view;Doctor menu
+Edit family status;family status
+Edit housing situation;housing situation
 medical condition;medical condition
-Edit patient information;Edit patient information
-Edit professional situation;Edit professional situation
-Edit proposal allocations;Edit proposal allocations
+Edit patient information;patient information
+Edit professional situation;professional situation
+Edit proposal allocations;proposal allocations
 Extension;Extension
 Extensions;Extensions
 Family status;Family status
@@ -33,7 +34,7 @@ Movement;Movement
 Master data;Master data
 OntoWiki;OntoWiki
 Overview;Overview
-Patient view;Patient view 
+Patient view;Patient menu
 Pets;Pets
 Preferences;Preferences
 Proposal and proposal allocations;Proposal and Proposal Allocations
@@ -47,4 +48,6 @@ Silbings;Silbings
 Social situation;Social situation
 System;System
 therapists;Therapisten
-newtherapistclass;new Therapist class
+newtherapistclass;Add a new Therapist class
+Admin view;Admin menu
+user;User
