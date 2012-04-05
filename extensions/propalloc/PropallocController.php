@@ -264,6 +264,70 @@ class PropallocController extends OntoWiki_Controller_Component
     }
     
     /**
+     * show a form to add a new thrapist class
+     */
+    //TODO: only add of new classe and no edit
+    public function therapistAction ()
+    {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/therapist.css');
+        $currentTherapistClass = $this->getParam('currentTherapistClass');
+        if (!isset($currentTherapistClass))
+        {
+            $currentTherapistClass = array();
+            $currentTherapistClass['uri'] = "";
+            $currentTherapistClass['labelde'] = "";
+            $currentTherapistClass['labelen'] = "";
+        }
+        $this->view->currentTherapistClass = $currentTherapistClass;
+        
+         if ( 'save' == $this->getParam ('do') )
+        {
+            $messages = array();
+            
+            //TODO: in which model to read
+            $this->_dispediaModel->addStatement(
+                "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'],
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
+                array('value' => "http://www.w3.org/2002/07/owl#Class", 'type' => 'uri')
+            );
+            
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Thearpis Class created: ' . "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'] . ' => rdf:type => http://www.w3.org/2002/07/owl#Class', OntoWiki_Message::INFO);
+            
+            $this->_dispediaModel->addStatement(
+                "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'],
+                'http://www.w3.org/2000/01/rdf-schema#subClassOf', 
+                array('value' => "http://www.dispedia.de/o/Therapist", 'type' => 'uri')
+            );
+            
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Thearpis Class created: ' . "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'] . ' => rdfs:subClassOf => http://www.dispedia.de/o/Therapist', OntoWiki_Message::INFO);
+            
+            $this->_dispediaModel->addStatement(
+                "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => $currentTherapistClass['labelen'], 'type' => 'literal', 'lang' => 'en')
+            );
+            
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Thearpis Class label update: ' . "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'] . ' => rdfs:label => ' . $currentTherapistClass['labelen'] . ' (old:)', OntoWiki_Message::INFO);
+            
+            $this->_dispediaModel->addStatement(
+                "http://www.dispedia.de/o/" . $currentTherapistClass['labelen'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => $currentTherapistClass['labelde'], 'type' => 'literal', 'lang' => 'de')
+            );
+            
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Thearpis Class label update: ' . "http://www.dispedia.de/o/" . $currentTherapistClass['labelde'] . ' => rdfs:label => ' . $currentTherapistClass['labelde'] . ' (old:)', OntoWiki_Message::INFO);
+            
+            $messages[] = new OntoWiki_Message('successTherapistAdd', OntoWiki_Message::SUCCESS);
+            $this->showMessage($messages);
+            $this->_forward('index');
+        }
+    }
+    
+    /**
      * Action to remove Proposal
      */
     private function showMessage ($messages)

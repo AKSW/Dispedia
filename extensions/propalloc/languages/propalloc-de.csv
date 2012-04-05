@@ -6,6 +6,8 @@ Proposal allocation administration;Verwaltung von Vorschlagszuweisungen
 Proposal administration;Vorschlagsverwaltung
 Save;Speichern
 label;Name
+labelde;deutscher Name
+labelen;englischer Name
 ProposalName;Vorschlagsname
 ProposalText;Vorschlagsbeschreibung
 action;Aktion
@@ -24,3 +26,6 @@ successInformationEdit;Information wurde gespeichert.
 successInformationDelete;Information gelöscht.
 errorInformationDelete;Information konnte nicht gelöscht werden.
 content;Inhalt
+createTherapistClass;Erstelle Therapeut Klasse
+therapistDescriptionText;Erstellen einer neuen Therapeut Klasse
+successTherapistAdd;Therapeut Klasse hinzugefügt
