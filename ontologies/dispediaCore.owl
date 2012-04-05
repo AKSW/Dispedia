@@ -470,14 +470,14 @@
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;suitableForSensible">
-        <rdfs:label xml:lang="de">geeignet für</rdfs:label>
-        <rdfs:label xml:lang="en">suitable for</rdfs:label>
+        <rdfs:label xml:lang="de">geeignet für sensible</rdfs:label>
+        <rdfs:label xml:lang="en">suitable for sensible</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&dispediao;suitableFor"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;suitableForSensible">
-        <rdfs:label xml:lang="de">geeignet für</rdfs:label>
-        <rdfs:label xml:lang="en">suitable for</rdfs:label>
+    <owl:ObjectProperty rdf:about="&dispediao;suitableForExperienced">
+        <rdfs:label xml:lang="de">geeignet für Erfahrene</rdfs:label>
+        <rdfs:label xml:lang="en">suitable for experienced</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&dispediao;suitableFor"/>
     </owl:ObjectProperty>
 
