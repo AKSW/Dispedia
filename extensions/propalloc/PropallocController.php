@@ -328,6 +328,17 @@ class PropallocController extends OntoWiki_Controller_Component
     }
     
     /**
+     * action show the icf Tool from Christian Zinke
+     * http://sysinno.uni-leipzig.de/innotool/icf/
+     */
+    //TODO: only simple integration with fix user and fix patient
+    public function icfAction ()
+    {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/icf.css');
+        $this->view->url = $this->_url;
+    }
+    
+    /**
      * Action to remove Proposal
      */
     private function showMessage ($messages)

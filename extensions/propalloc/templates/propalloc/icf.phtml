@@ -1,0 +1,26 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+
+<div class="icfFirstline">
+    <span><?php echo $this->_translate->_('icfClassification'); ?></span>
+</div>
+<div class="icfSecondline">
+<span></span>
+</div>
+<div id="divIcfFrame">
+    <iframe src="<?php echo $this->url; ?>../extensions/propalloc/templates/propalloc/icfframe.phtml" id="icfFrame" name="icfFrame">
+      <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
+      Sie k&ouml;nnen die eingebettete Seite &uuml;ber den folgenden Verweis
+      aufrufen: <a href="<?php echo $this->url; ?>../extensions/propalloc/templates/propalloc/icfframe.phtml"><?php echo $this->_translate->_('icfClassification'); ?></a></p>
+    </iframe> 
+</div>
