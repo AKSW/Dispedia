@@ -183,7 +183,7 @@ class PropallocController extends OntoWiki_Controller_Component
         
         if ( 'save' == $this->getParam ('do') )
         {
-            $this->showMessage($proposal->saveProposal (
+            $this->showMessage($this->_proposal->saveProposal (
                 $this->getParam ('currentProposal'),
                 json_decode(urldecode($this->getParam ('currentProposalOldData')), true)
             ));
