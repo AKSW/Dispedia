@@ -32,7 +32,7 @@
 <div id="divSelectPatient">
     <form method="post" action="#">
         <select name="selectPatient" id="selectPatient">
-            <option value="">No Patient selected</option>
+            <option value=""><?php echo $this->_translate->_('noPatientSelected'); ?></option>
             <?php foreach ($this->patients as $patient) { ?>
                 <option value="<?php echo urldecode($patient['uri']); ?>"<?php echo ($this->currentPatientUri == $patient['uri'] ? 'selected="selected"' : ""); ?>><?php echo $patient['firstName']; echo " " . $patient['lastName']; ?></option>
             <?php }; ?>
