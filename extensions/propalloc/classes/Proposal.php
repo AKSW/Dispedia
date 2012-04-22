@@ -32,8 +32,9 @@ class Proposal
     }
     
     
+    //TODO: should be the same like in the patapro Proposal class
     /**
-     * 
+     * get all proposals
      */
     public function getAllProposals ()
     {
@@ -56,7 +57,7 @@ class Proposal
             $newProposal['shortcut'] = md5 ( $proposal ['uri'] );
             $newProposal['uri'] = $proposal['uri'];
             $newProposal['label'] = $this->_titleHelper->getTitle($proposal['uri'], $this->_lang);
-            $proposals[] = $newProposal;
+            $proposals[$newProposal['uri']] = $newProposal;
         }
 
         return $proposals;

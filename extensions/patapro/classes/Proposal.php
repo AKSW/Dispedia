@@ -13,34 +13,45 @@ class Proposal
     private $_lang;
     private $_patientModel;
     private $_store;
+    private $_titleHelper;
     
-    public function __construct ($patientModel, $lang)
+    public function __construct ($patientModel, $lang, $titleHelper)
     {
         $this->_lang = $lang;
 	$this->_patientModel = $patientModel;
+	$this->_titleHelper = $titleHelper;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
     
+    //TODO: should be the same like in the patapro Proposal class
     /**
-     * get all proposals from a patient
+     * get all proposals
      */
     public function getAllProposals ()
     {
-        $proposals = array();
-        $results = $this->_store->sparqlQuery (
-            'PREFIX dispediao:<http://www.dispedia.de/o/>
-	    SELECT ?proposalUri ?proposalLabel
-	    WHERE {
-		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
-		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
-                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
-	    };'
+        $proposalResult = $this->_store->sparqlQuery (
+            'SELECT ?uri
+              WHERE {
+                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Proposal>.
+             };'
         );
-        foreach ($results as $result)
-	{
-	    $proposals[$result['proposalUri']] = $result;
-	}
+        
+        $proposals = array ();
+        
+        foreach ( $proposalResult as $proposal )
+        {
+            $this->_titleHelper->addResource ($proposal['uri']);
+        }
+
+        foreach ( $proposalResult as $proposal )
+        {
+            $newProposal['shortcut'] = md5 ( $proposal ['uri'] );
+            $newProposal['uri'] = $proposal['uri'];
+            $newProposal['label'] = $this->_titleHelper->getTitle($proposal['uri'], $this->_lang);
+            $proposals[$newProposal['uri']] = $newProposal;
+        }
+
         return $proposals;
     }
     
@@ -241,22 +252,22 @@ class Proposal
         $proposals = array();
         $results = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
-	    SELECT ?proposalUri ?proposalLabel ?proposalAllocation ?decision ?statusUri
+	    SELECT ?uri ?label ?allocation ?decision ?statusUri
 	    WHERE {
-		?proposalUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
-		?proposalUri <http://www.w3.org/2000/01/rdf-schema#label> ?proposalLabel .
-		?proposalAllocation dispediao:allocatesProposal ?proposalUri .
-		?proposalAllocation dispediao:allocatesPatient <' . $patientUri . '> .
+		?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
+		?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+		?allocation dispediao:allocatesProposal ?uri .
+		?allocation dispediao:allocatesPatient <' . $patientUri . '> .
 		<' . $patientUri . '> dispediao:makes ?decision .
-		?decision ?statusUri ?proposalAllocation .
-                FILTER (langmatches(lang(?proposalLabel), "' . $this->_lang . '"))
+		?decision ?statusUri ?allocation .
+                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
 	    }'
         );
 	
         foreach ($results as $result)
 	{
 	    $result['status'] = preg_replace('/http:\/\/www.dispedia.de\/o\//', '', $result['statusUri']);
-	    $proposals[$result['proposalUri']] = $result;
+	    $proposals[$result['uri']] = $result;
 	}
 	return $proposals;
     }
