@@ -13,13 +13,15 @@ class Resource
     private $_dispediaModel;
     private $_patientsModel;
     private $_lang;
+    private $_titleHelper;
     
-    public function __construct ($lang, $patientsModel, $dispediaModel)
+    public function __construct ($lang, $patientsModel, $dispediaModel, $titleHelper)
     {
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
+        $this->_titleHelper = $titleHelper;
     }
     
         
@@ -41,14 +43,8 @@ class Resource
      */
     public function getLabel ($uri)
     {
-        $labelResult = $this->_store->sparqlQuery (
-            'SELECT ?label
-              WHERE {
-                 <' . $uri . '> <http://www.w3.org/2000/01/rdf-schema#label> ?label.
-                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
-             };'
-        );
-        return $labelResult[0]['label'];
+        $this->_titleHelper->addResource ($uri);
+        return $this->_titleHelper->getTitle($uri, $this->_lang);
     }
     
         /**

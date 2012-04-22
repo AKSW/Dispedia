@@ -23,6 +23,7 @@ class PropallocController extends OntoWiki_Controller_Component
         private $_url;
         private $_lang;
         private $_proposal;
+        private $_resource;
         private $_patientModel;
         private $_dispediaModel;
         private $_titleHelper;
@@ -48,7 +49,9 @@ class PropallocController extends OntoWiki_Controller_Component
             ? $_SESSION ['selectedLanguage']
             : 'de';
         
-        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_titleHelper);
+        $this->_resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_titleHelper);
+        
+        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_resource, $this->_titleHelper);
             
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
@@ -156,14 +159,12 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $currentProposalUri = urldecode($this->getParam ('proposalUri'));
         
-        $resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
-        
         if (isset($currentProposalUri) && "" != $currentProposalUri)
         {
             $currentProposal = array();
             $currentProposal['uri'] = $currentProposalUri;
             $currentProposal['hash'] = substr ( md5 ($currentProposalUri), 0, 8 );
-            $currentProposal['label'] = $resource->getLabel($currentProposalUri);
+            $currentProposal['label'] = $this->_resource->getLabel($currentProposalUri);
             $currentProposal['status'] = "edit";
             $actions = $this->_proposal->getActions($currentProposalUri);
             if (0 < count($actions))
@@ -178,7 +179,7 @@ class PropallocController extends OntoWiki_Controller_Component
         }
         else
         {
-            $this->view->currentProposal = $resource->getNewInstance("Proposal");
+            $this->view->currentProposal = $this->_resource->getNewInstance("Proposal");
         }
         
         if ( 'save' == $this->getParam ('do') )
@@ -210,12 +211,11 @@ class PropallocController extends OntoWiki_Controller_Component
         if (false == $actionUri)
         {
             $this->view->actionOverClass = $this->getParam('entityOverClass');
-            $resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
-            $this->view->action = $resource->getNewInstance("Action");
+            $this->view->action = $this->_resource->getNewInstance("Action");
         }
         else
         {
-            $actionHelper = new Action ($this, $this->_lang, $this->_patientModel, $this->_dispediaModel);
+            $actionHelper = new Action ($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_resource);
             if (!isset($this->view->actions))
                 $this->view->actions = array();
                 
@@ -248,13 +248,12 @@ class PropallocController extends OntoWiki_Controller_Component
         if (false == $informationUri)
         {
             $this->view->informationOverClass = $this->getParam('entityOverClass');
-            $resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
-            $this->view->information = $resource->getNewInstance("Information");
+            $this->view->information = $this->_resource->getNewInstance("Information");
             $this->view->information['content'] = "";
         }
         else
         {
-            $informationHelper = new Information ($this->_lang, $this->_patientModel, $this->_dispediaModel);
+            $informationHelper = new Information ($this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_resource);
             if (!isset($this->view->informations))
                 $this->view->informations = array();
             $information = $informationHelper->getInformation($informationUri);

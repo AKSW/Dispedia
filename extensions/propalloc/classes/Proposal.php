@@ -1,5 +1,4 @@
 <?php
-require_once 'Resource.php';
 require_once 'Action.php';
 
 /**
@@ -16,15 +15,15 @@ class Proposal
     private $_resource;
     private $_action;
     private $_dispediaModel;
-    private $_patientsModel; 
+    private $_patientsModel;
     private $_titleHelper;
     private $_lang;
     
-    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $titleHelper)
+    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $resource, $titleHelper)
     {
         $this->_controller = $controller;
-        $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
-        $this->_action = new Action ($controller, $lang, $patientsModel, $dispediaModel);
+        $this->_resource = $resource;
+        $this->_action = new Action ($controller, $lang, $patientsModel, $dispediaModel, $resource);
         $this->_titleHelper = $titleHelper;
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;

@@ -1,6 +1,5 @@
 <?php
 
-require_once 'Resource.php';
 require_once 'Information.php';
 
 /**
@@ -20,12 +19,12 @@ class Action
     private $_dispediaModel;
     private $_patientsModel;
     
-    public function __construct ($controller, $lang, $patientsModel, $dispediaModel)
+    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $resource)
     {
         $this->_lang = $lang;
         $this->_controller = $controller;
-        $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
-        $this->_information = new Information ($lang, $patientsModel, $dispediaModel);
+        $this->_resource = $resource;
+        $this->_information = new Information ($lang, $patientsModel, $dispediaModel, $resource);
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();

@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Resource.php';
-
 /**
  * @category   OntoWiki
  * @package    OntoWiki_extensions_proppalloc
@@ -17,10 +15,10 @@ class Information
     private $_resource;
     private $_lang;
     
-    public function __construct ($lang, $patientsModel, $dispediaModel)
+    public function __construct ($lang, $patientsModel, $dispediaModel, $resource)
     {
         $this->_lang = $lang;
-        $this->_resource = new Resource ($lang, $patientsModel, $dispediaModel);
+        $this->_resource = $resource;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
