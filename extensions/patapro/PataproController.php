@@ -42,9 +42,7 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_translate = $this->_owApp->translate;
     
         // set standard language
-        $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
-            ? $_SESSION ['selectedLanguage']
-            : 'de';
+        $this->_lang = OntoWiki::getInstance()->config->languages->locale;
         
         $this->_patient = new Patient($this->_lang);
         $this->_proposal = new Proposal($this->_patientModel, $this->_lang);
