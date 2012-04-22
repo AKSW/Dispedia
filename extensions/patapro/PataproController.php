@@ -115,7 +115,7 @@ class PataproController extends OntoWiki_Controller_Component
         }
         else
         {
-            $message = new OntoWiki_Message("Parameter for healthstate view is missing (healthstateUri)", OntoWiki_Message::ERROR);
+            $message = new OntoWiki_Message($this->_translate->_('noHealthstateFound'), OntoWiki_Message::ERROR);
             $this->_owApp->appendMessage($message);
         }
         

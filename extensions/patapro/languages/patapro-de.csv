@@ -19,3 +19,4 @@ accept;annehmen
 denies;ablehnen
 save;Speichern
 nopatientselected;Kein Patient ausgewählt.
+noHealthstateFound;Kein Gesundheitszustand gefunden.
