@@ -76,3 +76,15 @@ mail.localname.recovery = "ontowiki-account-recovery"
 
 ;cache.enable       = false
 ;cache.query.enable = false
+
+index.default.controller = "page"
+
+index.default.action = "dispedia"
+
+themes.default = "dispedia"
+
+themes.path = "extensions/themes"
+
+title.prefix = "Dispedia - Information system for rare diseases"
+
+debug = 0
