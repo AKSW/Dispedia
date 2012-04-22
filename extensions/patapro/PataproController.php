@@ -38,14 +38,14 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
         $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
         $this->_owApp->selectedModel = $this->_patientModel;
-        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_patientModel);
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
     
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
         
         $this->_patient = new Patient($this->_lang);
-        $this->_proposal = new Proposal($this->_patientModel, $this->_lang);
+        $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper);
             
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
@@ -84,8 +84,6 @@ class PataproController extends OntoWiki_Controller_Component
             
             $allProposals = $this->_proposal->getAllProposals();
             $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
-            
-            
             
             foreach ($allProposals as $proposalUri => $proposal)
             {
