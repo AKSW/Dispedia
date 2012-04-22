@@ -43,12 +43,12 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_dispediaModel);
         
-        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_titleHelper);
-        
         // set standard language
         $this->_lang = true == isset ($_SESSION ['selectedLanguage'])
             ? $_SESSION ['selectedLanguage']
             : 'de';
+        
+        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_titleHelper);
             
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }

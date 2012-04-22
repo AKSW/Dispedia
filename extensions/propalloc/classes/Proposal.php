@@ -51,11 +51,12 @@ class Proposal
         {
             $this->_titleHelper->addResource ($proposal['uri']);
         }
+
         foreach ( $proposalResult as $proposal )
         {
             $newProposal['shortcut'] = md5 ( $proposal ['uri'] );
             $newProposal['uri'] = $proposal['uri'];
-            $newProposal['label'] = $this->_titleHelper->getTitle($proposal['uri']);
+            $newProposal['label'] = $this->_titleHelper->getTitle($proposal['uri'], $this->_lang);
             $proposals[] = $newProposal;
         }
 
