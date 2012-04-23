@@ -79,11 +79,6 @@ class PataproController extends OntoWiki_Controller_Component
             // get a list of all healthstates
             $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
             
-            $healthstateUris = array_keys($this->view->healthstates);
-            
-            //get the options from the last healthstate
-            $patientOptions = $this->healthstateAction(array_shift($healthstateUris));
-            
             $allProposals = $this->_proposal->getAllProposals();
             $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
             
@@ -92,7 +87,20 @@ class PataproController extends OntoWiki_Controller_Component
                 if (isset($patientProposals[$proposalUri]))
                 $allProposals[$proposalUri] = $patientProposals[$proposalUri];
             }
-            $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
+            
+            
+            $healthstateUris = array_keys($this->view->healthstates);
+            
+            //get the options from the last healthstate
+            $patientOptions = $this->healthstateAction(array_shift($healthstateUris));
+            
+            // only if patientOptions not empty
+            if (0 < count($patientOptions))
+            {
+                // compare the patient proposals with the template proposals
+                $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
+            }
+            
             $this->view->proposals = $allProposals;
         }
         else
@@ -115,6 +123,7 @@ class PataproController extends OntoWiki_Controller_Component
         }
         else
         {
+            $patientOptions = array();
             $message = new OntoWiki_Message($this->_translate->_('noHealthstateFound'), OntoWiki_Message::ERROR);
             $this->_owApp->appendMessage($message);
         }

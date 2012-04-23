@@ -53,13 +53,13 @@
                                     >
                                 </td>
                                 <td id="proposalName">
-                                    <span<?php echo (0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['label']; ?></span>
+                                    <span<?php echo (isset ($proposal['correspondence']) && 0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['label']; ?></span>
                                 </td>
                                 <td id="proposalStatus">
                                     <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
                                 </td>
                                 <td id="proposalCorrespondence">
-                                    <div class="correspondence corDivBottom"></div><div style="width:<?php echo $proposal['correspondence']; ?>px" class="correspondence corDivTop"></div>
+                                    <div class="correspondence corDivBottom"></div><div style="width:<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>px" class="correspondence corDivTop"></div>
                                 </td>
                             </tr>
                         <?php } ?>

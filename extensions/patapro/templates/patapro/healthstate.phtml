@@ -14,11 +14,13 @@
 <script type="text/javascript">       
     var url = '<?php echo $this->url; ?>';
 </script>
-<?php foreach ($this->options as $topicLabel => $topic) { ?>
-    <div class="topic"><?php echo $topicLabel; ?></div>
-        <?php foreach ($topic as $option) { ?>
-
-            <div class="option"><?php echo $option; ?></div>
+<?php if (isset($this->options)) { ?>
+    <?php foreach ($this->options as $topicLabel => $topic) { ?>
+        <div class="topic"><?php echo $topicLabel; ?></div>
+            <?php foreach ($topic as $option) { ?>
     
-        <?php } ?>
+                <div class="option"><?php echo $option; ?></div>
+        
+            <?php } ?>
+    <?php } ?>
 <?php } ?>
