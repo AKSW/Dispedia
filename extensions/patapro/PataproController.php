@@ -79,8 +79,10 @@ class PataproController extends OntoWiki_Controller_Component
             // get a list of all healthstates
             $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
             
-            // get last healthstate
-            $patientOptions = $this->healthstateAction(array_shift(array_keys($this->view->healthstates)));
+            $healthstateUris = array_keys($this->view->healthstates);
+            
+            //get the options from the last healthstate
+            $patientOptions = $this->healthstateAction(array_shift($healthstateUris));
             
             $allProposals = $this->_proposal->getAllProposals();
             $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
