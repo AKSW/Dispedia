@@ -12,19 +12,16 @@
 
 	/* required settings */
 	position:relative;
-	overflow:hidden;
+	overflow:auto;
 
 	/* vertical scrollables have typically larger height than width but not now */
-	height: 450px;
-	width: 100%;
+	height: 600px;
+	width: 70%;
 }
 
 /* root element for scrollable items */
 .scrollable .items {
 	position:absolute;
-
-	/* this time we have very large space for the height */
-	height:20000em;
 }
 
 .proposalItemSelected {
