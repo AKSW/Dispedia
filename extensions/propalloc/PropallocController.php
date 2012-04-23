@@ -24,8 +24,9 @@ class PropallocController extends OntoWiki_Controller_Component
         private $_lang;
         private $_proposal;
         private $_resource;
-        private $_patientModel;
+        private $_coreModel;
         private $_dispediaModel;
+        private $_patientModel;
         private $_titleHelper;
 	
     /**
@@ -41,6 +42,9 @@ class PropallocController extends OntoWiki_Controller_Component
         
         $model = new Erfurt_Rdf_Model ($this->_privateConfig->patientsModel);
         $this->_patientModel = $model;
+        
+        $model = new Erfurt_Rdf_Model ($this->_privateConfig->coreModel);
+        $this->_coreModel = $model;
         
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_dispediaModel);
         
@@ -282,7 +286,7 @@ class PropallocController extends OntoWiki_Controller_Component
             $messages = array();
             
             //TODO: in which model to read
-            $this->_dispediaModel->addStatement(
+            $this->_coreModel->addStatement(
                 "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
                 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
                 array('value' => "http://www.w3.org/2002/07/owl#Class", 'type' => 'uri')
@@ -291,7 +295,7 @@ class PropallocController extends OntoWiki_Controller_Component
             if (defined('_OWDEBUG'))
                 $messages[] = new OntoWiki_Message('Thearpis Class created: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'] . ' => rdf:type => http://www.w3.org/2002/07/owl#Class', OntoWiki_Message::INFO);
             
-            $this->_dispediaModel->addStatement(
+            $this->_coreModel->addStatement(
                 "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
                 'http://www.w3.org/2000/01/rdf-schema#subClassOf', 
                 array('value' => "http://www.dispedia.de/o/Therapist", 'type' => 'uri')
@@ -300,7 +304,7 @@ class PropallocController extends OntoWiki_Controller_Component
             if (defined('_OWDEBUG'))
                 $messages[] = new OntoWiki_Message('Thearpis Class created: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'] . ' => rdfs:subClassOf => http://www.dispedia.de/o/Therapist', OntoWiki_Message::INFO);
             
-            $this->_dispediaModel->addStatement(
+            $this->_coreModel->addStatement(
                 "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
                 'http://www.w3.org/2000/01/rdf-schema#label', 
                 array('value' => $currentTherapistClass['labelen'], 'type' => 'literal', 'lang' => 'en')
@@ -309,7 +313,7 @@ class PropallocController extends OntoWiki_Controller_Component
             if (defined('_OWDEBUG'))
                 $messages[] = new OntoWiki_Message('Thearpis Class label update: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'] . ' => rdfs:label => ' . $currentTherapistClass['labelen'] . ' (old:)', OntoWiki_Message::INFO);
             
-            $this->_dispediaModel->addStatement(
+            $this->_coreModel->addStatement(
                 "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
                 'http://www.w3.org/2000/01/rdf-schema#label', 
                 array('value' => $currentTherapistClass['labelde'], 'type' => 'literal', 'lang' => 'de')
