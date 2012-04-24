@@ -30,3 +30,5 @@ createTherapistClass;create Therapist Class
 therapistDescriptionText;add a new therapist class
 successTherapistAdd;Therapist Class added
 icfClassification;ICF Classification
+informationType;Information Type
+therapistType;Therapist

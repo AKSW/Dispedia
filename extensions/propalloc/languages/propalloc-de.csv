@@ -30,3 +30,5 @@ createTherapistClass;Erstelle Therapeut Klasse
 therapistDescriptionText;Erstellen einer neuen Therapeut Klasse
 successTherapistAdd;Therapeut Klasse hinzugefügt
 icfClassification;ICF Klassifikation
+informationType;Informationstyp
+therapistType;Therapeut

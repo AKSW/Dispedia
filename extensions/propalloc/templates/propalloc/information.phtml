@@ -18,6 +18,11 @@
         <th>
             <span class="headline"><?php echo $this->_translate->_('information'); ?></span>
         </th>
+        <th>
+            <a id="removeInformation" class="button" onclick="removeEntity('<?php echo $informationName; ?>');">
+                <?php echo $this->_translate->_('remove information'); ?>
+            </a>
+        </th>
     </tr>
     <tr>
         <td>
@@ -33,9 +38,10 @@
             <input type="text" name="<?php echo $informationName; ?>[label]" style="width:400px;" value="<?php echo (isset($information['label']) ? $information['label'] : ""); ?>" />
         </td>
         <td>
-            <a id="removeInformation" class="button" onclick="removeEntity('<?php echo $informationName; ?>');">
-                <?php echo $this->_translate->_('remove information'); ?>
-            </a>
+            <strong><?php echo $this->_translate->_('informationType'); ?></strong>
+        </td>
+        <td>
+            <strong><?php echo $this->_translate->_('therapistType'); ?></strong>
         </td>
     </tr>
     <tr class="<?php echo "information" . $information['hash']; ?>">

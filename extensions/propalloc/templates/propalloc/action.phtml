@@ -18,6 +18,16 @@
         <th>
             <span class="headline"><?php echo $this->_translate->_('action'); ?></span>
         </th>
+        <th>
+            <a id="removeaction" class="button" onclick="removeEntity('<?php echo $actionName; ?>');">
+                <?php echo $this->_translate->_('remove action'); ?>
+            </a>
+        </th>
+        <th>
+            <a id="addInformation" class="button" onclick="addEntity('Information', '<?php echo $actionName; ?>[informations]', '<?php echo $actionName; ?>Informations');">
+                <?php echo $this->_translate->_('add information'); ?>
+            </a>
+        </th>
     </tr>
     <tr>
         <td>
@@ -31,14 +41,6 @@
             <input type="hidden" name="<?php echo $actionName; ?>[uri]" value="<?php echo $action['uri']; ?>" />
             <input type="hidden" name="<?php echo $actionName; ?>[hash]" value="<?php echo $action['hash']; ?>" />
             <input type="text" name="<?php echo $actionName; ?>[label]" style="width:400px;" value="<?php echo (isset($action['label']) ? $action['label'] : ""); ?>" />
-        </td>
-        <td>
-            <a id="removeaction" class="button" onclick="removeEntity('<?php echo $actionName; ?>');">
-                <?php echo $this->_translate->_('remove action'); ?>
-            </a>
-            <a id="addInformation" class="button" onclick="addEntity('Information', '<?php echo $actionName; ?>[informations]', '<?php echo $actionName; ?>Informations');">
-                <?php echo $this->_translate->_('add information'); ?>
-            </a>
         </td>
     </tr>
 </table>
