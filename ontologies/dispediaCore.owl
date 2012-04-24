@@ -1031,14 +1031,14 @@
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;SensibleInformation">
-        <rdfs:label xml:lang="de">Information</rdfs:label>
-        <rdfs:label xml:lang="en">Information</rdfs:label>
+        <rdfs:label xml:lang="de">Information für sensible Personen</rdfs:label>
+        <rdfs:label xml:lang="en">Information for sensible person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Information"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;ExperiencedInformation">
-        <rdfs:label xml:lang="de">Information</rdfs:label>
-        <rdfs:label xml:lang="en">Information</rdfs:label>
+        <rdfs:label xml:lang="de">Information für erfahrene Personen</rdfs:label>
+        <rdfs:label xml:lang="en">Information for experienced person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Information"/>
     </owl:Class>
 
