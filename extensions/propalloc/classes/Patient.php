@@ -18,46 +18,44 @@ class Patient
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
-    public function getAllPatientTypes()
+    public function getAllInformationClasses()
     {
-        $patientTypes = array();
-        $patientTypeResults = $this->_store->sparqlQuery (
+        $informationClasses = array();
+        $informationClassResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
-            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?patientTypeUri ?patientTypeLabel
+            SELECT ?informationClassUri ?informationClassLabel
             WHERE {
-                ?patientTypeUri rdf:type dispediao:PatientType.
-                ?patientTypeUri rdfs:label ?patientTypeLabel.
-                FILTER (langmatches(lang(?patientTypeLabel), "' . $this->_lang . '"))
+                ?informationClassUri rdfs:subClassOf dispediao:Information.
+                ?informationClassUri rdfs:label ?informationClassLabel.
+                FILTER (langmatches(lang(?informationClassLabel), "' . $this->_lang . '"))
             };'
         );
-        foreach ($patientTypeResults as $patientTypeResult)
+        foreach ($informationClassResults as $informationClassResult)
         {
-            $patientTypes[$patientTypeResult['patientTypeUri']] = $patientTypeResult['patientTypeLabel'];
+            $informationClasses[$informationClassResult['informationClassUri']] = $informationClassResult['informationClassLabel'];
         }
-        return $patientTypes;
+        return $informationClasses;
     }
     
-    public function getAllTherapistTypes()
+    public function getAllTherapistClasses()
     {
-        $therapistTypes = array();
-        $therapistTypeResults = $this->_store->sparqlQuery (
+        $therapistClasses = array();
+        $therapistClassResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
-            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?therapistTypeUri ?therapistTypeLabel
+            SELECT ?therapistClassUri ?therapistClassLabel
             WHERE {
-                ?therapistTypeUri rdf:type dispediao:TherapistType.
-                ?therapistTypeUri rdfs:label ?therapistTypeLabel.
-                FILTER (langmatches(lang(?therapistTypeLabel), "' . $this->_lang . '"))
+                ?therapistClassUri rdfs:subClassOf dispediao:Therapist.
+                ?therapistClassUri rdfs:label ?therapistClassLabel.
+                FILTER (langmatches(lang(?therapistClassLabel), "' . $this->_lang . '"))
             };'
         );
-        foreach ($therapistTypeResults as $therapistTypeResult)
+        foreach ($therapistClassResults as $therapistClassResult)
         {
-            $therapistTypes[$therapistTypeResult['therapistTypeUri']] = $therapistTypeResult['therapistTypeLabel'];
+            $therapistClasses[$therapistClassResult['therapistClassUri']] = $therapistClassResult['therapistClassLabel'];
         }
-        return $therapistTypes;
+        return $therapistClasses;
     }
     
     

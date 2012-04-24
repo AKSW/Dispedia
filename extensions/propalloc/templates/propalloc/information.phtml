@@ -53,15 +53,14 @@
             <textarea style="width:400px; height:150px;" name="<?php echo $informationName; ?>[content]"><?php echo (isset($information['content']) ? $information['content'] : ""); ?></textarea>
         </td>
         <td>
-            
-            <?php foreach ($this->patientTypes as $patientTypeUri => $patientTypeLabel) { ?>
-                <input type="checkbox" name="<?php echo $informationName; ?>[patientType][]" style="width:400px;" value="<?php echo $patientTypeUri; ?>" <?php echo (isset($information['suitableFor'][$patientTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $patientTypeLabel; ?><br />
+            <?php foreach ($this->informationClasses as $informationClassUri => $informationClassLabel) { ?>
+                <input type="checkbox" name="<?php echo $informationName; ?>[informationClasses][]" style="width:400px;" value="<?php echo $informationClassUri; ?>" <?php echo (isset($information['informationClass'][$informationClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $informationClassLabel; ?><br />
             <?php } ?>
         </td>
         <td>
-            <?php foreach ($this->therapistTypes as $therapistTypeUri => $therapistTypeLabel) { ?>
-                <input type="checkbox" name="<?php echo $informationName; ?>[therapistType][]" style="width:400px;" value="<?php echo $therapistTypeUri; ?>" <?php echo (isset($information['usefulFor'][$therapistTypeUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistTypeLabel; ?><br />
+            <?php foreach ($this->therapistClasses as $therapistClassUri => $therapistClassLabel) { ?>
+                <input type="checkbox" name="<?php echo $informationName; ?>[therapistClasses][]" style="width:400px;" value="<?php echo $therapistClassUri; ?>" <?php echo (isset($information['usefulFor'][$therapistClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistClassLabel; ?><br />
             <?php } ?>
         </td>
-        </tr>
+    </tr>
     </table>

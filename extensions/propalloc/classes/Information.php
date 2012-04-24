@@ -63,19 +63,20 @@ class Information
         // get informationContent, informationSuitableFor, informationUsefulFor
         $informationResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
+            PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?informtionContent ?informtionSuitableFor ?informtionUsefulFor
+            SELECT ?informtionContent ?informationClass ?informtionUsefulFor
             WHERE {
               {<' . $information['uri'] . '> dispediao:content ?informtionContent.}
               UNION
-              {<' . $information['uri'] . '> dispediao:suitableFor ?informtionSuitableFor.}
+              {<' . $information['uri'] . '> rdf:type ?informationClass.}
               UNION
               {<' . $information['uri'] . '> dispediao:usefulFor ?informtionUsefulFor.}
             };'
         );
         
         $information['content'] = "";
-        $information['suitableFor'] = array();
+        $information['informationClass'] = array();
         $information['usefulFor'] = array();
         // order the resultset
         foreach ($informationResults as $informationResult)
@@ -84,16 +85,15 @@ class Information
             {
                 $information['content'] = $informationResult['informtionContent'];
             }
-            if ("" != $informationResult['informtionSuitableFor'])
+            if ("" != $informationResult['informationClass'])
             {
-                $information['suitableFor'][$informationResult['informtionSuitableFor']] = "";
+                $information['informationClass'][$informationResult['informationClass']] = "";
             }
             if ("" != $informationResult['informtionUsefulFor'])
             {
                 $information['usefulFor'][$informationResult['informtionUsefulFor']] = "";
             }
         }
-        
         return $information;
     }
     
@@ -105,17 +105,31 @@ class Information
         // array for output messages
         $messages = array();
         
-        // make 'type' relation
-        if ("new" == $currentInformation['status'])
+        // check witch kind of information
+        if (isset($currentInformation['informationClasses']))
+            $informationClasses = $currentInformation['informationClasses'];
+        else
+            $informationClasses[] = 'http://www.dispedia.de/o/Information';
+        
+        //TODO: nicht einfach alle löschen sondern anhand der olddata nur die löschen und hinzufügen die sich geändert haben
+        $this->_dispediaModel->deleteMatchingStatements
+        (
+            $currentInformation['uri'],
+            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
+            null
+        );
+        foreach ($informationClasses as $informationClass)
         {
             $this->_dispediaModel->addStatement(
                 $currentInformation['uri'],
                 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
-                array('value' => 'http://www.dispedia.de/o/Information', 'type' => 'uri')
+                array('value' => $informationClass, 'type' => 'uri')
             );
             if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Information created: ' . $currentInformation['uri'] . ' => rdfs:type => http://www.dispedia.de/o/Information', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message('Information update: ' . $currentInformation['uri'] . ' => rdfs:type => ' . $informationClass, OntoWiki_Message::INFO);
         }
+        
+        
         
         // make or update 'label' relation
         if ($currentInformation['label'] != $currentInformationOldData['label'])

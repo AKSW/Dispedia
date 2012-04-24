@@ -244,8 +244,8 @@ class PropallocController extends OntoWiki_Controller_Component
     public function informationAction ($informationUri = false)
     {
         $patient = new Patient ($this->_lang);
-        $this->view->patientTypes = $patient->getAllPatientTypes();
-        $this->view->therapistTypes = $patient->getAllTherapistTypes();
+        $this->view->informationClasses = $patient->getAllInformationClasses();
+        $this->view->therapistClasses = $patient->getAllTherapistClasses();
         
         if (false == $informationUri)
         {
