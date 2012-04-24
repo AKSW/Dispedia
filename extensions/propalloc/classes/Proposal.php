@@ -19,18 +19,22 @@ class Proposal
     private $_titleHelper;
     private $_lang;
     
-    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $resource, $titleHelper)
+    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $resource)
     {
         $this->_controller = $controller;
         $this->_resource = $resource;
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
         $this->_action = new Action ($controller, $lang, $patientsModel, $dispediaModel, $resource);
-        $this->_titleHelper = $titleHelper;
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
+    public function getActionHelper ()
+    {
+        return $this->_action;
+    }
     
     //TODO: should be the same like in the patapro Proposal class
     /**
@@ -107,24 +111,6 @@ class Proposal
                     if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
             }
             return null;
-    }
-    
-    /*
-     * function getActions
-     * @param $proposalUri
-     */
-    
-    function getActions($proposalUri) {
-        // get actionUri
-        $actionResults = $this->_store->sparqlQuery (
-            'PREFIX dispediao:<http://www.dispedia.de/o/>
-            SELECT ?uri
-            WHERE {
-                <' . $proposalUri . '> dispediao:containsAction ?uri.
-            };'
-        );
-
-        return $actionResults;
     }
     
     /**

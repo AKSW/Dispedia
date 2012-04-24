@@ -18,34 +18,41 @@ class Action
     private $_information;
     private $_dispediaModel;
     private $_patientsModel;
+    private $_titleHelper;
     
     public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $resource)
     {
         $this->_lang = $lang;
         $this->_controller = $controller;
         $this->_resource = $resource;
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
         $this->_information = new Information ($lang, $patientsModel, $dispediaModel, $resource);
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
+    public function getInformationHelper ()
+    {
+        return $this->_information;
+    }
+    
     /*
-     * function getInformations
-     * @param $actionUri
+     * function getActions
+     * @param $proposalUri
      */
     
-    function getInformations($actionUri) {
-        // get informationUri
-        $informationResults = $this->_store->sparqlQuery (
+    function getAllActions($proposalUri) {
+        // get actionUri
+        $actionResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             SELECT ?uri
             WHERE {
-                <' . $actionUri . '> dispediao:containsInformation ?uri.
+                <' . $proposalUri . '> dispediao:containsAction ?uri.
             };'
         );
 
-        return $informationResults;
+        return $actionResults;
     }
     
     /**
@@ -54,23 +61,15 @@ class Action
      */
     public function getAction($actionUri)
     {
-       // get actionLabel
-        $actionLabelResults = $this->_store->sparqlQuery (
-            'PREFIX dispediao:<http://www.dispedia.de/o/>
-            PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?actionLabel
-            WHERE {
-                <' . $actionUri . '> rdfs:label ?actionLabel.
-                FILTER (langmatches(lang(?actionLabel), "' . $this->_lang . '"))
-            };'
-        );
         
+       // get actionLabel
+        $this->_titleHelper->addResource ($actionUri);
 
         $action = array();
         $action['uri'] = $actionUri;
         //TODO: muss schon aus dem store kommen, aber momentan gibt es noch instanzen ohne hash
         $action['hash'] = substr ( md5 ($actionUri), 0, 8 );
-        $action['label'] = $actionLabelResults[0]['actionLabel'];
+        $action['label'] = $this->_titleHelper->getTitle($actionUri, $this->_lang);
         $action['status'] = "edit";
         
         return $action;

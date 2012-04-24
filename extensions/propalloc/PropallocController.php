@@ -51,9 +51,9 @@ class PropallocController extends OntoWiki_Controller_Component
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
         
-        $this->_resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_titleHelper);
+        $this->_resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
         
-        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_resource, $this->_titleHelper);
+        $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_resource);
             
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
@@ -168,7 +168,7 @@ class PropallocController extends OntoWiki_Controller_Component
             $currentProposal['hash'] = substr ( md5 ($currentProposalUri), 0, 8 );
             $currentProposal['label'] = $this->_resource->getLabel($currentProposalUri);
             $currentProposal['status'] = "edit";
-            $actions = $this->_proposal->getActions($currentProposalUri);
+            $actions = $this->_proposal->getActionHelper()->getAllActions($currentProposalUri);
             if (0 < count($actions))
             {
                 $currentProposal['actions'] = array();
@@ -223,7 +223,7 @@ class PropallocController extends OntoWiki_Controller_Component
                 
             $action = $actionHelper->getAction($actionUri);
             
-            $informations = $actionHelper->getInformations($actionUri);
+            $informations = $actionHelper->getInformationHelper()->getAllInformations($actionUri);
             if (0 < count($informations))
             {
                 $action['informations'] = array();

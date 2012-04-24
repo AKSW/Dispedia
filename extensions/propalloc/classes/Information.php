@@ -14,6 +14,7 @@ class Information
     private $_patientsModel;
     private $_resource;
     private $_lang;
+    private $_titleHelper;
     
     public function __construct ($lang, $patientsModel, $dispediaModel, $resource)
     {
@@ -21,9 +22,28 @@ class Information
         $this->_resource = $resource;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
 
+    /*
+     * function getInformations
+     * @param $actionUri
+     */
+    
+    function getAllInformations($actionUri) {
+        // get informationUri
+        $informationResults = $this->_store->sparqlQuery (
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
+            SELECT ?uri
+            WHERE {
+                <' . $actionUri . '> dispediao:containsInformation ?uri.
+            };'
+        );
+
+        return $informationResults;
+    }
+    
     /**
      * Function get get all Information of a Proposal.
      * Info, Actions aso.
@@ -31,20 +51,13 @@ class Information
     public function getInformation($informationUri)
     {
         // informationLabel
-        $informationLabelResults = $this->_store->sparqlQuery (
-            'PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?informationLabel
-            WHERE {
-                <' . $informationUri . '> rdfs:label ?informationLabel.
-                FILTER (langmatches(lang(?informationLabel), "' . $this->_lang . '"))
-            };'
-        );
+        $this->_titleHelper->addResource ($informationUri);
         
         $information = array();
         $information['uri'] = $informationUri;
         //TODO: muss schon aus dem store kommen, aber momentan gibt es noch instanzen ohne hash
         $information['hash'] = substr ( md5 ($informationUri), 0, 8 );
-        $information['label'] = (0 < count($informationLabelResults) ? $informationLabelResults[0]['informationLabel'] : "");
+        $information['label'] = $this->_titleHelper->getTitle($informationUri, $this->_lang);
         $information['status'] = "edit";
         
         // get informationContent, informationSuitableFor, informationUsefulFor

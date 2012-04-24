@@ -15,13 +15,13 @@ class Resource
     private $_lang;
     private $_titleHelper;
     
-    public function __construct ($lang, $patientsModel, $dispediaModel, $titleHelper)
+    public function __construct ($lang, $patientsModel, $dispediaModel)
     {
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
-        $this->_titleHelper = $titleHelper;
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
     }
     
         
