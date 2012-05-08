@@ -46,7 +46,7 @@
 </table>
 <div class="<?php echo $actionName; ?> actionInformations" id="<?php echo $actionName; ?>Informations">
     <?php
-        if (isset($this->informations))
+        if (isset($this->informations) && isset($this->action['informations']))
         {
             $this->informationOverClass = $actionName . "[informations]";
             //Loop for action informations
