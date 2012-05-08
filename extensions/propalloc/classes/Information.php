@@ -165,6 +165,58 @@ class Information
             if (defined('_OWDEBUG'))
                 $messages[] = new OntoWiki_Message('Information content update: ' . $currentInformation['uri'] . ' => dispediao:content => ' . $currentInformation['content'] . ' (old: ' . $currentInformationOldData['content'] . ')', OntoWiki_Message::INFO);
         }
+        
+        
+        // make or update 'usefulFor' relation
+        // TODO: maybe there is a shorter possibility to check isset of current and old data
+        if (true == isset($currentInformation['therapistClasses']) && true == isset($currentInformationOldData['therapistClasses']))
+        {
+            $changedTherapistClasses = array_diff($currentInformation['therapistClasses'], $currentInformationOldData['therapistClasses']);
+            $deletedTherapistClasses = array_diff($currentInformationOldData['therapistClasses'], $currentInformation['therapistClasses']);
+        }
+        else if (false == isset($currentInformation['therapistClasses']) && true == isset($currentInformationOldData['therapistClasses']))
+        {
+            $changedTherapistClasses = array();
+            $deletedTherapistClasses = $currentInformationOldData['therapistClasses'];
+        }
+        else if (true == isset($currentInformation['therapistClasses']) && false == isset($currentInformationOldData['therapistClasses']))
+        {
+            $changedTherapistClasses = $currentInformation['therapistClasses'];
+            $deletedTherapistClasses = array();
+        }
+        else
+        {
+            $changedTherapistClasses = array();
+            $deletedTherapistClasses = array();
+        }
+        
+        if (0 < count ($changedTherapistClasses))
+        {
+            foreach ($changedTherapistClasses as $therapistClass)
+            {
+                $this->_dispediaModel->addStatement(
+                    $currentInformation['uri'],
+                    'http://www.dispedia.de/o/usefulFor', 
+                    array('value' => $therapistClass, 'type' => 'literal', 'lang' => $this->_lang)
+                );
+                if (defined('_OWDEBUG'))
+                    $messages[] = new OntoWiki_Message('Information usefulFor add: ' . $currentInformation['uri'] . ' => dispediao:usefulFor => ' . $therapistClass, OntoWiki_Message::INFO);
+            }
+        }
+        if (0 < count ($deletedTherapistClasses))
+        {
+            foreach ($deletedTherapistClasses as $therapistClass)
+            {
+                $this->_dispediaModel->deleteMatchingStatements
+                (
+                    $currentInformation['uri'],
+                    'http://www.dispedia.de/o/usefulFor', 
+                    array('value' => $therapistClass, 'type' => 'literal', 'lang' => $this->_lang)
+                );
+                if (defined('_OWDEBUG'))
+                    $messages[] = new OntoWiki_Message('Information usefulFor delete: ' . $currentInformation['uri'] . ' => dispediao:usefulFor => ' . $therapistClass, OntoWiki_Message::INFO);
+            }
+        }
 
         $messages[] = new OntoWiki_Message('successInformationEdit', OntoWiki_Message::SUCCESS);
         return $messages;
