@@ -1056,14 +1056,14 @@
 
 
     <owl:Class rdf:about="&dispediao;ExperiencedPatient">
-        <rdfs:label xml:lang="de">Patient</rdfs:label>
-        <rdfs:label xml:lang="en">Patient</rdfs:label>
+        <rdfs:label xml:lang="de">erfahrener Patient</rdfs:label>
+        <rdfs:label xml:lang="en">experienced Patient</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Patient"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;SensiblePatient">
-        <rdfs:label xml:lang="de">Patient</rdfs:label>
-        <rdfs:label xml:lang="en">Patient</rdfs:label>
+        <rdfs:label xml:lang="de">sensibler Patient</rdfs:label>
+        <rdfs:label xml:lang="en">sensible Patient</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Patient"/>
     </owl:Class>
 
