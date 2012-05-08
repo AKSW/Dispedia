@@ -54,12 +54,12 @@
         </td>
         <td>
             <?php foreach ($this->informationClasses as $informationClassUri => $informationClassLabel) { ?>
-                <input type="checkbox" name="<?php echo $informationName; ?>[informationClasses][]" style="width:400px;" value="<?php echo $informationClassUri; ?>" <?php echo (isset($information['informationClass'][$informationClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $informationClassLabel; ?><br />
+                <input type="checkbox" name="<?php echo $informationName; ?>[informationClasses][]" style="width:400px;" value="<?php echo $informationClassUri; ?>" <?php echo (isset($information['informationClasses'][$informationClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $informationClassLabel; ?><br />
             <?php } ?>
         </td>
         <td>
             <?php foreach ($this->therapistClasses as $therapistClassUri => $therapistClassLabel) { ?>
-                <input type="checkbox" name="<?php echo $informationName; ?>[therapistClasses][]" style="width:400px;" value="<?php echo $therapistClassUri; ?>" <?php echo (isset($information['usefulFor'][$therapistClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistClassLabel; ?><br />
+                <input type="checkbox" name="<?php echo $informationName; ?>[therapistClasses][]" style="width:400px;" value="<?php echo $therapistClassUri; ?>" <?php echo (isset($information['therapistClasses'][$therapistClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistClassLabel; ?><br />
             <?php } ?>
         </td>
     </tr>

@@ -65,33 +65,33 @@ class Information
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?informtionContent ?informationClass ?informtionUsefulFor
+            SELECT ?informationContent ?informationClass ?informationTherapistClass
             WHERE {
-              {<' . $information['uri'] . '> dispediao:content ?informtionContent.}
+              {<' . $information['uri'] . '> dispediao:content ?informationContent.}
               UNION
               {<' . $information['uri'] . '> rdf:type ?informationClass.}
               UNION
-              {<' . $information['uri'] . '> dispediao:usefulFor ?informtionUsefulFor.}
+              {<' . $information['uri'] . '> dispediao:usefulFor ?informationTherapistClass.}
             };'
         );
         
         $information['content'] = "";
-        $information['informationClass'] = array();
-        $information['usefulFor'] = array();
+        $information['informationClasses'] = array();
+        $information['therapistClasses'] = array();
         // order the resultset
         foreach ($informationResults as $informationResult)
         {
-            if ("" != $informationResult['informtionContent'])
+            if ("" != $informationResult['informationContent'])
             {
-                $information['content'] = $informationResult['informtionContent'];
+                $information['content'] = $informationResult['informationContent'];
             }
             if ("" != $informationResult['informationClass'])
             {
-                $information['informationClass'][$informationResult['informationClass']] = "";
+                $information['informationClasses'][$informationResult['informationClass']] = $informationResult['informationClass'];
             }
-            if ("" != $informationResult['informtionUsefulFor'])
+            if ("" != $informationResult['informationTherapistClass'])
             {
-                $information['usefulFor'][$informationResult['informtionUsefulFor']] = "";
+                $information['therapistClasses'][$informationResult['informationTherapistClass']] = $informationResult['informationTherapistClass'];
             }
         }
         return $information;
@@ -128,7 +128,6 @@ class Information
             if (defined('_OWDEBUG'))
                 $messages[] = new OntoWiki_Message('Information update: ' . $currentInformation['uri'] . ' => rdfs:type => ' . $informationClass, OntoWiki_Message::INFO);
         }
-        
         
         
         // make or update 'label' relation
