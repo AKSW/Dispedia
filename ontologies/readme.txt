@@ -10,7 +10,7 @@ Please create the following 6 ontologies and upload/add the given owl files to t
   d) wrapperIcf.owl
 
 2. http://als.dispedia.de/
-  a) ekbProposals.owl
+  a) ekbProposal.owl
 
 3. http://patients.dispedia.de/
   a) patients.owl
