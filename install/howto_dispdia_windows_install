@@ -1,0 +1,21 @@
+Install Ontowiki
+################
+- install xampp
+- clone ontowiki
+- switch to version2 branch
+- init subrepos erfurt,RDFAuthor, formgenerator
+- update subrepos erfurt,RDFAuthor, formgenerator
+- switch to branch version2 on formgenerator subrepo- 
+- copy config.ini-dist to config.ini
+- make db configuration in config.ini
+- set default language in config.ini
+- download http://framework.zend.com/releases/ZendFramework-1.11.11/ZendFramework-1.11.11-minimal.tar.gz
+- extract ZendFramework-1.11.11-minimal.tar.gz
+- move folder ZendFramework-1.11.11-minimal/library/Zend to ontowiki/libraries/Zend
+- open ontowiki in browser and check if it runs
+
+
+Install OW_CLI
+##############
+- set path to php executeable to global path variable
+- enable php_curl in php.ini
