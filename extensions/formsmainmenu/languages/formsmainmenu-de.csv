@@ -53,3 +53,5 @@ newtherapistclass;Neue Therapeuten Klasse anlegen
 Admin view;Administratormenü
 user;Benutzer
 noPatientSelected;Kein Patient ausgewählt
+ontologies;Wissenbasen
+ontologieEdit;Wissenbasen bearbeiten

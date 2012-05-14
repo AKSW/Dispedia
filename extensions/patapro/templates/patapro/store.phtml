@@ -1,0 +1,64 @@
+<?php 
+/**
+ * Template for index action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_patapro
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<script type="text/javascript">       
+    var url = '<?php echo $this->url; ?>';
+	var source = <?php echo json_encode($this->source); ?>;
+	var createUrl = url + "model/create";
+	var addUrl = url + "model/add";
+	var deleteUrl = url + "model/delete/";
+</script>
+<table>
+	<tr>
+		<th>Model</th>
+		<?php foreach($this->source as $ontologieName => $ontologieData) { ?>
+			<th>
+					<?php echo $ontologieData['modeluri']; ?>
+			</th>
+		<?php } ?>
+	</tr>
+	<tr>
+		<td>Function</td>
+		<?php foreach($this->source as $ontologieName => $ontologieData) { ?>
+			<td>
+				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $ontologieName; ?>', 'all')">
+					Renew
+				</a>
+				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $ontologieName; ?>', 'add')">
+					Add
+				</a>
+				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $ontologieName; ?>', 'delete')">
+					Delete
+				</a>
+			</td>
+		<?php } ?>
+	</tr>
+	<tr>
+		<td>Process</td>
+			<?php foreach($this->source as $ontologieName => $ontologieData) { ?>
+				<td>
+					<div id="response<?php echo $ontologieName; ?>">
+					</div>
+				</td>
+			<?php } ?>
+	</tr>
+</table>
+<a id="addResource" class="button" onclick="javascript:renewAllModel('all')">
+	Renew all Models 
+</a>
+<a id="addResource" class="button" onclick="javascript:renewAllModel('add')">
+	Add all Models 
+</a>
+<a id="addResource" class="button" onclick="javascript:renewAllModel('delete')">
+	Delete all Models 
+</a>
+

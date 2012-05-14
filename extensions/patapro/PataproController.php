@@ -32,7 +32,7 @@ class PataproController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
-        $this->_url = $this->_request->uri;   
+        $this->_url = $this->_config->urlBase .'patapro/';    
         
         $this->_patientModel = new Erfurt_Rdf_Model ($this->_privateConfig->patientModel);
         $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
@@ -160,5 +160,57 @@ class PataproController extends OntoWiki_Controller_Component
         }
         $this->view->currentPatient = $currentPatient;
     }
+	
+	public function storeAction()
+    {
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
+		
+		$this->view->dispediaCore = file_get_contents('E:/Projekte/Dispedia/ow/ontologies/dispediaCore.owl');
+		$this->view->wrapperAlsfrs = file_get_contents('E:/Projekte/Dispedia/ow/ontologies/wrapperAlsfrs.owl');
+		
+		$ontologiePath = 'E:/Projekte/Dispedia/ow/ontologies/';
+		
+        $this->view->url = $this->_config->urlBase;
+		
+		// dispediaCore
+		$dispediaCore = array();
+		$dispediaCore['modeluri'] = "http://www.dispedia.de/";
+		$dispediaCore['files'] = array(
+			0 => file_get_contents($ontologiePath . 'dispediaCore.owl'),
+			1 => file_get_contents($ontologiePath . 'wrapperAlsfrs.owl'),
+			2 => file_get_contents($ontologiePath . 'wrapperIcd.owl'),
+			3 => file_get_contents($ontologiePath . 'wrapperIcf.owl')
+		);
+		
+		// ekbProposal
+		$ekbProposal = array();
+		$ekbProposal['modeluri'] = "http://als.dispedia.de/";
+		$ekbProposal['files'] = array(
+			0 => file_get_contents($ontologiePath . 'ekbProposal.owl')
+		);
+		
+		// patients
+		$patients = array();
+		$patients['modeluri'] = "http://patients.dispedia.de/";
+		$patients['files'] = array(
+			0 => file_get_contents($ontologiePath . 'patients.owl'),
+			1 => file_get_contents($ontologiePath . 'jonDoes.owl')
+		);
+		
+		// alsfrs
+		$alsfrs = array();
+		$alsfrs['modeluri'] = "http://als.dispedia.de/frs/";
+		$alsfrs['files'] = array(
+			0 => file_get_contents($ontologiePath . 'alsfrs.rdf')
+		);
+		
+		$this->view->source = array();
+		$this->view->source['dispediaCore'] = $dispediaCore;
+		$this->view->source['ekbProposal'] = $ekbProposal;
+		$this->view->source['patients'] = $patients;
+		$this->view->source['alsfrs'] = $alsfrs;
+		
+	}
 }
 
