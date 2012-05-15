@@ -25,6 +25,7 @@ class PataproController extends OntoWiki_Controller_Component
     private $_proposal;
     private $_titleHelper;
     private $_translate;
+    private $_ontologieFolder;
     
     /**
      * init controller
@@ -40,6 +41,7 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_owApp->selectedModel = $this->_patientModel;
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
+        $this->_ontologieFolder = $this->_privateConfig->ontologieFolder;
     
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
@@ -166,10 +168,7 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
 		
-		$this->view->dispediaCore = file_get_contents('E:/Projekte/Dispedia/ow/ontologies/dispediaCore.owl');
-		$this->view->wrapperAlsfrs = file_get_contents('E:/Projekte/Dispedia/ow/ontologies/wrapperAlsfrs.owl');
-		
-		$ontologiePath = 'E:/Projekte/Dispedia/ow/ontologies/';
+	$ontologiePath = $this->_ontologieFolder;
 		
         $this->view->url = $this->_config->urlBase;
 		

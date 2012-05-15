@@ -1,0 +1,25 @@
+;;
+; Basic component configuration
+;;
+enabled     = true
+templates   = "templates"
+languages   = "languages/"
+action      = "display"
+name        = "Patient Proposal Allocation"
+description = "Administrate your patient proposal allocations."
+author      = "Dispedia + Lars Eidam + Konrad Abicht"
+authorUrl   = "http://www.dispedia.de"
+
+[private] 
+
+; dispedia model
+dispediaModel = "http://www.dispedia.de/"
+
+; sets default model
+patientModel = "http://patients.dispedia.de/"
+
+; alsfrs model
+alsfrsModel = "http://als.dispedia.de/"
+
+; ontologie folder
+ontologieFolder = ""
