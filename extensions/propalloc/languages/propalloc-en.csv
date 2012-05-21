@@ -1,7 +1,9 @@
 ActionText;Action text
 ActionTitle;Action title
 Create Proposal;Create proposal
+editProposal;Edit proposal
 indexDescriptionText;At this page you can assign proposals.
+editProposalDescriptionText;At this page you can edit proposals.
 Proposal allocation administration;Proposal allocation administration
 Proposal administration;Proposal administration
 Save;Save

@@ -1,7 +1,9 @@
 ActionText;Aktion Beschreibung
 ActionTitle;Aktion Titel
 Create Proposal;Neuer Vorschlag
+editProposal;Vorschlag bearbeiten
 indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordnen. 
+editProposalDescriptionText;Hier können Sie ihre Vorschläge bearbeiten. 
 Proposal allocation administration;Verwaltung von Vorschlagszuweisungen
 Proposal administration;Vorschlagsverwaltung
 Save;Speichern
