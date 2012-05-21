@@ -1053,6 +1053,18 @@
         <rdfs:label xml:lang="en">Therapist</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Agent"/>
     </owl:Class>
+    
+    <owl:Class rdf:about="&dispediao;Supporter">
+        <rdfs:label xml:lang="de">Supporter</rdfs:label>
+        <rdfs:label xml:lang="en">Supporter</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;Agent"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="&dispediao;Organisation">
+        <rdfs:label xml:lang="de">Organisation</rdfs:label>
+        <rdfs:label xml:lang="en">Organisation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&dispediao;Agent"/>
+    </owl:Class>
 
 
     <owl:Class rdf:about="&dispediao;ExperiencedPatient">
