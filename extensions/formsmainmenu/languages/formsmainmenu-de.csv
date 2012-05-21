@@ -1,5 +1,5 @@
 Add address;Addresse hinzufügen
-Add a new person;Neuen Person anlegen
+Add a new person;Neue Person anlegen
 Add a new patient;Neuen Patienten anlegen
 Add a new knowledge base;Neue Wissensbasis anlegen
 Add pet;Haustier hinzufügen
@@ -49,9 +49,10 @@ Silbings;Geschwister
 Social situation;Soziale Situation
 System;System
 therapists;Therapeuten
-newsupporter;Neue Supporter anlegen
+newSupporterClass;Neue Supporter Klasse anlegen
 Admin view;Administratormenü
 user;Benutzer
 noPatientSelected;Kein Patient ausgewählt
 ontologies;Wissenbasen
 ontologieEdit;Wissenbasen bearbeiten
+newOrganisation;Neue Organisation anlegen
