@@ -19,7 +19,6 @@ class PataproController extends OntoWiki_Controller_Component
     private $_patientModel;
     private $_dispediaModel;
     private $_alsfrsModel;
-    private $_selectedModel;
     private $_lang;
     private $_patient;
     private $_proposal;
@@ -37,7 +36,6 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_patientModel = new Erfurt_Rdf_Model ($this->_privateConfig->patientModel);
         $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
         $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
-        $this->_owApp->selectedModel = $this->_patientModel;
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
 
