@@ -457,6 +457,14 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;successorOf"/>
     </owl:ObjectProperty>
 
+    <owl:ObjectProperty rdf:about="&dispediao;support">
+        <rdfs:label xml:lang="de">unterstützt</rdfs:label>
+        <rdfs:label xml:lang="en">support</rdfs:label>
+        <rdfs:range rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&dispediao;Organisation"/>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+    </owl:ObjectProperty>
+    
     <owl:ObjectProperty rdf:about="&dispediao;usefulFor">
         <rdfs:label xml:lang="de">nützlich für</rdfs:label>
         <rdfs:label xml:lang="en">useful for</rdfs:label>
