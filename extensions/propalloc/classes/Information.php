@@ -65,19 +65,19 @@ class Information
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?informationContent ?informationClass ?informationTherapistClass
+            SELECT ?informationContent ?informationClass ?informationSupporterClass
             WHERE {
               {<' . $information['uri'] . '> dispediao:content ?informationContent.}
               UNION
               {<' . $information['uri'] . '> rdf:type ?informationClass.}
               UNION
-              {<' . $information['uri'] . '> dispediao:usefulFor ?informationTherapistClass.}
+              {<' . $information['uri'] . '> dispediao:usefulFor ?informationSupporterClass.}
             };'
         );
         
         $information['content'] = "";
         $information['informationClasses'] = array();
-        $information['therapistClasses'] = array();
+        $information['supporterClasses'] = array();
         // order the resultset
         foreach ($informationResults as $informationResult)
         {
@@ -89,9 +89,9 @@ class Information
             {
                 $information['informationClasses'][$informationResult['informationClass']] = $informationResult['informationClass'];
             }
-            if ("" != $informationResult['informationTherapistClass'])
+            if ("" != $informationResult['informationSupporterClass'])
             {
-                $information['therapistClasses'][$informationResult['informationTherapistClass']] = $informationResult['informationTherapistClass'];
+                $information['supporterClasses'][$informationResult['informationSupporterClass']] = $informationResult['informationSupporterClass'];
             }
         }
         return $information;
@@ -169,52 +169,52 @@ class Information
         
         // make or update 'usefulFor' relation
         // TODO: maybe there is a shorter possibility to check isset of current and old data
-        if (true == isset($currentInformation['therapistClasses']) && true == isset($currentInformationOldData['therapistClasses']))
+        if (true == isset($currentInformation['supporterClasses']) && true == isset($currentInformationOldData['supporterClasses']))
         {
-            $changedTherapistClasses = array_diff($currentInformation['therapistClasses'], $currentInformationOldData['therapistClasses']);
-            $deletedTherapistClasses = array_diff($currentInformationOldData['therapistClasses'], $currentInformation['therapistClasses']);
+            $changedSupporterClasses = array_diff($currentInformation['supporterClasses'], $currentInformationOldData['supporterClasses']);
+            $deletedSupporterClasses = array_diff($currentInformationOldData['supporterClasses'], $currentInformation['supporterClasses']);
         }
-        else if (false == isset($currentInformation['therapistClasses']) && true == isset($currentInformationOldData['therapistClasses']))
+        else if (false == isset($currentInformation['supporterClasses']) && true == isset($currentInformationOldData['supporterClasses']))
         {
-            $changedTherapistClasses = array();
-            $deletedTherapistClasses = $currentInformationOldData['therapistClasses'];
+            $changedSupporterClasses = array();
+            $deletedSupporterClasses = $currentInformationOldData['supporterClasses'];
         }
-        else if (true == isset($currentInformation['therapistClasses']) && false == isset($currentInformationOldData['therapistClasses']))
+        else if (true == isset($currentInformation['supporterClasses']) && false == isset($currentInformationOldData['supporterClasses']))
         {
-            $changedTherapistClasses = $currentInformation['therapistClasses'];
-            $deletedTherapistClasses = array();
+            $changedSupporterClasses = $currentInformation['supporterClasses'];
+            $deletedSupporterClasses = array();
         }
         else
         {
-            $changedTherapistClasses = array();
-            $deletedTherapistClasses = array();
+            $changedSupporterClasses = array();
+            $deletedSupporterClasses = array();
         }
         
-        if (0 < count ($changedTherapistClasses))
+        if (0 < count ($changedSupporterClasses))
         {
-            foreach ($changedTherapistClasses as $therapistClass)
+            foreach ($changedSupporterClasses as $supporterClass)
             {
                 $this->_dispediaModel->addStatement(
                     $currentInformation['uri'],
                     'http://www.dispedia.de/o/usefulFor', 
-                    array('value' => $therapistClass, 'type' => 'literal', 'lang' => $this->_lang)
+                    array('value' => $supporterClass, 'type' => 'literal', 'lang' => $this->_lang)
                 );
                 if (defined('_OWDEBUG'))
-                    $messages[] = new OntoWiki_Message('Information usefulFor add: ' . $currentInformation['uri'] . ' => dispediao:usefulFor => ' . $therapistClass, OntoWiki_Message::INFO);
+                    $messages[] = new OntoWiki_Message('Information usefulFor add: ' . $currentInformation['uri'] . ' => dispediao:usefulFor => ' . $supporterClass, OntoWiki_Message::INFO);
             }
         }
-        if (0 < count ($deletedTherapistClasses))
+        if (0 < count ($deletedSupporterClasses))
         {
-            foreach ($deletedTherapistClasses as $therapistClass)
+            foreach ($deletedSupporterClasses as $supporterClass)
             {
                 $this->_dispediaModel->deleteMatchingStatements
                 (
                     $currentInformation['uri'],
                     'http://www.dispedia.de/o/usefulFor', 
-                    array('value' => $therapistClass, 'type' => 'literal', 'lang' => $this->_lang)
+                    array('value' => $supporterClass, 'type' => 'literal', 'lang' => $this->_lang)
                 );
                 if (defined('_OWDEBUG'))
-                    $messages[] = new OntoWiki_Message('Information usefulFor delete: ' . $currentInformation['uri'] . ' => dispediao:usefulFor => ' . $therapistClass, OntoWiki_Message::INFO);
+                    $messages[] = new OntoWiki_Message('Information usefulFor delete: ' . $currentInformation['uri'] . ' => dispediao:usefulFor => ' . $supporterClass, OntoWiki_Message::INFO);
             }
         }
 

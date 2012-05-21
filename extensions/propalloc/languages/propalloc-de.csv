@@ -28,9 +28,9 @@ successInformationEdit;Information wurde gespeichert.
 successInformationDelete;Information gelöscht.
 errorInformationDelete;Information konnte nicht gelöscht werden.
 content;Inhalt
-createTherapistClass;Erstelle Therapeut Klasse
-therapistDescriptionText;Erstellen einer neuen Therapeut Klasse
-successTherapistAdd;Therapeut Klasse hinzugefügt
+createSupporter;Erstelle Supporter
+supporterDescriptionText;Erstellen einen neuen Supporter
+successSupporterAdd;Supporter hinzugefügt
 icfClassification;ICF Klassifikation
 informationType;Informationstyp
-therapistType;Therapeut
+supporterClasses;Supporter

@@ -28,9 +28,9 @@ successInformationEdit;Information saved.
 successInformationDelete;Information deleted.
 errorInformationDelete;Information not deleted.
 content;Content
-createTherapistClass;create Therapist Class
-therapistDescriptionText;add a new therapist class
-successTherapistAdd;Therapist Class added
+createSupporterClass;create Supporter
+supporterDescriptionText;add a new Supporter
+successSupporterAdd;Supporter added
 icfClassification;ICF Classification
 informationType;Information Type
-therapistType;Therapist
+supporterClasses;Supporter

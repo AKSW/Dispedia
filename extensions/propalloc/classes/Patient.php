@@ -38,24 +38,24 @@ class Patient
         return $informationClasses;
     }
     
-    public function getAllTherapistClasses()
+    public function getAllSupporterClasses()
     {
-        $therapistClasses = array();
-        $therapistClassResults = $this->_store->sparqlQuery (
+        $supporterClasses = array();
+        $supporterClassResults = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
             PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-            SELECT ?therapistClassUri ?therapistClassLabel
+            SELECT ?supporterClassUri ?supporterClassLabel
             WHERE {
-                ?therapistClassUri rdfs:subClassOf dispediao:Therapist.
-                ?therapistClassUri rdfs:label ?therapistClassLabel.
-                FILTER (langmatches(lang(?therapistClassLabel), "' . $this->_lang . '"))
+                ?supporterClassUri rdfs:subClassOf dispediao:Supporter.
+                ?supporterClassUri rdfs:label ?supporterClassLabel.
+                FILTER (langmatches(lang(?supporterClassLabel), "' . $this->_lang . '"))
             };'
         );
-        foreach ($therapistClassResults as $therapistClassResult)
+        foreach ($supporterClassResults as $supporterClassResult)
         {
-            $therapistClasses[$therapistClassResult['therapistClassUri']] = $therapistClassResult['therapistClassLabel'];
+            $supporterClasses[$supporterClassResult['supporterClassUri']] = $supporterClassResult['supporterClassLabel'];
         }
-        return $therapistClasses;
+        return $supporterClasses;
     }
     
     

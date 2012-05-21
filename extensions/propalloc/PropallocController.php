@@ -245,7 +245,7 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         $patient = new Patient ($this->_lang);
         $this->view->informationClasses = $patient->getAllInformationClasses();
-        $this->view->therapistClasses = $patient->getAllTherapistClasses();
+        $this->view->supporterClasses = $patient->getAllSupporterClasses();
         
         if (false == $informationUri)
         {
@@ -265,21 +265,21 @@ class PropallocController extends OntoWiki_Controller_Component
     }
     
     /**
-     * show a form to add a new thrapist class
+     * show a form to add a new supporter
      */
     //TODO: only add of new classe and no edit
-    public function therapistAction ()
+    public function supporterAction ()
     {
-        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/therapist.css');
-        $currentTherapistClass = $this->getParam('currentTherapistClass');
-        if (!isset($currentTherapistClass))
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/supporter.css');
+        $currentSupporter = $this->getParam('currentSupporter');
+        if (!isset($currentSupporter))
         {
-            $currentTherapistClass = array();
-            $currentTherapistClass['uri'] = "";
-            $currentTherapistClass['labelde'] = "";
-            $currentTherapistClass['labelen'] = "";
+            $currentSupporter = array();
+            $currentSupporter['uri'] = "";
+            $currentSupporter['labelde'] = "";
+            $currentSupporter['labelen'] = "";
         }
-        $this->view->currentTherapistClass = $currentTherapistClass;
+        $this->view->currentSupporter = $currentSupporter;
         
          if ( 'save' == $this->getParam ('do') )
         {
@@ -287,42 +287,42 @@ class PropallocController extends OntoWiki_Controller_Component
             
             //TODO: in which model to read
             $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
+                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
                 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
                 array('value' => "http://www.w3.org/2002/07/owl#Class", 'type' => 'uri')
             );
             
             if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Thearpis Class created: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'] . ' => rdf:type => http://www.w3.org/2002/07/owl#Class', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message('Supporter created: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'] . ' => rdf:type => http://www.w3.org/2002/07/owl#Class', OntoWiki_Message::INFO);
             
             $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
+                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
                 'http://www.w3.org/2000/01/rdf-schema#subClassOf', 
-                array('value' => "http://www.dispedia.de/o/Therapist", 'type' => 'uri')
+                array('value' => "http://www.dispedia.de/o/Supporter", 'type' => 'uri')
             );
             
             if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Thearpis Class created: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'] . ' => rdfs:subClassOf => http://www.dispedia.de/o/Therapist', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message('Supporter created: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'] . ' => rdfs:subClassOf => http://www.dispedia.de/o/Supporter', OntoWiki_Message::INFO);
             
             $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
+                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
                 'http://www.w3.org/2000/01/rdf-schema#label', 
-                array('value' => $currentTherapistClass['labelen'], 'type' => 'literal', 'lang' => 'en')
+                array('value' => $currentSupporter['labelen'], 'type' => 'literal', 'lang' => 'en')
             );
             
             if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Thearpis Class label update: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'] . ' => rdfs:label => ' . $currentTherapistClass['labelen'] . ' (old:)', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message('Supporter label update: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'] . ' => rdfs:label => ' . $currentSupporter['labelen'] . ' (old:)', OntoWiki_Message::INFO);
             
             $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelen'],
+                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
                 'http://www.w3.org/2000/01/rdf-schema#label', 
-                array('value' => $currentTherapistClass['labelde'], 'type' => 'literal', 'lang' => 'de')
+                array('value' => $currentSupporter['labelde'], 'type' => 'literal', 'lang' => 'de')
             );
             
             if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Thearpis Class label update: ' . "http://www.dispedia.de/o/TherapistClass#" . $currentTherapistClass['labelde'] . ' => rdfs:label => ' . $currentTherapistClass['labelde'] . ' (old:)', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message('Supporter label update: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelde'] . ' => rdfs:label => ' . $currentSupporter['labelde'] . ' (old:)', OntoWiki_Message::INFO);
             
-            $messages[] = new OntoWiki_Message('successTherapistAdd', OntoWiki_Message::SUCCESS);
+            $messages[] = new OntoWiki_Message('successSupporterAdd', OntoWiki_Message::SUCCESS);
             $this->showMessage($messages);
             $this->_forward('index');
         }

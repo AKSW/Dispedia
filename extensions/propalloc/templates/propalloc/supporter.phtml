@@ -1,0 +1,47 @@
+<?php 
+/**
+ * Template for supporter action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+
+<div class="supporterFirstline">
+    <span><?php echo $this->_translate->_('createSupporter'); ?></span>
+</div>
+<div class="supporterSecondline">
+    <span><?php echo $this->_translate->_('supporterDescriptionText'); ?></span>
+</div>
+<form method="post" action="" id="supporter">
+    <table>
+        <tr>
+            <td>
+                <strong><?php echo $this->_translate->_('labelde'); ?></strong>
+            </td>
+            <td>
+                <input type="hidden" name="currentSupporter[uri]" value="<?php echo (isset($this->currentSupporter['uri']) ? $this->currentSupporter['uri'] : ""); ?>" />
+                <input type="text" name="currentSupporter[labelde]" style="width:400px;" value="<?php echo (isset($this->currentSupporter['labelde']) ? $this->currentSupporter['labelde'] : ""); ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong><?php echo $this->_translate->_('labelen'); ?></strong>
+            </td>
+            <td>
+                <input type="text" name="currentSupporter[labelen]" style="width:400px;" value="<?php echo (isset($this->currentSupporter['labelen']) ? $this->currentSupporter['labelen'] : ""); ?>" />
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="currentSupporter[status]" value="<?php echo $this->currentSupporter['status']?>"/>
+    <input type="hidden" name="currentSupporterOldData" value="<?php echo urlencode(json_encode($this->currentSupporter)); ?>"/>
+    <input type="hidden" name="do" value="save"/>
+
+    <a id="addResource" class="button submit" onclick="document.forms['supporter'].submit();"/>
+        <?php echo $this->_translate->_('Save'); ?>
+    </a>
+</form>

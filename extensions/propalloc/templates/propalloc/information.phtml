@@ -41,7 +41,7 @@
             <strong><?php echo $this->_translate->_('informationType'); ?></strong>
         </td>
         <td>
-            <strong><?php echo $this->_translate->_('therapistType'); ?></strong>
+            <strong><?php echo $this->_translate->_('supporterClasses'); ?></strong>
         </td>
     </tr>
     <tr class="<?php echo "information" . $information['hash']; ?>">
@@ -58,8 +58,8 @@
             <?php } ?>
         </td>
         <td>
-            <?php foreach ($this->therapistClasses as $therapistClassUri => $therapistClassLabel) { ?>
-                <input type="checkbox" name="<?php echo $informationName; ?>[therapistClasses][]" style="width:400px;" value="<?php echo $therapistClassUri; ?>" <?php echo (isset($information['therapistClasses'][$therapistClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $therapistClassLabel; ?><br />
+            <?php foreach ($this->supporterClasses as $supporterClassUri => $supporterClassLabel) { ?>
+                <input type="checkbox" name="<?php echo $informationName; ?>[supporterClasses][]" style="width:400px;" value="<?php echo $supporterClassUri; ?>" <?php echo (isset($information['supporterClasses'][$supporterClassUri]) ? "checked=\"checked\"" : ""); ?> /><?php echo $supporterClassLabel; ?><br />
             <?php } ?>
         </td>
     </tr>
