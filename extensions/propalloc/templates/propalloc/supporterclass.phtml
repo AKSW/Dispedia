@@ -1,0 +1,54 @@
+<?php 
+/**
+ * Template for supporter action
+ * 
+ * @category   OntoWiki
+ * @package    OntoWiki_extensions_propalloc
+ * @author     Lars Eidam <larseidam@googlemail.com>
+ * @author     Konrad Abicht <konrad@inspirito.de>
+ * @copyright  Copyright (c) 2011
+ * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
+ */
+?>
+<!-- important variables -->
+<script type="text/javascript">       
+    var currentSupporterClass = <?php echo json_encode($this->currentSupporterClass); ?>;
+</script>
+
+<div class="supporterClassFirstline">
+    <span><?php echo $this->_translate->_('createSupporterClass'); ?></span>
+</div>
+<div class="supporterClassSecondline">
+    <span><?php echo $this->_translate->_('supporterClassDescriptionText'); ?></span>
+</div>
+<form method="post" action="" id="supporterClass">
+    <table>
+        <tr>
+            <td>
+                <strong><?php echo $this->_translate->_('label'); ?></strong>
+            </td>
+            <td>
+                <input type="hidden" name="currentSupporterClass[uri]" value="<?php echo (isset($this->currentSupporterClass['uri']) ? $this->currentSupporterClass['uri'] : ""); ?>" />
+                <input type="text" name="currentSupporterClass[label]" value="<?php echo (isset($this->currentSupporterClass['label']) ? $this->currentSupporterClass['label'] : ""); ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong><?php echo $this->_translate->_('properties'); ?></strong>
+            </td>
+            <td>
+                <a id="addPropoerty" class="button" onclick="javascript:addSupporterClassProperty();"/>
+                <?php echo $this->_translate->_('addProperties'); ?>
+                </a>
+                <div id="propertiesDiv"></div>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="currentSupporterClass[status]" value="<?php echo $this->currentSupporterClass['status']?>"/>
+    <input type="hidden" name="currentSupporterClassOldData" value="<?php echo urlencode(json_encode($this->currentSupporterClass)); ?>"/>
+    <input type="hidden" name="do" value="save"/>
+
+    <a id="addResource" class="button submit" onclick="document.forms['supporterClass'].submit();">
+        <?php echo $this->_translate->_('Save'); ?>
+    </a>
+</form>

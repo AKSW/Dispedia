@@ -97,13 +97,13 @@ class Supporter
         // make or update 'label' relation
         if ($currentSupporterClass['label'] != $currentSupporterClassOldData['label'])
         {
-            $this->_dispediaModel->deleteMatchingStatements
+            $this->_coreModel->deleteMatchingStatements
             (
                 $currentSupporterClass['uri'],
                 'http://www.w3.org/2000/01/rdf-schema#label', 
                 array('value' => null, 'type' => 'literal', 'lang' => $this->_lang)
             );
-            $this->_dispediaModel->addStatement(
+            $this->_coreModel->addStatement(
                 $currentSupporterClass['uri'],
                 'http://www.w3.org/2000/01/rdf-schema#label', 
                 array('value' => $currentSupporterClass['label'], 'type' => 'literal', 'lang' => $this->_lang)
@@ -112,98 +112,175 @@ class Supporter
                 $messages[] = new OntoWiki_Message('SupporterClass label update: ' . $currentSupporterClass['uri'] . ' => rdfs:label => ' . $currentSupporterClass['label'] . ' (old: ' . $currentSupporterClassOldData['label'] . ')', OntoWiki_Message::INFO);
         }
         
-        //if (isset($currentSupporterClass['properties']))
-        //{
-        //    foreach ($currentSupporterClass['properties'] as $propertyNumber => $property)
-        //    {
-        //        $messages = array_merge($messages, $this->_information->saveSupporterClassProperty($property, $currentSupporterClass['properties'][$propertyNumber]));
-        //    }
-        //
-        //    if (isset($currentSupporterClassOldData['properties']))
-        //    {
-        //        foreach (array_diff($currentSupporterClassOldData['informations'], $currentSupporterClass['informations']) as $information)
-        //        {
-        //            $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
-        //            $deletedStatements = $this->_resource->removeStmt
-        //            (
-        //                $currentSupporterClass['uri'],
-        //                'http://www.dispedia.de/o/containsInformation', 
-        //                $informationOldData['uri']
-        //            );
-        //            
-        //            if (defined('_OWDEBUG'))
-        //            {
-        //                $messages[] = new OntoWiki_Message('SupporterClass to Information deleted: ' . $currentSupporterClass['uri'] . ' => dispediao:containsInformation => ' . $informationOldData['uri'], OntoWiki_Message::INFO);
-        //                $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
-        //            }
-        //            $messages = array_merge($messages, $this->_information->removeInformation($informationOldData));
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    if (isset($currentSupporterClassOldData['informations']))
-        //    {
-        //        foreach ($currentSupporterClassOldData['informations'] as $information)
-        //        {
-        //            $informationOldData = json_decode(urldecode($this->_controller->getParam($information . 'OldData')), true);
-        //            $deletedStatements = $this->_resource->removeStmt
-        //            (
-        //                $currentSupporterClass['uri'],
-        //                'http://www.dispedia.de/o/containsInformation', 
-        //                $informationOldData['uri']
-        //            );
-        //            if (defined('_OWDEBUG'))
-        //            {
-        //                $messages[] = new OntoWiki_Message('SupporterClass to Information deleted: ' . $currentSupporterClass['uri'] . ' => dispediao:containsInformation => ' . $informationOldData['uri'], OntoWiki_Message::INFO);
-        //                $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
-        //            }
-        //            $messages = array_merge($messages, $this->removeInformation($informationOldData));
-        //        }
-        //    }
-        //}
+        if (isset($currentSupporterClass['properties']))
+        {
+            $supporterClassProperties = $currentSupporterClass['properties'];
+        }
+        else
+        {
+            $supporterClassProperties = array();
+        }
+        
+        if (isset($currentSupporterClassOldData['properties']))
+        {
+            $supporterClassPropertiesOldData = $currentSupporterClassOldData['properties'];
+        }
+        else
+        {
+            $supporterClassPropertiesOldData = array();
+        }
+        
+        $saveProperties = array_diff_assoc($supporterClassProperties, $supporterClassPropertiesOldData);
+        $deleteProperties = array_diff_assoc($supporterClassPropertiesOldData, $supporterClassProperties);
+        
+        foreach ($supporterClassProperties as $propertyNumber => $property)
+        {
+            if (isset($supporterClassProperties[$propertyNumber]['label']) && isset($supporterClassPropertiesOldData[$propertyNumber]['label']))
+            {
+                if ($supporterClassProperties[$propertyNumber]['label'] != $supporterClassPropertiesOldData[$propertyNumber]['label'])
+                    $saveProperties[] = $supporterClassProperties[$propertyNumber];
+            }
+        }
+        
+        //TODO: remove this output
+        echo "<pre>";
+        var_dump($saveProperties, $deleteProperties);
+        echo "</pre>";
+        
+        // add all new properties
+        foreach ($saveProperties as $propertyNumber => $property)
+        {
+            if (!isset($property['uri']) || "" == $property['uri'])
+                $property['uri'] = "http://www.dispedia.de/o/SupporterProperty#" . $property['label'];
+            
+            $messages = array_merge($messages, $this->saveSupporterClassProperty($property));
+            
+            $this->_coreModel->addStatement(
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#domain', 
+                array('value' => $currentSupporterClass['uri'], 'type' => 'uri')
+            );
+            
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('Property to SupporterClass created: ' . $property['uri'] . ' => rdfs:domain => ' . $currentSupporterClass['uri'], OntoWiki_Message::INFO);
+            
+        }
+        
+        // delete all old properties
+        foreach ($deleteProperties as $property)
+        {
+            $deletedStatements = $this->_resource->removeStmt
+            (
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#domain', 
+                $currentSupporterClass['uri']
+            );
+            
+            if (defined('_OWDEBUG'))
+            {
+                $messages[] = new OntoWiki_Message('Property To SupporterClass deleted: ' . $property['uri'] . ' => rdfs:domain => ' . $currentSupporterClass['uri'], OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+            }
+            $messages = array_merge($messages, $this->removeSupporterClassProperty($property));
+        }
         
         $messages[] = new OntoWiki_Message('successSupporterClassEdit', OntoWiki_Message::SUCCESS);
         return $messages;
     }
     
-/*
-     * function saveSupporterClass
-     * @param $currentAction, $currentActionOldData
-     */
     
-    function saveSupporterClassProperty($SupporterClassProperty, $currentSupporterClassPropertyOldData)
+    /*
+     * function return all properties of a supporter class
+     */
+    function getAllProperties($supporterClassUri)
+    {
+        $propertiesResults = $this->_store->sparqlQuery (
+            'PREFIX dispediao:<http://www.dispedia.de/o/>
+            PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+            SELECT ?uri
+            WHERE {
+                ?uri rdfs:domain <' . $supporterClassUri . '>.
+            };'
+        );
+        
+        $properties = array ();
+        
+        foreach ( $propertiesResults as $property )
+        {
+            $this->_titleHelper->addResource ($property['uri']);
+        }
+
+        foreach ( $propertiesResults as $property )
+        {
+            $newProperty['uri'] = $property['uri'];
+            $newProperty['label'] = $this->_titleHelper->getTitle($property['uri'], $this->_lang);
+            $properties[] = $newProperty;
+        }
+        
+        return $properties;
+    }
+    
+    /*
+     * function saveSupporterClassProperty
+     * @param $supporterClassProperty, $supporterClassPropertyOldData
+     */
+    function saveSupporterClassProperty($property)
+    {
+        // array for output messages
+        $messages = $this->removeSupporterClassProperty($property);
+
+        $this->_coreModel->addStatement(
+            $property['uri'],
+            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
+            array('value' => "http://www.w3.org/2002/07/owl#ObjectProperty", 'type' => 'uri')
+        );
+        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdf:type => http://www.w3.org/2002/07/owl#ObjectProperty', OntoWiki_Message::INFO);
+
+        $this->_coreModel->addStatement(
+            $property['uri'],
+            'http://www.w3.org/2000/01/rdf-schema#label', 
+            array('value' => $property['label'], 'type' => 'literal', 'lang' => $this->_lang)
+        );
+        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:label => ' . $property['label'], OntoWiki_Message::INFO);
+
+        $this->_coreModel->addStatement(
+            $property['uri'],
+            'http://www.w3.org/2000/01/rdf-schema#range', 
+            array('value' => "http://www.dispedia.de/o/Person", 'type' => 'uri')
+        );
+        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:range => http://www.dispedia.de/o/Person', OntoWiki_Message::INFO);
+        
+        $this->_coreModel->addStatement(
+            $property['uri'],
+            'http://www.w3.org/2000/01/rdf-schema#range', 
+            array('value' => "http://www.dispedia.de/o/Patient", 'type' => 'uri')
+        );
+        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:range => http://www.dispedia.de/o/Patient', OntoWiki_Message::INFO);
+        
+        return $messages;
+    }
+    
+    /*
+     * function removeSupporterClassProperty
+     * @param $property
+     */
+    function removeSupporterClassProperty($property)
     {
         // array for output messages
         $messages = array();
         
-        $supportPropertyUri = "http://www.dispedia.de/o/SupporterProperty#" . $property['label'];
-        $this->_coreModel->addStatement(
-            $supportPropertyUri,
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
-            array('value' => "http://www.w3.org/2002/07/owl#ObjectProperty", 'type' => 'uri')
-        );
-        $this->_coreModel->addStatement(
-            $supportPropertyUri,
-            'http://www.w3.org/2000/01/rdf-schema#label', 
-            array('value' => $property['label'], 'type' => 'literal', 'lang' => $this->lang)
-        );
-        $this->_coreModel->addStatement(
-            $supportPropertyUri,
-            'http://www.w3.org/2000/01/rdf-schema#range', 
-            array('value' => "http://www.dispedia.de/o/Person", 'type' => 'uri')
-        );
-        $this->_coreModel->addStatement(
-            $supportPropertyUri,
-            'http://www.w3.org/2000/01/rdf-schema#range', 
-            array('value' => "http://www.dispedia.de/o/Patient", 'type' => 'uri')
-        ); 
-        $this->_coreModel->addStatement(
-            $supportPropertyUri,
-            'http://www.w3.org/2000/01/rdf-schema#domain', 
-            array('value' => $currentSupporterClassUri, 'type' => 'uri')
+        $deletedStatements = $this->_resource->removeStmt
+        (
+            $property['uri'],
+            null, 
+            null
         );
         
+        if (defined('_OWDEBUG'))
+        {
+            $messages[] = new OntoWiki_Message('SupporterClassProperty deleted: ' . $property['uri'] . ' => * => *', OntoWiki_Message::INFO);
+            $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+        }
         return $messages;
     }
 }

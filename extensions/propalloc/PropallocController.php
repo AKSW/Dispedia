@@ -283,61 +283,48 @@ class PropallocController extends OntoWiki_Controller_Component
      */
     public function supporterclassAction ()
     {
-        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/supporter.css');
-        $currentSupporter = $this->getParam('currentSupporter');
-        if (!isset($currentSupporter))
-        {
-            $currentSupporter = array();
-            $currentSupporter['uri'] = "";
-            $currentSupporter['labelde'] = "";
-            $currentSupporter['labelen'] = "";
-        }
-        $this->view->currentSupporter = $currentSupporter;
+        $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/supporterclass.css');
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'js/supporterclass.js');
         
-         if ( 'save' == $this->getParam ('do') )
+        $currentSupporterClassUri = urldecode($this->getParam ('supporterClassUri'));
+        $supporterClass = $this->getParam ('currentSupporterClass');
+        
+        $supporterHelper = new Supporter($this, $this->_lang, $this->_coreModel, $this->_dispediaModel, $this->_resource);
+        
+        if (isset($currentSupporterClassUri) && "" != $currentSupporterClassUri)
         {
-            $messages = array();
-            
-            //TODO: in which model to read
-            $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
-                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
-                array('value' => "http://www.w3.org/2002/07/owl#Class", 'type' => 'uri')
-            );
-            
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Supporter created: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'] . ' => rdf:type => http://www.w3.org/2002/07/owl#Class', OntoWiki_Message::INFO);
-            
-            $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
-                'http://www.w3.org/2000/01/rdf-schema#subClassOf', 
-                array('value' => "http://www.dispedia.de/o/Supporter", 'type' => 'uri')
-            );
-            
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Supporter created: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'] . ' => rdfs:subClassOf => http://www.dispedia.de/o/Supporter', OntoWiki_Message::INFO);
-            
-            $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
-                'http://www.w3.org/2000/01/rdf-schema#label', 
-                array('value' => $currentSupporter['labelen'], 'type' => 'literal', 'lang' => 'en')
-            );
-            
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Supporter label update: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'] . ' => rdfs:label => ' . $currentSupporter['labelen'] . ' (old:)', OntoWiki_Message::INFO);
-            
-            $this->_coreModel->addStatement(
-                "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelen'],
-                'http://www.w3.org/2000/01/rdf-schema#label', 
-                array('value' => $currentSupporter['labelde'], 'type' => 'literal', 'lang' => 'de')
-            );
-            
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Supporter label update: ' . "http://www.dispedia.de/o/Supporter#" . $currentSupporter['labelde'] . ' => rdfs:label => ' . $currentSupporter['labelde'] . ' (old:)', OntoWiki_Message::INFO);
-            
-            $messages[] = new OntoWiki_Message('successSupporterAdd', OntoWiki_Message::SUCCESS);
-            $this->showMessage($messages);
-            $this->_forward('index');
+            $currentSupporterClass = array();
+            $currentSupporterClass['uri'] = $currentSupporterClassUri;
+            $currentSupporterClass['label'] = $this->_resource->getLabel($currentSupporterClassUri);
+            $currentSupporterClass['status'] = "edit";
+            $currentSupporterClass['properties'] = $supporterHelper->getAllProperties($currentSupporterClassUri);
+        }
+        else if (isset($supporterClass))
+        {
+            $currentSupporterClass = $supporterClass;
+        }
+        else
+        {
+            $currentSupporterClass = array();
+            $currentSupporterClass['uri'] = "";
+            $currentSupporterClass['label'] = "";
+            $currentSupporterClass['status'] = "new";
+            $currentSupporterClass['properties'] = array();
+        }
+        
+        $this->view->currentSupporterClass = $currentSupporterClass;
+        //TODO: remove this output
+        echo "<pre>";
+        var_dump($currentSupporterClass);
+        echo "</pre>";
+        
+        if ( 'save' == $this->getParam ('do') )
+        {
+            $this->showMessage($supporterHelper->saveSupporterClass (
+                $this->getParam ('currentSupporterClass'),
+                json_decode(urldecode($this->getParam ('currentSupporterClassOldData')), true)
+            ));
+            $this->_forward('supporterclassoverview');
         }
     }
     

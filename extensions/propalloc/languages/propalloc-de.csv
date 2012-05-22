@@ -28,9 +28,12 @@ successInformationEdit;Information wurde gespeichert.
 successInformationDelete;Information gelöscht.
 errorInformationDelete;Information konnte nicht gelöscht werden.
 content;Inhalt
-createSupporter;Erstelle Supporter
-supporterDescriptionText;Erstellen einen neuen Supporter
-successSupporterAdd;Supporter hinzugefügt
+createSupporterClass;Erstelle Supporter Klasse
+supporterClassDescriptionText;Erstellen eine neue Supporter Klasse
+supporterClassesAdministration;Supporter Klassen bearbeiten
+successSupporterClassEdit;Supporter Klasse gespeichert
 icfClassification;ICF Klassifikation
 informationType;Informationstyp
 supporterClasses;Supporter
+properties;Eigenschaften
+addProperties;Eigenschaft hinzufügen

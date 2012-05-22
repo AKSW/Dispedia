@@ -7,11 +7,11 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
  
-.supporterFirstline {
+.supporterClassFirstline {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
-.supporterSecondline {
+.supporterClassSecondline {
     margin-bottom: 20px;
 }

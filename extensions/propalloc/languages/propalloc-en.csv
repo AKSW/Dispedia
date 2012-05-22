@@ -28,9 +28,12 @@ successInformationEdit;Information saved.
 successInformationDelete;Information deleted.
 errorInformationDelete;Information not deleted.
 content;Content
-createSupporterClass;create Supporter
-supporterDescriptionText;add a new Supporter
-successSupporterAdd;Supporter added
+createSupporterClass;create Supporter class
+supporterClassDescriptionText;add a new Supporter class
+supporterClassesAdministration;edit Supporter classes
+successSupporterClassEdit;Supporter class edited
 icfClassification;ICF Classification
 informationType;Information Type
 supporterClasses;Supporter
+properties;Properties
+addProperties;add Property
