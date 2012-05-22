@@ -5,6 +5,7 @@ require_once 'classes/Proposal.php';
 require_once 'classes/Patient.php';
 require_once 'classes/Information.php';
 require_once 'classes/Resource.php';
+require_once 'classes/Supporter.php';
 require_once 'classes/Topic.php';
 require_once 'classes/Option.php';
 
@@ -265,10 +266,22 @@ class PropallocController extends OntoWiki_Controller_Component
     }
     
     /**
-     * show a form to add a new supporter
+     * show a a overview over all supporter classes
      */
-    //TODO: only add of new classe and no edit
-    public function supporterAction ()
+    public function supporterclassoverviewAction ()
+    {
+        $this->view->url = $this->_url;
+        $this->view->imagesUrl = $this->_config->urlBase . 'extensions/propalloc/resources/images/';
+        
+        $supporterHelper = new Supporter($this, $this->_lang, $this->_coreModel, $this->_dispediaModel, $this->_resource);
+        
+        $this->view->supporterClasses = $supporterHelper->getAllSupporterClasses();
+    }
+    
+    /**
+     * show a form to add a new supporter class
+     */
+    public function supporterclassAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/supporter.css');
         $currentSupporter = $this->getParam('currentSupporter');
