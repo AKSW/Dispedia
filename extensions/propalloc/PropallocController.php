@@ -52,7 +52,7 @@ class PropallocController extends OntoWiki_Controller_Component
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
         
-        $this->_resource = new Resource ($this->_lang, $this->_patientModel, $this->_dispediaModel);
+        $this->_resource = new Resource ($this->_lang, $this->_coreModel, $this->_patientModel, $this->_dispediaModel);
         
         $this->_proposal = new Proposal($this, $this->_lang, $this->_patientModel, $this->_dispediaModel, $this->_resource);
             

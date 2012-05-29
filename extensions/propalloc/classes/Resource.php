@@ -10,16 +10,18 @@
  */ 
 class Resource
 {
+    private $_coreModel;
     private $_dispediaModel;
     private $_patientsModel;
     private $_lang;
     private $_titleHelper;
     
-    public function __construct ($lang, $patientsModel, $dispediaModel)
+    public function __construct ($lang, $coreModel, $patientsModel, $dispediaModel)
     {
         $this->_lang = $lang;
-        $this->_patientsModel = $patientsModel;
+        $this->_coreModel = $coreModel;
         $this->_dispediaModel = $dispediaModel;
+        $this->_patientsModel = $patientsModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
     }
