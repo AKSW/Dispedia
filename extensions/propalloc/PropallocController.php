@@ -293,9 +293,11 @@ class PropallocController extends OntoWiki_Controller_Component
         
         if (isset($currentSupporterClassUri) && "" != $currentSupporterClassUri)
         {
+            $titleHelper = new OntoWiki_Model_TitleHelper ($this->_coreModel);
+            $titleHelper->addResource($currentSupporterClassUri);
             $currentSupporterClass = array();
             $currentSupporterClass['uri'] = $currentSupporterClassUri;
-            $currentSupporterClass['label'] = $this->_resource->getLabel($currentSupporterClassUri);
+            $currentSupporterClass['label'] = $titleHelper->getTitle($currentSupporterClassUri, $this->_lang);
             $currentSupporterClass['status'] = "edit";
             $currentSupporterClass['properties'] = $supporterHelper->getAllProperties($currentSupporterClassUri);
         }
@@ -313,6 +315,11 @@ class PropallocController extends OntoWiki_Controller_Component
         }
         
         $this->view->currentSupporterClass = $currentSupporterClass;
+        
+        //TODO: remove this output
+        echo "<pre>";
+        var_dump("SUPPORTERCLASS", $currentSupporterClass);
+        echo "</pre>";
         
         if ( 'save' == $this->getParam ('do') )
         {

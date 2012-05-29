@@ -22,7 +22,7 @@ class Supporter
         $this->_lang = $lang;
         $this->_controller = $controller;
         $this->_resource = $resource;
-        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($coreModel);
         $this->_dispediaModel = $dispediaModel;
         $this->_coreModel = $coreModel;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
@@ -72,7 +72,7 @@ class Supporter
         // make 'type' and 'subClass' relation
         if ("new" == $currentSupporterClass['status'])
         {
-            $currentSupporterClass['uri'] = "http://www.dispedia.de/o/SupporterClass#" . $currentSupporterClass['label'];
+            $currentSupporterClass['uri'] = "http://www.dispedia.de/o/SupporterClass#" . base64_encode($currentSupporterClass['label']);
             
             $this->_coreModel->addStatement(
                 $currentSupporterClass['uri'],
@@ -191,6 +191,15 @@ class Supporter
         // array for output messages
         $messages = array();
         
+        // generate uris if needed
+        foreach ($supporterClassProperties as $propertyNumber => $property)
+        {
+            if (!isset($property['uri']) || "" == $property['uri'])
+                $supporterClassProperties[$propertyNumber]['uri'] = "http://www.dispedia.de/o/SupporterProperty#" . base64_encode($property['label']);
+            else
+                $supporterClassProperties[$propertyNumber]['edit'] = true;
+        }
+        
         // remember the deleted and new properties
         $saveProperties = array_diff_assoc($supporterClassProperties, $supporterClassPropertiesOldData);
         $deleteProperties = array_diff_assoc($supporterClassPropertiesOldData, $supporterClassProperties);
@@ -208,9 +217,6 @@ class Supporter
         // add all new properties
         foreach ($saveProperties as $propertyNumber => $property)
         {
-            //if (!isset($property['uri']) || "" == $property['uri'])
-                $property['uri'] = "http://www.dispedia.de/o/SupporterProperty#" . $property['label'];
-            
             $messages = array_merge(
                 $messages,
                 $this->saveSupporterClassProperty(
@@ -239,8 +245,7 @@ class Supporter
                     isset($supporterClassProperties[$propertyNumber]['subproperties']) ? $supporterClassProperties[$propertyNumber]['subproperties'] : array(),
                     isset($supporterClassPropertiesOldData[$propertyNumber]['subproperties']) ? $supporterClassPropertiesOldData[$propertyNumber]['subproperties'] : array(),
                     $supporterClassUri,
-                    // change that so only one uri generation
-                    isset($property['uri']) && "" != $property['uri'] ? $property['uri'] : "http://www.dispedia.de/o/SupporterProperty#" . $property['label']
+                    $property['uri']
                 )
             );
         }
