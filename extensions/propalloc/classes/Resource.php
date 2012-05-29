@@ -87,7 +87,7 @@ class Resource
             ? Erfurt_Store::TYPE_IRI
             : Erfurt_Store::TYPE_LITERAL;
             // set type(uri or literal)
-        if (isset($o))
+        if (isset($o) && !is_array($o))
         {
             $options['object_type'] = true == Erfurt_Uri::check($o)
             ? Erfurt_Store::TYPE_IRI

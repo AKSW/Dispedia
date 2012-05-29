@@ -195,7 +195,10 @@ class Supporter
         foreach ($supporterClassProperties as $propertyNumber => $property)
         {
             if (!isset($property['uri']) || "" == $property['uri'])
+            {
                 $supporterClassProperties[$propertyNumber]['uri'] = "http://www.dispedia.de/o/SupporterProperty#" . base64_encode($property['label']);
+                $supporterClassProperties[$propertyNumber]['edit'] = false;
+            }
             else
                 $supporterClassProperties[$propertyNumber]['edit'] = true;
         }
@@ -225,15 +228,16 @@ class Supporter
                 )
             );
             
-            $this->_coreModel->addStatement(
-                $property['uri'],
-                'http://www.w3.org/2000/01/rdf-schema#domain', 
-                array('value' => $supporterClassUri, 'type' => 'uri')
-            );
-            
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Property to SupporterClass created: ' . $property['uri'] . ' => rdfs:domain => ' . $supporterClassUri, OntoWiki_Message::INFO);
-            
+            if (false == $property['edit'])
+            {
+                $this->_coreModel->addStatement(
+                    $property['uri'],
+                    'http://www.w3.org/2000/01/rdf-schema#domain', 
+                    array('value' => $supporterClassUri, 'type' => 'uri')
+                );
+                if (defined('_OWDEBUG'))
+                    $messages[] = new OntoWiki_Message('Property to SupporterClass created: ' . $property['uri'] . ' => rdfs:domain => ' . $supporterClassUri, OntoWiki_Message::INFO);
+            }
         }
         
         // save subproperties
@@ -265,44 +269,76 @@ class Supporter
     function saveSupporterClassProperty($property, $parentPropertyUri)
     {
         // array for output messages
-        $messages = $this->removeSupporterClassProperty($property);
-
-        $this->_coreModel->addStatement(
-            $property['uri'],
-            'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
-            array('value' => "http://www.w3.org/2002/07/owl#ObjectProperty", 'type' => 'uri')
-        );
-        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdf:type => http://www.w3.org/2002/07/owl#ObjectProperty', OntoWiki_Message::INFO);
-
-        $this->_coreModel->addStatement(
-            $property['uri'],
-            'http://www.w3.org/2000/01/rdf-schema#label', 
-            array('value' => $property['label'], 'type' => 'literal', 'lang' => $this->_lang)
-        );
-        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:label => ' . $property['label'], OntoWiki_Message::INFO);
-
-        $this->_coreModel->addStatement(
-            $property['uri'],
-            'http://www.w3.org/2000/01/rdf-schema#range', 
-            array('value' => "http://www.dispedia.de/o/Person", 'type' => 'uri')
-        );
-        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:range => http://www.dispedia.de/o/Person', OntoWiki_Message::INFO);
+        $messages = array();
         
-        $this->_coreModel->addStatement(
-            $property['uri'],
-            'http://www.w3.org/2000/01/rdf-schema#range', 
-            array('value' => "http://www.dispedia.de/o/Patient", 'type' => 'uri')
-        );
-        $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:range => http://www.dispedia.de/o/Patient', OntoWiki_Message::INFO);
-        
-        if (isset($parentPropertyUri))
-        {
+        // if new property set all triple, else only the label
+        if (false == $property['edit'])
+        {    
             $this->_coreModel->addStatement(
                 $property['uri'],
-                'http://www.w3.org/2000/01/rdf-schema#subPropertyOf', 
-                array('value' => $parentPropertyUri, 'type' => 'uri')
+                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
+                array('value' => "http://www.w3.org/2002/07/owl#ObjectProperty", 'type' => 'uri')
             );
-            $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:subPropertyOf => ' . $parentPropertyUri, OntoWiki_Message::INFO);
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdf:type => http://www.w3.org/2002/07/owl#ObjectProperty', OntoWiki_Message::INFO);
+    
+            $this->_coreModel->addStatement(
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => $property['label'], 'type' => 'literal', 'lang' => $this->_lang)
+            );
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:label => ' . $property['label'], OntoWiki_Message::INFO);
+    
+            $this->_coreModel->addStatement(
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#range', 
+                array('value' => "http://www.dispedia.de/o/Person", 'type' => 'uri')
+            );
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:range => http://www.dispedia.de/o/Person', OntoWiki_Message::INFO);
+            
+            $this->_coreModel->addStatement(
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#range', 
+                array('value' => "http://www.dispedia.de/o/Patient", 'type' => 'uri')
+            );
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:range => http://www.dispedia.de/o/Patient', OntoWiki_Message::INFO);
+            
+            if (isset($parentPropertyUri))
+            {
+                $this->_coreModel->addStatement(
+                    $property['uri'],
+                    'http://www.w3.org/2000/01/rdf-schema#subPropertyOf', 
+                    array('value' => $parentPropertyUri, 'type' => 'uri')
+                );
+                if (defined('_OWDEBUG'))
+                    $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:subPropertyOf => ' . $parentPropertyUri, OntoWiki_Message::INFO);
+            }
+        }
+        else
+        {
+            $deletedStatements = $this->_resource->removeStmt
+            (
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => null, 'type' => 'literal', 'lang' => $this->_lang)
+            );
+            
+            if (defined('_OWDEBUG'))
+            {
+                $messages[] = new OntoWiki_Message('SupporterClassProperty deleted: ' . $property['uri'] . ' => http://www.w3.org/2000/01/rdf-schema#label => *', OntoWiki_Message::INFO);
+                $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
+            }
+            
+            $this->_coreModel->addStatement(
+                $property['uri'],
+                'http://www.w3.org/2000/01/rdf-schema#label', 
+                array('value' => $property['label'], 'type' => 'literal', 'lang' => $this->_lang)
+            );
+            if (defined('_OWDEBUG'))
+                $messages[] = new OntoWiki_Message('SupportClassProperty created: ' . $property['uri'] . ' => rdfs:label => ' . $property['label'], OntoWiki_Message::INFO);
         }
         
         return $messages;
