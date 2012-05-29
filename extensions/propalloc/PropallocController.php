@@ -313,10 +313,6 @@ class PropallocController extends OntoWiki_Controller_Component
         }
         
         $this->view->currentSupporterClass = $currentSupporterClass;
-        //TODO: remove this output
-        echo "<pre>";
-        var_dump($currentSupporterClass);
-        echo "</pre>";
         
         if ( 'save' == $this->getParam ('do') )
         {
