@@ -10,7 +10,7 @@
  * @copyright  Copyright (c) 2011
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
-class MainMenuModule extends OntoWiki_Module
+class FormsMainMenuModule extends OntoWiki_Module
 {   
     private $_translate = null;
     
@@ -21,8 +21,12 @@ class MainMenuModule extends OntoWiki_Module
         parent::init();
         $this->_translate = $this->_owApp->translate;
         
-        // Request variables
-        $this->view->showMenu = $this->_request->getParam ( 'showMenu' );
+        $dispediaSession = new Zend_Session_Namespace('Dispedia');
+        
+        if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
+            $this->view->showMenu = $dispediaSession->menuName;
+        else
+            $this->view->showMenu = "";
     }
 
     /**
@@ -79,13 +83,18 @@ class MainMenuModule extends OntoWiki_Module
         else
             $this->view->currentPatientUri = "";
         
+        if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
+            $this->view->menuName = $dispediaSession->menuName;
+        else
+            $this->view->menuName = "";
+        
         if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
             $data ['loggedIn'] = false;
         } else {
             $data ['loggedIn'] = true;
         }
         
-        return $this->render('mainmenu', $data);
+        return $this->render('formsmainmenu', $data);
     }
     
     /**

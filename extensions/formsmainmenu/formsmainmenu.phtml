@@ -64,7 +64,7 @@
                 console.log (errorThrown);
             }
         });
-        })
+    })
 </script>
 
 <div>
@@ -96,25 +96,65 @@
 </div>
 
 <script type="text/javascript">
+
+    function setMenu(menuName)
+    {
+        $.ajax({
+            async:true,
+            dataType: "html",
+            type: "POST",
+            data: {menuName : menuName},
+            url: url + "formsmainmenu/setmenu",
+            
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                console.log (jqXHR);
+                console.log (textStatus);
+                console.log (errorThrown);
+            }
+        });
+    }
+    
     $(document).ready(function() {
         <?php if ( 'patient' != $this->showMenu ) echo "$('#divpatient').addClass('hidden');" ?>
         <?php if ( 'doctor' != $this->showMenu ) echo "$('#divdoctor').addClass('hidden');" ?>
         <?php if ( 'admin' != $this->showMenu ) echo "$('#divadmin').addClass('hidden');" ?>
     });
     $('#apatient').click(function() {
-        $('#divpatient').removeClass('hidden');
-        $('#divdoctor').addClass('hidden');
-        $('#divadmin').addClass('hidden');
+        setMenu('patient');
+        if ($('#divpatient').hasClass('hidden'))
+        {
+            $('#divpatient').removeClass('hidden');
+            $('#divdoctor').addClass('hidden');
+            $('#divadmin').addClass('hidden');
+        }
+        else {
+            $('#divpatient').addClass('hidden');
+        }
     });
     $('#adoctor').click(function() {
-        $('#divpatient').addClass('hidden');
-        $('#divdoctor').removeClass('hidden');
-        $('#divadmin').addClass('hidden');
+        setMenu('doctor');
+        if ($('#divdoctor').hasClass('hidden'))
+        {
+            $('#divpatient').addClass('hidden');
+            $('#divdoctor').removeClass('hidden');
+            $('#divadmin').addClass('hidden');
+        }
+        else {
+            $('#divdoctor').addClass('hidden');
+        }
     });
     $('#aadmin').click(function() {
-        $('#divpatient').addClass("hidden");
-        $('#divdoctor').addClass("hidden");
-        $('#divadmin').removeClass("hidden");
+        setMenu('admin');
+        if ($('#divadmin').hasClass('hidden'))
+        {
+            $('#divpatient').addClass("hidden");
+            $('#divdoctor').addClass("hidden");
+            $('#divadmin').removeClass("hidden");
+        }
+        else {
+            $('#divadmin').addClass('hidden');
+        }
     });
 </script>
 
