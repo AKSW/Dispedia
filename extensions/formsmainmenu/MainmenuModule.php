@@ -72,8 +72,10 @@ class MainMenuModule extends OntoWiki_Module
         
         $this->view->patients = $this->getAllPatients();
         
-        if (isset ($_SESSION['selectedPatientUri']))
-            $this->view->currentPatientUri = $_SESSION['selectedPatientUri'];
+        $dispediaSession = new Zend_Session_Namespace('Dispedia');
+        
+        if (isset ($dispediaSession->selectedPatientUri))
+            $this->view->currentPatientUri = $dispediaSession->selectedPatientUri;
         else
             $this->view->currentPatientUri = "";
         
