@@ -36,7 +36,7 @@ class PropallocController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
-        
+        OntoWiki_Navigation::disableNavigation();
         $this->_url = $this->_config->urlBase .'propalloc/'; 
         
         $dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
