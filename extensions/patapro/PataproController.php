@@ -24,14 +24,14 @@ class PataproController extends OntoWiki_Controller_Component
     private $_proposal;
     private $_titleHelper;
     private $_translate;
-    
+
     /**
      * init controller
      */     
     public function init()
     {
         parent::init();
-        $this->_url = $this->_config->urlBase .'patapro/';    
+        $this->_url = $this->_config->urlBase .'patapro/';
 
         OntoWiki_Navigation::disableNavigation();
 
@@ -43,13 +43,13 @@ class PataproController extends OntoWiki_Controller_Component
 
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
-        
+
         $this->_patient = new Patient($this->_lang);
         $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper);
-            
+
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
-    
+
     /**
       * Action to make proposal for a patient
       */
@@ -57,15 +57,15 @@ class PataproController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/index.js');
-        
+
         $this->view->url = $this->_url;
 
         $currentPatient = "";
-        
+
         $dispediaSession = new Zend_Session_Namespace('Dispedia');
         if (isset($dispediaSession->selectedPatientUri))
             $currentPatient = $dispediaSession->selectedPatientUri;
-        
+
         $this->view->currentPatient = $currentPatient;
         if ( '' != $currentPatient ) 
         {
@@ -77,32 +77,32 @@ class PataproController extends OntoWiki_Controller_Component
                     $this->getParam ('proposals')
                 );
             }
-            
+
             // get a list of all healthstates
             $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
-            
+
             $allProposals = $this->_proposal->getAllProposals();
             $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
-            
+
             foreach ($allProposals as $proposalUri => $proposal)
             {
                 if (isset($patientProposals[$proposalUri]))
                 $allProposals[$proposalUri] = $patientProposals[$proposalUri];
             }
-            
-            
+
+
             $healthstateUris = array_keys($this->view->healthstates);
-            
+
             //get the options from the last healthstate
             $patientOptions = $this->healthstateAction(array_shift($healthstateUris));
-            
+
             // only if patientOptions not empty
             if (0 < count($patientOptions))
             {
                 // compare the patient proposals with the template proposals
                 $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
             }
-            
+
             $this->view->proposals = $allProposals;
         }
         else
@@ -111,11 +111,11 @@ class PataproController extends OntoWiki_Controller_Component
             $this->_owApp->appendMessage($message);
         }
     }
-    
+
     public function healthstateAction($healthstateUri = null)
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/healthstate.css');
-        
+
         if (false == isset ($healthstateUri))
             $healthstateUri = $this->getParam ('healthstateUri');
         if ('' != $healthstateUri)
@@ -129,22 +129,22 @@ class PataproController extends OntoWiki_Controller_Component
             $message = new OntoWiki_Message($this->_translate->_('noHealthstateFound'), OntoWiki_Message::ERROR);
             $this->_owApp->appendMessage($message);
         }
-        
+
         return $patientOptions;
     }
-    
+
     public function patientAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');
         $this->view->url = $this->_url;
-        
+
         $currentPatient = "";
-        
-        
+
+
         $dispediaSession = new Zend_Session_Namespace('Dispedia');
         if (isset($dispediaSession->selectedPatientUri))
             $currentPatient = $dispediaSession->selectedPatientUri;
-        
+
         if ( '' != $currentPatient ) 
         {
             if ( 'save' == $this->getParam ('do') )
@@ -167,54 +167,54 @@ class PataproController extends OntoWiki_Controller_Component
         }
         $this->view->currentPatient = $currentPatient;
     }
-	
-	public function storeAction()
+
+    public function storeAction()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
-        
-	$ontologiePath = getcwd() . "/ontologies/";
+
+    $ontologiePath = getcwd() . "/ontologies/";
 
         $this->view->url = $this->_config->urlBase;
-		
-		// dispediaCore
-		$dispediaCore = array();
-		$dispediaCore['modeluri'] = "http://www.dispedia.de/";
-		$dispediaCore['files'] = array(
-			0 => file_get_contents($ontologiePath . 'dispediaCore.owl'),
-			1 => file_get_contents($ontologiePath . 'wrapperAlsfrs.owl'),
-			2 => file_get_contents($ontologiePath . 'wrapperIcd.owl'),
-			3 => file_get_contents($ontologiePath . 'wrapperIcf.owl')
-		);
-		
-		// ekbProposal
-		$ekbProposal = array();
-		$ekbProposal['modeluri'] = "http://als.dispedia.de/";
-		$ekbProposal['files'] = array(
-			0 => file_get_contents($ontologiePath . 'ekbProposal.owl')
-		);
-		
-		// patients
-		$patients = array();
-		$patients['modeluri'] = "http://patients.dispedia.de/";
-		$patients['files'] = array(
-			0 => file_get_contents($ontologiePath . 'patients.owl'),
-			1 => file_get_contents($ontologiePath . 'jonDoes.owl')
-		);
-		
-		// alsfrs
-		$alsfrs = array();
-		$alsfrs['modeluri'] = "http://als.dispedia.de/frs/";
-		$alsfrs['files'] = array(
-			0 => file_get_contents($ontologiePath . 'alsfrs.rdf')
-		);
-		
-		$this->view->source = array();
-		$this->view->source['dispediaCore'] = $dispediaCore;
-		$this->view->source['ekbProposal'] = $ekbProposal;
-		$this->view->source['patients'] = $patients;
-		$this->view->source['alsfrs'] = $alsfrs;
-		
-	}
+
+        // dispediaCore
+        $dispediaCore = array();
+        $dispediaCore['modeluri'] = "http://www.dispedia.de/";
+        $dispediaCore['files'] = array(
+            0 => file_get_contents($ontologiePath . 'dispediaCore.owl'),
+            1 => file_get_contents($ontologiePath . 'wrapperAlsfrs.owl'),
+            2 => file_get_contents($ontologiePath . 'wrapperIcd.owl'),
+            3 => file_get_contents($ontologiePath . 'wrapperIcf.owl')
+        );
+
+        // ekbProposal
+        $ekbProposal = array();
+        $ekbProposal['modeluri'] = "http://als.dispedia.de/";
+        $ekbProposal['files'] = array(
+            0 => file_get_contents($ontologiePath . 'ekbProposal.owl')
+        );
+
+        // patients
+        $patients = array();
+        $patients['modeluri'] = "http://patients.dispedia.de/";
+        $patients['files'] = array(
+            0 => file_get_contents($ontologiePath . 'patients.owl'),
+            1 => file_get_contents($ontologiePath . 'jonDoes.owl')
+        );
+
+        // alsfrs
+        $alsfrs = array();
+        $alsfrs['modeluri'] = "http://als.dispedia.de/frs/";
+        $alsfrs['files'] = array(
+            0 => file_get_contents($ontologiePath . 'alsfrs.rdf')
+        );
+
+        $this->view->source = array();
+        $this->view->source['dispediaCore'] = $dispediaCore;
+        $this->view->source['ekbProposal'] = $ekbProposal;
+        $this->view->source['patients'] = $patients;
+        $this->view->source['alsfrs'] = $alsfrs;
+
+    }
 }
 
