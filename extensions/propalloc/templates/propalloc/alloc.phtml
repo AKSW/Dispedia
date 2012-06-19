@@ -21,6 +21,9 @@ $(function() {
 });
 </script>
 
+<!-- set the title of the action -->
+<?php $this->placeholder('main.window.title')->set($this->_translate->_('Proposal allocation administration')); ?>
+
 <h1><?php echo $this->_translate->_('Proposal allocation administration'); ?></h1>
 
 <div><?php echo $this->_translate->_('indexDescriptionText'); ?></div>
@@ -110,21 +113,10 @@ $(function() {
 			</td>
 		</tr>
 		
-		<?php } else { ?>
-		
-		<tr>
-			<td>
-				<a href="<?php echo $this->url; ?>formgenerator/form/?file=proposal">
-					<?php echo $this->_translate->_('Create Proposal'); ?></a></td>
-		</tr>
-		
 		<?php } ?>
 		 
 	</table>
 			
 	<input type="hidden" name="do" value="save"/>
 	<input type="hidden" name="proposal" value="<?php echo $this->currentProposal; ?>"/>
-
-	<a id="addResource" class="button submit" onclick="document.forms['propalloc'].submit();"/>
-		<?php echo $this->_translate->_('Save'); ?></a>
 </form>

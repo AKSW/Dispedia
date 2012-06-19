@@ -93,6 +93,12 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/alloc.css');
         
+        // build toolbar
+        $toolbar = $this->_owApp->toolbar;
+        $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
+            'name' => 'Save'
+        ));
+        $this->view->placeholder('main.window.toolbar')->set($toolbar);
         
         $this->view->url = $this->_url;
         $this->view->currentProposal = $this->getParam ('proposal');
