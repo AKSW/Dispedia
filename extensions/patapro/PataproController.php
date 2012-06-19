@@ -32,7 +32,9 @@ class PataproController extends OntoWiki_Controller_Component
     {
         parent::init();
         $this->_url = $this->_config->urlBase .'patapro/';    
-        
+
+        OntoWiki_Navigation::disableNavigation();
+
         $this->_patientModel = new Erfurt_Rdf_Model ($this->_privateConfig->patientModel);
         $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
         $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
