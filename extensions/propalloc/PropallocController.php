@@ -303,7 +303,14 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/supporterclass.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/supporterclass.js');
-
+        
+        // build toolbar
+        $toolbar = $this->_owApp->toolbar;
+        $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
+            'name' => 'Save'
+        ));
+        $this->view->placeholder('main.window.toolbar')->set($toolbar);
+        
         $currentSupporterClassUri = urldecode($this->getParam ('supporterClassUri'));
         $supporterClass = $this->getParam ('currentSupporterClass');
 
