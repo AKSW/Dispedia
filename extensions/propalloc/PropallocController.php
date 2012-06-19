@@ -64,7 +64,7 @@ class PropallocController extends OntoWiki_Controller_Component
      * Action to view the Proposal overview
      */
     public function indexAction()
-    {
+    {   
         $this->view->proposals = $this->_proposal->getAllProposals ();
         
         $this->view->url = $this->_url;
@@ -149,7 +149,7 @@ class PropallocController extends OntoWiki_Controller_Component
     }
 
     /**
-     * Action to make add a new Proposal, with inforamtions and actions
+     * Action to make add or edit a Proposal, with informations and actions
      */
     public function editAction ()
     {
@@ -157,6 +157,13 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/action.css');
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/information.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/edit.js');
+        
+        // build toolbar
+        $toolbar = $this->_owApp->toolbar;
+        $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
+            'name' => 'Save'
+        ));
+        $this->view->placeholder('main.window.toolbar')->set($toolbar);
         
         $this->view->url = $this->_url;
         
