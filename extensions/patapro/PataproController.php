@@ -12,7 +12,7 @@ require 'classes/Patient.php';
  * @author     Konrad Abicht <konrad@inspirito.de>
  * @copyright  Copyright (c) 2011
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
- */ 
+ */
 class PataproController extends OntoWiki_Controller_Component
 {
     private $_url;
@@ -27,7 +27,7 @@ class PataproController extends OntoWiki_Controller_Component
 
     /**
      * init controller
-     */     
+     */
     public function init()
     {
         parent::init();
@@ -67,8 +67,15 @@ class PataproController extends OntoWiki_Controller_Component
             $currentPatient = $dispediaSession->selectedPatientUri;
 
         $this->view->currentPatient = $currentPatient;
-        if ( '' != $currentPatient ) 
+        if ( '' != $currentPatient )
         {
+            // build toolbar
+            $toolbar = $this->_owApp->toolbar;
+            $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
+                'name' => 'Save'
+            ));
+            $this->view->placeholder('main.window.toolbar')->set($toolbar);
+
             if ( 'save' == $this->getParam ('do') )
             {
                 //TODO: auf Erfolg prüfen
@@ -140,13 +147,19 @@ class PataproController extends OntoWiki_Controller_Component
 
         $currentPatient = "";
 
-
         $dispediaSession = new Zend_Session_Namespace('Dispedia');
         if (isset($dispediaSession->selectedPatientUri))
             $currentPatient = $dispediaSession->selectedPatientUri;
 
-        if ( '' != $currentPatient ) 
+        if ( '' != $currentPatient )
         {
+            // build toolbar
+            $toolbar = $this->_owApp->toolbar;
+            $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
+                'name' => 'Save'
+            ));
+            $this->view->placeholder('main.window.toolbar')->set($toolbar);
+
             if ( 'save' == $this->getParam ('do') )
             {
                 $decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);

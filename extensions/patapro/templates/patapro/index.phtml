@@ -11,6 +11,9 @@
  */
 ?>
 
+<!-- set the title of the action -->
+<?php $this->placeholder('main.window.title')->set($this->_translate->_('patient proposal allocation')); ?>
+
 <div class="firstHeadline"><?php echo $this->_translate->_('patient proposal allocation'); ?></div>
 <div class="secondHeadline"><?php echo $this->_translate->_('allocate proposals to a patient'); ?></div>
 <?php if ("" != $this->currentPatient) { ?>
@@ -69,9 +72,5 @@
         </table>
         
         <input type="hidden" name="do" value="save"/>
-        <div id="formButtons">
-            <a id="addResource" class="button submit" onclick="document.forms['patapro'].submit();">
-            <?php echo $this->_translate->_('save'); ?></a>
-        </div>
     </form>
 <?php } ?>
