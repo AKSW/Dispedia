@@ -36,6 +36,7 @@ class PropallocController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
+        
         $this->_url = $this->_config->urlBase .'propalloc/'; 
         
         $dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
@@ -76,8 +77,12 @@ class PropallocController extends OntoWiki_Controller_Component
      */
      public function changepatientAction()
      {
+        $dispediaSession = new Zend_Session_Namespace('Dispedia');
         $currentPatientUri = urldecode($this->getParam ('curentPatientUri'));
-        $_SESSION['selectedPatientUri'] = $currentPatientUri;
+        if ("" == $currentPatientUri)
+            unset($dispediaSession->selectedPatientUri);
+        else
+            $dispediaSession->selectedPatientUri = $currentPatientUri;
      }
     
     
@@ -322,11 +327,6 @@ class PropallocController extends OntoWiki_Controller_Component
         }
         
         $this->view->currentSupporterClass = $currentSupporterClass;
-        
-        //TODO: remove this output
-        echo "<pre>";
-        var_dump("SUPPORTERCLASS", $currentSupporterClass);
-        echo "</pre>";
         
         if ( 'save' == $this->getParam ('do') )
         {
