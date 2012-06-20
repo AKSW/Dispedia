@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY seo "http://www.serviceOntology.org/" >
+    <!ENTITY seohc "http://hc.serviceOntology.org/" >
+    <!ENTITY gr	"http://purl.org/goodrelations/v1#">
+    <!ENTITY dct "http://purl.org/dc/terms/">
+    <!ENTITY ccns "http://creativecommons.org/ns#">
+    <!ENTITY s	"http://schema.org/">
+
+]>
+
+<rdf:RDF 
+     xmlns="&seo;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:owl="&owl;"
+     xmlns:ccns="&ccns;"
+     xmlns:dct="&dct;"
+     xmlns:xsd="&xsd;"
+     xmlns:rdf="&rdf;"
+     xmlns:xml="&xml;">
+    <owl:Ontology rdf:about="&seo;">
+        <rdfs:label xml:lang="de">ServiceOntology Vokabular</rdfs:label>
+        <rdfs:label xml:lang="en">ServiceOntology Vocabulary </rdfs:label>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7</owl:versionInfo>
+        <rdfs:comment xml:lang="de">Diese Ontologie (Vokabular) enthält alle Konzepte, die Dienstleistungen und dementsprechende Dienstleister beschreiben.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This Ontology includes concepts for describing Services and ServiceProviders.</rdfs:comment>
+        <dct:contributor>Romy Elze</dct:contributor>
+        <dct:contributor>Michael Martin</dct:contributor>
+        <dct:contributor>Lars Eidam</dct:contributor>
+        <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+    </owl:Ontology>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class rdf:about="&seo;Service">
+        <rdfs:label xml:lang="de">Dienstleistung</rdfs:label>
+        <rdfs:label xml:lang="en">Service</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohc;PhysiotherapyService">
+        <rdfs:label xml:lang="de">Physiotherapie</rdfs:label>
+        <rdfs:label xml:lang="en">Physiothearpy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seo;Service"/>
+    </owl:Class>
+
+
+<owl:Class rdf:about="&seo;ServiceProvider">
+        <rdfs:label xml:lang="de">Dienstleister</rdfs:label>
+        <rdfs:label xml:lang="en">Service</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohc;Physiotherapist">
+        <rdfs:label xml:lang="de">Physiotherapeut</rdfs:label>
+        <rdfs:label xml:lang="en">Physiothearpist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seo;ServiceProvider"/>
+    </owl:Class>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+<owl:ObjectProperty rdf:about="&seo;supply">
+        <rdfs:label xml:lang="de">leistet</rdfs:label>
+        <rdfs:label xml:lang="en">supply</rdfs:label>
+        <rdfs:domain rdf:resource="&seo;ServiceProvider"/>
+        <rdfs:range rdf:resource="&seo;Service"/>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'leistet Physiotherapie' kennzeichnet welche Dienstleistungen von einem Dienstleister erbracht werden.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty 'supplyPhysiotherapy' indicates which services are provided by a service provider.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+<owl:ObjectProperty rdf:about="&seohc;supplyPhysiotherapy">
+        <rdfs:label xml:lang="de">leistet Physiotherapie</rdfs:label>
+        <rdfs:label xml:lang="en">supplyPhysiotherapy</rdfs:label>
+	<rdfs:subPropertyOf rdf:resource="&seo;supply"/>        
+	<rdfs:domain rdf:resource="&seo;ServiceProvider"/>
+        <rdfs:range rdf:resource="&seo;Service"/>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'leistet Physiotherapie' kennzeichnet welche Dienstleistungen von einem Physiotherapeuten erbracht werden.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty 'supplyPhysiotherapy' indicates which services are provided by a physiotherapist.</rdfs:comment>
+    </owl:ObjectProperty>
+
+
+</rdf:RDF>
