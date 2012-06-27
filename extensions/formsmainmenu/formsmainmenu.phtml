@@ -69,7 +69,7 @@
 <div>
     <img src="<?php echo $this->imagesUrl; ?>dispedia_logo.png" border="0" align="absmiddle"/>
     &nbsp;
-    <a href="<?php echo $this->url; ?>">
+    <a id="ahome" href="<?php echo $this->url; ?>">
         <?php echo $this->_translate->_('Home'); ?></a>
 </div>
 
@@ -118,6 +118,10 @@
         <?php if ( 'patient' != $this->showMenu ) echo "$('#divpatient').addClass('hidden');" ?>
         <?php if ( 'doctor' != $this->showMenu ) echo "$('#divdoctor').addClass('hidden');" ?>
         <?php if ( 'admin' != $this->showMenu ) echo "$('#divadmin').addClass('hidden');" ?>
+    });
+    
+    $('#ahome').click(function() {
+        setMenu('');
     });
     $('#apatient').click(function() {
         setMenu('patient');
