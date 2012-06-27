@@ -28,7 +28,7 @@ class Proposal
         $this->_lang = $lang;
         $this->_patientsModel = $patientsModel;
         $this->_dispediaModel = $dispediaModel;
-        $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
+        $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
     public function getActionHelper ()
