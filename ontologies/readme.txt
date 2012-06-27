@@ -4,17 +4,17 @@ Create Ontology Readme
 Please create the following 6 ontologies and upload/add the given owl files to the respective ontology.
 
 1. http://www.dispedia.de/
-  a) dispediaCore.owl
-  b) wrapperAlsfrs.owl
-  c) wrapperIcd.owl
-  d) wrapperIcf.owl
+  a) dispedia_Core.owl
+  b) disCoreWrapperAlsfrs.owl
+  c) disCoreWrapperIcd.owl
+  d) disCoreWrapperIcf.owl
 
 2. http://als.dispedia.de/
-  a) ekbProposal.owl
+  a) dispediaALS.owl
 
-3. http://patients.dispedia.de/
-  a) patients.owl
-  b) jonDoes.owl
+3. http://patient.dispedia.de/
+  a) dispediaPatient.owl
+  b) dispediaPatientJonDoes.owl
 
 4. http://als.dispedia.de/frs/
   a) alsfrs.nt
@@ -24,3 +24,11 @@ Please create the following 6 ontologies and upload/add the given owl files to t
 
 6. http://who.int/icf#
   a) icf.owl
+
+7. http://www.serviceontology.de/
+  a) serviceontology.owl
+  b) serviceontologyHC.owl
+  
+8. http://hc.dispedia.de/
+  a) dispediaHC.owl
+  b) dispediaHCexample.owl
