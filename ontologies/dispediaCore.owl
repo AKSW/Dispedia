@@ -1068,9 +1068,9 @@
         <rdfs:subClassOf rdf:resource="&dispediao;Agent"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&dispediao;Organisation">
+    <owl:Class rdf:about="&dispediao;Organization">
         <rdfs:label xml:lang="de">Organisation</rdfs:label>
-        <rdfs:label xml:lang="en">Organisation</rdfs:label>
+        <rdfs:label xml:lang="en">Organization</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Agent"/>
     </owl:Class>
 
