@@ -78,20 +78,6 @@ class PropallocController extends OntoWiki_Controller_Component
     }
 
     /**
-     * Action change patient in session
-     */
-     public function changepatientAction()
-     {
-        $dispediaSession = new Zend_Session_Namespace('Dispedia');
-        $currentPatientUri = urldecode($this->getParam('curentPatientUri'));
-        if ("" == $currentPatientUri)
-            unset($dispediaSession->selectedPatientUri);
-        else
-            $dispediaSession->selectedPatientUri = $currentPatientUri;
-     }
-
-
-    /**
      * Action to edit the Proposal Allocations
      */
     public function allocAction ()

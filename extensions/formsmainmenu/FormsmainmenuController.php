@@ -20,13 +20,31 @@ class FormsMainMenuController extends OntoWiki_Controller_Component
     }
     
     /**
+     * Action change patient in session
+     */
+     public function changepatientAction()
+     {
+        // disable rendering
+        $this->_helper->viewRenderer->setNoRender();
+        $this->_helper->layout()->disableLayout();
+        
+        $currentPatientUri = urldecode($this->getParam('curentPatientUri'));
+        if ("" == $currentPatientUri)
+        {
+            unset($this->_owApp->currentResource);
+        }
+        else
+        {
+            $currentResource = new Ontowiki_Resource($currentPatientUri, $this->_owApp->selectedModel);
+            $this->_owApp->currentResource = $currentResource;
+        }
+     }
+    
+    /**
      * Action to view the Proposal overview
      */
     public function setmenuAction()
     {
-        // disable rendering
-        $this->_helper->viewRenderer->setNoRender();
-        $this->_helper->layout()->disableLayout();
         
         $menuName = urldecode($this->getParam ('menuName'));
         

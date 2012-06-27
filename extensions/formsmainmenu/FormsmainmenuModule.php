@@ -77,11 +77,19 @@ class FormsMainMenuModule extends OntoWiki_Module
         $this->view->patients = $this->getAllPatients();
         
         $dispediaSession = new Zend_Session_Namespace('Dispedia');
-        
-        if (isset ($dispediaSession->selectedPatientUri))
-            $this->view->currentPatientUri = $dispediaSession->selectedPatientUri;
+        $selectedResource = $this->_owApp->__get("selectedResource");
+        if(isset($selectedResource))
+            $selectedResourceUri = $selectedResource->getIri();
+
+        if (isset($selectedResourceUri) && "" != $selectedResourceUri)
+            if (in_array($selectedResourceUri, array_keys($this->view->patients)))
+                $this->view->currentPatientUri = $selectedResourceUri;
+            else
+                $this->view->currentPatientUri = "";
         else
+        {
             $this->view->currentPatientUri = "";
+        }
         
         if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
             $this->view->menuName = $dispediaSession->menuName;
@@ -102,7 +110,8 @@ class FormsMainMenuModule extends OntoWiki_Module
      */
     private function getAllPatients ()
     {
-        $patients = $this->_store->sparqlQuery (
+        $patients = array();
+        $patientsResults = $this->_store->sparqlQuery (
             'SELECT ?uri ?firstName ?lastName
               WHERE {
                  ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Patient>.
@@ -110,7 +119,11 @@ class FormsMainMenuModule extends OntoWiki_Module
                  ?uri <http://www.dispedia.de/o/lastName> ?lastName.
              };'
         );
-
+        
+        foreach ($patientsResults as $patient) {
+            $patients[$patient['uri']] = $patient;
+        }
+        
         return $patients;
     }
     

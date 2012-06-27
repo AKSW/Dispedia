@@ -24,6 +24,7 @@ class PataproController extends OntoWiki_Controller_Component
     private $_proposal;
     private $_titleHelper;
     private $_translate;
+    private $_store;
 
     /**
      * init controller
@@ -40,6 +41,8 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
+        
+        $this->_store = Erfurt_App::getInstance()->getStore();
 
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
@@ -48,6 +51,27 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper);
 
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
+    }
+    
+    /**
+      * get the classes of an resource
+      */
+    private function getClasses($currentResource)
+    {
+        $resources = array();
+        $resourceClassesResult = $this->_store->sparqlQuery (
+            'SELECT ?class
+            WHERE {
+                <' . $currentResource . '> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?class.
+                }
+            };'
+        );
+        
+        foreach($resourceClassesResult as $resource) {
+            $resources[$resource['class']] = $resource['class'];
+        }
+        
+        return $resources;
     }
 
     /**
@@ -61,10 +85,15 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->url = $this->_url;
 
         $currentPatient = "";
-
-        $dispediaSession = new Zend_Session_Namespace('Dispedia');
-        if (isset($dispediaSession->selectedPatientUri))
-            $currentPatient = $dispediaSession->selectedPatientUri;
+        
+        // get selectedResource if it is set
+        $selectedResource = $this->_owApp->__get("selectedResource");
+        if (isset($selectedResource))
+        {
+            $selectedResourceUri = $selectedResource->getUri();
+            if (in_array("http://www.dispedia.de/o/Patient", $this->getClasses($selectedResourceUri)))
+                $currentPatient = $selectedResourceUri;
+        }
 
         $this->view->currentPatient = $currentPatient;
         if ( '' != $currentPatient )
@@ -147,9 +176,14 @@ class PataproController extends OntoWiki_Controller_Component
 
         $currentPatient = "";
 
-        $dispediaSession = new Zend_Session_Namespace('Dispedia');
-        if (isset($dispediaSession->selectedPatientUri))
-            $currentPatient = $dispediaSession->selectedPatientUri;
+        // get selectedResource if it is set
+        $selectedResource = $this->_owApp->__get("selectedResource");
+        if (isset($selectedResource))
+        {
+            $selectedResourceUri = $selectedResource->getUri();
+            if (in_array("http://www.dispedia.de/o/Patient", $this->getClasses($selectedResourceUri)))
+                $currentPatient = $selectedResourceUri;
+        }
 
         if ( '' != $currentPatient )
         {
