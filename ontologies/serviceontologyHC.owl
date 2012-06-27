@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!DOCTYPE rdf:RDF [
     
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -84,15 +84,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-<owl:ObjectProperty rdf:about="&seohc;supplyPhysiotherapy">
-        <rdfs:label xml:lang="de">leistet Physiotherapie</rdfs:label>
-        <rdfs:label xml:lang="en">supplyPhysiotherapy</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="&seo;supply"/>
-        <rdfs:domain rdf:resource="&seo;ServiceProvider"/>
-        <rdfs:range rdf:resource="&seo;Service"/>
-        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'leistet Physiotherapie' kennzeichnet welche Dienstleistungen von einem Physiotherapeuten erbracht werden.</rdfs:comment>
-        <rdfs:comment xml:lang="en">The ObjectProperty 'supplyPhysiotherapy' indicates which services are provided by a physiotherapist.</rdfs:comment>
-    </owl:ObjectProperty>
+
 
 
 </rdf:RDF>
