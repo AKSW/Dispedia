@@ -112,6 +112,7 @@
 
     <owl:NamedIndividual rdf:about="&patients;AddressMaxMustermann">
         <rdf:type rdf:resource="&dispediao;Address"/>
+        <rdfs:label>Musterstr. 1, Musterstadt, 4</rdfs:label>
         <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.02.2011</dispediao:addressDate>
         <dispediao:homeLevel rdf:datatype="&xsd;int">4</dispediao:homeLevel>
         <dispediao:adressText>Musterstr. 1, Musterstadt</dispediao:adressText>
