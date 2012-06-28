@@ -21,16 +21,14 @@
      xmlns:rdf="&rdf;"
      xmlns:ccns="&ccns;"
      xmlns:dct="&dct;"
-
      xmlns:ekbi="&ekbi;"
      xmlns:dispediao="&dispediao;"
-     xmlns:dispedia="&dispedia;"
->
+     xmlns:dispedia="&dispedia;">
 
-    <owl:Ontology rdf:about="http://als.dispedia.de/ekbProposal/i/20111105/">
+    <owl:Ontology rdf:about="&ekb;">
         <rdfs:label xml:lang="de">ALS Experten-Wissensbasis</rdfs:label>
         <rdfs:label xml:lang="en">ALS Expert Knowledge Base</rdfs:label>
-        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.2</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.3</owl:versionInfo>
         <owl:imports rdf:resource="&dispedia;"/>
         <rdfs:comment xml:lang="de">Expertenwissen: Vorschläge und damit zusammenhängende Informationen</rdfs:comment>
         <rdfs:comment xml:lang="en">Expert Knowledge Base: Proposals and related information</rdfs:comment>
@@ -125,11 +123,11 @@
         <rdf:type rdf:resource="&dispediao;Information"/>
         <rdfs:label xml:lang="de">Details der Patientenverfügung</rdfs:label>
         <rdfs:label xml:lang="en">Details of the living will</rdfs:label>
-        <dispediao:content xml:lang="de">Die ALS ist eine schwerwiegende und fortschreitende neurologische Krankheit, für die bisher keine Heilung erreicht werden kann. Die ALS ist dennoch eine behandelbare Krankheit mit verschiedenen Therapiemöglichkeiten. Jeder Patient hat prinzipiell Zugang zu allen etablierten Formen der nichtinvasiven und invasiven Behandlung von ALS‐bedingten Symptomen. Der tatsächliche Einsatz von technisch und medizinisch‐möglichen Therapieoptionen ist jedoch individuell sehr unterschiedlich. Er wird von den Gegebenheiten des klinischen Verlaufes, vom Krankheitsstadium,
+        <dispediao:content xml:lang="de">Die ALS ist eine schwerwiegende und fortschreitende neurologische Krankheit, für die bisher keine Heilung erreicht werden kann. Die ALS ist dennoch eine behandelbare Krankheit mit verschiedenen Therapiemöglichkeiten. Jeder Patient hat prinzipiell Zugang zu allen etablierten Formen der nichtinvasiven und invasiven Behandlung von ALS?bedingten Symptomen. Der tatsächliche Einsatz von technisch und medizinisch?möglichen Therapieoptionen ist jedoch individuell sehr unterschiedlich. Er wird von den Gegebenheiten des klinischen Verlaufes, vom Krankheitsstadium,
 der sozialen Situation, den persönlichen Wertmaßstäben des Patienten und weiteren Faktoren bestimmt.
-In der ALS‐Sprechstunde erfolgt eine detaillierte Aufklärung über die Möglichkeiten, Grenzen und mögliche Risiken von symptomatischen Behandlungsstrategien der ALS. Eine besondere Verantwortung liegt in der Beratung zu invasiven Therapieoptionen wie der invasiven, tracheostomiegestützten Beatmung. Die Erfahrung zeigt, dass nur eine geringe Zahl an ALS‐Patienten sich für die Durchführung einer invasiven lebenszeitverlängernden Behandlung entscheidet. Die Begrenzung technisch und medizinisch möglicher therapeutischer Maßnahme ist der erklärte Wille vieler ALS‐Patienten.
-Zur Sicherung der Patientenautonomie bei der Festlegung therapeutischer Handlungen insbesondere in der Spät‐ und Terminalphase der ALS ist eine schriftliche Willenserklärung unter Zeugen eine etablierte medizinische und juristische Praxis. Die Willenserklärung erfolgt in der Regel in Form einer Patientenverfügung (PV).
-Mit Gültigkeit ab dem 01.09.2009 wurden die formalen Voraussetzungen für PV mit einer Novellierung des Betreuungsrechts neu geregelt. Mit dem Dritten Gesetz zur Änderung des Betreuungsrechts hat das Bundesministerium für Justiz (BMJ) eine verbesserte Rechtssicherheit beim Umgang mit PV geschaffen. Gleichzeitig wurden die formalen Anforderungen an PV verstärkt, die insbesondere für ALS‐Patienten aufgrund der motorischen Einschränkungen Implikation haben. Die wesentliche Veränderung sieht vor, dass die PV schriftlich verfasst und durch Namensunterschrift eigenständig unterzeichnet wird. Diese formale Festlegung war in den früheren Anforderungen für PV nicht gegeben. Gleichzeitig ist bei ALS‐bedingten Paresen eine eigenständige Unterschrift unter Umständen nicht möglich. In diesem Fall ist eine Beglaubigung der PV von einer Notarin oder einem
+In der ALS?Sprechstunde erfolgt eine detaillierte Aufklärung über die Möglichkeiten, Grenzen und mögliche Risiken von symptomatischen Behandlungsstrategien der ALS. Eine besondere Verantwortung liegt in der Beratung zu invasiven Therapieoptionen wie der invasiven, tracheostomiegestützten Beatmung. Die Erfahrung zeigt, dass nur eine geringe Zahl an ALS?Patienten sich für die Durchführung einer invasiven lebenszeitverlängernden Behandlung entscheidet. Die Begrenzung technisch und medizinisch möglicher therapeutischer Maßnahme ist der erklärte Wille vieler ALS?Patienten.
+Zur Sicherung der Patientenautonomie bei der Festlegung therapeutischer Handlungen insbesondere in der Spät? und Terminalphase der ALS ist eine schriftliche Willenserklärung unter Zeugen eine etablierte medizinische und juristische Praxis. Die Willenserklärung erfolgt in der Regel in Form einer Patientenverfügung (PV).
+Mit Gültigkeit ab dem 01.09.2009 wurden die formalen Voraussetzungen für PV mit einer Novellierung des Betreuungsrechts neu geregelt. Mit dem Dritten Gesetz zur Änderung des Betreuungsrechts hat das Bundesministerium für Justiz (BMJ) eine verbesserte Rechtssicherheit beim Umgang mit PV geschaffen. Gleichzeitig wurden die formalen Anforderungen an PV verstärkt, die insbesondere für ALS?Patienten aufgrund der motorischen Einschränkungen Implikation haben. Die wesentliche Veränderung sieht vor, dass die PV schriftlich verfasst und durch Namensunterschrift eigenständig unterzeichnet wird. Diese formale Festlegung war in den früheren Anforderungen für PV nicht gegeben. Gleichzeitig ist bei ALS?bedingten Paresen eine eigenständige Unterschrift unter Umständen nicht möglich. In diesem Fall ist eine Beglaubigung der PV von einer Notarin oder einem
 Notar durch Handzeichen erforderlich. In diesem Fall wird der Patientenwille auf einem mündlichen, nonverbalen Weg oder durch eine Kommunikationshilfe ermittelt und durch ein Notariat bestätigt.
 Wichtig ist, dass ein Widerruf der Patientenverfügung jederzeit formlos erfolgen kann, ohne strenge Bindung an die Schriftform. Es wird weiterhin empfohlen, die PV in bestimmten Zeitabständen, z. B.
 jährlich, zu erneuern oder zu bestätigen. Damit kann eine Konkretisierung der PV innerhalb der fortschreitenden ALS erreicht werden.
@@ -206,8 +204,8 @@ eine von Ihnen individuell erstellte PV dienen können.</dispediao:content>
         <rdf:type rdf:resource="&dispediao;Information"/>
         <rdfs:label xml:lang="de">Details der Magensonde</rdfs:label>
         <rdfs:label xml:lang="en">Details of a stomach tube</rdfs:label>
-        <dispediao:content xml:lang="de">Die perkutane (lateinisch für durch die Haut) endoskopische (mittels Magen‐Spiegelung) Gastrostomie (Öffnung zum Magen), kurz PEG, ist die Einlage einer Sonde durch die Haut der Bauchdecke in den Magen. Dabei wird die Sonde mittels Kanülen und Endoskop im Magen
-implementiert und mit einer inneren und äusseren Halteplatte fixiert. Diese Sonde wird meistens zur teilweisen oder kompletten enteralen Ernährung verwendet (deshalb oft nur verkürzt Ernährungs‐
+        <dispediao:content xml:lang="de">Die perkutane (lateinisch für durch die Haut) endoskopische (mittels Magen?Spiegelung) Gastrostomie (Öffnung zum Magen), kurz PEG, ist die Einlage einer Sonde durch die Haut der Bauchdecke in den Magen. Dabei wird die Sonde mittels Kanülen und Endoskop im Magen
+implementiert und mit einer inneren und äusseren Halteplatte fixiert. Diese Sonde wird meistens zur teilweisen oder kompletten enteralen Ernährung verwendet (deshalb oft nur verkürzt Ernährungs?
 Sonde oder &quot;künstliche Ernährung&quot;), kann aber auch als Ablaufmöglichkeit aus dem Magen bei anhaltendem Erbrechen genutzt werden.</dispediao:content>
         <dispediao:suitableFor rdf:resource="&ekbi;Active"/>
         <dispediao:usefulFor rdf:resource="&ekbi;Doctor"/>
