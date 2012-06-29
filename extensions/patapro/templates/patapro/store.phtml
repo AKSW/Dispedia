@@ -12,7 +12,7 @@
 ?>
 <script type="text/javascript">       
     var url = '<?php echo $this->url; ?>';
-    var source = <?php echo json_encode($this->source); ?>;
+    var models = <?php echo json_encode($this->models); ?>;
     var createUrl = url + "model/create";
     var addUrl = url + "model/add";
     var deleteUrl = url + "model/delete/";
@@ -24,23 +24,23 @@
 <table>
 	<tr>
 		<th>Model</th>
-		<?php foreach($this->source as $ontologieName => $ontologieData) { ?>
+		<?php foreach($this->models as $modelName => $modelData) { ?>
 			<th>
-					<?php echo $ontologieData['modeluri']; ?>
+					<?php echo $modelName; ?>
 			</th>
 		<?php } ?>
 	</tr>
 	<tr>
 		<td>Function</td>
-		<?php foreach($this->source as $ontologieName => $ontologieData) { ?>
+		<?php foreach($this->models as $modelName => $modelData) { ?>
 			<td>
-				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $ontologieName; ?>', 'all')">
+				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'all')">
 					Renew
 				</a>
-				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $ontologieName; ?>', 'add')">
+				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'add')">
 					Add
 				</a>
-				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $ontologieName; ?>', 'delete')">
+				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'delete')">
 					Delete
 				</a>
 			</td>
@@ -48,9 +48,9 @@
 	</tr>
 	<tr>
 		<td>Process</td>
-			<?php foreach($this->source as $ontologieName => $ontologieData) { ?>
+			<?php foreach($this->models as $modelName => $modelData) { ?>
 				<td>
-					<div id="response<?php echo $ontologieName; ?>">
+					<div id="response<?php echo $modelName; ?>">
 					</div>
 				</td>
 			<?php } ?>

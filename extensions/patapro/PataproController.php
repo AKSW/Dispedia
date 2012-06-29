@@ -219,49 +219,24 @@ class PataproController extends OntoWiki_Controller_Component
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
-
-    $ontologiePath = getcwd() . "/ontologies/";
-
+    
+        // get ontologies config object
+        $ontologies = $this->_config->ontologies->toArray();
+        
+        $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
+        
         $this->view->url = $this->_config->urlBase;
 
-        // dispediaCore
-        $dispediaCore = array();
-        $dispediaCore['modeluri'] = "http://www.dispedia.de/";
-        $dispediaCore['files'] = array(
-            0 => file_get_contents($ontologiePath . 'dispediaCore.owl'),
-            1 => file_get_contents($ontologiePath . 'wrapperAlsfrs.owl'),
-            2 => file_get_contents($ontologiePath . 'wrapperIcd.owl'),
-            3 => file_get_contents($ontologiePath . 'wrapperIcf.owl')
-        );
-
-        // ekbProposal
-        $ekbProposal = array();
-        $ekbProposal['modeluri'] = "http://als.dispedia.de/";
-        $ekbProposal['files'] = array(
-            0 => file_get_contents($ontologiePath . 'ekbProposal.owl')
-        );
-
-        // patients
-        $patients = array();
-        $patients['modeluri'] = "http://patients.dispedia.de/";
-        $patients['files'] = array(
-            0 => file_get_contents($ontologiePath . 'patients.owl'),
-            1 => file_get_contents($ontologiePath . 'jonDoes.owl')
-        );
-
-        // alsfrs
-        $alsfrs = array();
-        $alsfrs['modeluri'] = "http://als.dispedia.de/frs/";
-        $alsfrs['files'] = array(
-            0 => file_get_contents($ontologiePath . 'alsfrs.rdf')
-        );
-
-        $this->view->source = array();
-        $this->view->source['dispediaCore'] = $dispediaCore;
-        $this->view->source['ekbProposal'] = $ekbProposal;
-        $this->view->source['patients'] = $patients;
-        $this->view->source['alsfrs'] = $alsfrs;
-
+        foreach ($ontologies['models'] as $modelName => $model) {
+            foreach ($model['files'] as $fileNumber => $filename) {
+                $file = array(
+                    'name' => $filename,
+                    'content' => file_get_contents($ontologiePath . $filename)
+                    );
+                $ontologies['models'][$modelName]['files'][$fileNumber] = $file;
+            }
+        }
+        $this->view->models = $ontologies['models'];
     }
 }
 
