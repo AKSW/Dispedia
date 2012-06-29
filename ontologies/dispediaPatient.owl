@@ -43,7 +43,7 @@
      xmlns:ekbi="&ekbi;"
 >
 
-    <owl:Ontology rdf:about="http://patients.dispedia.de/">
+    <owl:Ontology rdf:about="&patients;">
         <rdfs:label xml:lang="de">ALS-Patienten</rdfs:label>
         <rdfs:label xml:lang="en">ALS patients</rdfs:label>
         <rdfs:comment xml:lang="de">Diese Ontology enthält exemplarische Patienten-Resourcen zur Evaluation des Systemmodels. </rdfs:comment>

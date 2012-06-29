@@ -25,9 +25,9 @@ Please create the following 6 ontologies and upload/add the given owl files to t
 6. http://who.int/icf#
   a) icf.owl
 
-7. http://www.serviceontology.de/
-  a) serviceontology.owl
-  b) serviceontologyHC.owl
+7. http://www.serviceOntology.org/
+  a) serviceOntology.owl
+  b) serviceOntologyHC.owl
   
 8. http://hc.dispedia.de/
   a) dispediaHC.owl

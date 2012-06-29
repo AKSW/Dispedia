@@ -27,7 +27,7 @@
      xmlns:dispedia="&dispedia;"
 >
 
-    <owl:Ontology rdf:about="http://als.dispedia.de/ekbProposal/i/20111105/">
+    <owl:Ontology rdf:about="http://als.dispedia.de/">
         <rdfs:label xml:lang="de">ALS Experten-Wissensbasis</rdfs:label>
         <rdfs:label xml:lang="en">ALS Expert Knowledge Base</rdfs:label>
         <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.2</owl:versionInfo>
