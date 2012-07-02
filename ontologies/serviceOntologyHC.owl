@@ -31,7 +31,7 @@
      xmlns:s="&s;">
 
     <owl:Ontology rdf:about="&seohc;">
-        <owl:import rdf:resource="&seo;"/>
+        <owl:imports rdf:resource="&seo;"/>
         <rdfs:label xml:lang="de">ServiceOntology Vokabular für Gesundheitsdienstleistungen</rdfs:label>
         <rdfs:label xml:lang="en">ServiceOntology Vocabulary for health care services</rdfs:label>
         <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.1</owl:versionInfo>

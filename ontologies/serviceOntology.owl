@@ -59,7 +59,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:Class rdf:about="Service">
+    <owl:Class rdf:about="&seo;Service">
         <rdfs:label xml:lang="de">Dienstleistung</rdfs:label>
         <rdfs:label xml:lang="en">Service</rdfs:label>
         <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
@@ -67,7 +67,7 @@
 
     <owl:Class rdf:about="&seo;ServiceProvider">
         <rdfs:label xml:lang="de">Dienstleister</rdfs:label>
-        <rdfs:label xml:lang="en">Service</rdfs:label>
+        <rdfs:label xml:lang="en">ServiceProvider</rdfs:label>
         <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
 
