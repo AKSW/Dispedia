@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dishc "http://hc.dispedia.de/" >
+    <!ENTITY seo "http://www.serviceOntology.de/" >
+    <!ENTITY seohc "http://hc.serviceOntology.org/" >
+    <!ENTITY seohcs "http://hc.serviceOntology.org/service/" >
+    <!ENTITY seohcp "http://hc.serviceOntology.org/provider/" >
+    <!ENTITY gr	"http://purl.org/goodrelations/v1#">
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+]>
+
+<rdf:RDF xmlns="&dishc;"
+     xml:base="&dishc;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:owl="&owl;"
+     xmlns:xsd="&xsd;"
+     xmlns:rdf="&rdf;"
+     xmlns:ccns="&ccns;"
+     xmlns:dct="&dct;"
+     xmlns:seo="&seo;"
+     xmlns:seohcs="&seohcs;"
+     xmlns:seohcp="&seohcp;"
+     xmlns:gr="&gr;">
+
+    <owl:Ontology rdf:about="&dishc;">
+        <rdfs:label xml:lang="de">Gesundheitsdienstleistungen und -Dienstleister</rdfs:label>
+        <rdfs:label xml:lang="en">Healthcare Services and Providers</rdfs:label>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.1</owl:versionInfo>
+        <owl:imports rdf:resource="&seohc;"/>
+        <rdfs:comment xml:lang="de">Branchenbuch für Gesundheitsdienstleistungen</rdfs:comment>
+        <rdfs:comment xml:lang="en">Yellow Pages for Healthcare Services</rdfs:comment>
+        <dct:author>Romy Elze</dct:author>
+        <dct:contributor>Michael Martin</dct:contributor>
+        <dct:contributor>Lars Eidam</dct:contributor>
+        <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+    </owl:Ontology>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:NamedIndividual rdf:about="&seohcs;ManualTherapy">
+        <rdf:type rdf:resource="&seohcs;ManualTherapy"/>
+        <rdfs:label xml:lang="de">manuelle Therapie</rdfs:label>
+        <rdfs:label xml:lang="en">manual therapy</rdfs:label>
+    </owl:NamedIndividual>
+   
+   <owl:NamedIndividual rdf:about="&seohcs;EverydayPurchases">
+           <rdf:type rdf:resource="&seo;ServiceWithoutCategory"/>
+           <rdfs:label xml:lang="de">tägliche Einkäufe erledigen</rdfs:label>
+           <rdfs:label xml:lang="en">everyday purchases</rdfs:label>
+    </owl:NamedIndividual>
+   
+</rdf:RDF>

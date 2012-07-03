@@ -27,8 +27,10 @@ Please create the following 6 ontologies and upload/add the given owl files to t
 
 7. http://www.serviceOntology.org/
   a) serviceOntology.owl
-  b) serviceOntologyHC.owl
-  
-8. http://hc.dispedia.de/
+
+8. http://hc.serviceOntology.org/
+  a) serviceOntologyHC.owl
+    
+9. http://hc.dispedia.de/
   a) dispediaHC.owl
   b) dispediaHCexample.owl

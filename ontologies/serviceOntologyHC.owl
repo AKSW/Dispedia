@@ -32,13 +32,13 @@
      xmlns:s="&s;">
 
     <owl:Ontology rdf:about="&seohc;">
-        <owl:imports rdf:resource="&seo;"/>
         <rdfs:label xml:lang="de">ServiceOntology Vokabular für Gesundheitsdienstleistungen</rdfs:label>
         <rdfs:label xml:lang="en">ServiceOntology Vocabulary for health care services</rdfs:label>
         <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.1</owl:versionInfo>
         <dct:author>Romy Elze</dct:author>
         <dct:contributor>Michael Martin</dct:contributor>
         <dct:contributor>Lars Eidam</dct:contributor>
+        <owl:imports rdf:resource="&seo;"/>
         <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
     </owl:Ontology>
 
@@ -64,12 +64,30 @@
      -->
 
 
+    <owl:Class rdf:about="&seohcs;ServiceWithoutCategory">
+            <rdfs:label xml:lang="de">alleinstehende Gesundheits-Dienstleistung ohne Kategorie</rdfs:label>
+            <rdfs:label xml:lang="en">single healthcare service without Category</rdfs:label>
+            <rdfs:subClassOf rdf:resource="&seo;Service"/>
+    </owl:Class>
+    
     <owl:Class rdf:about="&seohcs;Physiotherapy">
-        <rdfs:label xml:lang="de">Physiotherapie</rdfs:label>
+        <rdfs:label xml:lang="de">Physiotherapie Leistung</rdfs:label>
         <rdfs:label xml:lang="en">Physiothearpy</rdfs:label>
         <rdfs:subClassOf rdf:resource="&seo;Service"/>
     </owl:Class>
+    
+    <owl:Class rdf:about="&seohcs;ManualTherapy">
+            <rdfs:label xml:lang="de">Manuelle Therapie</rdfs:label>
+            <rdfs:label xml:lang="en">manual therapy</rdfs:label>
+            <rdfs:subClassOf rdf:resource="&seohcs;Physiotherapy"/>
+    </owl:Class>
 
+    <owl:Class rdf:about="&seohcs;ServiceProviderWithoutCategory">
+                <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
+                <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
+                <rdfs:subClassOf rdf:resource="&seo;SerivceProvider"/>
+    </owl:Class>
+    
     <owl:Class rdf:about="&seohcp;Physiotherapist">
         <rdfs:label xml:lang="de">Physiotherapeut</rdfs:label>
         <rdfs:label xml:lang="en">Physiothearpist</rdfs:label>
