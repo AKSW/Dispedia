@@ -32,7 +32,6 @@
         <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.1</owl:versionInfo>
         <rdfs:comment xml:lang="de">Diese Ontologie (Vokabular) enthält alle Konzepte, die Dienstleistungen und dementsprechende Dienstleister beschreiben.</rdfs:comment>
         <rdfs:comment xml:lang="en">This Ontology includes concepts for describing Services and ServiceProviders.</rdfs:comment>
-        <owl:imports rdf:resource="http://www.dispedia.de/"/>
         <dct:author>Romy Elze</dct:author>
         <dct:contributor>Michael Martin</dct:contributor>
         <dct:contributor>Lars Eidam</dct:contributor>
@@ -55,7 +54,7 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Annotation Classes
+    // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -69,7 +68,7 @@
     <owl:Class rdf:about="&seo;ServiceProvider">
         <rdfs:label xml:lang="de">Dienstleister</rdfs:label>
         <rdfs:label xml:lang="en">ServiceProvider</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
+        <rdfs:subClassOf rdf:resource="&gr;BusinessEntity"/>
     </owl:Class>
 
     <!-- 

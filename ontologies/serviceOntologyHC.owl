@@ -58,7 +58,7 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Annotation Classes
+    // Classes of Services /seohcs
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -67,10 +67,12 @@
     <owl:Class rdf:about="&seohcs;ServiceWithoutCategory">
             <rdfs:label xml:lang="de">alleinstehende Gesundheits-Dienstleistung ohne Kategorie</rdfs:label>
             <rdfs:label xml:lang="en">single healthcare service without Category</rdfs:label>
+            <rdfs:comment xml:lang="en">The class ServiceWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
+            <rdfs:comment xml:lang="de">Die Klasse Gesundheitsdienstleistungen ohne Kategorie bezeichnet alle Services, die keiner höheren Gruppe zugeordnet werden können.</rdfs:comment>
             <rdfs:subClassOf rdf:resource="&seo;Service"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&seohcs;Physiotherapy">
+    <owl:Class rdf:about="&seohcs;PhysiotherapyService">
         <rdfs:label xml:lang="de">Physiotherapie Leistung</rdfs:label>
         <rdfs:label xml:lang="en">Physiothearpy</rdfs:label>
         <rdfs:subClassOf rdf:resource="&seo;Service"/>
@@ -82,18 +84,82 @@
             <rdfs:subClassOf rdf:resource="&seohcs;Physiotherapy"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&seohcs;ServiceProviderWithoutCategory">
+   
+   <!-- 
+       ///////////////////////////////////////////////////////////////////////////////////////
+       //
+       // Classes of Providers /seohcp
+       //
+       ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+   
+   <owl:Class rdf:about="&seohcs;ServiceProviderWithoutCategory">
                 <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
                 <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
                 <rdfs:subClassOf rdf:resource="&seo;SerivceProvider"/>
     </owl:Class>
     
-    <owl:Class rdf:about="&seohcp;Physiotherapist">
-        <rdfs:label xml:lang="de">Physiotherapeut</rdfs:label>
-        <rdfs:label xml:lang="en">Physiothearpist</rdfs:label>
+    <owl:Class rdf:about="&seohcp;Therapist">
+        <rdfs:label xml:lang="de">Therapeut</rdfs:label>
+        <rdfs:label xml:lang="en">Thearpist</rdfs:label>
         <rdfs:subClassOf rdf:resource="&seo;ServiceProvider"/>
     </owl:Class>
 
+    	<owl:Class rdf:about="&seohcp;Physiotherapist">
+        	<rdfs:label xml:lang="de">Physiotherapeut</rdfs:label>
+        	<rdfs:label xml:lang="en">Physiothearpist</rdfs:label>
+        	<rdfs:subClassOf rdf:resource="&seohc;Therapist"/>
+    	</owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Physician">
+        <rdfs:label xml:lang="en">Physician</rdfs:label>
+        <rdfs:label xml:lang="de">Arzt</rdfs:label>
+        <rdfs:comment xml:lang="en">The class physician groups all types of doctors.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Klasse Arzt gruppiert alle Arztberufe</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&seo;ServiceProvider"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Radiologist">
+        <rdfs:label xml:lang="en">Radiologis</rdfs:label>
+        <rdfs:label xml:lang="de">Radiologe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Cardiologist">
+        <rdfs:label xml:lang="en">Cardiologis</rdfs:label>
+        <rdfs:label xml:lang="de">Kardiologe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;FamilyDoctor">
+        <rdfs:label xml:lang="en">FamilyDoctor</rdfs:label>
+        <rdfs:label xml:lang="de">Hausarzt</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Anesthetist">
+        <rdfs:label xml:lang="en">Anesthetist</rdfs:label>
+        <rdfs:label xml:lang="de">Anästhesist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Neurologist">
+        <rdfs:label xml:lang="en">Neurologist</rdfs:label>
+        <rdfs:label xml:lang="de">Neurologe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Gastroenterologist">
+        <rdfs:label xml:lang="en">Gastroenterologist</rdfs:label>
+        <rdfs:label xml:lang="de">Gastroenterologe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&seohcp;Care">
+        <rdfs:label xml:lang="en">Gastroenterologist</rdfs:label>
+        <rdfs:label xml:lang="de">Gastroenterologe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
+    </owl:Class>
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -102,6 +168,9 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
+
+
+
 
 
 

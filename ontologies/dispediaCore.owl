@@ -186,6 +186,14 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
+<owl:ObjectProperty rdf:about="&dispediao;containsService">
+        <rdfs:label xml:lang="de">enthält Service</rdfs:label>
+        <rdfs:label xml:lang="en">contains service</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Action"/>
+        <rdfs:range rdf:resource="&seo;Service"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
+    </owl:ObjectProperty>
+
     <owl:ObjectProperty rdf:about="&dispediao;country">
         <rdfs:label xml:lang="de">Land</rdfs:label>
         <rdfs:label xml:lang="en">country</rdfs:label>
