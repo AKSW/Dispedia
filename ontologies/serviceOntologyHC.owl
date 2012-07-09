@@ -68,7 +68,7 @@
             <rdfs:label xml:lang="de">alleinstehende Gesundheits-Dienstleistung ohne Kategorie</rdfs:label>
             <rdfs:label xml:lang="en">single healthcare service without Category</rdfs:label>
             <rdfs:comment xml:lang="en">The class ServiceWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
-            <rdfs:comment xml:lang="de">Die Klasse Gesundheitsdienstleistungen ohne Kategorie bezeichnet alle Services, die keiner höheren Gruppe zugeordnet werden können.</rdfs:comment>
+            <rdfs:comment xml:lang="de">Die Klasse Gesundheitsdienstleistungen ohne Kategorie bezeichnet alle Services, die keiner hÃ¶heren Gruppe zugeordnet werden kÃ¶nnen.</rdfs:comment>
             <rdfs:subClassOf rdf:resource="&seo;Service"/>
     </owl:Class>
     
@@ -139,7 +139,7 @@
 
     <owl:Class rdf:about="&seohcp;Anesthetist">
         <rdfs:label xml:lang="en">Anesthetist</rdfs:label>
-        <rdfs:label xml:lang="de">Anästhesist</rdfs:label>
+        <rdfs:label xml:lang="de">AnÃ¤sthesist</rdfs:label>
         <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
     </owl:Class>
 
