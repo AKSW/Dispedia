@@ -49,14 +49,14 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:NamedIndividual rdf:about="&seohcs;ManualTherapy">
+    <owl:NamedIndividual rdf:about="&dishc;ManualTherapy">
         <rdf:type rdf:resource="&seohcs;ManualTherapy"/>
         <rdfs:label xml:lang="de">manuelle Therapie</rdfs:label>
         <rdfs:label xml:lang="en">manual therapy</rdfs:label>
     </owl:NamedIndividual>
    
-   <owl:NamedIndividual rdf:about="&seohcs;EverydayPurchases">
-           <rdf:type rdf:resource="&seo;ServiceWithoutCategory"/>
+   <owl:NamedIndividual rdf:about="&dishc;EverydayPurchases">
+           <rdf:type rdf:resource="&seohcs;ServiceWithoutCategory"/>
            <rdfs:label xml:lang="de">tägliche Einkäufe erledigen</rdfs:label>
            <rdfs:label xml:lang="en">everyday purchases</rdfs:label>
     </owl:NamedIndividual>
