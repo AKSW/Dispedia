@@ -132,7 +132,7 @@
     </owl:ObjectProperty>
 
      <!-- 
-       --------------------------------------------------------------------------------------
+       ######################################################################################
        contains is used for definition of Proposal Elements resp. information for the patient
      -->
 
@@ -165,8 +165,8 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
-     <!-- 
-       --------------------------------------------------------------------------------------
+     <!--
+       ######################################################################################
      -->
  
     <owl:ObjectProperty rdf:about="&dispediao;containsProposalDescription">
@@ -248,8 +248,8 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;has"/>
     </owl:ObjectProperty>
 
-     <!-- 
-       ----------------------------------------------------------------------------------
+     <!--
+       ######################################################################################
        includes is used for definition of healthstate resp. information about the patient
      -->
     
@@ -283,7 +283,7 @@
     </owl:ObjectProperty>
 
      <!-- 
-       ----------------------------------------------------------------------------------
+       ######################################################################################
      -->
      
     <owl:ObjectProperty rdf:about="&dispediao;isDoctorOf">
