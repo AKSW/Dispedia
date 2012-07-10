@@ -96,13 +96,13 @@
    <owl:Class rdf:about="&seohcs;ServiceProviderWithoutCategory">
                 <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
                 <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
-                <rdfs:subClassOf rdf:resource="&seo;SerivceProvider"/>
+                <rdfs:subClassOf rdf:resource="&seo;Organization"/>
     </owl:Class>
     
     <owl:Class rdf:about="&seohcp;Therapist">
         <rdfs:label xml:lang="de">Therapeut</rdfs:label>
         <rdfs:label xml:lang="en">Thearpist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&seo;ServiceProvider"/>
+        <rdfs:subClassOf rdf:resource="&seo;Organization"/>
     </owl:Class>
 
     	<owl:Class rdf:about="&seohcp;Physiotherapist">
@@ -116,7 +116,7 @@
         <rdfs:label xml:lang="de">Arzt</rdfs:label>
         <rdfs:comment xml:lang="en">The class physician groups all types of doctors.</rdfs:comment>
         <rdfs:comment xml:lang="de">Die Klasse Arzt gruppiert alle Arztberufe</rdfs:comment>
-        <rdfs:subClassOf rdf:resource="&seo;ServiceProvider"/>
+        <rdfs:subClassOf rdf:resource="&seo;Organization"/>
     </owl:Class>
 
     <owl:Class rdf:about="&seohcp;Radiologist">

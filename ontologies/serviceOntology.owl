@@ -6,6 +6,7 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
     <!ENTITY seo "http://www.serviceOntology.org/" >
     <!ENTITY seohc "http://hc.serviceOntology.org/" >
     <!ENTITY gr	"http://purl.org/goodrelations/v1#">
@@ -17,9 +18,11 @@
 <rdf:RDF 
      xmlns="&seo;"
      xmlns:seohc="&seohc;"
+     xmlns:gr="&gr;"
      xmlns:rdfs="&rdfs;"
      xmlns:owl="&owl;"
      xmlns:ccns="&ccns;"
+     xmlns:foaf="&foaf;"
      xmlns:dct="&dct;"
      xmlns:xsd="&xsd;"
      xmlns:rdf="&rdf;"
@@ -65,12 +68,15 @@
         <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&seo;ServiceProvider">
-        <rdfs:label xml:lang="de">Dienstleister</rdfs:label>
-        <rdfs:label xml:lang="en">ServiceProvider</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&gr;BusinessEntity"/>
+     <owl:Class rdf:about="&seo;Organization">
+            <rdfs:label xml:lang="de">Organisation</rdfs:label>
+            <rdfs:label xml:lang="en">Organization</rdfs:label>
+            <rdfs:subClassOf rdf:resource="&gr;BusinessEntity"/>
+            <rdfs:subClassOf rdf:resource="&s;Organization"/>
+            <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
     </owl:Class>
-
+    
+    
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
