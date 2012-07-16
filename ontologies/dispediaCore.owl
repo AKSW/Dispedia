@@ -15,6 +15,7 @@
     <!ENTITY var "urn:swrl#" >
     <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
     <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY icd "http://purl.bioontology.org/ontology/ICD10/">
 
 
 ]>
@@ -34,7 +35,9 @@
      xmlns:gr="&gr;"
      xmlns:var="&var;"
      xmlns:swrl="&swrl;"
-     xmlns:xml="&xml;">
+     xmlns:xml="&xml;"
+     xmlns:icd="&icd;"
+     >
     <owl:Ontology rdf:about="&dispedia;">
         <rdfs:label xml:lang="de">Dispedia Vokabular (Kern Ontologie)</rdfs:label>
         <rdfs:label xml:lang="en">Dispedia Vocabulary (Core Ontology)</rdfs:label>
@@ -940,6 +943,7 @@
     <owl:Class rdf:about="&dispediao;ALS">
         <rdfs:label xml:lang="de">ALS</rdfs:label>
         <rdfs:label xml:lang="en">ALS</rdfs:label>
+        <owl:equivalentClass rdf:resource:"icd;G12.2"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;AssistiveProduct">
@@ -1029,6 +1033,7 @@
         <rdfs:label xml:lang="de">Person</rdfs:label>
         <rdfs:label xml:lang="en">Person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&foaf;Person"/>
+        <rdfs:subClassOf rdf:resource="&gr;Person"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;PropertySet">
