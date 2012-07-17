@@ -6,7 +6,7 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY dishc "http://hc.dispedia.de/" >
-    <!ENTITY seo "http://www.serviceOntology.de/" >
+    <!ENTITY seo "http://www.serviceOntology.org/" >
     <!ENTITY seohc "http://hc.serviceOntology.org/" >
     <!ENTITY seohcs "http://hc.serviceOntology.org/service/" >
     <!ENTITY seohcp "http://hc.serviceOntology.org/provider/" >

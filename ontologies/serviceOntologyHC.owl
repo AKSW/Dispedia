@@ -93,7 +93,7 @@
        ///////////////////////////////////////////////////////////////////////////////////////
      -->
    
-   <owl:Class rdf:about="&seohcs;ServiceProviderWithoutCategory">
+   <owl:Class rdf:about="&seohcp;ServiceProviderWithoutCategory">
                 <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
                 <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
                 <rdfs:subClassOf rdf:resource="&seo;Organization"/>
