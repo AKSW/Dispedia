@@ -1,6 +1,9 @@
 Add address;Addresse hinzufügen
-Add a new person;Neue Person anlegen
-Add a new patient;Neuen Patienten anlegen
+persons;Personen
+patients;Patienten
+organizations;Organisationen
+orgnizationCategory;Organisationkategorie
+serviceCategory;Dienstleistungskategorie
 Add a new knowledge base;Neue Wissensbasis anlegen
 Add pet;Haustier hinzufügen
 ALSFRS;ALSFRS
@@ -56,4 +59,5 @@ user;Benutzer
 noPatientSelected;Kein Patient ausgewählt
 ontologies;Wissenbasen
 ontologieEdit;Wissenbasen bearbeiten
-newOrganization;Neue Organisation anlegen
+categories;Kategorien
+services;Diensleistungen

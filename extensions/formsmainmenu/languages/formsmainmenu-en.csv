@@ -1,6 +1,9 @@
 Add address;Add address
-Add a new person;Add a new person
-Add a new patient;Add a new patient
+persons;Persons
+patients;Patients
+organizations;Organizations
+orgnizationCategory;Orgnization Category
+serviceCategory;Service Category
 Add a new knowledge base;Add a new knowledge base
 Add pet;Add pet
 ALSFRS;ALSFRS
@@ -56,4 +59,5 @@ user;User
 noPatientSelected;No Patient selected
 ontologies;Ontologies
 ontologieEdit;edit Ontologies
-newOrganization;Add a new Organization
+categories;Categories
+services;Services
