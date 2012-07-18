@@ -81,10 +81,10 @@
     <owl:Class rdf:about="&seohcs;ManualTherapy">
             <rdfs:label xml:lang="de">Manuelle Therapie</rdfs:label>
             <rdfs:label xml:lang="en">manual therapy</rdfs:label>
-            <rdfs:subClassOf rdf:resource="&seohcs;Physiotherapy"/>
+            <rdfs:subClassOf rdf:resource="&seohcs;PhysiotherapyService"/>
     </owl:Class>
 
-   
+
    <!-- 
        ///////////////////////////////////////////////////////////////////////////////////////
        //
@@ -156,8 +156,8 @@
     </owl:Class>
 
     <owl:Class rdf:about="&seohcp;Care">
-        <rdfs:label xml:lang="en">Gastroenterologist</rdfs:label>
-        <rdfs:label xml:lang="de">Gastroenterologe</rdfs:label>
+        <rdfs:label xml:lang="en">Care</rdfs:label>
+        <rdfs:label xml:lang="de">Pflege</rdfs:label>
         <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
     </owl:Class>
 
