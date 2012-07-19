@@ -10,10 +10,10 @@
     <!ENTITY seohc "http://hc.serviceOntology.org/" >
     <!ENTITY seohcs "http://hc.serviceOntology.org/service/" >
     <!ENTITY seohcp "http://hc.serviceOntology.org/provider/" >
-    <!ENTITY gr	"http://purl.org/goodrelations/v1#">
-    <!ENTITY dct "http://purl.org/dc/terms/">
-    <!ENTITY ccns "http://creativecommons.org/ns#">
-    <!ENTITY s "http://schema.org/">
+    <!ENTITY gr	"http://purl.org/goodrelations/v1#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY s "http://schema.org/" >
 ]>
 
 <rdf:RDF 
@@ -168,11 +168,6 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-
-
-
-
 
 
 </rdf:RDF>

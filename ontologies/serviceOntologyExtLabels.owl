@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY seo "http://www.serviceOntology.org/" >
+    <!ENTITY seohc "http://hc.serviceOntology.org/" >
+    <!ENTITY gr	"http://purl.org/goodrelations/v1#">
+    <!ENTITY dct "http://purl.org/dc/terms/">
+    <!ENTITY ccns "http://creativecommons.org/ns#">
+    <!ENTITY s "http://schema.org/">
+]>
+
+<rdf:RDF 
+     xmlns="&seo;"
+     xmlns:seohc="&seohc;"
+     xmlns:gr="&gr;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:owl="&owl;"
+     xmlns:ccns="&ccns;"
+     xmlns:foaf="&foaf;"
+     xmlns:dct="&dct;"
+     xmlns:xsd="&xsd;"
+     xmlns:rdf="&rdf;"
+     xmlns:xml="&xml;"
+     xmlns:s="&s;">
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:DatatypeProperty rdf:about="&s;streetAddress">
+        <rdfs:label xml:lang="de">Straße</rdfs:label>
+        <rdfs:label xml:lang="en">Street</rdfs:label>
+        <rdfs:domain rdf:resource="&s;PostalAddress"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&s;postalCode">
+        <rdfs:label xml:lang="de">Postleitzahl</rdfs:label>
+        <rdfs:label xml:lang="en">postal Code</rdfs:label>
+        <rdfs:domain rdf:resource="&s;PostalAddress"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&s;addressLocality">
+        <rdfs:label xml:lang="de">Stadt</rdfs:label>
+        <rdfs:label xml:lang="en">City</rdfs:label>
+        <rdfs:domain rdf:resource="&s;PostalAddress"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&s;latitude">
+        <rdfs:label xml:lang="de">Breite</rdfs:label>
+        <rdfs:label xml:lang="en">Latitude</rdfs:label>
+        <rdfs:domain rdf:resource="&s;GeoCoordinates"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&s;longitude">
+        <rdfs:label xml:lang="de">Länge</rdfs:label>
+        <rdfs:label xml:lang="en">Longitude</rdfs:label>
+        <rdfs:domain rdf:resource="&s;GeoCoordinates"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&gr;name">
+        <rdfs:label xml:lang="de">Name</rdfs:label>
+        <rdfs:label xml:lang="en">Name</rdfs:label>
+        <rdfs:domain rdf:resource="&gr;ProductOrService"/>
+    </owl:DatatypeProperty>
+    
+        <owl:DatatypeProperty rdf:about="&gr;description">
+        <rdfs:label xml:lang="de">Beschreibung</rdfs:label>
+        <rdfs:label xml:lang="en">Description</rdfs:label>
+        <rdfs:domain rdf:resource="&gr;ProductOrService"/>
+    </owl:DatatypeProperty>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class rdf:about="&s;PostalAddress">
+        <rdfs:label xml:lang="de">Postanschrift</rdfs:label>
+        <rdfs:label xml:lang="en">postal address</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&s;ContactPoint"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&s;GeoCoordinates">
+        <rdfs:label xml:lang="de">Geokoordinaten</rdfs:label>
+        <rdfs:label xml:lang="en">GeoCoordinates</rdfs:label>
+    </owl:Class>
+    
+</rdf:RDF>
+
+
+
+
