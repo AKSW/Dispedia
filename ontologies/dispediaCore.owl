@@ -943,7 +943,7 @@
     <owl:Class rdf:about="&dispediao;ALS">
         <rdfs:label xml:lang="de">ALS</rdfs:label>
         <rdfs:label xml:lang="en">ALS</rdfs:label>
-        <owl:equivalentClass rdf:resource:"icd;G12.2"/>
+        <owl:equivalentClass rdf:resource="icd;G12.2"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;AssistiveProduct">
