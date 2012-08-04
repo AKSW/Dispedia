@@ -13,6 +13,7 @@
     <!ENTITY gr	"http://purl.org/goodrelations/v1#">
     <!ENTITY ccns "http://creativecommons.org/ns#" >
     <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY s "http://schema.org/" >
 ]>
 
 <rdf:RDF xmlns="&dishc;"
@@ -26,7 +27,8 @@
      xmlns:seo="&seo;"
      xmlns:seohcs="&seohcs;"
      xmlns:seohcp="&seohcp;"
-     xmlns:gr="&gr;">
+     xmlns:gr="&gr;"
+     xmlns:s="&s;">
 
     <owl:Ontology rdf:about="&dishc;">
         <rdfs:label xml:lang="de">Gesundheitsdienstleistungen und -Dienstleister</rdfs:label>
@@ -53,12 +55,44 @@
         <rdf:type rdf:resource="&seohcs;ManualTherapy"/>
         <rdfs:label xml:lang="de">manuelle Therapie</rdfs:label>
         <rdfs:label xml:lang="en">manual therapy</rdfs:label>
+        <gr:name xml:lang="de">manuelle Therapie</gr:name>
+        <gr:name xml:lang="en">manual therapy</gr:name>
     </owl:NamedIndividual>
    
    <owl:NamedIndividual rdf:about="&dishc;EverydayPurchases">
-           <rdf:type rdf:resource="&seohcs;ServiceWithoutCategory"/>
-           <rdfs:label xml:lang="de">tägliche Einkäufe erledigen</rdfs:label>
-           <rdfs:label xml:lang="en">everyday purchases</rdfs:label>
+        <rdf:type rdf:resource="&seohcs;ServiceWithoutCategory"/>
+        <rdfs:label xml:lang="de">tägliche Einkäufe erledigen</rdfs:label>
+        <rdfs:label xml:lang="en">everyday purchases</rdfs:label>
+        <gr:name xml:lang="de">tägliche Einkäufe erledigen</gr:name>
+        <gr:name xml:lang="en">everyday purchases</gr:name>
+    </owl:NamedIndividual>
+   
+   <owl:NamedIndividual rdf:about="&dishc;94ac/Charite">
+        <rdf:type rdf:resource="&seohcp;Physician"/>
+        <rdf:type rdf:resource="&seo;Organization"/>
+        <seo:hasAddress rdf:resource="&dishc;a13a/LindenbergerWeg8013125Berlin"/>
+        <seo:hasAddress rdf:resource="&dishc;fb32/52.6268823739276113.507691770792007"/>
+        <rdfs:label xml:lang="de">Charite</rdfs:label>
+        <rdfs:label xml:lang="en">Charite</rdfs:label>
+        <gr:name xml:lang="de">Charite</gr:name>
+        <gr:name xml:lang="en">Charite</gr:name>
+    </owl:NamedIndividual>
+   
+   <owl:NamedIndividual rdf:about="&dishc;a13a/LindenbergerWeg8013125Berlin">
+        <rdf:type rdf:resource="&s;PostalAddress"/>
+        <s:addressLocality>Berlin</s:addressLocality>
+        <s:postalCode>13125</s:postalCode>
+        <s:streetAddress>Lindenberger Weg 80</s:streetAddress>
+        <rdfs:label xml:lang="de">Lindenberger Weg 80 13125 Berlin</rdfs:label>
+        <rdfs:label xml:lang="en">Lindenberger Weg 80 13125 Berlin</rdfs:label>
+    </owl:NamedIndividual>
+   
+   <owl:NamedIndividual rdf:about="&dishc;fb32/52.6268823739276113.507691770792007">
+        <rdf:type rdf:resource="&s;GeoCoordinates"/>
+        <s:latitude>52.62688237392761</s:latitude>
+        <s:longitude>13.507691770792007</s:longitude>
+        <rdfs:label xml:lang="de">52.62688237392761 13.507691770792007</rdfs:label>
+        <rdfs:label xml:lang="en">52.62688237392761 13.507691770792007</rdfs:label>
     </owl:NamedIndividual>
    
 </rdf:RDF>

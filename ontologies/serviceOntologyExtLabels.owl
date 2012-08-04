@@ -9,10 +9,10 @@
     <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
     <!ENTITY seo "http://www.serviceOntology.org/" >
     <!ENTITY seohc "http://hc.serviceOntology.org/" >
-    <!ENTITY gr	"http://purl.org/goodrelations/v1#">
-    <!ENTITY dct "http://purl.org/dc/terms/">
-    <!ENTITY ccns "http://creativecommons.org/ns#">
-    <!ENTITY s "http://schema.org/">
+    <!ENTITY gr	"http://purl.org/goodrelations/v1#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY s "http://schema.org/" >
 ]>
 
 <rdf:RDF 
@@ -73,7 +73,7 @@
         <rdfs:domain rdf:resource="&gr;ProductOrService"/>
     </owl:DatatypeProperty>
     
-        <owl:DatatypeProperty rdf:about="&gr;description">
+    <owl:DatatypeProperty rdf:about="&gr;description">
         <rdfs:label xml:lang="de">Beschreibung</rdfs:label>
         <rdfs:label xml:lang="en">Description</rdfs:label>
         <rdfs:domain rdf:resource="&gr;ProductOrService"/>
