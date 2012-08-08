@@ -79,6 +79,24 @@
         <rdfs:domain rdf:resource="&gr;ProductOrService"/>
     </owl:DatatypeProperty>
     
+    <!-- Core Ontology -->
+    <owl:DatatypeProperty rdf:about="&s;birthDate">
+        <rdfs:label xml:lang="de">Geburtsdatum</rdfs:label>
+        <rdfs:label xml:lang="en">date of birth</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&s;deathDate">
+        <rdfs:label xml:lang="de">Todesdatum</rdfs:label>
+        <rdfs:label xml:lang="en">date of death</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&s;gender">
+        <rdfs:label xml:lang="de">Geschlecht</rdfs:label>
+        <rdfs:label xml:lang="en">gender</rdfs:label>
+    </owl:DatatypeProperty>
+    
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
