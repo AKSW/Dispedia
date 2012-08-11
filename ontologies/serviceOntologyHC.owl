@@ -108,7 +108,7 @@
     	<owl:Class rdf:about="&seohcp;Physiotherapist">
         	<rdfs:label xml:lang="de">Physiotherapeut</rdfs:label>
         	<rdfs:label xml:lang="en">Physiothearpist</rdfs:label>
-        	<rdfs:subClassOf rdf:resource="&seohc;Therapist"/>
+        	<rdfs:subClassOf rdf:resource="&seohcp;Therapist"/>
     	</owl:Class>
 
     <owl:Class rdf:about="&seohcp;Physician">
