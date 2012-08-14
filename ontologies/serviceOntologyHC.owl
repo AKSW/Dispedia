@@ -64,12 +64,12 @@
      -->
 
 
-    <owl:Class rdf:about="&seohcs;ServiceWithoutCategory">
+    <owl:Class rdf:about="&seohcs;HealthCareServiceWithoutCategory">
             <rdfs:label xml:lang="de">alleinstehende Gesundheits-Dienstleistung ohne Kategorie</rdfs:label>
             <rdfs:label xml:lang="en">single healthcare service without Category</rdfs:label>
             <rdfs:comment xml:lang="en">The class ServiceWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
             <rdfs:comment xml:lang="de">Die Klasse Gesundheitsdienstleistungen ohne Kategorie bezeichnet alle Services, die keiner höheren Gruppe zugeordnet werden können.</rdfs:comment>
-            <rdfs:subClassOf rdf:resource="&seo;Service"/>
+            <rdfs:subClassOf rdf:resource="&seo;ServiceWithoutCategory"/>
     </owl:Class>
     
     <owl:Class rdf:about="&seohcs;PhysiotherapyService">
@@ -93,10 +93,10 @@
        ///////////////////////////////////////////////////////////////////////////////////////
      -->
    
-   <owl:Class rdf:about="&seohcp;ServiceProviderWithoutCategory">
+   <owl:Class rdf:about="&seohcp;HealthCareServiceProviderWithoutCategory">
                 <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
                 <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
-                <rdfs:subClassOf rdf:resource="&seo;Organization"/>
+                <rdfs:subClassOf rdf:resource="&seo;ServiceProviderWithoutCategory"/>
     </owl:Class>
     
     <owl:Class rdf:about="&seohcp;Therapist">

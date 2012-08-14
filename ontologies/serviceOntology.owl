@@ -67,6 +67,15 @@
         <rdfs:label xml:lang="en">Service</rdfs:label>
         <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
+    
+    <owl:Class rdf:about="&seo;ServiceWithoutCategory">
+                <rdfs:label xml:lang="de">alleinstehende Dienstleistung ohne Kategorie</rdfs:label>
+                <rdfs:label xml:lang="en">single service without Category</rdfs:label>
+                <rdfs:comment xml:lang="en">The class ServiceWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
+                <rdfs:comment xml:lang="de">Die Klasse Dienstleistung ohne Kategorie bezeichnet alle Services, die keiner höheren Gruppe zugeordnet werden können.
+                Damit sieht der Anwender, falls Services angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
+                <rdfs:subClassOf rdf:resource="&seo;Service"/>
+    </owl:Class>
 
      <owl:Class rdf:about="&seo;Organization">
             <rdfs:label xml:lang="de">Organisation</rdfs:label>
@@ -76,6 +85,14 @@
             <rdfs:subClassOf rdf:resource="&foaf;Organization"/>
     </owl:Class>
     
+    <owl:Class rdf:about="&seo;ServiceProviderWithoutCategory">
+                    <rdfs:label xml:lang="de">Dienstleister ohne Kategorie</rdfs:label>
+                    <rdfs:label xml:lang="en">single service provider without Category</rdfs:label>
+                    <rdfs:comment xml:lang="en">The class ProviderWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
+		    <rdfs:comment xml:lang="de">Die Klasse Dienstleister ohne Kategorie bezeichnet alle Dienstleister, die keiner höheren Gruppe zugeordnet werden können.
+                Damit sieht der Anwender, falls Dienstleister angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
+                    <rdfs:subClassOf rdf:resource="&seo;Organization"/>
+    </owl:Class>
     
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
