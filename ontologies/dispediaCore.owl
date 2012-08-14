@@ -168,10 +168,6 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
-     <!--
-       ######################################################################################
-     -->
- 
     <owl:ObjectProperty rdf:about="&dispediao;containsProposalDescription">
         <rdfs:label xml:lang="de">enthält Informationstext</rdfs:label>
         <rdfs:label xml:lang="en">contains Proposal Description Text</rdfs:label>
@@ -195,6 +191,10 @@
         <rdfs:range rdf:resource="&seo;Service"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
+
+ <!--
+       ######################################################################################
+     -->
 
     <owl:ObjectProperty rdf:about="&dispediao;country">
         <rdfs:label xml:lang="de">Land</rdfs:label>
