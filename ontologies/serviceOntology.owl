@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+ï»¿<?xml version="1.0"?>
 <!DOCTYPE rdf:RDF [
 
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -72,8 +72,7 @@
                 <rdfs:label xml:lang="de">alleinstehende Dienstleistung ohne Kategorie</rdfs:label>
                 <rdfs:label xml:lang="en">single service without Category</rdfs:label>
                 <rdfs:comment xml:lang="en">The class ServiceWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
-                <rdfs:comment xml:lang="de">Die Klasse Dienstleistung ohne Kategorie bezeichnet alle Services, die keiner höheren Gruppe zugeordnet werden können.
-                Damit sieht der Anwender, falls Services angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
+                <rdfs:comment xml:lang="de">Die Klasse Dienstleistung ohne Kategorie bezeichnet alle Services, die keiner hÃ¶heren Gruppe zugeordnet werden kÃ¶nnen. Damit sieht der Anwender, falls Services angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
                 <rdfs:subClassOf rdf:resource="&seo;Service"/>
     </owl:Class>
 
@@ -89,8 +88,7 @@
                     <rdfs:label xml:lang="de">Dienstleister ohne Kategorie</rdfs:label>
                     <rdfs:label xml:lang="en">single service provider without Category</rdfs:label>
                     <rdfs:comment xml:lang="en">The class ProviderWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
-		    <rdfs:comment xml:lang="de">Die Klasse Dienstleister ohne Kategorie bezeichnet alle Dienstleister, die keiner höheren Gruppe zugeordnet werden können.
-                Damit sieht der Anwender, falls Dienstleister angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
+		    <rdfs:comment xml:lang="de">Die Klasse Dienstleister ohne Kategorie bezeichnet alle Dienstleister, die keiner hÃ¶heren Gruppe zugeordnet werden kÃ¶nnen. Damit sieht der Anwender, falls Dienstleister angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
                     <rdfs:subClassOf rdf:resource="&seo;Organization"/>
     </owl:Class>
     
