@@ -514,7 +514,7 @@
 
   <rdf:Description rdf:nodeID="genid2a">
     <rdf:type rdf:resource="&swrl;ClassAtom"/>
-    <swrl:classPredicate  rdf:resource="&dispediao;ExperiencedInformation"/>
+    <swrl:classPredicate  rdf:resource="&dispediao;ExperiencedProposalDescription"/>
     <swrl:argument1  rdf:resource="&var;x"/>
   </rdf:Description>
 
@@ -557,7 +557,7 @@
 
   <rdf:Description rdf:nodeID="genid2b">
     <rdf:type rdf:resource="&swrl;ClassAtom"/>
-    <swrl:classPredicate  rdf:resource="&dispediao;SensibleInformation"/>
+    <swrl:classPredicate  rdf:resource="&dispediao;SensibleProposalDescription"/>
     <swrl:argument1  rdf:resource="&var;x"/>
   </rdf:Description>
 
@@ -999,13 +999,13 @@
         <rdfs:label xml:lang="en">ProposalDescription</rdfs:label>
     </owl:Class>
 
-    <owl:Class rdf:about="&dispediao;SensibleInformation">
+    <owl:Class rdf:about="&dispediao;SensibleProposalDescription">
         <rdfs:label xml:lang="de">Information für sensible Personen</rdfs:label>
         <rdfs:label xml:lang="en">Information for sensible person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;ProposalDescription"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&dispediao;ExperiencedInformation">
+    <owl:Class rdf:about="&dispediao;ExperiencedProposalDescription">
         <rdfs:label xml:lang="de">Information für erfahrene Personen</rdfs:label>
         <rdfs:label xml:lang="en">Information for experienced person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;ProposalDescription"/>

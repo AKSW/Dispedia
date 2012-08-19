@@ -11,6 +11,10 @@
     <!ENTITY dispediao "http://www.dispedia.de/o/" >
     <!ENTITY ccns "http://creativecommons.org/ns#" >
     <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY seo "http://www.serviceOntology.org/" >
+    <!ENTITY seohc "http://hc.serviceOntology.org/" >
+    <!ENTITY seohcs "http://hc.serviceOntology.org/service/" >
+    <!ENTITY seohcp "http://hc.serviceOntology.org/provider/" >
 ]>
 
 <rdf:RDF xmlns="&ekb;"
@@ -23,7 +27,11 @@
      xmlns:dct="&dct;"
      xmlns:ekbi="&ekbi;"
      xmlns:dispediao="&dispediao;"
-     xmlns:dispedia="&dispedia;">
+     xmlns:dispedia="&dispedia;"
+     xmlns:seo="&seo;"
+     xmlns:seohc="&seohc;"
+     xmlns:seohcs="&seohcs;"
+     xmlns:seohcp="&seohcp;">
 
     <owl:Ontology rdf:about="&ekb;">
         <rdfs:label xml:lang="de">ALS Experten-Wissensbasis</rdfs:label>
@@ -45,82 +53,200 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    <owl:NamedIndividual rdf:about="&ekbi;Active">
-        <rdf:type rdf:resource="&dispediao;PatientType"/>
-        <rdfs:label xml:lang="de">aktiv</rdfs:label>
-        <rdfs:label xml:lang="en">Active</rdfs:label>
+     
+    <!-- ###################### Proposals ###################### -->
+     
+    <owl:NamedIndividual rdf:about="&ekbi;HandlingDiagnosisShock">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Umgang mit Diagnoseschock</rdfs:label>
+        <rdfs:label xml:lang="en">Handling diagnosis shock</rdfs:label>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;LivingWill">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Patientenverfügung</rdfs:label>
+        <rdfs:label xml:lang="en">Living will</rdfs:label>
+        <!--<dispediao:linkedToProposalInfo rdf:resource="&ekbi;LWDetails"/>-->
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;LogoTherapy">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Logotherapie</rdfs:label>
+        <rdfs:label xml:lang="en">Logo therapy</rdfs:label>
     </owl:NamedIndividual>
 
+    <owl:NamedIndividual rdf:about="&ekbi;Logopedics">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Logopädie</rdfs:label>
+        <rdfs:label xml:lang="en">Logopedics</rdfs:label>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;DeglutitionTraining"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;Move">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Umzug</rdfs:label>
+        <rdfs:label xml:lang="en">Move</rdfs:label>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;HouseHunting"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;OccupationalTherapy">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Ergotherapie</rdfs:label>
+        <rdfs:label xml:lang="en">Occupational therapy</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;QuitWork">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Bisherige Arbeit kündigen</rdfs:label>
+        <rdfs:label xml:lang="en">Quitting work</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;Rehabilitation">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Rehabilitation</rdfs:label>
+        <rdfs:label xml:lang="en">Rehabilitation</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;SeverelyHandicappedPass">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Schwerbehindertenausweis</rdfs:label>
+        <rdfs:label xml:lang="en">Severely handicapped pass</rdfs:label>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;ApplyForSHP"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;PhysicalTherapy">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Physiotherapie</rdfs:label>
+        <rdfs:label xml:lang="en">Physical therapy</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;StomachTube">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Magensonde</rdfs:label>
+        <rdfs:label xml:lang="en">Stomach tube</rdfs:label>
+        <!--<dispediao:linkedToProposalInfo rdf:resource="&ekbi;PEGDetails"/>-->
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;SupportGroup">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Selbsthilfegruppe</rdfs:label>
+        <rdfs:label xml:lang="en">Support group</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;UseFeedingCup">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Schnabeltasse benutzen</rdfs:label>
+        <rdfs:label xml:lang="en">Use feeding cup</rdfs:label>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;PrescribeFeedingCup"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;UseWalkingFrame">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Rollator benutzen</rdfs:label>
+        <rdfs:label xml:lang="en">Use walking frame</rdfs:label>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;PrescribeWalkingFrame"/>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;SupplyWalkingFrame"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;UseWheelChair">
+        <rdf:type rdf:resource="&dispediao;Proposal"/>
+        <rdfs:label xml:lang="de">Rollstuhl benutzen</rdfs:label>
+        <rdfs:label xml:lang="en">Use wheel chair</rdfs:label>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;PrescribeWheelChair"/>
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;SupplyWheelChair"/>
+    </owl:NamedIndividual>
+    
+    
+    <!-- ###################### ProposalComponent ###################### -->
+
     <owl:NamedIndividual rdf:about="&ekbi;ApplyForSHP">
-        <rdf:type rdf:resource="&dispediao;Action"/>
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:label xml:lang="de">Beantragung des Schwerbehindertenausweis</rdfs:label>
         <rdfs:label xml:lang="en">Apply for severely handicapped pass</rdfs:label>
-        <dispediao:linkedToActionInfo rdf:resource="&ekbi;DurationSHPApplying"/>
+        <dispediao:containsProposalDescription rdf:resource="&ekbi;DurationSHPApplying"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;DeglutitionTraining">
-        <rdf:type rdf:resource="&dispediao;Action"/>
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:label xml:lang="de">Schluckübungen</rdfs:label>
         <rdfs:label xml:lang="en">Deglutition training</rdfs:label>
         <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&ekbi;Doctor">
-        <rdf:type rdf:resource="&dispediao;TherapistType"/>
-        <rdfs:label xml:lang="de">Arzt</rdfs:label>
-        <rdfs:label xml:lang="en">Medical doctor</rdfs:label>
+    <owl:NamedIndividual rdf:about="&ekbi;HouseHunting">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Wohnungssuche</rdfs:label>
+        <rdfs:label xml:lang="en">House hunting</rdfs:label>
+        <dispediao:containsProposalDescription rdf:resource="&ekbi;DurationHouseHunting"/>
     </owl:NamedIndividual>
 
+    <owl:NamedIndividual rdf:about="&ekbi;PrescribeFeedingCup">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Schnabeltasse verschreiben</rdfs:label>
+        <rdfs:label xml:lang="en">Prescribe feeding cup</rdfs:label>
+        <dispediao:containsAssistiveProduct rdf:resource="&ekbi;FeedingCup"/>
+        <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;PrescribeWalkingFrame">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Rollator verschreiben</rdfs:label>
+        <rdfs:label xml:lang="en">Prescribe walking frame</rdfs:label>
+        <dispediao:predessorOf rdf:resource="&ekbi;SupplyWalkingFrame"/>
+        <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;PrescribeWheelChair">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Rollstuhl verschreiben</rdfs:label>
+        <rdfs:label xml:lang="en">Prescribe wheel chair</rdfs:label>
+        <dispediao:predessorOf rdf:resource="&ekbi;PrescribeWheelChair"/>
+        <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;SupplyWalkingFrame">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Rollator bereitstellen</rdfs:label>
+        <rdfs:label xml:lang="en">Supply walking frame</rdfs:label>
+        <dispediao:successorOf rdf:resource="&ekbi;PrescribeWalkingFrame"/>
+        <dispediao:containsAssistiveProduct rdf:resource="&ekbi;WalkingFrame"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;SupplyWheelChair">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Rollstuhl anpassen und bereitstellen</rdfs:label>
+        <rdfs:label xml:lang="en">Supply wheel chair</rdfs:label>
+        <dispediao:successorOf rdf:resource="&ekbi;PrescribeWheelChair"/>
+        <dispediao:containsAssistiveProduct rdf:resource="&ekbi;WheelChair"/>
+    </owl:NamedIndividual>
+    
+    
+    <!-- ###################### ProposalDescription ###################### -->
+
     <owl:NamedIndividual rdf:about="&ekbi;DurationHouseHunting">
-        <rdf:type rdf:resource="&dispediao;Information"/>
+        <rdf:type rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:label xml:lang="de">Dauer der Wohnungssuche</rdfs:label>
         <rdfs:label xml:lang="en">Duration of the house hunting process</rdfs:label>
         <dispediao:recipient>patient</dispediao:recipient>
         <dispediao:subject>Duration of the house hunting process</dispediao:subject>
         <dispediao:originator>doctor, counselor</dispediao:originator>
         <dispediao:content>Medium time required to find an appropriate home for the patient has to be told to the patient</dispediao:content>
-        <dispediao:suitableFor rdf:resource="&ekbi;Active"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Doctor"/>
-        <dispediao:suitableFor rdf:resource="&ekbi;Sensitive"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Social"/>
+        <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;DurationSHPApplying">
-        <rdf:type rdf:resource="&dispediao;Information"/>
+        <rdf:type rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:label xml:lang="de">Dauer der Beantragung</rdfs:label>
         <rdfs:label xml:lang="en">Duration of the application process</rdfs:label>
         <dispediao:content>Average time taken by the application for an severely handicapped pass has to be given to the patient</dispediao:content>
         <dispediao:recipient>patient</dispediao:recipient>
         <dispediao:subject>Duration for application for an severely handicapped pass</dispediao:subject>
         <dispediao:originator>doctor, counselor</dispediao:originator>
-        <dispediao:suitableFor rdf:resource="&ekbi;Active"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Doctor"/>
-        <dispediao:suitableFor rdf:resource="&ekbi;Sensitive"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Social"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;FeedingCup">
-        <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
-        <rdfs:label xml:lang="de">Schnabeltasse</rdfs:label>
-        <rdfs:label xml:lang="en">Feeding cup</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;HandlingDiagnosisShock">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Umgang mit Diagnoseschock</rdfs:label>
-        <rdfs:label xml:lang="en">Handling diagnosis shock</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;HouseHunting">
-        <rdf:type rdf:resource="&dispediao;Action"/>
-        <rdfs:label xml:lang="de">Wohnungssuche</rdfs:label>
-        <rdfs:label xml:lang="en">House hunting</rdfs:label>
-        <dispediao:linkedToActionInfo rdf:resource="&ekbi;DurationHouseHunting"/>
+        <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;LWDetails">
-        <rdf:type rdf:resource="&dispediao;Information"/>
+        <rdf:type rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:label xml:lang="de">Details der Patientenverfügung</rdfs:label>
         <rdfs:label xml:lang="en">Details of the living will</rdfs:label>
         <dispediao:content xml:lang="de">Die ALS ist eine schwerwiegende und fortschreitende neurologische Krankheit, für die bisher keine Heilung erreicht werden kann. Die ALS ist dennoch eine behandelbare Krankheit mit verschiedenen Therapiemöglichkeiten. Jeder Patient hat prinzipiell Zugang zu allen etablierten Formen der nichtinvasiven und invasiven Behandlung von ALS?bedingten Symptomen. Der tatsächliche Einsatz von technisch und medizinisch?möglichen Therapieoptionen ist jedoch individuell sehr unterschiedlich. Er wird von den Gegebenheiten des klinischen Verlaufes, vom Krankheitsstadium,
@@ -137,49 +263,62 @@ bisherigen Lebens; Erwartungen an ein zukünftiges Leben und die Lebensqualität
 Die PV sollte neben den eigenen Wertvorstellungen eine Aussage treffen, in welchen Situationen und mit welchem Umfang Sie eine ärztliche Hilfe in Anspruch nehmen wollen. In den anbei befindlichen
 Musterdokumenten werden eine detaillierte Anleitung zur Abfassung einer PV sowie Textbausteine des BMJ zur Verfügung gestellt, die Sie Ihren eigenen Bedürfnisse anpassen und als Grundlage für
 eine von Ihnen individuell erstellte PV dienen können.</dispediao:content>
-        <dispediao:suitableFor rdf:resource="&ekbi;Active"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Doctor"/>
-        <dispediao:suitableFor rdf:resource="&ekbi;Sensitive"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Social"/>
+        <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&ekbi;LivingWill">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Patientenverfügung</rdfs:label>
-        <rdfs:label xml:lang="en">Living will</rdfs:label>
-        <dispediao:linkedToProposalInfo rdf:resource="&ekbi;LWDetails"/>
+    <owl:NamedIndividual rdf:about="&ekbi;PEGDetails">
+        <rdf:type rdf:resource="&dispediao;ExperiencedProposalDescription"/>
+        <rdfs:label xml:lang="de">Details der Magensonde</rdfs:label>
+        <rdfs:label xml:lang="en">Details of a stomach tube</rdfs:label>
+        <dispediao:content xml:lang="de">Die perkutane (lateinisch für durch die Haut) endoskopische (mittels Magen?Spiegelung) Gastrostomie (Öffnung zum Magen), kurz PEG, ist die Einlage einer Sonde durch die Haut der Bauchdecke in den Magen. Dabei wird die Sonde mittels Kanülen und Endoskop im Magen
+implementiert und mit einer inneren und äusseren Halteplatte fixiert. Diese Sonde wird meistens zur teilweisen oder kompletten enteralen Ernährung verwendet (deshalb oft nur verkürzt Ernährungs?
+Sonde oder &quot;künstliche Ernährung&quot;), kann aber auch als Ablaufmöglichkeit aus dem Magen bei anhaltendem Erbrechen genutzt werden.</dispediao:content>
+        <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
+    
+    <!-- ###################### AssistiveProduct ###################### -->
+     
+    <owl:NamedIndividual rdf:about="&ekbi;FeedingCup">
+        <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
+        <rdfs:label xml:lang="de">Schnabeltasse</rdfs:label>
+        <rdfs:label xml:lang="en">Feeding cup</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;WalkingFrame">
+        <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
+        <rdfs:label xml:lang="de">Rollator</rdfs:label>
+        <rdfs:label xml:lang="en">Walking frame</rdfs:label>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&ekbi;WheelChair">
+        <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
+        <rdfs:label xml:lang="de">Rollstuhl</rdfs:label>
+        <rdfs:label xml:lang="en">Wheel chair</rdfs:label>
+    </owl:NamedIndividual>
+
+    
+    <!-- ###################### Formality ###################### -->
+    
+    <owl:NamedIndividual rdf:about="&ekbi;Prescription">
+        <rdf:type rdf:resource="&dispediao;Formality"/>
+        <rdfs:label xml:lang="de">Rezept</rdfs:label>
+        <rdfs:label xml:lang="en">Prescription</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+    <!-- ###################### old Data ###################### -->
+    <!--
     <owl:NamedIndividual rdf:about="&ekbi;Logo">
         <rdf:type rdf:resource="&dispediao;TherapistType"/>
         <rdfs:label xml:lang="de">Logotherapeut</rdfs:label>
         <rdfs:label xml:lang="en">Logo therapist</rdfs:label>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&ekbi;LogoTherapy">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Logotherapie</rdfs:label>
-        <rdfs:label xml:lang="en">Logo therapy</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;Logopedics">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Logopädie</rdfs:label>
-        <rdfs:label xml:lang="en">Logopedics</rdfs:label>
-        <dispediao:containsAction rdf:resource="&ekbi;DeglutitionTraining"/>
-    </owl:NamedIndividual>
-
     <owl:NamedIndividual rdf:about="&ekbi;MedicalSupplyStore">
         <rdf:type rdf:resource="&dispediao;Agent"/>
         <rdfs:label xml:lang="de">Sanitätshaus</rdfs:label>
         <rdfs:label xml:lang="en">Medical supply store</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;Move">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Umzug</rdfs:label>
-        <rdfs:label xml:lang="en">Move</rdfs:label>
-        <dispediao:containsAction rdf:resource="&ekbi;HouseHunting"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;Neuro">
@@ -194,87 +333,10 @@ eine von Ihnen individuell erstellte PV dienen können.</dispediao:content>
         <rdfs:label xml:lang="en">Occupational therapist</rdfs:label>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&ekbi;OccupationalTherapy">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Ergotherapie</rdfs:label>
-        <rdfs:label xml:lang="en">Occupational therapy</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;PEGDetails">
-        <rdf:type rdf:resource="&dispediao;Information"/>
-        <rdfs:label xml:lang="de">Details der Magensonde</rdfs:label>
-        <rdfs:label xml:lang="en">Details of a stomach tube</rdfs:label>
-        <dispediao:content xml:lang="de">Die perkutane (lateinisch für durch die Haut) endoskopische (mittels Magen?Spiegelung) Gastrostomie (Öffnung zum Magen), kurz PEG, ist die Einlage einer Sonde durch die Haut der Bauchdecke in den Magen. Dabei wird die Sonde mittels Kanülen und Endoskop im Magen
-implementiert und mit einer inneren und äusseren Halteplatte fixiert. Diese Sonde wird meistens zur teilweisen oder kompletten enteralen Ernährung verwendet (deshalb oft nur verkürzt Ernährungs?
-Sonde oder &quot;künstliche Ernährung&quot;), kann aber auch als Ablaufmöglichkeit aus dem Magen bei anhaltendem Erbrechen genutzt werden.</dispediao:content>
-        <dispediao:suitableFor rdf:resource="&ekbi;Active"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Doctor"/>
-        <dispediao:usefulFor rdf:resource="&ekbi;Social"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;PhysicalTherapy">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Physiotherapie</rdfs:label>
-        <rdfs:label xml:lang="en">Physical therapy</rdfs:label>
-    </owl:NamedIndividual>
-
     <owl:NamedIndividual rdf:about="&ekbi;Physio">
         <rdf:type rdf:resource="&dispediao;TherapistType"/>
         <rdfs:label xml:lang="de">Phsyiotherapeut</rdfs:label>
         <rdfs:label xml:lang="en">Physio therapist</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;PrescribeFeedingCup">
-        <rdf:type rdf:resource="&dispediao;Action"/>
-        <rdfs:label xml:lang="de">Schnabeltasse verschreiben</rdfs:label>
-        <rdfs:label xml:lang="en">Prescribe feeding cup</rdfs:label>
-        <dispediao:containsProduct rdf:resource="&ekbi;FeedingCup"/>
-        <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;PrescribeWalkingFrame">
-        <rdf:type rdf:resource="&dispediao;Action"/>
-        <rdfs:label xml:lang="de">Rollator verschreiben</rdfs:label>
-        <rdfs:label xml:lang="en">Prescribe walking frame</rdfs:label>
-        <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;PrescribeWheelChair">
-        <rdf:type rdf:resource="&dispediao;Action"/>
-        <rdfs:label xml:lang="de">Rollstuhl verschreiben</rdfs:label>
-        <rdfs:label xml:lang="en">Prescribe wheel chair</rdfs:label>
-        <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;Prescription">
-        <rdf:type rdf:resource="&dispediao;Formality"/>
-        <rdfs:label xml:lang="de">Rezept</rdfs:label>
-        <rdfs:label xml:lang="en">Prescription</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;QuitWork">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Bisherige Arbeit kündigen</rdfs:label>
-        <rdfs:label xml:lang="en">Quitting work</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;Rehabilitation">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Rehabilitation</rdfs:label>
-        <rdfs:label xml:lang="en">Rehabilitation</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;Sensitive">
-        <rdf:type rdf:resource="&dispediao;PatientType"/>
-        <rdfs:label xml:lang="de">sensibel</rdfs:label>
-        <rdfs:label xml:lang="en">Sensitive</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;SeverelyHandicappedPass">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Schwerbehindertenausweis</rdfs:label>
-        <rdfs:label xml:lang="en">Severely handicapped pass</rdfs:label>
-        <dispediao:containsAction rdf:resource="&ekbi;ApplyForSHP"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;Social">
@@ -282,69 +344,6 @@ Sonde oder &quot;künstliche Ernährung&quot;), kann aber auch als Ablaufmöglic
         <rdfs:label xml:lang="de">Sozialberater</rdfs:label>
         <rdfs:label xml:lang="en">Counselor</rdfs:label>
     </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;StomachTube">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Magensonde</rdfs:label>
-        <rdfs:label xml:lang="en">Stomach tube</rdfs:label>
-        <dispediao:linkedToProposalInfo rdf:resource="&ekbi;PEGDetails"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;SupplyWalkingFrame">
-        <rdf:type rdf:resource="&dispediao;Action"/>
-        <rdfs:label xml:lang="de">Rollator bereitstellen</rdfs:label>
-        <rdfs:label xml:lang="en">Supply walking frame</rdfs:label>
-        <dispediao:successorOfAction rdf:resource="&ekbi;PrescribeWalkingFrame"/>
-        <dispediao:containsProduct rdf:resource="&ekbi;WalkingFrame"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;SupplyWheelChair">
-        <rdf:type rdf:resource="&dispediao;Action"/>
-        <rdfs:label xml:lang="de">Rollstuhl anpassen und bereitstellen</rdfs:label>
-        <rdfs:label xml:lang="en">Supply wheel chair</rdfs:label>
-        <dispediao:successorOfAction rdf:resource="&ekbi;PrescribeWheelChair"/>
-        <dispediao:containsProduct rdf:resource="&ekbi;WheelChair"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;SupportGroup">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Selbsthilfegruppe</rdfs:label>
-        <rdfs:label xml:lang="en">Support group</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;UseFeedingCup">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Schnabeltasse benutzen</rdfs:label>
-        <rdfs:label xml:lang="en">Use feeding cup</rdfs:label>
-        <dispediao:containsAction rdf:resource="&ekbi;PrescribeFeedingCup"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;UseWalkingFrame">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Rollator benutzen</rdfs:label>
-        <rdfs:label xml:lang="en">Use walking frame</rdfs:label>
-        <dispediao:containsAction rdf:resource="&ekbi;PrescribeWalkingFrame"/>
-        <dispediao:containsAction rdf:resource="&ekbi;SupplyWalkingFrame"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;UseWheelChair">
-        <rdf:type rdf:resource="&dispediao;Proposal"/>
-        <rdfs:label xml:lang="de">Rollstuhl benutzen</rdfs:label>
-        <rdfs:label xml:lang="en">Use wheel chair</rdfs:label>
-        <dispediao:containsAction rdf:resource="&ekbi;PrescribeWheelChair"/>
-        <dispediao:containsAction rdf:resource="&ekbi;SupplyWheelChair"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;WalkingFrame">
-        <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
-        <rdfs:label xml:lang="de">Rollator</rdfs:label>
-        <rdfs:label xml:lang="en">Walking frame</rdfs:label>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&ekbi;WheelChair">
-        <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
-        <rdfs:label xml:lang="de">Rollstuhl</rdfs:label>
-        <rdfs:label xml:lang="en">Wheel chair</rdfs:label>
-    </owl:NamedIndividual>
+    -->
 </rdf:RDF>
 
