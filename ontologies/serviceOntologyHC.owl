@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!DOCTYPE rdf:RDF [
     
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -85,6 +85,42 @@
     </owl:Class>
 
 
+<!-- //////////////////to Do for integration in Serviceontology and seoHC
+
+    <owl:DatatypeProperty rdf:about="&dispediao;careDuration">
+        <rdfs:label xml:lang="de">Pflegedauer</rdfs:label>
+        <rdfs:label xml:lang="en">care duration</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;carePercentage">
+        <rdfs:label xml:lang="de">Anteil der Pflegeleistung</rdfs:label>
+        <rdfs:label xml:lang="en">care percentage</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;careTask">
+        <rdfs:label xml:lang="de">Pflegeaufgabe</rdfs:label>
+        <rdfs:label xml:lang="en">care task</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;careTimeEnd">
+        <rdfs:label xml:lang="de">Ende der Pflegezeit</rdfs:label>
+        <rdfs:label xml:lang="en">end of care time</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;careTimeStart">
+        <rdfs:label xml:lang="de">Beginn der Pflegezeit</rdfs:label>
+        <rdfs:label xml:lang="en">Start of care time</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
+    </owl:DatatypeProperty>
+
+/////////////////////////////////////////////////////////////////////////
+-->
+
    <!-- 
        ///////////////////////////////////////////////////////////////////////////////////////
        //
@@ -160,6 +196,9 @@
         <rdfs:label xml:lang="de">Pflege</rdfs:label>
         <rdfs:subClassOf rdf:resource="&seohcp;Physician"/>
     </owl:Class>
+    
+    
+    
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////

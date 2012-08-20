@@ -16,6 +16,7 @@
     <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
     <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY icd "http://purl.bioontology.org/ontology/ICD10/">
+     
 
 
 ]>
@@ -84,14 +85,6 @@
         <rdfs:comment xml:lang="en">The ObjectProperty 'accepts' indicates an alllocated proposal as accepted decision.</rdfs:comment>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;age">
-        <rdfs:label xml:lang="de">Alter</rdfs:label>
-        <rdfs:label xml:lang="en">age</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="&foaf;age"/>
-        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'Alter' ist eine Untereigenschaft der DataTypeProperty foaf:age vom Typ Text und bezeichnet das Alter in Jahren eines Agenten.</rdfs:comment>
-        <rdfs:comment xml:lang="en">The ObjectProperty 'age' is a subProperty of the DataTypeProperty foaf:age and means the age in years of some agent.</rdfs:comment>
-    </owl:ObjectProperty>
-    
     <owl:ObjectProperty rdf:about="&dispediao;appropriateFor">
         <rdfs:label xml:lang="de">passend für</rdfs:label>
         <rdfs:label xml:lang="en">appropriate for</rdfs:label>
@@ -127,14 +120,7 @@
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;city">
-        <rdfs:label xml:lang="de">Stadt</rdfs:label>
-        <rdfs:label xml:lang="en">city</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&dispediao;City"/>
-    </owl:ObjectProperty>
-
-     <!-- 
+    <!-- 
        ######################################################################################
        contains is used for definition of Proposal Elements resp. information for the patient
      -->
@@ -152,11 +138,11 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;containsCosts">
-        <rdfs:label xml:lang="de">enthält Kosten</rdfs:label>
-        <rdfs:label xml:lang="en">contains costs</rdfs:label>
+    <owl:ObjectProperty rdf:about="&dispediao;containsDrug">
+        <rdfs:label xml:lang="de">enthält Arzneiu</rdfs:label>
+        <rdfs:label xml:lang="en">contains drugs</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
-        <rdfs:range rdf:resource="&dispediao;Costs"/>
+        <rdfs:range rdf:resource="&dispediao;Drug"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
@@ -165,6 +151,14 @@
         <rdfs:label xml:lang="en">contains formality</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;Formality"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
+    </owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="&dispediao;containsMedicalDevice">
+        <rdfs:label xml:lang="de">enthält Medizinprodukt</rdfs:label>
+        <rdfs:label xml:lang="en">contains medical device</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:range rdf:resource="&dispediao;MedicalDevice"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
@@ -196,30 +190,11 @@
        ######################################################################################
      -->
 
-    <owl:ObjectProperty rdf:about="&dispediao;country">
-        <rdfs:label xml:lang="de">Land</rdfs:label>
-        <rdfs:label xml:lang="en">country</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&dispediao;Country"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;denies">
+   <owl:ObjectProperty rdf:about="&dispediao;denies">
         <rdfs:label xml:lang="de">lehnt ab</rdfs:label>
         <rdfs:label xml:lang="en">denies</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;Proposal"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;firstName">
-        <rdfs:label xml:lang="de">Vorname</rdfs:label>
-        <rdfs:label xml:lang="en">first name</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="&foaf;firstName"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;gender">
-        <rdfs:label xml:lang="de">Geschlecht</rdfs:label>
-        <rdfs:label xml:lang="en">gender</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="&foaf;gender"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;has">
@@ -227,15 +202,7 @@
         <rdfs:label xml:lang="en">has</rdfs:label>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;hasAddress">
-        <rdfs:label xml:lang="de">hat Adresse</rdfs:label>
-        <rdfs:label xml:lang="en">has address</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;Address"/>
-        <rdfs:domain rdf:resource="&dispediao;Agent"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;has"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;hasDiseaseSection">
+   <owl:ObjectProperty rdf:about="&dispediao;hasDiseaseSection">
         <rdfs:label xml:lang="de">hat Krankheitsabschnitt</rdfs:label>
         <rdfs:label xml:lang="en">has disease section</rdfs:label>
         <rdfs:range rdf:resource="&dispediao;DiseaseSection"/>
@@ -243,14 +210,7 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;has"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;hasEmployer">
-        <rdfs:label xml:lang="de">hat Arbeitgeber</rdfs:label>
-        <rdfs:label xml:lang="en">has employer</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;Agent"/>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;has"/>
-    </owl:ObjectProperty>
-
+    
      <!--
        ######################################################################################
        includes is used for definition of healthstate resp. information about the patient
@@ -293,24 +253,13 @@
         <rdfs:label xml:lang="de">ist Arzt von</rdfs:label>
         <rdfs:label xml:lang="en">is doctor of</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&dispediao;Patient"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;isFamilyDoctorOf">
         <rdfs:label xml:lang="de">ist Hausarzt von</rdfs:label>
         <rdfs:label xml:lang="en">is family doctor of</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;isDoctorOf"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;isFriendOf">
-        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
-        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
-        <rdfs:label xml:lang="de">ist befreundet mit</rdfs:label>
-        <rdfs:label xml:lang="en">is friend of</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;isInARelationshipWith">
@@ -319,43 +268,7 @@
         <rdfs:label xml:lang="en">Cohabitee / Marriage Partner</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&dispediao;Person"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;isParentOf">
-        <rdfs:label xml:lang="de">Elternteil von</rdfs:label>
-        <rdfs:label xml:lang="en">is parent of</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;isRelatedTo"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;isRelatedTo">
-        <rdfs:label xml:lang="de">ist verwandt mit</rdfs:label>
-        <rdfs:label xml:lang="en">is related to</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;isSiblingOf">
-        <rdfs:label xml:lang="de">Geschwister von</rdfs:label>
-        <rdfs:label xml:lang="en">is sibling of</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;isRelatedTo"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;knows">
-        <rdfs:label xml:lang="de">kennt</rdfs:label>
-        <rdfs:label xml:lang="en">knows</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&foaf;knows"/>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="&dispediao;lastName">
-        <rdfs:label xml:lang="de">Nachname</rdfs:label>
-        <rdfs:label xml:lang="en">last name</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="&foaf;lastName"/>
+        <rdfs:subPropertyOf rdf:resource="&s;relatedTo"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;receivedProposalDescription">
@@ -385,14 +298,6 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;successorOf"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;successorOfAddress">
-        <rdfs:label xml:lang="de">Nachfolger der Adresse</rdfs:label>
-        <rdfs:label xml:lang="en">successor of address</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;Address"/>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;successorOf"/>
-    </owl:ObjectProperty>
-
     <owl:ObjectProperty rdf:about="&dispediao;successorOfDiseaseSection">
         <rdfs:label xml:lang="de">Nachfolger des Krankheitsabschnitts</rdfs:label>
         <rdfs:label xml:lang="en">successor of disease section</rdfs:label>
@@ -401,27 +306,20 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;successorOf"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;receives">
-            <rdfs:label xml:lang="de">erhält</rdfs:label>
-            <rdfs:label xml:lang="en">receives</rdfs:label>
-    </owl:ObjectProperty>
-    
     <owl:ObjectProperty rdf:about="&dispediao;receivesProductOrService">
         <rdfs:label xml:lang="de">erhält Produkt oder Service</rdfs:label>
         <rdfs:label xml:lang="en">receives Product or Service</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&gr;ProductOrService"/>
         <rdfs:comment xml:lang="de">Die Eigenschaft 'erhältProduktOderService' bestimmt welche Produkte oder Services eine Person erhält.</rdfs:comment>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;receives"/>
     </owl:ObjectProperty>
     
-    <owl:ObjectProperty rdf:about="&dispediao;receivesAssistiveProducts">
-            <rdfs:label xml:lang="de">erhält Hilfsmittel</rdfs:label>
-            <rdfs:label xml:lang="en">receives assistive products</rdfs:label>
+    <owl:ObjectProperty rdf:about="&dispediao;receivesFormality">
+            <rdfs:label xml:lang="de">erhält Formular oder Dokument</rdfs:label>
+            <rdfs:label xml:lang="en">receives formality or document</rdfs:label>
             <rdfs:domain rdf:resource="&dispediao;Person"/>
-            <rdfs:range rdf:resource="&dispediao;AssistiveProduct"/>
-            <rdfs:comment xml:lang="de">Die Eigenschaft 'erhältHilfsmittel' bestimmt welche Hilfsmittel eine Person erhält.</rdfs:comment>
-            <rdfs:subPropertyOf rdf:resource="&dispediao;receives"/>
+            <rdfs:range rdf:resource="&dispediao;Formality"/>
+            <rdfs:comment xml:lang="de">Die Eigenschaft 'erhältFormular' bestimmt welche Formulare oder Dokumente eine Person erhält.</rdfs:comment>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&dispediao;usefulFor">
@@ -600,103 +498,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:DatatypeProperty rdf:about="&dispediao;addressDate">
-        <rdfs:label xml:lang="de">Adressdatum</rdfs:label>
-        <rdfs:label xml:lang="en">address date</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;addressText">
-        <rdfs:label xml:lang="de">Adresstext</rdfs:label>
-        <rdfs:label xml:lang="en">address text</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;age">
-        <rdfs:label xml:lang="de">Alter</rdfs:label>
-        <rdfs:label xml:lang="en">age</rdfs:label>
-    </owl:DatatypeProperty>
 
     <owl:DatatypeProperty rdf:about="&dispediao;beginningDate">
         <rdfs:label xml:lang="de">Beginndatum</rdfs:label>
         <rdfs:label xml:lang="en">beginning date</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;DiseaseSection"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;birthName">
-        <rdfs:label xml:lang="de">Geburtsname</rdfs:label>
-        <rdfs:label xml:lang="en">Name at birth</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;birthPlace">
-        <rdfs:label xml:lang="de">Geburtsort</rdfs:label>
-        <rdfs:label xml:lang="en">Place of birth</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;birthdate">
-        <rdfs:label xml:lang="de">Geburtsdatum</rdfs:label>
-        <rdfs:label xml:lang="en">date of birth</rdfs:label>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;careDuration">
-        <rdfs:label xml:lang="de">Pflegedauer</rdfs:label>
-        <rdfs:label xml:lang="en">care duration</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;carePercentage">
-        <rdfs:label xml:lang="de">Anteil der Pflegeleistung</rdfs:label>
-        <rdfs:label xml:lang="en">care percentage</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;careTask">
-        <rdfs:label xml:lang="de">Pflegeaufgabe</rdfs:label>
-        <rdfs:label xml:lang="en">care task</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;careTimeEnd">
-        <rdfs:label xml:lang="de">Ende der Pflegezeit</rdfs:label>
-        <rdfs:label xml:lang="en">end of care time</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;careTimeStart">
-        <rdfs:label xml:lang="de">Beginn der Pflegezeit</rdfs:label>
-        <rdfs:label xml:lang="en">Start of care time</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;CareRelation"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;content">
-        <rdfs:label xml:lang="de">Inhalt</rdfs:label>
-        <rdfs:label xml:lang="en">content</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;divorced">
-        <rdfs:label xml:lang="de">geschieden</rdfs:label>
-        <rdfs:label xml:lang="en">divorced</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;education">
-        <rdfs:label xml:lang="de">Ausbildung</rdfs:label>
-        <rdfs:label xml:lang="en">Education</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
 
     <owl:DatatypeProperty rdf:about="&dispediao;endingDate">
@@ -706,57 +513,111 @@
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
 
+    <owl:DatatypeProperty rdf:about="&dispediao;content">
+        <rdfs:label xml:lang="de">Inhalt</rdfs:label>
+        <rdfs:label xml:lang="en">content</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+<!-- //////////////Properties, that are relevant for modelling patient data but are not to find in foaf, schema or dbpedia.
+These are  temporarily Properties until a patient data ontology.///////// 
+-->
+    <owl:DatatypeProperty rdf:about="&dispediao;addressDate">
+        <rdfs:label xml:lang="de">Adressdatum</rdfs:label>
+        <rdfs:label xml:lang="en">address date</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&dispediao;birthName">
+        <rdfs:label xml:lang="de">Geburtsname</rdfs:label>
+        <rdfs:label xml:lang="en">Name at birth</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
     <owl:DatatypeProperty rdf:about="&dispediao;familyState">
         <rdfs:label xml:lang="de">Familiäre Verhältnisse</rdfs:label>
         <rdfs:label xml:lang="en">family state</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty> 
+    
+    <owl:DatatypeProperty rdf:about="&dispediao;divorced">
+        <rdfs:label xml:lang="de">geschieden</rdfs:label>
+        <rdfs:label xml:lang="en">divorced</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
+    
+    
+        <owl:DatatypeProperty rdf:about="&dispediao;inARelationship">
+            <rdfs:label xml:lang="de">in einer Beziehung</rdfs:label>
+            <rdfs:label xml:lang="en">in a relationship</rdfs:label>
+            <rdfs:domain rdf:resource="&dispediao;Person"/>
+            <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
+            <rdfs:range rdf:resource="&xsd;boolean"/>
+        </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;firstName">
-        <rdfs:label xml:lang="de">Vorname</rdfs:label>
-        <rdfs:label xml:lang="en">first name</rdfs:label>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;gender">
-        <rdfs:label xml:lang="de">Geschlecht</rdfs:label>
-        <rdfs:label xml:lang="en">gender</rdfs:label>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;hasGarden">
-        <rdfs:label xml:lang="de">hat Garten</rdfs:label>
-        <rdfs:label xml:lang="en">has garden</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
+ <owl:DatatypeProperty rdf:about="&dispediao;married">
+        <rdfs:label xml:lang="de">verheiratet</rdfs:label>
+        <rdfs:label xml:lang="en">married</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;hasLift">
+     <owl:DatatypeProperty rdf:about="&dispediao;single">
+            <rdfs:label xml:lang="de">Single</rdfs:label>
+            <rdfs:label xml:lang="en">single</rdfs:label>
+            <rdfs:domain rdf:resource="&dispediao;Person"/>
+            <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
+            <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+   <owl:DatatypeProperty rdf:about="&dispediao;education">
+        <rdfs:label xml:lang="de">Ausbildung</rdfs:label>
+        <rdfs:label xml:lang="en">Education</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="&dispediao;hasGarden">
+            <rdfs:label xml:lang="de">hat Garten</rdfs:label>
+            <rdfs:label xml:lang="en">has garden</rdfs:label>
+            <rdfs:domain rdf:resource="&dispediao;Address"/>
+            <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+
+  <owl:DatatypeProperty rdf:about="&dispediao;hasLift">
         <rdfs:label xml:lang="de">hat Aufzug</rdfs:label>
         <rdfs:label xml:lang="en">has lift</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;hasStairs">
+ <owl:DatatypeProperty rdf:about="&dispediao;hasStairs">
         <rdfs:label xml:lang="de">hat Treppe</rdfs:label>
         <rdfs:label xml:lang="en">has stairs</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
-
+    
     <owl:DatatypeProperty rdf:about="&dispediao;hasWheelChairSize">
-        <rdfs:label xml:lang="de">hat Rollstuhlgröße</rdfs:label>
-        <rdfs:label xml:lang="en">has wheel chair size</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
+            <rdfs:label xml:lang="de">hat Rollstuhlgröße</rdfs:label>
+            <rdfs:label xml:lang="en">has wheel chair size</rdfs:label>
+            <rdfs:domain rdf:resource="&dispediao;Address"/>
+            <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
-
+     
     <owl:DatatypeProperty rdf:about="&dispediao;hobby">
-        <rdfs:label xml:lang="de">Hobby</rdfs:label>
-        <rdfs:label xml:lang="en">Hobby</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
+            <rdfs:label xml:lang="de">Hobby</rdfs:label>
+            <rdfs:label xml:lang="en">Hobby</rdfs:label>
+            <rdfs:domain rdf:resource="&dispediao;Person"/>
+            <rdfs:range rdf:resource="&xsd;string"/>
+     </owl:DatatypeProperty>
 
     <owl:DatatypeProperty rdf:about="&dispediao;homeFlatType">
         <rdfs:label xml:lang="de">Wohnungstyp</rdfs:label>
@@ -802,15 +663,7 @@
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;inARelationship">
-        <rdfs:label xml:lang="de">in einer Beziehung</rdfs:label>
-        <rdfs:label xml:lang="en">in a relationship</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;isBarrierFree">
+ <owl:DatatypeProperty rdf:about="&dispediao;isBarrierFree">
         <rdfs:label xml:lang="de">ist barrierefrei</rdfs:label>
         <rdfs:label xml:lang="en">is barrier-free</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
@@ -830,95 +683,27 @@
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
+    
+       <owl:DatatypeProperty rdf:about="&dispediao;patientNumber">
+            <rdfs:label xml:lang="de">Patientennummer</rdfs:label>
+            <rdfs:label xml:lang="en">Patient number</rdfs:label>
+            <rdfs:domain rdf:resource="&dispediao;Patient"/>
+            <rdfs:range rdf:resource="&xsd;string"/>
+        </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;lastName">
-        <rdfs:label xml:lang="de">Nachname</rdfs:label>
-        <rdfs:label xml:lang="en">last name</rdfs:label>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;married">
-        <rdfs:label xml:lang="de">verheiratet</rdfs:label>
-        <rdfs:label xml:lang="en">married</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;medicalTreatmentSince">
-        <rdfs:label xml:lang="de">in medizinischer Behandlung seit</rdfs:label>
-        <rdfs:label xml:lang="en">under medical treatment since</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Patient"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;movementDescription">
-        <rdfs:label xml:lang="de">Bewegung</rdfs:label>
-        <rdfs:label xml:lang="en">Movement</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;HealthState"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;nutritionDescription">
-        <rdfs:label xml:lang="de">Ernährung</rdfs:label>
-        <rdfs:label xml:lang="en">Nutrition</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;HealthState"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
+    
+<!--///////////////////////////////////////////////////////////////////////////
+-->
+   
 
     <owl:DatatypeProperty rdf:about="&dispediao;originator">
         <rdfs:label xml:lang="de">Vermittler</rdfs:label>
         <rdfs:label xml:lang="en">originator</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:range rdf:resource="&dispediao;Person"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;patientNumber">
-        <rdfs:label xml:lang="de">Patientennummer</rdfs:label>
-        <rdfs:label xml:lang="en">Patient number</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Patient"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;recipient">
-        <rdfs:label xml:lang="de">Empfänger</rdfs:label>
-        <rdfs:label xml:lang="en">recipient</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;single">
-        <rdfs:label xml:lang="de">Single</rdfs:label>
-        <rdfs:label xml:lang="en">single</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;socialContact">
-        <rdfs:label xml:lang="de">Sozialer Kontakt</rdfs:label>
-        <rdfs:label xml:lang="en">Social contact</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;street">
-        <rdfs:label xml:lang="de">Straße</rdfs:label>
-        <rdfs:label xml:lang="en">street</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;subject">
-        <rdfs:label xml:lang="de">Thema</rdfs:label>
-        <rdfs:label xml:lang="en">subject</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;zipCode">
-        <rdfs:label xml:lang="de">Postleitzahl</rdfs:label>
-        <rdfs:label xml:lang="en">zip code</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-    </owl:DatatypeProperty>
+   
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -932,12 +717,7 @@
     <owl:Class rdf:about="&dispediao;Address">
         <rdfs:label xml:lang="de">Adresse</rdfs:label>
         <rdfs:label xml:lang="en">Address</rdfs:label>
-    </owl:Class>
-
-    <owl:Class rdf:about="&dispediao;Agent">
-        <rdfs:label xml:lang="de">Akteur</rdfs:label>
-        <rdfs:label xml:lang="en">Agent</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&foaf;Agent"/>
+         <rdfs:subClassOf rdf:resource="&s;PostalAddress"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;ALS">
@@ -949,29 +729,32 @@
     <owl:Class rdf:about="&dispediao;AssistiveProduct">
         <rdfs:label xml:lang="de">Assistenzprodukt</rdfs:label>
         <rdfs:label xml:lang="en">Assistive product</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
+    </owl:Class>
+    
+     <owl:Class rdf:about="&dispediao;Drug">
+            <rdfs:label xml:lang="de">Arznei</rdfs:label>
+            <rdfs:label xml:lang="en">Drug</rdfs:label>
+            <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
+    </owl:Class>
+    
+     <owl:Class rdf:about="&dispediao;MedicalDevice">
+            <rdfs:label xml:lang="de">Medizinprodukt</rdfs:label>
+            <rdfs:label xml:lang="en">Medical Device</rdfs:label>
+            <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&dispediao;City">
-        <rdfs:label xml:lang="de">Stadt</rdfs:label>
-        <rdfs:label xml:lang="en">City</rdfs:label>
-        <owl:sameAs rdf:resource="&dbpedia;City"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&dispediao;Country">
-        <rdfs:label xml:lang="de">Land</rdfs:label>
-        <rdfs:label xml:lang="en">Country</rdfs:label>
-        <owl:sameAs rdf:resource="&dbpedia;Country"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&dispediao;Costs">
-        <rdfs:label xml:lang="de">Kosten</rdfs:label>
-        <rdfs:label xml:lang="en">Costs</rdfs:label>
+ <owl:Class rdf:about="&dispediao;Formality">
+        <rdfs:label xml:lang="de">Formalität</rdfs:label>
+        <rdfs:label xml:lang="en">Formality</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;Disease">
         <rdfs:label xml:lang="de">Krankheit</rdfs:label>
         <rdfs:label xml:lang="en">Disease</rdfs:label>
         <owl:sameAs rdf:resource="&dbpedia;Disease"/>
+        <rdfs:subClassOf rdf:resource="&s;MedicalEntity"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;DiseaseSection">
@@ -979,12 +762,7 @@
         <rdfs:label xml:lang="en">Disease section</rdfs:label>
     </owl:Class>
 
-    <owl:Class rdf:about="&dispediao;Formality">
-        <rdfs:label xml:lang="de">Formalität</rdfs:label>
-        <rdfs:label xml:lang="en">Formality</rdfs:label>
-    </owl:Class>
-
-    <owl:Class rdf:about="&dispediao;HealthState">
+       <owl:Class rdf:about="&dispediao;HealthState">
         <rdfs:label xml:lang="de">Gesundheitsstatus</rdfs:label>
         <rdfs:label xml:lang="en">Health state</rdfs:label>
     </owl:Class>
@@ -1033,7 +811,8 @@
         <rdfs:label xml:lang="de">Person</rdfs:label>
         <rdfs:label xml:lang="en">Person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&foaf;Person"/>
-        <rdfs:subClassOf rdf:resource="&gr;Person"/>
+        <rdfs:subClassOf rdf:resource="&gr;BusinessEntity"/>
+        <rdfs:subClassOf rdf:resource="&s;Person"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;PropertySet">
