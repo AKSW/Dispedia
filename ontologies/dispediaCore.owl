@@ -10,6 +10,7 @@
     <!ENTITY dispediao "http://www.dispedia.de/o/" >
     <!ENTITY seo "http://www.serviceOntology.org/" >
     <!ENTITY gr	"http://purl.org/goodrelations/v1#">
+    <!ENTITY s "http://schema.org/">
     <!ENTITY ccns "http://creativecommons.org/ns#" >
     <!ENTITY dct "http://purl.org/dc/terms/" >
     <!ENTITY var "urn:swrl#" >
@@ -38,6 +39,7 @@
      xmlns:swrl="&swrl;"
      xmlns:xml="&xml;"
      xmlns:icd="&icd;"
+     xmlns:s="&s;"
      >
     <owl:Ontology rdf:about="&dispedia;">
         <rdfs:label xml:lang="de">Dispedia Vokabular (Kern Ontologie)</rdfs:label>

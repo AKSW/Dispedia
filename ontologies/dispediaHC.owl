@@ -60,7 +60,7 @@
     </owl:NamedIndividual>
    
    <owl:NamedIndividual rdf:about="&dishc;EverydayPurchases">
-        <rdf:type rdf:resource="&seohcs;ServiceWithoutCategory"/>
+        <rdf:type rdf:resource="&seohcs;HealthCareServiceWithoutCategory"/>
         <rdfs:label xml:lang="de">tägliche Einkäufe erledigen</rdfs:label>
         <rdfs:label xml:lang="en">everyday purchases</rdfs:label>
         <gr:name xml:lang="de">tägliche Einkäufe erledigen</gr:name>
