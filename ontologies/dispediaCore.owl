@@ -504,13 +504,13 @@
 
     <!-- 
     ######################################################################################
-    properties of Patient (...which could not be reused from foaf, schema or dbpedia... until a patient data ontology is available
+    properties of Person and Patient(...which could not be reused from foaf, schema or dbpedia... until a patient data ontology is available
     -->
-    <owl:DatatypeProperty rdf:about="&dispediao;addressDate">
-        <rdfs:label xml:lang="de">Adressdatum</rdfs:label>
-        <rdfs:label xml:lang="en">address date</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    <owl:DatatypeProperty rdf:about="&dispediao;journeyToWork">
+        <rdfs:label xml:lang="de">Arbeitsweg</rdfs:label>
+        <rdfs:label xml:lang="en">Journey to work</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
     <owl:DatatypeProperty rdf:about="&dispediao;birthName">
@@ -564,64 +564,41 @@
         <rdfs:label xml:lang="en">Education</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;hasGarden">
-        <rdfs:label xml:lang="de">hat Garten</rdfs:label>
-        <rdfs:label xml:lang="en">has garden</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;hasLift">
-        <rdfs:label xml:lang="de">hat Aufzug</rdfs:label>
-        <rdfs:label xml:lang="en">has lift</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;hasStairs">
-        <rdfs:label xml:lang="de">hat Treppe</rdfs:label>
-        <rdfs:label xml:lang="en">has stairs</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;hasWheelChairSize">
-            <rdfs:label xml:lang="de">hat Rollstuhlgröße</rdfs:label>
-            <rdfs:label xml:lang="en">has wheel chair size</rdfs:label>
-            <rdfs:domain rdf:resource="&dispediao;Address"/>
-            <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
+    </owl:DatatypeProperty>   
      
     <owl:DatatypeProperty rdf:about="&dispediao;hobby">
-            <rdfs:label xml:lang="de">Hobby</rdfs:label>
-            <rdfs:label xml:lang="en">Hobby</rdfs:label>
-            <rdfs:domain rdf:resource="&dispediao;Person"/>
-            <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:label xml:lang="de">Hobby</rdfs:label>
+        <rdfs:label xml:lang="en">Hobby</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
      </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;homeFlatType">
-        <rdfs:label xml:lang="de">Wohnungstyp</rdfs:label>
-        <rdfs:label xml:lang="en">Flat type of home</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
+    <owl:DatatypeProperty rdf:about="&dispediao;personalID">
+        <rdfs:label xml:lang="de">Personalnummer</rdfs:label>
+        <rdfs:label xml:lang="en">personal id</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;homeHousingType">
-        <rdfs:label xml:lang="de">Haustyp</rdfs:label>
-        <rdfs:label xml:lang="en">Housing type of home</rdfs:label>
+    <!-- 
+    ######################################################################################
+    properties of Adress (...which could not be reused from foaf, schema or dbpedia... until a patient data ontology is available
+    -->
+
+    <owl:DatatypeProperty rdf:about="&dispediao;isSuitableForOlderPersons">
+        <rdfs:label xml:lang="de">ist seniorengerecht</rdfs:label>
+        <rdfs:label xml:lang="en">is suitable for older persons</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;homeLawType">
-        <rdfs:label xml:lang="de">Rechtlicher Wohnungsstatus</rdfs:label>
-        <rdfs:label xml:lang="en">Law type of home</rdfs:label>
+    <owl:DatatypeProperty rdf:about="&dispediao;addressDate">
+        <rdfs:label xml:lang="de">Adressdatum</rdfs:label>
+        <rdfs:label xml:lang="en">address date</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
-
+    
     <owl:DatatypeProperty rdf:about="&dispediao;homeLevel">
         <rdfs:label xml:lang="de">Etage</rdfs:label>
         <rdfs:label xml:lang="en">Level of home</rdfs:label>
@@ -651,28 +628,55 @@
         <rdfs:domain rdf:resource="&dispediao;Address"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;isSuitableForOlderPersons">
-        <rdfs:label xml:lang="de">ist seniorengerecht</rdfs:label>
-        <rdfs:label xml:lang="en">is suitable for older persons</rdfs:label>
+    
+    <owl:DatatypeProperty rdf:about="&dispediao;hasGarden">
+        <rdfs:label xml:lang="de">hat Garten</rdfs:label>
+        <rdfs:label xml:lang="en">has garden</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Address"/>
         <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
 
-    <owl:DatatypeProperty rdf:about="&dispediao;journeyToWork">
-        <rdfs:label xml:lang="de">Arbeitsweg</rdfs:label>
-        <rdfs:label xml:lang="en">Journey to work</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
+    <owl:DatatypeProperty rdf:about="&dispediao;hasLift">
+        <rdfs:label xml:lang="de">hat Aufzug</rdfs:label>
+        <rdfs:label xml:lang="en">has lift</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;hasStairs">
+        <rdfs:label xml:lang="de">hat Treppe</rdfs:label>
+        <rdfs:label xml:lang="en">has stairs</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;hasWheelChairSize">
+        <rdfs:label xml:lang="de">hat Rollstuhlgröße</rdfs:label>
+        <rdfs:label xml:lang="en">has wheel chair size</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
     
-    <owl:DatatypeProperty rdf:about="&dispediao;patientNumber">
-        <rdfs:label xml:lang="de">Patientennummer</rdfs:label>
-        <rdfs:label xml:lang="en">Patient number</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Patient"/>
+    <owl:DatatypeProperty rdf:about="&dispediao;homeFlatType">
+        <rdfs:label xml:lang="de">Wohnungstyp</rdfs:label>
+        <rdfs:label xml:lang="en">Flat type of home</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
 
+    <owl:DatatypeProperty rdf:about="&dispediao;homeHousingType">
+        <rdfs:label xml:lang="de">Haustyp</rdfs:label>
+        <rdfs:label xml:lang="en">Housing type of home</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;homeLawType">
+        <rdfs:label xml:lang="de">Rechtlicher Wohnungsstatus</rdfs:label>
+        <rdfs:label xml:lang="en">Law type of home</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
     
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
