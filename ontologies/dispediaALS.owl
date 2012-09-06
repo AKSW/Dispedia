@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 
 <!DOCTYPE rdf:RDF [
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -47,29 +47,29 @@
         <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
     </owl:Ontology>
 
-    <!-- 
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Individuals
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-     
+
     <!-- ###################### Proposals ###################### -->
-     
+
     <owl:NamedIndividual rdf:about="&ekbi;HandlingDiagnosisShock">
         <rdf:type rdf:resource="&dispediao;Proposal"/>
         <rdfs:label xml:lang="de">Umgang mit Diagnoseschock</rdfs:label>
         <rdfs:label xml:lang="en">Handling diagnosis shock</rdfs:label>
     </owl:NamedIndividual>
-    
+
     <owl:NamedIndividual rdf:about="&ekbi;LivingWill">
         <rdf:type rdf:resource="&dispediao;Proposal"/>
         <rdfs:label xml:lang="de">Patientenverfügung</rdfs:label>
         <rdfs:label xml:lang="en">Living will</rdfs:label>
         <!--<dispediao:linkedToProposalInfo rdf:resource="&ekbi;LWDetails"/>-->
     </owl:NamedIndividual>
-    
+
     <owl:NamedIndividual rdf:about="&ekbi;LogoTherapy">
         <rdf:type rdf:resource="&dispediao;Proposal"/>
         <rdfs:label xml:lang="de">Logotherapie</rdfs:label>
@@ -114,7 +114,7 @@
         <rdfs:label xml:lang="en">Severely handicapped pass</rdfs:label>
         <dispediao:containsProposalComponent rdf:resource="&ekbi;ApplyForSHP"/>
     </owl:NamedIndividual>
-    
+
     <owl:NamedIndividual rdf:about="&ekbi;PhysicalTherapy">
         <rdf:type rdf:resource="&dispediao;Proposal"/>
         <rdfs:label xml:lang="de">Physiotherapie</rdfs:label>
@@ -156,8 +156,8 @@
         <dispediao:containsProposalComponent rdf:resource="&ekbi;PrescribeWheelChair"/>
         <dispediao:containsProposalComponent rdf:resource="&ekbi;SupplyWheelChair"/>
     </owl:NamedIndividual>
-    
-    
+
+
     <!-- ###################### ProposalComponent ###################### -->
 
     <owl:NamedIndividual rdf:about="&ekbi;ApplyForSHP">
@@ -220,8 +220,8 @@
         <dispediao:successorOf rdf:resource="&ekbi;PrescribeWheelChair"/>
         <dispediao:containsAssistiveProduct rdf:resource="&ekbi;WheelChair"/>
     </owl:NamedIndividual>
-    
-    
+
+
     <!-- ###################### ProposalDescription ###################### -->
 
     <owl:NamedIndividual rdf:about="&ekbi;DurationHouseHunting">
@@ -271,15 +271,15 @@ eine von Ihnen individuell erstellte PV dienen können.</dispediao:content>
         <rdf:type rdf:resource="&dispediao;ExperiencedProposalDescription"/>
         <rdfs:label xml:lang="de">Details der Magensonde</rdfs:label>
         <rdfs:label xml:lang="en">Details of a stomach tube</rdfs:label>
-        <dispediao:content xml:lang="de">Die perkutane (lateinisch für durch die Haut) endoskopische (mittels Magen?Spiegelung) Gastrostomie (Öffnung zum Magen), kurz PEG, ist die Einlage einer Sonde durch die Haut der Bauchdecke in den Magen. Dabei wird die Sonde mittels Kanülen und Endoskop im Magen
+        <dispediao:content xml:lang="de">Die perkutane (lateinisch für durch die Haut) endoskopische (mittels Magen-Spiegelung) Gastrostomie (Öffnung zum Magen), kurz PEG, ist die Einlage einer Sonde durch die Haut der Bauchdecke in den Magen. Dabei wird die Sonde mittels Kanülen und Endoskop im Magen
 implementiert und mit einer inneren und äusseren Halteplatte fixiert. Diese Sonde wird meistens zur teilweisen oder kompletten enteralen Ernährung verwendet (deshalb oft nur verkürzt Ernährungs?
-Sonde oder &quot;künstliche Ernährung&quot;), kann aber auch als Ablaufmöglichkeit aus dem Magen bei anhaltendem Erbrechen genutzt werden.</dispediao:content>
+Sonde oder "künstliche Ernährung"), kann aber auch als Ablaufmöglichkeit aus dem Magen bei anhaltendem Erbrechen genutzt werden.</dispediao:content>
         <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
-    
+
     <!-- ###################### AssistiveProduct ###################### -->
-     
+
     <owl:NamedIndividual rdf:about="&ekbi;FeedingCup">
         <rdf:type rdf:resource="&dispediao;AssistiveProduct"/>
         <rdfs:label xml:lang="de">Schnabeltasse</rdfs:label>
@@ -298,15 +298,15 @@ Sonde oder &quot;künstliche Ernährung&quot;), kann aber auch als Ablaufmöglic
         <rdfs:label xml:lang="en">Wheel chair</rdfs:label>
     </owl:NamedIndividual>
 
-    
+
     <!-- ###################### Formality ###################### -->
-    
+
     <owl:NamedIndividual rdf:about="&ekbi;Prescription">
         <rdf:type rdf:resource="&dispediao;Formality"/>
         <rdfs:label xml:lang="de">Rezept</rdfs:label>
         <rdfs:label xml:lang="en">Prescription</rdfs:label>
     </owl:NamedIndividual>
-    
+
 
     <!-- ###################### old Data ###################### -->
     <!--
