@@ -43,6 +43,7 @@
         <dct:contributor>Romy Elze</dct:contributor>
         <dct:contributor>Michael Martin</dct:contributor>
         <dct:contributor>Tom-Michael Hesse</dct:contributor>
+        <dct:contributor>Lars Eidam</dct:contributor>
         <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
     </owl:Ontology>
 
