@@ -730,7 +730,7 @@
     </owl:Class>
     
     <owl:Class rdf:about="&dispediao;ProposalComponent">
-        <rdfs:label xml:lang="de">VorschlagsKomponente</rdfs:label>
+        <rdfs:label xml:lang="de">Vorschlags Komponente</rdfs:label>
         <rdfs:label xml:lang="en">ProposalComponent</rdfs:label>
     </owl:Class>
 
