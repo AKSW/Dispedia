@@ -5,6 +5,7 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
     <!ENTITY dishc "http://hc.dispedia.de/" >
     <!ENTITY seo "http://www.serviceOntology.org/" >
     <!ENTITY seohc "http://hc.serviceOntology.org/" >
@@ -18,6 +19,7 @@
 
 <rdf:RDF xmlns="&dishc;"
      xml:base="&dishc;"
+     xmlns:dispedia="&dispedia;"
      xmlns:rdfs="&rdfs;"
      xmlns:owl="&owl;"
      xmlns:xsd="&xsd;"
@@ -35,6 +37,7 @@
         <rdfs:label xml:lang="en">Healthcare Services and Providers</rdfs:label>
         <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.1</owl:versionInfo>
         <owl:imports rdf:resource="&seohc;"/>
+        <owl:imports rdf:resource="&dispedia;"/>
         <rdfs:comment xml:lang="de">Branchenbuch für Gesundheitsdienstleistungen</rdfs:comment>
         <rdfs:comment xml:lang="en">Yellow Pages for Healthcare Services</rdfs:comment>
         <dct:author>Romy Elze</dct:author>
