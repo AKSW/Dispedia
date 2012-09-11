@@ -1,7 +1,7 @@
-<?php 
+<?php
 /**
  * Template for index action
- * 
+ *
  * @category   OntoWiki
  * @package    OntoWiki_extensions_propalloc
  * @author     Lars Eidam <larseidam@googlemail.com>
@@ -10,113 +10,119 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
-<script>
+<script type="text/javascript">
 // http://flowplayer.org/tools/demos/scrollable/vertical.html
 // execute your scripts when DOM is ready. this is a good habit
-$(function() {		
-		
+$(function() {
+
 	// initialize scrollable with mousewheel support
-	$(".scrollable").scrollable({ vertical: true, mousewheel: true });	
-	
+	$(".scrollable").scrollable({ vertical: true, mousewheel: true });
+
 });
+$(document).ready(function() {
+    $('#selectproposallist').change(function() {
+        $('#formproposallist').submit();
+    });
+});
+
 </script>
 
 <!-- set the title of the action -->
-<?php $this->placeholder('main.window.title')->set($this->_translate->_('Proposal allocation administration')); ?>
+<?php $this->placeholder('main.window.title')->set($this->_translate->_('proposalAllocationAdministration')); ?>
 
 <h1><?php echo $this->_translate->_('Proposal allocation administration'); ?></h1>
 
 <div><?php echo $this->_translate->_('indexDescriptionText'); ?></div>
 
 <br/>
-
-<form method="post" action="" id="propalloc">
-	
-	<table style="width:100%">
-		
-		<?php if ( 0 < count ( $this->proposals ) ) { ?>
-		
-		<tr>
-			<td style="width:35%;" valign="top"></td>
-			<td style="width:65%;" valign="top"></td>
-		</tr>
-		
-		<tr>
-			<!-- Proposals -->
-			<td>
-				<?php foreach ( $this->proposals as $proposal ) { ?>
-					
-					<?php 
-					if ( $proposal ['uri'] == $this->proposal->getProposalUri ( $this->currentProposal ) ) { 
-						$css = 'proposalItemSelected';
-					} else { 
-						$css = 'proposalItem';
-					} ?>
-					
-					<br/>
-					<div class="<?php echo $css; ?>">						
-						<a href="<?php echo $this->url; ?>alloc/?proposal=<?php echo $proposal ['shortcut']; ?>">
-							<?php echo $proposal ['label']; ?></a>
-					</div>
-				
-				<?php } ?>
-			</td>
-			
-			<!-- ALSFRS topics and their options -->
-			<td>
-				<?php if ( '' != $this->currentProposal ) { ?>
-				
-					<div class="scrollable vertical">             
-					   
-						<div class="items">
-							
-							<?php foreach ( $this->topics as $topic ) { ?>
-								
-								<div>
-									<div class="item">
-                                        
-                                        <!-- Topic label -->
-										<h2><?php echo $topic ['label']; ?></h2>
-										
-										<!-- Options -->
-										
-										<?php foreach ( $topic ['options'] as $option ) { ?>
-										
-											<?php if ( true == in_array ( $option ['uri'], $this->settings ) ) { ?>
-										
-											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption" checked="checked"/> &nbsp;
-											
-											<?php } else { ?>
-										
-											<input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption"/> &nbsp;
-											
-											<?php } ?>
-										
-											<?php echo $option ['label']; ?>
-                                            
-                                            <br/>
-										
-										<?php } ?>
-                                        
-                                        <br/>
-										
-									</div>
-								</div>
-							
-							<?php } ?>
-							
-						</div>
-						
-					</div>        
-					
-				<?php } ?>
-			</td>
-		</tr>
-		
-		<?php } ?>
-		 
-	</table>
-			
-	<input type="hidden" name="do" value="save"/>
-	<input type="hidden" name="proposal" value="<?php echo $this->currentProposal; ?>"/>
+<span id="selectproposalspan"><?php echo $this->_translate->_('selectProposal') ?>:</span>
+<form method="GET" action="<?php echo $this->url; ?>alloc/" id="formproposallist">
+	<select id="selectproposallist" name="proposal">
+        <?php if (0 < count($this->proposals)) { ?>
+                <option value=""><?php echo $this->_translate->_('pleaseSelect') ?></option>
+            <?php foreach ($this->proposals as $proposal) { ?>
+                <option value="<?php echo $proposal ['shortcut']; ?>" <?php echo ($proposal ['uri'] == $this->proposal->getProposalUri ( $this->currentProposal ) ) ? " selected=selected" : ""?>><?php echo $proposal ['label']; ?></option>
+            <?php } ?>
+        <?php } else { ?>
+            <option value="">$this->_translate->_('noProposalFound')</option>
+        <?php } ?>
+	</select>
 </form>
+<div class="clear"></div>
+<?php if ("" != $this->currentProposal) { ?>
+    <form method="post" action="" id="proposal">
+        <table style="width:100%">
+    
+            <?php if ( 0 < count ( $this->proposals ) ) { ?>
+    
+                <tr>
+                    
+                    <th><?php echo $this->_translate->_('proposalreport') ?></th>
+                    <th><?php echo $this->_translate->_('classificationInALSFRS') ?></th>
+                </tr>
+                
+                <tr>
+                    
+                    <td>
+                        <?php echo $this->action('form', 'formgenerator', null, array('r' => $this->proposal->getProposalUri ( $this->currentProposal ), 'file' => 'proposalreport')); ?>
+                    </td>
+        
+                    <!-- ALSFRS topics and their options -->
+                    <td>
+                        <?php if ( '' != $this->currentProposal ) { ?>
+        
+                            <div class="scrollable vertical">
+        
+                                <div class="items">
+        
+                                    <?php foreach ( $this->topics as $topic ) { ?>
+        
+                                        <div>
+                                            <div class="item">
+        
+                                                <!-- Topic label -->
+                                                <h2><?php echo $topic ['label']; ?></h2>
+        
+                                                <!-- Options -->
+        
+                                                <?php foreach ( $topic ['options'] as $option ) { ?>
+        
+                                                    <?php if ( true == in_array ( $option ['uri'], $this->settings ) ) { ?>
+        
+                                                    <input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption" checked="checked"/> &nbsp;
+        
+                                                    <?php } else { ?>
+        
+                                                    <input type="checkbox" name="<?php echo $option ['uri'] ?>" value="selectedOption"/> &nbsp;
+        
+                                                    <?php } ?>
+        
+                                                    <?php echo $option ['label']; ?>
+        
+                                                    <br/>
+        
+                                                <?php } ?>
+        
+                                                <br/>
+        
+                                            </div>
+                                        </div>
+        
+                                    <?php } ?>
+        
+                                </div>
+        
+                            </div>
+        
+                        <?php } ?>
+                    </td>
+                </tr>
+    
+            <?php } ?>
+    
+        </table>
+    
+        <input type="hidden" name="do" value="save"/>
+        <input type="hidden" name="proposal" value="<?php echo $this->currentProposal; ?>"/>
+    </form>
+<?php } ?>

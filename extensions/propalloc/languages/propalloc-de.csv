@@ -4,7 +4,7 @@ Create Proposal;Neuer Vorschlag
 editProposal;Vorschlag bearbeiten
 indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordnen. 
 editProposalDescriptionText;Hier können Sie ihre Vorschläge bearbeiten. 
-Proposal allocation administration;Verwaltung von Vorschlagszuweisungen
+proposalAllocationAdministration;Verwaltung von Vorschlagszuweisungen
 Proposal administration;Vorschlagsverwaltung
 Save;Speichern
 label;Name
@@ -37,3 +37,8 @@ informationType;Informationstyp
 supporterClasses;Supporter
 properties;Eigenschaften
 addProperties;Eigenschaft hinzufügen
+noProposalFound;Kein Vorschlag gefunden
+selectProposal;Vorschlag auswählen
+pleaseSelect;bitte auswählen
+proposalreport;Vorschlags Bericht
+classificationInALSFRS;Klassifikation nach ALSFRS

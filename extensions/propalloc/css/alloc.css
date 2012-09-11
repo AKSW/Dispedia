@@ -6,31 +6,42 @@
  * @copyright  Copyright (c) 2011
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
- 
+
+.clear {
+    float:none;
+    clear:both;
+}
+
 /* root element for scrollable */
 .scrollable {
 
-	/* required settings */
-	position:relative;
-	overflow:auto;
+    /* required settings */
+    position:relative;
+    overflow:auto;
 
-	/* vertical scrollables have typically larger height than width but not now */
-	height: 600px;
-	width: 70%;
+    /* vertical scrollables have typically larger height than width but not now */
+    height: 350px;
 }
 
 /* root element for scrollable items */
 .scrollable .items {
-	position:absolute;
+    position:absolute;
 }
 
-.proposalItemSelected {
-    font-weight:bold;
-    font-size:14px;
-    margin-left:30px;
+#selectproposalspan {
+    float:left;
+    padding-right: 10px;
 }
 
-.proposalItem {
-    font-size:13px;
-    margin-left:20px;
+#proposal table {
+    width: 100%;
+}
+
+#proposal table tr th{
+    text-align: center;
+    width: 50%;
+}
+
+#proposal table tr td{
+    width: 50%;
 }

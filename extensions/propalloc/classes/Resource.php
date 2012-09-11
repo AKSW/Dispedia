@@ -8,7 +8,7 @@
  * @copyright  Copyright (c) 2011
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */ 
-class Resource
+class Resource1
 {
     private $_coreModel;
     private $_dispediaModel;

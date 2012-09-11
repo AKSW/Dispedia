@@ -4,7 +4,7 @@ Create Proposal;Create proposal
 editProposal;Edit proposal
 indexDescriptionText;At this page you can assign proposals.
 editProposalDescriptionText;At this page you can edit proposals.
-Proposal allocation administration;Proposal allocation administration
+proposalAllocationAdministration;Proposal allocation administration
 Proposal administration;Proposal administration
 Save;Save
 label;Name
@@ -37,3 +37,8 @@ informationType;Information Type
 supporterClasses;Supporter
 properties;Properties
 addProperties;add Property
+noProposalFound;no Proposal found
+selectProposal;select proposal
+pleaseSelect;please select
+proposalreport;Proposal Report
+classificationInALSFRS;ALSFRS Classification
