@@ -20,7 +20,7 @@
     overflow:auto;
 
     /* vertical scrollables have typically larger height than width but not now */
-    height: 350px;
+    height: 700px;
 }
 
 /* root element for scrollable items */
