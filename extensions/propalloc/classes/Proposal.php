@@ -1,5 +1,4 @@
 <?php
-require_once 'Action.php';
 
 /**
  * @category   OntoWiki
@@ -14,28 +13,22 @@ class Proposal
     private $_controller;
     private $_resource;
     private $_action;
+    private $_ontologies;
     private $_dispediaModel;
     private $_patientsModel;
     private $_titleHelper;
     private $_lang;
     
-    public function __construct ($controller, $lang, $patientsModel, $dispediaModel, $resource)
+    public function __construct ($controller, $lang, $ontologies, $resource, $titleHelper)
     {
         $this->_controller = $controller;
         $this->_resource = $resource;
-        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
-        $this->_action = new Action ($controller, $lang, $patientsModel, $dispediaModel, $resource);
         $this->_lang = $lang;
-        $this->_patientsModel = $patientsModel;
-        $this->_dispediaModel = $dispediaModel;
+        $this->_ontologies = $ontologies;
+        $this->_titleHelper = $titleHelper;
         $this->_store = Erfurt_App::getInstance()->getStore();
     }
-    
-    public function getActionHelper ()
-    {
-        return $this->_action;
-    }
-    
+
     //TODO: should be the same like in the patapro Proposal class
     /**
      * get all proposals
@@ -51,6 +44,7 @@ class Proposal
         
         $proposals = array ();
         
+        $this->_titleHelper->reset();
         foreach ( $proposalResult as $proposal )
         {
             $this->_titleHelper->addResource ($proposal['uri']);
@@ -72,30 +66,31 @@ class Proposal
      */
     public function getSettings ( $proposalMd5 ) 
     {
-	$proposalUri = $this->getProposalUri ( $proposalMd5 );
-		
-	$appropriateForSymptoms = $this->_store->sparqlQuery (
+        $optionUris = array ();
+        
+        $proposalUri = $this->getProposalUri ( $proposalMd5 );
+            
+        $symptomsOptions = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?ss .
-                 ?ss <http://www.dispedia.de/o/includesSymptoms> ?optionUri .
+                 ?ss <http://www.dispedia.de/wrapper/alsfrs/containsSymptomOption> ?optionUri .
              };'
         );        
-        
-	$appropriateForProperties = $this->_store->sparqlQuery (
+            
+        $propertyOptions = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?ps .
-                 ?ps <http://www.dispedia.de/o/includesAffectedProperties> ?optionUri .
+                 ?ps <http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption> ?optionUri .
              };'
         );
         
-        $optionUris = array ();
         
-        foreach ( $appropriateForProperties as $p )
+        foreach ( $propertyOptions as $p )
             $optionUris [] = $p ['optionUri'];
         
-        foreach ( $appropriateForSymptoms as $p )
+        foreach ( $symptomsOptions as $p )
             $optionUris [] = $p ['optionUri'];
 	
         return $optionUris;
@@ -111,132 +106,6 @@ class Proposal
                     if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
             }
             return null;
-    }
-    
-    /**
-    * 
-    */
-    public function saveProposal($currentProposal, $currentProposalOldData)
-    {        
-        // array for output messages
-        $messages = array();
-        
-        // make 'type' relation
-        if ("new" == $currentProposal['status'])
-        {
-            $this->_dispediaModel->addStatement(
-                $currentProposal['uri'],
-                'http://www.w3.org/1999/02/22-rdf-syntax-ns#type', 
-                array('value' => 'http://www.dispedia.de/o/Proposal', 'type' => 'uri')
-            );
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Proposal created: ' . $currentProposal['uri'] . ' => rdfs:type => http://www.dispedia.de/o/Proposal', OntoWiki_Message::INFO);
-        }
-        
-        // make or update 'label' relation
-        if ($currentProposal['label'] != $currentProposalOldData['label'])
-        {
-            $this->_dispediaModel->deleteMatchingStatements
-            (
-                $currentProposal['uri'],
-                'http://www.w3.org/2000/01/rdf-schema#label', 
-                array('value' => null, 'type' => 'literal', 'lang' => $this->_lang)
-            );
-            $this->_dispediaModel->addStatement(
-                $currentProposal['uri'],
-                'http://www.w3.org/2000/01/rdf-schema#label', 
-                array('value' => $currentProposal['label'], 'type' => 'literal', 'lang' => $this->_lang)
-            );
-            if (defined('_OWDEBUG'))
-                $messages[] = new OntoWiki_Message('Proposal label update: ' . $currentProposal['uri'] . ' => rdfs:label => ' . $currentProposal['label'] . ' (old: ' . $currentProposalOldData['label'] . ')', OntoWiki_Message::INFO);
-        }
-        
-        if (isset($currentProposal['actions']))
-        {
-            foreach ($currentProposal['actions'] as $actionName)
-            {
-                $action = $this->_controller->getParam($actionName);
-            
-                $actionOldData = json_decode(urldecode($this->_controller->getParam($actionName . 'OldData')), true);
-                if ("new" == $action['status'])
-                {
-                    $this->_dispediaModel->addStatement(
-                        $currentProposal['uri'],
-                        'http://www.dispedia.de/o/containsAction', 
-                        array('value' => $action['uri'], 'type' => 'uri')
-                    );
-                    if (defined('_OWDEBUG'))
-                        $messages[] = new OntoWiki_Message('Proposal to Action created: ' . $currentProposal['uri'] . ' => dispediao:containsAction => ' . $action['uri'], OntoWiki_Message::INFO);
-                }
-                $messages = array_merge($messages, $this->_action->saveAction($action, $actionOldData));
-            }
-
-            if (isset($currentProposalOldData['actions']))
-            {
-                foreach (array_diff($currentProposalOldData['actions'], $currentProposal['actions']) as $action)
-                {
-                    $actionOldData = json_decode(urldecode($this->_controller->getParam($action . 'OldData')), true);
-                    $deletedStatements = $this->_resource->removeStmt
-                    (
-                        $currentProposal['uri'],
-                        'http://www.dispedia.de/o/containsAction', 
-                        $actionOldData['uri']
-                    );
-                    if (defined('_OWDEBUG'))
-                    {
-                        $messages[] = new OntoWiki_Message('Proposal to Action deleted: ' . $currentProposal['uri'] . ' => dispediao:containsAction => ' . $actionOldData['uri'], OntoWiki_Message::INFO);
-                        $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
-                    }
-                    $messages = array_merge($messages, $this->_action->removeAction($actionOldData));
-                }
-            }
-        }
-        else
-        {
-            if (isset($currentProposalOldData['actions']))
-            {
-                foreach ($currentProposalOldData['actions'] as $action)
-                {
-                    $actionOldData = json_decode(urldecode($this->_controller->getParam($action . 'OldData')), true);
-                    $deletedStatements = $this->_resource->removeStmt
-                    (
-                        $currentProposal['uri'],
-                        'http://www.dispedia.de/o/containsAction', 
-                        $actionOldData['uri']
-                    );
-                    if (defined('_OWDEBUG'))
-                    {
-                        $messages[] = new OntoWiki_Message('Proposal to Action deleted: ' . $currentProposal['uri'] . ' => dispediao:containsAction => ' . $actionOldData['uri'], OntoWiki_Message::INFO);
-                        $messages[] = new OntoWiki_Message($deletedStatements . ' tribles deleted', OntoWiki_Message::INFO);
-                    }
-                    $messages = array_merge($messages, $this->_action->removeAction($actionOldData));
-                }
-            }
-        }
-        
-        $messages[] = new OntoWiki_Message('successProposalEdit', OntoWiki_Message::SUCCESS);
-        return $messages;
-    }
-    
-    /**
-    * 
-    */
-    public function removeProposal($currentProposal)
-    {
-        $messages = array();
-        $result = $this->_resource->removeStmt (urldecode($currentProposal['uri']), null, null);
-        
-        if (defined('_OWDEBUG'))
-        {
-            $messages[] = new OntoWiki_Message('Proposal deleted: ' . $currentProposal['uri'], OntoWiki_Message::INFO);
-            $messages[] = new OntoWiki_Message($result . ' tribles deleted', OntoWiki_Message::INFO);
-        }
-        
-        if (0 < $result)
-            $messages[] = new OntoWiki_Message('successProposalDelete', OntoWiki_Message::SUCCESS);
-        else
-            $messages[] = new OntoWiki_Message('errorProposalDelete', OntoWiki_Message::ERROR);
-        return $messages;
     }
 }
 

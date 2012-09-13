@@ -10,20 +10,17 @@
  */ 
 class Resource1
 {
-    private $_coreModel;
-    private $_dispediaModel;
-    private $_patientsModel;
+    private $_ontologies;
     private $_lang;
     private $_titleHelper;
     
-    public function __construct ($lang, $coreModel, $patientsModel, $dispediaModel)
+    public function __construct ($lang, $ontologies, $titleHelper)
     {
         $this->_lang = $lang;
-        $this->_coreModel = $coreModel;
-        $this->_dispediaModel = $dispediaModel;
-        $this->_patientsModel = $patientsModel;
+        $this->_ontologies = $ontologies;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
-        $this->_titleHelper = new OntoWiki_Model_TitleHelper ($dispediaModel);
+        //TODO: replace it with ontologies array
+        $this->_titleHelper = $titleHelper;
     }
     
         
@@ -45,6 +42,7 @@ class Resource1
      */
     public function getLabel ($uri)
     {
+        $this->_titleHelper->reset();
         $this->_titleHelper->addResource ($uri);
         return $this->_titleHelper->getTitle($uri, $this->_lang);
     }
@@ -61,13 +59,13 @@ class Resource1
         
         // add a triple to datastore
         if ( '' == $lang )
-            return $this->_patientsModel->addStatement(
+            return $this->_ontologies['dispediaPatient']['instance']->addStatement(
                 $s,
                 $p, 
                 array('value' => $o, 'type' => $type)
             );
         else
-            return $this->_patientsModel->addStatement(
+            return $this->_ontologies['dispediaPatient']['instance']->addStatement(
                 $s,
                 $p, 
                 array('value' => $o, 'type' => $type, 'lang' => $lang)
@@ -101,7 +99,7 @@ class Resource1
         }
         // aremove a triple form datastore
         return $this->_store->deleteMatchingStatements(
-            (string) $this->_dispediaModel,
+            $this->_ontologies['dispediaALS']['namespace'],
             $s,
             $p,
             $o,

@@ -12,25 +12,24 @@ class Option
 {
     protected $_lang;
     protected $_store;
-    protected $_selectedModel;
-    protected $_patientsModel;
+    protected $_ontologies;
     private $_propertyRegEx;
     
-    public function __construct ( $lang, $model, $patientsModel )
+    public function __construct ( $lang, $ontologies, $store)
     {
         $this->_lang = $lang;
         
-        $this->_selectedModel = $model;
-        $this->_patientsModel = $patientsModel;
-        $this->_selectedModelUri = (string) $model;
+        $this->_ontologies = $ontologies;
         
-        $this->_store = Erfurt_App::getInstance()->getStore();
+        $this->_store = $store;
         
         $this->_propertyRegEx = "/\/[ot][135679][^01]/";
     }
     
     public function getOptions ( $topicUri )
     {
+        $options = array();
+        
         if ( false == Erfurt_Uri::check ( $topicUri ) ) 
             return array ();
         
@@ -66,10 +65,10 @@ class Option
     /**
      * 
      */
-    public function saveOptions ( $dataModel, $proposalUri, $newOptions, $oldOptions )
+    public function saveOptions ($proposalUri, $newOptions, $oldOptions )
     {
         // get propertySet instance
-        $propertySetInstance = $dataModel->sparqlQuery (
+        $propertySetInstance = $this->_store->sparqlQuery (
             'SELECT ?uri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?uri .
@@ -80,7 +79,7 @@ class Option
             $propertySetInstance = $propertySetInstance [0]['uri'];
                           
         // get symptomSet instance
-        $symptomSetInstance = $dataModel->sparqlQuery (
+        $symptomSetInstance = $this->_store->sparqlQuery (
             'SELECT ?uri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?uri .
@@ -95,11 +94,11 @@ class Option
         {            
             if ( 1 == preg_match($this->_propertyRegEx, $option) ) {
                 $s = $propertySetInstance;
-                $p = 'http://www.dispedia.de/o/includesAffectedProperties';
+                $p = 'http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption';
             }
             else {
                 $s = $symptomSetInstance;
-                $p = 'http://www.dispedia.de/o/includesSymptoms';
+                $p = 'http://www.dispedia.de/wrapper/alsfrs/containsSymptomOption';
             }
                 
             $this->removeStmt ( 
@@ -116,6 +115,7 @@ class Option
         // if propertySet instance does not exist, create it!
         if (true == is_array ($propertySetInstance) && 0 == count ($propertySetInstance)) {
             $newUri = 'http://www.dispedia.de/wrapper/alsfrs/ALSFRSPropertySet/';
+            //TODO: use central URI generation
             $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create propertySet instance
@@ -139,6 +139,7 @@ class Option
         // if symptomSet instance does not exist, create it!
         if (true == is_array ($symptomSetInstance) && 0 == count ($symptomSetInstance)) {
             $newUri = 'http://www.dispedia.de/wrapper/alsfrs/ALSFRSSymptomSet/';
+            //TODO: use central URI generation
             $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create symptomSet instance
@@ -163,11 +164,11 @@ class Option
         {            
             if ( 1 == preg_match($this->_propertyRegEx, $option) ) {
                 $s = $propertySetInstance;
-                $p = 'http://www.dispedia.de/o/includesAffectedProperties';
+                $p = 'http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption';
             }
             else {
                 $s = $symptomSetInstance;
-                $p = 'http://www.dispedia.de/o/includesSymptoms';
+                $p = 'http://www.dispedia.de/wrapper/alsfrs/containsSymptomOption';
             }
                         
             $this->addStmt ( 
@@ -190,7 +191,8 @@ class Option
             : 'literal';
         
         // add a triple to datastore
-        return $this->_patientsModel->addStatement(
+        return $this->_store->addStatement(
+            $this->_ontologies['dispediaALS']['namespace'],
             $s,
             $p, 
             array('value' => $o, 'type' => $type)
@@ -209,7 +211,8 @@ class Option
             : 'literal';
             
         // aremove a triple form datastore
-        return $this->_patientsModel->deleteMatchingStatements(
+        return $this->_store->deleteMatchingStatements(
+            $this->_ontologies['dispediaALS']['namespace'],
             $s,
             $p,
             array('value' => $o, 'type' => $type)

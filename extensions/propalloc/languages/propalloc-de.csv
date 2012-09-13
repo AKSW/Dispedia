@@ -2,8 +2,8 @@ ActionText;Aktion Beschreibung
 ActionTitle;Aktion Titel
 Create Proposal;Neuer Vorschlag
 editProposal;Vorschlag bearbeiten
-indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordnen. 
-editProposalDescriptionText;Hier können Sie ihre Vorschläge bearbeiten. 
+indexDescriptionText;Hier können Sie ihre vorher angelegten Vorschläge zuordnen.
+editProposalDescriptionText;Hier können Sie ihre Vorschläge bearbeiten.
 proposalAllocationAdministration;Verwaltung von Vorschlagszuweisungen
 Proposal administration;Vorschlagsverwaltung
 Save;Speichern
@@ -42,3 +42,4 @@ selectProposal;Vorschlag auswählen
 pleaseSelect;bitte auswählen
 proposalreport;Vorschlags Bericht
 classificationInALSFRS;Klassifikation nach ALSFRS
+successProposalAlloationEdit;Vorschlagszuweisung gespeichert
