@@ -73,6 +73,16 @@ class PropallocController extends OntoWiki_Controller_Component
         //TODO: if this deleted, there come an error but is this really needed?
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
+    
+    /**
+     * show messages after every action
+     */
+    public function postDispatch()
+    {
+        foreach ($this->_messages as $message) {
+            $this->_owApp->appendMessage($message);
+        }
+    }
 
     /**
      * empty action
