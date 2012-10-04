@@ -159,7 +159,7 @@
         <rdfs:domain rdf:resource="&diswrap-icf;ICFHealthState"/>
         <rdfs:range rdf:resource="&diswrap-icf;ICFPropertySet"/>
         <rdfs:subPropertyOf rdf:resource="&diswrap-icf;includes"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;includesAffectedProperties"/>
+        <rdfs:subPropertyOf rdf:resource="&dispediao;includesHealthProperties"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&diswrap-icf;includesICFSymptoms">
@@ -170,21 +170,6 @@
         <rdfs:subPropertyOf rdf:resource="&diswrap-icf;includes"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;includesSymptoms"/>
     </owl:ObjectProperty>
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <owl:DatatypeProperty rdf:about="&diswrap-icf;hasDate">
-        <rdfs:label xml:lang="de">hat Datum</rdfs:label>
-        <rdfs:label xml:lang="en">has date</rdfs:label>
-        <rdfs:domain rdf:resource="&diswrap-icf;ICFHealthState"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-    </owl:DatatypeProperty>
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////

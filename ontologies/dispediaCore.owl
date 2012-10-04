@@ -132,7 +132,14 @@
     ######################################################################################
     properties from Healthstate (includes is used for information about the patient)
     -->
-     
+    
+    <owl:DatatypeProperty rdf:about="&dispediao;hasDate">
+        <rdfs:label xml:lang="de">hat Datum</rdfs:label>
+        <rdfs:label xml:lang="en">has date</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;HealthState"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
     <owl:ObjectProperty rdf:about="&dispediao;accepts">
         <rdfs:label xml:lang="de">akzeptiert</rdfs:label>
         <rdfs:label xml:lang="en">accepts</rdfs:label>
@@ -146,6 +153,13 @@
     <owl:ObjectProperty rdf:about="&dispediao;denies">
         <rdfs:label xml:lang="de">lehnt ab</rdfs:label>
         <rdfs:label xml:lang="en">denies</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;HealthState"/>
+        <rdfs:range rdf:resource="&dispediao;Proposal"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="&dispediao;isPending">
+        <rdfs:label xml:lang="de">wartend</rdfs:label>
+        <rdfs:label xml:lang="en">is pending</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;Proposal"/>
     </owl:ObjectProperty>
@@ -165,7 +179,7 @@
    
     <owl:ObjectProperty rdf:about="&dispediao;includesSymptoms">
         <rdfs:label xml:lang="de">beeinhaltet Symptome</rdfs:label>
-        <rdfs:label xml:lang="en">includes  symptoms</rdfs:label>
+        <rdfs:label xml:lang="en">includes symptoms</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;SymptomSet"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;includes"/>
@@ -174,15 +188,15 @@
     <owl:ObjectProperty rdf:about="&dispediao;receivedProposalDescription">
         <rdfs:label xml:lang="de">Vorschlagsbeschreibungstext erhalten</rdfs:label>
         <rdfs:label xml:lang="en">received ProposalDescription</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;HealthState"/>
-        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
+        <rdfs:domain rdf:resource="&dispediao;HealthState"/>
+        <rdfs:range rdf:resource="&dispediao;ProposalDescription"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;readProposalDescription">
         <rdfs:label xml:lang="de">Vorschlagstext gelesen</rdfs:label>
         <rdfs:label xml:lang="en">read ProposalDescription</rdfs:label>
-        <rdfs:range rdf:resource="&dispediao;HealthState"/>
-        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
+        <rdfs:domain rdf:resource="&dispediao;HealthState"/>
+        <rdfs:range rdf:resource="&dispediao;ProposalDescription"/>
     </owl:ObjectProperty>
     
     <!-- ######################################################################################
