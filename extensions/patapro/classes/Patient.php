@@ -24,8 +24,9 @@ class Patient
         $healthstatesResult = $this->_store->sparqlQuery (
             'SELECT ?uri ?timestamp
             WHERE {
-                <' . $patientUri . '> <has> ?uri .
-                ?uri <http://purl.org/dc/terms/created> ?timestamp .                                                     
+                <' . $patientUri . '> <http://www.dispedia.de/o/hasHealthState> ?uri .
+                ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState>.
+                ?uri <http://www.dispedia.de/o/hasDate> ?timestamp .                                                     
             }
             ORDER BY DESC(?timestamp);'
         );
@@ -58,7 +59,7 @@ class Patient
         $appropriateForProperties = $this->_store->sparqlQuery (
             'SELECT ?optionUri ?optionLabel ?topicLabel
               WHERE {
-                <' . $healthstateUri . '> <http://www.dispedia.de/o/includesAffectedProperties> ?ps .
+                <' . $healthstateUri . '> <http://www.dispedia.de/o/includesHealthProperties> ?ps .
                 ?ps <http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption> ?optionUri .
                 ?optionUri  <http://www.w3.org/2000/01/rdf-schema#label> ?optionLabel .
                 ?topicUri <http://als.dispedia.de/frs/o/hasOption> ?optionUri .

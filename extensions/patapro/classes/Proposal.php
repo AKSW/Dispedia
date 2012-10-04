@@ -60,11 +60,11 @@ class Proposal
      */
     public function getSettings ( $proposalUri ) 
     {
-	$appropriateForSymptoms = $this->_store->sparqlQuery (
+		$appropriateForSymptoms = $this->_store->sparqlQuery (
             'SELECT ?optionUri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForSymptoms> ?ss .
-                 ?ss <http://www.dispedia.de/o/includesSymptoms> ?optionUri .
+                 ?ss <http://www.dispedia.de/wrapper/alsfrs/containsSymptomOption> ?optionUri .
              };'
         );        
         
@@ -72,7 +72,7 @@ class Proposal
             'SELECT ?optionUri
               WHERE {
                  <'. $proposalUri .'> <http://www.dispedia.de/o/appropriateForProperties> ?ps .
-                 ?ps <http://www.dispedia.de/o/includesAffectedProperties> ?optionUri .
+                 ?ps <http://www.dispedia.de/wrapper/alsfrs/containsPropertyOption> ?optionUri .
              };'
         );
         
@@ -252,24 +252,22 @@ class Proposal
         $proposals = array();
         $results = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
-	    SELECT ?uri ?label ?allocation ?decision ?statusUri
-	    WHERE {
-		?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
-		?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
-		?allocation dispediao:allocatesProposal ?uri .
-		?allocation dispediao:allocatesPatient <' . $patientUri . '> .
-		<' . $patientUri . '> dispediao:makes ?decision .
-		?decision ?statusUri ?allocation .
-                FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
-	    }'
+			SELECT ?uri ?label ?healthstate ?statusUri
+			WHERE {
+				?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
+				?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+				?healthstate ?statusUri ?uri .
+				<' . $patientUri . '> dispediao:hasHealthState ?healthstate .
+				FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
+			}'
         );
 	
         foreach ($results as $result)
-	{
-	    $result['status'] = preg_replace('/http:\/\/www.dispedia.de\/o\//', '', $result['statusUri']);
-	    $proposals[$result['uri']] = $result;
-	}
-	return $proposals;
+		{
+			$result['status'] = preg_replace('/http:\/\/www.dispedia.de\/o\//', '', $result['statusUri']);
+			$proposals[$result['uri']] = $result;
+		}
+		return $proposals;
     }
 
     /**
