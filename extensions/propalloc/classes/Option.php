@@ -111,12 +111,13 @@ class Option
         
         // -------------------------------------------------------------
         
+        $proposalUriName = $this->extractClassNameFromUri($proposalUri);
         
         // if propertySet instance does not exist, create it!
         if (true == is_array ($propertySetInstance) && 0 == count ($propertySetInstance)) {
-            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/ALSFRSPropertySet/';
+            $newUri = 'http://als.dispedia.de/ALSFRSPropertySet/';
             //TODO: use central URI generation
-            $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+            $newUri = $newUri . $proposalUriName . '#' . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create propertySet instance
             $this->addStmt (
@@ -138,9 +139,9 @@ class Option
         
         // if symptomSet instance does not exist, create it!
         if (true == is_array ($symptomSetInstance) && 0 == count ($symptomSetInstance)) {
-            $newUri = 'http://www.dispedia.de/wrapper/alsfrs/ALSFRSSymptomSet/';
+            $newUri = 'http://als.dispedia.de/ALSFRSSymptomSet/';
             //TODO: use central URI generation
-            $newUri = $newUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+            $newUri = $newUri . $proposalUriName . '#' . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
             
             // create symptomSet instance
             $this->addStmt (
@@ -177,6 +178,27 @@ class Option
                 $option
             );
         }
+    }
+    
+    /**
+     * extracts class name from an uri
+     * @param classUri Uri of class
+     * @return classname as a string
+     */
+    private function extractClassNameFromUri($classUri)
+    {
+        if (strrpos ($classUri, '/') < strrpos ($classUri, '#'))
+            $seperator = '#';
+        elseif (strrpos ($classUri, '/') > strrpos ($classUri, '#'))
+            $seperator = '/';
+        else
+            $seperator = ':';
+             
+        $classUri = substr($classUri, strrpos ($classUri, $seperator));
+        
+        return false === strpos ($classUri, $seperator)
+            ? $classUri
+            : substr ($classUri, 1);
     }
     
     

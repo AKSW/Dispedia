@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ekb "http://als.dispedia.de/" >
+    <!ENTITY ekbi "http://als.dispedia.de/i/" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY seo "http://www.serviceOntology.org/" >
+    <!ENTITY seohc "http://hc.serviceOntology.org/" >
+    <!ENTITY seohcs "http://hc.serviceOntology.org/service/" >
+    <!ENTITY seohcp "http://hc.serviceOntology.org/provider/" >
+        
+    <!ENTITY diswrap-alsfrs "http://www.dispedia.de/wrapper/alsfrs/" >
+    <!ENTITY diswrap-icd10 "http://www.dispedia.de/wrapper/icd10/" >
+]>
+
+<rdf:RDF xmlns="&ekb;"
+    xml:base="&ekb;"
+    xmlns:rdfs="&rdfs;"
+    xmlns:owl="&owl;"
+    xmlns:xsd="&xsd;"
+    xmlns:rdf="&rdf;"
+    xmlns:ccns="&ccns;"
+    xmlns:dct="&dct;"
+    xmlns:ekbi="&ekbi;"
+    xmlns:dispediao="&dispediao;"
+    xmlns:dispedia="&dispedia;"
+    xmlns:seo="&seo;"
+    xmlns:seohc="&seohc;"
+    xmlns:seohcs="&seohcs;"
+    xmlns:seohcp="&seohcp;"
+    xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
+    xmlns:diswrap-icd10="&diswrap-icd10;">
+     
+    <owl:NamedIndividual rdf:about="&ekbi;UseWalkingFrame">
+        <dispediao:appropriateForProperties rdf:resource="http://als.dispedia.de/ALSFRSPropertySet/UseWalkingFrame#cc1aa436"/>
+        <dispediao:appropriateForSymptoms rdf:resource="http://als.dispedia.de/ALSFRSSymptomSet/UseWalkingFrame#99bcfcd7"/>
+    </owl:NamedIndividual>
+
+    <diswrap-alsfrs:ALSFRSPropertySet rdf:about="http://als.dispedia.de/ALSFRSPropertySet/UseWalkingFrame#cc1aa436">
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_4"/>
+    </diswrap-alsfrs:ALSFRSPropertySet>
+    
+    <diswrap-alsfrs:ALSFRSSymptomSet rdf:about="http://als.dispedia.de/ALSFRSSymptomSet/UseWalkingFrame#99bcfcd7"/>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;UseWheelChair">
+        <dispediao:appropriateForProperties rdf:resource="http://als.dispedia.de/ALSFRSPropertySet/UseWheelChair#f457c545"/>
+        <dispediao:appropriateForSymptoms rdf:resource="http://als.dispedia.de/ALSFRSSymptomSet/UseWheelChair#6d70cb65"/>
+    </owl:NamedIndividual>
+    
+    <diswrap-alsfrs:ALSFRSPropertySet rdf:about="http://als.dispedia.de/ALSFRSPropertySet/UseWheelChair#f457c545">
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_0"/>
+    </diswrap-alsfrs:ALSFRSPropertySet>
+    
+    <diswrap-alsfrs:ALSFRSSymptomSet rdf:about="http://als.dispedia.de/ALSFRSSymptomSet/UseWheelChair#6d70cb65">
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_4"/>
+    </diswrap-alsfrs:ALSFRSSymptomSet>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;Move">
+        <dispediao:appropriateForProperties rdf:resource="http://als.dispedia.de/ALSFRSPropertySet/Move#39059724"/>
+        <dispediao:appropriateForSymptoms rdf:resource="http://als.dispedia.de/ALSFRSSymptomSet/Move#941e1aaa"/>
+    </owl:NamedIndividual>
+    
+    <diswrap-alsfrs:ALSFRSPropertySet rdf:about="http://als.dispedia.de/ALSFRSPropertySet/Move#39059724">
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_1"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_2"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o3_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o5b_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o6_0"/>
+    </diswrap-alsfrs:ALSFRSPropertySet>
+    
+    <diswrap-alsfrs:ALSFRSSymptomSet rdf:about="http://als.dispedia.de/ALSFRSSymptomSet/Move#941e1aaa">
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="http://als.dispedia.de/frs/i/option/o10_4"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_3"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_4"/>
+    </diswrap-alsfrs:ALSFRSSymptomSet>
+</rdf:RDF>
