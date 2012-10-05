@@ -96,6 +96,9 @@
         <dispediao:isPending rdf:resource="&ekbi;UseWalkingFrame"/>
         <dispediao:isPending rdf:resource="&ekbi;UseFeedingCup"/>
         <dispediao:isPending rdf:resource="&ekbi;StomachTube"/>
+        <dispediao:receivedProposalDescription rdf:resource="&ekbi;DurationHouseHunting"/>
+        <dispediao:receivedProposalDescription rdf:resource="&ekbi;LWDetails"/>
+        <dispediao:readProposalDescription rdf:resource="&ekbi;LWDetails"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&patients;HSMaxMustermann20100420104641">
