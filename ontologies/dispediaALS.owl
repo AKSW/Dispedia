@@ -67,7 +67,7 @@
         <rdf:type rdf:resource="&dispediao;Proposal"/>
         <rdfs:label xml:lang="de">Patientenverfügung</rdfs:label>
         <rdfs:label xml:lang="en">Living will</rdfs:label>
-        <!--<dispediao:linkedToProposalInfo rdf:resource="&ekbi;LWDetails"/>-->
+        <dispediao:containsProposalComponent rdf:resource="&ekbi;LivingWillComponent"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;LogoTherapy">
@@ -125,7 +125,7 @@
         <rdf:type rdf:resource="&dispediao;Proposal"/>
         <rdfs:label xml:lang="de">Magensonde</rdfs:label>
         <rdfs:label xml:lang="en">Stomach tube</rdfs:label>
-        <!--<dispediao:linkedToProposalInfo rdf:resource="&ekbi;PEGDetails"/>-->
+       <dispediao:containsProposalComponent rdf:resource="&ekbi;StomachTubeComponent"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;SupportGroup">
@@ -220,6 +220,20 @@
         <dispediao:successorOf rdf:resource="&ekbi;PrescribeWheelChair"/>
         <dispediao:containsAssistiveProduct rdf:resource="&ekbi;WheelChair"/>
     </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;LivingWillComponent">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Erstellung einer Patientenverfügung</rdfs:label>
+        <rdfs:label xml:lang="en">Creation of the living will</rdfs:label>
+        <dispediao:containsProposalDescription rdf:resource="&ekbi;LWDetails"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;StomachTubeComponent">
+        <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:label xml:lang="de">Magensonde legen</rdfs:label>
+        <rdfs:label xml:lang="en">put a stomach tube</rdfs:label>
+        <dispediao:containsProposalDescription rdf:resource="&ekbi;PEGDetails"/>
+    </owl:NamedIndividual>
 
 
     <!-- ###################### ProposalDescription ###################### -->
@@ -228,10 +242,7 @@
         <rdf:type rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:label xml:lang="de">Dauer der Wohnungssuche</rdfs:label>
         <rdfs:label xml:lang="en">Duration of the house hunting process</rdfs:label>
-        <dispediao:recipient>patient</dispediao:recipient>
-        <dispediao:subject>Duration of the house hunting process</dispediao:subject>
-        <dispediao:originator>doctor, counselor</dispediao:originator>
-        <dispediao:content>Medium time required to find an appropriate home for the patient has to be told to the patient</dispediao:content>
+        <dispediao:content xml:lang="en">Medium time required to find an appropriate home for the patient has to be told to the patient</dispediao:content>
         <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
@@ -239,10 +250,7 @@
         <rdf:type rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:label xml:lang="de">Dauer der Beantragung</rdfs:label>
         <rdfs:label xml:lang="en">Duration of the application process</rdfs:label>
-        <dispediao:content>Average time taken by the application for an severely handicapped pass has to be given to the patient</dispediao:content>
-        <dispediao:recipient>patient</dispediao:recipient>
-        <dispediao:subject>Duration for application for an severely handicapped pass</dispediao:subject>
-        <dispediao:originator>doctor, counselor</dispediao:originator>
+        <dispediao:content xml:lang="en">Average time taken by the application for an severely handicapped pass has to be given to the patient</dispediao:content>
         <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 
