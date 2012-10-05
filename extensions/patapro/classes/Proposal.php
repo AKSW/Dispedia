@@ -38,11 +38,9 @@ class Proposal
         );
         
         $proposals = array ();
-        
-        foreach ( $proposalResult as $proposal )
-        {
-            $this->_titleHelper->addResource ($proposal['uri']);
-        }
+		
+        $this->_titleHelper->reset();
+        $this->_titleHelper->addResources ($proposalResult, 'uri');
 
         foreach ( $proposalResult as $proposal )
         {
@@ -54,8 +52,107 @@ class Proposal
 
         return $proposals;
     }
+	
+	/**
+	 * function determine which proposal description received or read by a patient
+	 */
+	public function getPatientProposalDescription($patientUri, $proposalUri)
+	{
+		$proposaldescriptions = array();
+		$proposaldescriptions['received'] = array();
+		$proposaldescriptions['read'] = array();
+		
+		$proposalDescriptionResult = $this->_store->sparqlQuery (
+            'SELECT ?proposalDescription ?status
+			WHERE {
+				<' . $proposalUri . '> <http://www.dispedia.de/o/containsProposalComponent> ?proposalComponent.
+				?proposalComponent <http://www.dispedia.de/o/containsProposalDescription> ?proposalDescription.
+				<' . $patientUri . '> <http://www.dispedia.de/o/hasHealthState> ?healthState.
+				?healthState ?status ?proposalDescription.
+			}'
+        );
+		foreach ($proposalDescriptionResult as $proposalDescription)
+		{
+			if ("http://www.dispedia.de/o/receivedProposalDescription" == $proposalDescription['status'])
+				$proposaldescriptions['received'][$proposalDescription['proposalDescription']] = $proposalDescription['proposalDescription'];
+				
+			if ("http://www.dispedia.de/o/readProposalDescription" == $proposalDescription['status'])
+				$proposaldescriptions['read'][$proposalDescription['proposalDescription']] = $proposalDescription['proposalDescription'];
+		}
+		
+		return $proposaldescriptions;
+	}
+	
+	/*
+	 * function determine the propsal information to a specific proposal and patient
+	 */
+	public function getProposalData($proposalUri)
+	{
+		$proposalData = array();
+		$proposalDataResult = $this->_store->sparqlQuery (
+            'SELECT ?proposalComponent ?proposalDescription ?proposalDescriptionType
+			WHERE {
+			  <' . $proposalUri . '> <http://www.dispedia.de/o/containsProposalComponent> ?proposalComponent.
+			  OPTIONAL{
+				?proposalComponent <http://www.dispedia.de/o/containsProposalDescription> ?proposalDescription.
+				?proposalDescription <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?proposalDescriptionType.
+			  }
+			};'
+        );
+		
+		// get labels
+		$this->_titleHelper->reset();
+		$this->_titleHelper->addResources($proposalDataResult, 'proposalComponent');
+		$this->_titleHelper->addResources($proposalDataResult, 'proposalDescription');
+		$this->_titleHelper->addResources($proposalDataResult, 'proposalDescriptionType');
+		
+		$proposalData['data'] = array();
+		$proposalData['labels'] = array();
+		foreach ($proposalDataResult as $proposal)
+		{
+			if ("" != $proposal['proposalComponent'])
+			{
+				if (!isset($proposalData['data'][$proposal['proposalComponent']]))
+					$proposalData['data'][$proposal['proposalComponent']] = array();
+				
+				if (!isset($proposalData['labels'][$proposal['proposalComponent']]))
+						$proposalData['labels'][$proposal['proposalComponent']] = $this->_titleHelper->getTitle($proposal['proposalComponent'], $this->_lang);
+				
+				if ("" != $proposal['proposalDescription'])
+				{
+					if (!isset($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]))
+						$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']] = array();
+					$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['descriptionName'] = $proposal['proposalDescription'];
+					
+					if (!isset($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type']))
+						$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type'] = array();
+					
+					$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type'][$proposal['proposalDescriptionType']] = $proposal['proposalDescriptionType'];
+					
+					if (!isset($proposalData['labels'][$proposal['proposalDescription']]))
+						$proposalData['labels'][$proposal['proposalDescription']] = $this->_titleHelper->getTitle($proposal['proposalDescription'], $this->_lang);
+					
+					if (!isset($proposalData['labels'][$proposal['proposalDescriptionType']]))
+						$proposalData['labels'][$proposal['proposalDescriptionType']] = $this->_titleHelper->getTitle($proposal['proposalDescriptionType'], $this->_lang);
+					
+					//get description content
+					$proposalDescriptionContent = $this->_store->sparqlQuery (
+						'SELECT ?proposalDescriptionContent
+						WHERE {
+							<' . $proposal['proposalDescription'] . '> <http://www.dispedia.de/o/content> ?proposalDescriptionContent.
+							FILTER (langmatches(lang(?proposalDescriptionContent), "' . $this->_lang . '"))
+						};'
+					);
+					if (isset($proposalDescriptionContent[0]) && "" != $proposalDescriptionContent[0]['proposalDescriptionContent'])
+						$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['content'] = $proposalDescriptionContent[0]['proposalDescriptionContent'];
+				}
+			}
+		}
+		
+		return $proposalData;
+	}
     
-       /**
+    /**
      * 
      */
     public function getSettings ( $proposalUri ) 
@@ -92,32 +189,32 @@ class Proposal
      */
     public function calcCorrespondenceProposals($patientOptions, $allProposals)
     {
-	$sortArray = array();
-	$correspondenceProposals = array();
-	foreach ($allProposals as $proposalUri => $proposal)
-	{
-	    $correspondence = 0;
-	    $proposalOptions = $this->getSettings($proposalUri);
-	    if (0 < count($proposalOptions))
-	    {
-		foreach ($proposalOptions as $proposalOptionUri)
+		$sortArray = array();
+		$correspondenceProposals = array();
+		foreach ($allProposals as $proposalUri => $proposal)
 		{
-		    if (true == in_array($proposalOptionUri, $patientOptions))
-			$correspondence++;
+			$correspondence = 0;
+			$proposalOptions = $this->getSettings($proposalUri);
+			if (0 < count($proposalOptions))
+			{
+			foreach ($proposalOptions as $proposalOptionUri)
+			{
+				if (true == in_array($proposalOptionUri, $patientOptions))
+				$correspondence++;
+			}
+			$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
+			}
+			else
+			$proposal['correspondence'] = 0;
+			$sortArray[$proposalUri] = $proposal['correspondence'];
+			$correspondenceProposals[$proposalUri] = $proposal;
 		}
-		$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
-	    }
-	    else
-		$proposal['correspondence'] = 0;
-	    $sortArray[$proposalUri] = $proposal['correspondence'];
-	    $correspondenceProposals[$proposalUri] = $proposal;
-	}
-	$allProposals = array();
-	arsort ($sortArray);
-	foreach ($sortArray as $proposalUri => $value)
-	    $allProposals[$proposalUri] = $correspondenceProposals[$proposalUri];
-	    
-	return $allProposals;
+		$allProposals = array();
+		arsort ($sortArray);
+		foreach ($sortArray as $proposalUri => $value)
+			$allProposals[$proposalUri] = $correspondenceProposals[$proposalUri];
+			
+		return $allProposals;
     }
     
     /**
@@ -127,17 +224,17 @@ class Proposal
      */
     public function saveProposals ($patientUri, $proposalUris) 
     {
-    $return_value = true;
-    if (!isset($proposalUris))
-	$proposalUris = array();
-    $proposalUris = $this->removeProposals($patientUri, $proposalUris);
-    if (false == $proposalUris)
-	$return_value = false;
-    if ($return_value && 0 < count($proposalUris))
-        foreach ($proposalUris as $proposalUri) {
-        $this->addProposal($patientUri, urldecode($proposalUri));
-        }
-    return $return_value;
+		$return_value = true;
+		if (!isset($proposalUris))
+		$proposalUris = array();
+		$proposalUris = $this->removeProposals($patientUri, $proposalUris);
+		if (false == $proposalUris)
+		$return_value = false;
+		if ($return_value && 0 < count($proposalUris))
+			foreach ($proposalUris as $proposalUri) {
+				$this->addProposal($patientUri, urldecode($proposalUri));
+			}
+		return $return_value;
     }
 
     /**
@@ -146,57 +243,57 @@ class Proposal
      */
     private function addProposal ( $patientUri, $proposalUri )
     {
-	// new Decision URI
-	//http://als.dispedia.info/architecture/c/20110827/
-	//http://patients.dispedia.de/i/Patient/20111115/ea1236/LarsEidam
-	$newDecisionUri = 'http://patients.dispedia.de/i/Decision/';
-	$newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
-	
-	// create Decision instance
-	$this->addStmt (
-	    $newDecisionUri,
-	    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-	    'http://www.dispedia.de/o/Decision'
-	);
-	
-	// connect Patient instance to Decision instance
-	$this->addStmt (
-	    $patientUri,
-	    'http://www.dispedia.de/o/makes',
-	    $newDecisionUri
-	);
-	
-	// new ProposalAllocation URI
-	$newProposalAllocationUri = 'http://patients.dispedia.de/i/ProposalAllocation/';
-	$newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
-	
-	// create ProposalAllocation instance
-	$this->addStmt (
-	    $newProposalAllocationUri,
-	    'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-	    'http://www.dispedia.de/o/ProposalAllocation'
-	);
-	
-	// connect Decision instance to ProposalAllocation instance
-	$this->addStmt (
-	    $newDecisionUri,
-	    'http://www.dispedia.de/o/isPending',
-	    $newProposalAllocationUri
-	);
-	
-	// connect ProposalAllocation instance to Proposal instance
-	$this->addStmt (
-	    $newProposalAllocationUri,
-	    'http://www.dispedia.de/o/allocatesProposal',
-	    $proposalUri
-	);
-	
-	// connect ProposalAllocation instance to Patient instance
-	$this->addStmt (
-	    $newProposalAllocationUri,
-	    'http://www.dispedia.de/o/allocatesPatient',
-	    $patientUri
-	);
+		// new Decision URI
+		//http://als.dispedia.info/architecture/c/20110827/
+		//http://patients.dispedia.de/i/Patient/20111115/ea1236/LarsEidam
+		$newDecisionUri = 'http://patients.dispedia.de/i/Decision/';
+		$newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+		
+		// create Decision instance
+		$this->addStmt (
+			$newDecisionUri,
+			'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+			'http://www.dispedia.de/o/Decision'
+		);
+		
+		// connect Patient instance to Decision instance
+		$this->addStmt (
+			$patientUri,
+			'http://www.dispedia.de/o/makes',
+			$newDecisionUri
+		);
+		
+		// new ProposalAllocation URI
+		$newProposalAllocationUri = 'http://patients.dispedia.de/i/ProposalAllocation/';
+		$newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+		
+		// create ProposalAllocation instance
+		$this->addStmt (
+			$newProposalAllocationUri,
+			'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+			'http://www.dispedia.de/o/ProposalAllocation'
+		);
+		
+		// connect Decision instance to ProposalAllocation instance
+		$this->addStmt (
+			$newDecisionUri,
+			'http://www.dispedia.de/o/isPending',
+			$newProposalAllocationUri
+		);
+		
+		// connect ProposalAllocation instance to Proposal instance
+		$this->addStmt (
+			$newProposalAllocationUri,
+			'http://www.dispedia.de/o/allocatesProposal',
+			$proposalUri
+		);
+		
+		// connect ProposalAllocation instance to Patient instance
+		$this->addStmt (
+			$newProposalAllocationUri,
+			'http://www.dispedia.de/o/allocatesPatient',
+			$patientUri
+		);
     }
     
     /**
@@ -204,45 +301,45 @@ class Proposal
      */
     private function removeProposals($patientUri, $proposalUris)
     {
-	$return_value = true;
-	// get all Decisions and ProposalAllocation instances
-	// get symptomSet instance
+		$return_value = true;
+		// get all Decisions and ProposalAllocation instances
+		// get symptomSet instance
         $decproalls = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
-	    SELECT ?decision ?proposalallocation ?proposalUri
-	    WHERE {
-		<' . $patientUri . '> dispediao:makes ?decision .
-		?decision dispediao:isPending ?proposalallocation .
-		?proposalallocation dispediao:allocatesProposal ?proposalUri .
-	    };'
+			SELECT ?decision ?proposalallocation ?proposalUri
+			WHERE {
+			<' . $patientUri . '> dispediao:makes ?decision .
+			?decision dispediao:isPending ?proposalallocation .
+			?proposalallocation dispediao:allocatesProposal ?proposalUri .
+			};'
         );
-	foreach ($decproalls as $decproall)
-	{
-	    $proposalAlreadyExists = false;
-	    foreach ($proposalUris as $key => $proposalUri)
-	    {
-		if (urlencode($decproall['proposalUri']) == $proposalUri)
+		foreach ($decproalls as $decproall)
 		{
-		    $proposalAlreadyExists = true;
-		    unset($proposalUris[$key]);
-		    break;
+			$proposalAlreadyExists = false;
+			foreach ($proposalUris as $key => $proposalUri)
+			{
+			if (urlencode($decproall['proposalUri']) == $proposalUri)
+			{
+				$proposalAlreadyExists = true;
+				unset($proposalUris[$key]);
+				break;
+			}
+			}
+			if (!$proposalAlreadyExists)
+			{
+			$removedStmt = 0;
+			$removedStmt += $this->removeStmt($decproall['decision'], null, null);
+			$removedStmt += $this->removeStmt(null, null, $decproall['decision']);
+			$removedStmt += $this->removeStmt($decproall['proposalallocation'], null, null);
+			
+			if (6 != $removedStmt)
+				$return_value = false;
+			}
 		}
-	    }
-	    if (!$proposalAlreadyExists)
-	    {
-		$removedStmt = 0;
-		$removedStmt += $this->removeStmt($decproall['decision'], null, null);
-		$removedStmt += $this->removeStmt(null, null, $decproall['decision']);
-		$removedStmt += $this->removeStmt($decproall['proposalallocation'], null, null);
-		
-		if (6 != $removedStmt)
-		    $return_value = false;
-	    }
-	}
-	if ($return_value)
-	    $return_value = $proposalUris;
-	return $return_value;
-    }
+		if ($return_value)
+			$return_value = $proposalUris;
+		return $return_value;
+		}
     
     /**
      * get all proposals with decision from a patient
@@ -275,52 +372,52 @@ class Proposal
      */
     public function saveDecision ($proposalAllocation, $decisionUri, $decision)
     {
-    $return_value = true;
-    $removedStmt = 0;
-    $addProperty = "";
-    $removePropertyOne = "";
-    $removePropertyTwo = "";
-    switch ($decision)
-    {
-        case "isPending":
-        $addProperty = "isPending";
-        $removePropertyOne = "accepts";
-        $removePropertyTwo = "denies";
-        break;
-        
-        case "accepts":
-        $addProperty = "accepts";
-        $removePropertyOne = "isPending";
-        $removePropertyTwo = "denies";
-        break;
-        
-        case "denies":
-        $addProperty = "denies";
-        $removePropertyOne = "isPending";
-        $removePropertyTwo = "accepts";
-        break;
-    }
-    
-    $removedStmt += $this->removeStmt(
-        $decisionUri,
-        "http://www.dispedia.de/o/" . $removePropertyOne,
-        $proposalAllocation
-    );
-    $removedStmt += $this->removeStmt(
-        $decisionUri,
-        "http://www.dispedia.de/o/" . $removePropertyTwo,
-        $proposalAllocation
-    );
-    $this->addStmt (
-        $decisionUri,
-        "http://www.dispedia.de/o/" . $addProperty,
-        $proposalAllocation
-    );
-    
-    if (1 != $removedStmt)
-        $return_value &= false;
-    
-    return $return_value;
+		$return_value = true;
+		$removedStmt = 0;
+		$addProperty = "";
+		$removePropertyOne = "";
+		$removePropertyTwo = "";
+		switch ($decision)
+		{
+			case "isPending":
+			$addProperty = "isPending";
+			$removePropertyOne = "accepts";
+			$removePropertyTwo = "denies";
+			break;
+			
+			case "accepts":
+			$addProperty = "accepts";
+			$removePropertyOne = "isPending";
+			$removePropertyTwo = "denies";
+			break;
+			
+			case "denies":
+			$addProperty = "denies";
+			$removePropertyOne = "isPending";
+			$removePropertyTwo = "accepts";
+			break;
+		}
+		
+		$removedStmt += $this->removeStmt(
+			$decisionUri,
+			"http://www.dispedia.de/o/" . $removePropertyOne,
+			$proposalAllocation
+		);
+		$removedStmt += $this->removeStmt(
+			$decisionUri,
+			"http://www.dispedia.de/o/" . $removePropertyTwo,
+			$proposalAllocation
+		);
+		$this->addStmt (
+			$decisionUri,
+			"http://www.dispedia.de/o/" . $addProperty,
+			$proposalAllocation
+		);
+		
+		if (1 != $removedStmt)
+			$return_value &= false;
+		
+		return $return_value;
     }
     
     /**

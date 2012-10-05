@@ -1,0 +1,30 @@
+<?php if (isset($this->proposalUri)) {
+    $proposalUri = $this->proposalUri;
+    $proposal = $this->proposal;
+?>
+    <div id="<?php echo md5($proposalUri) ?>" class="divProposalComponents">
+        <form>
+            <div class="proposalLabel">
+                <span><?php echo $proposal['label'] ?></span>
+            </div>
+            <ol>
+                <?php foreach ($proposal['components']['data'] as $proposalComponentUri => $proposalDescriptions) { ?>
+                    <div class="divProposalComponent"><li><?php echo $proposal['components']['labels'][$proposalComponentUri] ?></li></div>
+                    
+                    <?php foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription) { ?>
+                        <div class="divProposalDescription"><?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?></div>
+                        <div class="patientQuestion">
+                            <div class="divProposalDescriptionRadiobuttonNo"><input type="radio" name="<?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?>"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? '' : ' checked="checked"') ?>>Nein</div>
+                            <div class="divProposalDescriptionRadiobuttonYes"><input type="radio" name="<?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?>"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? ' checked="checked"' : '') ?>>Ja</div>
+                            <div class="text">Für Patienten sichtbar?</div>
+                        </div>
+                        <?php if(isset($proposalDescription['content'])) {?>
+                            <div class="divProposalDescriptionContent"><?php echo $proposalDescription['content'] ?></div>
+                        <?php } ?>
+                        <div class="clear"></div>
+                    <?php } ?>
+                <?php } ?>
+            </ol>
+        </form>
+    </div>
+<?php } ?>

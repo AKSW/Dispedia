@@ -123,7 +123,7 @@ class PataproController extends OntoWiki_Controller_Component
             foreach ($allProposals as $proposalUri => $proposal)
             {
                 if (isset($patientProposals[$proposalUri]))
-                $allProposals[$proposalUri] = $patientProposals[$proposalUri];
+                    $allProposals[$proposalUri] = $patientProposals[$proposalUri];
             }
 
 
@@ -139,6 +139,12 @@ class PataproController extends OntoWiki_Controller_Component
                 $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
             }
 
+            foreach ($allProposals as $proposalUri => $proposal)
+            {
+                $allProposals[$proposalUri]['components'] = $this->_proposal->getProposalData($proposalUri);
+            }
+            
+            $this->view->patientUri = $currentPatient;
             $this->view->proposals = $allProposals;
         }
         else
@@ -148,6 +154,37 @@ class PataproController extends OntoWiki_Controller_Component
         }
     }
 
+    /**
+     * get proposaldata for ajax
+     */
+    public function proposaldataAction()
+    {
+        $proposalUri = urldecode($this->getParam ('proposalUri'));
+        $patientUri = urldecode($this->getParam ('patientUri'));
+        if (isset($proposalUri) && "" != $proposalUri && isset($patientUri) && "" != $patientUri)
+        {
+            $this->view->patientUri = $patientUri;
+            $this->view->proposalUri = $proposalUri;
+            
+            $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
+            
+            $this->_titleHelper->reset();
+            $this->_titleHelper->addResource ($proposalUri);
+            $proposal = array();
+            $proposal['label'] = $this->_titleHelper->getTitle($proposalUri, $this->_lang);
+            $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
+            $this->view->proposal = $proposal;
+        }
+        else
+        {
+            echo "noproposaluri";
+        }
+            
+    }
+    /**
+     * get a special healthstate
+     */
+    
     public function healthstateAction($healthstateUri = null)
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/healthstate.css');
@@ -168,7 +205,7 @@ class PataproController extends OntoWiki_Controller_Component
 
         return $patientOptions;
     }
-
+    
     public function patientAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');

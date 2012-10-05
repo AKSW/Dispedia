@@ -10,10 +10,12 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 ?>
-
+<script type="text/javascript">
+    var url = '<?php echo $this->url; ?>';
+</script>
 <!-- set the title of the action -->
 <?php $this->placeholder('main.window.title')->set($this->_translate->_('patient proposal allocation')); ?>
-
+<div id="box"></div>
 <div class="firstHeadline"><?php echo $this->_translate->_('patient proposal allocation'); ?></div>
 <div class="secondHeadline"><?php echo $this->_translate->_('allocate proposals to a patient'); ?></div>
 <?php if ("" != $this->currentPatient) { ?>
@@ -57,6 +59,9 @@
                                 </td>
                                 <td id="proposalName">
                                     <span<?php echo (isset ($proposal['correspondence']) && 0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['label']; ?></span>
+                                    <a href="javascript:loadProposalBox('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>')">
+                                        <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-edit.png">
+                                    </a>
                                 </td>
                                 <td id="proposalStatus">
                                     <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
@@ -70,7 +75,6 @@
                 </td>
             </tr>
         </table>
-        
         <input type="hidden" name="do" value="save"/>
     </form>
 <?php } ?>
