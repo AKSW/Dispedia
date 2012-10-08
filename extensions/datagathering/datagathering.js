@@ -52,9 +52,19 @@ $(document).ready(function()
         }
         var url = urlBase + 'datagathering/import/';
         $(this).replaceWith('<span class="is-processing" style="min-height: 16px; display: block"></span>');
-        $.getJSON(url, {uri: uriValue, wrapper: wrapperName}, function(data) {
-            $('.contextmenu-enhanced .contextmenu').fadeOut(effectTime, function(){ $(this).remove(); })
-            window.location = document.URL;
+
+        var request = $.ajax({
+           url: url,
+           data: { uri: uriValue, wrapper: wrapperName },
+           success: function(data, textStatus, jqXHR) {
+               $('.contextmenu-enhanced .contextmenu').fadeOut(effectTime, function(){ $(this).remove(); });
+               window.location = document.URL;
+           },
+           error: function(jqXHR, textStatus, errorThrown) {
+               $('.contextmenu-enhanced .contextmenu').fadeOut(effectTime, function(){ $(this).remove(); });
+               window.location = document.URL;
+           },
+           timeout: 30000
         });
 
         return false;
@@ -146,20 +156,20 @@ function showLocationBar()
     $('a.location_bar').removeClass('show');
     $('#location_bar_container').show();
 
-    $('#location_bar_input')._autocomplete(function(term, cb) { locationBarUriSearch(term, cb); }, {
-        minChars: 3,
-        delay: 1000,
-        max: 100,
-        formatItem: function(data, i, n, term) {
-            return '<div style="overflow:hidden">\
-                    <span style="white-space: nowrap;font-size: 0.8em">' + data[2] + '</span>\
-                    <br />\
-                    <span style="white-space: nowrap;font-weight: bold">' + data[0] + '</span>\
-                    <br />\
-                    <span style="white-space: nowrap;font-size: 0.8em">' + data[1] + '</span>\
-                    </div>';
-        }
-    });
+    // $('#location_bar_input')._autocomplete(function(term, cb) { locationBarUriSearch(term, cb); }, {
+    //         minChars: 3,
+    //         delay: 1000,
+    //         max: 100,
+    //         formatItem: function(data, i, n, term) {
+    //             return '<div style="overflow:hidden">\
+    //                     <span style="white-space: nowrap;font-size: 0.8em">' + data[2] + '</span>\
+    //                     <br />\
+    //                     <span style="white-space: nowrap;font-weight: bold">' + data[0] + '</span>\
+    //                     <br />\
+    //                     <span style="white-space: nowrap;font-size: 0.8em">' + data[1] + '</span>\
+    //                     </div>';
+    //         }
+    //     });
 
     $('#location_bar_input').result(function(e, data, formated) {
         $(this).attr('value', data[1]);
