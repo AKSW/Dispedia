@@ -51,7 +51,7 @@
                         <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
                              <tr>
                                 <td id="proposalCheck">
-                                    <input type="checkbox"
+                                    <input id="input<?php echo md5($proposalUri); ?>" type="checkbox"
                                         <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
                                         name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
                                         <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); ?>
@@ -59,7 +59,7 @@
                                 </td>
                                 <td id="proposalName">
                                     <span<?php echo (isset ($proposal['correspondence']) && 0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['label']; ?></span>
-                                    <a href="javascript:loadProposalBox('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>')">
+                                    <a href="javascript:loadProposalBox('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>','<?php echo md5($proposalUri) ?>','<?php echo (isset($proposal['status']) ? 'edit' : 'new'); ?>')">
                                         <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-edit.png">
                                     </a>
                                 </td>

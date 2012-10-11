@@ -48,7 +48,7 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
 
         $this->_patient = new Patient($this->_lang);
-        $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper);
+        $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper, $this->_patient);
 
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
@@ -161,19 +161,77 @@ class PataproController extends OntoWiki_Controller_Component
     {
         $proposalUri = urldecode($this->getParam ('proposalUri'));
         $patientUri = urldecode($this->getParam ('patientUri'));
+        $status = urldecode($this->getParam ('status'));
         if (isset($proposalUri) && "" != $proposalUri && isset($patientUri) && "" != $patientUri)
         {
-            $this->view->patientUri = $patientUri;
-            $this->view->proposalUri = $proposalUri;
+            if ("save" != $this->getParam ('do'))
+            {
+                //add buttons to toolbar
+                $toolbar = $this->_owApp->toolbar;
+                $toolbar->appendButton(OntoWiki_Toolbar :: SAVE, array(
+                    'url'  => 'javascript:submitProposalBox();'
+                ));
+                $toolbar->appendButton(OntoWiki_Toolbar :: CANCEL, array(
+                    'url'  => 'javascript:closeProposalBox();'
+                ));
+                $this->view->boxtoolbar = $toolbar->__toString();
+                
+                $this->view->patientUri = $patientUri;
+                $this->view->proposalUri = $proposalUri;
+                
+                if ("new" == $status)
+                    $this->view->proposalDescriptions = $this->_proposal->getProposalDescriptionByType($patientUri, $proposalUri);
+                else
+                    $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
+                
+                $this->_titleHelper->reset();
+                $this->_titleHelper->addResource ($proposalUri);
+                $proposal = array();
+                $proposal['uri'] = $proposalUri;
+                $proposal['label'] = $this->_titleHelper->getTitle($proposalUri, $this->_lang);
+                $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
+                $this->view->proposal = $proposal;
+            }
+            else
+            {
+                $jsonResponse = "";
+                $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
+                $proposalDescriptionReceivedStatusOld = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
+                foreach ($proposal['components']['data'] as $proposalDescriptions)
+                {
+                    foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
+                    {
+                        if ("yes" == $this->getParam (md5($proposalDescriptionUri)))
+                        {
+                            if (!isset($proposalDescriptionReceivedStatusOld['received'][$proposalDescriptionUri]))
+                            {
+                                $healthstates = $this->_patient->getAllHealthstates($patientUri);
+                                $this->_proposal->addStmt(
+                                    key($healthstates),
+                                    "http://www.dispedia.de/o/receivedProposalDescription",
+                                    $proposalDescriptionUri
+                                );
+                            }
+                        }
+                        else
+                        {
+                            if (isset($proposalDescriptionReceivedStatusOld['received'][$proposalDescriptionUri]))
+                            {
+                                $healthstates = $this->_patient->getAllHealthstates($patientUri);
+                                foreach ($healthstates as $healthstatesUri => $healthstatesTimestamp)
+                                $this->_proposal->removeStmt(
+                                    $healthstatesUri,
+                                    "http://www.dispedia.de/o/receivedProposalDescription",
+                                    $proposalDescriptionUri
+                                );
+                                
+                            }
+                        }
+                    }
+                }
             
-            $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
-            
-            $this->_titleHelper->reset();
-            $this->_titleHelper->addResource ($proposalUri);
-            $proposal = array();
-            $proposal['label'] = $this->_titleHelper->getTitle($proposalUri, $this->_lang);
-            $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
-            $this->view->proposal = $proposal;
+                echo json_encode($jsonResponse);
+            }
         }
         else
         {

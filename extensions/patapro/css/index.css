@@ -156,3 +156,7 @@ table#proposal th{
 .simplemodal-data {
   minWidth:750px;
 }
+
+.simplemodal-data > div {
+  padding:20px;
+}

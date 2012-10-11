@@ -18,6 +18,27 @@ class Patient
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
+    public function getPatientType($patientUri)
+    {
+        $patientTypeReturnValue = "";
+        $patientTypeResult = $this->_store->sparqlQuery (
+            'SELECT ?patientType
+            WHERE {
+                <' . $patientUri . '> <ttp://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?patientType .                                                  
+            };'
+        );
+        
+        //TODO: make a better determination of the patienttype
+        foreach ($patientTypeResult as $patientType)
+        {
+            if ("http://www.dispedia.de/o/Patient" != $patientType && "http://www.w3.org/2002/07/owl#NamedIndividual" != $patientType)
+            {
+                $patientTypeReturnValue = $patientType;
+            }
+        }
+        return $patientTypeReturnValue;
+    }
+    
     public function getAllHealthstates($patientUri)
     {
         $healthstates = array();
