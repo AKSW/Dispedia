@@ -5,23 +5,19 @@
 @prefix extension: <http://ns.ontowiki.net/Extensions/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix event: <http://ns.ontowiki.net/SysOnt/Events/> .
-@prefix : <http://ns.ontowiki.net/Extensions/page/> .
+@prefix : <http://ns.ontowiki.net/Extensions/patapro/> .
 
 <> foaf:primaryTopic :this .
 :this a doap:Project ;
-  doap:name "page" ;
-  owconfig:privateNamespace <http://ns.ontowiki.net/Extensions/page/> ;
-  owconfig:templates "." ;
+  doap:name "patapro" ;
+  owconfig:privateNamespace <http://ns.ontowiki.net/Extensions/patapro/> ;
+  owconfig:templates "templates" ;
+  owconfig:languages "languages" ;
   owconfig:enabled "true"^^xsd:boolean ;
-  rdfs:label "Pages" ;
-  doap:description "redirect controller actions to template calls. a minimal filesystem-based CMS. see the 'site' extension for a more sophisticated variant" ;
-  owconfig:authorLabel "AKSW" ;
-  doap:maintainer <http://aksw.org> ;
-  owconfig:config [
-      a owconfig:Config;
-      owconfig:id "titles";
-      :example "Example Page"
-] ;
+  rdfs:label "Patient Proposal Allocation" ;
+  doap:description "Administrate your patient proposal allocations." ;
+  owconfig:authorLabel "Dispedia + Lars Eidam + Konrad Abicht" ;
+  doap:maintainer <http://www.dispedia.de> ;
   doap:release :v1-0 .
 :v1-0 a doap:Version ;
   doap:revision "1.0" .
