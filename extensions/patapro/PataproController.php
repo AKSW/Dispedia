@@ -285,23 +285,64 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
     
-        // get ontologies config object
-        $ontologies = $this->_config->ontologies->toArray();
-        
-        $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
-        
         $this->view->url = $this->_config->urlBase;
+        
+        $this->view->models = $this->_ontologies;
+    }
+    
+    public function changemodelAction()
+    {
+        $jsonReturnValue = "";
+        
+        // disable auto-rendering
+        $this->_helper->viewRenderer->setNoRender();
 
-        foreach ($ontologies['models'] as $modelName => $model) {
-            foreach ($model['files'] as $fileNumber => $filename) {
-                $file = array(
-                    'name' => $filename,
-                    'content' => file_get_contents($ontologiePath . $filename)
-                    );
-                $ontologies['models'][$modelName]['files'][$fileNumber] = $file;
+        // disable layout for Ajax requests
+        $this->_helper->layout()->disableLayout();
+        
+        $modelName = urldecode($this->getParam ('modelName'));
+        $action = urldecode($this->getParam ('do'));
+        
+        if ("" != $modelName)
+        {
+            $jsonReturnValue['modelName'] = $modelName;
+            $jsonReturnValue['action'] = $action;
+            $jsonReturnValue['modelUri'] = $this->_ontologies[$modelName]['namespace'];
+            $jsonReturnValue['files'] = array();
+            $jsonReturnValue['log'] = array();
+            if ("remove" == $action)
+            {
+                $this->_store->deleteModel($this->_ontologies[$modelName]['namespace']);
+                $jsonReturnValue['log'][] = "model removed";
+            }
+            if ("add" == $action)
+            {
+                // get ontologies config object
+                $ontologies = $this->_config->ontologies->toArray();
+                $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
+                
+                $locator = Erfurt_Syntax_RdfParser::LOCATOR_FILE;
+                $filetype = 'rdfxml';
+                $newType = Erfurt_Store::MODEL_TYPE_OWL;
+                
+                // create model
+                $model = $this->_store->getNewModel($this->_ontologies[$modelName]['namespace'], $this->_ontologies[$modelName]['namespace'], $newType);
+                $jsonReturnValue['log'][] = "model added";
+                // connect it with system model
+                $this->_store->addStatement("http://localhost/OntoWiki/Config/", $this->_ontologies[$modelName]['namespace'], "http://ns.ontowiki.net/SysOnt/hiddenImports", array( "value" => "http://ns.ontowiki.net/SysBase/", "type" => "uri"));
+                foreach ($this->_ontologies[$modelName]['files'] as $filename)
+                {
+                    // import data to model
+                    $this->_store->importRdf($this->_ontologies[$modelName]['namespace'], $ontologiePath . $filename, $filetype, $locator);
+                    $jsonReturnValue['files'][] = $filename;
+                    $jsonReturnValue['log'][] = "file " . $filename. " added to model " . $modelName;
+                }
             }
         }
-        $this->view->models = $ontologies['models'];
+        else
+            $jsonReturnValue['error'] = "no model name";
+        
+        echo json_encode($jsonReturnValue);
     }
 }
 
