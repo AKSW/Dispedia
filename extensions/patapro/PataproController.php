@@ -140,11 +140,19 @@ class PataproController extends OntoWiki_Controller_Component
                     $allProposals[$proposalUri] = $patientProposals[$proposalUri];
             }
 
-
-            $healthstateUris = array_keys($this->view->healthstates);
-
-            //get the options from the last healthstate
-            $patientOptions = $this->healthstateAction(array_shift($healthstateUris));
+            
+            $lastAlsFrsHealthstateUri = '';
+        
+            //get the options from the last alsfrs healthstate (alsfrs because only for this classification exist a compare algorithm)
+            foreach ($this->view->healthstates as $healthstateUri => $healthstate)
+            {
+                if ('http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState' == $healthstate['type'])
+                {
+                    $lastAlsFrsHealthstateUri = $healthstateUri;
+                    break;
+                }
+            }
+            $patientOptions = $this->healthstateAction($lastAlsFrsHealthstateUri);
 
             // only if patientOptions not empty
             if (0 < count($patientOptions))

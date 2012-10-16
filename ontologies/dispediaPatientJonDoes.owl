@@ -90,7 +90,7 @@
 
     <owl:NamedIndividual rdf:about="&patients;HSMaxMustermann20100213154641">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
-        <dispediao:hasDate rdf:datatype="&xsd;dateTime">2010-02-13 15:46:41</dispediao:hasDate>
+        <dispediao:hasDate rdf:datatype="&xsd;dateTime">2010-05-13 15:46:41</dispediao:hasDate>
         <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20100213154641"/>
         <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20100213154641"/>
         <dispediao:isPending rdf:resource="&ekbi;UseWalkingFrame"/>
