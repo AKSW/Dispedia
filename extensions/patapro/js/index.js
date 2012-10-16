@@ -25,6 +25,8 @@ function getHealthstate(selectHealthstate)
         {
             $(this).empty();
             $(this).append(res);
+            $('#spanHealthStateTypeLabel').empty();
+            $('#spanHealthStateTypeLabel').html(jQuery.parseJSON(healthstates)[uri]['typeLabel']);
         },
         
         error: function (jqXHR, textStatus, errorThrown)

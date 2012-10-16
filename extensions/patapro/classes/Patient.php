@@ -11,10 +11,12 @@
 class Patient
 {
     private $_lang;
+    private $_titleHelper;
     
-    public function __construct ($lang)
+    public function __construct ($lang, $titleHelper)
     {
         $this->_lang = $lang;
+        $this->_titleHelper = $titleHelper;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
     }
     
@@ -43,18 +45,31 @@ class Patient
     {
         $healthstates = array();
         $healthstatesResult = $this->_store->sparqlQuery (
-            'SELECT ?uri ?timestamp
+            'SELECT ?uri ?timestamp ?type
             WHERE {
                 <' . $patientUri . '> <http://www.dispedia.de/o/hasHealthState> ?uri .
-                ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState>.
-                ?uri <http://www.dispedia.de/o/hasDate> ?timestamp .                                                     
+                ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type.
+                ?uri <http://www.dispedia.de/o/hasDate> ?timestamp .
+                FILTER !REGEX(str(?type), "NamedIndividual")
             }
             ORDER BY DESC(?timestamp);'
         );
+        // Filter Statement for ALSFRS
+        //?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState>.
+        
+        $this->_titleHelper->reset();
+        
+        $this->_titleHelper->addResources($healthstatesResult, 'uri');
+        $this->_titleHelper->addResources($healthstatesResult, 'type');
         
         foreach ($healthstatesResult as $healthstate)
         {
-            $healthstates[$healthstate['uri']] = $healthstate['timestamp'];
+            $healthstates[$healthstate['uri']] = array(
+                'label' => $this->_titleHelper->getTitle($healthstate['uri'], $this->_lang),
+                'type' => $healthstate['type'],
+                'typeLabel' => $this->_titleHelper->getTitle($healthstate['type'], $this->_lang),
+                'timestamp' => $healthstate['timestamp']
+            );
         }
         
         return $healthstates;

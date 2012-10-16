@@ -15,10 +15,12 @@ class Proposal
     private $_store;
     private $_titleHelper;
 	private $_patientHelper;
+	private $_translate;
     
-    public function __construct ($patientModel, $lang, $titleHelper, $patientHelper)
+    public function __construct ($patientModel, $lang, $titleHelper, $patientHelper, $translate)
     {
         $this->_lang = $lang;
+        $this->_translate = $translate;
 		$this->_patientModel = $patientModel;
 		$this->_titleHelper = $titleHelper;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
@@ -56,7 +58,7 @@ class Proposal
     }
 	
 	/**
-	 * function determine which proposal description are preselected fpr a patient
+	 * function determine which proposal description are preselected for a patient
 	 */
 	public function getProposalDescriptionByType($patientUri, $proposalUri)
 	{
@@ -261,34 +263,38 @@ class Proposal
      * first version delete and add all proposalallocations through a update
      * TODO: better version for updateing proposalallocations
      */
-    public function saveProposals ($patientUri, $proposalUris) 
+    public function saveProposals ($patientUri, $proposalUris, $oldProposalUris) 
     {
-		$return_value = true;
-		if (!isset($proposalUris))
-			$proposalUris = array();
-		$proposalUris = $this->removeProposals($patientUri, $proposalUris);
-		if (false == $proposalUris)
-			$return_value = false;
-		if ($return_value && 0 < count($proposalUris))
-			foreach ($proposalUris as $proposalUri) {
-				$this->addProposal($patientUri, urldecode($proposalUri));
-			}
-		return $return_value;
+		$messages = array();
+		
+		$deleteProposals = array_diff($oldProposalUris, $proposalUris);
+		$messages = array_merge($messages, $this->removeProposals($patientUri, $deleteProposals));
+
+		$addProposals = array_diff($proposalUris, $oldProposalUris);
+		$messages = array_merge($messages, $this->addProposals($patientUri, $addProposals));
+		
+		return $messages;
     }
 
     /**
      * add a new patient proposal allocation to the knowlegebase with all
      * resources, they are needed
      */
-    private function addProposal ( $patientUri, $proposalUri )
+    private function addProposals ( $patientUri, $proposalUris )
     {
+		$messages = array();
 		$healthstates = $this->_patientHelper->getAllHealthstates($patientUri);
-		// connect Decision instance to ProposalAllocation instance
-		$this->addStmt (
-			key($healthstates),
-			'http://www.dispedia.de/o/isPending',
-			$proposalUri
-		);
+		
+		foreach ($proposalUris as $proposalUri)
+		{
+			$this->addStmt (
+				key($healthstates),
+				'http://www.dispedia.de/o/isPending',
+				$proposalUri
+			);
+			$messages[] = new OntoWiki_Message($proposalUri . " " . $this->_translate->_('added'), OntoWiki_Message::SUCCESS);			
+		}	
+		return $messages;
     }
     
     /**
@@ -296,17 +302,36 @@ class Proposal
      */
     private function removeProposals($patientUri, $proposalUris)
     {
-		$return_value = 0;
+		$messages = array();
 		$healthstates = $this->_patientHelper->getAllHealthstates($patientUri);
 		foreach ($proposalUris as $proposalUri)
+		{
+			$proposalData = $this->getProposalData($proposalUri);
 			foreach ($healthstates as $healthstatesUri => $healthstatesTimestamp)
-				$return_value += $this->removeStmt(
+			{
+				// delete proposal in healthstates
+				$deletedStatements = $this->removeStmt(
 					$healthstatesUri,
 					'http://www.dispedia.de/o/isPending',
 					$proposalUri
 				);
+				
+				// delete all received proposal descriptions
+				foreach ($proposalData as $proposalComponent => $proposalDescriptions)
+					foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
+						$this->removeStmt(
+							$healthstatesUri,
+							"http://www.dispedia.de/o/receivedProposalDescription",
+							$proposalDescriptionUri
+						);
+				
+				// if deleted show message
+				if (0 < $deletedStatements)
+					$messages[] = new OntoWiki_Message($proposalUri . " " . $this->_translate->_('deleted'), OntoWiki_Message::SUCCESS);
+			}
+		}
 		
-		return $return_value;
+		return $messages;
 	}
     
     /**
