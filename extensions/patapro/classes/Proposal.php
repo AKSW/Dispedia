@@ -238,15 +238,15 @@ class Proposal
 			$proposalOptions = $this->getSettings($proposalUri);
 			if (0 < count($proposalOptions))
 			{
-			foreach ($proposalOptions as $proposalOptionUri)
-			{
-				if (true == in_array($proposalOptionUri, $patientOptions))
-				$correspondence++;
-			}
-			$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
+				foreach ($proposalOptions as $proposalOptionUri)
+				{
+					if (true == in_array($proposalOptionUri, $patientOptions))
+					$correspondence++;
+				}
+				$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
 			}
 			else
-			$proposal['correspondence'] = 0;
+				$proposal['correspondence'] = 0;
 			$sortArray[$proposalUri] = $proposal['correspondence'];
 			$correspondenceProposals[$proposalUri] = $proposal;
 		}
@@ -316,14 +316,14 @@ class Proposal
 					$proposalUri
 				);
 				
-				// delete all received proposal descriptions
-				foreach ($proposalData as $proposalComponent => $proposalDescriptions)
-					foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
-						$this->removeStmt(
-							$healthstatesUri,
-							"http://www.dispedia.de/o/receivedProposalDescription",
-							$proposalDescriptionUri
-						);
+				//// delete all received proposal descriptions
+				//foreach ($proposalData as $proposalComponent => $proposalDescriptions)
+				//	foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
+				//		$this->removeStmt(
+				//			$healthstatesUri,
+				//			"http://www.dispedia.de/o/receivedProposalDescription",
+				//			$proposalDescriptionUri
+				//		);
 				
 				// if deleted show message
 				if (0 < $deletedStatements)

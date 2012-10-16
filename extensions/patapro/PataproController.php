@@ -231,7 +231,7 @@ class PataproController extends OntoWiki_Controller_Component
                             if (isset($proposalDescriptionReceivedStatusOld['received'][$proposalDescriptionUri]))
                             {
                                 $healthstates = $this->_patient->getAllHealthstates($patientUri);
-                                foreach ($healthstates as $healthstatesUri => $healthstatesTimestamp)
+                                foreach ($healthstates as $healthstatesUri => $healthstate)
                                     $this->_proposal->removeStmt(
                                         $healthstatesUri,
                                         "http://www.dispedia.de/o/receivedProposalDescription",
