@@ -65,22 +65,12 @@ class PataproController extends OntoWiki_Controller_Component
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
 
-        $this->_patient = new Patient($this->_lang);
-        $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper);
+        $this->_patient = new Patient($this->_lang, $this->_titleHelper);
+        $this->_proposal = new Proposal($this->_patientModel, $this->_lang, $this->_titleHelper, $this->_patient, $this->_translate);
 
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
-    
-    /**
-     * show messages after every action
-     */
-    public function postDispatch()
-    {
-        foreach ($this->_messages as $message) {
-            $this->_owApp->appendMessage($message);
-        }
-    }
-    
+   
     /**
       * get the classes of an resource
       */
@@ -132,14 +122,22 @@ class PataproController extends OntoWiki_Controller_Component
                 'name' => 'Save'
             ));
             $this->view->placeholder('main.window.toolbar')->set($toolbar);
-
-            if ( 'save' == $this->getParam ('do') )
+            
+            if ( 'save' == $this->getParam ('do', '') )
             {
-                //TODO: auf Erfolg prüfen
-                $this->_proposal->saveProposals (
-                    $currentPatient,
-                    $this->getParam ('proposals')
+                $newProposals = $this->getParam ('proposals', array());
+                foreach ($newProposals as $proposalNumber => $newProposal)
+                {
+                    $newProposals[$proposalNumber] = urldecode($newProposal);
+                }
+                $this->addMessages(
+                        $this->_proposal->saveProposals (
+                        $currentPatient,
+                        $newProposals,
+                        json_decode(urldecode($this->getParam ('oldProposals', array())))
+                    )
                 );
+                $this->addMessages(new OntoWiki_Message($this->_translate->_('patient proposal allocation') . " " . $this->_translate->_('saved'), OntoWiki_Message::SUCCESS));
             }
 
             // get a list of all healthstates
@@ -154,11 +152,19 @@ class PataproController extends OntoWiki_Controller_Component
                     $allProposals[$proposalUri] = $patientProposals[$proposalUri];
             }
 
-
-            $healthstateUris = array_keys($this->view->healthstates);
-
-            //get the options from the last healthstate
-            $patientOptions = $this->healthstateAction(array_shift($healthstateUris));
+            
+            $lastAlsFrsHealthstateUri = '';
+        
+            //get the options from the last alsfrs healthstate (alsfrs because only for this classification exist a compare algorithm)
+            foreach ($this->view->healthstates as $healthstateUri => $healthstate)
+            {
+                if ('http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState' == $healthstate['type'])
+                {
+                    $lastAlsFrsHealthstateUri = $healthstateUri;
+                    break;
+                }
+            }
+            $patientOptions = $this->healthstateAction($lastAlsFrsHealthstateUri);
 
             // only if patientOptions not empty
             if (0 < count($patientOptions))
@@ -177,8 +183,7 @@ class PataproController extends OntoWiki_Controller_Component
         }
         else
         {
-            $message = new OntoWiki_Message($this->_translate->_('nopatientselected'), OntoWiki_Message::WARNING);
-            $this->_owApp->appendMessage($message);
+            $this->addMessages(new OntoWiki_Message($this->_translate->_('nopatientselected'), OntoWiki_Message::WARNING));
         }
     }
 
@@ -189,19 +194,77 @@ class PataproController extends OntoWiki_Controller_Component
     {
         $proposalUri = urldecode($this->getParam ('proposalUri'));
         $patientUri = urldecode($this->getParam ('patientUri'));
+        $status = urldecode($this->getParam ('status'));
         if (isset($proposalUri) && "" != $proposalUri && isset($patientUri) && "" != $patientUri)
         {
-            $this->view->patientUri = $patientUri;
-            $this->view->proposalUri = $proposalUri;
+            if ("save" != $this->getParam ('do'))
+            {
+                //add buttons to toolbar
+                $toolbar = $this->_owApp->toolbar;
+                $toolbar->appendButton(OntoWiki_Toolbar :: SAVE, array(
+                    'url'  => 'javascript:submitProposalBox();'
+                ));
+                $toolbar->appendButton(OntoWiki_Toolbar :: CANCEL, array(
+                    'url'  => 'javascript:closeProposalBox();'
+                ));
+                $this->view->boxtoolbar = $toolbar->__toString();
+                
+                $this->view->patientUri = $patientUri;
+                $this->view->proposalUri = $proposalUri;
+                
+                if ("new" == $status)
+                    $this->view->proposalDescriptions = $this->_proposal->getProposalDescriptionByType($patientUri, $proposalUri);
+                else
+                    $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
+                
+                $this->_titleHelper->reset();
+                $this->_titleHelper->addResource ($proposalUri);
+                $proposal = array();
+                $proposal['uri'] = $proposalUri;
+                $proposal['label'] = $this->_titleHelper->getTitle($proposalUri, $this->_lang);
+                $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
+                $this->view->proposal = $proposal;
+            }
+            else
+            {
+                $jsonResponse = "";
+                $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
+                $proposalDescriptionReceivedStatusOld = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
+                foreach ($proposal['components']['data'] as $proposalDescriptions)
+                {
+                    foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
+                    {
+                        if ("yes" == $this->getParam (md5($proposalDescriptionUri)))
+                        {
+                            if (!isset($proposalDescriptionReceivedStatusOld['received'][$proposalDescriptionUri]))
+                            {
+                                $healthstates = $this->_patient->getAllHealthstates($patientUri);
+                                $this->_proposal->addStmt(
+                                    key($healthstates),
+                                    "http://www.dispedia.de/o/receivedProposalDescription",
+                                    $proposalDescriptionUri
+                                );
+                            }
+                        }
+                        else
+                        {
+                            if (isset($proposalDescriptionReceivedStatusOld['received'][$proposalDescriptionUri]))
+                            {
+                                $healthstates = $this->_patient->getAllHealthstates($patientUri);
+                                foreach ($healthstates as $healthstatesUri => $healthstate)
+                                    $this->_proposal->removeStmt(
+                                        $healthstatesUri,
+                                        "http://www.dispedia.de/o/receivedProposalDescription",
+                                        $proposalDescriptionUri
+                                );
+                                
+                            }
+                        }
+                    }
+                }
             
-            $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
-            
-            $this->_titleHelper->reset();
-            $this->_titleHelper->addResource ($proposalUri);
-            $proposal = array();
-            $proposal['label'] = $this->_titleHelper->getTitle($proposalUri, $this->_lang);
-            $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
-            $this->view->proposal = $proposal;
+                echo json_encode($jsonResponse);
+            }
         }
         else
         {
@@ -227,8 +290,7 @@ class PataproController extends OntoWiki_Controller_Component
         else
         {
             $patientOptions = array();
-            $message = new OntoWiki_Message($this->_translate->_('noHealthstateFound'), OntoWiki_Message::ERROR);
-            $this->_owApp->appendMessage($message);
+            $this->addMessages(new OntoWiki_Message($this->_translate->_('noHealthstateFound'), OntoWiki_Message::ERROR));
         }
 
         return $patientOptions;
@@ -343,6 +405,27 @@ class PataproController extends OntoWiki_Controller_Component
             $jsonReturnValue['error'] = "no model name";
         
         echo json_encode($jsonReturnValue);
+    }
+    
+    /**
+     * add status messages to global array
+     */
+    public function addMessages($messages)
+    {
+        if (is_array($messages))
+            $this->_messages = array_merge($this->_messages, $messages);
+        else
+            $this->_messages[] = $messages;
+    }
+    
+    /**
+     * show messages after every action
+     */
+    public function postDispatch()
+    {
+        foreach ($this->_messages as $message) {
+            $this->_owApp->appendMessage($message);
+        }
     }
 }
 

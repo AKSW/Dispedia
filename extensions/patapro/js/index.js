@@ -25,6 +25,8 @@ function getHealthstate(selectHealthstate)
         {
             $(this).empty();
             $(this).append(res);
+            $('#spanHealthStateTypeLabel').empty();
+            $('#spanHealthStateTypeLabel').html(jQuery.parseJSON(healthstates)[uri]['typeLabel']);
         },
         
         error: function (jqXHR, textStatus, errorThrown)
@@ -36,8 +38,13 @@ function getHealthstate(selectHealthstate)
     });
 }
 
-function loadProposalBox(proposalUri, patientUri)
+function loadProposalBox(proposalUri, patientUri, proposalMd5, status)
 {
+    if ('new' == status)
+    {
+        $('#input' + proposalMd5).attr('checked', true);
+    }
+    
     $.ajax({
         async:false,
         dataType: "html",
@@ -45,6 +52,7 @@ function loadProposalBox(proposalUri, patientUri)
         data: {
             proposalUri : proposalUri,
             patientUri : patientUri,
+            status : status
         },
         context: $('#box'),
         url: url + "patapro/proposaldata",
@@ -54,13 +62,11 @@ function loadProposalBox(proposalUri, patientUri)
             if ('noproposaluri' == res)
             {
                 alert ('No Proposal Uri found');
-                returnValue = -1;
             }
             else
             {
                 $(this).append(res);
                 showProposalBox();
-                returnValue = 1;
             }
         },
         
@@ -69,7 +75,6 @@ function loadProposalBox(proposalUri, patientUri)
             console.log (jqXHR);
             console.log (textStatus);
             console.log (errorThrown);
-            returnValue = -1;
         }
     });
 }
@@ -80,7 +85,54 @@ function showProposalBox()
     $('#box').modal({
         minWidth:750,
         persist : true,
-        appendTo : '.content',
-        animation : 'fade'
+        appendTo : '.content'
     });
+}
+
+/**
+ * close proposal box
+ */
+function submitProposalBox() 
+{
+    // send formulas to submit action on server
+    $.ajax({
+        async:true,
+        data: $('#descriptionReceivedStatus').serialize() + "&do=save",
+        dataType: "json",
+        type: "POST",
+        url: url + "patapro/proposaldata/",
+    
+        // complete, no errors
+        success: function ( res ) 
+        {
+            console.log ("response");
+            console.log ( res );
+    
+            proposalboxdata = {};
+            
+            closeProposalBox();
+            
+        },
+        
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            console.log (jqXHR);
+            console.log (textStatus);
+            console.log (errorThrown);
+        },
+        
+        complete: function ()
+        {
+            console.log ( "complete" );
+        }
+    });
+}
+
+/**
+ * close proposal box
+ */
+function closeProposalBox() 
+{
+    $('#box').empty();
+    $.modal.close();
 }

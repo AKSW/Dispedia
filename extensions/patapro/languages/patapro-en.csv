@@ -18,5 +18,8 @@ pending;undecided
 accept;accept
 denis;denies
 save;Save
+saved;saved
 nopatientselected;No patient selected.
 noHealthstateFound;No Healthstate found
+added;added
+deleted;deleted

@@ -1,9 +1,18 @@
 <?php if (isset($this->proposalUri)) {
     $proposalUri = $this->proposalUri;
+    $patientUri = $this->patientUri;
     $proposal = $this->proposal;
+    echo $this->boxtoolbar;
 ?>
+    <!-- important variables -->
+    <script type="text/javascript">
+        proposalboxdata = {};
+        $.data(proposalboxdata, "proposalDescriptionReceivedStatus", <?php echo json_encode ($this->proposalDescriptions['received']); ?>);
+    </script>
     <div id="<?php echo md5($proposalUri) ?>" class="divProposalComponents">
-        <form>
+        <form id="descriptionReceivedStatus">
+            <input type="hidden" name="proposalUri" value="<?php echo $proposalUri ?>" />
+            <input type="hidden" name="patientUri" value="<?php echo $patientUri ?>" />
             <div class="proposalLabel">
                 <span><?php echo $proposal['label'] ?></span>
             </div>
@@ -14,8 +23,8 @@
                     <?php foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription) { ?>
                         <div class="divProposalDescription"><?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?></div>
                         <div class="patientQuestion">
-                            <div class="divProposalDescriptionRadiobuttonNo"><input type="radio" name="<?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?>"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? '' : ' checked="checked"') ?>>Nein</div>
-                            <div class="divProposalDescriptionRadiobuttonYes"><input type="radio" name="<?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?>"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? ' checked="checked"' : '') ?>>Ja</div>
+                            <div class="divProposalDescriptionRadiobuttonNo"><input type="radio" name="<?php echo md5($proposalDescriptionUri) ?>" value="no"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? '' : ' checked="checked"') ?>>Nein</div>
+                            <div class="divProposalDescriptionRadiobuttonYes"><input type="radio" name="<?php echo md5($proposalDescriptionUri) ?>" value="yes"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? ' checked="checked"' : '') ?>>Ja</div>
                             <div class="text">Für Patienten sichtbar?</div>
                         </div>
                         <?php if(isset($proposalDescription['content'])) {?>

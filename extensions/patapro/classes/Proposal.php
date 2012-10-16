@@ -14,13 +14,17 @@ class Proposal
     private $_patientModel;
     private $_store;
     private $_titleHelper;
+	private $_patientHelper;
+	private $_translate;
     
-    public function __construct ($patientModel, $lang, $titleHelper)
+    public function __construct ($patientModel, $lang, $titleHelper, $patientHelper, $translate)
     {
         $this->_lang = $lang;
-	$this->_patientModel = $patientModel;
-	$this->_titleHelper = $titleHelper;
+        $this->_translate = $translate;
+		$this->_patientModel = $patientModel;
+		$this->_titleHelper = $titleHelper;
         $this->_store = $this->_store = Erfurt_App::getInstance()->getStore();
+		$this->_patientHelper = $patientHelper;
     }
     
     
@@ -52,6 +56,43 @@ class Proposal
 
         return $proposals;
     }
+	
+	/**
+	 * function determine which proposal description are preselected for a patient
+	 */
+	public function getProposalDescriptionByType($patientUri, $proposalUri)
+	{
+		$proposaldescriptions = array();
+		$proposaldescriptions['received'] = array();
+		$proposaldescriptions['read'] = array();
+		$patientType = $this->_patientHelper->getPatientType($patientUri);
+		if ( false !== preg_match("/sensible/", $patientType) )
+		{
+			$patientType = "sensible";
+		}
+		else if ( false !== preg_match("/experienced/", $patientType) )
+		{
+			$patientType = "experienced";
+		}
+		else
+		{
+			$patientType = "";
+		}
+		
+		$proposalComponents = $this->getProposalData($proposalUri);
+		//TODO: find a better was to determine patienttype to description type
+		foreach ($proposalComponents['data'] as $proposalDescriptions)
+		{
+			foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
+			{
+				foreach($proposalDescription['type'] as $proposalDescriptionType)
+				if (false !== preg_match("/" . $patientType . "/", $proposalDescriptionType) || $patientType = "")
+					$proposaldescriptions['received'][$proposalDescriptionUri] = $proposalDescriptionUri;
+			}
+		}
+		
+		return $proposaldescriptions;
+	}
 	
 	/**
 	 * function determine which proposal description received or read by a patient
@@ -197,15 +238,15 @@ class Proposal
 			$proposalOptions = $this->getSettings($proposalUri);
 			if (0 < count($proposalOptions))
 			{
-			foreach ($proposalOptions as $proposalOptionUri)
-			{
-				if (true == in_array($proposalOptionUri, $patientOptions))
-				$correspondence++;
-			}
-			$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
+				foreach ($proposalOptions as $proposalOptionUri)
+				{
+					if (true == in_array($proposalOptionUri, $patientOptions))
+					$correspondence++;
+				}
+				$proposal['correspondence'] = round($correspondence*100/count($proposalOptions));
 			}
 			else
-			$proposal['correspondence'] = 0;
+				$proposal['correspondence'] = 0;
 			$sortArray[$proposalUri] = $proposal['correspondence'];
 			$correspondenceProposals[$proposalUri] = $proposal;
 		}
@@ -222,78 +263,38 @@ class Proposal
      * first version delete and add all proposalallocations through a update
      * TODO: better version for updateing proposalallocations
      */
-    public function saveProposals ($patientUri, $proposalUris) 
+    public function saveProposals ($patientUri, $proposalUris, $oldProposalUris) 
     {
-		$return_value = true;
-		if (!isset($proposalUris))
-		$proposalUris = array();
-		$proposalUris = $this->removeProposals($patientUri, $proposalUris);
-		if (false == $proposalUris)
-		$return_value = false;
-		if ($return_value && 0 < count($proposalUris))
-			foreach ($proposalUris as $proposalUri) {
-				$this->addProposal($patientUri, urldecode($proposalUri));
-			}
-		return $return_value;
+		$messages = array();
+		
+		$deleteProposals = array_diff($oldProposalUris, $proposalUris);
+		$messages = array_merge($messages, $this->removeProposals($patientUri, $deleteProposals));
+
+		$addProposals = array_diff($proposalUris, $oldProposalUris);
+		$messages = array_merge($messages, $this->addProposals($patientUri, $addProposals));
+		
+		return $messages;
     }
 
     /**
      * add a new patient proposal allocation to the knowlegebase with all
      * resources, they are needed
      */
-    private function addProposal ( $patientUri, $proposalUri )
+    private function addProposals ( $patientUri, $proposalUris )
     {
-		// new Decision URI
-		//http://als.dispedia.info/architecture/c/20110827/
-		//http://patients.dispedia.de/i/Patient/20111115/ea1236/LarsEidam
-		$newDecisionUri = 'http://patients.dispedia.de/i/Decision/';
-		$newDecisionUri = $newDecisionUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
+		$messages = array();
+		$healthstates = $this->_patientHelper->getAllHealthstates($patientUri);
 		
-		// create Decision instance
-		$this->addStmt (
-			$newDecisionUri,
-			'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-			'http://www.dispedia.de/o/Decision'
-		);
-		
-		// connect Patient instance to Decision instance
-		$this->addStmt (
-			$patientUri,
-			'http://www.dispedia.de/o/makes',
-			$newDecisionUri
-		);
-		
-		// new ProposalAllocation URI
-		$newProposalAllocationUri = 'http://patients.dispedia.de/i/ProposalAllocation/';
-		$newProposalAllocationUri = $newProposalAllocationUri . substr ( md5 (rand(0,rand(500,2000))), 0, 8 );
-		
-		// create ProposalAllocation instance
-		$this->addStmt (
-			$newProposalAllocationUri,
-			'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
-			'http://www.dispedia.de/o/ProposalAllocation'
-		);
-		
-		// connect Decision instance to ProposalAllocation instance
-		$this->addStmt (
-			$newDecisionUri,
-			'http://www.dispedia.de/o/isPending',
-			$newProposalAllocationUri
-		);
-		
-		// connect ProposalAllocation instance to Proposal instance
-		$this->addStmt (
-			$newProposalAllocationUri,
-			'http://www.dispedia.de/o/allocatesProposal',
-			$proposalUri
-		);
-		
-		// connect ProposalAllocation instance to Patient instance
-		$this->addStmt (
-			$newProposalAllocationUri,
-			'http://www.dispedia.de/o/allocatesPatient',
-			$patientUri
-		);
+		foreach ($proposalUris as $proposalUri)
+		{
+			$this->addStmt (
+				key($healthstates),
+				'http://www.dispedia.de/o/isPending',
+				$proposalUri
+			);
+			$messages[] = new OntoWiki_Message($proposalUri . " " . $this->_translate->_('added'), OntoWiki_Message::SUCCESS);			
+		}	
+		return $messages;
     }
     
     /**
@@ -301,45 +302,37 @@ class Proposal
      */
     private function removeProposals($patientUri, $proposalUris)
     {
-		$return_value = true;
-		// get all Decisions and ProposalAllocation instances
-		// get symptomSet instance
-        $decproalls = $this->_store->sparqlQuery (
-            'PREFIX dispediao:<http://www.dispedia.de/o/>
-			SELECT ?decision ?proposalallocation ?proposalUri
-			WHERE {
-			<' . $patientUri . '> dispediao:makes ?decision .
-			?decision dispediao:isPending ?proposalallocation .
-			?proposalallocation dispediao:allocatesProposal ?proposalUri .
-			};'
-        );
-		foreach ($decproalls as $decproall)
+		$messages = array();
+		$healthstates = $this->_patientHelper->getAllHealthstates($patientUri);
+		foreach ($proposalUris as $proposalUri)
 		{
-			$proposalAlreadyExists = false;
-			foreach ($proposalUris as $key => $proposalUri)
+			$proposalData = $this->getProposalData($proposalUri);
+			foreach ($healthstates as $healthstatesUri => $healthstatesTimestamp)
 			{
-			if (urlencode($decproall['proposalUri']) == $proposalUri)
-			{
-				$proposalAlreadyExists = true;
-				unset($proposalUris[$key]);
-				break;
-			}
-			}
-			if (!$proposalAlreadyExists)
-			{
-			$removedStmt = 0;
-			$removedStmt += $this->removeStmt($decproall['decision'], null, null);
-			$removedStmt += $this->removeStmt(null, null, $decproall['decision']);
-			$removedStmt += $this->removeStmt($decproall['proposalallocation'], null, null);
-			
-			if (6 != $removedStmt)
-				$return_value = false;
+				// delete proposal in healthstates
+				$deletedStatements = $this->removeStmt(
+					$healthstatesUri,
+					'http://www.dispedia.de/o/isPending',
+					$proposalUri
+				);
+				
+				//// delete all received proposal descriptions
+				//foreach ($proposalData as $proposalComponent => $proposalDescriptions)
+				//	foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
+				//		$this->removeStmt(
+				//			$healthstatesUri,
+				//			"http://www.dispedia.de/o/receivedProposalDescription",
+				//			$proposalDescriptionUri
+				//		);
+				
+				// if deleted show message
+				if (0 < $deletedStatements)
+					$messages[] = new OntoWiki_Message($proposalUri . " " . $this->_translate->_('deleted'), OntoWiki_Message::SUCCESS);
 			}
 		}
-		if ($return_value)
-			$return_value = $proposalUris;
-		return $return_value;
-		}
+		
+		return $messages;
+	}
     
     /**
      * get all proposals with decision from a patient
@@ -423,7 +416,7 @@ class Proposal
     /**
      * adds a triple to datastore
      */
-    private function addStmt($s, $p, $o)
+    public function addStmt($s, $p, $o)
     {
         // set type(uri or literal)
         $type = true == Erfurt_Uri::check($o) 
@@ -443,7 +436,7 @@ class Proposal
     /**
      *
      */
-    private function removeStmt($s, $p, $o)
+    public function removeStmt($s, $p, $o)
     {
         $options = array();
         // set subjecttype(uri or literal)

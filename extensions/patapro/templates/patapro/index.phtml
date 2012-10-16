@@ -12,22 +12,23 @@
 ?>
 <script type="text/javascript">
     var url = '<?php echo $this->url; ?>';
+    var healthstates = '<?php echo json_encode($this->healthstates) ?>';
 </script>
 <!-- set the title of the action -->
 <?php $this->placeholder('main.window.title')->set($this->_translate->_('patient proposal allocation')); ?>
 <div id="box"></div>
 <div class="firstHeadline"><?php echo $this->_translate->_('patient proposal allocation'); ?></div>
 <div class="secondHeadline"><?php echo $this->_translate->_('allocate proposals to a patient'); ?></div>
-<?php if ("" != $this->currentPatient) { ?>
+<?php if ("" != $this->currentPatient) { $oldProposals = array(); reset($this->healthstates); ?>
     <form method="post" action="" id="patapro">
         <table id="main">
             <tr>
                 <th>
                     <div>
-                        <span><?php echo $this->_translate->_('healthstate'); ?></span>
+                        <span id="spanHealthStateTypeLabel"><?php echo (0 < count($this->healthstates) ? $this->healthstates[key($this->healthstates)]['typeLabel'] : '') ?></span>
                         <select name="selectHealthstate" id="selectHealthstate" onchange="getHealthstate('selectHealthstate');">
-                            <?php foreach ($this->healthstates as $healthstateUri => $healthstateTS) { ?>
-                                <option value="<?php echo $healthstateUri?>"><?php echo $healthstateTS ?></option>
+                            <?php foreach ($this->healthstates as $healthstateUri => $healthstate) { ?>
+                                <option value="<?php echo $healthstateUri?>"><?php echo $healthstate['timestamp'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -51,15 +52,15 @@
                         <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
                              <tr>
                                 <td id="proposalCheck">
-                                    <input type="checkbox"
+                                    <input id="input<?php echo md5($proposalUri); ?>" type="checkbox"
                                         <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
                                         name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
-                                        <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); ?>
+                                        <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); if (isset($proposal['status'])) {$oldProposals[] = $proposalUri;} ?>
                                     >
                                 </td>
                                 <td id="proposalName">
                                     <span<?php echo (isset ($proposal['correspondence']) && 0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['label']; ?></span>
-                                    <a href="javascript:loadProposalBox('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>')">
+                                    <a href="javascript:loadProposalBox('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>','<?php echo md5($proposalUri) ?>','<?php echo (isset($proposal['status']) ? 'edit' : 'new'); ?>')">
                                         <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-edit.png">
                                     </a>
                                 </td>
@@ -75,6 +76,7 @@
                 </td>
             </tr>
         </table>
+        <input type="hidden" name="oldProposals" value="<?php echo urlencode(json_encode($oldProposals))?>"/>
         <input type="hidden" name="do" value="save"/>
     </form>
 <?php } ?>
