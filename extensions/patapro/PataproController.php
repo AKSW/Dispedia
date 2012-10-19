@@ -37,8 +37,10 @@ class PataproController extends OntoWiki_Controller_Component
     {
         parent::init();
         
-        $on = new OntoWiki_Navigation();
-        $on->disableNavigation();
+        $owApp = OntoWiki::getInstance();
+        $owNav = $owApp->getNavigation();
+        
+        $owNav->disableNavigation();
         
         $this->_url = $this->_config->urlBase .'patapro/';
         
