@@ -12,7 +12,7 @@
 ?>
 <script type="text/javascript">
     var url = '<?php echo $this->url; ?>';
-    var healthstates = '<?php echo json_encode($this->healthstates) ?>';
+    var healthstates = '<?php echo (isset($this->healthstates) ? json_encode($this->healthstates) : "") ?>';
 </script>
 <!-- set the title of the action -->
 <?php $this->placeholder('main.window.title')->set($this->_translate->_('patient proposal allocation')); ?>
