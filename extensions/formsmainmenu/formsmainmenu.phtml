@@ -43,8 +43,11 @@
 <script>
     $("#selectPatient").trigger('change');
     $("#selectPatient").change(function () {
-        var uri = "";
-        uri =  $("#selectPatient option:selected").val();
+        var uri = $("#selectPatient option:selected").val();
+        if ('' == uri)
+        {
+            uri = "http://ns.ontowiki.net/SysOnt/Model";
+        }
         $.ajax({
             async:true,
             dataType: "html",
