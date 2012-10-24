@@ -115,70 +115,76 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->currentPatient = $currentPatient;
         if ( '' != $currentPatient )
         {
-            // build toolbar
-            $toolbar = $this->_owApp->toolbar;
-            $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
-                'name' => 'Save'
-            ));
-            $this->view->placeholder('main.window.toolbar')->set($toolbar);
-            
-            if ( 'save' == $this->getParam ('do', '') )
-            {
-                $newProposals = $this->getParam ('proposals', array());
-                foreach ($newProposals as $proposalNumber => $newProposal)
-                {
-                    $newProposals[$proposalNumber] = urldecode($newProposal);
-                }
-                $this->addMessages(
-                        $this->_proposal->saveProposals (
-                        $currentPatient,
-                        $newProposals,
-                        json_decode(urldecode($this->getParam ('oldProposals', array())))
-                    )
-                );
-                $this->addMessages(new OntoWiki_Message($this->_translate->_('patient proposal allocation') . " " . $this->_translate->_('saved'), OntoWiki_Message::SUCCESS));
-            }
-
             // get a list of all healthstates
             $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
-
-            $allProposals = $this->_proposal->getAllProposals();
-            $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
-
-            foreach ($allProposals as $proposalUri => $proposal)
-            {
-                if (isset($patientProposals[$proposalUri]))
-                    $allProposals[$proposalUri] = $patientProposals[$proposalUri];
-            }
-
             
-            $lastAlsFrsHealthstateUri = '';
-        
-            //get the options from the last alsfrs healthstate (alsfrs because only for this classification exist a compare algorithm)
-            foreach ($this->view->healthstates as $healthstateUri => $healthstate)
+            // only if no healthstates was found for this patient
+            if ( 0 < count($this->view->healthstates) )
             {
-                if ('http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState' == $healthstate['type'])
+                // build toolbar
+                $toolbar = $this->_owApp->toolbar;
+                $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
+                    'name' => 'Save'
+                ));
+                $this->view->placeholder('main.window.toolbar')->set($toolbar);
+                
+                if ( 'save' == $this->getParam ('do', '') )
                 {
-                    $lastAlsFrsHealthstateUri = $healthstateUri;
-                    break;
+                    $newProposals = $this->getParam ('proposals', array());
+                    foreach ($newProposals as $proposalNumber => $newProposal)
+                    {
+                        $newProposals[$proposalNumber] = urldecode($newProposal);
+                    }
+                    $this->addMessages(
+                            $this->_proposal->saveProposals (
+                            $currentPatient,
+                            $newProposals,
+                            json_decode(urldecode($this->getParam ('oldProposals', array())))
+                        )
+                    );
+                    $this->addMessages(new OntoWiki_Message($this->_translate->_('patient proposal allocation') . " " . $this->_translate->_('saved'), OntoWiki_Message::SUCCESS));
                 }
-            }
-            $patientOptions = $this->healthstateAction($lastAlsFrsHealthstateUri);
-
-            // only if patientOptions not empty
-            if (0 < count($patientOptions))
-            {
-                // compare the patient proposals with the template proposals
-                $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
-            }
-
-            foreach ($allProposals as $proposalUri => $proposal)
-            {
-                $allProposals[$proposalUri]['components'] = $this->_proposal->getProposalData($proposalUri);
-            }
+    
+                $allProposals = $this->_proposal->getAllProposals();
+                $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
+    
+                foreach ($allProposals as $proposalUri => $proposal)
+                {
+                    if (isset($patientProposals[$proposalUri]))
+                        $allProposals[$proposalUri] = $patientProposals[$proposalUri];
+                }
+    
+                
+                $lastAlsFrsHealthstateUri = '';
             
-            $this->view->patientUri = $currentPatient;
-            $this->view->proposals = $allProposals;
+                //get the options from the last alsfrs healthstate (alsfrs because only for this classification exist a compare algorithm)
+                foreach ($this->view->healthstates as $healthstateUri => $healthstate)
+                {
+                    if ('http://www.dispedia.de/wrapper/alsfrs/ALSFRSHealthState' == $healthstate['type'])
+                    {
+                        $lastAlsFrsHealthstateUri = $healthstateUri;
+                        break;
+                    }
+                }
+                $patientOptions = $this->healthstateAction($lastAlsFrsHealthstateUri);
+    
+                // only if patientOptions not empty
+                if (0 < count($patientOptions))
+                {
+                    // compare the patient proposals with the template proposals
+                    $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
+                }
+    
+                foreach ($allProposals as $proposalUri => $proposal)
+                {
+                    $allProposals[$proposalUri]['components'] = $this->_proposal->getProposalData($proposalUri);
+                }
+                
+                $this->view->patientUri = $currentPatient;
+                $this->view->proposals = $allProposals;
+            }
+            else
+                $this->addMessages(new OntoWiki_Message($this->_translate->_('noHealthstateFound'), OntoWiki_Message::ERROR));
         }
         else
         {
