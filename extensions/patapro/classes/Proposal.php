@@ -138,6 +138,7 @@ class Proposal
 				?proposalComponent <http://www.dispedia.de/o/containsProposalDescription> ?proposalDescription.
 				?proposalDescription <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?proposalDescriptionType.
 			  }
+                FILTER !REGEX(str(?proposalDescriptionType), "NamedIndividual"))
 			};'
         );
 		
@@ -168,7 +169,17 @@ class Proposal
 					if (!isset($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type']))
 						$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type'] = array();
 					
-					$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type'][$proposal['proposalDescriptionType']] = $proposal['proposalDescriptionType'];
+					if ("http://www.dispedia.de/o/ProposalDescription" != $proposal['proposalDescriptionType'])
+					{
+						if (isset($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type']["http://www.dispedia.de/o/ProposalDescription"]))
+							unset($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type']["http://www.dispedia.de/o/ProposalDescription"]);
+						$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type'][$proposal['proposalDescriptionType']] = $proposal['proposalDescriptionType'];
+					}
+					else
+					{
+						if (0 == count($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type']))
+							$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['type']["http://www.dispedia.de/o/ProposalDescription"] = "http://www.dispedia.de/o/ProposalDescription";
+					}
 					
 					if (!isset($proposalData['labels'][$proposal['proposalDescription']]))
 						$proposalData['labels'][$proposal['proposalDescription']] = $this->_titleHelper->getTitle($proposal['proposalDescription'], $this->_lang);
@@ -221,7 +232,8 @@ class Proposal
         
         foreach ( $appropriateForSymptoms as $p )
 	    $optionUris [] = $p ['optionUri'];
-	return $optionUris;
+		
+		return $optionUris;
     }
     
     /**

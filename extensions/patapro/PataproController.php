@@ -215,6 +215,14 @@ class PataproController extends OntoWiki_Controller_Component
                 $this->view->boxtoolbar = $toolbar->__toString();
                 
                 $this->view->patientUri = $patientUri;
+                $this->view->patientType = $this->_patient->getPatientType($patientUri);
+                
+                $this->_titleHelper->reset();
+                $this->_titleHelper->addResource($patientUri);
+                $this->_titleHelper->addResource($this->view->patientType);
+                $this->view->patientLabel = $this->_titleHelper->getTitle($patientUri, $this->_lang);
+                $this->view->patientTypeLabel = $this->_titleHelper->getTitle($this->view->patientType, $this->_lang);
+                
                 $this->view->proposalUri = $proposalUri;
                 
                 if ("new" == $status)

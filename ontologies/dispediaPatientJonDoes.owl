@@ -68,6 +68,7 @@
     
     <owl:NamedIndividual rdf:about="&patients;MaxMustermann">
         <rdf:type rdf:resource="&dispediao;Patient"/>
+        <rdfs:label>Max Mustermann</rdfs:label>
         <dispediao:single rdf:datatype="&xsd;boolean">true</dispediao:single>
         <dispediao:firstName>Max</dispediao:firstName>
         <dispediao:lastName>Mustermann</dispediao:lastName>

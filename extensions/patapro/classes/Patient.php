@@ -26,18 +26,16 @@ class Patient
         $patientTypeResult = $this->_store->sparqlQuery (
             'SELECT ?patientType
             WHERE {
-                <' . $patientUri . '> <ttp://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?patientType .                                                  
+                <' . $patientUri . '> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?patientType .
+                FILTER !REGEX(str(?patientType), "NamedIndividual") && !REGEX(str(?patientType), "o/Patient")
             };'
         );
+
+        if (!isset($patientTypeResult[0]['patientType']) || "" == $patientTypeResult[0]['patientType'])
+            $patientTypeReturnValue = "http://www.dispedia.de/o/Patient";
+        else
+            $patientTypeReturnValue = $patientTypeResult[0]['patientType'];
         
-        //TODO: make a better determination of the patienttype
-        foreach ($patientTypeResult as $patientType)
-        {
-            if ("http://www.dispedia.de/o/Patient" != $patientType && "http://www.w3.org/2002/07/owl#NamedIndividual" != $patientType)
-            {
-                $patientTypeReturnValue = $patientType;
-            }
-        }
         return $patientTypeReturnValue;
     }
     
