@@ -427,4 +427,3 @@ class PataproController extends OntoWiki_Controller_Component
         }
     }
 }
-
