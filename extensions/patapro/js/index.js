@@ -38,6 +38,12 @@ function getHealthstate(selectHealthstate)
     });
 }
 
+function loadProposalBoxCheck(proposalUri, patientUri, proposalMd5, status)
+{
+    if($('#input' + proposalMd5).is(':checked'))
+        loadProposalBox(proposalUri, patientUri, proposalMd5, status)
+}
+
 function loadProposalBox(proposalUri, patientUri, proposalMd5, status)
 {
     if ('new' == status)

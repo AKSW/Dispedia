@@ -55,6 +55,7 @@
                                     <input id="input<?php echo md5($proposalUri); ?>" type="checkbox"
                                         <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
                                         name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
+                                        onchange="javascript:loadProposalBoxCheck('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>','<?php echo md5($proposalUri) ?>','<?php echo (isset($proposal['status']) ? 'edit' : 'new'); ?>')"
                                         <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); if (isset($proposal['status'])) {$oldProposals[] = $proposalUri;} ?>
                                     >
                                 </td>
