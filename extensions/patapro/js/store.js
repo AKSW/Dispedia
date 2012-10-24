@@ -32,9 +32,9 @@ function deleteModel(modelName) {
         async:false,
         dataType: "html",
         type: "GET",
-        data: { model: models[modelName].namespace },
+        data: { modelName: modelName, do: 'remove' },
         context: $("#response" + modelName),
-        url: deleteUrl,
+        url: url + 'patapro/changemodel/',
         // complete, no errors
         success: function ( res ) 
         {
@@ -55,14 +55,14 @@ function addModel(modelName) {
         async:false,
         dataType: "html",
         type: "POST",
-        data: { modelUri: models[modelName].namespace , activeForm: "paste", "filetype-paste": "rdfxml", paste: models[modelName].files[0].content },
+        data: { modelName: modelName, do: 'add' },
         context: $("#response" + modelName),
-        url: createUrl,
+        url: url + 'patapro/changemodel/',
         // complete, no errors
         success: function ( res ) 
         {
             $(this).append('<div>add Model: ' + models[modelName].namespace + '</div>');
-			$(this).append('<div>add File: ' + models[modelName].files[0].name + '</div>');
+			//$(this).append('<div>add File: ' + models[modelName].files[0].name + '</div>');
         },
         
         error: function (jqXHR, textStatus, errorThrown)
@@ -72,28 +72,4 @@ function addModel(modelName) {
             console.log (errorThrown);
         }
     });
-	
-    for (var i = 1; i < models[modelName].files.length; i++)
-    {
-            $.ajax({
-                    async:false,
-                    dataType: "html",
-                    type: "POST",
-                    data: { modelUri: models[modelName].namespace , activeForm: "paste", "filetype-paste": "rdfxml", paste: models[modelName].files[i].content },
-                    context: $("#response" + modelName),
-                    url: addUrl + '?m=' + models[modelName].namespace,
-                    // complete, no errors
-                    success: function ( res ) 
-                    {
-                            $(this).append('<div>add File: ' + models[modelName].files[i].name + '</div>');
-                    },
-                    
-                    error: function (jqXHR, textStatus, errorThrown)
-                    {
-                            console.log (jqXHR);
-                            console.log (textStatus);
-                            console.log (errorThrown);
-                    }
-            });
-    }
 }

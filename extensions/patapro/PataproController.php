@@ -19,6 +19,7 @@ class PataproController extends OntoWiki_Controller_Component
     private $_patientModel;
     private $_dispediaModel;
     private $_alsfrsModel;
+    private $_ontologies;
     private $_lang;
     private $_patient;
     private $_proposal;
@@ -35,16 +36,26 @@ class PataproController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
+        
+        $this->_owApp->getNavigation()->disableNavigation();
+        
         $this->_url = $this->_config->urlBase .'patapro/';
-
+        
         // init array for output messages
         $this->_messages = array();
-        
-        OntoWiki_Navigation::disableNavigation();
 
-        $this->_patientModel = new Erfurt_Rdf_Model ($this->_privateConfig->patientModel);
-        $this->_dispediaModel = new Erfurt_Rdf_Model ($this->_privateConfig->dispediaModel);
-        $this->_alsfrsModel = new Erfurt_Rdf_Model ($this->_privateConfig->alsfrsModel);
+        // get all models
+        $this->_ontologies = $this->_config->ontologies->toArray();
+        $this->_ontologies = $this->_ontologies['models'];
+        // make model instances
+        foreach ($this->_ontologies as $modelName => $model) {
+            $this->_ontologies[$modelName]['instance'] = $dispediaModel = new Erfurt_Rdf_Model($model['namespace']);
+        }
+        
+        //TODO:change this to global ontology array
+        $this->_patientModel = $this->_ontologies['dispediaPatient']['instance'];
+        $this->_dispediaModel = $this->_ontologies['dispediaCore']['instance'];
+        $this->_alsfrsModel = $this->_ontologies['dispediaALS']['instance'];
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
         
@@ -58,7 +69,7 @@ class PataproController extends OntoWiki_Controller_Component
 
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
-    
+   
     /**
       * get the classes of an resource
       */
@@ -335,23 +346,64 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
     
-        // get ontologies config object
-        $ontologies = $this->_config->ontologies->toArray();
-        
-        $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
-        
         $this->view->url = $this->_config->urlBase;
+        
+        $this->view->models = $this->_ontologies;
+    }
+    
+    public function changemodelAction()
+    {
+        $jsonReturnValue = "";
+        
+        // disable auto-rendering
+        $this->_helper->viewRenderer->setNoRender();
 
-        foreach ($ontologies['models'] as $modelName => $model) {
-            foreach ($model['files'] as $fileNumber => $filename) {
-                $file = array(
-                    'name' => $filename,
-                    'content' => file_get_contents($ontologiePath . $filename)
-                    );
-                $ontologies['models'][$modelName]['files'][$fileNumber] = $file;
+        // disable layout for Ajax requests
+        $this->_helper->layout()->disableLayout();
+        
+        $modelName = urldecode($this->getParam ('modelName'));
+        $action = urldecode($this->getParam ('do'));
+        
+        if ("" != $modelName)
+        {
+            $jsonReturnValue['modelName'] = $modelName;
+            $jsonReturnValue['action'] = $action;
+            $jsonReturnValue['modelUri'] = $this->_ontologies[$modelName]['namespace'];
+            $jsonReturnValue['files'] = array();
+            $jsonReturnValue['log'] = array();
+            if ("remove" == $action)
+            {
+                $this->_store->deleteModel($this->_ontologies[$modelName]['namespace']);
+                $jsonReturnValue['log'][] = "model removed";
+            }
+            if ("add" == $action)
+            {
+                // get ontologies config object
+                $ontologies = $this->_config->ontologies->toArray();
+                $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
+                
+                $locator = Erfurt_Syntax_RdfParser::LOCATOR_FILE;
+                $filetype = 'rdfxml';
+                $newType = Erfurt_Store::MODEL_TYPE_OWL;
+                
+                // create model
+                $model = $this->_store->getNewModel($this->_ontologies[$modelName]['namespace'], $this->_ontologies[$modelName]['namespace'], $newType);
+                $jsonReturnValue['log'][] = "model added";
+                // connect it with system model
+                $this->_store->addStatement("http://localhost/OntoWiki/Config/", $this->_ontologies[$modelName]['namespace'], "http://ns.ontowiki.net/SysOnt/hiddenImports", array( "value" => "http://ns.ontowiki.net/SysBase/", "type" => "uri"));
+                foreach ($this->_ontologies[$modelName]['files'] as $filename)
+                {
+                    // import data to model
+                    $this->_store->importRdf($this->_ontologies[$modelName]['namespace'], $ontologiePath . $filename, $filetype, $locator);
+                    $jsonReturnValue['files'][] = $filename;
+                    $jsonReturnValue['log'][] = "file " . $filename. " added to model " . $modelName;
+                }
             }
         }
-        $this->view->models = $ontologies['models'];
+        else
+            $jsonReturnValue['error'] = "no model name";
+        
+        echo json_encode($jsonReturnValue);
     }
     
     /**
@@ -375,4 +427,3 @@ class PataproController extends OntoWiki_Controller_Component
         }
     }
 }
-

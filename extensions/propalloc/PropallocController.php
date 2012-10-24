@@ -17,16 +17,16 @@ require_once 'classes/Option.php';
  */
 class PropallocController extends OntoWiki_Controller_Component
 {
-        private $_url;
-        private $_lang;
-        private $_proposal;
-        private $_resource;
-        private $_ontologies;
-        private $_optionHelper;
-        private $_titleHelper;
-        
-        // array for output messages
-        private $_messages;
+    private $_url;
+    private $_lang;
+    private $_proposal;
+    private $_resource;
+    private $_ontologies;
+    private $_optionHelper;
+    private $_titleHelper;
+    
+    // array for output messages
+    private $_messages;
         
     /**
      * init controller
@@ -35,7 +35,7 @@ class PropallocController extends OntoWiki_Controller_Component
     {
         parent::init();
         
-        OntoWiki_Navigation::disableNavigation();
+        $this->_owApp->getNavigation()->disableNavigation();
         
         $this->_url = $this->_config->urlBase .'propalloc/';
         
@@ -50,7 +50,7 @@ class PropallocController extends OntoWiki_Controller_Component
         // get all models
         $this->_ontologies = $this->_config->ontologies->toArray();
         $this->_ontologies = $this->_ontologies['models'];
-        
+        // make model instances
         foreach ($this->_ontologies as $modelName => $model) {
             $this->_ontologies[$modelName]['instance'] = $dispediaModel = new Erfurt_Rdf_Model($model['namespace']);
         }

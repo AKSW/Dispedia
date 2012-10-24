@@ -2,9 +2,7 @@
 /**
  * This file is part of the {@link http://ontowiki.net OntoWiki} project.
  *
- * @category   OntoWiki
- * @package    OntoWiki_extensions_plugins
- * @copyright Copyright (c) 2011, {@link http://aksw.org AKSW}
+ * @copyright Copyright (c) 2012, {@link http://aksw.org AKSW}
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 
@@ -12,8 +10,8 @@
  * The main class for the datagathering plugin.
  *
  * @category   OntoWiki
- * @package    OntoWiki_extensions_plugins
- * @copyright  Copyright (c) 2011 {@link http://aksw.org aksw}
+ * @package    Extensions_Datagathering
+ * @copyright  Copyright (c) 2012 {@link http://aksw.org aksw}
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  * @author     Philipp Frischmuth <pfrischmuth@googlemail.com>
  */
@@ -102,7 +100,7 @@ class DatagatheringPlugin extends OntoWiki_Plugin
         $owApp     = OntoWiki::getInstance();
         $translate = $owApp->translate;
 
-        $wrapperRegistry   = Erfurt_App::getInstance()->getWrapperRegistry();
+        $wrapperRegistry   = Erfurt_Wrapper_Registry::getInstance();
         $activeWrapperList = $wrapperRegistry->listActiveWrapper();
 
         if ((boolean)$this->_privateConfig->sync->enabled) {
@@ -204,7 +202,7 @@ class DatagatheringPlugin extends OntoWiki_Plugin
         // Add the location bar menu entry.
         $menu = OntoWiki_Menu_Registry::getInstance()->getMenu('resource');
         $menu->prependEntry(OntoWiki_Menu::SEPARATOR);
-        if (!isset($session->showLocationBar) || $session->showLocationBar == false) {
+        if ($session->showLocationBar === false) {
             $entry = $translate->_('Show/Hide Location Bar');
             $menu->prependEntry($entry, array('class' => 'location_bar show'));
         } else {
@@ -246,7 +244,8 @@ class DatagatheringPlugin extends OntoWiki_Plugin
                         </span>
                     </span>';
         $message .= '</span>';
-        $message .= '<a id="dg_sync_button" class="minibutton" style="display: none; float: right; min-height: 20px; padding-top: 8px">';
+        $message .= '<a id="dg_sync_button" class="minibutton"'.
+            ' style="display: none; float: right; min-height: 20px; padding-top: 8px">';
         $message .= $translate->_('Sync') . '</a>';
         $message .= '</span>';
 
@@ -290,28 +289,37 @@ class DatagatheringPlugin extends OntoWiki_Plugin
      */
     public function onDeleteResources($event)
     {
-        $modelUri = $event->modelUri;
-        $uriArray = $event->resourceArray;
+        if ($this->_properties->sync->enabled) {
+            $modelUri = $event->modelUri;
+            $uriArray = $event->resourceArray;
 
-        require_once 'Erfurt/Sparql/SimpleQuery.php';
-        $query = new Erfurt_Sparql_SimpleQuery();
-        $query->setProloguePart('SELECT ?s ?o');
-        $query->addFrom($this->_syncModelUri);
-        $query->setWherePart('WHERE {
-            ?s <' . EF_RDF_TYPE . '> <' . $this->_properties['syncConfigClass'] . '> .
-            ?s <' . $this->_properties['targetModel'] . '> <' . $modelUri . '> .
-            ?s <' . $this->_properties['syncResource'] . '> ?o .
-        }');
+            require_once 'Erfurt/Sparql/SimpleQuery.php';
+            $query = new Erfurt_Sparql_SimpleQuery();
+            $query->setProloguePart('SELECT ?s ?o');
+            $query->addFrom($this->_syncModelUri);
+            $query->setWherePart(
+                'WHERE {
+                ?s <' . EF_RDF_TYPE . '> <' . $this->_properties['syncConfigClass'] . '> .
+                ?s <' . $this->_properties['targetModel'] . '> <' . $modelUri . '> .
+                ?s <' . $this->_properties['syncResource'] . '> ?o .
+                }'
+            );
 
-        $store = Erfurt_App::getInstance()->getStore();
-        $result = $store->sparqlQuery($query, array('use_ac' => false));
+            $store = Erfurt_App::getInstance()->getStore();
+            $result = $store->sparqlQuery($query, array('use_ac' => false));
 
-        foreach ($result as $row) {
-            if (in_array($row['o'], $uriArray)) {
-                $store->deleteMatchingStatements($this->_syncModelUri, $row['s'], null, null, array('use_ac' => false));
+            foreach ($result as $row) {
+                if (in_array($row['o'], $uriArray)) {
+                    $store->deleteMatchingStatements(
+                        $this->_syncModelUri,
+                        $row['s'],
+                        null,
+                        null,
+                        array('use_ac' => false)
+                    );
+                }
             }
         }
-
         return true;
     }
 
@@ -325,24 +333,27 @@ class DatagatheringPlugin extends OntoWiki_Plugin
      */
     public function onPreDeleteModel($event)
     {
-        $modelUri = $event->modelUri;
+        if ($this->_properties->sync->enabled) {
+            $modelUri = $event->modelUri;
 
-        require_once 'Erfurt/Sparql/SimpleQuery.php';
-        $query = new Erfurt_Sparql_SimpleQuery();
-        $query->setProloguePart('SELECT ?s');
-        $query->addFrom($this->_syncModelUri);
-        $query->setWherePart('WHERE {
-            ?s <' . EF_RDF_TYPE . '> <' . $this->_properties['syncConfigClass'] . '> .
-            ?s <' . $this->_properties['targetModel'] . '> <' . $modelUri . '> .
-        }');
+            require_once 'Erfurt/Sparql/SimpleQuery.php';
+            $query = new Erfurt_Sparql_SimpleQuery();
+            $query->setProloguePart('SELECT ?s');
+            $query->addFrom($this->_syncModelUri);
+            $query->setWherePart(
+                'WHERE {
+                    ?s <' . EF_RDF_TYPE . '> <' . $this->_properties['syncConfigClass'] . '> .
+                    ?s <' . $this->_properties['targetModel'] . '> <' . $modelUri . '> .
+                }'
+            );
 
-        $store = Erfurt_App::getInstance()->getStore();
-        $result = $store->sparqlQuery($query, array('use_ac' => false));
+            $store = Erfurt_App::getInstance()->getStore();
+            $result = $store->sparqlQuery($query, array('use_ac' => false));
 
-        foreach ($result as $row) {
-            $store->deleteMatchingStatements($this->_syncModelUri, $row['s'], null, null, array('use_ac' => false));
+            foreach ($result as $row) {
+                $store->deleteMatchingStatements($this->_syncModelUri, $row['s'], null, null, array('use_ac' => false));
+            }
         }
-
         return true;
     }
 
@@ -403,7 +414,7 @@ class DatagatheringPlugin extends OntoWiki_Plugin
             }
 
             $retVal = array();
-            foreach($result as $row) {
+            foreach ($result as $row) {
                 if (!isset($retVal[$row['s']])) {
                     $retVal[$row['s']] = array(
                         'uri' => $row['s']
@@ -467,7 +478,7 @@ class DatagatheringPlugin extends OntoWiki_Plugin
             }
 
             $retVal = array();
-            foreach($result as $row) {
+            foreach ($result as $row) {
                 if (!isset($retVal[$row['s']])) {
                     $retVal[$row['s']] = array(
                         'uri' => $row['s']
@@ -514,7 +525,7 @@ class DatagatheringPlugin extends OntoWiki_Plugin
 
         return $this->_syncConfigListCache;
     }
-    
+
     private function _getProxyUri($uri)
     {
         // If at least one rewrite rule is defined, we iterate through them.
@@ -527,7 +538,7 @@ class DatagatheringPlugin extends OntoWiki_Plugin
                 }
             }
         }
-               
+
         return null;
     }
 }

@@ -24,6 +24,67 @@ tempHrefs = new Array();
  * core css assignments
  */
 $(document).ready(function() {
+    // keyboard shortcuts
+    $(document).keydown(function(e) {
+        if (/view\/?|resource\/properties\/?/gi.test(window.document.baseURI)) {
+            if (e.shiftKey && e.altKey) {
+                e.preventDefault();
+                switch(e.which) {
+                    //e - 101 - edit E - 69
+                    case 69 : $('.edit-enable').trigger('click'); break;
+                    //a - 97 - add property - A - 65
+                    case 65 : $('.property-add').trigger('click'); break;
+                    //s - 115 - save S - 83
+                    case 83 : if ($('.edit-enable').hasClass('active')) { 
+                                   $('.edit.save').trigger('click'); 
+                               }; 
+                               break;
+                    //c  - 99 - cancel C - 67
+                    case 67 : if ($('.edit-enable').hasClass('active')) { 
+                                  $('.edit.cancel').trigger('click'); 
+                              }; 
+                              break;
+                    //l - 108 - clone L - 76
+                    case 76 : $('.clone-resource').trigger('click'); break;
+                }
+            }
+        }
+    });
+    // Object.keys support in older environments that do not natively support it
+    if (!Object.keys) {
+        Object.keys = (function () {
+            var hasOwnProperty = Object.prototype.hasOwnProperty,
+                hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
+                dontEnums = [
+                  'toString',
+                  'toLocaleString',
+                  'valueOf',
+                  'hasOwnProperty',
+                  'isPrototypeOf',
+                  'propertyIsEnumerable',
+                  'constructor'
+                ],
+                dontEnumsLength = dontEnums.length
+
+            return function (obj) {
+                if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) throw new TypeError('Object.keys called on non-object')
+
+                var result = []
+
+                for (var prop in obj) {
+                    if (hasOwnProperty.call(obj, prop)) result.push(prop)
+                }
+
+                if (hasDontEnumBug) {
+                    for (var i=0; i < dontEnumsLength; i++) {
+                        if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i])
+                    }
+                }
+              return result
+            }
+        })()
+    };
+
     // the body gets a new class to indicate that javascript is turned on
     $('body').removeClass('javascript-off').addClass('javascript-on');
 
@@ -70,7 +131,7 @@ $(document).ready(function() {
             }});
     
     // resize separator when all ajax crap is loaded
-    window.setTimeout(function () {        
+    window.setTimeout(function () {
         $('.section-sidewindows .resizer-horizontal').height(
             Math.max(
                 $(document).height(),
@@ -79,12 +140,32 @@ $(document).ready(function() {
                 document.documentElement.clientHeight
             ) + 'px');
     }, 750);
-    
+
     if (typeof sectionRatio != 'undefined') {
         setSectionRatio(sectionRatio);
     }
-    
+
     /* list selection */
+    /* bind to selection events */
+    $('body').bind(
+        'ontowiki.selection.changed',
+        function(event, data)
+        {
+            // select event
+            $('.list-selected').removeClass('list-selected'); // should not add class in the click function
+            $('table.resource-list > tbody > tr').each(
+                function(key)
+                {
+                    var pos = $.inArray($(this).children('td').children('a').attr('about'), data);
+                    if (pos >= 0) {
+                        $(this).addClass('list-selected');
+                    }
+                }
+            );
+        }
+    );
+
+    /* trigger selection events */
     $('table.resource-list > tbody > tr').live('click', function(e) {
         var selectee     = $(this);
         var selectionURI = $(this).children('td').children('a').attr('about');
@@ -103,7 +184,7 @@ $(document).ready(function() {
         if (typeof OntoWiki.selectedResources == 'undefined') {
             OntoWiki.selectedResources = [];
         }
-        
+
         if (!selectee.hasClass('list-selected')) { // select a resource
             // TODO: check for macos UI compability
             if (e.ctrlKey) {
@@ -114,14 +195,11 @@ $(document).ready(function() {
                 // not implemented yet
             } else {
                 // normal click on unselected means deselect all and select this one
-                // deselect all resources
-                $('.list-selected').removeClass('list-selected');
                 // purge the container array
                 OntoWiki.selectedResources = [];
             }
 
             // add this resource
-            selectee.addClass('list-selected');
             OntoWiki.selectedResources.push(selectionURI);
             // event for most recent selection
             $('body').trigger('ontowiki.resource.selected', [selectionURI]);
@@ -129,7 +207,6 @@ $(document).ready(function() {
             // TODO: check for macos UI compability
             if (e.ctrlKey) {
                 // ctrl+click on selected means deselect this one
-                selectee.removeClass('list-selected');
                 var pos = $.inArray(selectionURI, OntoWiki.selectedResources);
                 OntoWiki.selectedResources.splice(pos, 1);
             } else if (e.shiftKey) {
@@ -137,8 +214,6 @@ $(document).ready(function() {
                 // not implemented yet
             } else {
                 // normal click on selected means deselect all
-                // deselect all resources
-                $('.list-selected').removeClass('list-selected');
                 // purge the container array
                 OntoWiki.selectedResources = [];
             }
@@ -146,11 +221,12 @@ $(document).ready(function() {
             // event for most recent unselection
             $('body').trigger('ontowiki.resource.unselected', [selectionURI]);
         }
-        
+
         // event for all selected
         $('body').trigger('ontowiki.selection.changed', [OntoWiki.selectedResources]);
     });
-    
+    /* END list selection */
+
     $('body').bind('ontowiki.resource-list.reloaded', function() {
         // synchronize selection with list style
         $('.resource-list tr').each(function() {
@@ -209,26 +285,27 @@ $(document).ready(function() {
      *  simulate Safari behaviour for other browsers
      *  on return/enter, submit the form
      */
-    if (!$.browser.safari) {
-        $('.submitOnEnter').keypress(function(event) {
-            // return pressed
-            if (event.target.tagName.toLowerCase() != 'textarea' && event.which == 13) {
-                $(this).parents('form').submit();
-            }
-        });
-    }
+    $('.submitOnEnter').keypress(function(event) {
+        // return pressed
+        if (event.target.tagName.toLowerCase() != 'textarea' && event.which == 13) {
+            $(this).parents('form').submit();
+        }
+    });
+    
     /*
-     *  on press enter, this type of textbox looses focus and gives it to the next textfield
+     *  on press enter, this type of textbox looses focus and gives it to the next element of the same type
      */
     $('.focusNextOnEnter').keypress(function(event) {
         // return pressed
         if (event.target.tagName.toLowerCase() != 'textarea' && event.which == 13) {
             var me = $(this)
-            var next = me.next();
-            if(next.get(0).tagName.toLowerCase() == me.get(0).tagName.toLowerCase()){
+            var meType = me.get(0).tagName.toLowerCase()
+            var next = me.next(); //next element
+            if(next.get(0).tagName.toLowerCase() == meType){
                 next.focus();
             } else {
-                var next2 = me.parent().next().find('>'+me.get(0).tagName.toLowerCase()+':first')
+                // if thats not of the same type, go to "parent and "cousin""
+                var next2 = me.parent().next().find('>'+meType+':first')
                 if (next2.length != 0){
                     next2.focus();
                 } 
@@ -246,31 +323,25 @@ $(document).ready(function() {
 
     // init new resource based on type
     $('.init-resource').click(function(event) {
-        var instances = {};
-        var size = 0;
-        var key = "";
-        $('.resource-list a').each(function() {
-          var element    = $(this).attr('typeof').split(' ');
-          for (var t in element) {
-            var type         = element[t];
-            var label        = $(this).parent().find('span.Resource').eq(t).text();
-            var namespace    = type.split(':')[0];
-            var instance     = type.split(':')[1];
-            var namespaceUri = $('.resource-list').attr('xmlns:'+namespace);
-            instances[label] = namespaceUri+instance;
-          };
-        })
-        // get size of types
-        for (key in instances) {
-          size++;
-        }
-        // if only one type is available open immediately the add instance dialog
-        // otherwise show context menu
-        if ( size == 1 ) {
-            createInstanceFromClassURI(instances[key]);
+        // parse .resource-list and query for all types
+        if ($('.resource-list').length != 0) {
+            var types = $('.resource-list').rdf()
+                                           .where('?type a rdfs:Class')
+                                           .where('?type rdfs:label ?value')
+                                           .dump();
+
+            if (Object.keys(types).length == 1) {
+                createInstanceFromClassURI(Object.keys(types)[0]);
+            } else {
+                showAddInstanceMenu(event, types);
+            }
         } else {
-            showAddInstanceMenu(event, instances);
+            // workaround to create instance when number of instances of a class is null
+            // The selected class should be hardcoded by ontowiki in the header as 
+            // javascript variable.
+            createInstanceFromClassURI($('#filterbox a').attr('about'));
         }
+        
     });
 
     $('.edit.save').click(function() {
@@ -278,6 +349,7 @@ $(document).ready(function() {
     });
     
     $('.edit.cancel').click(function() {
+        $(body).data('editingMode', false);
         // reload page
         window.location.href = window.location.href;
         RDFauthor.cancel();
@@ -295,6 +367,7 @@ $(document).ready(function() {
     
     // edit mode
     $('.edit-enable').click(function() {
+        $(body).data('editingMode', true);
         var button = this;
         if ($(button).hasClass('active')) {
             RDFauthor.cancel();
@@ -408,6 +481,7 @@ $(document).ready(function() {
     
     // add property
     $('.property-add').click(function() {
+        $(body).data('editingMode', true);
         if(typeof(RDFauthor) === 'undefined') {
             loadRDFauthor(function () {
                 RDFauthor.setOptions({

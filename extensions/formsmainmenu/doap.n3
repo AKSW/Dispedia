@@ -1,0 +1,29 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owconfig: <http://ns.ontowiki.net/SysOnt/ExtensionConfig/> .
+@prefix extension: <http://ns.ontowiki.net/Extensions/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix event: <http://ns.ontowiki.net/SysOnt/Events/> .
+@prefix : <http://ns.ontowiki.net/Extensions/formsmainmenu/> .
+
+<> foaf:primaryTopic :this .
+:this a doap:Project ;
+  doap:name "formsmainmenu" ;
+  owconfig:privateNamespace <http://ns.ontowiki.net/Extensions/formsmainmenu/> ;
+  owconfig:templates "." ;
+  owconfig:enabled "true"^^xsd:boolean ;
+  rdfs:label "Forms Main Menu" ;
+  doap:description "Forms Main Menu" ;
+  owconfig:authorLabel "Dispedia + Lars Eidam + Konrad Abicht" ;
+  doap:maintainer <http://www.dispedia.de> ;
+  owconfig:languages "languages" ;
+  owconfig:hasModule :Default .
+:Default a owconfig:Module ;
+  rdfs:label "Default" ;
+  owconfig:caching "false"^^xsd:boolean ;
+  owconfig:priority "0" ;
+  owconfig:context "main.sidewindows";
+  doap:release :v1-0 .
+:v1-0 a doap:Version ;
+  doap:revision "1.0" .
