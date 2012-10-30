@@ -22,10 +22,13 @@
                     
                     <?php foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription) { ?>
                         <div class="divProposalDescription"><?php echo $proposal['components']['labels'][$proposalDescriptionUri] ?></div>
+                        <?php foreach ($proposalDescription['type'] as $proposalDescriptionType) { ?>
+                            <div class="divProposalDescriptionType"><?php echo $proposal['components']['labels'][$proposalDescriptionType] ?></div>
+                        <?php } ?>
                         <div class="patientQuestion">
                             <div class="divProposalDescriptionRadiobuttonNo"><input type="radio" name="<?php echo md5($proposalDescriptionUri) ?>" value="no"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? '' : ' checked="checked"') ?>>Nein</div>
                             <div class="divProposalDescriptionRadiobuttonYes"><input type="radio" name="<?php echo md5($proposalDescriptionUri) ?>" value="yes"<?php echo (isset($this->proposalDescriptions['received'][$proposalDescriptionUri]) ? ' checked="checked"' : '') ?>>Ja</div>
-                            <div class="text">Für Patienten sichtbar?</div>
+                            <div class="text"><?php echo $this->_translate->_('visibility') . " " . $this->patientTypeLabel . " " . $this->patientLabel?></div>
                         </div>
                         <?php if(isset($proposalDescription['content'])) {?>
                             <div class="divProposalDescriptionContent"><?php echo $proposalDescription['content'] ?></div>

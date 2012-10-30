@@ -43,13 +43,16 @@
 <script>
     $("#selectPatient").trigger('change');
     $("#selectPatient").change(function () {
-        var uri = "";
-        uri =  $("#selectPatient option:selected").val();
+        var uri = $("#selectPatient option:selected").val();
+        if ('' == uri)
+        {
+            uri = "http://ns.ontowiki.net/SysOnt/Model";
+        }
         $.ajax({
             async:true,
             dataType: "html",
             type: "POST",
-            url: url + "resource/properties/?r=" + uri,
+            url: url + "resource/properties/?m=http%3A%2F%2Fpatients.dispedia.de%2F&r=" + uri,
             // complete, no errors
             success: function ( res ) 
             {

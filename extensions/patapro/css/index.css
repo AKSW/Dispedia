@@ -118,6 +118,9 @@ table#proposal th{
     margin-left: 50px;
     height: 25px;
 }
+.divProposalComponents .divProposalDescriptionType {
+    text-align: right;
+}
 .divProposalComponents .patientQuestion {
     border-top: solid 1px black;
     text-align: right;
