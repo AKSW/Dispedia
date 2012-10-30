@@ -351,10 +351,6 @@ class PataproController extends OntoWiki_Controller_Component
             $message = new OntoWiki_Message($this->_translate->_('nopatientselected'), OntoWiki_Message::WARNING);
             $this->_owApp->appendMessage($message);
         }
-        //TODO: remove this output
-        echo "<pre>";
-        var_dump($this->view->decisionProposals);
-        echo "</pre>";
         $this->view->currentPatient = $currentPatient;
     }
 
