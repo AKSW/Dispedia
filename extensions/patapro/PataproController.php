@@ -225,7 +225,7 @@ class PataproController extends OntoWiki_Controller_Component
                 $this->view->proposalUri = $proposalUri;
                 
                 if ("new" == $status)
-                    $this->view->proposalDescriptions = $this->_proposal->getProposalDescriptionByType($patientUri, $proposalUri);
+                    $this->view->proposalDescriptions = $this->_proposal->getProposalDescriptionByType($this->view->patientType, $proposalUri);
                 else
                     $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
                 

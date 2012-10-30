@@ -60,12 +60,11 @@ class Proposal
 	/**
 	 * function determine which proposal description are preselected for a patient
 	 */
-	public function getProposalDescriptionByType($patientUri, $proposalUri)
+	public function getProposalDescriptionByType($patientType, $proposalUri)
 	{
 		$proposaldescriptions = array();
 		$proposaldescriptions['received'] = array();
 		$proposaldescriptions['read'] = array();
-		$patientType = $this->_patientHelper->getPatientType($patientUri);
 		if ( false !== preg_match("/sensible/", $patientType) )
 		{
 			$patientType = "sensible";
@@ -138,7 +137,7 @@ class Proposal
 				?proposalComponent <http://www.dispedia.de/o/containsProposalDescription> ?proposalDescription.
 				?proposalDescription <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?proposalDescriptionType.
 			  }
-                FILTER !REGEX(str(?proposalDescriptionType), "NamedIndividual"))
+                FILTER (?proposalDescriptionType != <http://www.w3.org/2002/07/owl#NamedIndividual>)
 			};'
         );
 		

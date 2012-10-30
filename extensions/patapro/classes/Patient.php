@@ -27,7 +27,8 @@ class Patient
             'SELECT ?patientType
             WHERE {
                 <' . $patientUri . '> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?patientType .
-                FILTER !REGEX(str(?patientType), "NamedIndividual") && !REGEX(str(?patientType), "o/Patient")
+                FILTER (?patientType != <http://www.w3.org/2002/07/owl#NamedIndividual>)
+                FILTER (?patientType != <http://www.dispedia.de/o/Patient>)
             };'
         );
 
@@ -35,7 +36,7 @@ class Patient
             $patientTypeReturnValue = "http://www.dispedia.de/o/Patient";
         else
             $patientTypeReturnValue = $patientTypeResult[0]['patientType'];
-        
+
         return $patientTypeReturnValue;
     }
     
@@ -48,7 +49,7 @@ class Patient
                 <' . $patientUri . '> <http://www.dispedia.de/o/hasHealthState> ?uri .
                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?type.
                 ?uri <http://www.dispedia.de/o/hasDate> ?timestamp .
-                FILTER !REGEX(str(?type), "NamedIndividual")
+                FILTER (?type != <http://www.w3.org/2002/07/owl#NamedIndividual>)
             }
             ORDER BY DESC(?timestamp);'
         );
