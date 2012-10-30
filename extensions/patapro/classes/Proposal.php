@@ -354,19 +354,21 @@ class Proposal
         $proposals = array();
         $results = $this->_store->sparqlQuery (
             'PREFIX dispediao:<http://www.dispedia.de/o/>
-			SELECT ?uri ?label ?healthstate ?statusUri
+			SELECT ?uri ?healthstate ?statusUri
 			WHERE {
 				?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> dispediao:Proposal .
-				?uri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
 				?healthstate ?statusUri ?uri .
 				<' . $patientUri . '> dispediao:hasHealthState ?healthstate .
-				FILTER (langmatches(lang(?label), "' . $this->_lang . '"))
 			}'
         );
-	
+		
+		$this->_titleHelper->reset();
+		$this->_titleHelper->addResources($results, 'uri');
+		
         foreach ($results as $result)
 		{
 			$result['status'] = preg_replace('/http:\/\/www.dispedia.de\/o\//', '', $result['statusUri']);
+			$result['label'] = $this->_titleHelper->getTitle($result['uri'], $this->_lang);
 			$proposals[$result['uri']] = $result;
 		}
 		return $proposals;
