@@ -16,8 +16,7 @@
     <!ENTITY var "urn:swrl#" >
     <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
     <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
-    <!ENTITY icd "http://purl.bioontology.org/ontology/ICD10/">
-     
+        
 
 
 ]>
@@ -38,7 +37,6 @@
      xmlns:var="&var;"
      xmlns:swrl="&swrl;"
      xmlns:xml="&xml;"
-     xmlns:icd="&icd;"
      xmlns:s="&s;"
      >
     <owl:Ontology rdf:about="&dispedia;">
@@ -52,6 +50,7 @@
         <dct:contributor>Michael Martin</dct:contributor>
         <dct:contributor>Tom-Michael Hesse</dct:contributor>
         <dct:contributor>Lars Eidam</dct:contributor>
+        <dct:contributor>Marcus Nitzschke</dct:contributor>
         <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
     </owl:Ontology>
 
@@ -708,7 +707,13 @@
     <owl:Class rdf:about="&dispediao;ALS">
         <rdfs:label xml:lang="de">ALS</rdfs:label>
         <rdfs:label xml:lang="en">ALS</rdfs:label>
-        <owl:equivalentClass rdf:resource="icd;G12.2"/>
+        <rdfs:subClassOf rdf:resource="&dispediao;Disease"/>
+        <owl:equivalentClass rdf:resource="http://purl.bioontology.org/ontology/ICD10/G12.2"/>
+        <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/SNOMEDCT/86044005"/>
+        <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/MSH/D000690"/>
+        <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/MEDLINEPLUS/T135"/>
+        <rdfs:subClassOf rdf:resource="http://www.orphanet.org/rdfns#pat_id_106"/>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/resource/Amyotrophic_lateral_sclerosis"/>
     </owl:Class>
 
     <owl:Class rdf:about="&dispediao;AssistiveProduct">
@@ -738,7 +743,7 @@
     <owl:Class rdf:about="&dispediao;Disease">
         <rdfs:label xml:lang="de">Krankheit</rdfs:label>
         <rdfs:label xml:lang="en">Disease</rdfs:label>
-        <owl:sameAs rdf:resource="&dbpedia;Disease"/>
+        <owl:equivalentClass rdf:resource="&dbpedia;Disease"/>
         <rdfs:subClassOf rdf:resource="&s;MedicalEntity"/>
     </owl:Class>
 
