@@ -186,16 +186,21 @@ class Proposal
 					if (!isset($proposalData['labels'][$proposal['proposalDescriptionType']]))
 						$proposalData['labels'][$proposal['proposalDescriptionType']] = $this->_titleHelper->getTitle($proposal['proposalDescriptionType'], $this->_lang);
 					
-					//get description content
-					$proposalDescriptionContent = $this->_store->sparqlQuery (
-						'SELECT ?proposalDescriptionContent
-						WHERE {
-							<' . $proposal['proposalDescription'] . '> <http://www.dispedia.de/o/content> ?proposalDescriptionContent.
-							FILTER (langmatches(lang(?proposalDescriptionContent), "' . $this->_lang . '"))
-						};'
-					);
-					if (isset($proposalDescriptionContent[0]) && "" != $proposalDescriptionContent[0]['proposalDescriptionContent'])
-						$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['content'] = $proposalDescriptionContent[0]['proposalDescriptionContent'];
+					if (false == isset($proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['content']))
+					{
+						// get description content
+						// TODO:use a other output format because very big literals has failure in the standard output
+						$proposalDescriptionContent = $this->_store->sparqlQuery (
+							'SELECT ?proposalDescriptionContent
+							WHERE {
+								<' . $proposal['proposalDescription'] . '> <http://www.dispedia.de/o/content> ?proposalDescriptionContent.
+								FILTER (langmatches(lang(?proposalDescriptionContent), "' . $this->_lang . '"))
+							};',
+							array (Erfurt_Store::RESULTFORMAT => Erfurt_Store::RESULTFORMAT_EXTENDED)
+						);
+						if (isset($proposalDescriptionContent['results']['bindings'][0]['proposalDescriptionContent']['value']) && "" != $proposalDescriptionContent['results']['bindings'][0]['proposalDescriptionContent']['value'])
+							$proposalData['data'][$proposal['proposalComponent']][$proposal['proposalDescription']]['content'] = $proposalDescriptionContent['results']['bindings'][0]['proposalDescriptionContent']['value'];
+					}
 				}
 			}
 		}
