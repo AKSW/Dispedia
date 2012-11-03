@@ -50,10 +50,13 @@ class PropallocController extends OntoWiki_Controller_Component
         // get all models
         $this->_ontologies = $this->_config->ontologies->toArray();
         $this->_ontologies = $this->_ontologies['models'];
+        $namespaces = array();
         // make model instances
         foreach ($this->_ontologies as $modelName => $model) {
-            $this->_ontologies[$modelName]['instance'] = $dispediaModel = new Erfurt_Rdf_Model($model['namespace']);
+            $this->_ontologies[$modelName]['instance'] = new Erfurt_Rdf_Model($model['namespace']);
+            $namespaces[$model['namespace']] = $modelName;
         }
+        $this->_ontologies['namespaces'] = $namespaces;
 
         $this->_optionHelper = new Option($this->_lang, $this->_ontologies, $this->_store);
         
