@@ -21,15 +21,14 @@
         <table>
             <tr>
                 <td id="decisionCol">
-                    <div class="sectionHeadline"><?php echo $this->_translate->_('new'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
+                    <div class="sectionHeadline"><?php echo $this->_translate->_('proposals'); ?></div>
                     <div class="section">
                         <?php foreach ($this->decisionProposals as $proposal) { ?>
                         <?php if ("isPending" == $proposal['status']) { ?>
                             <div>
                                 <div class="proposal"><?php echo $proposal['label'] ?></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
                                 <div class="clear"></div>
                             </div>
                         <?php } ?>
@@ -40,9 +39,9 @@
                         <?php foreach ($this->decisionProposals as $proposal) { ?>
                             <?php if ("accepts" == $proposal['status']) { ?>
                                 <div>
-                                    <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
-                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
-                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                    <div class="proposal"><?php echo $proposal['label'] ?></div>
+                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
+                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
                                 <div class="clear"></div>
                                 </div>
                             <?php } ?>
@@ -53,9 +52,9 @@
                         <?php foreach ($this->decisionProposals as $proposal) { ?>
                         <?php if ("denies" == $proposal['status']) { ?>
                             <div>
-                                <div class="proposal"><?php echo $proposal['proposalLabel'] ?></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['decision']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                <div class="proposal"><?php echo $proposal['label'] ?></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
+                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
                                 <div class="clear"></div>
                             </div>
                         <?php } ?>

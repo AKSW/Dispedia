@@ -66,7 +66,7 @@
                                     </a>
                                 </td>
                                 <td id="proposalStatus">
-                                    <span><?php echo (isset($proposal['status']) ? $this->_translate->_($proposal['status']) : ""); ?></span>
+                                    <span><?php echo (isset($proposal['status']) ? $proposal['statusLabel'] : ""); ?></span>
                                 </td>
                                 <td id="proposalCorrespondence">
                                     <div class="correspondence corDivBottom"></div><div style="width:<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>px" class="correspondence corDivTop"></div>

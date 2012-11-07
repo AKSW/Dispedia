@@ -163,8 +163,8 @@
         <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20120603100555"/>
         <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20120603100555"/>
         <dispediao:isPending rdf:resource="&ekbi;UseWalkingFrame"/>
-        <dispediao:isPending rdf:resource="&ekbi;UseFeedingCup"/>
-        <dispediao:isPending rdf:resource="&ekbi;StomachTube"/>
+        <dispediao:accepts rdf:resource="&ekbi;UseFeedingCup"/>
+        <dispediao:denies rdf:resource="&ekbi;StomachTube"/>
         <dispediao:receivedProposalDescription rdf:resource="&ekbi;DurationHouseHunting"/>
         <dispediao:receivedProposalDescription rdf:resource="&ekbi;LWDetails"/>
         <dispediao:readProposalDescription rdf:resource="&ekbi;LWDetails"/>

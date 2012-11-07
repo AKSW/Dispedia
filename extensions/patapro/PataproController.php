@@ -341,10 +341,11 @@ class PataproController extends OntoWiki_Controller_Component
                 $decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
                 foreach ($decisionProposals as $decisionProposal)
                 {
-                    $decision = $this->getParam(base64_encode($decisionProposal['decision']));
+                    //TODO: find a better way to save only changed decisions
+                    $decision = $this->getParam(base64_encode($decisionProposal['uri']));
                     if (isset($decision))
                         //TODO: auf Erfolg prüfen
-                        $this->_proposal->saveDecision($decisionProposal['proposalAllocation'], $decisionProposal['decision'], $decision);
+                        $this->_proposal->saveDecision($decisionProposals, $decisionProposal['uri'], $decision);
                 }
             }
             $this->view->decisionProposals = $this->_proposal->getAllDecisinProposals($currentPatient);

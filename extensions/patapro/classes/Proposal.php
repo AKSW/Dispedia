@@ -372,10 +372,12 @@ class Proposal
 		
 		$this->_titleHelper->reset();
 		$this->_titleHelper->addResources($results, 'uri');
+		$this->_titleHelper->addResources($results, 'statusUri');
 		
         foreach ($results as $result)
 		{
 			$result['status'] = preg_replace('/http:\/\/www.dispedia.de\/o\//', '', $result['statusUri']);
+			$result['statusLabel'] = $this->_titleHelper->getTitle($result['statusUri'], $this->_lang);
 			$result['label'] = $this->_titleHelper->getTitle($result['uri'], $this->_lang);
 			$proposals[$result['uri']] = $result;
 		}
@@ -385,7 +387,7 @@ class Proposal
     /**
      * save a decision from patient
      */
-    public function saveDecision ($proposalAllocation, $decisionUri, $decision)
+    public function saveDecision ($decisionProposals, $proposalUri, $decision)
     {
 		$return_value = true;
 		$removedStmt = 0;
@@ -414,19 +416,19 @@ class Proposal
 		}
 		
 		$removedStmt += $this->removeStmt(
-			$decisionUri,
+			$decisionProposals[$proposalUri]['healthstate'],
 			"http://www.dispedia.de/o/" . $removePropertyOne,
-			$proposalAllocation
+			$proposalUri
 		);
 		$removedStmt += $this->removeStmt(
-			$decisionUri,
+			$decisionProposals[$proposalUri]['healthstate'],
 			"http://www.dispedia.de/o/" . $removePropertyTwo,
-			$proposalAllocation
+			$proposalUri
 		);
 		$this->addStmt (
-			$decisionUri,
+			$decisionProposals[$proposalUri]['healthstate'],
 			"http://www.dispedia.de/o/" . $addProperty,
-			$proposalAllocation
+			$proposalUri
 		);
 		
 		if (1 != $removedStmt)
