@@ -25,34 +25,40 @@
 	<tr>
 		<th>Model</th>
 		<?php foreach($this->models as $modelName => $modelData) { ?>
-			<th>
-					<?php echo $modelName; ?>
-			</th>
+            <?php if ('namespaces' != $modelName) { ?>
+                <th>
+                        <?php echo $modelName; ?>
+                </th>
+            <?php } ?>
 		<?php } ?>
 	</tr>
 	<tr>
 		<td>Function</td>
 		<?php foreach($this->models as $modelName => $modelData) { ?>
-			<td>
-				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'all')">
-					Renew
-				</a>
-				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'add')">
-					Add
-				</a>
-				<a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'delete')">
-					Delete
-				</a>
-			</td>
+            <?php if ('namespaces' != $modelName) { ?>
+                <td>
+                    <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'all')">
+                        Renew
+                    </a>
+                    <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'add')">
+                        Add
+                    </a>
+                    <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'delete')">
+                        Delete
+                    </a>
+                </td>
+            <?php } ?>
 		<?php } ?>
 	</tr>
 	<tr>
 		<td>Process</td>
 			<?php foreach($this->models as $modelName => $modelData) { ?>
-				<td>
-					<div id="response<?php echo $modelName; ?>">
-					</div>
-				</td>
+                <?php if ('namespaces' != $modelName) { ?>
+                    <td>
+                        <div id="response<?php echo $modelName; ?>">
+                        </div>
+                    </td>
+                <?php } ?>
 			<?php } ?>
 	</tr>
 </table>
