@@ -49,7 +49,8 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
+     
+     <!-- Max Mustermann-->
 
     <owl:NamedIndividual rdf:about="&patients;ALSDisease">
         <rdf:type rdf:resource="&dispediao;ALS"/>
@@ -130,5 +131,95 @@
         <diswrap-icf:damagedBodyStructureStrength2 rdf:resource="&icf;s750"/>
     </owl:NamedIndividual>
     
+    
+    <!-- Maxi Musterfrau -->
+    
+    <owl:NamedIndividual rdf:about="&patients;MaxiMusterfrau">
+        <rdf:type rdf:resource="&dispediao;Patient"/>
+        <rdfs:label>Maxi Musterfrau</rdfs:label>
+        <dispediao:single rdf:datatype="&xsd;boolean">false</dispediao:single>
+        <dispediao:firstName>Maxi</dispediao:firstName>
+        <dispediao:lastName>Musterfrau</dispediao:lastName>
+        <dispediao:education>Kauffrau</dispediao:education>
+        <dispediao:gender xml:lang="en">female</dispediao:gender>
+        <dispediao:hasAddress rdf:resource="&patients;AddressMaxiMusterfrau"/>
+        <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120603100555"/>
+        <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120820181326"/>
+        <dispediao:hasDisease rdf:resource="&patients;ALSDisease"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&patients;AddressMaxiMusterfrau">
+        <rdf:type rdf:resource="&dispediao;Address"/>
+        <rdfs:label>Peterstr. 34, New York, 20</rdfs:label>
+        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.05.2012</dispediao:addressDate>
+        <dispediao:homeLevel rdf:datatype="&xsd;int">20</dispediao:homeLevel>
+        <dispediao:adressText>Peterstr. 34, New York</dispediao:adressText>
+        <dispediao:street>Peterstr. 34</dispediao:street>
+    </owl:NamedIndividual>
+    
+        <owl:NamedIndividual rdf:about="&patients;HSMaxiMusterfrau20120603100555">
+        <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
+        <dispediao:hasDate rdf:datatype="&xsd;dateTime">2012-06-03 10:05:55</dispediao:hasDate>
+        <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20120603100555"/>
+        <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20120603100555"/>
+        <dispediao:isPending rdf:resource="&ekbi;UseWalkingFrame"/>
+        <dispediao:isPending rdf:resource="&ekbi;UseFeedingCup"/>
+        <dispediao:isPending rdf:resource="&ekbi;StomachTube"/>
+        <dispediao:receivedProposalDescription rdf:resource="&ekbi;DurationHouseHunting"/>
+        <dispediao:receivedProposalDescription rdf:resource="&ekbi;LWDetails"/>
+        <dispediao:readProposalDescription rdf:resource="&ekbi;LWDetails"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PSMaxMustermann20120603100555">
+        <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSPropertySet"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o1_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o3_2"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o5a_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o5b_3"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o6_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o7_1"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o9_4"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o12_2"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&patients;SSMaxMustermann20120603100555">
+        <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSSymptomSet"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o2_2"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o4_1"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o8_4"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o10_3"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o11_4"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&patients;HSMaxiMusterfrau20120820181326">
+        <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
+        <dispediao:hasDate rdf:datatype="&xsd;dateTime">2012-08-20 18:13:26</dispediao:hasDate>
+        <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20120820181326"/>
+        <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20120820181326"/>
+        <dispediao:isPending rdf:resource="&ekbi;Move"/>
+        <dispediao:isPending rdf:resource="&ekbi;Logopedics"/>
+        <dispediao:isPending rdf:resource="&ekbi;UseWheelChair"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&patients;PSMaxMustermann20120820181326">
+        <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSPropertySet"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o1_1"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o3_2"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o5a_1"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o5b_3"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o6_1"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o7_1"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o9_3"/>
+        <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o12_2"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&patients;SSMaxMustermann20120820181326">
+        <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSSymptomSet"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o2_2"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o4_1"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o8_2"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o10_1"/>
+        <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o11_4"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
