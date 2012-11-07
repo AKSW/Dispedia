@@ -37,11 +37,11 @@ $(document).ready(function() {
 <br/>
 <span id="selectproposalspan"><?php echo $this->_translate->_('selectProposal') ?>:</span>
 <form method="GET" action="<?php echo $this->url; ?>alloc/" id="formproposallist">
-	<select id="selectproposallist" name="proposal">
+	<select id="selectproposallist" name="r">
         <?php if (0 < count($this->proposals)) { ?>
                 <option value=""><?php echo $this->_translate->_('pleaseSelect') ?></option>
             <?php foreach ($this->proposals as $proposal) { ?>
-                <option value="<?php echo $proposal ['shortcut']; ?>" <?php echo ($proposal ['uri'] == $this->proposal->getProposalUri ( $this->currentProposal ) ) ? " selected=selected" : ""?>><?php echo $proposal ['label']; ?></option>
+                <option value="<?php echo $proposal ['uri']; ?>" <?php echo ($proposal ['uri'] == $this->currentProposal ) ? " selected=selected" : ""?>><?php echo $proposal ['label']; ?></option>
             <?php } ?>
         <?php } else { ?>
             <option value="">$this->_translate->_('noProposalFound')</option>
@@ -64,7 +64,7 @@ $(document).ready(function() {
                 <tr>
                     
                     <td>
-                        <?php echo $this->action('form', 'formgenerator', null, array('r' => $this->proposal->getProposalUri ( $this->currentProposal ), 'file' => 'proposalreport')); ?>
+                        <?php echo $this->action('form', 'formgenerator', null, array('file' => 'proposalreport')); ?>
                     </td>
         
                     <!-- ALSFRS topics and their options -->

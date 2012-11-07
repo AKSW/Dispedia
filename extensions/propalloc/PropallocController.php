@@ -106,10 +106,23 @@ class PropallocController extends OntoWiki_Controller_Component
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/alloc.css');
 
         $this->view->url = $this->_url;
-        $this->view->currentProposal = $this->getParam('proposal');
+        
+        // get selectedResource if it is set
+        $selectedResource = $this->_owApp->__get("selectedResource");
+        if (isset($selectedResource))
+        {
+            if('http://www.dispedia.de/o/Proposal' == $this->_resource->getClassUri($selectedResource)) 
+                $this->view->currentProposal = $selectedResource->getIri();
+            else
+                $this->view->currentProposal = '';
+        }
+
+        $this->view->proposals = (array) $this->_proposal->getAllProposals();
+        $this->view->proposal = $this->_proposal;
         
         if ("" != $this->view->currentProposal)
         {
+            
             // build toolbar
             $toolbar = $this->_owApp->toolbar;
             $toolbar->appendButton(
@@ -117,17 +130,7 @@ class PropallocController extends OntoWiki_Controller_Component
                 array('name' => 'Save')
             );
             $this->view->placeholder('main.window.toolbar')->set($toolbar);
-        }
 
-
-        // -------------------------------------------------------------
-
-
-        $this->view->proposals = (array) $this->_proposal->getAllProposals();
-        $this->view->proposal = $this->_proposal;
-
-        // -------------------------------------------------------------
-        if ( '' != $this->getParam('proposal') ) {
             $options = array ();
             //TODO: Change the access to the $_REQUEST object and use url encoding
             if ( 'save' == $this->getParam('do') ) {
@@ -138,9 +141,9 @@ class PropallocController extends OntoWiki_Controller_Component
                 }
 
                 $this->_optionHelper->saveOptions(
-                    $this->_proposal->getProposalUri($this->getParam('proposal')),
+                    $this->view->currentProposal,
                     $options,
-                    $this->_proposal->getSettings($this->getParam('proposal'))
+                    $this->_proposal->getSettings($this->view->currentProposal)
                 );
                 $this->_messages[] = new OntoWiki_Message('successProposalAlloationEdit', OntoWiki_Message::SUCCESS);
             }
@@ -167,7 +170,7 @@ class PropallocController extends OntoWiki_Controller_Component
             $this->view->topics = $topics;
 
             // get saved settings
-            $this->view->settings = $this->_proposal->getSettings($this->getParam('proposal'));
+            $this->view->settings = $this->_proposal->getSettings($this->view->currentProposal);
         }
     }
 

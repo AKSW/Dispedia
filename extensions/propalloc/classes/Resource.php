@@ -106,4 +106,28 @@ class Resource1
             $options
        );
     }
+    
+    /**
+     * extracts class name from an uri
+     * @param classUri Uri of class
+     * @return classname as a string
+     */
+    public function getClassUri($resourceUri)
+    {
+        $returnValue = "";
+        
+        $results = $this->_store->sparqlQuery (
+            'PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            SELECT ?classUri
+            WHERE {
+                <' . $resourceUri . '> rdf:type ?classUri.
+                FILTER (?classUri != <http://www.w3.org/2002/07/owl#NamedIndividual>)
+            }'
+        );
+        
+        if (isset($results[0]['classUri']))
+            $returnValue = $results[0]['classUri'];
+        
+        return $returnValue;
+    }
 }

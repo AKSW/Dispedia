@@ -52,7 +52,6 @@ class Proposal
 
         foreach ( $proposalResult as $proposal )
         {
-            $newProposal['shortcut'] = md5 ( $proposal ['uri'] );
             $newProposal['uri'] = $proposal['uri'];
             $newProposal['label'] = $this->_titleHelper->getTitle($proposal['uri'], $this->_lang);
             $proposals[$newProposal['uri']] = $newProposal;
@@ -64,11 +63,9 @@ class Proposal
     /**
      * 
      */
-    public function getSettings ( $proposalMd5 ) 
+    public function getSettings ( $proposalUri ) 
     {
         $optionUris = array ();
-        
-        $proposalUri = $this->getProposalUri ( $proposalMd5 );
             
         $symptomsOptions = $this->_store->sparqlQuery (
             'SELECT ?optionUri
@@ -94,18 +91,6 @@ class Proposal
             $optionUris [] = $p ['optionUri'];
 	
         return $optionUris;
-    }
-
-    /**
-     * 
-     */
-    public function getProposalUri ( $md5 )
-    {
-            foreach ( $this->getAllProposals () as $p )
-            {
-                    if ( $p ['shortcut'] == $md5 ) return $p ['uri'];
-            }
-            return null;
     }
 }
 
