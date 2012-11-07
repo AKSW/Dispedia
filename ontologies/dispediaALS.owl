@@ -179,6 +179,8 @@
         <rdfs:label xml:lang="de">Wohnungssuche</rdfs:label>
         <rdfs:label xml:lang="en">House hunting</rdfs:label>
         <dispediao:containsProposalDescription rdf:resource="&ekbi;DurationHouseHunting"/>
+        <dispediao:containsProposalDescription rdf:resource="&ekbi;financingHouseHunting"/>
+        <dispediao:containsProposalDescription rdf:resource="&ekbi;logisticHouseHunting"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&ekbi;PrescribeFeedingCup">
@@ -243,6 +245,25 @@
         <rdfs:label xml:lang="de">Dauer der Wohnungssuche</rdfs:label>
         <rdfs:label xml:lang="en">Duration of the house hunting process</rdfs:label>
         <dispediao:content xml:lang="en">Medium time required to find an appropriate home for the patient has to be told to the patient</dispediao:content>
+        <dispediao:content xml:lang="de">Zeit für die Suche einer neuen Wohnung</dispediao:content>
+        <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;financingHouseHunting">
+        <rdf:type rdf:resource="&dispediao;ExperiencedProposalDescription"/>
+        <rdfs:label xml:lang="de">Finanzierung der Wohnung</rdfs:label>
+        <rdfs:label xml:lang="en">financing of the house</rdfs:label>
+        <dispediao:content xml:lang="en">The financing of the new house</dispediao:content>
+        <dispediao:content xml:lang="de">Finanzierung für die neuen Wohnung</dispediao:content>
+        <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="&ekbi;logisticHouseHunting">
+        <rdf:type rdf:resource="&dispediao;SensibleProposalDescription"/>
+        <rdfs:label xml:lang="de">Logistik der Wohnungsuche</rdfs:label>
+        <rdfs:label xml:lang="en">logistic of the hunting process</rdfs:label>
+        <dispediao:content xml:lang="en">Organize the logistic of the hunting process</dispediao:content>
+        <dispediao:content xml:lang="de">Organisieren der Logistik für den Umzug</dispediao:content>
         <dispediao:usefulFor rdf:resource="&seohcp;Physician"/>
     </owl:NamedIndividual>
 

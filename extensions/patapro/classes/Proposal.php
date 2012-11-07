@@ -65,31 +65,35 @@ class Proposal
 		$proposaldescriptions = array();
 		$proposaldescriptions['received'] = array();
 		$proposaldescriptions['read'] = array();
-		if ( false !== preg_match("/sensible/", $patientType) )
-		{
-			$patientType = "sensible";
-		}
-		else if ( false !== preg_match("/experienced/", $patientType) )
-		{
-			$patientType = "experienced";
-		}
-		else
-		{
-			$patientType = "";
-		}
+		
+		$results = $this->_store->sparqlQuery (
+			'PREFIX swrl:<http://www.w3.org/2003/11/swrl#>
+			SELECT ?property ?description
+			WHERE {
+			  ?classAtomPatientType swrl:classPredicate <' . $patientType . '> .
+			  ?bodyAtomList rdf:first ?classAtomPatientType .
+			  ?bodyAtomList rdf:rest ?restAtomList .
+			  ?imp swrl:body ?bodyAtomList .
+			  ?imp swrl:head ?headAtomList .
+			  ?headAtomList rdf:first ?propertyAtom .
+			  ?propertyAtom swrl:propertyPredicate ?property .
+			  ?restAtomList  rdf:first ?classAtomDescriptionType .
+			  ?classAtomDescriptionType swrl:classPredicate ?description .
+			}'
+		);
 		
 		$proposalComponents = $this->getProposalData($proposalUri);
-		//TODO: find a better was to determine patienttype to description type
+		
 		foreach ($proposalComponents['data'] as $proposalDescriptions)
 		{
 			foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
 			{
 				foreach($proposalDescription['type'] as $proposalDescriptionType)
-				if (false !== preg_match("/" . $patientType . "/", $proposalDescriptionType) || $patientType = "")
-					$proposaldescriptions['received'][$proposalDescriptionUri] = $proposalDescriptionUri;
+					if ($proposalDescriptionType == $results[0]['description'])
+						$proposaldescriptions['received'][$proposalDescriptionUri] = $proposalDescriptionUri;
 			}
 		}
-		
+
 		return $proposaldescriptions;
 	}
 	
