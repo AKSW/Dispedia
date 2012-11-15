@@ -195,7 +195,6 @@
         <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:label xml:lang="de">Rollator verschreiben</rdfs:label>
         <rdfs:label xml:lang="en">Prescribe walking frame</rdfs:label>
-        <dispediao:predessorOf rdf:resource="&ekbi;SupplyWalkingFrame"/>
         <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
     </owl:NamedIndividual>
 
@@ -203,7 +202,6 @@
         <rdf:type rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:label xml:lang="de">Rollstuhl verschreiben</rdfs:label>
         <rdfs:label xml:lang="en">Prescribe wheel chair</rdfs:label>
-        <dispediao:predessorOf rdf:resource="&ekbi;PrescribeWheelChair"/>
         <dispediao:containsFormality rdf:resource="&ekbi;Prescription"/>
     </owl:NamedIndividual>
 
