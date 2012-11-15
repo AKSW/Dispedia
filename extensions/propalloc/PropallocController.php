@@ -111,7 +111,7 @@ class PropallocController extends OntoWiki_Controller_Component
         $selectedResource = $this->_owApp->__get("selectedResource");
         if (isset($selectedResource))
         {
-            if('http://www.dispedia.de/o/Proposal' == $this->_resource->getClassUri($selectedResource)) 
+            if('http://www.dispedia.de/o/Proposal' == $this->_resource->getClassUri($selectedResource->getIri())) 
                 $this->view->currentProposal = $selectedResource->getIri();
             else
                 $this->view->currentProposal = '';
