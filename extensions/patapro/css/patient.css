@@ -62,8 +62,23 @@ table {
     width:100px;
 }
 
-#formButtons {
-    text-align:right;
-    margin-bottom:30px;
-    margin-right:30px;
+#proposalbox {
+    display:none;
+}
+
+.simplemodal-overlay {
+  background-color:#000;
+}
+
+.simplemodal-container {
+  background-color:#fff;
+  minWidth:750px;
+}
+
+.simplemodal-data {
+  minWidth:750px;
+}
+
+.simplemodal-data > div {
+  padding:20px;
 }

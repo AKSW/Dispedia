@@ -14,6 +14,16 @@
 <!-- set the title of the action -->
 <?php $this->placeholder('main.window.title')->set($this->_translate->_('decisions')); ?>
 
+<!-- modal box -->
+<div id="proposalbox">
+    <div class="toolbar">
+        <a class="button" href="javascript:$.modal.close();">
+            <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-cancel.png">
+            <span> <?php echo $this->_translate->_('close') ?></span>
+        </a>
+    </div>
+    <div id="mainbox"></div>
+</div>
 <div class="firstHeadline"><?php echo $this->_translate->_('decisions'); ?></div>
 <div class="secondHeadline"><?php echo $this->_translate->_('make your decisions'); ?></div>
 <?php if ("" != $this->currentPatient) { ?>
@@ -26,7 +36,12 @@
                         <?php foreach ($this->decisionProposals as $proposal) { ?>
                         <?php if ("isPending" == $proposal['status']) { ?>
                             <div>
-                                <div class="proposal"><?php echo $proposal['label'] ?></div>
+                                <div class="proposal">
+                                    <?php echo $proposal['label'] ?>
+                                    <a href="javascript:openProposalBox('<?php echo($proposal['uri']) ?>', '<?php echo $this->currentPatient ?>');">
+                                        <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-search.png" border="0" align="absmiddle"/>
+                                    </a>
+                                </div>    
                                 <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
                                 <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
                                 <div class="clear"></div>
@@ -39,7 +54,12 @@
                         <?php foreach ($this->decisionProposals as $proposal) { ?>
                             <?php if ("accepts" == $proposal['status']) { ?>
                                 <div>
-                                    <div class="proposal"><?php echo $proposal['label'] ?></div>
+                                    <div class="proposal">
+                                        <?php echo $proposal['label'] ?>
+                                        <a href="javascript:openProposalBox('<?php echo($proposal['uri']) ?>', '<?php echo $this->currentPatient ?>');">
+                                            <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-search.png" border="0" align="absmiddle"/>
+                                        </a>
+                                    </div>
                                     <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="denies"><span><?php echo $this->_translate->_('denies'); ?></span></div>
                                     <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
                                 <div class="clear"></div>
@@ -50,14 +70,19 @@
                     <div class="sectionHeadline"><?php echo $this->_translate->_('denieds'); ?> <?php echo $this->_translate->_('proposals'); ?></div>
                     <div class="section">
                         <?php foreach ($this->decisionProposals as $proposal) { ?>
-                        <?php if ("denies" == $proposal['status']) { ?>
-                            <div>
-                                <div class="proposal"><?php echo $proposal['label'] ?></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
-                                <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
-                                <div class="clear"></div>
-                            </div>
-                        <?php } ?>
+                            <?php if ("denies" == $proposal['status']) { ?>
+                                <div>
+                                    <div class="proposal">
+                                        <?php echo $proposal['label'] ?>
+                                        <a href="javascript:openProposalBox('<?php echo($proposal['uri']) ?>', '<?php echo $this->currentPatient ?>');">
+                                            <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-search.png" border="0" align="absmiddle"/>
+                                        </a>
+                                    </div>
+                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="accepts"><span><?php echo $this->_translate->_('accept'); ?></span></div>
+                                    <div class="decision"><input type="radio" name="<?php echo base64_encode($proposal['uri']) ?>" value="isPending"><span><?php echo $this->_translate->_('pending'); ?></span></div>
+                                    <div class="clear"></div>
+                                </div>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </td>

@@ -314,6 +314,7 @@ class PataproController extends OntoWiki_Controller_Component
     public function patientAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');
+        $this->view->headScript()->appendFile($this->_componentUrlBase .'js/patient.js');
         $this->view->url = $this->_url;
 
         $currentPatient = "";
@@ -328,11 +329,13 @@ class PataproController extends OntoWiki_Controller_Component
         }
 
         if ( '' != $currentPatient )
-        {
+        {   
             // build toolbar
             $toolbar = $this->_owApp->toolbar;
+            
             $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
-                'name' => 'Save'
+                'name' => 'Save',
+                'url' => 'javascript:$("#patapro").submit()'
             ));
             $this->view->placeholder('main.window.toolbar')->set($toolbar);
 
@@ -357,7 +360,7 @@ class PataproController extends OntoWiki_Controller_Component
         }
         $this->view->currentPatient = $currentPatient;
     }
-
+    
     public function storeAction()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
