@@ -89,15 +89,6 @@
         <rdfs:subPropertyOf rdf:resource="&dispediao;isDoctorOf"/>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;isInARelationshipWith">
-        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
-        <rdfs:label xml:lang="de">Lebensgefährte / Ehepartner</rdfs:label>
-        <rdfs:label xml:lang="en">Cohabitee / Marriage Partner</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&s;relatedTo"/>
-    </owl:ObjectProperty>
-
     <owl:ObjectProperty rdf:about="&dispediao;receivesProductOrService">
         <rdfs:label xml:lang="de">erhält Produkt oder Service</rdfs:label>
         <rdfs:label xml:lang="en">receives Product or Service</rdfs:label>
@@ -529,45 +520,6 @@
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;familyState">
-        <rdfs:label xml:lang="de">Familiäre Verhältnisse</rdfs:label>
-        <rdfs:label xml:lang="en">family state</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty> 
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;divorced">
-        <rdfs:label xml:lang="de">geschieden</rdfs:label>
-        <rdfs:label xml:lang="en">divorced</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;inARelationship">
-        <rdfs:label xml:lang="de">in einer Beziehung</rdfs:label>
-        <rdfs:label xml:lang="en">in a relationship</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;married">
-        <rdfs:label xml:lang="de">verheiratet</rdfs:label>
-        <rdfs:label xml:lang="en">married</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;single">
-        <rdfs:label xml:lang="de">Single</rdfs:label>
-        <rdfs:label xml:lang="en">single</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;familyState"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
     
     <owl:DatatypeProperty rdf:about="&dispediao;education">
         <rdfs:label xml:lang="de">Ausbildung</rdfs:label>
@@ -582,13 +534,6 @@
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
      </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;personalID">
-        <rdfs:label xml:lang="de">Personalnummer</rdfs:label>
-        <rdfs:label xml:lang="en">personal id</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
 
     <!-- 
     ######################################################################################

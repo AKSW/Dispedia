@@ -59,7 +59,6 @@
     <owl:NamedIndividual rdf:about="&patients;MaxMustermann">
         <rdf:type rdf:resource="&dispediao;Patient"/>
         <rdfs:label>Max Mustermann</rdfs:label>
-        <dispediao:single rdf:datatype="&xsd;boolean">true</dispediao:single>
         <dispediao:firstName>Max</dispediao:firstName>
         <dispediao:lastName>Mustermann</dispediao:lastName>
         <dispediao:education>Handwerker</dispediao:education>
@@ -137,7 +136,6 @@
     <owl:NamedIndividual rdf:about="&patients;MaxiMusterfrau">
         <rdf:type rdf:resource="&dispediao;Patient"/>
         <rdfs:label>Maxi Musterfrau</rdfs:label>
-        <dispediao:single rdf:datatype="&xsd;boolean">false</dispediao:single>
         <dispediao:firstName>Maxi</dispediao:firstName>
         <dispediao:lastName>Musterfrau</dispediao:lastName>
         <dispediao:education>Kauffrau</dispediao:education>
