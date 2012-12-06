@@ -33,8 +33,8 @@
     <form method="post" action="#">
         <select name="selectPatient" id="selectPatient">
             <option value=""><?php echo $this->_translate->_('noPatientSelected'); ?></option>
-            <?php foreach ($this->patients as $patient) { ?>
-                <option value="<?php echo urldecode($patient['uri']); ?>"<?php echo ($this->currentPatientUri == $patient['uri'] ? 'selected="selected"' : ""); ?>><?php echo $patient['firstName']; echo " " . $patient['lastName']; ?></option>
+            <?php foreach ($this->patients as $patientUri => $patientLabel) { ?>
+                <option value="<?php echo urldecode($patientUri); ?>"<?php echo ($this->currentPatientUri == $patient['uri'] ? 'selected="selected"' : ""); ?>><?php echo $patientLabel; ?></option>
             <?php }; ?>
         </select>
     </form>

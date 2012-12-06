@@ -12,7 +12,10 @@
  */
 class FormsMainMenuModule extends OntoWiki_Module
 {   
-    private $_translate = null;
+    protected $_translate = null;
+    protected $_titleHelper;
+    protected $_lang;
+    protected $_ontologies;
     
     /**
      * 
@@ -21,12 +24,19 @@ class FormsMainMenuModule extends OntoWiki_Module
         parent::init();
         $this->_translate = $this->_owApp->translate;
         
+        $this->_ontologies = $this->_config->ontologies->toArray();
+        $this->_ontologies = $this->_ontologies['models'];
+        
         $dispediaSession = new Zend_Session_Namespace('Dispedia');
         
         if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
             $this->view->showMenu = $dispediaSession->menuName;
         else
             $this->view->showMenu = "";
+        
+        $this->_titleHelper = new OntoWiki_Model_TitleHelper();
+        
+        $this->_lang = OntoWiki::getInstance()->config->languages->locale;
     }
 
     /**
@@ -70,39 +80,41 @@ class FormsMainMenuModule extends OntoWiki_Module
      */
     public function getContents()
     {
-        $data ['url'] = $this->_config->urlBase;
-        $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
-        $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
-        
-        $this->view->patients = $this->getAllPatients();
-        
-        $dispediaSession = new Zend_Session_Namespace('Dispedia');
-        $selectedResource = $this->_owApp->__get("selectedResource");
-        if(isset($selectedResource))
-            $selectedResourceUri = $selectedResource->getIri();
-
-        if (isset($selectedResourceUri) && "" != $selectedResourceUri)
-            if (in_array($selectedResourceUri, array_keys($this->view->patients)))
-                $this->view->currentPatientUri = $selectedResourceUri;
-            else
-                $this->view->currentPatientUri = "";
-        else
+            $data ['url'] = $this->_config->urlBase;
+            $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
+            $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
+            
+        if ($this->_store->isModelAvailable($this->_ontologies['dispediaCore']['namespace']))
         {
-            $this->view->currentPatientUri = "";
+            $this->view->patients = $this->getAllPatients();
         }
-        
-        if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
-            $this->view->menuName = $dispediaSession->menuName;
-        else
-            $this->view->menuName = "";
-        
-        if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
-            $data ['loggedIn'] = false;
-        } else {
-            $data ['loggedIn'] = true;
-        }
-        
-        return $this->render('formsmainmenu', $data);
+            $dispediaSession = new Zend_Session_Namespace('Dispedia');
+            $selectedResource = $this->_owApp->__get("selectedResource");
+            if(isset($selectedResource))
+                $selectedResourceUri = $selectedResource->getIri();
+    
+            if (isset($selectedResourceUri) && "" != $selectedResourceUri)
+                if (in_array($selectedResourceUri, array_keys($this->view->patients)))
+                    $this->view->currentPatientUri = $selectedResourceUri;
+                else
+                    $this->view->currentPatientUri = "";
+            else
+            {
+                $this->view->currentPatientUri = "";
+            }
+            
+            if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
+                $this->view->menuName = $dispediaSession->menuName;
+            else
+                $this->view->menuName = "";
+            
+            if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
+                $data ['loggedIn'] = false;
+            } else {
+                $data ['loggedIn'] = true;
+            }
+            
+            return $this->render('formsmainmenu', $data);
     }
     
     /**
@@ -111,17 +123,31 @@ class FormsMainMenuModule extends OntoWiki_Module
     private function getAllPatients ()
     {
         $patients = array();
+        
+        $closureResults = $this->_store->getTransitiveClosure('http://www.dispedia.de/', 'http://www.w3.org/2000/01/rdf-schema#subClassOf', array('http://www.dispedia.de/o/Patient'));
+        
+        $closureFilter = 'FILTER (';
+        
+        foreach ($closureResults as $closureUri => $closureResult)
+        {
+            $closureFilter .= '?classUri = <'. $closureUri .'> OR ';
+        }
+        
+        $closureFilter .= 'FALSE)';
+        
         $patientsResults = $this->_store->sparqlQuery (
-            'SELECT ?uri ?firstName ?lastName
+            'SELECT ?uri
               WHERE {
-                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Patient>.
-                 ?uri <http://www.dispedia.de/o/firstName> ?firstName.
-                 ?uri <http://www.dispedia.de/o/lastName> ?lastName.
-             };'
+                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?classUri .' .
+                 $closureFilter .
+             '};'
         );
         
+        $this->_titleHelper->reset();
+        $this->_titleHelper->addResources($patientsResults, 'uri');
+        
         foreach ($patientsResults as $patient) {
-            $patients[$patient['uri']] = $patient;
+            $patients[$patient['uri']] = $this->_titleHelper->getTitle($patient['uri'], $this->_lang);;
         }
         
         return $patients;
