@@ -416,5 +416,47 @@ class OntoWiki_Utils
         }
         return $ret;
     }
+    
+    /**
+     * get all instances of a transitive closure
+     * @param String $closureModelUri
+     * @param String $lang
+     * @param String $closureProperty
+     * @param Array  $closureStartUris
+     * @param String $instanceTypeUri
+     * @return Array (instanceUri => instanceLabel)
+     */
+    static public function getClosureInstances($closureModelUri, $lang, $closureProperty, $closureStartUris, $instanceTypeUri)
+    {
+        $instances = array();
+        $store = Erfurt_App::getInstance()->getStore();
+        
+        $closureResults = $store->getTransitiveClosure($closureModelUri, $closureProperty, $closureStartUris);
+        
+        $closureFilter = 'FILTER (';
+        
+        foreach ($closureResults as $closureUri => $closureResult)
+        {
+            $closureFilter .= '?classUri = <'. $closureUri .'> OR ';
+        }
+        
+        $closureFilter .= 'FALSE)';
+        
+        $instancesResults = $store->sparqlQuery (
+            'SELECT ?uri
+              WHERE {
+                 ?uri <' . $instanceTypeUri . '> ?classUri .' .
+                 $closureFilter .
+             '};'
+        );
+        $titleHelper = new OntoWiki_Model_TitleHelper();
+        $titleHelper->addResources($instancesResults, 'uri');
+        
+        foreach ($instancesResults as $instance) {
+            $instances[$instance['uri']] = $titleHelper->getTitle($instance['uri'], $lang);;
+        }
+        
+        return $instances;
+    }
 }
 
