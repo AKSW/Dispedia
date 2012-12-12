@@ -526,14 +526,7 @@
         <rdfs:label xml:lang="en">Education</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>   
-     
-    <owl:DatatypeProperty rdf:about="&dispediao;hobby">
-        <rdfs:label xml:lang="de">Hobby</rdfs:label>
-        <rdfs:label xml:lang="en">Hobby</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-     </owl:DatatypeProperty>
+    </owl:DatatypeProperty>
 
     <!-- 
     ######################################################################################

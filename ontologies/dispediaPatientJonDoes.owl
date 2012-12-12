@@ -63,8 +63,8 @@
         <rdfs:label>Max Mustermann</rdfs:label>
         <s:givenName>Max</s:givenName>
         <s:familyName>Mustermann</s:familyName>
-        <dispediao:education>Handwerker</dispediao:education>
-        <dispediao:gender xml:lang="en">male</dispediao:gender>
+        <s:jobTitle>Handwerker</s:jobTitle>
+        <s:gender xml:lang="en">male</s:gender>
         <dispediao:hasAddress rdf:resource="&patients;AddressMaxMustermann"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxMustermann20100213154641"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxMustermann20100420104641"/>
@@ -140,8 +140,8 @@
         <rdfs:label>Maxi Musterfrau</rdfs:label>
         <s:givenName>Maxi</s:givenName>
         <s:familyName>Musterfrau</s:familyName>
-        <dispediao:education>Kauffrau</dispediao:education>
-        <dispediao:gender xml:lang="en">female</dispediao:gender>
+        <s:jobTitle>Kauffrau</s:jobTitle>
+        <s:gender xml:lang="en">female</s:gender>
         <dispediao:hasAddress rdf:resource="&patients;AddressMaxiMusterfrau"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120603100555"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120820181326"/>
