@@ -18,6 +18,7 @@
     <!ENTITY ekbi "http://als.dispedia.de/i/" >
     <!ENTITY ccns "http://creativecommons.org/ns#" >
     <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY s "http://schema.org/">
 ]>
 
 
@@ -40,6 +41,7 @@
     xmlns:diswrap-icf="&diswrap-icf;"
     xmlns:ekb="&ekb;"
     xmlns:ekbi="&ekbi;"
+    xmlns:s="&s;"
 >
 
     <!-- 
@@ -59,8 +61,8 @@
     <owl:NamedIndividual rdf:about="&patients;MaxMustermann">
         <rdf:type rdf:resource="&dispediao;Patient"/>
         <rdfs:label>Max Mustermann</rdfs:label>
-        <dispediao:firstName>Max</dispediao:firstName>
-        <dispediao:lastName>Mustermann</dispediao:lastName>
+        <s:givenName>Max</s:givenName>
+        <s:familyName>Mustermann</s:familyName>
         <dispediao:education>Handwerker</dispediao:education>
         <dispediao:gender xml:lang="en">male</dispediao:gender>
         <dispediao:hasAddress rdf:resource="&patients;AddressMaxMustermann"/>
@@ -136,8 +138,8 @@
     <owl:NamedIndividual rdf:about="&patients;MaxiMusterfrau">
         <rdf:type rdf:resource="&dispediao;Patient"/>
         <rdfs:label>Maxi Musterfrau</rdfs:label>
-        <dispediao:firstName>Maxi</dispediao:firstName>
-        <dispediao:lastName>Musterfrau</dispediao:lastName>
+        <s:givenName>Maxi</s:givenName>
+        <s:familyName>Musterfrau</s:familyName>
         <dispediao:education>Kauffrau</dispediao:education>
         <dispediao:gender xml:lang="en">female</dispediao:gender>
         <dispediao:hasAddress rdf:resource="&patients;AddressMaxiMusterfrau"/>
