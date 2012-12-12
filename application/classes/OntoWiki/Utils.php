@@ -419,19 +419,26 @@ class OntoWiki_Utils
     
     /**
      * get all instances of a transitive closure
-     * @param String $closureModelUri
+     * @param String/Array $closureModelUri(s)
      * @param String $lang
      * @param String $closureProperty
      * @param Array  $closureStartUris
      * @param String $instanceTypeUri
      * @return Array (instanceUri => instanceLabel)
      */
-    static public function getClosureInstances($closureModelUri, $lang, $closureProperty, $closureStartUris, $instanceTypeUri)
+    static public function getClosureInstances($closureModelUris, $lang, $closureProperty, $closureStartUris, $instanceTypeUri)
     {
         $instances = array();
+        $closureResults = array();
         $store = Erfurt_App::getInstance()->getStore();
         
-        $closureResults = $store->getTransitiveClosure($closureModelUri, $closureProperty, $closureStartUris);
+        if (false == is_array($closureModelUris))
+            $closureModelUris = array($closureModelUris);
+        
+        foreach ($closureModelUris as $closureModelUri)
+        {
+            $closureResults = array_merge($closureResults, $store->getTransitiveClosure($closureModelUri, $closureProperty, $closureStartUris));
+        }
         
         $closureFilter = 'FILTER (';
         
