@@ -112,23 +112,5 @@ class Patient
         }
         return $options;
     }
-    
-    
-    /**
-     * 
-     */
-    public function getAllPatients ()
-    {
-        $patients = $this->_store->sparqlQuery (
-            'SELECT ?uri ?firstName ?lastName
-              WHERE {
-                 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.dispedia.de/o/Patient>.
-                 ?uri <http://www.dispedia.de/o/firstName> ?firstName.
-                 ?uri <http://www.dispedia.de/o/lastName> ?lastName.
-             };'
-        );
-
-        return $patients;
-    }
 }
 
