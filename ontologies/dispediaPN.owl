@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 
 <!DOCTYPE rdf:RDF [
+    <!ENTITY pn "urn:dispedia:pn" >
     <!ENTITY patients "http://patients.dispedia.de/" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -22,8 +23,9 @@
 
 
 <rdf:RDF
-    xmlns="&patients;"
-    xml:base="&patients;"
+    xmlns="&pn;"
+    xml:base="&pn;"
+    xmlns:patient="&patients;"
     xmlns:rdfs="&rdfs;"
     xmlns:foaf="&foaf;"
     xmlns:owl="&owl;"
@@ -42,17 +44,14 @@
     xmlns:ekbi="&ekbi;"
 >
 
-    <owl:Ontology rdf:about="&patients;">
-        <rdfs:label xml:lang="de">ALS-Patienten</rdfs:label>
-        <rdfs:label xml:lang="en">ALS patients</rdfs:label>
-        <rdfs:comment xml:lang="de">Diese Ontology enthält exemplarische Patienten-Resourcen zur Evaluation des Systemmodels. </rdfs:comment>
-        <rdfs:comment xml:lang="en">This Ontology contains exemplarily patient resources to evaluate and to showcase the systemmodel.</rdfs:comment>
-        <owl:imports rdf:resource="http://www.dispedia.de/"/>
-        <owl:imports rdf:resource="http://als.dispedia.de/"/>
-        <owl:imports rdf:resource="urn:dispedia:pn"/>
+    <owl:Ontology rdf:about="&pn;">
+        <rdfs:label xml:lang="de">ALS-Personennamen</rdfs:label>
+        <rdfs:label xml:lang="en">ALS person names</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese Ontology enthält exemplarische sensiple Personen Daten. </rdfs:comment>
+        <rdfs:comment xml:lang="en">This Ontology contains exemplarily senible person data.</rdfs:comment>
         <dct:contributor>Romy Elze</dct:contributor>
         <dct:contributor>Michael Martin</dct:contributor>
-        <dct:contributor>Tom-Michael Hesse</dct:contributor>
+        <dct:contributor>Lars Eidam</dct:contributor>
         <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
     </owl:Ontology>
 
