@@ -14,6 +14,7 @@
     <!ENTITY diswrap-icf "http://www.dispedia.de/wrapper/Icf/" >
     <!ENTITY dispedia "http://www.dispedia.de/" >
     <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY dispediapn "urn:dispedia:pn/" >
     <!ENTITY ekb "http://als.dispedia.de/" >
     <!ENTITY ekbi "http://als.dispedia.de/i/" >
     <!ENTITY ccns "http://creativecommons.org/ns#" >
@@ -34,6 +35,7 @@
     xmlns:dct="&dct;"
     xmlns:dispedia="&dispedia;"
     xmlns:dispediao="&dispediao;"
+    xmlns:dispediapn="&dispediapn;"
     xmlns:alsfrs="&alsfrs;"
     xmlns:icf="&icf;"
     xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
@@ -52,33 +54,19 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
      
-     <!-- Max Mustermann-->
+    <!-- Max Mustermann-->
 
     <owl:NamedIndividual rdf:about="&patients;ALSDisease">
         <rdf:type rdf:resource="&dispediao;ALS"/>
     </owl:NamedIndividual>
     
-    <owl:NamedIndividual rdf:about="&patients;MaxMustermann">
-        <rdf:type rdf:resource="&dispediao;Patient"/>
-        <rdfs:label>Max Mustermann</rdfs:label>
-        <s:givenName>Max</s:givenName>
-        <s:familyName>Mustermann</s:familyName>
+    <dispediao:Patient rdf:about="&dispediapn;12345678/">
         <s:jobTitle>Handwerker</s:jobTitle>
         <s:gender xml:lang="en">male</s:gender>
-        <dispediao:hasAddress rdf:resource="&patients;AddressMaxMustermann"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxMustermann20100213154641"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxMustermann20100420104641"/>
         <dispediao:hasDisease rdf:resource="&patients;ALSDisease"/>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="&patients;AddressMaxMustermann">
-        <rdf:type rdf:resource="&dispediao;Address"/>
-        <rdfs:label>Musterstr. 1, Musterstadt, 4</rdfs:label>
-        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.02.2011</dispediao:addressDate>
-        <dispediao:homeLevel rdf:datatype="&xsd;int">4</dispediao:homeLevel>
-        <dispediao:adressText>Musterstr. 1, Musterstadt</dispediao:adressText>
-        <dispediao:street>Musterstr. 1</dispediao:street>
-    </owl:NamedIndividual>
+    </dispediao:Patient>
 
     <owl:NamedIndividual rdf:about="&patients;HSMaxMustermann20100213154641">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
@@ -135,29 +123,15 @@
     
     <!-- Maxi Musterfrau -->
     
-    <owl:NamedIndividual rdf:about="&patients;MaxiMusterfrau">
-        <rdf:type rdf:resource="&dispediao;Patient"/>
-        <rdfs:label>Maxi Musterfrau</rdfs:label>
-        <s:givenName>Maxi</s:givenName>
-        <s:familyName>Musterfrau</s:familyName>
+    <dispediao:Patient rdf:about="&dispediapn;87654321/">
         <s:jobTitle>Kauffrau</s:jobTitle>
         <s:gender xml:lang="en">female</s:gender>
-        <dispediao:hasAddress rdf:resource="&patients;AddressMaxiMusterfrau"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120603100555"/>
         <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120820181326"/>
         <dispediao:hasDisease rdf:resource="&patients;ALSDisease"/>
-    </owl:NamedIndividual>
+    </dispediao:Patient>
     
-    <owl:NamedIndividual rdf:about="&patients;AddressMaxiMusterfrau">
-        <rdf:type rdf:resource="&dispediao;Address"/>
-        <rdfs:label>Peterstr. 34, New York, 20</rdfs:label>
-        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.05.2012</dispediao:addressDate>
-        <dispediao:homeLevel rdf:datatype="&xsd;int">20</dispediao:homeLevel>
-        <dispediao:adressText>Peterstr. 34, New York</dispediao:adressText>
-        <dispediao:street>Peterstr. 34</dispediao:street>
-    </owl:NamedIndividual>
-    
-        <owl:NamedIndividual rdf:about="&patients;HSMaxiMusterfrau20120603100555">
+    <owl:NamedIndividual rdf:about="&patients;HSMaxiMusterfrau20120603100555">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
         <dispediao:hasDate rdf:datatype="&xsd;dateTime">2012-06-03 10:05:55</dispediao:hasDate>
         <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20120603100555"/>

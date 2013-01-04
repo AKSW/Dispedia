@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY pn "urn:dispedia:pn" >
+    <!ENTITY patients "http://patients.dispedia.de/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY alsfrs "http://als.dispedia.de/frs/" >
+    <!ENTITY icf "http://who.int/icf#" >
+    <!ENTITY diswrap-alsfrs "http://www.dispedia.de/wrapper/alsfrs/" >
+    <!ENTITY diswrap-icd10 "http://www.dispedia.de/wrapper/icd10/" >
+    <!ENTITY diswrap-icf "http://www.dispedia.de/wrapper/Icf/" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY dispediapn "urn:dispedia:pn/" >
+    <!ENTITY ekb "http://als.dispedia.de/" >
+    <!ENTITY ekbi "http://als.dispedia.de/i/" >
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY s "http://schema.org/" >
+]>
+
+
+<rdf:RDF
+    xmlns="&pn;"
+    xml:base="&pn;"
+    xmlns:patient="&patients;"
+    xmlns:rdfs="&rdfs;"
+    xmlns:foaf="&foaf;"
+    xmlns:owl="&owl;"
+    xmlns:xsd="&xsd;"
+    xmlns:rdf="&rdf;"
+    xmlns:ccns="&ccns;"
+    xmlns:dct="&dct;"
+    xmlns:dispedia="&dispedia;"
+    xmlns:dispediao="&dispediao;"
+    xmlns:dispediapn="&dispediapn;"
+    xmlns:alsfrs="&alsfrs;"
+    xmlns:icf="&icf;"
+    xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
+    xmlns:diswrap-icd10="&diswrap-icd10;"
+    xmlns:diswrap-icf="&diswrap-icf;"
+    xmlns:ekb="&ekb;"
+    xmlns:ekbi="&ekbi;"
+    xmlns:s="&s;"
+>
+
+
+    <!-- Max Mustermann-->
+    
+    <dispediao:Person rdf:about="&dispediapn;12345678/">
+        <rdfs:label>Max Mustermann</rdfs:label>
+        <s:givenName>Max</s:givenName>
+        <s:familyName>Mustermann</s:familyName>
+        <dispediao:hasAddress rdf:resource="&dispediapn;12345678/Address"/>
+    </dispediao:Person>
+    
+    <dispediao:Address rdf:about="&dispediapn;12345678/Address">
+        <rdfs:label>Musterstr. 1, Musterstadt, 4</rdfs:label>
+        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.02.2011</dispediao:addressDate>
+        <dispediao:homeLevel rdf:datatype="&xsd;int">4</dispediao:homeLevel>
+        <dispediao:adressText>Musterstr. 1, Musterstadt</dispediao:adressText>
+        <dispediao:street>Musterstr. 1</dispediao:street>
+    </dispediao:Address>
+    
+    
+    <!-- Maxi Musterfrau -->
+    
+    <dispediao:Person rdf:about="&dispediapn;87654321/">
+        <rdfs:label>Maxi Musterfrau</rdfs:label>
+        <s:givenName>Maxi</s:givenName>
+        <s:familyName>Musterfrau</s:familyName>
+        <dispediao:hasAddress rdf:resource="&dispediapn;87654321/Address"/>
+    </dispediao:Person>
+
+    <dispediao:Address rdf:about="&dispediapn;87654321/Address">
+        <rdfs:label>Peterstr. 34, New York, 20</rdfs:label>
+        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.05.2012</dispediao:addressDate>
+        <dispediao:homeLevel rdf:datatype="&xsd;int">20</dispediao:homeLevel>
+        <dispediao:adressText>Peterstr. 34, New York</dispediao:adressText>
+        <dispediao:street>Peterstr. 34</dispediao:street>
+    </dispediao:Address>
+    
+</rdf:RDF>
+

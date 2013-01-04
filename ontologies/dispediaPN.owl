@@ -49,6 +49,7 @@
         <rdfs:label xml:lang="en">ALS person names</rdfs:label>
         <rdfs:comment xml:lang="de">Diese Ontology enthält exemplarische sensiple Personen Daten. </rdfs:comment>
         <rdfs:comment xml:lang="en">This Ontology contains exemplarily senible person data.</rdfs:comment>
+        <owl:imports rdf:resource="http://www.dispedia.de/"/>
         <dct:contributor>Romy Elze</dct:contributor>
         <dct:contributor>Michael Martin</dct:contributor>
         <dct:contributor>Lars Eidam</dct:contributor>
