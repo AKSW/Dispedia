@@ -64,6 +64,7 @@
         <dispediao:homeLevel rdf:datatype="&xsd;int">4</dispediao:homeLevel>
         <dispediao:adressText>Musterstr. 1, Musterstadt</dispediao:adressText>
         <dispediao:street>Musterstr. 1</dispediao:street>
+        <dispediao:city>Musterstadt</dispediao:city>
     </dispediao:Address>
     
     
@@ -77,11 +78,12 @@
     </dispediao:Person>
 
     <dispediao:Address rdf:about="&dispediapn;87654321/Address">
-        <rdfs:label>Peterstr. 34, New York, 20</rdfs:label>
+        <rdfs:label>Peterstr. 34, Peterstadt, 20</rdfs:label>
         <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.05.2012</dispediao:addressDate>
         <dispediao:homeLevel rdf:datatype="&xsd;int">20</dispediao:homeLevel>
-        <dispediao:adressText>Peterstr. 34, New York</dispediao:adressText>
+        <dispediao:adressText>Peterstr. 34, Peterstadt</dispediao:adressText>
         <dispediao:street>Peterstr. 34</dispediao:street>
+        <dispediao:city>Peterstadt</dispediao:city>
     </dispediao:Address>
     
 </rdf:RDF>
