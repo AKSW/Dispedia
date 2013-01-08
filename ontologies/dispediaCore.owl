@@ -230,7 +230,7 @@
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;containsDrug">
-        <rdfs:label xml:lang="de">enthält Arzneiu</rdfs:label>
+        <rdfs:label xml:lang="de">enthält Arznei</rdfs:label>
         <rdfs:label xml:lang="en">contains drugs</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;Drug"/>
