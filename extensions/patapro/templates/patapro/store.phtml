@@ -23,20 +23,31 @@
 
 <table>
 	<tr>
-		<th>Model</th>
-		<?php foreach($this->models as $modelName => $modelData) { ?>
-            <?php if ('namespaces' != $modelName) { ?>
-                <th>
-                        <?php echo $modelName; ?>
-                </th>
-            <?php } ?>
-		<?php } ?>
+		<td class="storeModelNameTd">
+            <span class="storeModelNameSpan">All</span>
+        </td>
+        <td class="storeModelButtonTd">
+            <a id="addResource" class="button" onclick="javascript:renewAllModel('all')">
+                Renew 
+            </a>
+            <a id="addResource" class="button" onclick="javascript:renewAllModel('add')">
+                Add
+            </a>
+            <a id="addResource" class="button" onclick="javascript:renewAllModel('delete')">
+                Delete
+            </a>
+        </td>
+        <td class="storeModelProcessTd">
+            <div id="responseAll"></div>
+        </td>
 	</tr>
-	<tr>
-		<td>Function</td>
-		<?php foreach($this->models as $modelName => $modelData) { ?>
+	<?php foreach($this->models as $modelName => $modelData) { ?>
+        <tr>
             <?php if ('namespaces' != $modelName) { ?>
-                <td>
+                <td class="storeModelNameTd">
+                    <span class="storeModelNameSpan"><?php echo $modelName; ?></span>
+                </td>
+                <td class="storeModelButtonTd">
                     <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'all')">
                         Renew
                     </a>
@@ -47,28 +58,12 @@
                         Delete
                     </a>
                 </td>
+                <td class="storeModelProcessTd">
+                    <div id="response<?php echo $modelName; ?>"></div>
+                </td>
             <?php } ?>
-		<?php } ?>
-	</tr>
-	<tr>
-		<td>Process</td>
-			<?php foreach($this->models as $modelName => $modelData) { ?>
-                <?php if ('namespaces' != $modelName) { ?>
-                    <td>
-                        <div id="response<?php echo $modelName; ?>">
-                        </div>
-                    </td>
-                <?php } ?>
-			<?php } ?>
-	</tr>
+        </tr>    
+	<?php } ?>
 </table>
-<a id="addResource" class="button" onclick="javascript:renewAllModel('all')">
-	Renew all Models 
-</a>
-<a id="addResource" class="button" onclick="javascript:renewAllModel('add')">
-	Add all Models 
-</a>
-<a id="addResource" class="button" onclick="javascript:renewAllModel('delete')">
-	Delete all Models 
-</a>
+
 

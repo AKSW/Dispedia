@@ -7,3 +7,31 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 
+.storeModelNameSpan {
+    font-weight: bold;
+}
+
+.storeModelNameTd {
+    text-align: center;
+    width: 150px;
+}
+
+.storeModelButtonTd {
+    text-align: center;
+    width: 200px;
+}
+.storeModelProcessTd {
+    width: 300px;
+}
+.storeProcessDiv {
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    width: 300px;
+}
+.storeWorkingDiv {
+    background-color: gold;
+}
+.storeFinshDiv {
+    background-color: lime;
+}
