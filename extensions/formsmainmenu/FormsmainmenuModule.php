@@ -80,41 +80,41 @@ class FormsMainMenuModule extends OntoWiki_Module
      */
     public function getContents()
     {
-            $data ['url'] = $this->_config->urlBase;
-            $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
-            $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
+        $data ['url'] = $this->_config->urlBase;
+        $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
+        $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
             
         if ($this->_store->isModelAvailable($this->_ontologies['dispediaCore']['namespace']))
         {
             $this->view->patients = $this->getAllPatients();
         }
-            $dispediaSession = new Zend_Session_Namespace('Dispedia');
-            $selectedResource = $this->_owApp->__get("selectedResource");
-            if(isset($selectedResource))
-                $selectedResourceUri = $selectedResource->getIri();
-    
-            if (isset($selectedResourceUri) && "" != $selectedResourceUri)
-                if (in_array($selectedResourceUri, array_keys($this->view->patients)))
-                    $this->view->currentPatientUri = $selectedResourceUri;
-                else
-                    $this->view->currentPatientUri = "";
+        $dispediaSession = new Zend_Session_Namespace('Dispedia');
+        $selectedResource = $this->_owApp->__get("selectedResource");
+        if(isset($selectedResource))
+            $selectedResourceUri = $selectedResource->getIri();
+
+        if (isset($selectedResourceUri) && "" != $selectedResourceUri)
+            if (in_array($selectedResourceUri, array_keys($this->view->patients)))
+                $this->view->currentPatientUri = $selectedResourceUri;
             else
-            {
                 $this->view->currentPatientUri = "";
-            }
-            
-            if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
-                $this->view->menuName = $dispediaSession->menuName;
-            else
-                $this->view->menuName = "";
-            
-            if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
-                $data ['loggedIn'] = false;
-            } else {
-                $data ['loggedIn'] = true;
-            }
-            
-            return $this->render('formsmainmenu', $data);
+        else
+        {
+            $this->view->currentPatientUri = "";
+        }
+        
+        if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
+            $this->view->menuName = $dispediaSession->menuName;
+        else
+            $this->view->menuName = "";
+        
+        if (!$this->_owApp->user || $this->_owApp->user->isAnonymousUser()) {
+            $data ['loggedIn'] = false;
+        } else {
+            $data ['loggedIn'] = true;
+        }
+        
+        return $this->render('formsmainmenu', $data);
     }
     
     /**
