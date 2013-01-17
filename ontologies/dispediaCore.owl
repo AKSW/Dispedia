@@ -124,6 +124,7 @@
         <rdfs:label xml:lang="de">hat Datum</rdfs:label>
         <rdfs:label xml:lang="en">has date</rdfs:label>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
+        <rdfs:domain rdf:resource="&dispediao;Place"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
@@ -528,103 +529,6 @@
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
 
-    <!-- 
-    ######################################################################################
-    properties of Adress (...which could not be reused from foaf, schema or dbpedia... until a patient data ontology is available
-    -->
-
-    <owl:DatatypeProperty rdf:about="&dispediao;isSuitableForOlderPersons">
-        <rdfs:label xml:lang="de">ist seniorengerecht</rdfs:label>
-        <rdfs:label xml:lang="en">is suitable for older persons</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;addressDate">
-        <rdfs:label xml:lang="de">Adressdatum</rdfs:label>
-        <rdfs:label xml:lang="en">address date</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;homeLevel">
-        <rdfs:label xml:lang="de">Etage</rdfs:label>
-        <rdfs:label xml:lang="en">Level of home</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;int"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;homeMainResidence">
-        <rdfs:label xml:lang="de">Erstwohnung</rdfs:label>
-        <rdfs:label xml:lang="en">Main residence</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;homeLawType"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;homeSecondaryResidence">
-        <rdfs:label xml:lang="de">Zweitwohnung</rdfs:label>
-        <rdfs:label xml:lang="en">Secondary residence</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:subPropertyOf rdf:resource="&dispediao;homeLawType"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;isBarrierFree">
-        <rdfs:label xml:lang="de">ist barrierefrei</rdfs:label>
-        <rdfs:label xml:lang="en">is barrier-free</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;hasGarden">
-        <rdfs:label xml:lang="de">hat Garten</rdfs:label>
-        <rdfs:label xml:lang="en">has garden</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;hasLift">
-        <rdfs:label xml:lang="de">hat Aufzug</rdfs:label>
-        <rdfs:label xml:lang="en">has lift</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;hasStairs">
-        <rdfs:label xml:lang="de">hat Treppe</rdfs:label>
-        <rdfs:label xml:lang="en">has stairs</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;hasWheelChairSize">
-        <rdfs:label xml:lang="de">hat Rollstuhlgröße</rdfs:label>
-        <rdfs:label xml:lang="en">has wheel chair size</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;boolean"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;homeFlatType">
-        <rdfs:label xml:lang="de">Wohnungstyp</rdfs:label>
-        <rdfs:label xml:lang="en">Flat type of home</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;homeHousingType">
-        <rdfs:label xml:lang="de">Haustyp</rdfs:label>
-        <rdfs:label xml:lang="en">Housing type of home</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="&dispediao;homeLawType">
-        <rdfs:label xml:lang="de">Rechtlicher Wohnungsstatus</rdfs:label>
-        <rdfs:label xml:lang="en">Law type of home</rdfs:label>
-        <rdfs:domain rdf:resource="&dispediao;Address"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
     
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -633,11 +537,12 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-    <owl:Class rdf:about="&dispediao;Address">
+    <owl:Class rdf:about="&dispediao;Place">
         <rdfs:label xml:lang="de">Adresse</rdfs:label>
         <rdfs:label xml:lang="en">Address</rdfs:label>
-         <rdfs:subClassOf rdf:resource="&s;PostalAddress"/>
+         <rdfs:subClassOf rdf:resource="&s;Place"/>
     </owl:Class>
+    
 
     <owl:Class rdf:about="&dispediao;ALS">
         <rdfs:label xml:lang="de">ALS</rdfs:label>
@@ -739,7 +644,6 @@
         <rdfs:label xml:lang="de">Person</rdfs:label>
         <rdfs:label xml:lang="en">Person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&foaf;Person"/>
-        <rdfs:subClassOf rdf:resource="&gr;BusinessEntity"/>
         <rdfs:subClassOf rdf:resource="&s;Person"/>
     </owl:Class>
 

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY dbpedia "http://dbpedia.org/ontology/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dispedia "http://www.dispedia.de/" >
+    <!ENTITY dispediao "http://www.dispedia.de/o/" >
+    <!ENTITY seo "http://www.serviceOntology.org/" >
+    <!ENTITY gr "http://purl.org/goodrelations/v1#">
+    <!ENTITY s "http://schema.org/">
+    <!ENTITY ccns "http://creativecommons.org/ns#" >
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY var "urn:swrl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+]>
+
+<rdf:RDF xmlns="&dispedia;"
+     xml:base="&dispedia;"
+     xmlns:rdfs="&rdfs;"
+     xmlns:foaf="&foaf;"
+     xmlns:owl="&owl;"
+     xmlns:xsd="&xsd;"
+     xmlns:dbpedia="&dbpedia;"
+     xmlns:rdf="&rdf;"
+     xmlns:ccns="&ccns;"
+     xmlns:dct="&dct;"
+     xmlns:dispediao="&dispediao;"
+     xmlns:seo="&seo;"
+     xmlns:gr="&gr;"
+     xmlns:var="&var;"
+     xmlns:swrl="&swrl;"
+     xmlns:xml="&xml;"
+     xmlns:s="&s;"
+     >
+    <owl:Ontology rdf:about="&dispedia;">
+        <rdfs:label xml:lang="de">Dispedia Vokabular (Kern Ontologie)</rdfs:label>
+        <rdfs:label xml:lang="en">Dispedia Vocabulary (Core Ontology)</rdfs:label>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7</owl:versionInfo>
+        <rdfs:comment xml:lang="de">Diese Ontologie (Vokabular) enthält alle Kern-Konzepte des Dispedia Informationslogistik Systems.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This is the Core Ontology of the Dispedia Information Logistics System. All concepts are included needed to represent 
+            information for and about the patient.</rdfs:comment>
+        <dct:contributor>Romy Elze</dct:contributor>
+        <dct:contributor>Michael Martin</dct:contributor>
+        <dct:contributor>Lars Eidam</dct:contributor>
+        <dct:contributor>Marcus Nitzschke</dct:contributor>
+        <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+    </owl:Ontology>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Condition properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- 
+    ######################################################################################
+    properties of Place (...which could not be reused from foaf, schema or dbpedia... until a patient data ontology is available
+    -->
+
+    <owl:DatatypeProperty rdf:about="&dispediao;homeLevel">
+        <rdfs:label xml:lang="de">Etage</rdfs:label>
+        <rdfs:label xml:lang="en">Level of home</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Place"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;isBarrierFree">
+        <rdfs:label xml:lang="de">ist barrierefrei</rdfs:label>
+        <rdfs:label xml:lang="en">is barrier-free</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Place"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+   
+    <owl:DatatypeProperty rdf:about="&dispediao;homeFlatType">
+        <rdfs:label xml:lang="de">Wohnungstyp</rdfs:label>
+        <rdfs:label xml:lang="en">Flat type of home</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Place"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;homeHousingType">
+        <rdfs:label xml:lang="de">Haustyp</rdfs:label>
+        <rdfs:label xml:lang="en">Housing type of home</rdfs:label>
+        <rdfs:domain rdf:resource="&dispediao;Address"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>

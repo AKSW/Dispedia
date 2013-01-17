@@ -6,7 +6,6 @@ Please create the following 6 ontologies and upload/add the given owl files to t
 1. http://www.dispedia.de/
   a) dispedia_Core.owl
   b) disCoreWrapperAlsfrs.owl
-  c) disCoreWrapperIcd.owl
   d) disCoreWrapperIcf.owl
 
 2. http://als.dispedia.de/
