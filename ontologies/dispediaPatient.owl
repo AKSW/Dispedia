@@ -50,6 +50,7 @@
         <owl:imports rdf:resource="http://www.dispedia.de/"/>
         <owl:imports rdf:resource="http://als.dispedia.de/"/>
         <owl:imports rdf:resource="urn:dispedia:pn"/>
+        <owl:imports rdf:resource="http://hc.dispedia.de/"/>
         <dct:contributor>Romy Elze</dct:contributor>
         <dct:contributor>Michael Martin</dct:contributor>
         <dct:contributor>Tom-Michael Hesse</dct:contributor>

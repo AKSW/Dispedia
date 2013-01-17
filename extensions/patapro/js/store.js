@@ -10,13 +10,15 @@
  */
 
 function renewAllModel(mode) {
+	$("#responseAll").html('<div class="storeProcessDiv storeWorkingDiv">Working</div>');
 	$.each(models, function(res){
 			renewModel(res, mode);
 	});
+	$("#responseAll").html('<div class="storeProcessDiv storeFinshDiv">Finish</div>');
 }
 function renewModel(modelName, mode) {
     $("#response" + modelName).empty();
-	$("#response" + modelName).append('<div>Start</div>');
+	$("#response" + modelName).html('<div class="storeProcessDiv storeWorkingDiv">Start</div>');
 	
 	if ('delete' == mode || 'all' == mode)
 		deleteModel(modelName);
@@ -24,7 +26,7 @@ function renewModel(modelName, mode) {
 	if ('add' == mode || 'all' == mode)
 		addModel(modelName);
 	
-	$("#response" + modelName).append('<div>Finish</div>');
+	$("#response" + modelName).html('<div class="storeProcessDiv storeFinshDiv">Finish</div>');
 }
 
 function deleteModel(modelName) {
@@ -38,7 +40,7 @@ function deleteModel(modelName) {
         // complete, no errors
         success: function ( res ) 
         {
-            $(this).append('<div>delete Model: ' + models[modelName].namespace + '</div>');
+            $(this).html('<div class="storeProcessDiv storeWorkingDiv">delete Model: ' + models[modelName].namespace + '</div>');
         },
         
         error: function (jqXHR, textStatus, errorThrown)
@@ -61,7 +63,7 @@ function addModel(modelName) {
         // complete, no errors
         success: function ( res ) 
         {
-            $(this).append('<div>add Model: ' + models[modelName].namespace + '</div>');
+            $(this).html('<div class="storeProcessDiv storeWorkingDiv">add Model: ' + models[modelName].namespace + '</div>');
 			//$(this).append('<div>add File: ' + models[modelName].files[0].name + '</div>');
         },
         

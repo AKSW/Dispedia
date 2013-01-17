@@ -34,7 +34,7 @@
         <select name="selectPatient" id="selectPatient">
             <option value=""><?php echo $this->_translate->_('noPatientSelected'); ?></option>
             <?php foreach ($this->patients as $patientUri => $patientLabel) { ?>
-                <option value="<?php echo urldecode($patientUri); ?>"<?php echo ($this->currentPatientUri == $patient['uri'] ? 'selected="selected"' : ""); ?>><?php echo $patientLabel; ?></option>
+                <option value="<?php echo urldecode($patientUri); ?>"<?php echo ($this->currentPatientUri == $patientUri ? 'selected="selected"' : ""); ?>><?php echo $patientLabel; ?></option>
             <?php }; ?>
         </select>
     </form>
