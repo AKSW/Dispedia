@@ -10,30 +10,43 @@
  */
 
 function renewAllModel(mode) {
+    var result = 0;
 	$("#responseAll").html('<div class="storeProcessDiv storeWorkingDiv">Working</div>');
 	$.each(models, function(res){
-			renewModel(res, mode);
+        if ('namespaces' != res)
+            result += renewModel(res, mode);
 	});
-	$("#responseAll").html('<div class="storeProcessDiv storeFinshDiv">Finish</div>');
+    if (0 == result)
+        $("#responseAll").html('<div class="storeProcessDiv storeFinshDiv">Finish</div>');
+    else
+        $("#responseAll").html('<div class="storeProcessDiv storeErrorDiv">Error (' + result + ')</div>');
+    
 }
 function renewModel(modelName, mode) {
+    var result = 0;
     $("#response" + modelName).empty();
 	$("#response" + modelName).html('<div class="storeProcessDiv storeWorkingDiv">Start</div>');
 	
 	if ('delete' == mode || 'all' == mode)
-		deleteModel(modelName);
+		result += deleteModel(modelName);
 		
 	if ('add' == mode || 'all' == mode)
-		addModel(modelName);
+		result += addModel(modelName);
 	
-	$("#response" + modelName).html('<div class="storeProcessDiv storeFinshDiv">Finish</div>');
+    if (0 == result)
+        $("#response" + modelName).html('<div class="storeProcessDiv storeFinshDiv">Finish</div>');
+    else
+        $("#response" + modelName).html('<div class="storeProcessDiv storeErrorDiv">Error (' + result + ')</div>');
+    
+    return result;
 }
 
 function deleteModel(modelName) {
+    var returnValue = 0;
 	$.ajax({
         async:false,
-        dataType: "html",
-        type: "GET",
+        dataType: "json",
+        type: "POST",
         data: { modelName: modelName, do: 'remove' },
         context: $("#response" + modelName),
         url: url + 'patapro/changemodel/',
@@ -41,6 +54,12 @@ function deleteModel(modelName) {
         success: function ( res ) 
         {
             $(this).html('<div class="storeProcessDiv storeWorkingDiv">delete Model: ' + models[modelName].namespace + '</div>');
+            try {
+                var c = $.parseJSON(res);
+            }
+            catch (err) {
+                returnValue = -1;
+            }
         },
         
         error: function (jqXHR, textStatus, errorThrown)
@@ -48,23 +67,31 @@ function deleteModel(modelName) {
             console.log (jqXHR);
             console.log (textStatus);
             console.log (errorThrown);
+            returnValue = -1;
         }
     });
+    return returnValue;
 }
 
 function addModel(modelName) {
+    var returnValue = 0;
     $.ajax({
         async:false,
-        dataType: "html",
+        dataType: "json",
         type: "POST",
         data: { modelName: modelName, do: 'add' },
         context: $("#response" + modelName),
-        url: url + 'patapro/changemodel/',
+        url: 'changemodel/',
         // complete, no errors
         success: function ( res ) 
         {
             $(this).html('<div class="storeProcessDiv storeWorkingDiv">add Model: ' + models[modelName].namespace + '</div>');
-			//$(this).append('<div>add File: ' + models[modelName].files[0].name + '</div>');
+            try {
+                var c = $.parseJSON(res);
+            }
+            catch (err) {
+                returnValue = -2;
+            }
         },
         
         error: function (jqXHR, textStatus, errorThrown)
@@ -72,6 +99,8 @@ function addModel(modelName) {
             console.log (jqXHR);
             console.log (textStatus);
             console.log (errorThrown);
+            returnValue = -2;
         }
     });
+    return returnValue;
 }
