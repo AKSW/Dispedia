@@ -16,6 +16,7 @@ class FormsMainMenuModule extends OntoWiki_Module
     protected $_titleHelper;
     protected $_lang;
     protected $_ontologies;
+    protected $_shouldShow = false;
     
     /**
      * 
@@ -26,17 +27,26 @@ class FormsMainMenuModule extends OntoWiki_Module
         
         $this->_ontologies = $this->_config->ontologies->toArray();
         $this->_ontologies = $this->_ontologies['models'];
-        
-        $dispediaSession = new Zend_Session_Namespace('Dispedia');
-        
-        if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
-            $this->view->showMenu = $dispediaSession->menuName;
-        else
-            $this->view->showMenu = "";
-        
-        $this->_titleHelper = new OntoWiki_Model_TitleHelper();
-        
-        $this->_lang = OntoWiki::getInstance()->config->languages->locale;
+        if (
+            $this->_store->isModelAvailable($this->_ontologies['dispediaCore']['namespace']) &&
+            $this->_store->isModelAvailable($this->_ontologies['dispediaPatient']['namespace'])
+            )
+        {
+            $this->_shouldShow = true;
+
+            $dispediaSession = new Zend_Session_Namespace('Dispedia');
+            
+            if (isset($dispediaSession->menuName) && "" != $dispediaSession->menuName)
+                $this->view->showMenu = $dispediaSession->menuName;
+            else
+                $this->view->showMenu = "";
+            
+            $this->_titleHelper = new OntoWiki_Model_TitleHelper();
+            
+            $this->_lang = OntoWiki::getInstance()->config->languages->locale;
+        } else {
+            $this->_shouldShow = false;
+        }
     }
 
     /**
@@ -56,7 +66,7 @@ class FormsMainMenuModule extends OntoWiki_Module
      */
     public function shouldShow()
     {
-        return true;
+        return $this->_shouldShow;
     }
 
     /**
@@ -84,10 +94,7 @@ class FormsMainMenuModule extends OntoWiki_Module
         $data ['applicationUrl'] = $this->_config->urlBase . 'application/';
         $data ['imagesUrl'] = $this->_config->urlBase . 'extensions/formsmainmenu/resources/images/';
             
-        if ($this->_store->isModelAvailable($this->_ontologies['dispediaCore']['namespace']))
-        {
-            $this->view->patients = $this->getAllPatients();
-        }
+        $this->view->patients = $this->getAllPatients();
         $dispediaSession = new Zend_Session_Namespace('Dispedia');
         $selectedResource = $this->_owApp->__get("selectedResource");
         if(isset($selectedResource))
