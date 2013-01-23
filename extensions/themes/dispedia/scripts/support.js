@@ -1,3 +1,4 @@
+
 /**
  * This file is part of the {@link http://ontowiki.net OntoWiki} project.
  *
@@ -244,6 +245,49 @@ function removeResourceMenus() {
     $('.contextmenu-enhanced .contextmenu').remove();
 }
 
+function showAddInstanceMenu(event, menuData) {
+    // remove all other menus
+    removeResourceMenus();
+
+    var pos = $('.init-resource').offset();
+    menuX = pos.left - $('.init-resource').innerWidth() + 4;
+    menuY = pos.top + $('.init-resource').outerHeight();
+    menuId = 'windowmenu-' + menuX.toFixed() + '-' + menuY.toFixed();
+
+    // create the plain menu with correct style and position
+    $('.contextmenu-enhanced').append('<div class="contextmenu is-processing" id="' + menuId + '"></div>');
+    $('#' + menuId)
+        .css({ 
+          'z-index': menuZIndex,
+          'top': menuY + 'px',
+          'left': menuX + 'px'
+        })
+        .click(function(event) {event.stopPropagation();})
+        .fadeIn();
+
+    var tempMenu = "";
+    for (var key in menuData) {
+        var label = menuData[key]['http://www.w3.org/2000/01/rdf-schema#label'][0].value;
+        tempMenu += '<li><a href="javascript:createInstanceFromClassURI(\'' + key + '\');">' + label + '</a></li>'
+    }
+    // append menu
+    // console.log(tempMenu);
+    $('#' + menuId).append('<ul>' + tempMenu + '</ul>');
+    // remove is-processing
+    $('#' + menuId).toggleClass('is-processing');
+    // repositioning
+    menuX = pos.left - $('#' + menuId).innerWidth() + $('.init-resource').outerWidth();
+    menuY = pos.top + $('.init-resource').outerHeight();
+    
+    // set new position
+    $('#' + menuId).css({ top: menuY + 'px', left: menuX + 'px'});
+
+    // remove is-processing
+    $('#' + menuId).removeClass("is-processing");
+    // prevent href trigger
+    event.stopPropagation();
+
+}
 
 function showResourceMenu(event, json) {
     // remove all other menus
@@ -347,7 +391,7 @@ function showResourceMenu(event, json) {
 function loadRDFauthor(callback) {
     var loaderURI = RDFAUTHOR_BASE + 'src/rdfauthor.js';
     
-    if ($('head').children('script[src=' + loaderURI + ']').length > 0) {
+    if ($('head').children('script[src="' + loaderURI + '"]').length > 0) {
         callback();
     } else {
         RDFAUTHOR_READY_CALLBACK = callback;
@@ -359,7 +403,7 @@ function loadRDFauthor(callback) {
     }
 }
 
-function populateRDFauthor(data, protect, resource, graph) {
+function populateRDFauthor(data, protect, resource, graph, workingmode) {
     protect  = arguments.length >= 2 ? protect : true;
     resource = arguments.length >= 3 ? resource : null;
     graph    = arguments.length >= 4 ? graph : null;
@@ -370,12 +414,21 @@ function populateRDFauthor(data, protect, resource, graph) {
 
             for (var i = 0; i < objects.length; i++) {
                 var objSpec = objects[i];
-                
+
+                if ( objSpec.type == 'uri' ) { 
+                    var value = '<' + objSpec.value + '>'; 
+                } else if ( objSpec.type == 'bnode' ) { 
+                    var value = '_:' + objSpec.value;
+                } else {
+                    // IE fix, object keys with empty strings are removed
+                    var value = objSpec.value ? objSpec.value : ""; 
+                }
+
                 var newObjectSpec = {
-                    value: (objSpec.type == 'uri') ? ('<' + objSpec.value + '>') : objSpec.value, 
+                    value : value,
                     type: String(objSpec.type).replace('typed-', '')
                 }
-                
+
                 if (objSpec.value) {
                     if (objSpec.type == 'typed-literal') {
                         newObjectSpec.options = {
@@ -387,8 +440,8 @@ function populateRDFauthor(data, protect, resource, graph) {
                         }
                     }
                 }
-                
-                RDFauthor.addStatement(new Statement({
+
+                var stmt = new Statement({
                     subject: '<' + currentSubject + '>', 
                     predicate: '<' + currentProperty + '>', 
                     object: newObjectSpec
@@ -397,7 +450,16 @@ function populateRDFauthor(data, protect, resource, graph) {
                     title: objSpec.title, 
                     protected: protect ? true : false, 
                     hidden: objSpec.hidden ? objSpec.hidden : false
-                }));
+                });
+
+                if (workingmode == 'class') {
+                    // remove all values except for type
+                    if ( !/type/gi.test(stmt._predicateLabel) ) {
+                        stmt._object.value = "";
+                    }
+                }
+
+                RDFauthor.addStatement(stmt);
             }
         }
     }
@@ -411,6 +473,12 @@ function populateRDFauthor(data, protect, resource, graph) {
 function createInstanceFromClassURI(type, dataCallback) {
     var serviceUri = urlBase + 'service/rdfauthorinit';
 
+    // check if an resource is in editing mode
+    if($(body).data('editingMode')) {
+        RDFauthor.cancel();
+        RDFauthor.reset();
+    }
+
     // remove resource menus
     removeResourceMenus();
 
@@ -423,12 +491,11 @@ function createInstanceFromClassURI(type, dataCallback) {
             if (typeof dataCallback == 'function') {
                 data = dataCallback(data);
             }
-
             // get default resource uri for subjects in added statements (issue 673)
             // grab first object key
             for (var subjectUri in data) {break;};
             // add statements to RDFauthor
-            populateRDFauthor(data, true, subjectUri, selectedGraph.URI);
+            populateRDFauthor(data, true, subjectUri, selectedGraph.URI, 'class');
             RDFauthor.setOptions({
                 saveButtonTitle: 'Create Resource',
                 cancelButtonTitle: 'Cancel',
@@ -536,7 +603,7 @@ function editProperty(event) {
             cancelButtonTitle: 'Cancel', 
             title: $('.section-mainwindows .window').eq(0).children('.title').eq(0).text(), 
             viewOptions: {
-                type: RDFAUTHOR_VIEW_MODE, 
+                type: RDFAUTHOR_VIEW_MODE,
                 container: function (statement) {
                     var element = RDFauthor.elementForStatement(statement);
                     var parent  = $(element).closest('div');
@@ -564,6 +631,40 @@ function editProperty(event) {
     //return false;
 }
 
+/*
+ * Edit a complete OW property view property section in table listview
+ */
+function editPropertyListmode(event) {
+    var element = $.event.fix(event).target;
+    var resource = $(element).parents('td').rdf().where('?s ?p ?o').dump();
+    var resourceUri = Object.keys(resource)[0];
+    var serviceUri = urlBase + 'service/rdfauthorinit';
+
+    // remove resource menus
+    removeResourceMenus();
+
+    loadRDFauthor(function() {
+        // add statements to RDFauthor
+        populateRDFauthor(resource, false, resource, selectedGraph.URI);
+
+        RDFauthor.setOptions({
+            saveButtonTitle: 'Save Changes',
+            cancelButtonTitle: 'Cancel',
+            title: 'Edit Resource ' + resourceUri,
+            autoParse: false, 
+            showPropertyButton: false, 
+            onSubmitSuccess: function () {
+                // HACK: reload whole page after 500 ms
+                window.setTimeout(function () {
+                    window.location.href = window.location.href;
+                }, 500);
+            }
+        });
+
+        RDFauthor.start();
+    });
+}
+
 function addProperty() {
     var ID = RDFauthor.nextID();
     var td1ID = 'rdfauthor-property-selector-' + ID;
@@ -574,8 +675,12 @@ function addProperty() {
     });
 
     $('table.rdfa')
+        .removeClass('hidden')
+        .show()
         .children('tbody')
         .prepend('<tr><td colspan="2" width="120"><div style="width:75%" id="' + td1ID + '"></div></td></tr>');
+
+    $('table.rdfa').parent().find('p.messagebox').hide();
     
     var selectorOptions = {
         container: $('#' + td1ID), 

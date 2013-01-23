@@ -3580,10 +3580,7 @@
     toString: function () {
       var val = '"' + this.value + '"';
       if (this.lang !== undefined) {
-        // Fix for sparql endopints 1.1: set @ only if object has a lang
-        if (this.lang.length != 0) {
-         val += '@' + this.lang;
-        }
+        val += '@' + this.lang;
       } else if (this.datatype !== undefined) {
         val += '^^<' + this.datatype + '>';
       }
@@ -3684,6 +3681,7 @@
   };
 
 })(jQuery);
+
 /*
  * jQuery RDF @VERSION
  *
