@@ -54,23 +54,23 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:NamedIndividual rdf:about="&dishc;ManualTherapy">
+    <rdf:Description rdf:about="&dishc;ManualTherapy">
         <rdf:type rdf:resource="&seohcs;ManualTherapy"/>
         <rdfs:label xml:lang="de">manuelle Therapie</rdfs:label>
         <rdfs:label xml:lang="en">manual therapy</rdfs:label>
         <gr:name xml:lang="de">manuelle Therapie</gr:name>
         <gr:name xml:lang="en">manual therapy</gr:name>
-    </owl:NamedIndividual>
+    </rdf:Description>
    
-   <owl:NamedIndividual rdf:about="&dishc;EverydayPurchases">
+   <rdf:Description rdf:about="&dishc;EverydayPurchases">
         <rdf:type rdf:resource="&seohcs;HealthCareServiceWithoutCategory"/>
         <rdfs:label xml:lang="de">tägliche Einkäufe erledigen</rdfs:label>
         <rdfs:label xml:lang="en">everyday purchases</rdfs:label>
         <gr:name xml:lang="de">tägliche Einkäufe erledigen</gr:name>
         <gr:name xml:lang="en">everyday purchases</gr:name>
-    </owl:NamedIndividual>
+    </rdf:Description>
    
-   <owl:NamedIndividual rdf:about="&dishc;94ac/Charite">
+   <rdf:Description rdf:about="&dishc;94ac/Charite">
         <rdf:type rdf:resource="&seohcp;Physician"/>
         <rdf:type rdf:resource="&seo;Organization"/>
         <seo:hasAddress rdf:resource="&dishc;a13a/LindenbergerWeg8013125Berlin"/>
@@ -79,23 +79,23 @@
         <rdfs:label xml:lang="en">Charite</rdfs:label>
         <gr:name xml:lang="de">Charite</gr:name>
         <gr:name xml:lang="en">Charite</gr:name>
-    </owl:NamedIndividual>
+    </rdf:Description>
    
-   <owl:NamedIndividual rdf:about="&dishc;a13a/LindenbergerWeg8013125Berlin">
+   <rdf:Description rdf:about="&dishc;a13a/LindenbergerWeg8013125Berlin">
         <rdf:type rdf:resource="&s;PostalAddress"/>
         <s:addressLocality>Berlin</s:addressLocality>
         <s:postalCode>13125</s:postalCode>
         <s:streetAddress>Lindenberger Weg 80</s:streetAddress>
         <rdfs:label xml:lang="de">Lindenberger Weg 80 13125 Berlin</rdfs:label>
         <rdfs:label xml:lang="en">Lindenberger Weg 80 13125 Berlin</rdfs:label>
-    </owl:NamedIndividual>
+    </rdf:Description>
    
-   <owl:NamedIndividual rdf:about="&dishc;fb32/52.6268823739276113.507691770792007">
+   <rdf:Description rdf:about="&dishc;fb32/52.6268823739276113.507691770792007">
         <rdf:type rdf:resource="&s;GeoCoordinates"/>
         <s:latitude>52.62688237392761</s:latitude>
         <s:longitude>13.507691770792007</s:longitude>
         <rdfs:label xml:lang="de">52.62688237392761 13.507691770792007</rdfs:label>
         <rdfs:label xml:lang="en">52.62688237392761 13.507691770792007</rdfs:label>
-    </owl:NamedIndividual>
+    </rdf:Description>
    
 </rdf:RDF>

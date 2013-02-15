@@ -38,10 +38,10 @@
     xmlns:diswrap-alsfrs="&diswrap-alsfrs;"
     xmlns:diswrap-icd10="&diswrap-icd10;">
      
-    <owl:NamedIndividual rdf:about="&ekbi;UseWalkingFrame">
+    <rdf:Description rdf:about="&ekbi;UseWalkingFrame">
         <dispediao:appropriateForProperties rdf:resource="http://als.dispedia.de/ALSFRSPropertySet/UseWalkingFrame#cc1aa436"/>
         <dispediao:appropriateForSymptoms rdf:resource="http://als.dispedia.de/ALSFRSSymptomSet/UseWalkingFrame#99bcfcd7"/>
-    </owl:NamedIndividual>
+    </rdf:Description>
 
     <diswrap-alsfrs:ALSFRSPropertySet rdf:about="http://als.dispedia.de/ALSFRSPropertySet/UseWalkingFrame#cc1aa436">
         <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o1_4"/>
@@ -49,10 +49,10 @@
     
     <diswrap-alsfrs:ALSFRSSymptomSet rdf:about="http://als.dispedia.de/ALSFRSSymptomSet/UseWalkingFrame#99bcfcd7"/>
     
-    <owl:NamedIndividual rdf:about="&ekbi;UseWheelChair">
+    <rdf:Description rdf:about="&ekbi;UseWheelChair">
         <dispediao:appropriateForProperties rdf:resource="http://als.dispedia.de/ALSFRSPropertySet/UseWheelChair#f457c545"/>
         <dispediao:appropriateForSymptoms rdf:resource="http://als.dispedia.de/ALSFRSSymptomSet/UseWheelChair#6d70cb65"/>
-    </owl:NamedIndividual>
+    </rdf:Description>
     
     <diswrap-alsfrs:ALSFRSPropertySet rdf:about="http://als.dispedia.de/ALSFRSPropertySet/UseWheelChair#f457c545">
         <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_4"/>
@@ -65,10 +65,10 @@
         <diswrap-alsfrs:containsSymptomOption rdf:resource="http://als.dispedia.de/frs/i/option/o2_4"/>
     </diswrap-alsfrs:ALSFRSSymptomSet>
     
-    <owl:NamedIndividual rdf:about="&ekbi;Move">
+    <rdf:Description rdf:about="&ekbi;Move">
         <dispediao:appropriateForProperties rdf:resource="http://als.dispedia.de/ALSFRSPropertySet/Move#39059724"/>
         <dispediao:appropriateForSymptoms rdf:resource="http://als.dispedia.de/ALSFRSSymptomSet/Move#941e1aaa"/>
-    </owl:NamedIndividual>
+    </rdf:Description>
     
     <diswrap-alsfrs:ALSFRSPropertySet rdf:about="http://als.dispedia.de/ALSFRSPropertySet/Move#39059724">
         <diswrap-alsfrs:containsPropertyOption rdf:resource="http://als.dispedia.de/frs/i/option/o12_1"/>
