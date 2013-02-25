@@ -1,0 +1,67 @@
+# Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
+
+@base <http://www.dispedia.local/Site> .
+@prefix sysont: <http://ns.ontowiki.net/SysOnt/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix site: <http://ns.ontowiki.net/SysOnt/Site/> .
+@prefix ns0: <http://www.dispedia.local/Site/Class/> .
+@prefix ns2: <http://open.vocab.org/terms/> .
+@prefix ns3: <http://aksw.org/schema/> .
+
+<http://www.dispedia.local/Site> a owl:Ontology .
+
+<http://www.dispedia.local/Site/About> a foaf:Document ;
+                                                 rdfs:label "About" ;
+                                                 site:content "Test" .
+
+<http://www.dispedia.local/Site/Map> a foaf:Document ;
+                                               rdfs:label "Map Demo" ;
+                                               site:template "map" .
+
+<http://www.dispedia.local/Site/Navigation/Main> a site:Navigation ;
+                                                           rdf:_1 <http://www.dispedia.local/Site/Welcome> ;
+                                                           rdf:_2 <http://www.dispedia.local/Site/Map> ;
+                                                           rdf:_3 <http://www.dispedia.local/Site/About> ;
+                                                           rdfs:label "Main Navigation" .
+
+<http://www.dispedia.local/Site/Welcome> a foaf:Document ;
+                                                   rdfs:label "Welcome"@en, "Willkommen"@de ;
+                                                   site:content "Welcome Test" .
+
+rdf:_1 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "1." .
+
+rdf:_10 a rdfs:ContainerMembershipProperty ;
+        rdfs:label "10." .
+
+rdf:_2 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "2." .
+
+rdf:_3 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "3." .
+
+rdf:_4 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "4." .
+
+rdf:_5 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "5." .
+
+rdf:_6 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "6." .
+
+rdf:_7 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "7." .
+
+rdf:_8 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "8." .
+
+rdf:_9 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "9." .
+
+rdf:type a owl:ObjectProperty ;
+         rdfs:label "typ"@de, "type"@en .
+
+foaf:Document site:classTemplate "document" .

@@ -1,0 +1,10 @@
+<?php
+
+    // uses headline property for headline
+    echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'h1'));
+    
+    echo $this->img(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/image', 'class' => 'aboutimg', 'alt' => 'infologistic'));
+    // uses languageContent property for main content
+    echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/languageContent', 'tag' => 'p', 'class' => 'about'));
+?>
+

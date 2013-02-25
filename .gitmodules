@@ -7,3 +7,9 @@
 [submodule "extensions/formgenerator"]
 	path = extensions/formgenerator
 	url = git@github.com:AKSW/forms.ontowiki.git
+[submodule "scripts/dowl"]
+	path = scripts/dowl
+	url = https://github.com/kenda/dowl.git
+[submodule "extensions/site"]
+	path = extensions/site
+	url = git@github.com:AKSW/site.ontowiki.git

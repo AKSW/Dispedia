@@ -1,0 +1,72 @@
+# Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
+
+@base <http://www.dispedia.local/Site> .
+@prefix sysont: <http://ns.ontowiki.net/SysOnt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
+@prefix ns1: <http://www.dispedia.local/Site/> .
+
+<http://www.dispedia.local/Site> a owl:Ontology .
+
+ns1:Demo a foaf:Document ;
+         rdfs:label "Demo" ;
+         ns0:template "redirect" .
+
+ns1:Home a foaf:Document ;
+         rdfs:label "Home" ;
+         ns0:languageContent "Dispedia ist ein Framework zur Informationsvermittlung und zum Wissensmanagement für den komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt semantische Technologien, um einerseits Patienten zu beschreiben, die an einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den speziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der differenzierten Zuordnung der Fakten zu den individuellen Informatoinsbedürfnissen ermöglicht Dispedia eine Informationsvermittlung, die am Typ des Empfängers, seinem Charakter sowie seiner persönlichen Einstellung ausgerichtet ist. Die Beispielerkrankung, an der das Framework anfänglich ausgerichtet war ist die Amyotrophe Lateralsclerose (ALS)."@de, "englisch Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."@en ;
+         ns0:headline "Was ist Dispedia?"@de, "What is Dispedia?"@en ;
+         ns0:image "/extensions/site/../../htdocs//dispedia/img/infologisticPPT.png" .
+
+<http://www.dispedia.local/Site/Navigation/Main> a ns0:Navigation ;
+                                                 rdf:_1 ns1:Home ;
+                                                 rdf:_2 ns1:Schema ;
+                                                 rdf:_3 ns1:Demo ;
+                                                 rdfs:label "Main Navigation" .
+
+ns1:Schema a foaf:Document ;
+           rdfs:label "Schema" ;
+           ns0:template "Test" .
+
+ns1:Welcome a foaf:Document ;
+            rdfs:label "Willkommen"@de, "Welcome"@en ;
+            ns0:content "Welcome Test" .
+
+rdf:_1 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "1." .
+
+rdf:_10 a rdfs:ContainerMembershipProperty ;
+        rdfs:label "10." .
+
+rdf:_2 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "2." .
+
+rdf:_3 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "3." .
+
+rdf:_4 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "4." .
+
+rdf:_5 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "5." .
+
+rdf:_6 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "6." .
+
+rdf:_7 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "7." .
+
+rdf:_8 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "8." .
+
+rdf:_9 a rdfs:ContainerMembershipProperty ;
+       rdfs:label "9." .
+
+rdf:type a owl:ObjectProperty ;
+         rdfs:label "typ"@de, "type"@en .
+
+foaf:Document ns0:classTemplate "document" .

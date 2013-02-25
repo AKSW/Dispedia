@@ -47,6 +47,11 @@ class FormsMainMenuModule extends OntoWiki_Module
         } else {
             $this->_shouldShow = false;
         }
+        
+        // add Home button in main navi
+        $registry = OntoWiki_Menu_Registry::getInstance();
+        $test = OntoWiki_Menu_Registry::getInstance()->getMenu('application');
+        $test->prependEntry('Home', $this->_owApp->getUrlBase() . 'Site/Home');
     }
 
     /**

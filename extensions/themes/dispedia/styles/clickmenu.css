@@ -80,6 +80,15 @@ div.cmDiv {
     cursor: default;
 }
 
+.clickMenu .main > a {
+    color: white;
+    text-shadow: -1px -1px 1px #000000 !important;
+    height: 4em;
+    line-height: 4em !important;
+    display:block;
+}
+
+
 /* thats for the shadowbox */
 /*
 html>body div.outerbox {

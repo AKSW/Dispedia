@@ -403,7 +403,7 @@ class PataproController extends OntoWiki_Controller_Component
                 $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
                 
                 $locator = Erfurt_Syntax_RdfParser::LOCATOR_FILE;
-                $filetype = 'rdfxml';
+                $filetype = 'auto';
                 $newType = Erfurt_Store::MODEL_TYPE_OWL;
                 
                 // create model
