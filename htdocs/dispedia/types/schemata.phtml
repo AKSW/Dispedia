@@ -1,3 +1,14 @@
+<?php
+    $navOptions = array(
+            'navResource' => $this->wikiBaseUrl . 'Site/Navigation/Schemata',
+            'navId' => 'nav-schemata',
+            'suffix'    => '<!-- /#nav-schemata -->',
+            'activeUrl' => $this->resourceUri,
+            'listClass' => 'nav',
+            'navClass' => 'nav-collapse'
+            );
+    echo $this->navigationList($navOptions);
+?>
 <div class="content">
     <?php
         // uses headline property for headline
@@ -8,4 +19,3 @@
         echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/languageContent', 'tag' => 'p', 'class' => 'about'));
     ?>
 </div>
-
