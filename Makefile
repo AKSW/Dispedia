@@ -322,4 +322,8 @@ endif
 
 update-docs:
 	cd htdocs/dispedia/types/schemata; \
-	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).owl ../../../../scripts/dowl/lib/dowl/schemaorg.erb > $(NAME).html
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).owl ../../../../scripts/dowl/lib/dowl/schemaorg.erb de > $(NAME)_de.html
+	cd htdocs/dispedia/types/schemata; \
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).owl ../../../../scripts/dowl/lib/dowl/schemaorg.erb en > $(NAME)_en.html
+	rm htdocs/dispedia/types/schemata/bootstrap.*;
+	rm htdocs/dispedia/types/schemata/jquery.js;

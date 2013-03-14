@@ -42,15 +42,32 @@ body{
 }
 
 /* bootstrap.min.css überschreiben */
+.container {
+    width: 80% !important;
+}
+/* bootstrap.min.css überschreiben */
 .nav {
     margin: 0px !important;
 }
 /* bootstrap.min.css überschreiben */
 .span3 {
     overflow: auto;
+    width: 24% !important;
+    margin: 0px !important;
+}
+/* bootstrap.min.css überschreiben */
+.span9 {
+    overflow: auto;
+    margin-left: 2% !important;
+    width: 74% !important;
+}
+/* bootstrap.min.css überschreiben */
+.row {
+    margin: 0px !important;
 }
 
 /* ############### Navi menu for schemata ############### */
+/*
 #nav-schemata {
     height: 50px;
     width: 60%;
@@ -76,12 +93,16 @@ body{
     color: white;
     background-color: #66CCFF;
 }
-
+*/
 .content{
     width:60%;
     margin:  50px auto 0px auto;
     color: #3A4956;
     }
+    
+.schemaContent {
+    width:100%;
+}
 
 .content h1{
     color: #ff9966;
@@ -104,9 +125,35 @@ body{
 .aboutimg{
     float: right;
     max-width: 500px;
-    padding: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
     }
 
 .about{
     text-align: justify;
+    }
+
+/* ############### Table Home ############### */
+#modules{
+    clear: right;
+    padding: 10px;
+    width: 80%;
+    margin: 15px auto 15px auto;
+    border-collapse:collapse;
+    }
+
+#modules thead th{
+    background-color: #66ccff;
+    padding: 5px;
+    text-align: left;
+    }
+
+#modules tbody td{
+    vertical-align: top;
+    padding: 5px;
+    text-align: justify;
+    }
+
+#modules tbody tr{
+    border-bottom: 2px solid #66ccff;
     }
