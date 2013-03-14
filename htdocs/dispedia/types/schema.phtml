@@ -1,0 +1,28 @@
+<?php
+    $navOptions = array(
+            'navResource' => $this->wikiBaseUrl . 'Site/Navigation/Schemata',
+            'navId' => 'nav-schemata',
+            'suffix'    => '<!-- /#nav-schemata -->',
+            'activeUrl' => $this->resourceUri,
+            'listClass' => 'nav',
+            'navClass' => 'nav-collapse'
+            );
+    echo $this->navigationList($navOptions);
+?>
+<div class="content">
+    <div class="dispediaSchema">
+        <?php
+            $fileName = $this->literal(
+                array(
+                    'property' => 'http://ns.ontowiki.net/SysOnt/Site/file',
+                    'plain' => true
+                )
+            );
+            echo $this->renderx(
+                array(
+                    'template' => 'dispedia/types/schemata/' . $fileName
+                )
+            );
+        ?>
+    </div>
+</div>

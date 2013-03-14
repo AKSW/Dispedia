@@ -1,7 +1,10 @@
 * { margin: 0; padding: 0; }
 
 body{
-    font-family: Helvetica, Arial, sans-serif;
+    /* bootstrap.min.css überschreiben */
+    font-family: Helvetica, Arial, sans-serif !important;
+    /* bootstrap.min.css überschreiben */
+    font-size: 100% !important;
 }
 
 #header{
@@ -22,20 +25,57 @@ body{
 
 #menu ul{
     float:right;
-    line-height: 50px;
     vertical-align: middle;
     }
 
 #menu li{
     list-style-type: none;
-    display: inline;
+    /* bootstrap.min.css überschreiben */
+    line-height: 50px !important;
+    float:left;
     }
 
 #menu a{
     color: white;
     text-decoration: none;
-    padding-right: 10px;
-    }
+    padding: 0px 10px;
+}
+
+/* bootstrap.min.css überschreiben */
+.nav {
+    margin: 0px !important;
+}
+/* bootstrap.min.css überschreiben */
+.span3 {
+    overflow: auto;
+}
+
+/* ############### Navi menu for schemata ############### */
+#nav-schemata {
+    height: 50px;
+    width: 60%;
+    margin: 10px auto;
+}
+
+#nav-schemata .nav {
+    list-style: none;
+}
+
+#nav-schemata .nav li {
+    float:left;
+    color: #3A4956;
+    padding: 10px 0px;
+    width: 25%;
+    text-align: center;
+}
+#nav-schemata .nav li a {
+    color:inherit;
+    text-decoration: none;
+}
+#nav-schemata .nav li:hover, #nav-schemata .nav li a:hover, #nav-schemata .nav li.active {
+    color: white;
+    background-color: #66CCFF;
+}
 
 .content{
     width:60%;
