@@ -310,7 +310,16 @@ endif
 # Dispedia
 
 owcli-install:
-	install/install_script.sh -i
+	scripts/install_script.sh -i
 
 kb-install:
-	install/install_script.sh -k
+	scripts/install_script.sh -k
+
+# Parameter check
+ifndef NAME
+	NAME = "dispediaCore"
+endif
+
+update-docs:
+	cd htdocs/dispedia/types/schemata; \
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).owl ../../../../scripts/dowl/lib/dowl/schemaorg.erb > $(NAME).html
