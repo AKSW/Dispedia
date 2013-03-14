@@ -111,7 +111,7 @@
     <owl:ObjectProperty rdf:about="&seo;supply">
         <rdfs:label xml:lang="de">leistet</rdfs:label>
         <rdfs:label xml:lang="en">supply</rdfs:label>
-        <rdfs:domain rdf:resource="&seo;ServiceProvider"/>
+        <rdfs:domain rdf:resource="&seo;Organization"/>
         <rdfs:range rdf:resource="&seo;Service"/>
         <rdfs:comment xml:lang="de">Die Objekteigenschaft kennzeichnet welche Dienstleistungen von einem Dienstleister erbracht werden.</rdfs:comment>
         <rdfs:comment xml:lang="en">The ObjectProperty indicates which services are provided by a service provider.</rdfs:comment>
