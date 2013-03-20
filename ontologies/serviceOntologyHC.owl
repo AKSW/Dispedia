@@ -130,9 +130,11 @@
      -->
    
    <owl:Class rdf:about="&seohcp;HealthCareServiceProviderWithoutCategory">
-                <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
-                <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
-                <rdfs:subClassOf rdf:resource="&seo;ServiceProviderWithoutCategory"/>
+     <rdfs:label xml:lang="de">Gesundheits-Dienstleister ohne Kategorie</rdfs:label>
+     <rdfs:label xml:lang="en">single healthcare service provider without Category</rdfs:label>
+     <rdfs:comment xml:lang="de">Die Klasse Gesundheits-Dienstleister ohne Kategorie bezeichnet alle Gesundheits-Dienstleister, die keiner höheren Gruppe zugeordnet werden können.</rdfs:comment>
+     <rdfs:comment xml:lang="en">The class HealthCareServiceProviderWithoutCategory groups all types of Healthcare Service Providers, which have no superclass.</rdfs:comment>
+     <rdfs:subClassOf rdf:resource="&seo;ServiceProviderWithoutCategory"/>
     </owl:Class>
     
     <owl:Class rdf:about="&seohcp;Therapist">

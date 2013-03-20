@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!DOCTYPE rdf:RDF [
 
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
@@ -87,7 +87,7 @@
     <owl:Class rdf:about="&seo;ServiceProviderWithoutCategory">
                     <rdfs:label xml:lang="de">Dienstleister ohne Kategorie</rdfs:label>
                     <rdfs:label xml:lang="en">single service provider without Category</rdfs:label>
-                    <rdfs:comment xml:lang="en">The class ProviderWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
+                    <rdfs:comment xml:lang="en">The class ServiceProviderWithoutCategory groups all types of Services, which have no superclass.</rdfs:comment>
 		    <rdfs:comment xml:lang="de">Die Klasse Dienstleister ohne Kategorie bezeichnet alle Dienstleister, die keiner höheren Gruppe zugeordnet werden können. Damit sieht der Anwender, falls Dienstleister angelegt wurden, die noch zu gruppieren sind.</rdfs:comment>
                     <rdfs:subClassOf rdf:resource="&seo;Organization"/>
     </owl:Class>
@@ -103,9 +103,11 @@
     <owl:ObjectProperty rdf:about="&seo;hasAddress">
         <rdfs:label xml:lang="de">hat Adresse</rdfs:label>
         <rdfs:label xml:lang="en">has address</rdfs:label>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft beschreibt den Standort einer Organisation.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty describes the location of a certain organization.</rdfs:comment>
+        <rdfs:domain rdf:resource="&seo;Organization"/>
         <rdfs:range rdf:resource="&s;PostalAddress"/>
         <rdfs:range rdf:resource="&s;GeoCoordinates"/>
-        <rdfs:domain rdf:resource="&seo;Organization"/>
     </owl:ObjectProperty>
     
     <owl:ObjectProperty rdf:about="&seo;supply">
@@ -127,6 +129,8 @@
     <owl:DatatypeProperty rdf:about="&seo;fundedBy">
         <rdfs:label xml:lang="de">gefördert durch</rdfs:label>
         <rdfs:label xml:lang="en">funded by</rdfs:label>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt durch wen eine bestimmte Dienstleistung gefördert wird.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The DatatypeProperty describes by whom a certain service is funded.</rdfs:comment>
         <rdfs:domain rdf:resource="&seo;Service"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
