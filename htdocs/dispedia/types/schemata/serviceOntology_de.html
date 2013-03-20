@@ -1,0 +1,450 @@
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  <style type="text/css" media="screen">
+    table{
+      width: 100%;
+      border-spacing: 3px;
+      border-collapse: separate;
+      border: 1px solid #98A0A6;
+      line-height: 160%;
+      color: #3A4956;
+    }
+    th{
+      background-color: #C7CBCE;
+      text-align: left;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  </style>
+  <body>
+	<div class="container" id="overview">
+	  
+	  <div class="row">
+		<div class="span3">
+		<ul class="nav nav-list">
+		  <li class="nav-header"><a href="#classes">Classes</a></li>
+		  
+		    <li><a href="#class_Organization">Organization</a></li>
+		  
+		    <li><a href="#class_Service">Service</a></li>
+		  
+		    <li><a href="#class_ServiceProviderWithoutCategory">ServiceProviderWithoutCategory</a></li>
+		  
+		    <li><a href="#class_ServiceWithoutCategory">ServiceWithoutCategory</a></li>
+		  
+		  <li class="nav-header"><a href="#gen_props">Generic properties</a></li>
+		</ul>
+		</div>
+		<div class="span9">
+
+		<h1>ServiceOntology Vokabular</h1>
+		Diese Ontologie (Vokabular) enthält alle Konzepte, die Dienstleistungen und dementsprechende Dienstleister beschreiben.
+		
+		
+		<div style="margin-top:20px"></div>
+			<h2 id="classes">Classes</h2>
+
+	   		
+			    
+	   			<div class="term" id="class_Organization">	   					   			
+	   				<h3>
+					  
+					  <abbr title="http://www.serviceOntology.org/Organization">Organization</abbr>
+					</h3>
+					
+					<strong>external super classes:</strong>
+					  <ul>
+					  
+					    
+					      <li><a href="http://purl.org/goodrelations/v1#BusinessEntity">gr:BusinessEntity</a></li>
+					    
+					  
+					    
+					      <li><a href="http://schema.org/Organization">schema:Organization</a></li>
+					    
+					  
+					    
+					      <li><a href="http://xmlns.com/foaf/0.1/Organization">foaf:Organization</a></li>
+					    
+					  
+					  </ul>
+					</h5>
+					
+					
+					
+					
+		   				<table>
+						  <thead>
+						  <tr>
+						    <th>Property</th>
+						    <th>Expected Type</th>
+						    <th>Description</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						    
+						      
+						        <tr>
+							  <th colspan="3">Properties from <a href="#class_Organization">Organization</a></th>
+							</tr>
+
+						        
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+						              <tr>
+								<th><abbr title="http://www.serviceOntology.org/hasAddress">hasAddress</abbr></th>
+								<td>
+								  
+								    <a target="_blank" href="http://schema.org/PostalAddress">schema:PostalAddress</a>
+								  
+								    <a target="_blank" href="http://schema.org/GeoCoordinates">schema:GeoCoordinates</a>
+								  
+								</td>
+								<td></td>
+							      </tr>
+							      
+							    
+							  		   				
+							
+  						          
+						            
+						              <tr>
+								<th><abbr title="http://www.serviceOntology.org/supply">supply</abbr></th>
+								<td>
+								  
+								    <a href="#class_Service">Service</a>
+								  
+								</td>
+								<td>Die Objekteigenschaft kennzeichnet welche Dienstleistungen von einem Dienstleister erbracht werden.</td>
+							      </tr>
+							      
+							    
+							  		   				
+							
+						      
+						    
+						</tbody>
+		   				</table>
+	   					
+					
+                                          more specific types:
+					<ul>
+					  
+					  <li><a href="#class_ServiceProviderWithoutCategory">ServiceProviderWithoutCategory</a></li>
+					  
+					</ul>
+		   				   				
+	   			</div>
+		
+	   			<div class="row">
+	   				<div class="offset8">
+	   					<a href="#overview">Goto Top</a>
+					</div>
+	   			</div>
+	   			<hr>
+	  		
+			    
+	   			<div class="term" id="class_Service">	   					   			
+	   				<h3>
+					  
+					  <abbr title="http://www.serviceOntology.org/Service">Service</abbr>
+					</h3>
+					
+					<strong>external super classes:</strong>
+					  <ul>
+					  
+					    
+					      <li><a href="http://purl.org/goodrelations/v1#ProductOrService">gr:ProductOrService</a></li>
+					    
+					  
+					  </ul>
+					</h5>
+					
+					
+					
+					
+		   				<table>
+						  <thead>
+						  <tr>
+						    <th>Property</th>
+						    <th>Expected Type</th>
+						    <th>Description</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						    
+						      
+						        <tr>
+							  <th colspan="3">Properties from <a href="#class_Service">Service</a></th>
+							</tr>
+
+						        
+  						          
+						            
+						              <tr>
+								<th><abbr title="http://www.serviceOntology.org/fundedBy">fundedBy</abbr></th>
+								<td>
+								  
+								    <a target="_blank" href="http://www.w3.org/2001/XMLSchema#string">xmls:string</a>
+								  
+								</td>
+								<td></td>
+							      </tr>
+							      
+							    
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+						      
+						    
+						</tbody>
+		   				</table>
+	   					
+					
+                                          more specific types:
+					<ul>
+					  
+					  <li><a href="#class_ServiceWithoutCategory">ServiceWithoutCategory</a></li>
+					  
+					</ul>
+		   				   				
+	   			</div>
+		
+	   			<div class="row">
+	   				<div class="offset8">
+	   					<a href="#overview">Goto Top</a>
+					</div>
+	   			</div>
+	   			<hr>
+	  		
+			    
+	   			<div class="term" id="class_ServiceProviderWithoutCategory">	   					   			
+	   				<h3>
+					  
+					    <a href="#class_Organization">Organization</a> > 
+					  
+					  <abbr title="http://www.serviceOntology.org/ServiceProviderWithoutCategory">ServiceProviderWithoutCategory</abbr>
+					</h3>
+					
+					
+					Die Klasse Dienstleister ohne Kategorie bezeichnet alle Dienstleister, die keiner höheren Gruppe zugeordnet werden können. Damit sieht der Anwender, falls Dienstleister angelegt wurden, die noch zu gruppieren sind.
+					
+		   				<table>
+						  <thead>
+						  <tr>
+						    <th>Property</th>
+						    <th>Expected Type</th>
+						    <th>Description</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						    
+						      
+						        <tr>
+							  <th colspan="3">Properties from <a href="#class_Organization">Organization</a></th>
+							</tr>
+
+						        
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+						              <tr>
+								<th><abbr title="http://www.serviceOntology.org/hasAddress">hasAddress</abbr></th>
+								<td>
+								  
+								    <a target="_blank" href="http://schema.org/PostalAddress">schema:PostalAddress</a>
+								  
+								    <a target="_blank" href="http://schema.org/GeoCoordinates">schema:GeoCoordinates</a>
+								  
+								</td>
+								<td></td>
+							      </tr>
+							      
+							    
+							  		   				
+							
+  						          
+						            
+						              <tr>
+								<th><abbr title="http://www.serviceOntology.org/supply">supply</abbr></th>
+								<td>
+								  
+								    <a href="#class_Service">Service</a>
+								  
+								</td>
+								<td>Die Objekteigenschaft kennzeichnet welche Dienstleistungen von einem Dienstleister erbracht werden.</td>
+							      </tr>
+							      
+							    
+							  		   				
+							
+						      
+						    
+						      
+						        <tr>
+							  <th colspan="3">Properties from <a href="#class_ServiceProviderWithoutCategory">ServiceProviderWithoutCategory</a></th>
+							</tr>
+
+						        
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+						      
+						    
+						</tbody>
+		   				</table>
+	   					
+						   				
+	   			</div>
+		
+	   			<div class="row">
+	   				<div class="offset8">
+	   					<a href="#overview">Goto Top</a>
+					</div>
+	   			</div>
+	   			<hr>
+	  		
+			    
+	   			<div class="term" id="class_ServiceWithoutCategory">	   					   			
+	   				<h3>
+					  
+					    <a href="#class_Service">Service</a> > 
+					  
+					  <abbr title="http://www.serviceOntology.org/ServiceWithoutCategory">ServiceWithoutCategory</abbr>
+					</h3>
+					
+					
+					Die Klasse Dienstleistung ohne Kategorie bezeichnet alle Services, die keiner höheren Gruppe zugeordnet werden können. Damit sieht der Anwender, falls Services angelegt wurden, die noch zu gruppieren sind.
+					
+		   				<table>
+						  <thead>
+						  <tr>
+						    <th>Property</th>
+						    <th>Expected Type</th>
+						    <th>Description</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						    
+						      
+						        <tr>
+							  <th colspan="3">Properties from <a href="#class_Service">Service</a></th>
+							</tr>
+
+						        
+  						          
+						            
+						              <tr>
+								<th><abbr title="http://www.serviceOntology.org/fundedBy">fundedBy</abbr></th>
+								<td>
+								  
+								    <a target="_blank" href="http://www.w3.org/2001/XMLSchema#string">xmls:string</a>
+								  
+								</td>
+								<td></td>
+							      </tr>
+							      
+							    
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+						      
+						    
+						      
+						        <tr>
+							  <th colspan="3">Properties from <a href="#class_ServiceWithoutCategory">ServiceWithoutCategory</a></th>
+							</tr>
+
+						        
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+  						          
+						            
+							  		   				
+							
+						      
+						    
+						</tbody>
+		   				</table>
+	   					
+						   				
+	   			</div>
+		
+	   			<div class="row">
+	   				<div class="offset8">
+	   					<a href="#overview">Goto Top</a>
+					</div>
+	   			</div>
+	   			<hr>
+	  		
+
+			<h2 id="gen_props">Generic properies</h2>
+			<table>
+			<thead>
+			  <tr>
+			    <th>Property</th>
+			    <th>Expected Type</th>
+			    <th>Description</th>
+			  </tr>
+			</thead>
+			<tbody>
+			
+  			  
+			
+  			  
+			
+  			  
+			
+			</tbody>
+			</table>
+		</div>
+				
+		</div>
+	</div>
+	</div>
+  </body>	
+</html>

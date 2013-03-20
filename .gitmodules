@@ -12,4 +12,4 @@
 	url = https://github.com/kenda/dowl.git
 [submodule "extensions/site"]
 	path = extensions/site
-	url = git@github.com:AKSW/site.ontowiki.git
+	url = git@github.com:larseidam/site.ontowiki.git

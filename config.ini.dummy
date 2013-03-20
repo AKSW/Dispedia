@@ -101,9 +101,9 @@ mail.localname.recovery = "ontowiki-account-recovery"
 ;;
 ;debug = true
 
-index.default.controller = "page"
+index.default.controller = "Site"
 
-index.default.action = "dispedia"
+index.default.action = "Home"
 
 themes.default = "dispedia"
 
@@ -117,6 +117,8 @@ ontologies.models.dispediaCore.files[] = "dispediaCore.owl"
 ontologies.models.dispediaCore.files[] = "dispediaCoreConditions.owl"
 ontologies.models.dispediaCore.files[] = "disCoreWrapperAlsfrs.owl"
 ontologies.models.dispediaCore.files[] = "disCoreWrapperIcf.owl"
+ontologies.models.dispediaWebsite.namespace = "http://www.dispedia.local/Site"
+ontologies.models.dispediaWebsite.files[] = "dispediaWebsite_online.n3"
 ontologies.models.dispediaALS.namespace = "http://als.dispedia.de/"
 ontologies.models.dispediaALS.files[] = "dispediaALS.owl"
 ontologies.models.dispediaALS.files[] = "dispediaALSexample.owl"
