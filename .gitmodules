@@ -13,3 +13,6 @@
 [submodule "extensions/site"]
 	path = extensions/site
 	url = git@github.com:larseidam/site.ontowiki.git
+[submodule "extensions/page"]
+	path = extensions/page
+	url = git@github.com:larseidam/page.ontowiki.git
