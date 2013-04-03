@@ -2,67 +2,9 @@
 <img style="float:left; width: 8em; margin:1em;" src="/htdocs/dispedia/page/dispedia_logo.png" />
 
 <h1>
-Dispedia - <span style="font-style:italic;">Linked information systems for rare diseases.</span>
+Dispedia - <span style="font-style:italic;">Demonstration</span>
 </h1>
 
-
-
-<p style="text-indent:1em; text-align:justify; ">
-Dispedia.de is a linked information system for rare diseases which is harmonizing social care knowledge and health care knowledge with the focus
-on personalization and patient autonomy. 
-Knowledge about the most rare diseases is limited, which is the result of poorly funded research and the existence of only a few specialized experts.
-Furthermore, the treatment and care of the affected patients is very complex, cost‐intensive, time critical, and involved stakeholders are very heterogeneous. 
-</p>
-<p style="text-indent:1em; text-align:justify;">
-The information needed by the patient depends on his or her personal situation and constitution. 
-To support the information logistics between patients of rare diseases and (all) other stakeholders (e.g. physicians, therapists, and
-researchers), Dispedia.de was designed as a information system with Linked Open Data technologies in order to create a platform and tool 
-independent solution addressing the heterogeneity of the stakeholders. 
-To engineer system and data model requirements of our approach the rare disease Amyotrophic Lateral Sclerosis (ALS) were analysed. 
-The resulting formal knowledge representation was encoded in OWL, which allows, for instance, a modular development of complex areas and also the re‐usage of
-existing knowledge bases.
-</p>
-
-<h2 style="border-bottom:1px solid lightgrey">Architectural Overview</h2>
-
-<p style="text-align:center; width:100%">
-<img style="width:35em; float:right; margin:1em;margin-top:0em" src="/htdocs/dispedia/page/architecture.png" />
-</p>
-
-<p style="text-indent:1em; text-align:justify;">
-The knowledge represantion design of Dispedia includes a set of vocabularies and schemas as follows:
-<ul style="margin:0em; padding:0em; margin-left:6em">
-  <li> the Core Ontology, </li>
-  <li> the expert knowledge base (Proposal Ontology), </li>
-  <li> the knowledge base about the patient (Case Ontology), </li>
-  <li> the allocation of proposal information for patient parameters and the concepts to interlink additional classifications.</li>
-</ul>
-</p>
-<p style="text-indent:1em; text-align:justify; ">
-The Core Ontology is the Dispedia vocabulary which contain all relevant concepts to model the linked information system for rare diseases. 
-It provides classes and properties to represent two aspects of information:
-<ul style="margin:0em; padding:0em; margin-left:6em">
-  <li> information <b>about</b> patients and 
-  <li> information <b>for</b> patients.
-</ul>
-The Proposal Ontology includes concepts and relations, which contain disease specific information for the patient. 
-Therefore, the relevant concepts of the Core Ontology should be imported to the Proposal Ontology and instantiated. 
-These instances are expert proposals of certain stakeholders, which are adapted to the different patient types.
-The Case Ontology is the part of the knowledge base, that includes the information about the patient.
-</p>
-
-<p style="text-indent:1em; text-align:justify;">
-This Case Ontology imports the relevant concepts of the Core Ontology and additional classifications
-to standardize the patients parameters.
-Additional classifications like the <a href="http://www.who.int/classifications/icd/en/">International Classification for Diseases (ICD)</a> or the 
-<a href = "http://www.who.int/classifications/icf/en/"> International Classification of Functioning, Disability and Health (ICF)</a> can be linked to the Case and Proposal
-Ontology providing extra vocabularies e.g. for the description of health conditions.
-</p>
-<p style="text-indent:1em; text-align:justify; ">
-A more detailed description about the architecture and its concepts can be found <a href="page/architecture">here</a>.
-</p>
-
-<h2 style="border-bottom:1px solid lightgrey">Demonstration</h2>
 <p style="text-indent:1em; text-align:justify;">
 In order to abstract the complexity of the developed knowledge bases and to increase the usabilty for users (like patients and therapists) we integrated a set of forms 
 into this OntoWiki-installation. 
