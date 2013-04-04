@@ -1,6 +1,6 @@
 # Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
 
-@base <http://www.dispedia.local/Site> .
+@base <http://www.dispedia.de/Site> .
 @prefix sysont: <http://ns.ontowiki.net/SysOnt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -10,9 +10,9 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
-@prefix ns1: <http://www.dispedia.local/Site/> .
-@prefix ns2: <http://www.dispedia.local/view/r/> .
-@prefix ns3: <http://www.dispedia.local/> .
+@prefix ns1: <http://www.dispedia.de/Site/> .
+@prefix ns2: <http://www.dispedia.de/view/r/> .
+@prefix ns3: <http://www.dispedia.de/> .
 @prefix ns4: <http://creativecommons.org/ns#> .
 
 ns3:Site a owl:Ontology ;
@@ -50,13 +50,13 @@ ns1:Home a foaf:Document ;
          ns0:tableContentR2C1 "Knowledge Engineering" ;
          ns0:tableContentR2C2 "Dispedia Vokabular/Ontologie/Schema"@de, "Dispedia vocabulary/ontology/schema"@en .
 
-<http://www.dispedia.local/Site/Navigation/Main> a ns0:Navigation ;
+<http://www.dispedia.de/Site/Navigation/Main> a ns0:Navigation ;
                                                  rdf:_1 ns1:Home ;
                                                  rdf:_2 ns1:Schema ;
                                                  rdf:_3 ns1:Demo ;
                                                  rdfs:label "Main Navigation" .
 
-<http://www.dispedia.local/Site/Navigation/Schemata> a ns0:Navigation ;
+<http://www.dispedia.de/Site/Navigation/Schemata> a ns0:Navigation ;
                                                      rdf:_1 ns1:DispediaCore ;
                                                      rdfs:label "Schemata Navigation" .
 
