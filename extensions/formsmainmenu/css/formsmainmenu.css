@@ -1,0 +1,10 @@
+#divSelectPatient {
+    float: left;
+}
+#divSelectLanguage {
+    text-align: center;
+}
+#selectPatient {
+    man-width: 14em;
+    min-width: 14em;
+}

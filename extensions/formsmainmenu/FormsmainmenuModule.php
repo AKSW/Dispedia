@@ -32,6 +32,10 @@ class FormsMainMenuModule extends OntoWiki_Module
             $this->_store->isModelAvailable($this->_ontologies['dispediaPatient']['namespace'])
             )
         {
+            $this->view->urlBase = $this->_config->urlBase;
+            
+            // include CSS files
+            $this->view->headLink()->appendStylesheet($this->_config->urlBase . 'extensions/formsmainmenu/css/formsmainmenu.css');
             $this->_shouldShow = true;
 
             $dispediaSession = new Zend_Session_Namespace('Dispedia');
@@ -50,8 +54,8 @@ class FormsMainMenuModule extends OntoWiki_Module
         
         // add Home button in main navi
         $registry = OntoWiki_Menu_Registry::getInstance();
-        $test = OntoWiki_Menu_Registry::getInstance()->getMenu('application');
-        $test->prependEntry('Home', $this->_owApp->getUrlBase() . 'Site/Home');
+        $menu = OntoWiki_Menu_Registry::getInstance()->getMenu('application');
+        $menu->prependEntry('Home', $this->_owApp->getUrlBase() . 'Site/Home');
     }
 
     /**
