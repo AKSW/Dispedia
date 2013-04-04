@@ -83,6 +83,8 @@ help-dispedia:
 	@echo "  Dispedia:"
 	@echo "  owcli-install .................. install owcli"
 	@echo "  kb-install ..................... install/update knowledgebases"
+	@echo "  dispedia-deploy ................ make dispedia.de deployment"
+	@echo "  update-docs NAME=<ontology>..... update documentation files"
 
 # top level target
 
@@ -315,15 +317,20 @@ owcli-install:
 kb-install:
 	scripts/install_script.sh -k
 
-# Parameter check
-ifndef NAME
-	NAME = "dispediaCore"
-endif
+dispedia-deploy:
+	scripts/deployment.sh
 
 update-docs:
+
+# Parameter check
+ifndef NAME
+	@echo "You must Set a ontology name."
+	@echo "Example: make update-docs NAME=<ontologyName>"
+	@exit 1
+endif
 	cd htdocs/dispedia/types/schemata; \
-	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).owl ../../../../scripts/dowl/lib/dowl/schemaorg.erb de > $(NAME)_de.html
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).xml ../../../../scripts/dowl/lib/dowl/schemaorg.erb de > $(NAME)_de.html
 	cd htdocs/dispedia/types/schemata; \
-	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).owl ../../../../scripts/dowl/lib/dowl/schemaorg.erb en > $(NAME)_en.html
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).xml ../../../../scripts/dowl/lib/dowl/schemaorg.erb en > $(NAME)_en.html
 	rm htdocs/dispedia/types/schemata/bootstrap.*;
 	rm htdocs/dispedia/types/schemata/jquery.js;
