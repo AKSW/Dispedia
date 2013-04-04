@@ -60,7 +60,7 @@
     
     <dispediao:Address rdf:about="&dispediapn;12345678/Address">
         <rdfs:label>Musterstr. 1, Musterstadt, 4</rdfs:label>
-        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.02.2011</dispediao:addressDate>
+        <dispediao:addressDate rdf:datatype="&xsd;dateTime">2011-02-13T00:00:00</dispediao:addressDate>
         <dispediao:homeLevel rdf:datatype="&xsd;int">4</dispediao:homeLevel>
         <dispediao:adressText>Musterstr. 1, Musterstadt</dispediao:adressText>
         <dispediao:street>Musterstr. 1</dispediao:street>
@@ -79,7 +79,7 @@
 
     <dispediao:Address rdf:about="&dispediapn;87654321/Address">
         <rdfs:label>Peterstr. 34, Peterstadt, 20</rdfs:label>
-        <dispediao:addressDate rdf:datatype="&xsd;dateTime">13.05.2012</dispediao:addressDate>
+        <dispediao:addressDate rdf:datatype="&xsd;dateTime">2012-05-13T00:00:00</dispediao:addressDate>
         <dispediao:homeLevel rdf:datatype="&xsd;int">20</dispediao:homeLevel>
         <dispediao:adressText>Peterstr. 34, Peterstadt</dispediao:adressText>
         <dispediao:street>Peterstr. 34</dispediao:street>

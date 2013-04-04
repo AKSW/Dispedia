@@ -41,7 +41,7 @@
         <rdfs:label xml:lang="en">Dispedia Vocabulary (Core Ontology)</rdfs:label>
         <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7</owl:versionInfo>
         <rdfs:comment xml:lang="de">Diese Ontologie (Vokabular) enthält alle Kern-Konzepte des Dispedia Informationslogistik Systems.</rdfs:comment>
-        <rdfs:comment xml:lang="en">This is the Core Ontology of the Dispedia Information Logistics System. All concepts are included needed to represent 
+        <rdfs:comment xml:lang="en">This is the Core Ontology of the Dispedia Information Logistics System. All concepts are included needed to represent
             information for and about the patient.</rdfs:comment>
         <dct:contributor>Romy Elze</dct:contributor>
         <dct:contributor>Michael Martin</dct:contributor>
@@ -51,7 +51,7 @@
         <ccns:license rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
     </owl:Ontology>
 
-    <!-- 
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Annotation properties
@@ -62,25 +62,25 @@
     <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
     <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Object Properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-    <!-- 
+    <!--
     ######################################################################################
     properties from Person
     -->
     <owl:ObjectProperty rdf:about="&dispediao;isDoctorOf">
         <rdfs:label xml:lang="de">ist Arzt von</rdfs:label>
         <rdfs:label xml:lang="en">is doctor of</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft ordnet einen Arzt zu einem Patienten zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a doctor to a patient.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft ordnet einen Arzt zu einem Patienten zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a doctor to a patient.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&dispediao;Patient"/>
     </owl:ObjectProperty>
@@ -88,8 +88,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;isFamilyDoctorOf">
         <rdfs:label xml:lang="de">ist Hausarzt von</rdfs:label>
         <rdfs:label xml:lang="en">is family doctor of</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft ordnet einen Hausarzt zu einem Patienten zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a family doctor to a patient.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft ordnet einen Hausarzt zu einem Patienten zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a family doctor to a patient.</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&dispediao;isDoctorOf"/>
     </owl:ObjectProperty>
 
@@ -97,20 +97,20 @@
         <rdfs:label xml:lang="de">erhält Produkt oder Service</rdfs:label>
         <rdfs:label xml:lang="en">receives Product or Service</rdfs:label>
         <rdfs:comment xml:lang="de">Die Eigenschaft 'erhältProduktOderService' bestimmt welche Produkte oder Services eine Person erhält.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty describes which products or services a certain person receives.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty describes which products or services a certain person receives.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&gr;ProductOrService"/>
     </owl:ObjectProperty>
-    
-    <!-- 
+
+    <!--
     ######################################################################################
     properties from Patient
     -->
     <owl:ObjectProperty rdf:about="&dispediao;hasDisease">
         <rdfs:label xml:lang="de">hat Krankheit</rdfs:label>
         <rdfs:label xml:lang="en">has disease</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet eine Krankheit einem Patienten zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a disease to a patient.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet eine Krankheit einem Patienten zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a disease to a patient.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Patient"/>
         <rdfs:range rdf:resource="&dispediao;Disease"/>
     </owl:ObjectProperty>
@@ -118,27 +118,27 @@
     <owl:ObjectProperty rdf:about="&dispediao;hasHealthState">
         <rdfs:label xml:lang="de">enthält Gesundheitsstatus</rdfs:label>
         <rdfs:label xml:lang="en">includes health state</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet Informationen zum Gesundheitsstatus einem Patienten zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns informations about the health state to a patient.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet Informationen zum Gesundheitsstatus einem Patienten zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns informations about the health state to a patient.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Patient"/>
         <rdfs:range rdf:resource="&dispediao;HealthState"/>
     </owl:ObjectProperty>
 
-    <!-- 
+    <!--
     ######################################################################################
     properties from Healthstate (includes is used for information about the patient)
     -->
-    
+
     <owl:DatatypeProperty rdf:about="&dispediao;hasDate">
         <rdfs:label xml:lang="de">hat Datum</rdfs:label>
         <rdfs:label xml:lang="en">has date</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft 'hat Datum' beschreibt den jeweiligen Zeitpunkt des Subjekts.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The DatatypeProperty 'hasDate' describes the respective date of the given subject.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft 'hat Datum' beschreibt den jeweiligen Zeitpunkt des Subjekts.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The DatatypeProperty 'hasDate' describes the respective date of the given subject.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:domain rdf:resource="&dispediao;Place"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
-    
+
     <owl:ObjectProperty rdf:about="&dispediao;accepts">
         <rdfs:label xml:lang="de">akzeptiert</rdfs:label>
         <rdfs:label xml:lang="en">accepts</rdfs:label>
@@ -148,20 +148,20 @@
         <rdfs:comment xml:lang="de">Die Objekteigenschaft 'akzeptiert' kennzeichnet einen zugewiesenen Vorschlag als akzeptierte Entscheidung.</rdfs:comment>
         <rdfs:comment xml:lang="en">The ObjectProperty 'accepts' indicates an allocated proposal as accepted decision.</rdfs:comment>
     </owl:ObjectProperty>
-    
+
     <owl:ObjectProperty rdf:about="&dispediao;denies">
         <rdfs:label xml:lang="de">lehnt ab</rdfs:label>
         <rdfs:label xml:lang="en">denies</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft 'lehnt ab' kennzeichnet einen zugewiesenen Vorschlag als abgelehnte Entscheidung.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'lehnt ab' kennzeichnet einen zugewiesenen Vorschlag als abgelehnte Entscheidung.</rdfs:comment>
         <rdfs:comment xml:lang="en">The ObjectProperty 'denies' indicates an allocated proposal as denied decision.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;Proposal"/>
     </owl:ObjectProperty>
-    
+
     <owl:ObjectProperty rdf:about="&dispediao;isPending">
         <rdfs:label xml:lang="de">wartend</rdfs:label>
         <rdfs:label xml:lang="en">is pending</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft 'wartend' kennzeichnet einen zugewiesenen Vorschlag als noch ausstehend. Eine Entscheidung wurde noch nicht getroffen.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft 'wartend' kennzeichnet einen zugewiesenen Vorschlag als noch ausstehend. Eine Entscheidung wurde noch nicht getroffen.</rdfs:comment>
         <rdfs:comment xml:lang="en">The ObjectProperty 'is pending' indicates an allocated proposal as pending. A decision has not been made yet.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;Proposal"/>
@@ -175,18 +175,18 @@
     <owl:ObjectProperty rdf:about="&dispediao;includesHealthProperties">
         <rdfs:label xml:lang="de">beinhaltet Gesundheits-Eigenschaften</rdfs:label>
         <rdfs:label xml:lang="en">includes health properties</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft weist einem Gesundheitszustand eine Menge von Gesundheits-Eigenschaften zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a set of health properties to a health state.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist einem Gesundheitszustand eine Menge von Gesundheits-Eigenschaften zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a set of health properties to a health state.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;PropertySet"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;includes"/>
     </owl:ObjectProperty>
-   
+
     <owl:ObjectProperty rdf:about="&dispediao;includesSymptoms">
         <rdfs:label xml:lang="de">beeinhaltet Symptome</rdfs:label>
         <rdfs:label xml:lang="en">includes symptoms</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft weist einem Gesundheitszustand eine Menge von Symptomen zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a set of symptoms to a health state.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist einem Gesundheitszustand eine Menge von Symptomen zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a set of symptoms to a health state.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;SymptomSet"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;includes"/>
@@ -195,8 +195,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;receivedProposalDescription">
         <rdfs:label xml:lang="de">Vorschlagsbeschreibungstext erhalten</rdfs:label>
         <rdfs:label xml:lang="en">received ProposalDescription</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einem Gesundheitsstatus einen erhaltenen Vorschlagstext zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a received propsal description to a health state.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einem Gesundheitsstatus einen erhaltenen Vorschlagstext zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a received propsal description to a health state.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;ProposalDescription"/>
     </owl:ObjectProperty>
@@ -204,12 +204,12 @@
     <owl:ObjectProperty rdf:about="&dispediao;readProposalDescription">
         <rdfs:label xml:lang="de">Vorschlagstext gelesen</rdfs:label>
         <rdfs:label xml:lang="en">read ProposalDescription</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einem Gesundheitsstatus einen gelesenen Vorschlagstext zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a read propsal description to a health state.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einem Gesundheitsstatus einen gelesenen Vorschlagstext zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a read propsal description to a health state.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;HealthState"/>
         <rdfs:range rdf:resource="&dispediao;ProposalDescription"/>
     </owl:ObjectProperty>
-    
+
     <!-- ######################################################################################
          properties from Proposal
      -->
@@ -222,8 +222,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;appropriateForProperties">
         <rdfs:label xml:lang="de">passend für Eigenschaften</rdfs:label>
         <rdfs:label xml:lang="en">appropriate for properties</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft weist einen geeigneten Vorschlag einer Menge von Gesundheits-Eigenschaften zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The ObjectProperty assigns an appropriate proposal to a set of health properties.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist einen geeigneten Vorschlag einer Menge von Gesundheits-Eigenschaften zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty assigns an appropriate proposal to a set of health properties.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Proposal"/>
         <rdfs:range rdf:resource="&dispediao;PropertySet"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;appropriateFor"/>
@@ -232,24 +232,24 @@
     <owl:ObjectProperty rdf:about="&dispediao;appropriateForSymptoms">
         <rdfs:label xml:lang="de">passend für Symptome</rdfs:label>
         <rdfs:label xml:lang="en">appropriate for symptoms</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft weist einen geeigneten Vorschlag einer Menge von Symptomen zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The ObjectProperty assigns an appropriate proposal to a set of symptoms.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist einen geeigneten Vorschlag einer Menge von Symptomen zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty assigns an appropriate proposal to a set of symptoms.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Proposal"/>
         <rdfs:range rdf:resource="&dispediao;SymptomSet"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;appropriateFor"/>
     </owl:ObjectProperty>
-    
+
     <owl:ObjectProperty rdf:about="&dispediao;containsProposalComponent">
         <rdfs:label xml:lang="de">enthält Aktion</rdfs:label>
         <rdfs:label xml:lang="en">contains action</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Objekteigenschaft weist eine Vorschlags-Komponente einem Vorschlag zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The ObjectProperty assigns an proposal component to a proposal.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Objekteigenschaft weist eine Vorschlags-Komponente einem Vorschlag zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The ObjectProperty assigns an proposal component to a proposal.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Proposal"/>
         <rdfs:range rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
-    
-    <!-- 
+
+    <!--
       ######################################################################################
       properties from ProposalComponent (contains is used for information for the patient)
     -->
@@ -262,8 +262,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsDrug">
         <rdfs:label xml:lang="de">enthält Arznei</rdfs:label>
         <rdfs:label xml:lang="en">contains drugs</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Arzneimittel zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a drug to a proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Arzneimittel zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a drug to a proposal component.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;Drug"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
@@ -272,8 +272,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsFormality">
         <rdfs:label xml:lang="de">enthält Formalität</rdfs:label>
         <rdfs:label xml:lang="en">contains formality</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente eine Formalität zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a formality to a proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente eine Formalität zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a formality to a proposal component.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;Formality"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
@@ -282,8 +282,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsMedicalDevice">
         <rdfs:label xml:lang="de">enthält Medizinprodukt</rdfs:label>
         <rdfs:label xml:lang="en">contains medical device</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Medizinprodukt zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a medical device to a proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Medizinprodukt zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a medical device to a proposal component.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;MedicalDevice"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
@@ -292,8 +292,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsProposalDescription">
         <rdfs:label xml:lang="de">enthält Informationstext</rdfs:label>
         <rdfs:label xml:lang="en">contains Proposal Description Text</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente einen Informationstext zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a proposal description to a proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente einen Informationstext zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a proposal description to a proposal component.</rdfs:comment>
         <rdfs:range rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
@@ -302,8 +302,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsAssistiveProduct">
         <rdfs:label xml:lang="de">enthält Assistenzprodukt</rdfs:label>
         <rdfs:label xml:lang="en">contains assistive product</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Arzneimittel zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns an assistive product to a proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Arzneimittel zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns an assistive product to a proposal component.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;AssistiveProduct"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
@@ -312,8 +312,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsService">
         <rdfs:label xml:lang="de">enthält Service</rdfs:label>
         <rdfs:label xml:lang="en">contains service</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente einen Service zu.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns a service to a proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente einen Service zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns a service to a proposal component.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&seo;Service"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
@@ -327,13 +327,13 @@
     <owl:ObjectProperty rdf:about="&dispediao;successorOfProposalComponent">
         <rdfs:label xml:lang="de">Nachfolger der Handlung</rdfs:label>
         <rdfs:label xml:lang="en">successor of action</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft beschreibt eine Vorschlags-Komponente als zeitlichen Nachfolger einer anderen Vorschlags-Komponente.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty describes a proposal component as the successor of an other proposal component.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft beschreibt eine Vorschlags-Komponente als zeitlichen Nachfolger einer anderen Vorschlags-Komponente.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty describes a proposal component as the successor of an other proposal component.</rdfs:comment>
         <rdfs:range rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;successorOf"/>
     </owl:ObjectProperty>
-    
+
     <!--
     ######################################################################################
     properties for ProposalDescription
@@ -341,13 +341,13 @@
     <owl:ObjectProperty rdf:about="&dispediao;usefulFor">
         <rdfs:label xml:lang="de">nützlich für</rdfs:label>
         <rdfs:label xml:lang="en">useful for</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente eine Organisation zu, für welche sie nützlich ist.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This ObjectProperty assigns an organisation to a proposal component which is useful for this organisation.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente eine Organisation zu, für welche sie nützlich ist.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This ObjectProperty assigns an organisation to a proposal component which is useful for this organisation.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:range rdf:resource="&seo;Organization"/>
     </owl:ObjectProperty>
 
-    <!-- 
+    <!--
     ######################################################################################
     properties for rules for matching type of propal to type of patient
     -->
@@ -367,8 +367,8 @@
         <rdfs:label xml:lang="en">suitable for experienced</rdfs:label>
         <rdfs:subPropertyOf rdf:resource="&dispediao;suitableFor"/>
     </owl:ObjectProperty>
-    
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Rules to define the semantics of dispediao:suitableFor
@@ -512,7 +512,7 @@
         <swrl:head  rdf:nodeID="genid6b"/>
     </rdf:Description>
 
-    <!-- 
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Data properties
@@ -527,8 +527,8 @@
     <owl:DatatypeProperty rdf:about="&dispediao;startDate">
         <rdfs:label xml:lang="de">Startdatum</rdfs:label>
         <rdfs:label xml:lang="en">start date</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Zeitpunkt des Beginns einer Krankheit.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This DatatypeProperty describes the date of the start of a certain disease.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Zeitpunkt des Beginns einer Krankheit.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This DatatypeProperty describes the date of the start of a certain disease.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Disease"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
@@ -536,58 +536,58 @@
     <owl:DatatypeProperty rdf:about="&dispediao;endDate">
         <rdfs:label xml:lang="de">Enddatum</rdfs:label>
         <rdfs:label xml:lang="en">end date</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Zeitpunkt des Endes einer Krankheit.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This DatatypeProperty describes the date of the end of a certain disease.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Zeitpunkt des Endes einer Krankheit.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This DatatypeProperty describes the date of the end of a certain disease.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Disease"/>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
-    
-    <!-- 
+
+    <!--
     ######################################################################################
     properties of ProposalDescription
     -->
     <owl:DatatypeProperty rdf:about="&dispediao;content">
         <rdfs:label xml:lang="de">Inhalt</rdfs:label>
         <rdfs:label xml:lang="en">content</rdfs:label>
-	<rdfs:comment xml:lang="de">Diese Datentyp-Eigenschaft beschreibt den Inhalt eines Vorschlagstextes.</rdfs:comment>
-	<rdfs:comment xml:lang="en">This DatatypeProperty describes the content of a propsal description.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Datentyp-Eigenschaft beschreibt den Inhalt eines Vorschlagstextes.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This DatatypeProperty describes the content of a propsal description.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
 
-    <!-- 
+    <!--
     ######################################################################################
     properties of Person and Patient(...which could not be reused from foaf, schema or dbpedia... until a patient data ontology is available
     -->
     <owl:DatatypeProperty rdf:about="&dispediao;journeyToWork">
         <rdfs:label xml:lang="de">Arbeitsweg</rdfs:label>
         <rdfs:label xml:lang="en">Journey to work</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Weg zur Arbeit der betroffenen Person.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The DatatypeProperty describes the journey to work of the respective person.</rdfs:comment>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;birthName">
-        <rdfs:label xml:lang="de">Geburtsname</rdfs:label>
-        <rdfs:label xml:lang="en">Name at birth</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft repräsentiert den Geburtsnamen der betroffenen Person.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The DatatypeProperty represents the name at birth of the respective person.</rdfs:comment>
-        <rdfs:domain rdf:resource="&dispediao;Person"/>
-        <rdfs:range rdf:resource="&xsd;string"/>
-    </owl:DatatypeProperty>
-    
-    <owl:DatatypeProperty rdf:about="&dispediao;education">
-        <rdfs:label xml:lang="de">Ausbildung</rdfs:label>
-        <rdfs:label xml:lang="en">Education</rdfs:label>
-	<rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Ausbildungsstand der betroffenen Person.</rdfs:comment>
-	<rdfs:comment xml:lang="en">The DatatypeProperty describes the educational level of the respective person.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Weg zur Arbeit der betroffenen Person.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The DatatypeProperty describes the journey to work of the respective person.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Person"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
 
-    
-    <!-- 
+    <owl:DatatypeProperty rdf:about="&dispediao;birthName">
+        <rdfs:label xml:lang="de">Geburtsname</rdfs:label>
+        <rdfs:label xml:lang="en">Name at birth</rdfs:label>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft repräsentiert den Geburtsnamen der betroffenen Person.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The DatatypeProperty represents the name at birth of the respective person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&dispediao;education">
+        <rdfs:label xml:lang="de">Ausbildung</rdfs:label>
+        <rdfs:label xml:lang="en">Education</rdfs:label>
+        <rdfs:comment xml:lang="de">Die Datentyp-Eigenschaft beschreibt den Ausbildungsstand der betroffenen Person.</rdfs:comment>
+        <rdfs:comment xml:lang="en">The DatatypeProperty describes the educational level of the respective person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&dispediao;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Classes
@@ -599,7 +599,7 @@
         <rdfs:label xml:lang="en">Address</rdfs:label>
          <rdfs:subClassOf rdf:resource="&s;Place"/>
     </owl:Class>
-    
+
 
     <owl:Class rdf:about="&dispediao;ALS">
         <rdfs:label xml:lang="de">ALS</rdfs:label>
@@ -618,13 +618,13 @@
         <rdfs:label xml:lang="en">Assistive product</rdfs:label>
         <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
-    
+
      <owl:Class rdf:about="&dispediao;Drug">
-            <rdfs:label xml:lang="de">Arznei</rdfs:label>
-            <rdfs:label xml:lang="en">Drug</rdfs:label>
-            <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
+        <rdfs:label xml:lang="de">Arznei</rdfs:label>
+        <rdfs:label xml:lang="en">Drug</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
     </owl:Class>
-    
+
      <owl:Class rdf:about="&dispediao;MedicalDevice">
        <rdfs:label xml:lang="de">Medizinprodukt</rdfs:label>
        <rdfs:label xml:lang="en">Medical Device</rdfs:label>
@@ -648,7 +648,7 @@
         <rdfs:label xml:lang="de">Gesundheitsstatus</rdfs:label>
         <rdfs:label xml:lang="en">Health state</rdfs:label>
     </owl:Class>
-    
+
     <owl:Class rdf:about="&dispediao;ProposalComponent">
         <rdfs:label xml:lang="de">Vorschlags-Komponente</rdfs:label>
         <rdfs:label xml:lang="en">Proposal component</rdfs:label>
@@ -670,7 +670,7 @@
         <rdfs:label xml:lang="en">Information for experienced person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;ProposalDescription"/>
     </owl:Class>
- 
+
     <owl:Class rdf:about="&dispediao;SpecialProposalDescription">
         <rdfs:label xml:lang="de">spezielle Information</rdfs:label>
         <rdfs:label xml:lang="en">special information for experienced person</rdfs:label>
@@ -678,7 +678,7 @@
         <rdfs:comment xml:lang="en">This information is for special patients.</rdfs:comment>
         <rdfs:subClassOf rdf:resource="&dispediao;ProposalDescription"/>
     </owl:Class>
-    
+
     <owl:Class rdf:about="&dispediao;Patient">
         <rdfs:label xml:lang="de">Patient</rdfs:label>
         <rdfs:label xml:lang="en">Patient</rdfs:label>
