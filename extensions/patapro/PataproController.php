@@ -26,7 +26,7 @@ class PataproController extends OntoWiki_Controller_Component
     private $_titleHelper;
     private $_translate;
     private $_store;
-    
+
     // array for output messages
     private $_messages;
 
@@ -36,11 +36,11 @@ class PataproController extends OntoWiki_Controller_Component
     public function init()
     {
         parent::init();
-        
+
         $this->_owApp->getNavigation()->disableNavigation();
-        
+
         $this->_url = $this->_config->urlBase .'patapro/';
-        
+
         // init array for output messages
         $this->_messages = array();
 
@@ -54,14 +54,14 @@ class PataproController extends OntoWiki_Controller_Component
             $namespaces[$model['namespace']] = $modelName;
         }
         $this->_ontologies['namespaces'] = $namespaces;
-        
+
         //TODO:change this to global ontology array
         $this->_patientModel = $this->_ontologies['dispediaPatient']['instance'];
         $this->_dispediaModel = $this->_ontologies['dispediaCore']['instance'];
         $this->_alsfrsModel = $this->_ontologies['dispediaALS']['instance'];
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
-        
+
         $this->_store = Erfurt_App::getInstance()->getStore();
 
         // set standard language
@@ -72,7 +72,7 @@ class PataproController extends OntoWiki_Controller_Component
 
         $this->view->headScript()->appendFile($this->_componentUrlBase .'libraries/jquery.tools.min.js');
     }
-   
+
     /**
       * get the classes of an resource
       */
@@ -85,11 +85,11 @@ class PataproController extends OntoWiki_Controller_Component
                 <' . $currentResource . '> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?class.
             };'
         );
-        
+
         foreach($resourceClassesResult as $resource) {
             $resources[$resource['class']] = $resource['class'];
         }
-        
+
         return $resources;
     }
 
@@ -104,7 +104,7 @@ class PataproController extends OntoWiki_Controller_Component
         $this->view->url = $this->_url;
 
         $currentPatient = "";
-        
+
         // get selectedResource if it is set
         $selectedResource = $this->_owApp->__get("selectedResource");
         if (isset($selectedResource))
@@ -119,7 +119,7 @@ class PataproController extends OntoWiki_Controller_Component
         {
             // get a list of all healthstates
             $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
-            
+
             // only if no healthstates was found for this patient
             if ( 0 < count($this->view->healthstates) )
             {
@@ -129,7 +129,7 @@ class PataproController extends OntoWiki_Controller_Component
                     'name' => 'Save'
                 ));
                 $this->view->placeholder('main.window.toolbar')->set($toolbar);
-                
+
                 if ( 'save' == $this->getParam ('do', '') )
                 {
                     $newProposals = $this->getParam ('proposals', array());
@@ -146,19 +146,19 @@ class PataproController extends OntoWiki_Controller_Component
                     );
                     $this->addMessages(new OntoWiki_Message($this->_translate->_('patient proposal allocation') . " " . $this->_translate->_('saved'), OntoWiki_Message::SUCCESS));
                 }
-    
+
                 $allProposals = $this->_proposal->getAllProposals();
                 $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
-    
+
                 foreach ($allProposals as $proposalUri => $proposal)
                 {
                     if (isset($patientProposals[$proposalUri]))
                         $allProposals[$proposalUri] = $patientProposals[$proposalUri];
                 }
-    
-                
+
+
                 $lastAlsFrsHealthstateUri = '';
-            
+
                 //get the options from the last alsfrs healthstate (alsfrs because only for this classification exist a compare algorithm)
                 foreach ($this->view->healthstates as $healthstateUri => $healthstate)
                 {
@@ -169,19 +169,19 @@ class PataproController extends OntoWiki_Controller_Component
                     }
                 }
                 $patientOptions = $this->healthstateAction($lastAlsFrsHealthstateUri);
-    
+
                 // only if patientOptions not empty
                 if (0 < count($patientOptions))
                 {
                     // compare the patient proposals with the template proposals
                     $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
                 }
-    
+
                 foreach ($allProposals as $proposalUri => $proposal)
                 {
                     $allProposals[$proposalUri]['components'] = $this->_proposal->getProposalData($proposalUri);
                 }
-                
+
                 $this->view->patientUri = $currentPatient;
                 $this->view->proposals = $allProposals;
             }
@@ -215,23 +215,23 @@ class PataproController extends OntoWiki_Controller_Component
                     'url'  => 'javascript:closeProposalBox();'
                 ));
                 $this->view->boxtoolbar = $toolbar->__toString();
-                
+
                 $this->view->patientUri = $patientUri;
                 $this->view->patientType = $this->_patient->getPatientType($patientUri);
-                
+
                 $this->_titleHelper->reset();
                 $this->_titleHelper->addResource($patientUri);
                 $this->_titleHelper->addResource($this->view->patientType);
                 $this->view->patientLabel = $this->_titleHelper->getTitle($patientUri, $this->_lang);
                 $this->view->patientTypeLabel = $this->_titleHelper->getTitle($this->view->patientType, $this->_lang);
-                
+
                 $this->view->proposalUri = $proposalUri;
-                
+
                 if ("new" == $status)
                     $this->view->proposalDescriptions = $this->_proposal->getProposalDescriptionByType($this->view->patientType, $proposalUri);
                 else
                     $this->view->proposalDescriptions = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
-                
+
                 $this->_titleHelper->reset();
                 $this->_titleHelper->addResource ($proposalUri);
                 $proposal = array();
@@ -272,12 +272,12 @@ class PataproController extends OntoWiki_Controller_Component
                                         "http://www.dispedia.de/o/receivedProposalDescription",
                                         $proposalDescriptionUri
                                 );
-                                
+
                             }
                         }
                     }
                 }
-            
+
                 echo json_encode($jsonResponse);
             }
         }
@@ -285,12 +285,12 @@ class PataproController extends OntoWiki_Controller_Component
         {
             echo "noproposaluri";
         }
-            
+
     }
     /**
      * get a special healthstate
      */
-    
+
     public function healthstateAction($healthstateUri = null)
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/healthstate.css');
@@ -310,7 +310,7 @@ class PataproController extends OntoWiki_Controller_Component
 
         return $patientOptions;
     }
-    
+
     public function patientAction ()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/patient.css');
@@ -329,10 +329,10 @@ class PataproController extends OntoWiki_Controller_Component
         }
 
         if ( '' != $currentPatient )
-        {   
+        {
             // build toolbar
             $toolbar = $this->_owApp->toolbar;
-            
+
             $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
                 'name' => 'Save',
                 'url' => 'javascript:$("#patapro").submit()'
@@ -360,30 +360,31 @@ class PataproController extends OntoWiki_Controller_Component
         }
         $this->view->currentPatient = $currentPatient;
     }
-    
+
     public function storeAction()
     {
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/store.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/store.js');
-    
+
         $this->view->url = $this->_config->urlBase;
-        
+
         $this->view->models = $this->_ontologies;
     }
-    
+
     public function changemodelAction()
     {
         $jsonReturnValue = "";
-        
+
         // disable auto-rendering
         $this->_helper->viewRenderer->setNoRender();
 
         // disable layout for Ajax requests
         $this->_helper->layout()->disableLayout();
-        
+
         $modelName = urldecode($this->getParam ('modelName'));
         $action = urldecode($this->getParam ('do'));
-        
+        $backup = urldecode($this->getParam ('backup', false));
+
         if ("" != $modelName)
         {
             $jsonReturnValue['modelName'] = $modelName;
@@ -393,19 +394,28 @@ class PataproController extends OntoWiki_Controller_Component
             $jsonReturnValue['log'] = array();
             if ("remove" == $action)
             {
-                $this->_store->deleteModel($this->_ontologies[$modelName]['namespace']);
-                $jsonReturnValue['log'][] = "model removed";
+                if ($this->_store->isModelAvailable($this->_ontologies[$modelName]['namespace']))
+                {
+                    if ('true' == $backup)
+                    {
+                        $this->_backupOntology($modelName);
+                    }
+                    $this->_store->deleteModel($this->_ontologies[$modelName]['namespace']);
+                    $jsonReturnValue['log'][] = "model removed";
+                } else {
+                    $jsonReturnValue['error'] = "model not available";
+                }
             }
             if ("add" == $action)
             {
                 // get ontologies config object
                 $ontologies = $this->_config->ontologies->toArray();
                 $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
-                
+
                 $locator = Erfurt_Syntax_RdfParser::LOCATOR_FILE;
                 $filetype = 'auto';
                 $newType = Erfurt_Store::MODEL_TYPE_OWL;
-                
+
                 // create model
                 $model = $this->_store->getNewModel($this->_ontologies[$modelName]['namespace'], $this->_ontologies[$modelName]['namespace'], $newType);
                 $jsonReturnValue['log'][] = "model added";
@@ -422,10 +432,31 @@ class PataproController extends OntoWiki_Controller_Component
         }
         else
             $jsonReturnValue['error'] = "no model name";
-        
+
         echo json_encode($jsonReturnValue);
     }
-    
+
+    private function _backupOntology($modelName)
+    {
+        // get ontologies config object
+        $ontologies = $this->_config->ontologies->toArray();
+        $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
+
+        $filename = $ontologiePath . 'backup/' . $modelName . '_' . date('Y.m.d-H:i:s') . '.xml';
+        $serializationType = 'xml';
+        $fileContent = $this->_store->exportRdf(
+            $this->_ontologies[$modelName]['namespace'],
+            $serializationType,
+            null
+        );
+
+        $fileHandle = fopen($filename, 'w+');
+        $returnValue = fwrite($fileHandle, $fileContent);
+        fclose($fileHandle);
+
+        return $returnValue;
+    }
+
     /**
      * add status messages to global array
      */
@@ -436,7 +467,7 @@ class PataproController extends OntoWiki_Controller_Component
         else
             $this->_messages[] = $messages;
     }
-    
+
     /**
      * show messages after every action
      */
@@ -445,5 +476,15 @@ class PataproController extends OntoWiki_Controller_Component
         foreach ($this->_messages as $message) {
             $this->_owApp->appendMessage($message);
         }
+    }
+
+    public function testAction()
+    {
+        // disable layout for Ajax requests
+        $this->_helper->layout()->disableLayout();
+        // disable rendering
+        $this->_helper->viewRenderer->setNoRender();
+
+        $this->_backupOntology('dispediaCore');
     }
 }

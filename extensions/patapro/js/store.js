@@ -47,7 +47,7 @@ function deleteModel(modelName) {
         async:false,
         dataType: "json",
         type: "POST",
-        data: { modelName: modelName, do: 'remove' },
+        data: { modelName: modelName, do: 'remove', backup: $('#storeBackup').is(":checked") ? $('#storeBackup').val() : 'false' },
         context: $("#response" + modelName),
         url: url + 'patapro/changemodel/',
         // complete, no errors
