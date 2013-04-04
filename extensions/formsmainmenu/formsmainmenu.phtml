@@ -39,6 +39,12 @@
         </select>
     </form>
 </div>
+<div id="divSelectLanguage">
+    <span class="lang">
+        <a href="javascript:changeLanguage('en')"><img src="<?php echo $this->urlBase; ?>htdocs/dispedia/img/en.png" title="english"/></a>
+        <a href="javascript:changeLanguage('de')"><img src="<?php echo $this->urlBase; ?>htdocs/dispedia/img/de.png" title="deutsch"/></a>
+    </span>
+</div>
 
 <script>
     $("#selectPatient").trigger('change');
@@ -67,9 +73,31 @@
             }
         });
     })
+    
+    function changeLanguage(language)
+    {
+         $.ajax({
+            async:true,
+            dataType: "html",
+            type: "POST",
+            url: url + "/Site/Home?lang=" + language,
+            // complete, no errors
+            success: function ( res ) 
+            {
+                location.reload();
+            },
+            
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                console.log (jqXHR);
+                console.log (textStatus);
+                console.log (errorThrown);
+            }
+        });
+    }
 </script>
 
-<div>
+<div style="clear:both">
     <img src="<?php echo $this->imagesUrl; ?>dispedia_logo.png" border="0" align="absmiddle"/>
     &nbsp;
     <a id="ahome" href="<?php echo $this->url; ?>">
