@@ -478,13 +478,4 @@ class PataproController extends OntoWiki_Controller_Component
         }
     }
 
-    public function testAction()
-    {
-        // disable layout for Ajax requests
-        $this->_helper->layout()->disableLayout();
-        // disable rendering
-        $this->_helper->viewRenderer->setNoRender();
-
-        $this->_backupOntology('dispediaCore');
-    }
 }
