@@ -1,13 +1,26 @@
-<?php
-$header = '
-    <div id="header">
-      <div class="wrapper">
-	<img src="'. $this->baseUri .'/img/dispedia_logo.png" alt="Dispedia logo"/>
-        <span class="lang">
-            <a href="' . $this->resourceUri . '?lang=en"><img src="'. $this->baseUri .'/img/en.png" title="english"/></a>
-            <a href="' . $this->resourceUri . '?lang=de"><img src="'. $this->baseUri .'/img/de.png" title="deutsch"/></a>
-        </span>
-      </div>
-    </div>';
-echo $header;
-?>
+<div id="header">
+    <div id="headerImage">
+        <img src="<?php echo $this->baseUri ?>/img/dispedia_logo.png" alt="Dispedia logo" />
+    </div>
+    <?php
+        $navOptions = array(
+            'navResource' => $this->wikiBaseUrl . 'Site/Navigation/Header',
+            'navId' => 'headerNavigation',
+            'suffix'    => '<!-- /#nav-header -->',
+            'activeUrl' => $this->resourceUri,
+            'listClass' => 'nav',
+            'navClass' => 'nav-collapse'
+            );
+        echo $this->navigationList($navOptions);
+    ?>
+    <div id="headerLang">
+        <a href="<?php echo $this->resourceUri ?>?lang=en"><img src="<?php echo $this->baseUri ?>/img/en.png" title="english"/></a>
+        |
+        <a href="<?php echo $this->resourceUri ?>?lang=de"><img src="<?php echo $this->baseUri ?>/img/de.png" title="deutsch"/></a>
+    </div>
+    <div id="headerText">
+        <?php echo $this->literal(array('uri' => 'http://www.dispedia.local/Site/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/title', 'tag' => 'span', 'class' => 'headerTextTitle')); ?>
+        <?php echo $this->literal(array('uri' => 'http://www.dispedia.local/Site/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'span', 'class' => 'headerTextHeadline')); ?>
+    </div>
+    <div class="clear"></div>
+</div>

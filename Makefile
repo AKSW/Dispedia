@@ -329,8 +329,8 @@ ifndef NAME
 	@exit 1
 endif
 	cd htdocs/dispedia/types/schemata; \
-	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).xml ../../../../scripts/dowl/lib/dowl/schemaorg.erb de > $(NAME)_de.html
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).xml ../../templates/dispedia.erb de > $(NAME)_de.html
 	cd htdocs/dispedia/types/schemata; \
-	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).xml ../../../../scripts/dowl/lib/dowl/schemaorg.erb en > $(NAME)_en.html
+	../../../../scripts/dowl/bin/dowl ../../../../ontologies/$(NAME).xml ../../templates/dispedia.erb en > $(NAME)_en.html
 	rm htdocs/dispedia/types/schemata/bootstrap.*;
 	rm htdocs/dispedia/types/schemata/jquery.js;
