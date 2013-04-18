@@ -5,7 +5,11 @@
     clear: both;
 }
 
-body{
+html, body {
+    min-height: 100%;
+}
+
+body {
     /* bootstrap.min.css überschreiben */
     font-family: Helvetica, Arial, sans-serif !important;
     /* bootstrap.min.css überschreiben */
