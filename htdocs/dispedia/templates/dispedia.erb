@@ -1,0 +1,204 @@
+<%
+   # This is not the best place for some logic, but since this
+   # method is very usecase specific it was the easiest and quickest
+   # way..
+   def shorten(uri)
+     prefixes = {}
+     prefixes['http://www.w3.org/2001/XMLSchema#'] = "xmls"
+     prefixes['http://purl.org/goodrelations/v1#'] = "gr"
+     prefixes['http://www.serviceOntology.org/'] = "seo"
+     prefixes['http://schema.org/'] = "schema"
+     prefixes['http://xmlns.com/foaf/0.1/'] = "foaf"
+     prefixes['http://dbpedia.org/resource/'] = "dbpedia"
+     prefixes['http://purl.bioontology.org/ontology/SNOMEDCT/'] = "snomedct"
+     prefixes['http://purl.bioontology.org/ontology/MSH/'] = "mesh"
+     prefixes['http://purl.bioontology.org/ontology/MEDLINEPLUS/'] = "medline"
+     prefixes['http://www.orphanet.org/rdfns#'] = "orpha"
+   
+     prefixes.each do |key,val|
+       if uri[0,key.length] == key
+         return uri.dup.gsub(key, val+":")
+       end
+     end
+     uri
+   end
+   %>
+<div class="container" id="overview">
+  <div class="row">
+    <div class="span3">
+    <ul class="nav nav-list">
+      <li class="nav-header"><a href="#classes">CLASSES</a></li>
+      <% schema.list_classes().sort.each do |key,val| %>
+        <li><a href="#class_<%= val.short_name %>"><%= val.short_name.split("/")[-1].gsub( %r{([A-Z]{1})}, '&#8203;\1' ) %></a></li>
+      <% end %>
+      <li class="nav-header"><a href="#gen_props">GENERIC PROPERTIES</a></li>
+    </ul>
+    </div>
+    <div class="span9">
+        <div class="schema-header">
+            <h1><%= schema.ontology.label %></h1>
+            <%= schema.ontology.comment %>
+            
+            <% if introduction %>
+            <%= introduction %>
+            <% end %>
+        </div>
+        
+        <h2 class="headlines" id="classes">Classes</h2>
+
+        <%schema.list_classes().sort.each do |t| %>
+            <% super_classes = []
+               queue = [t[1]]
+               until queue.empty?
+                 if queue[0].class.to_s != "String"
+                   queue.concat(queue[0].sub_class_of)
+                   super_classes << queue.shift
+             else queue.shift
+             end
+                   end
+               super_classes = super_classes.reverse()
+            %>
+            <div class="term" id="class_<%= t[1].short_name %>">
+                <div class="row">
+                    <div class="offset8">
+                        <a href="#overview"><canvas height="30px" width="30px"></canvas></a>
+                    </div>
+                </div>
+                <h3>
+                  <% super_classes[0..-2].each do |sc| %><% if sc.class.to_s != "String" %>
+                    <a href="#class_<%= sc.short_name %>"><%= sc.short_name.split("/")[-1] %></a> > 
+                  <% end %><% end %>
+                  <abbr title="<%= t[1].uri %>"><%= t[1].short_name.split("/")[-1] %></abbr>
+                </h3>
+                <% if t[1].sub_class_of.find{|sco| sco.class.to_s == "String"} %>
+                <h5>external super classes:</h5>
+                <ul class="superClass">
+                <% t[1].sub_class_of.each do |sc| %>
+                  <% if sc.class.to_s == "String" %>
+                    <li><span class="listPoint">&rsaquo; </span><a href="<%= sc %>"><%= shorten(sc) %></a></li>
+                  <% end %>
+                <% end %>
+                </ul>
+                <% end %>
+                
+                <%= t[1].comment %>
+                
+                    <table>
+                      <thead>
+                      <tr>
+                        <th>PROPERTY</th>
+                        <th>EXPECTED TYPE</th>
+                        <th>DESCRIPTION</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <% for super_class in super_classes %>
+                          <% if super_class.class.to_s != "String" %>
+                            <tr>
+                          <td class="propertyClass" colspan="3">PROPERTIES FROM <a href="#class_<%= super_class.short_name %>"><%= super_class.short_name.split("/")[-1].upcase %></a></td>
+                        </tr>
+
+                            <% schema.list_properties().sort.each do |p| %>
+                              <% p[1].domain.each do |cls| %>
+                                <% if cls.short_name == super_class.short_name %>
+                                  <tr>
+                            <td><abbr title="<%= p[1].uri %>"><%= p[1].short_name.split("/")[-1] %></abbr></td>
+                            <td>
+                              <% p[1].range.each() do |r| %>
+                                <% if r.class.to_s == "String" %><a target="_blank" href="<%= r %>"><%= shorten(r) %></a><% else %><a href="#class_<%= r.short_name %>"><%= r.short_name.split("/")[-1] %></a><% end %>
+                              <% end %>
+                            </td>
+                            <td><%= p[1].comment %></td>
+                              </tr>
+                              <% p[1].sub_properties().each() do |sp| %>
+                                    <tr>
+                              <td><abbr title="<%= sp.uri %>"><%= sp.short_name.split("/")[-1] %></abbr></td>
+                              <td>
+                                <% if sp.range.empty? %>
+                                  <%# range of subproperty is empty so we take the parents range %>
+                                  <% p[1].range.each() do |r| %>
+                                    <% if r.class.to_s == "String" %><a target="_blank" href="<%= r %>"><%= r %></a> <% else %><a href="#class_<%= r.short_name %>"><%= r.short_name.split("/")[-1] %></a> <% end %>
+                                  <% end %>
+                                <% else %>
+                                  <%# if the range of the subproperty is given we simply take that one %>
+                                  <% sp.range.each() do |r| %>
+                                    <% if r.class.to_s == "String" %><a target="_blank" href="<%= r %>"><%= r %></a><% else %><a href="#class_<%= r.short_name %>"><%= r.short_name.split("/")[-1] %></a> <% end %></td>
+                                  <% end %>
+                                <% end %>
+                              </td>
+                              <td><%= sp.comment %></td>
+                                </tr>
+                              <% end %>
+                            <% end %>
+                          <% end %>		   				
+                        <% end %>
+                          <% end %>
+                        <% end %>
+                    </tbody>
+                    </table>
+                    
+                <% if t[1].sub_classes.length > 0 %>
+                    <div class="specificTypes">more specific types:</div>
+                <ul class="specificTypes">
+                  <% t[1].sub_classes.each do |child| %>
+                  <li><a href="#class_<%= child.short_name %>"><%= child.short_name.split("/")[-1] %></a></li>
+                  <% end %>
+                </ul>
+                <% end %>	   				
+            </div>
+        <%end%>
+    
+        <h2 class="headlines" id="gen_props">Generic properies</h2>
+        
+        <div class="term">
+            <table>
+                <thead>
+                  <tr>
+                    <th>PROPERTY</th>
+                    <th>EXPECTED TYPE</th>
+                    <th>DESCRIPTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% schema.list_properties().sort.each do |p| %>
+                  <% if p[1].domain.empty? and p[1].sub_property_of.empty? %>
+                  <tr>
+                    <td><abbr title="<%= p[1].uri %>"><%= p[1].short_name.split("/")[-1] %></abbr></td>
+                    <td>
+                      <% p[1].range.each() do |r| %>
+                        <% if r.class.to_s == "String" %><%= r %><% else %><a href="#class_<%= r.short_name %>"><%= r.short_name.split("/")[-1] %></a><% end %> 
+                      <% end %>
+                    </td>
+                    <td><%= p[1].comment %></td>
+                  </tr>
+        
+                  <% p[1].sub_properties().each() do |sp| %>
+                    <% if sp.domain.empty? %>
+                      <tr>
+                    <td><abbr title="<%= sp.uri %>"><%= sp.short_name.split("/")[-1] %></abbr></td>
+                    <td>
+                      <% if sp.range.empty? %>
+                        <%# range of subproperty is empty so we take the parents range %>
+                        <% p[1].range.each() do |r| %>
+                          <% if r.class.to_s == "String" %><a target="_blank" href="<%= r %>"><%= r %></a> <% else %><a href="#class_<%= r.short_name %>"><%= r.short_name.split("/")[-1] %></a> <% end %>
+                        <% end %>
+                      <% else %>
+                        <%# if the range of the subproperty is given we simply take that one %>
+                        <% sp.range.each() do |r| %>
+                          <% if r.class.to_s == "String" %><a target="_blank" href="<%= r %>"><%= r %></a><% else %><a href="#class_<%= r.short_name %>"><%= r.short_name.split("/")[-1] %></a> <% end %></td>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td><%= sp.comment %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                  <% end %>
+                <% end %>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+</div>

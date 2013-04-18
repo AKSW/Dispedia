@@ -28,6 +28,7 @@ $templateData = $this->templateData;
 
     <link rel="<?php echo $this->curie('http://xmlns.com/foaf/0.1/primaryTopic') ?>" href="<?php echo $this->resourceUri?>" />
     
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo $this->baseUri ?>/css/style.css" title="Standard" />
     <!-- <link type="text/css" href="<?php echo $this->baseUri ?>/css/bootstrap.css" rel="stylesheet" /> -->
 
@@ -35,7 +36,9 @@ $templateData = $this->templateData;
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
+    <script type="text/javascript" src="<?php echo $this->baseUri ?>/js/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUri ?>/js/jcanvas.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUri ?>/js/script.js"></script>
 <?php
     // includes the GA header script
     // includes the exhibit header links
@@ -43,36 +46,39 @@ $templateData = $this->templateData;
     $this->headScript();
 ?>
 </head>
-<body<?php
-    foreach ($this->namespaces as $prefix => $ns): ?><?php echo ' xmlns:' . $prefix . '="' . $ns . '"' ?><?php endforeach; ?>>
+<body
+    <?php foreach ($this->namespaces as $prefix => $ns): ?>
+        <?php echo ' xmlns:' . $prefix . '="' . $ns . '"' ?>
+    <?php endforeach; ?>>
     
-<?php echo $this->partial('dispedia/header.phtml', $this->templateData) ?>
-<div id="menu">
-      <div class="wrapper">
+    <div class="wrapper">
+        <?php echo $this->partial('dispedia/header.phtml', $this->templateData) ?>
+        <!-- if a specific schema is show then schema should be active in main navi -->
         <?php
-        $navOptions = array(
-                'navResource' => $this->wikiBaseUrl . 'Site/Navigation/Main',
-                'navId' => 'nav-main',
-                'suffix'    => '<!-- /#nav-main -->',
-                'activeUrl' => $this->resourceUri,
-                'listClass' => 'nav',
-                'navClass' => 'nav-collapse'
-                );
-        echo $this->navigationList($navOptions);
+            if (false !== strstr($this->resourceUri, "http://www.dispedia.local/Site/Schema")) {
+                $activUrl = "http://www.dispedia.local/Site/Schema";
+            } else {
+                $activUrl = $this->resourceUri;
+            }
         ?>
-      </div>
-    </div>
-
-    <div class="mainContent">
+        <?php
+            $navOptions = array(
+                'navResource' => $this->wikiBaseUrl . 'Site/Navigation/Main',
+                'navId' => 'mainNavigation',
+                'suffix'    => '<!-- /#nav-main -->',
+                'activeUrl' => $activUrl,
+                'listClass' => 'nav',
+                'navClass' => 'contentSeparator'
+                );
+            echo $this->navigationList($navOptions);
+        ?>
         <?php echo $this->renderx(); ?>
-        <br /><br /><br /><br />
-        <hr>
+        
+        <div class="clear"></div>
         <footer>
-            <p>&copy; Dispedia 2013</p>
+            <p>&copy; Dispedia <?php echo date('Y'); ?></p>
         </footer>
-    </div> <!-- /container -->
-    <script type="text/javascript" src="<?php echo $this->baseUri ?>/js/jquery.js"></script>
-
+    </div>
 </body>
 </html>
 
