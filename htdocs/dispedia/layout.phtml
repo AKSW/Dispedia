@@ -55,8 +55,8 @@ $templateData = $this->templateData;
         <?php echo $this->partial('dispedia/header.phtml', $this->templateData) ?>
         <!-- if a specific schema is show then schema should be active in main navi -->
         <?php
-            if (false !== strstr($this->resourceUri, "http://www.dispedia.local/Site/Schema")) {
-                $activUrl = "http://www.dispedia.local/Site/Schema";
+            if (false !== strstr($this->resourceUri, $this->wikiBaseUrl . "Site/Schema")) {
+                $activUrl = $this->wikiBaseUrl . "Site/Schema";
             } else {
                 $activUrl = $this->resourceUri;
             }
