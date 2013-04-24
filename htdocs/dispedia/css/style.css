@@ -117,6 +117,8 @@ footer {
 }
 #headerLang a img{
     vertical-align: middle;
+    /* for IE */
+    border: solid black 0px;
 }
 
 #headerNavigation {
