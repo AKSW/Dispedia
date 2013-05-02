@@ -32,10 +32,8 @@ class DispediaController extends OntoWiki_Controller_Component
     public function downloadAction()
     {
         $ontologyName = $this->getParam('ontology', '');
-        if (
-            "dispediaCore" == $ontologyName
-            || "dispediaCoreConditions" == $ontologyName
-        )
+        $arrFiles = scandir('ontologies');
+        if (false !== array_search($ontologyName . '.xml', $arrFiles))
         {
             header('Content-Type: text/xml');
             header('Content-Disposition: attachment; filename="' . $ontologyName . '.xml"');

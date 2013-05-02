@@ -190,9 +190,20 @@ footer {
     margin-bottom: 20px;
     margin-left: 40px;
 }
+#schemas h2 {
+    margin-bottom: 10px;
+}
+#schemas ul.nav {
+    list-style: none;
+}
 
-#downloads ul li{
-    margin-left: 40px;
+#downloads .downloadText {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: justify;
+}
+#downloads ul {
+    list-style: none;
 }
 
 .schemaContent {

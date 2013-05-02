@@ -127,10 +127,11 @@ ns1:Schema a foaf:Document ;
 
 <http://www.dispedia.local/Site/Schema/DispediaCore> a ns0:Schema ;
                                                      rdfs:label "Dispedia Schema Browser" ;
-                                                     ns0:download <http://www.dispedia.local/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> ;
+                                                     ns0:download <http://www.dispedia.local/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> ;
                                                      ns0:file "dispediaCore_de.html"@de, "dispediaCore_en.html"@en ;
                                                      ns0:downloadLabel "Dispedia Core Files" ;
-                                                     ns0:template "schema" .
+                                                     ns0:template "schema" ;
+                                                     ns0:downloadText "Das Dispedia Schema enthält die Systemklassen der Informationsflüsse, d.h. Klassen zur Beschreibung des Patienten sowie Klassen zur Beschreibung von Indikationen. Zum Dispedia Schema gehört die Core Ontology sowie Erweiterungsontologien, die bekannte Entwicklungsbereiche offen halten. Für die Beschreibung des Gesundheitszustandes des Patienten können verschiedene standardisierte Klassifikationen zur Beurteilung herange-zogen werden. Die bisher realisierten Beschreibungsschemen werden über die jeweiligen Wrapper eingebunden. Zum Dispedia Schema gehört demzufolge die disCoreWrap-perAlsfrs.xml. Dieser Teil der Ontology, der die Klassifikation nach ALSFRS einbindet sowie die disCoreWrapperIcf.xml, welche die Klassifikation nach ICF einbindet. Standardisierte Klassifikationen zu nicht medizinischen Umfeldkategorien wie z.B. Wohnraum-Eigenschaften gibt es bisher nicht, diese sind hier über die Datei dispediaCoreConditions.xml eingebunden. Dieses Vokabular muss perspektivisch erweitert und standardisiert werden."@de .
 
 ns1:ServiceOntology a ns0:Schema ;
                     rdfs:label "Service Ontology" ;
@@ -144,11 +145,21 @@ ns1:ServiceOntologyHC a ns0:Schema ;
 
 ns1:Welcome rdfs:label "Willkommen"@de, "Welcome"@en .
 
+<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> a ns0:SchemaDownload ;
+                                                                            rdfs:label "disCoreWrapperAlsfrs.xml" ;
+                                                                            ns0:index "3"^^xsd:integer .
+
+<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf> a ns0:SchemaDownload ;
+                                                                         rdfs:label "disCoreWrapperIcf.xml" ;
+                                                                         ns0:index "4"^^xsd:integer .
+
 <http://www.dispedia.local/dispedia/download?ontology=dispediaCore> a ns0:SchemaDownload ;
-                                                                    rdfs:label "dispediaCore.xml" .
+                                                                    rdfs:label "dispediaCore.xml" ;
+                                                                    ns0:index "1"^^xsd:integer .
 
 <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> a ns0:SchemaDownload ;
-                                                                              rdfs:label "dispediaCoreConditions.xml" .
+                                                                              rdfs:label "dispediaCoreConditions.xml" ;
+                                                                              ns0:index "2"^^xsd:integer .
 
 rdf:_1 a rdfs:ContainerMembershipProperty ;
        rdfs:label "1." .
