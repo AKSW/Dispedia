@@ -179,15 +179,20 @@ footer {
     padding: 0.9em;
 }
 
-.content h1{
+.content h1 {
     font-size: 3em;
     font-weight: lighter;
     margin-bottom: 10px;
     border-bottom: 1px solid #93A0A7;
 }
 
-#schemas{
-    margin-left:40px;
+#schemas, #downloads {
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+#downloads ul li{
+    margin-left: 40px;
 }
 
 .schemaContent {

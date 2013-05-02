@@ -1,0 +1,14 @@
+<?php
+    echo '<h3>' . $this->label . '</h3>';
+    // prepare schemaDownloads row
+    $queryForSchemaDownloads = '
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+    SELECT DISTINCT ?resourceUri ?label
+    WHERE {
+        <' . $this->resourceUri . '> <http://ns.ontowiki.net/SysOnt/Site/download> ?resourceUri .
+        ?resourceUri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+    }';
+    $schemaDownloads = $this->querylist($queryForSchemaDownloads, 'items/schemadownloads.phtml');
+    
+    echo '<ul>' . $schemaDownloads . '</ul>';
+?>

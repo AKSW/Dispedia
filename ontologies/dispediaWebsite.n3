@@ -13,6 +13,10 @@
 @prefix ns1: <http://www.dispedia.local/Site/> .
 @prefix ns2: <http://creativecommons.org/ns#> .
 
+ns0:Schema a owl:Class .
+
+ns0:SchemaDownload a owl:Class .
+
 <http://www.dispedia.local/Site> a owl:Ontology ;
                                  rdfs:label "Dispedia Website" ;
                                  owl:versionInfo "0.1" ;
@@ -74,10 +78,6 @@ Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendu
 * [Lars Eidam - LE-HelpDesk](https://github.com/larseidam) - Umsetzung PHP/HTML/CSS"""^^sysont:Markdown ;
             ns0:template "imprint" .
 
-ns1:Demo a foaf:Document ;
-         rdfs:label "DEMO" ;
-         ns0:template "redirect" .
-
 ns1:Header a foaf:Document ;
            ns0:headline "– ein Framework zur Informationsvermittlung und zum Wissensmanagement für komplexe Erkrankungen"@de, "– A Framework for Knowledge Engineering and Management on complex Diseases"@en ;
            ns0:title "dispedia.de" .
@@ -109,7 +109,7 @@ ns1:Home a foaf:Document ;
 <http://www.dispedia.local/Site/Navigation/Main> a ns0:Navigation ;
                                                  rdf:_1 ns1:Home ;
                                                  rdf:_2 ns1:Schema ;
-                                                 rdf:_3 ns1:Demo ;
+                                                 rdf:_3 <http://www.dispedia.local/page/DEMO> ;
                                                  rdfs:label "Main Navigation" .
 
 <http://www.dispedia.local/Site/Navigation/Schemata> a ns0:Navigation ;
@@ -122,11 +122,14 @@ ns1:Schema a foaf:Document ;
            ns0:headline "SCHEMA"@en, "SCHEMA"@de ;
            ns0:image "/extensions/site/../../htdocs/dispedia/img/dispediaOverview.png" ;
            ns0:template "schemata" ;
+           ns0:downloadHeadline "Download" ;
            ns0:documentation "Documentation"@en, "Dokumentation"@de .
 
 <http://www.dispedia.local/Site/Schema/DispediaCore> a ns0:Schema ;
-                                                     rdfs:label "Dispedia Schema" ;
+                                                     rdfs:label "Dispedia Schema Browser" ;
+                                                     ns0:download <http://www.dispedia.local/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> ;
                                                      ns0:file "dispediaCore_de.html"@de, "dispediaCore_en.html"@en ;
+                                                     ns0:downloadLabel "Dispedia Core Files" ;
                                                      ns0:template "schema" .
 
 ns1:ServiceOntology a ns0:Schema ;
@@ -140,6 +143,12 @@ ns1:ServiceOntologyHC a ns0:Schema ;
                       ns0:template "schema" .
 
 ns1:Welcome rdfs:label "Willkommen"@de, "Welcome"@en .
+
+<http://www.dispedia.local/dispedia/download?ontology=dispediaCore> a ns0:SchemaDownload ;
+                                                                    rdfs:label "dispediaCore.xml" .
+
+<http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> a ns0:SchemaDownload ;
+                                                                              rdfs:label "dispediaCoreConditions.xml" .
 
 rdf:_1 a rdfs:ContainerMembershipProperty ;
        rdfs:label "1." .
