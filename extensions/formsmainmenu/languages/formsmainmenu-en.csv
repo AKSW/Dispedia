@@ -1,4 +1,3 @@
-Add address;Add address
 persons;Persons
 patients;Patients
 organizations;Organizations
@@ -8,23 +7,19 @@ Add a new knowledge base;Add a new knowledge base
 Add pet;Add pet
 ALSFRS;ALSFRS
 By classification;By classification
-By free text;By free text
 Children;Children
 Create proposal;Create proposal
 proposalAllocation;Proposal Allocation
 Patient proposal allocation;Patient proposal allocation
 Decisions;Decisions
-Diet;Diet
 Doctor view;Doctor menu
 Edit family status;family status
-Edit housing situation;housing situation
 medical condition;medical condition
 Edit patient information;patient information
 Edit professional situation;professional situation
 Edit proposal allocations;proposal allocations
 Extension;Extension
 Extensions;Extensions
-Family status;Family status
 Formgenerator;Formula generator
 Hobbies;Hobbies
 Demo;Demo
@@ -32,9 +27,6 @@ Housing situation;Wohnsituation
 ICF;ICF
 icfTool;ICF Tool
 Job;Job
-Life partner / spouse;Life partner / spouse
-Living relations;Living relations
-Movement;Movement
 Master data;Master data
 OntoWiki;OntoWiki
 Overview;Overview
@@ -46,7 +38,6 @@ Proposal overview;Proposal overview
 Proposals;Proposals
 QueryEditor;Query editor
 Register a new user;Register a new user
-Set Address;Set Address
 Set pets;Set pets
 Silbings;Silbings
 Social situation;Social situation
