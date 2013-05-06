@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("li.active").prepend('<canvas id="canvasCircle" width="' + $("li.active").css('width') + '" height="' + $("li.active").css('height') + '">Dein Browser unterstützt das Canvas-Element nicht.</canvas>');
+    $("li.active").prepend('<canvas id="canvasCircle" width="' + $("li.active").css('width') + '" height="' + $("li.active").css('height') + '"></canvas>');
     
     $("canvas#canvasCircle").drawArc({
         fillStyle: "white",

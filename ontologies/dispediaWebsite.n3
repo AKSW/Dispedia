@@ -13,6 +13,10 @@
 @prefix ns1: <http://www.dispedia.de/Site/> .
 @prefix ns2: <http://creativecommons.org/ns#> .
 
+ns0:Schema a owl:Class .
+
+ns0:SchemaDownload a owl:Class .
+
 <http://www.dispedia.de/Site> a owl:Ontology ;
                                  rdfs:label "Dispedia Website" ;
                                  owl:versionInfo "0.1" ;
@@ -74,10 +78,6 @@ Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendu
 * [Lars Eidam - LE-HelpDesk](https://github.com/larseidam) - Umsetzung PHP/HTML/CSS"""^^sysont:Markdown ;
             ns0:template "imprint" .
 
-ns1:Demo a foaf:Document ;
-         rdfs:label "DEMO" ;
-         ns0:template "redirect" .
-
 ns1:Header a foaf:Document ;
            ns0:headline "– ein Framework zur Informationsvermittlung und zum Wissensmanagement für komplexe Erkrankungen"@de, "– A Framework for Knowledge Engineering and Management on complex Diseases"@en ;
            ns0:title "dispedia.de" .
@@ -109,7 +109,7 @@ ns1:Home a foaf:Document ;
 <http://www.dispedia.de/Site/Navigation/Main> a ns0:Navigation ;
                                                  rdf:_1 ns1:Home ;
                                                  rdf:_2 ns1:Schema ;
-                                                 rdf:_3 ns1:Demo ;
+                                                 rdf:_3 <http://www.dispedia.de/page/DEMO> ;
                                                  rdfs:label "Main Navigation" .
 
 <http://www.dispedia.de/Site/Navigation/Schemata> a ns0:Navigation ;
@@ -122,12 +122,16 @@ ns1:Schema a foaf:Document ;
            ns0:headline "SCHEMA"@en, "SCHEMA"@de ;
            ns0:image "/extensions/site/../../htdocs/dispedia/img/dispediaOverview.png" ;
            ns0:template "schemata" ;
+           ns0:downloadHeadline "Download" ;
            ns0:documentation "Documentation"@en, "Dokumentation"@de .
 
 <http://www.dispedia.de/Site/Schema/DispediaCore> a ns0:Schema ;
-                                                     rdfs:label "Dispedia Schema" ;
+                                                     rdfs:label "Dispedia Schema Browser" ;
+                                                     ns0:download <http://www.dispedia.de/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.de/dispedia/download?ontology=dispediaCoreConditions>, <http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperIcf>, <http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperAlsfrs> ;
                                                      ns0:file "dispediaCore_de.html"@de, "dispediaCore_en.html"@en ;
-                                                     ns0:template "schema" .
+                                                     ns0:downloadLabel "Dispedia Core Files" ;
+                                                     ns0:template "schema" ;
+                                                     ns0:downloadText "Das Dispedia Schema enthält die Systemklassen der Informationsflüsse, d.h. Klassen zur Beschreibung des Patienten sowie Klassen zur Beschreibung von Indikationen. Zum Dispedia Schema gehört die Core Ontology sowie Erweiterungsontologien, die bekannte Entwicklungsbereiche offen halten. Für die Beschreibung des Gesundheitszustandes des Patienten können verschiedene standardisierte Klassifikationen zur Beurteilung herange-zogen werden. Die bisher realisierten Beschreibungsschemen werden über die jeweiligen Wrapper eingebunden. Zum Dispedia Schema gehört demzufolge die disCoreWrap-perAlsfrs.xml. Dieser Teil der Ontology, der die Klassifikation nach ALSFRS einbindet sowie die disCoreWrapperIcf.xml, welche die Klassifikation nach ICF einbindet. Standardisierte Klassifikationen zu nicht medizinischen Umfeldkategorien wie z.B. Wohnraum-Eigenschaften gibt es bisher nicht, diese sind hier über die Datei dispediaCoreConditions.xml eingebunden. Dieses Vokabular muss perspektivisch erweitert und standardisiert werden."@de .
 
 ns1:ServiceOntology a ns0:Schema ;
                     rdfs:label "Service Ontology" ;
@@ -140,6 +144,22 @@ ns1:ServiceOntologyHC a ns0:Schema ;
                       ns0:template "schema" .
 
 ns1:Welcome rdfs:label "Willkommen"@de, "Welcome"@en .
+
+<http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperAlsfrs> a ns0:SchemaDownload ;
+                                                                            rdfs:label "disCoreWrapperAlsfrs.xml" ;
+                                                                            ns0:index "3"^^xsd:integer .
+
+<http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperIcf> a ns0:SchemaDownload ;
+                                                                         rdfs:label "disCoreWrapperIcf.xml" ;
+                                                                         ns0:index "4"^^xsd:integer .
+
+<http://www.dispedia.de/dispedia/download?ontology=dispediaCore> a ns0:SchemaDownload ;
+                                                                    rdfs:label "dispediaCore.xml" ;
+                                                                    ns0:index "1"^^xsd:integer .
+
+<http://www.dispedia.de/dispedia/download?ontology=dispediaCoreConditions> a ns0:SchemaDownload ;
+                                                                              rdfs:label "dispediaCoreConditions.xml" ;
+                                                                              ns0:index "2"^^xsd:integer .
 
 rdf:_1 a rdfs:ContainerMembershipProperty ;
        rdfs:label "1." .

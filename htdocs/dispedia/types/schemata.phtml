@@ -21,4 +21,22 @@
             );
     echo $this->navigationList($navOptions);
     ?>
+    <!-- Schema Downloads -->
+    <?php
+    echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/downloadHeadline', 'tag' => 'h2'));
+    ?>
+    <div id="downloads">
+        <?php
+        // prepare downloads row
+        $queryForDownloads = '
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        SELECT DISTINCT ?resourceUri ?label
+        WHERE {
+            ?resourceUri ?propertyUri <http://ns.ontowiki.net/SysOnt/Site/Schema> .
+            ?resourceUri <http://ns.ontowiki.net/SysOnt/Site/downloadLabel> ?label .
+        }';
+        $downloads = $this->querylist($queryForDownloads, 'items/downloads.phtml');
+        echo $downloads
+        ?>
+    </div>
 </div>

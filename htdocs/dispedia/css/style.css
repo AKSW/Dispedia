@@ -117,6 +117,8 @@ footer {
 }
 #headerLang a img{
     vertical-align: middle;
+    /* for IE */
+    border: solid black 0px;
 }
 
 #headerNavigation {
@@ -177,15 +179,31 @@ footer {
     padding: 0.9em;
 }
 
-.content h1{
+.content h1 {
     font-size: 3em;
     font-weight: lighter;
     margin-bottom: 10px;
     border-bottom: 1px solid #93A0A7;
 }
 
-#schemas{
-    margin-left:40px;
+#schemas, #downloads {
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+#schemas h2 {
+    margin-bottom: 10px;
+}
+#schemas ul.nav {
+    list-style: none;
+}
+
+#downloads .downloadText {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: justify;
+}
+#downloads ul {
+    list-style: none;
 }
 
 .schemaContent {

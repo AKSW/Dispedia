@@ -1,0 +1,18 @@
+<?php
+
+    echo "<li>" . PHP_EOL;
+
+    // if we have a literal item, do not do anything but a title
+    if (!Erfurt_Uri::check($this->resourceUri)) {
+        echo $this->title;
+    } else {
+        echo $this->link(array(
+            'uri'   => $this->resourceUri,
+            'text'  => $this->label,
+            'class' => 'schemaDownloads',
+            'direct'=> 'true',
+            'suffix'=> PHP_EOL
+        ));
+    }
+
+    echo "</li>" . PHP_EOL;

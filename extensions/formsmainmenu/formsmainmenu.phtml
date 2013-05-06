@@ -72,7 +72,7 @@
                 console.log (errorThrown);
             }
         });
-    })
+    });
     
     function changeLanguage(language)
     {
@@ -100,7 +100,7 @@
 <div style="clear:both">
     <img src="<?php echo $this->imagesUrl; ?>dispedia_logo.png" border="0" align="absmiddle"/>
     &nbsp;
-    <a id="ahome" href="<?php echo $this->url; ?>/page/dispedia">
+    <a id="ahome" href="<?php echo $this->url; ?>page/DEMO">
         <?php echo $this->_translate->_('Demo'); ?></a>
 </div>
 
@@ -204,7 +204,7 @@
     <div>
         <img src="<?php echo $this->imagesUrl; ?>user_edit.png" border="0" align="absmiddle"/>    
         &nbsp;&nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=patientEdit">
+        <a href="<?php echo $this->url ?>formgenerator/form?file=person">
             <?php echo $this->_translate->_('Edit patient information'); ?></a>
     </div>
     
@@ -215,43 +215,14 @@
     <div>
         <img src="<?php echo $this->imagesUrl; ?>family.png" border="0" align="absmiddle"/>    
         &nbsp;&nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=familystatus">
-            <?php echo $this->_translate->_('Family status'); ?></a>
+        <a href="<?php echo $this->url ?>formgenerator/form?file=children">
+            <?php echo $this->_translate->_('Children'); ?></a>
     </div>
     <div>
         <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
-        &nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=livingRelations">
-            <?php echo $this->_translate->_('Living relations'); ?></a> /
-        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=children">
-            <?php echo $this->_translate->_('Children'); ?></a> /
-        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
         <a href="<?php echo $this->url ?>formgenerator/form?file=silbings">
             <?php echo $this->_translate->_('Silbings'); ?></a>
-    </div>
-    <div>
-        <img src="<?php echo $this->imagesUrl; ?>spouse.png" border="0" align="absmiddle"/>    
-        &nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=lifePartnerSpouse">
-            <?php echo $this->_translate->_('Life partner / spouse'); ?></a>
-    </div>
-    
-    <br/>
-    <div style="font-weight:bold; font-size:13px;">
-        <?php echo $this->_translate->_('Edit housing situation'); ?>
-    </div>
-    <div>
-        <img src="<?php echo $this->imagesUrl; ?>house.png" border="0" align="absmiddle"/>    
-        &nbsp;&nbsp;&nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/newform?file=address">
-            <?php echo $this->_translate->_('Add address'); ?></a>
-    </div>
-    <div>
-        <img src="<?php echo $this->imagesUrl; ?>user_house.png" border="0" align="absmiddle"/>    
-        &nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=setAddress">
-            <?php echo $this->_translate->_('Set Address'); ?></a>
     </div>
 
     <br/>
@@ -263,12 +234,6 @@
         &nbsp;&nbsp;&nbsp;
         <a href="<?php echo $this->url ?>formgenerator/form?file=job">
             <?php echo $this->_translate->_('Job'); ?></a>
-    </div>
-    <div>
-        <img src="<?php echo $this->imagesUrl; ?>relations.png" border="0" align="absmiddle"/>    
-        
-        <a href="<?php echo $this->url ?>formgenerator/form?file=socialSituation">
-            <?php echo $this->_translate->_('Social situation'); ?></a>
     </div>
     <div>
         <img src="<?php echo $this->imagesUrl; ?>sport_basketball.png" border="0" align="absmiddle"/>    
@@ -349,25 +314,6 @@
             <a href="http://sysinno.uni-leipzig.de/innotool/ICF/index.php" target="_blank">
             <?php echo $this->_translate->_('icfTool'); ?></a></a>
         </li>
-    </div>
-    
-    
-    <br/>
-    <div style="font-weight:bold;font-size:12px;">
-        <?php echo $this->_translate->_('By free text'); ?>
-    </div>
-    
-    <div>
-        <img src="<?php echo $this->imagesUrl; ?>aim.png" border="0" align="absmiddle"/>    
-        &nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=movement">
-            <?php echo $this->_translate->_('Movement'); ?></a>
-    </div>
-    <div>
-        <img src="<?php echo $this->imagesUrl; ?>cart.png" border="0" align="absmiddle"/>    
-        &nbsp;
-        <a href="<?php echo $this->url ?>formgenerator/form?file=diet">
-            <?php echo $this->_translate->_('Diet'); ?></a>
     </div>
 </div>
 
