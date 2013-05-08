@@ -7,26 +7,21 @@ Add a new knowledge base;Neue Wissensbasis anlegen
 Add pet;Haustier hinzufügen
 ALSFRS;ALSFRS
 By classification;Nach Klassifikation
-Children;Kinder
 Create proposal;Neuer Vorschlag
 proposalAllocation;Vorschlagszuweisung
 Patient proposal allocation;Patienten Vorschlagszuweisung
 Decisions;Entscheidungen
 Doctor view;Doktormenü
-Edit family status;Familienverhältnisse
 medical condition;Gesundheitzustand
 Edit patient information;Patientendaten
-Edit professional situation;berufliche Situation
 Edit proposal allocations;Vorschlagszuweisungen
 Extension;Erweiterung
 Extensions;Erweiterungen
 Formgenerator;Formular generator
 Demo;Demo
-Hobbies;Hobbys
 Housing situation;Wohnsituation
 ICF;ICF
 icfTool;ICF Tool
-Job;Job
 Master data;Stammdaten
 OntoWiki;OntoWiki
 Overview;&Uumlberblick
@@ -39,7 +34,6 @@ Proposals;Vorschläge
 QueryEditor;Query editor
 Register a new user;Registriere einen neuen Benutzer
 Set pets;Haustiere verwalten
-Silbings;Geschwister
 Social situation;Soziale Situation
 System;System
 therapists;Therapeuten
