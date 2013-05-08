@@ -1,0 +1,75 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.serviceOntology.org/Service</targetclass>
+
+    <targetmodel>http://hc.dispedia.de/</targetmodel>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://purl.org/goodrelations/v1#name</item>
+    </labelparts>
+
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Dienstleistung</de>
+        <en>Service</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie eine Dienstleistung anlegen.</de>
+        <en>Here you can insert information for a service.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>
+                <de>Dienstleistungsinformation</de>
+                <en>service information</en>
+            </title>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://purl.org/goodrelations/v1#name</predicateuri>
+            </predicate>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://purl.org/goodrelations/v1#description</predicateuri>
+            </predicate>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.serviceOntology.org/fundedBy</predicateuri>
+            </predicate>
+
+            <!-- type -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicateuri>
+                <title>
+                    <de>Typ</de>
+                    <en>Type</en>
+                </title>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+                        <class>http://www.serviceOntology.org/Service</class>
+                        <shownooverclass>1</shownooverclass>
+                    </item>
+                </typeparameter>
+            </predicate>
+        </item>
+
+    </sections>
+</form>

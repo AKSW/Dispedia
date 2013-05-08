@@ -1,0 +1,33 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.dispedia.de/o/Drug</targetclass>
+    
+    <targetmodel>http://hc.dispedia.de/</targetmodel>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://www.w3.org/2000/01/rdf-schema#label</item>
+    </labelparts>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie Daten zu einer Arznei erfassen.</de>
+        <en>Here you can insert drug information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#label</predicateuri>
+            </predicate>
+            
+        </item>
+    </sections>
+</form>
