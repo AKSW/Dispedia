@@ -1,0 +1,75 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.w3.org/2002/07/owl#Class</targetclass>
+
+    <targetmodel>http://hc.serviceOntology.org/</targetmodel>
+    <modelnamespace>provider</modelnamespace>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://www.w3.org/2000/01/rdf-schema#label</item>
+    </labelparts>
+
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Organisationskategorie</de>
+        <en>organisation category</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie eine Organisationskategorie anlegen.</de>
+        <en>Here you can insert information for a organisation category.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>
+                <de>Kategorie Information</de>
+                <en>category information</en>
+            </title>
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#label</predicateuri>
+            </predicate>
+
+            <!-- parent class -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#subClassOf</predicateuri>
+                <title>
+                    <de>Oberkategorie</de>
+                    <en>Upper category</en>
+                </title>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+                        <class>http://www.serviceOntology.org/Organization</class>
+                        <shownooverclass>1</shownooverclass>
+                    </item>
+                </typeparameter>
+            </predicate>
+
+            <!-- always organization class -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#subClassOf</predicateuri>
+                <type>hidden</type>
+                <typeparameter>
+                    <item>
+                        <value>http://www.serviceOntology.org/Organization</value>
+                    </item>
+                </typeparameter>
+            </predicate>
+        </item>
+
+    </sections>
+</form>

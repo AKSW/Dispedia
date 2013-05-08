@@ -1,0 +1,51 @@
+<!-- Create a new doctor. -->
+<form> 
+    <targetclass>http://www.dispedia.de/o/Person</targetclass>				
+	
+    <targetmodel>http://hc.dispedia.de/</targetmodel>
+    
+    <title>
+        <de>Arzt</de>
+        <en>Physician</en>
+    </title>
+    
+	<description>
+        <en>Hier können Sie einen neuen behandelnden Arzt anlegen.</en>
+        <en>Here you can create a new treating physican.</en>
+    </description>
+	
+    <sections>
+		<item>
+			<title>Treating physician</title> 								
+
+            <!-- Physician -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/isDoctorOf</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/Patient</class>
+                        <filter>onlyBoundToThisResource</filter>
+                        <addotherinstances>1</addotherinstances>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- FamilyPhysician -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/isFamilyDoctorOf</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/Patient</class>
+                        <filter>onlyBoundToThisResource</filter>
+                        <addotherinstances>1</addotherinstances>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+		</item>
+	</sections>
+</form>

@@ -1,0 +1,86 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://purl.org/goodrelations/v1#BusinessEntity</targetclass>
+
+    <targetmodel>http://hc.dispedia.de/</targetmodel>
+
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Business Entity</de>
+        <en>Business Entity</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie Daten zu einer Person erfassen.</de>
+        <en>Here you can insert personal information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>
+                <de>Business Entity information</de>
+                <en>Business Entity information</en>
+            </title>
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/jobTitle</predicateuri>
+            </predicate>
+            
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/education</predicateuri>
+            </predicate>
+            
+            <!-- type -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicateuri>
+                <title>
+                    <de>Typ</de>
+                    <en>Type</en>
+                </title>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+                        <class>http://purl.org/goodrelations/v1#BusinessEntity</class>
+                        <shownooverclass>1</shownooverclass>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- service -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://purl.org/goodrelations/v1#offers</predicateuri>
+                <title>
+                    <de>Dienstleistung</de>
+                    <en>Service</en>
+                </title>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+                        <class>http://www.serviceOntology.org/Service</class>
+                        <instanceOntology>http://hc.dispedia.de/</instanceOntology>
+                        <relation>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</relation>
+                        <editable>1</editable>
+                        <filter>unbound</filter>
+                        <filterProperty>http://purl.org/goodrelations/v1#offers</filterProperty>
+                    </item>
+                </typeparameter>
+            </predicate>
+        </item>
+    </sections>
+</form>

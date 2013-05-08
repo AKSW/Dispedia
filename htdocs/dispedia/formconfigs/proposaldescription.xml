@@ -1,0 +1,77 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.dispedia.de/o/ProposalDescription</targetclass>
+    
+    <targetmodel>http://als.dispedia.de/</targetmodel>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://www.w3.org/2000/01/rdf-schema#label</item>
+    </labelparts>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie Daten zu einen Vorschlagsbeschreibung erfassen.</de>
+        <en>Here you can insert proposal description information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>
+                <de>Vorschlagstext bearbeiten</de>
+                <en>Proposal Description edit</en>
+            </title>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#label</predicateuri>
+            </predicate>
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.dispedia.de/o/content</predicateuri>
+                <type>textarea</type>
+            </predicate>
+
+            <!-- class -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicateuri>
+                <title>
+                    <de>Typ</de>
+                    <en>Type</en>
+                </title>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://www.dispedia.de/</classOntology>
+                        <class>http://www.dispedia.de/o/ProposalDescription</class>
+                        <shownooverclass>1</shownooverclass>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- class -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/usefulFor</predicateuri>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+                        <class>http://www.serviceOntology.org/Organization</class>
+                        <shownooverclass>1</shownooverclass>
+                    </item>
+                </typeparameter>
+            </predicate>
+        </item>
+    </sections>
+</form>

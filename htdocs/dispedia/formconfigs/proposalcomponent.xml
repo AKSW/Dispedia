@@ -1,0 +1,126 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.dispedia.de/o/ProposalComponent</targetclass>
+    
+    <targetmodel>http://als.dispedia.de/</targetmodel>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://www.w3.org/2000/01/rdf-schema#label</item>
+    </labelparts>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie Daten zu einen Vorschlagskomponente erfassen.</de>
+        <en>Here you can insert proposal component information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>
+                <de>Vorschlagskomponente bearbeiten</de>
+                <en>Proposal component edit</en>
+            </title>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#label</predicateuri>
+            </predicate>
+
+            <!-- ProposalDescription -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/containsProposalDescription</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/ProposalDescription</class>
+                        <filter>onlyBoundToThisResource</filter>
+                        <editable>1</editable>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- Service -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/containsService</predicateuri>
+                <type>class</type>
+                <typeparameter>
+                    <item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+                        <class>http://www.serviceOntology.org/Service</class>
+                        <instanceOntology>http://hc.dispedia.de/</instanceOntology>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- Service -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/containsAssistiveProduct</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/AssistiveProduct</class>
+                        <editable>1</editable>
+                        <addotherinstances>1</addotherinstances>
+                        <filter>onlyBoundToThisResource</filter>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- Service -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/containsMedicalDevice</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/MedicalDevice</class>
+                        <editable>1</editable>
+                        <addotherinstances>1</addotherinstances>
+                        <filter>onlyBoundToThisResource</filter>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- Service -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/containsFormality</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/Formality</class>
+                        <editable>1</editable>
+                        <addotherinstances>1</addotherinstances>
+                        <filter>onlyBoundToThisResource</filter>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- Service -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/containsDrug</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/Drug</class>
+                        <editable>1</editable>
+                        <addotherinstances>1</addotherinstances>
+                        <filter>onlyBoundToThisResource</filter>
+                    </item>
+                </typeparameter>
+            </predicate>
+        </item>
+    </sections>
+</form>

@@ -1,0 +1,36 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.dispedia.de/o/Proposal</targetclass>
+    
+    <targetmodel>http://als.dispedia.de/</targetmodel>
+
+    <formulaType>report</formulaType>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/2000/01/rdf-schema#label</predicateuri>
+            </predicate>
+        </item>
+        
+        <!-- New section -->
+		<item>
+            
+            <!-- Include a XML file -->
+			<nestedconfig>
+				<xmlfile>proposalcomponentreport.xml</xmlfile>
+				<relations>
+					<item>http://www.dispedia.de/o/containsProposalComponent</item>
+				</relations>
+                <showallinstances>true</showallinstances>
+			</nestedconfig>
+			
+		</item> 
+    </sections>
+</form>

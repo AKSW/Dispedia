@@ -1,0 +1,54 @@
+<form> 
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://schema.org/PostalAddress</targetclass>
+    
+    <targetmodel>urn:dispedia:pn</targetmodel>
+    
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://schema.org/streetAddress</item>
+        <item>http://schema.org/postalCode</item>
+        <item>http://schema.org/addressLocality</item>
+        <option>notinuri</option>
+    </labelparts>
+    
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Adresse</de>
+        <en>Address</en>
+    </title>
+    
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Erstellen Sie eine neue Addresse oder ändern Sie eine bestehende ab.</de>
+        <en>Add a new / edit an existing address.</en>
+    </description>
+    
+    <sections>
+        
+        <!-- A new section -->
+        <item>
+            
+            <!-- Textfield -->        
+            <predicate> 
+                <mandatory>1</mandatory>
+                <predicateuri>http://schema.org/streetAddress</predicateuri>
+            </predicate>
+            
+            <!-- Textfield -->        
+            <predicate> 
+                <mandatory>1</mandatory>
+                <predicateuri>http://schema.org/postalCode</predicateuri>
+	    </predicate>
+	    
+	    <!-- Textfield -->        
+            <predicate> 
+                <mandatory>1</mandatory>
+                <predicateuri>http://schema.org/addressLocality</predicateuri>
+	    </predicate>
+            
+        </item>
+        
+    </sections>
+</form>

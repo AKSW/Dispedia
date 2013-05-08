@@ -1,0 +1,136 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.dispedia.de/o/Person</targetclass>
+
+    <targetmodel>urn:dispedia:pn</targetmodel>
+	
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://schema.org/givenName</item>
+        <item>http://schema.org/familyName</item>
+        <option>notinuri</option>
+    </labelparts>
+
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Person</de>
+        <en>Person</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie senible Daten zu einer Person erfassen.</de>
+        <en>Here you can insert senible personal information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>
+                <de>sensible Person information</de>
+                <en>sensible Person information</en>
+            </title>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://schema.org/givenName</predicateuri>
+            </predicate>
+
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://schema.org/familyName</predicateuri>
+            </predicate>
+
+            <!-- Textfield -->
+			<predicate> 
+				<mandatory>0</mandatory>
+				<predicateuri>http://www.dispedia.de/o/birthName</predicateuri>
+			</predicate>
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/birthPlace</predicateuri>
+            </predicate>
+            
+            <!-- Date -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/birthDate</predicateuri>
+                <type>birthdate</type>
+            </predicate>
+
+            <!-- Date -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/deathDate</predicateuri>
+                <type>birthdate</type>
+            </predicate>
+
+        </item>
+        
+        <item>
+            <!-- Textfield -->
+			<predicate> 
+				<mandatory>0</mandatory>
+				<predicateuri>http://schema.org/jobTitle</predicateuri>
+			</predicate>
+        </item>
+        
+        <item>
+            <!-- parent -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/parent</predicateuri>
+            </predicate>
+            
+            <!-- children -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/children</predicateuri>
+            </predicate>
+            
+            <!-- sibling -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/sibling</predicateuri>
+            </predicate>
+        </item>
+        
+        <item>
+            <title>
+            <de>Adresse</de>
+            <en>Address</en>
+            </title>
+            <!-- Include a XML file -->
+            <nestedconfig>
+            <xmlfile>address.xml</xmlfile>
+            <relations>
+                <item>http://www.dispedia.de/o/hasAddress</item>
+            </relations>
+            <typeclass>http://www.dispedia.de/o/Address</typeclass>
+            </nestedconfig>
+        </item>
+        <item>
+            <title>
+                <de>Geokoordinaten</de>
+                <en>Geo Coordinates</en>
+            </title>
+            <!-- Include a XML file -->
+            <nestedconfig>
+                <xmlfile>geocoordinates.xml</xmlfile>
+                <relations>
+                    <item>http://www.serviceOntology.org/hasAddress</item>
+                </relations>
+                <typeclass>http://schema.org/GeoCoordinates</typeclass>
+            </nestedconfig>
+        </item>
+    </sections>
+</form>

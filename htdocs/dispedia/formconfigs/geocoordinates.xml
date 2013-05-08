@@ -1,0 +1,45 @@
+<form> 
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://schema.org/GeoCoordinates</targetclass>
+    
+    <targetmodel>urn:dispedia:pn</targetmodel>
+    
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://schema.org/latitude</item>
+        <item>http://schema.org/longitude</item>
+    </labelparts>
+    
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Geokoordinaten</de>
+        <en>Geo Coordinates</en>
+    </title>
+    
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Erstellen Sie neue Geokoordinaten.</de>
+        <en>Add a new GeoCoordinates.</en>
+    </description>
+    
+    <sections>
+        
+        <!-- A new section -->
+        <item>
+            
+            <!-- Textfield -->        
+            <predicate> 
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/latitude</predicateuri>
+            </predicate>
+            
+            <!-- Textfield -->        
+            <predicate> 
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/longitude</predicateuri>
+	    </predicate>  
+        </item>
+        
+    </sections>
+</form>

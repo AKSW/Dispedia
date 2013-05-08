@@ -1,0 +1,139 @@
+<!-- Create a new patient. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://www.dispedia.de/o/Patient</targetclass>
+
+	<targetmodel>http://patients.dispedia.de/</targetmodel>
+
+    <!-- Headline of this formula -->
+    <title>
+        <de>Stammdaten zu einem Patienten</de>
+        <en>Patient - Master data</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula -->
+    <description>
+        <de>Hier können Sie einen Patienten anlegen oder ändern.</de>
+        <en>Here you can add / edit a patient.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+
+            <!-- title of this section part -->
+            <title>Patient information</title>
+            
+            <!-- List -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/gender</predicateuri>
+                <type>list</type>
+                <typeparameter>
+                    <item>
+                        <label>
+                            <de>weiblich</de>
+                            <en>female</en>
+                        </label>
+                        <value>female</value>
+                    </item>
+                    <item>
+                        <label>
+                            <de>männlich</de>
+                            <en>male</en>
+                        </label>
+                        <value>male</value>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- Interests -->
+			<predicate> 
+				<mandatory>0</mandatory>
+				<predicateuri>http://xmlns.com/foaf/0.1/interest</predicateuri>
+			</predicate>
+            
+            <!-- Interests -->
+			<predicate> 
+				<mandatory>0</mandatory>
+				<predicateuri>http://www.dispedia.de/o/journeyToWork</predicateuri>
+			</predicate>
+
+            <!-- rolls -->
+            <predicate>
+				<mandatory>0</mandatory>
+				<predicateuri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicateuri>
+				<title>
+					<de>Patienttyp</de>
+					<en>Patient type</en>
+				</title>
+				<type>class</type>
+				<typeparameter>
+					<item>
+                        <classOntology>http://www.dispedia.de/</classOntology>
+						<class>http://www.dispedia.de/o/Patient</class>
+						<shownooverclass>1</shownooverclass>
+					</item>
+				</typeparameter>
+			</predicate>
+            
+            <!-- Disease -->
+            <predicate>
+				<mandatory>0</mandatory>
+				<predicateuri>http://www.dispedia.de/o/hasDisease</predicateuri>
+				<type>class</type>
+				<typeparameter>
+					<item>
+                        <classOntology>http://www.dispedia.de/</classOntology>
+						<class>http://www.dispedia.de/o/Disease</class>
+						<shownooverclass>1</shownooverclass>
+					</item>
+				</typeparameter>
+			</predicate>
+            
+            <!-- HealthState -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://www.dispedia.de/o/hasHealthState</predicateuri>
+                <type>multiple</type>
+                <typeparameter>
+                    <item>
+                        <class>http://www.dispedia.de/o/HealthState</class>
+                        <filter>onlyBoundToThisResource</filter>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+            <!-- ProductOrService -->
+            <predicate>
+				<mandatory>0</mandatory>
+				<predicateuri>http://www.dispedia.de/o/receivesProductOrService</predicateuri>
+				<type>class</type>
+				<typeparameter>
+					<item>
+                        <classOntology>http://hc.serviceOntology.org/</classOntology>
+						<class>http://purl.org/goodrelations/v1#ProductOrService</class>
+                        <classOntology>http://hc.dispedia.de/</classOntology>
+						<shownooverclass>1</shownooverclass>
+					</item>
+				</typeparameter>
+			</predicate>
+            
+            <!-- always Patient class -->
+            <predicate>
+                <mandatory>1</mandatory>
+                <predicateuri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicateuri>
+                <type>hidden</type>
+                <typeparameter>
+                    <item>
+                        <value>http://www.dispedia.de/o/Patient</value>
+                    </item>
+                </typeparameter>
+            </predicate>
+            
+        </item>
+
+    </sections>
+</form>
