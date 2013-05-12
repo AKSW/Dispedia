@@ -170,6 +170,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;includes">
         <rdfs:label xml:lang="de">beeinhaltet</rdfs:label>
         <rdfs:label xml:lang="en">includes</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft verbindet Entitäten bezüglich Informationen über Patienten.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty connects entities concerning information about the patient.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;includesHealthProperties">
@@ -217,6 +219,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;appropriateFor">
         <rdfs:label xml:lang="de">passend für</rdfs:label>
         <rdfs:label xml:lang="en">appropriate for</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft weist einer gegebenen Entität ein passendes Objekt zu.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an appropriate object to a given entity.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;appropriateForProperties">
@@ -257,6 +261,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;contains">
         <rdfs:label xml:lang="de">enthält</rdfs:label>
         <rdfs:label xml:lang="en">contains</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft verbindet Entitäten bezüglich Informationen für Patienten.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty connects entities concerning information for the patient.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;containsDrug">
@@ -322,6 +328,8 @@
     <owl:ObjectProperty rdf:about="&dispediao;successorOf">
         <rdfs:label xml:lang="de">Nachfolger von</rdfs:label>
         <rdfs:label xml:lang="en">successor of</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft beschreibt ein Objekt als zeitlichen Nachfolger einer gegebenen Entität.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty describes an object as the successor of a given entity.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;successorOfProposalComponent">
@@ -354,17 +362,23 @@
     <owl:ObjectProperty rdf:about="&dispediao;suitableFor">
         <rdfs:label xml:lang="de">geeignet für</rdfs:label>
         <rdfs:label xml:lang="en">suitable for</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft ordnet einer Entität ein Objekt zu, für welche es geeignet ist.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an object to an entity for which this object is suitable.</rdfs:comment>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;suitableForSensible">
         <rdfs:label xml:lang="de">geeignet für Sensible</rdfs:label>
         <rdfs:label xml:lang="en">suitable for sensible</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft ordnet einer als "sensibel" eingestuften Entität ein Objekt zu, für welche es geeignet ist.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an object to an entity - classified as sensible - for which this object is suitable.</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&dispediao;suitableFor"/>
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;suitableForExperienced">
         <rdfs:label xml:lang="de">geeignet für Erfahrene</rdfs:label>
         <rdfs:label xml:lang="en">suitable for experienced</rdfs:label>
+        <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft ordnet einer als "erfahren" eingestuften Entität ein Objekt zu, für welche es geeignet ist.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an object to an entity - classified as experienced - for which this object is suitable.</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&dispediao;suitableFor"/>
     </owl:ObjectProperty>
 
