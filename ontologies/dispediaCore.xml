@@ -308,7 +308,7 @@
     <owl:ObjectProperty rdf:about="&dispediao;containsAssistiveProduct">
         <rdfs:label xml:lang="de">enthält Assistenzprodukt</rdfs:label>
         <rdfs:label xml:lang="en">contains assistive product</rdfs:label>
-        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Arzneimittel zu.</rdfs:comment>
+        <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente ein Assistenzprodukt zu.</rdfs:comment>
         <rdfs:comment xml:lang="en">This ObjectProperty assigns an assistive product to a proposal component.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
         <rdfs:range rdf:resource="&dispediao;AssistiveProduct"/>
