@@ -9,7 +9,6 @@
     <labelparts>
         <item>http://schema.org/streetAddress</item>
         <item>http://schema.org/postalCode</item>
-        <item>http://schema.org/addressLocality</item>
         <option>notinuri</option>
     </labelparts>
     
@@ -40,14 +39,8 @@
             <predicate> 
                 <mandatory>1</mandatory>
                 <predicateuri>http://schema.org/postalCode</predicateuri>
-	    </predicate>
-	    
-	    <!-- Textfield -->        
-            <predicate> 
-                <mandatory>1</mandatory>
-                <predicateuri>http://schema.org/addressLocality</predicateuri>
-	    </predicate>
-            
+            </predicate>
+
         </item>
         
     </sections>

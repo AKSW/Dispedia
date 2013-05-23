@@ -1,0 +1,50 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://schema.org/City</targetclass>
+
+    <targetmodel>http://patients.dispedia.de/</targetmodel>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://schema.org/name</item>
+    </labelparts>
+    
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Ort</de>
+        <en>Place</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie Daten zu einem Ort erfassen.</de>
+        <en>Here you can insert place information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+            <!-- title of this section part -->
+            <title>
+                <de>Ortsinformationen</de>
+                <en>Place information</en>
+            </title>
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/name</predicateuri>
+            </predicate>
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/containedIn</predicateuri>
+            </predicate>
+        </item>
+            
+    </sections>
+</form>
