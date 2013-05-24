@@ -3,7 +3,7 @@
     <!-- All used predicate-tags are related to this class. -->
     <targetclass>http://schema.org/GeoCoordinates</targetclass>
     
-    <targetmodel>urn:dispedia:pn</targetmodel>
+    <targetmodel>http://patients.dispedia.de/</targetmodel>
     
     <!-- Needed by an URI generation function. -->
     <labelparts>
@@ -38,7 +38,7 @@
             <predicate> 
                 <mandatory>0</mandatory>
                 <predicateuri>http://schema.org/longitude</predicateuri>
-	    </predicate>  
+            </predicate>  
         </item>
         
     </sections>

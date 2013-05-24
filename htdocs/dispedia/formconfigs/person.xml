@@ -5,6 +5,8 @@
     <targetclass>http://www.dispedia.de/o/Person</targetclass>
 
     <targetmodel>urn:dispedia:pn</targetmodel>
+    
+    <requestmodel>http://patients.dispedia.de/</requestmodel>
 	
     <!-- Needed by an URI generation function. -->
     <labelparts>
@@ -66,12 +68,11 @@
                 <predicateuri>http://schema.org/birthDate</predicateuri>
                 <type>birthdate</type>
             </predicate>
-
+            
             <!-- Date -->
             <predicate>
                 <mandatory>0</mandatory>
-                <predicateuri>http://schema.org/deathDate</predicateuri>
-                <type>birthdate</type>
+                <predicateuri>http://schema.org/email</predicateuri>
             </predicate>
 
         </item>
@@ -106,30 +107,16 @@
         
         <item>
             <title>
-            <de>Adresse</de>
-            <en>Address</en>
+                <de>Adresse</de>
+                <en>Address</en>
             </title>
             <!-- Include a XML file -->
             <nestedconfig>
-            <xmlfile>address.xml</xmlfile>
-            <relations>
-                <item>http://www.dispedia.de/o/hasAddress</item>
-            </relations>
-            <typeclass>http://www.dispedia.de/o/Address</typeclass>
-            </nestedconfig>
-        </item>
-        <item>
-            <title>
-                <de>Geokoordinaten</de>
-                <en>Geo Coordinates</en>
-            </title>
-            <!-- Include a XML file -->
-            <nestedconfig>
-                <xmlfile>geocoordinates.xml</xmlfile>
+                <xmlfile>place.xml</xmlfile>
                 <relations>
-                    <item>http://www.serviceOntology.org/hasAddress</item>
+                    <item>http://schema.org/homeLocation</item>
                 </relations>
-                <typeclass>http://schema.org/GeoCoordinates</typeclass>
+                <typeclass>http://schema.org/Place</typeclass>
             </nestedconfig>
         </item>
     </sections>

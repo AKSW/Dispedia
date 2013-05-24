@@ -1,0 +1,89 @@
+<!-- Create a new person. -->
+<form>
+
+    <!-- All used predicate-tags are related to this class. -->
+    <targetclass>http://schema.org/Place</targetclass>
+
+    <targetmodel>http://patients.dispedia.de/</targetmodel>
+
+    <!-- Needed by an URI generation function. -->
+    <labelparts>
+        <item>http://schema.org/name</item>
+    </labelparts>
+    
+    <!-- Headline of this formula. -->
+    <title>
+        <de>Ort</de>
+        <en>Place</en>
+    </title>
+
+    <!-- Introducing text to inform the user about the formula. -->
+    <description>
+        <de>Hier können Sie Daten zu einem Ort erfassen.</de>
+        <en>Here you can insert place information.</en>
+    </description>
+
+    <sections>
+
+        <!-- A new section -->
+        <item>
+            <!-- title of this section part -->
+            <title>
+                <de>Ortsinformationen</de>
+                <en>Place information</en>
+            </title>
+            
+            <!-- Textfield -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/name</predicateuri>
+            </predicate>
+        </item>
+
+        <item>
+            <title>
+            <de>Postadresse</de>
+            <en>Postal Address</en>
+            </title>
+            <!-- Include a XML file -->
+            <nestedconfig>
+                <xmlfile>postaladdress.xml</xmlfile>
+                <relations>
+                    <item>http://schema.org/address</item>
+                </relations>
+                <typeclass>http://schema.org/PostalAddress</typeclass>
+            </nestedconfig>
+        </item>
+        
+        <item>
+            <title>
+            <de>Stadt</de>
+            <en>City</en>
+            </title>
+            <!-- Include a XML file -->
+            <nestedconfig>
+                <xmlfile>city.xml</xmlfile>
+                <relations>
+                    <item>http://schema.org/containedIn</item>
+                </relations>
+                <typeclass>http://schema.org/City</typeclass>
+            </nestedconfig>
+        </item>
+        
+        <item>
+            <title>
+            <de>Koordinaten</de>
+            <en>Geo Coordinates</en>
+            </title>
+            <!-- Include a XML file -->
+            <nestedconfig>
+                <xmlfile>geocoordinates.xml</xmlfile>
+                <relations>
+                    <item>http://schema.org/geo</item>
+                </relations>
+                <typeclass>http://schema.org/GeoCoordinates</typeclass>
+            </nestedconfig>
+        </item>
+            
+    </sections>
+</form>

@@ -60,6 +60,13 @@
 				<mandatory>0</mandatory>
 				<predicateuri>http://www.dispedia.de/o/journeyToWork</predicateuri>
 			</predicate>
+            
+            <!-- Date -->
+            <predicate>
+                <mandatory>0</mandatory>
+                <predicateuri>http://schema.org/deathDate</predicateuri>
+                <type>birthdate</type>
+            </predicate>
 
             <!-- rolls -->
             <predicate>
