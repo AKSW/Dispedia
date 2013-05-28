@@ -47,7 +47,11 @@ function deleteModel(modelName) {
         async:false,
         dataType: "json",
         type: "POST",
-        data: { modelName: modelName, do: 'remove', backup: $('#storeBackup').is(":checked") ? $('#storeBackup').val() : 'false' },
+        data: {
+            modelName: modelName,
+            do: 'remove',
+            backup: $('#storeBackup').is(":checked") ? $('#storeBackup').val() : 'false'
+        },
         context: $("#response" + modelName),
         url: url + 'patapro/changemodel/',
         // complete, no errors
@@ -81,7 +85,11 @@ function addModel(modelName) {
         async:false,
         dataType: "json",
         type: "POST",
-        data: { modelName: modelName, do: 'add' },
+        data: {
+            modelName: modelName,
+            do: 'add',
+            hidden: $('#model' + modelName + 'Hidden').is(":checked") ? $('#model' + modelName + 'Hidden').val() : 'false'
+        },
         context: $("#response" + modelName),
         url: 'changemodel/',
         // complete, no errors

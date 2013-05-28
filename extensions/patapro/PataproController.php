@@ -389,6 +389,7 @@ class PataproController extends OntoWiki_Controller_Component
         $modelName = urldecode($this->getParam ('modelName'));
         $action = urldecode($this->getParam ('do'));
         $backup = urldecode($this->getParam ('backup', false));
+        $hidden = urldecode($this->getParam ('hidden', false));
 
         if ($this->_erfurt->getAc()->isActionAllowed('PataproStore')) {
             if ("" != $modelName)
@@ -417,22 +418,69 @@ class PataproController extends OntoWiki_Controller_Component
                     // get ontologies config object
                     $ontologies = $this->_config->ontologies->toArray();
                     $ontologiePath = getcwd() . '/' . $ontologies['folder'] . '/';
-    
-                    $locator = Erfurt_Syntax_RdfParser::LOCATOR_FILE;
+                    
                     $filetype = 'auto';
                     $newType = Erfurt_Store::MODEL_TYPE_OWL;
     
                     // create model
                     $model = $this->_store->getNewModel($this->_ontologies[$modelName]['namespace'], $this->_ontologies[$modelName]['namespace'], $newType);
                     $jsonReturnValue['log'][] = "model added";
+                    
                     // connect it with system model
-                    $this->_store->addStatement("http://localhost/OntoWiki/Config/", $this->_ontologies[$modelName]['namespace'], "http://ns.ontowiki.net/SysOnt/hiddenImports", array( "value" => "http://ns.ontowiki.net/SysBase/", "type" => "uri"));
-                    foreach ($this->_ontologies[$modelName]['files'] as $filename)
-                    {
-                        // import data to model
-                        $this->_store->importRdf($this->_ontologies[$modelName]['namespace'], $ontologiePath . $filename, $filetype, $locator);
-                        $jsonReturnValue['files'][] = $filename;
-                        $jsonReturnValue['log'][] = "file " . $filename. " added to model " . $modelName;
+                    $useSysBaseNew = array();
+                    $useSysBaseNew[] = array(
+                            'type'  => 'uri',
+                            'value' => $this->_config->sysbase->model
+                            );
+
+                    $model->setOption($this->_config->sysont->properties->hiddenImports, $useSysBaseNew);
+                    $jsonReturnValue['log'][] = "model connected to sys model";
+                    
+                    // set hidden status
+                    if ('true' == $hidden) {
+                        $model->setOption(
+                            $this->_config->sysont->properties->hidden,
+                            array(
+                                array(
+                                    'value'    => 'true',
+                                    'type'     => 'literal',
+                                    'datatype' => EF_XSD_BOOLEAN
+                                    )
+                                )
+                            );
+                        $jsonReturnValue['log'][] = "model set to hidden";
+                    }
+                    
+                    // add filecontent
+                    if (isset($this->_ontologies[$modelName]['files'])) {
+                        foreach ($this->_ontologies[$modelName]['files'] as $filename)
+                        {
+                            // import data to model
+                            $this->_store->importRdf(
+                                $this->_ontologies[$modelName]['namespace'],
+                                $ontologiePath . $filename,
+                                $filetype,
+                                Erfurt_Syntax_RdfParser::LOCATOR_FILE
+                            );
+                            $jsonReturnValue['files'][] = $filename;
+                            $jsonReturnValue['log'][] = "file " . $filename. " added to model " . $modelName;
+                        }
+                    }
+                    
+                    // add linkcontent
+                    if (isset($this->_ontologies[$modelName]['links'])) {
+                        foreach ($this->_ontologies[$modelName]['links'] as $linkUrl)
+                        {
+                            // import data to model
+                            $this->_store->importRdf(
+                                $this->_ontologies[$modelName]['namespace'],
+                                $linkUrl,
+                                $filetype,
+                                Erfurt_Syntax_RdfParser::LOCATOR_URL
+                            );
+                            $jsonReturnValue['links'][] = $linkUrl;
+                            $jsonReturnValue['log'][] = "link " . $linkUrl. " added to model " . $modelName;
+                        }
                     }
                 }
             } else {
