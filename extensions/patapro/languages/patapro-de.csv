@@ -27,3 +27,6 @@ visibility;Sichtbarkeit
 close;Schliessen
 
 hidden;verbergen
+status;Status
+available;existiert
+notavailable;existiert nicht

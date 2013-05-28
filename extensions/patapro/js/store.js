@@ -62,6 +62,9 @@ function deleteModel(modelName) {
                 if (undefined != res.error) {
                     returnValue = -1;
                 }
+                else {
+                    changeButtons('removed', modelName);
+                }
             }
             catch (err) {
                 returnValue = -1;
@@ -100,6 +103,9 @@ function addModel(modelName) {
                 if (undefined != res.error) {
                     returnValue = -1;
                 }
+                else {
+                    changeButtons('added', modelName);
+                }
             }
             catch (err) {
                 returnValue = -2;
@@ -115,4 +121,29 @@ function addModel(modelName) {
         }
     });
     return returnValue;
+}
+
+function changeButtons(mode, modelName) {
+    console.log(mode, modelName);
+    
+    if ('added' == mode) {
+        $('#model' + modelName + 'RenewA').removeClass('storeHidden');
+        $('#model' + modelName + 'RenewDiv').addClass('storeHidden');
+        $('#model' + modelName + 'AddA').addClass('storeHidden');
+        $('#model' + modelName + 'AddDiv').removeClass('storeHidden');
+        $('#model' + modelName + 'DeleteA').removeClass('storeHidden');
+        $('#model' + modelName + 'DeleteDiv').addClass('storeHidden');
+        $('#model' + modelName + 'StatusA').removeClass('storeHidden');
+        $('#model' + modelName + 'StatusNA').addClass('storeHidden');
+        
+    } else if ('removed' == mode) {
+        $('#model' + modelName + 'RenewA').addClass('storeHidden');
+        $('#model' + modelName + 'RenewDiv').removeClass('storeHidden');
+        $('#model' + modelName + 'AddA').removeClass('storeHidden');
+        $('#model' + modelName + 'AddDiv').addClass('storeHidden');
+        $('#model' + modelName + 'DeleteA').addClass('storeHidden');
+        $('#model' + modelName + 'DeleteDiv').removeClass('storeHidden');
+        $('#model' + modelName + 'StatusA').addClass('storeHidden');
+        $('#model' + modelName + 'StatusNA').removeClass('storeHidden');
+    }
 }

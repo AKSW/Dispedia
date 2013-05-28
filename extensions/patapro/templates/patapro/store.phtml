@@ -24,13 +24,16 @@
 <table>
     <tr>
         <th class="storeModelNameTd"></th>
-        <th class="storeModelHiddenTd"><?php echo $this->_translate->_('hidden') . " ?" ?></th>
+        <th class="storeModelStatusTd"><?php echo $this->_translate->_('status') . "" ?></th>
+        <th class="storeModelHiddenTd"><?php echo $this->_translate->_('hidden') . "" ?></th>
         <th class="storeModelButtonTd"></th>
         <th class="storeModelProcessTd"></th>
     </tr>
 	<tr>
 		<td class="storeModelNameTd">
             <span class="storeModelNameSpan">All</span>
+        </td>
+        <td class="storeModelStatusTd">
         </td>
 		<td class="storeModelHiddenTd">
         </td>
@@ -55,6 +58,18 @@
                 <td class="storeModelNameTd">
                     <span class="storeModelNameSpan"><?php echo $modelName; ?></span>
                 </td>
+                <td class="storeModelStatusTd">
+                    <?php
+                        $availableClass = "storeHidden ";
+                        $notAvailableClass = "";
+                        if (isset($this->storedModels[$modelData['namespace']])) {
+                            $availableClass = "";
+                            $notAvailableClass = "storeHidden ";
+                        }
+                    ?>
+                    <div id="model<?php echo $modelName ?>StatusA" class="<?php echo $availableClass ?>storeModelAvailable"><?php echo $this->_translate->_('available') . "" ?></div>
+                    <div id="model<?php echo $modelName ?>StatusNA" class="<?php echo $notAvailableClass ?>storeModelNotAvailable"><?php echo $this->_translate->_('notavailable') . "" ?></div>
+                </td>
                 <td class="storeModelHiddenTd">
                     <?php
                         $hiddenDefault = '';
@@ -65,15 +80,33 @@
                     <input id="model<?php echo $modelName ?>Hidden" class="checkbox" type="checkbox" name="hidden" value="true" <?php echo $hiddenDefault ?>>
                 </td>
                 <td class="storeModelButtonTd">
-                    <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'all')">
+                    <?php
+                        if (isset($this->storedModels[$modelData['namespace']])) {
+                            $hiddenAddClass = "storeHidden ";
+                            $hiddenRemoveClass = "";
+                        } else {
+                            $hiddenAddClass = "";
+                            $hiddenRemoveClass = "storeHidden ";
+                        }
+                    ?>
+                    <a id="model<?php echo $modelName ?>RenewA" class="<?php echo $hiddenRemoveClass ?>button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'all')">
                         Renew
                     </a>
-                    <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'add')">
+                    <div id="model<?php echo $modelName ?>RenewDiv" class="<?php echo $hiddenAddClass ?> storeDisabledButton">
+                        Renew
+                    </div>
+                    <a id="model<?php echo $modelName ?>AddA" class="<?php echo $hiddenAddClass ?> button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'add')">
                         Add
                     </a>
-                    <a id="addResource" class="button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'delete')">
+                    <div id="model<?php echo $modelName ?>AddDiv" class="<?php echo $hiddenRemoveClass ?>storeDisabledButton">
+                        Add
+                    </div>
+                    <a id="model<?php echo $modelName ?>DeleteA" class="<?php echo $hiddenRemoveClass ?>button" onclick="javascript:renewModel('<?php echo $modelName; ?>', 'delete')">
                         Delete
                     </a>
+                    <div id="model<?php echo $modelName ?>DeleteDiv" class="<?php echo $hiddenAddClass ?>storeDisabledButton">
+                        Delete
+                    </div>
                 </td>
                 <td class="storeModelProcessTd">
                     <div id="response<?php echo $modelName; ?>"></div>
@@ -85,6 +118,8 @@
     <tr>
         <td class="storeModelNameTd">
             Backup old ontologies?
+        </td>
+        <td class="storeModelStatusTd">
         </td>
 		<td class="storeModelHiddenTd">
         </td>

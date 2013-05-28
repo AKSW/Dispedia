@@ -370,6 +370,8 @@ class PataproController extends OntoWiki_Controller_Component
             $this->view->url = $this->_config->urlBase;
     
             $this->view->models = $this->_ontologies;
+            
+            $this->view->storedModels = $this->_store->getAvailableModels(true);
         }
         else {
             $this->_redirect($this->_config->urlBase . 'index', array());
