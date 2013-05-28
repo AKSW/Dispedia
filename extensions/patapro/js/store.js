@@ -55,7 +55,9 @@ function deleteModel(modelName) {
         {
             $(this).html('<div class="storeProcessDiv storeWorkingDiv">delete Model: ' + models[modelName].namespace + '</div>');
             try {
-                var c = $.parseJSON(res);
+                if (undefined != res.error) {
+                    returnValue = -1;
+                }
             }
             catch (err) {
                 returnValue = -1;
@@ -87,7 +89,9 @@ function addModel(modelName) {
         {
             $(this).html('<div class="storeProcessDiv storeWorkingDiv">add Model: ' + models[modelName].namespace + '</div>');
             try {
-                var c = $.parseJSON(res);
+                if (undefined != res.error) {
+                    returnValue = -1;
+                }
             }
             catch (err) {
                 returnValue = -2;
