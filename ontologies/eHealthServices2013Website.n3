@@ -1,0 +1,90 @@
+# Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
+
+@base <http://www.ehealth-services-2013.local/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+@prefix ns0: <http://creativecommons.org/ns#> .
+@prefix ns1: <http://ns.ontowiki.net/SysOnt/Site/> .
+@prefix ns2: <http://www.ehealth-services-2013.local/> .
+
+<> a owl:Ontology ;
+   rdfs:label "eHealth Services 2013 Website" ;
+   owl:versionInfo "0.1" ;
+   dct:contributor "Romy Elze", "Lars Eidam", "Marcus Nitzschke" ;
+   ns0:license <http://creativecommons.org/licenses/by/3.0/> .
+
+ns2:Anmeldung a foaf:Document ;
+              rdfs:label "ANMELDUNG" ;
+              ns1:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax möglich. Hier finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
+0341/9732329<br />
+<br />
+Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu.<br />
+<br />
+Teilnahmegebühren belaufen sich auf:<br />
+• Frühbucher: 590€<br />
+• Normal: 690€"""@de ;
+              ns1:headline "Anmeldung" .
+
+ns2:Header a foaf:Document ;
+           ns1:headline "Workshop eHealth<br >01. September '13<br />Universität Leipzig"@de ;
+           ns1:title "SEeH" ;
+           ns1:titleline "Service Engineering<br />for eHealth" .
+
+ns2:Home a foaf:Document ;
+         rdfs:label "HOME" ;
+         ns1:languageContent "Unter dem Motto „eHealth Services – Nutzen für den Patienten“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
+         ns1:headline "Workshop eHealth" .
+
+ns2:Impressum a foaf:Document ;
+              rdfs:label "IMPRESSUM" ;
+              ns1:languageContent ""@de ;
+              ns1:headline "Impressum" .
+
+ns2:Kontakt a foaf:Document ;
+            rdfs:label "KONTAKT" ;
+            ns1:languageContent """Universität Leipzig<br />
+Institut für Informatik<br />
+Abt. Betriebliche Informationssysteme<br />
+<br />
+Nicole Michel<br />
+<br />
+E-Mail: … (folgt noch)""" ;
+            ns1:headline "Kontakt" .
+
+<http://www.ehealth-services-2013.local/Navigation/Main> a ns1:Navigation ;
+                                                         rdf:_1 ns2:Home ;
+                                                         rdf:_2 ns2:Programm ;
+                                                         rdf:_3 ns2:Referenten ;
+                                                         rdf:_4 ns2:Partner ;
+                                                         rdf:_5 ns2:Veranstaltungsort ;
+                                                         rdfs:label "Main Navigation" ;
+                                                         rdf:_6 ns2:Anmeldung ;
+                                                         rdf:_7 ns2:Kontakt ;
+                                                         rdf:_8 ns2:Impressum .
+
+ns2:Partner a foaf:Document ;
+            rdfs:label "PARTNER" ;
+            ns1:languageContent """• <a href=\"http://www.zv.uni-leipzig.de\">Universität Leipzig</a><br />
+• <a href=\"http://www.infai.org\">Institut für Angewandte Informatik (InfAI) e.V.</a><br />
+• <a href=\"http://sabre2013.infai.org\">SABRE Konferenz 2013</a>"""@de ;
+            ns1:headline "Partner" .
+
+ns2:Programm a foaf:Document ;
+             rdfs:label "PROGRAMM" ;
+             ns1:languageContent ""@de ;
+             ns1:headline "Programm" .
+
+ns2:Referenten a foaf:Document ;
+               rdfs:label "REFERENTEN" ;
+               ns1:languageContent ""@de ;
+               ns1:headline "Referenten" .
+
+ns2:Veranstaltungsort a foaf:Document ;
+                      rdfs:label "VERANSTALTUNGSORT" ;
+                      ns1:languageContent ""@de ;
+                      ns1:headline "Veranstaltungsort" .
