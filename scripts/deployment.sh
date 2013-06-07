@@ -11,3 +11,7 @@ sed -i 's/http:\/\/www\.dispedia\.local/http:\/\/www\.dispedia\.de/g' $SITECONFI
 # change Ontowiki config.ini.dummy namespace Dispedia Site Ontology from local to de
 ONTOWIKICONFIG="config.ini.dummy"
 sed -i 's/http:\/\/www\.dispedia\.local/http:\/\/www\.dispedia\.de/g' $ONTOWIKICONFIG
+
+# change dispedia site header resource from local to de
+ONTOWIKICONFIG="htdocs/dispedia/header.phtml"
+sed -i 's/http:\/\/www\.dispedia\.local/http:\/\/www\.dispedia\.de/g' $ONTOWIKICONFIG
