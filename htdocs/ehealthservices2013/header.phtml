@@ -1,17 +1,13 @@
 <div id="header">
-    <div id="headerImage">
-        <img src="<?php echo $this->baseUri ?>/img/dispedia_Logo_Bildmarke_transparent.png" alt="Dispedia logo" />
+    <div id="headerTitle">
+        <div id="headerImage">
+            <img src="<?php echo $this->baseUri ?>/img/ehealthservices2013_Logo_Bildmarke_transparent.png" alt="Dispedia logo" />
+        </div>
+        <?php echo $this->literal(array('uri' => 'http://www.ehealth-services-2013.local/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/title', 'tag' => 'div', 'class' => 'first')); ?>
+        <?php echo $this->literal(array('uri' => 'http://www.ehealth-services-2013.local/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/titleline', 'tag' => 'div', 'class' => 'second', 'iprefix' => '<span>', 'isuffix' => '</span>')); ?>
     </div>
-    <!--<div id="headerLang">
-        <a href="<?php echo $this->resourceUri ?>?lang=en"><img src="<?php echo $this->baseUri ?>/img/en.png" title="english"/></a>
-        |
-        <a href="<?php echo $this->resourceUri ?>?lang=de"><img src="<?php echo $this->baseUri ?>/img/de.png" title="deutsch"/></a>
-    </div>-->
-    
     <div id="headerText">
-        <?php echo $this->literal(array('uri' => 'http://www.ehealth-services-2013.local/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/title', 'tag' => 'span', 'class' => 'headerTextTitle')); ?>
-        <?php echo $this->literal(array('uri' => 'http://www.ehealth-services-2013.local/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/titleline', 'tag' => 'span', 'class' => 'headerTextTitleline')); ?>
-        <?php echo $this->literal(array('uri' => 'http://www.ehealth-services-2013.local/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'span', 'class' => 'headerTextHeadline')); ?>
+        <?php echo $this->literal(array('uri' => 'http://www.ehealth-services-2013.local/Header', 'property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'div', 'class' => 'headerTextHeadline')); ?>
     </div>
     <div class="clear"></div>
 </div>

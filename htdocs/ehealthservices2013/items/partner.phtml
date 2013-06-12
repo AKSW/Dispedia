@@ -1,0 +1,5 @@
+<?php
+    $image = $this->img(array('property' => 'http://xmlns.com/foaf/0.1/logo', 'class' => 'partnerLogo', 'alt' => $this->label));
+
+    echo $this->link(array('uri' => "$this->homepageUrl", 'property' => 'http://xmlns.com/foaf/0.1/homepage', 'class' => 'partnerLink', 'text' => $image, 'direct' => 'true'));
+?>

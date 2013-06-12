@@ -1,6 +1,7 @@
 # Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
 
 @base <http://www.ehealth-services-2013.local/> .
+@prefix sysont: <http://ns.ontowiki.net/SysOnt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -11,6 +12,7 @@
 @prefix ns0: <http://creativecommons.org/ns#> .
 @prefix ns1: <http://ns.ontowiki.net/SysOnt/Site/> .
 @prefix ns2: <http://www.ehealth-services-2013.local/> .
+@prefix ns3: <http://www.ehealth-services-2013.local/Partner/> .
 
 <> a owl:Ontology ;
    rdfs:label "eHealth Services 2013 Website" ;
@@ -31,19 +33,73 @@ Teilnahmegebühren belaufen sich auf:<br />
               ns1:headline "Anmeldung" .
 
 ns2:Header a foaf:Document ;
-           ns1:headline "Workshop eHealth<br >01. September '13<br />Universität Leipzig"@de ;
+           rdfs:label "Header" ;
+           ns1:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
+Integrierte Versorgung Quo Vadis?</span><br />01. September '13<br />Universität Leipzig"""@de ;
            ns1:title "SEeH" ;
            ns1:titleline "Service Engineering<br />for eHealth" .
 
 ns2:Home a foaf:Document ;
          rdfs:label "HOME" ;
          ns1:languageContent "Unter dem Motto „eHealth Services – Nutzen für den Patienten“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
-         ns1:headline "Workshop eHealth" .
+         ns1:headline "Workshop eHealth" ;
+         ns1:template "home" .
 
 ns2:Impressum a foaf:Document ;
               rdfs:label "IMPRESSUM" ;
-              ns1:languageContent ""@de ;
-              ns1:headline "Impressum" .
+              ns1:headline "Impressum" ;
+              ns1:content """# IMPRESSUM
+
+**Romy Elze**
+
+Telefon: [+49 341 97-32304](tel:+493419732304)<br />
+Telefax: [+49 341 97-32269](tel:+493419732269)<br />
+E-Mail: [elze@informatik.uni-leipzig.de](mailto:elze@informatik.uni-leipzig.de)
+
+    Universität Leipzig
+    Institut für Informatik
+    Abt. Betriebliche Informationssysteme
+    Augustusplatz 10
+    04109 Leipzig
+    Deutschland
+[http://bis.uni-leipzig.de](http://bis.uni-leipzig.de)
+
+Die Universität Leipzig ist eine Körperschaft des öffentlichen Rechts. Sie wird vertreten durch den Rektor. Weitere Informationen, insbesondere zur Aufsichtsbehörde, finden sich im [Impressum der Universität Leipzig](http://www.uni-leipzig.de/info/impressum.html).
+
+    InfAI - Institut für Angewandte Informatik e.V. 
+    Aninstitut an der Universität Leipzig
+    Neumarkt 20, 04109 Leipzig
+[http://www.infai.org](http://www.infai.org)
+
+# HAFTUNGSHINWEIS
+
+### Haftung für Inhalte
+Wir bemühen uns die Inhalte unserer Seite aktuell zu halten. Trotz sorgfältiger Bearbeitung bleibt eine Haftung ausgeschlossen.
+
+Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+
+Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Bei bekannt werden von Rechtsverletzungen, werden wir diese Inhalte umgehend entfernen. Eine diesbezügliche Haftung übernehmen wir erst ab dem Zeitpunkt der Kenntnis einer möglichen Rechtsverletzung.
+
+### Haftung für Links
+Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Für die Inhalte und die Richtigkeit der Informationen verlinkter Websites fremder Informationsanbieter wird keine Gewähr übernommen.
+
+Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße OHNE BEANSTANDUNG überprüft. Bei bekannt werden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+
+### Urheberrecht
+Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+
+### Datenschutz
+Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Eine Vertraulichkeit im Hinblick auf die Datenschutzbestimmungen wird nur unter der vorstehenden Einschränkung gewährleistet. Insbesondere sollen alle Mitteilungen von personenbezogenen Daten über das Internet nur erfolgen, soweit nicht Rechte Dritter berührt werden. Es sei denn der Dritte hat in Kenntnis der vorstehenden Sicherheitslücken ebenfalls seine Zustimmung erklärt. Eine Haftung des Seitenbetreibers wird für die durch solche Sicherheitslücken entstehenden Schäden oder Unterlassungsansprüche ausgeschlossen.
+
+Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung wird widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+
+**Quelle: S&K Rechtsanwälte [www.streifler.de](http://www.streifler.de/)**
+
+# GESTALTUNG
+
+* [Maxi Bley . www.bleystift.de](http://bleystift.de) - Screendesign
+* [Lars Eidam - LE-HelpDesk](https://github.com/larseidam) - Umsetzung PHP/HTML/CSS"""^^sysont:Markdown ;
+              ns1:template "imprint" .
 
 ns2:Kontakt a foaf:Document ;
             rdfs:label "KONTAKT" ;
@@ -60,24 +116,60 @@ E-Mail: … (folgt noch)""" ;
                                                          rdf:_1 ns2:Home ;
                                                          rdf:_2 ns2:Programm ;
                                                          rdf:_3 ns2:Referenten ;
-                                                         rdf:_4 ns2:Partner ;
-                                                         rdf:_5 ns2:Veranstaltungsort ;
+                                                         rdf:_4 ns2:Veranstaltungsort ;
+                                                         rdf:_5 ns2:Anmeldung ;
                                                          rdfs:label "Main Navigation" ;
-                                                         rdf:_6 ns2:Anmeldung ;
-                                                         rdf:_7 ns2:Kontakt ;
-                                                         rdf:_8 ns2:Impressum .
+                                                         rdf:_6 ns2:Kontakt .
 
-ns2:Partner a foaf:Document ;
-            rdfs:label "PARTNER" ;
-            ns1:languageContent """• <a href=\"http://www.zv.uni-leipzig.de\">Universität Leipzig</a><br />
+ns3:InfAI a ns2:Partner ;
+          rdfs:label "Instituts für Angewandte Informatik e. V"@de ;
+          foaf:homepage <http://infai.org> ;
+          foaf:logo <http://www.dispedia.local/htdocs/ehealthservices2013/img/logo-infai.png> .
+
+ns3:Sabre a ns2:Partner ;
+          rdfs:label "Software Agents and Services for Business, Research, and E-Sciences"@en ;
+          foaf:homepage <http://sabre2013.infai.org> ;
+          foaf:logo <http://www.dispedia.local/htdocs/ehealthservices2013/img/sabre.png> .
+
+ns3:UniversityLeipzig a ns2:Partner ;
+                      rdfs:label "Universität Leipzig"@de ;
+                      foaf:homepage <http://www.uni-leipzig.de/> ;
+                      foaf:logo <http://www.dispedia.local/htdocs/ehealthservices2013/img/logo-unileipzig.png> .
+
+ns2:Partners a foaf:Document ;
+             rdfs:label "PARTNER" ;
+             ns1:languageContent """• <a href=\"http://www.zv.uni-leipzig.de\">Universität Leipzig</a><br />
 • <a href=\"http://www.infai.org\">Institut für Angewandte Informatik (InfAI) e.V.</a><br />
 • <a href=\"http://sabre2013.infai.org\">SABRE Konferenz 2013</a>"""@de ;
-            ns1:headline "Partner" .
+             ns1:headline "Partner" .
 
 ns2:Programm a foaf:Document ;
              rdfs:label "PROGRAMM" ;
-             ns1:languageContent ""@de ;
-             ns1:headline "Programm" .
+             ns1:headline "Programm" ;
+             ns1:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.local/Program>.\" template=\"program\"}}"^^sysont:Markdown ;
+             ns1:template "program" .
+
+<http://www.ehealth-services-2013.local/Programm/EroeffnungundBegrueßung> a ns2:Program ;
+                                                                           rdfs:label "Eröffnung und Begrüßung der Teilnehmer"@de ;
+                                                                           ns1:referent "Vorname Name" ;
+                                                                           ns1:time "10.00 – 12.00 Uhr" ;
+                                                                           ns1:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
+komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt
+semantische Technologien, um einerseits Patienten zu beschreiben, die an
+einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den spe-
+ziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der
+differenzierten."""^^sysont:Markdown .
+
+<http://www.ehealth-services-2013.local/Programm/Programmpunkt1> a ns2:Program ;
+                                                                 rdfs:label "Programmpunkt 1"@de ;
+                                                                 ns1:referent "Vorname Name" ;
+                                                                 ns1:time "13.00 – 13.30 Uhr" ;
+                                                                 ns1:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
+komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt
+semantische Technologien, um einerseits Patienten zu beschreiben, die an
+einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den spe-
+ziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der
+differenzierten Zu"""^^sysont:Markdown .
 
 ns2:Referenten a foaf:Document ;
                rdfs:label "REFERENTEN" ;
