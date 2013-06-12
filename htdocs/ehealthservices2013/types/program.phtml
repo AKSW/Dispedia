@@ -1,0 +1,10 @@
+<div class="content">
+<?php
+    // uses headline property for headline
+    echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'h1'));
+    
+    // prepare main content (uses default content properties)
+    echo $this->literal(array('tag' => 'div', 'class' => 'content'));
+?>
+</div>
+<div class="contentSeparator"></div>

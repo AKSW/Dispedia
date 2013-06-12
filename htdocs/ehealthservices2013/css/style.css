@@ -1,0 +1,255 @@
+* { margin: 0; padding: 0; }
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    /* bootstrap.min.css überschreiben */
+    font-family: Helvetica, Arial, sans-serif !important;
+    /* bootstrap.min.css überschreiben */
+    font-size: 100% !important;
+}
+
+/* ############### Colors, Fonts and Images ############### */
+/* background-color */
+body {
+    background-color: #21576b;
+    background-image: -webkit-linear-gradient(top, #21576b 0%, #007891 100%); 
+    background-image: -moz-linear-gradient(top, #21576b 0%, #007891 100%); 
+    background-image: -o-linear-gradient(top, #21576b 0%, #007891 100%); 
+    background-image: linear-gradient(top, #21576b 0%, #007891 100%);
+}
+#header {
+    background-image: url(/htdocs/dispedia/img/dispedia_Logo_Bildmarke_transparent.png);
+    background-repeat: no-repeat;
+    background-position: 115% 0;
+    background-size: 250px auto;
+    
+}
+#header,
+#mainNavigation,
+.contentSeparator,
+.content,
+#footer {
+    background-color: #FFF;
+}
+.content .program .name {
+    background-color: #21576b;
+}
+
+/* grey text */
+#headerLang,
+#headerTitle .second {
+    color: #93A0A7;
+}
+/* dark grey text */
+.content {
+     color: #6d6d6d;
+}
+/* darker grey text */
+#footer a {
+     color: #949494;
+}
+/* blue text */
+#headerText span.highlighted,
+.content h1 {
+    color: #00A3C6;
+}
+/* dark blue text */
+#headerTitle .first,
+#headerText,
+#mainNavigation a {
+    color: #21576b;
+}
+/* white text */
+.content .program .name,
+footer {
+    color: #FFF;
+}
+/* font-family */
+#headerTitle,
+#headerText,
+#mainNavigation a,
+.content h1,
+#footer {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.wrapper {
+    width: 70%;
+    margin: 0px auto;
+}
+
+.contentSeparator {
+    height: 1.5em;
+    margin-bottom: 1px;
+}
+
+#header {
+    min-height: 11em;
+    padding: 0.5em;
+    padding-right: 0.9em;
+}
+
+#headerImage img {
+    height: 120px;
+    padding-left: 40px;
+    padding-top: 10px;
+    vertical-align: middle;
+}
+
+#headerTitle {
+    float: left;
+}
+#headerTitle .first {
+    float: left;
+    font-size: 4em;
+    padding-left: 0.3em;
+}
+#headerTitle .second {
+    float: left;
+    font-size: 1.2em;
+    margin-left: 1em;
+    margin-top: 0.7em;
+}
+#headerTitle .second span {
+    vertical-align: middle;
+}
+
+#headerText {
+    font-size: 1.8em;
+    float: right;
+    text-align: right;
+}
+#headerText .headerTextHeadline {
+    margin-top: 2em;
+}
+#headerText span.highlighted {
+    font-size: 0.852em;
+}
+
+#mainNavigation {
+    height: 3em;
+    margin-top: 1px;
+    width: 100%;
+}
+
+#mainNavigation ul {
+    height: inherit;
+    list-style-type: none;
+}
+
+#mainNavigation li {
+    height: inherit;
+    float:left;
+    line-height: 2.5em;
+}
+#mainNavigation ul li:first-child a {
+    border-left: 0px solid #21576b;
+}
+#mainNavigation a {
+    border-left: 1px solid #21576b;
+    font-size: 0.8em;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+#mainNavigation li.active {
+    font-weight: bold;
+}
+#mainNavigation li.active canvas {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    float: left;
+    position:absolute;
+}
+
+.content {
+    min-height: 15em;
+    overflow: auto;
+    padding: 0.9em;
+}
+
+.content h1 {
+    font-size: 3em;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #21576b;
+}
+
+/* ############### Document ############### */
+
+.aboutimg{
+    float: right;
+    max-width: 400px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.about{
+    text-align: justify;
+}
+
+/* ############### Home ############### */
+.content#home p {
+    -moz-columns: 2;
+}
+
+/* ############### Program ############### */
+.content .program {
+    width: 50%;
+}
+.content .program .time {
+    line-height: 2em;
+}
+.content .program .name {
+    font-weight: bold;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 0.5em;
+}
+.content .program .referent {
+    line-height: 2.5em;
+}
+.content .program .programContent {
+    margin: 0.5em 0 4em;
+    text-align: justify;
+}
+
+/* ############### Footer ############### */
+#footer {
+    font-size: 0.8em;
+    padding: 1.5em;
+}
+
+#footer a {
+    text-decoration: none;
+}
+#footer #footerDivPartner,
+#footer #footerDivPartnerLogos {
+    float: left;
+}
+
+#footer #footerDivPartnerLogos a img {
+    max-height: 6em;
+    max-width: 16em;
+    margin: 1em;
+    vertical-align: middle;
+}
+#footer #footerDivImpressum {
+    float: right;
+}
+
+/* ############### Imprint/Contact ############### */
+#imprint p,
+#imprint pre {
+    margin-bottom: 20px;
+}
+#imprint ul {
+    list-style-type: none;
+}
