@@ -124,17 +124,17 @@ E-Mail: … (folgt noch)""" ;
 ns3:InfAI a ns2:Partner ;
           rdfs:label "Instituts für Angewandte Informatik e. V"@de ;
           foaf:homepage <http://infai.org> ;
-          foaf:logo <http://www.dispedia.local/htdocs/ehealthservices2013/img/logo-infai.png> .
+          foaf:logo <http://www.ehealth-services-2013.local/htdocs/ehealthservices2013/img/logo-infai.png> .
 
 ns3:Sabre a ns2:Partner ;
           rdfs:label "Software Agents and Services for Business, Research, and E-Sciences"@en ;
           foaf:homepage <http://sabre2013.infai.org> ;
-          foaf:logo <http://www.dispedia.local/htdocs/ehealthservices2013/img/sabre.png> .
+          foaf:logo <http://www.ehealth-services-2013.local/htdocs/ehealthservices2013/img/sabre.png> .
 
 ns3:UniversityLeipzig a ns2:Partner ;
                       rdfs:label "Universität Leipzig"@de ;
                       foaf:homepage <http://www.uni-leipzig.de/> ;
-                      foaf:logo <http://www.dispedia.local/htdocs/ehealthservices2013/img/logo-unileipzig.png> .
+                      foaf:logo <http://www.ehealth-services-2013.local/htdocs/ehealthservices2013/img/logo-unileipzig.png> .
 
 ns2:Partners a foaf:Document ;
              rdfs:label "PARTNER" ;
