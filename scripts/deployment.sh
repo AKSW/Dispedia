@@ -37,3 +37,7 @@ sed -i $REPLACEREGEX $ONTOWIKICONFIG
 # change dispedia site header resource from local to de
 ONTOWIKICONFIG="htdocs/ehealthservices2013/header.phtml"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
+
+# change dispedia site header resource from local to de
+ONTOWIKICONFIG="htdocs/ehealthservices2013/footer.phtml"
+sed -i $REPLACEREGEX $ONTOWIKICONFIG

@@ -1,7 +1,7 @@
 <div id="footer">
     
     <div id="footerDivPartner">
-        <?php echo $this->link(array('uri' => 'http://www.ehealth-services-2013.local/Partners', 'tag' => 'span', 'class' => 'footerLink')); ?>
+        <?php echo $this->link(array('uri' => 'http://www.ehealth-services-2013.de/Partners', 'tag' => 'span', 'class' => 'footerLink')); ?>
     </div>
     <div id="footerDivPartnerLogos">
         <?php
@@ -10,7 +10,7 @@
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         SELECT DISTINCT ?resourceUri ?label ?logoUrl ?homepageUrl
         WHERE {
-            ?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.local/Partner> .
+            ?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Partner> .
             ?resourceUri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
             ?resourceUri <http://xmlns.com/foaf/0.1/homepage> ?homepageUrl .
         }';
@@ -19,6 +19,6 @@
         ?>
     </div>
     
-    <div id="footerDivImpressum"><?php echo $this->link(array('uri' => 'http://www.ehealth-services-2013.local/Impressum', 'tag' => 'span', 'class' => 'footerLink')); ?></div>
+    <div id="footerDivImpressum"><?php echo $this->link(array('uri' => 'http://www.ehealth-services-2013.de/Impressum', 'tag' => 'span', 'class' => 'footerLink')); ?></div>
     <div class="clear"></div>
 </div>
