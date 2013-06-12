@@ -35,7 +35,7 @@
             ?resourceUri ?propertyUri <http://ns.ontowiki.net/SysOnt/Site/Schema> .
             ?resourceUri <http://ns.ontowiki.net/SysOnt/Site/downloadLabel> ?label .
         }';
-        $downloads = $this->querylist($queryForDownloads, 'items/downloads.phtml');
+        $downloads = $this->querylist($queryForDownloads, 'dispedia/items/downloads.phtml');
         echo $downloads
         ?>
     </div>

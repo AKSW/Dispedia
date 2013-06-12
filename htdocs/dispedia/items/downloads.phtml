@@ -11,7 +11,7 @@
         ?resourceUri <http://ns.ontowiki.net/SysOnt/Site/index> ?index .
     }
     ORDER BY ?index';
-    $schemaDownloads = $this->querylist($queryForSchemaDownloads, 'items/schemadownloads.phtml');
+    $schemaDownloads = $this->querylist($queryForSchemaDownloads, 'dispedia/items/schemadownloads.phtml');
     
     echo '<ul>' . $schemaDownloads . '</ul>';
 ?>

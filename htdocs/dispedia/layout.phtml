@@ -52,7 +52,7 @@ $templateData = $this->templateData;
     <?php endforeach; ?>>
     
     <div class="wrapper">
-        <?php echo $this->partial('dispedia/header.phtml', $this->templateData) ?>
+        <?php echo $this->partial('dispedia/header.phtml', $templateData) ?>
         <!-- if a specific schema is show then schema should be active in main navi -->
         <?php
             if (false !== strstr($this->resourceUri, $this->wikiBaseUrl . "Site/Schema")) {
