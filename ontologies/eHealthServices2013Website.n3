@@ -120,6 +120,11 @@ E-Mail: … (folgt noch)""" ;
                                                          rdfs:label "Main Navigation" ;
                                                          rdf:_6 ns3:Kontakt .
 
+ns3:NotFound a foaf:Document ;
+             rdfs:label "404" ;
+             ns0:languageContent "Diese Seite ist nicht erreichbar."@de, "Either the site you are trying to reach is not available anymore on this server, or you have tried to access a 'dead' link."@en ;
+             ns0:headline "Site not found"@en, "Seite nicht gefunden"@de .
+
 ns1:InfAI a ns3:Partner ;
           rdfs:label "Instituts für Angewandte Informatik e. V"@de ;
           foaf:homepage <http://infai.org> ;
