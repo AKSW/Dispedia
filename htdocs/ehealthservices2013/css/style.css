@@ -231,15 +231,19 @@ footer {
     text-decoration: none;
 }
 #footer #footerDivPartner,
-#footer #footerDivPartnerLogos {
+#footerDivPartnerLogos {
     float: left;
 }
 
-#footer #footerDivPartnerLogos a img {
-    max-height: 6em;
-    max-width: 16em;
-    margin: 1em;
-    vertical-align: middle;
+#footerDivPartnerLogos table {
+    margin: 1em 2em;
+}
+#footerDivPartnerLogos table td {
+    padding: 0em 1em;
+}
+#footerDivPartnerLogos a img {
+    height: auto;
+    width: 100%;
 }
 #footer #footerDivImpressum {
     float: right;

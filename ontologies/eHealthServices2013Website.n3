@@ -6,23 +6,22 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix sioc: <http://rdfs.org/sioc/ns#> .
-@prefix ns0: <http://creativecommons.org/ns#> .
-@prefix ns1: <http://ns.ontowiki.net/SysOnt/Site/> .
-@prefix ns2: <http://www.ehealth-services-2013.de/> .
-@prefix ns3: <http://www.ehealth-services-2013.de/Partner/> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
+@prefix ns2: <http://creativecommons.org/ns#> .
+@prefix ns1: <http://www.ehealth-services-2013.de/Partner/> .
+@prefix ns3: <http://www.ehealth-services-2013.de/> .
 
 <> a owl:Ontology ;
    rdfs:label "eHealth Services 2013 Website" ;
    owl:versionInfo "0.1" ;
    dct:contributor "Romy Elze", "Lars Eidam", "Marcus Nitzschke" ;
-   ns0:license <http://creativecommons.org/licenses/by/3.0/> .
+   ns2:license <http://creativecommons.org/licenses/by/3.0/> .
 
-ns2:Anmeldung a foaf:Document ;
+ns3:Anmeldung a foaf:Document ;
               rdfs:label "ANMELDUNG" ;
-              ns1:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax möglich. Hier finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
+              ns0:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax möglich. Hier finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
 0341/9732329<br />
 <br />
 Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu.<br />
@@ -30,25 +29,25 @@ Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnah
 Teilnahmegebühren belaufen sich auf:<br />
 • Frühbucher: 590€<br />
 • Normal: 690€"""@de ;
-              ns1:headline "Anmeldung" .
+              ns0:headline "Anmeldung" .
 
-ns2:Header a foaf:Document ;
+ns3:Header a foaf:Document ;
            rdfs:label "Header" ;
-           ns1:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
-Integrierte Versorgung Quo Vadis?</span><br />01. September '13<br />Universität Leipzig"""@de ;
-           ns1:title "SEeH" ;
-           ns1:titleline "Service Engineering<br />for eHealth" .
+           ns0:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
+Integrierte Versorgung Quo Vadis?</span><br />26. September '13<br />Universität Leipzig"""@de ;
+           ns0:title "SEeH" ;
+           ns0:titleline "Service Engineering<br />for eHealth" .
 
-ns2:Home a foaf:Document ;
+ns3:Home a foaf:Document ;
          rdfs:label "HOME" ;
-         ns1:languageContent "Unter dem Motto „eHealth Services – Nutzen für den Patienten“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
-         ns1:headline "Workshop eHealth" ;
-         ns1:template "home" .
+         ns0:languageContent "Unter dem Motto „eHealth Services – Nutzen für den Patienten“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
+         ns0:headline "Workshop eHealth" ;
+         ns0:template "home" .
 
-ns2:Impressum a foaf:Document ;
+ns3:Impressum a foaf:Document ;
               rdfs:label "IMPRESSUM" ;
-              ns1:headline "Impressum" ;
-              ns1:content """# IMPRESSUM
+              ns0:headline "Impressum" ;
+              ns0:content """# IMPRESSUM
 
 **Romy Elze**
 
@@ -99,84 +98,98 @@ Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendu
 
 * [Maxi Bley . www.bleystift.de](http://bleystift.de) - Screendesign
 * [Lars Eidam - LE-HelpDesk](https://github.com/larseidam) - Umsetzung PHP/HTML/CSS"""^^sysont:Markdown ;
-              ns1:template "imprint" .
+              ns0:template "imprint" .
 
-ns2:Kontakt a foaf:Document ;
+ns3:Kontakt a foaf:Document ;
             rdfs:label "KONTAKT" ;
-            ns1:languageContent """Universität Leipzig<br />
+            ns0:languageContent """Universität Leipzig<br />
 Institut für Informatik<br />
 Abt. Betriebliche Informationssysteme<br />
 <br />
 Nicole Michel<br />
 <br />
 E-Mail: … (folgt noch)""" ;
-            ns1:headline "Kontakt" .
+            ns0:headline "Kontakt" .
 
-<http://www.ehealth-services-2013.de/Navigation/Main> a ns1:Navigation ;
-                                                         rdf:_1 ns2:Home ;
-                                                         rdf:_2 ns2:Programm ;
-                                                         rdf:_3 ns2:Referenten ;
-                                                         rdf:_4 ns2:Veranstaltungsort ;
-                                                         rdf:_5 ns2:Anmeldung ;
+<http://www.ehealth-services-2013.de/Navigation/Main> a ns0:Navigation ;
+                                                         rdf:_1 ns3:Home ;
+                                                         rdf:_2 ns3:Programm ;
+                                                         rdf:_3 ns3:Referenten ;
+                                                         rdf:_4 ns3:Veranstaltungsort ;
+                                                         rdf:_5 ns3:Anmeldung ;
                                                          rdfs:label "Main Navigation" ;
-                                                         rdf:_6 ns2:Kontakt .
+                                                         rdf:_6 ns3:Kontakt .
 
-ns3:InfAI a ns2:Partner ;
+ns3:NotFound a foaf:Document ;
+             rdfs:label "404" ;
+             ns0:languageContent "Diese Seite ist nicht erreichbar."@de, "Either the site you are trying to reach is not available anymore on this server, or you have tried to access a 'dead' link."@en ;
+             ns0:headline "Site not found"@en, "Seite nicht gefunden"@de .
+
+ns1:InfAI a ns3:Partner ;
           rdfs:label "Instituts für Angewandte Informatik e. V"@de ;
           foaf:homepage <http://infai.org> ;
           foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/logo-infai.png> .
 
-ns3:Sabre a ns2:Partner ;
+ns1:Sabre a ns3:Partner ;
           rdfs:label "Software Agents and Services for Business, Research, and E-Sciences"@en ;
           foaf:homepage <http://sabre2013.infai.org> ;
           foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/sabre.png> .
 
-ns3:UniversityLeipzig a ns2:Partner ;
+ns1:UniversityLeipzig a ns3:Partner ;
                       rdfs:label "Universität Leipzig"@de ;
                       foaf:homepage <http://www.uni-leipzig.de/> ;
                       foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/logo-unileipzig.png> .
 
-ns2:Partners a foaf:Document ;
+ns1:eVAA a ns3:Partner ;
+         rdfs:label "Europäischen Vereinigung für Vitalität und Aktives Altern e.V."@de ;
+         foaf:homepage <http://www.evaaa.de/> ;
+         foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/logo.eVAA.mit.text.RGB.jpg> .
+
+ns1:vitalServices a ns3:Partner ;
+                  rdfs:label "Vital Services" ;
+                  foaf:homepage <http://www.vital-services.de/> ;
+                  foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/logo.vital.services.GmbH.RGB.gross.jpg> .
+
+ns3:Partners a foaf:Document ;
              rdfs:label "PARTNER" ;
-             ns1:languageContent """• <a href=\"http://www.zv.uni-leipzig.de\">Universität Leipzig</a><br />
-• <a href=\"http://www.infai.org\">Institut für Angewandte Informatik (InfAI) e.V.</a><br />
-• <a href=\"http://sabre2013.infai.org\">SABRE Konferenz 2013</a>"""@de ;
-             ns1:headline "Partner" .
+             ns0:headline "Partner" ;
+             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Partner>.\" template=\"partner\"}}"^^sysont:Markdown ;
+             ns0:template "partner" .
 
-ns2:Programm a foaf:Document ;
+ns3:Programm a foaf:Document ;
              rdfs:label "PROGRAMM" ;
-             ns1:headline "Programm" ;
-             ns1:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Program>.\" template=\"program\"}}"^^sysont:Markdown ;
-             ns1:template "program" .
+             ns0:headline "Programm" ;
+             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Program>.\" template=\"program\"}}"^^sysont:Markdown ;
+             ns0:template "program" .
 
-<http://www.ehealth-services-2013.de/Programm/EroeffnungundBegrueßung> a ns2:Program ;
+<http://www.ehealth-services-2013.de/Programm/EroeffnungundBegrueßung> a ns3:Program ;
                                                                            rdfs:label "Eröffnung und Begrüßung der Teilnehmer"@de ;
-                                                                           ns1:referent "Vorname Name" ;
-                                                                           ns1:time "10.00 – 12.00 Uhr" ;
-                                                                           ns1:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
+                                                                           ns0:referent "Vorname Name" ;
+                                                                           ns0:time "10.00 – 12.00 Uhr" ;
+                                                                           ns0:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
 komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt
 semantische Technologien, um einerseits Patienten zu beschreiben, die an
 einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den spe-
 ziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der
 differenzierten."""^^sysont:Markdown .
 
-<http://www.ehealth-services-2013.de/Programm/Programmpunkt1> a ns2:Program ;
+<http://www.ehealth-services-2013.de/Programm/Programmpunkt1> a ns3:Program ;
                                                                  rdfs:label "Programmpunkt 1"@de ;
-                                                                 ns1:referent "Vorname Name" ;
-                                                                 ns1:time "13.00 – 13.30 Uhr" ;
-                                                                 ns1:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
+                                                                 ns0:referent "Vorname Name" ;
+                                                                 ns0:time "13.00 – 13.30 Uhr" ;
+                                                                 ns0:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
 komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt
 semantische Technologien, um einerseits Patienten zu beschreiben, die an
 einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den spe-
 ziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der
 differenzierten Zu"""^^sysont:Markdown .
 
-ns2:Referenten a foaf:Document ;
+ns3:Referenten a foaf:Document ;
                rdfs:label "REFERENTEN" ;
-               ns1:languageContent ""@de ;
-               ns1:headline "Referenten" .
+               ns0:languageContent ""@de ;
+               ns0:headline "Referenten" .
 
-ns2:Veranstaltungsort a foaf:Document ;
+ns3:Veranstaltungsort a foaf:Document ;
                       rdfs:label "VERANSTALTUNGSORT" ;
-                      ns1:languageContent ""@de ;
-                      ns1:headline "Veranstaltungsort" .
+                      ns0:languageContent ""@de ;
+                      ns0:headline "Veranstaltungsort" .
