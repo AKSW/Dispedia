@@ -1,5 +1,9 @@
-<?php
-    $image = $this->img(array('property' => 'http://xmlns.com/foaf/0.1/logo', 'class' => 'partnerLogo', 'alt' => $this->label));
-
-    echo $this->link(array('uri' => "$this->homepageUrl", 'property' => 'http://xmlns.com/foaf/0.1/homepage', 'class' => 'partnerLink', 'text' => $image, 'direct' => 'true'));
-?>
+<td>
+    <?php
+        $label = $this->literal(array('property' => 'http://www.w3.org/2000/01/rdf-schema#label', 'plain' => true));
+        $image = $this->img(array('property' => 'http://xmlns.com/foaf/0.1/logo', 'class' => 'partnerLogo', 'alt' => $label));
+        
+        $homepageUrl = $this->literal(array('property' => 'http://xmlns.com/foaf/0.1/homepage', 'plain' => true));
+        echo $this->link(array('uri' => $homepageUrl, 'property' => 'http://xmlns.com/foaf/0.1/homepage', 'class' => 'partnerLink', 'text' => $image, 'direct' => 'true'));
+    ?>
+</td>

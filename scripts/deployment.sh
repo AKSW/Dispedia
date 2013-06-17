@@ -34,10 +34,10 @@ sed -i $REPLACEREGEX $SITECONFIG
 ONTOWIKICONFIG="config.ini.dummy"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
 
-# change dispedia site header resource from local to de
+# change ehealthservices2013 site header resource from local to de
 ONTOWIKICONFIG="htdocs/ehealthservices2013/header.phtml"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
 
-# change dispedia site header resource from local to de
+# change ehealthservices2013 site footer resource from local to de
 ONTOWIKICONFIG="htdocs/ehealthservices2013/footer.phtml"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
