@@ -6,48 +6,45 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix ns0: <http://creativecommons.org/ns#> .
-@prefix ns1: <http://ns.ontowiki.net/SysOnt/Site/> .
-@prefix ns2: <http://www.dispedia.local/Site/> .
-@prefix ns3: <http://www.dispedia.de/o/> .
-@prefix ns4: <http://www.ehealth-services-2013.local/> .
+@prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
+@prefix ns1: <http://www.dispedia.local/Site/> .
+@prefix ns2: <http://creativecommons.org/ns#> .
 
-ns1:Schema a owl:Class .
+ns0:Schema a owl:Class .
 
-ns1:SchemaDownload a owl:Class .
+ns0:SchemaDownload a owl:Class .
 
 <http://www.dispedia.local/Site> a owl:Ontology ;
                                  rdfs:label "Dispedia Website" ;
                                  owl:versionInfo "0.1" ;
                                  dct:contributor "Romy Elze", "Lars Eidam", "Marcus Nitzschke" ;
-                                 ns0:license <http://creativecommons.org/licenses/by/3.0/> .
+                                 ns2:license <http://creativecommons.org/licenses/by/3.0/> .
 
-ns2:Contact a foaf:Document ;
+ns1:Contact a foaf:Document ;
             rdfs:label "CONTACT" ;
-            ns1:content """# CONTACT
+            ns0:content """# CONTACT
 
 **Romy Elze**
 
-Telefon: [+49 341 97-32304](tel:+493419732304)<br />
-Telefax: [+49 341 97-32269](tel:+493419732269)<br />
-E-Mail: [elze@informatik.uni-leipzig.de](mailto:elze@informatik.uni-leipzig.de)
+Telefon: +49 341 97-32304<br />
+Telefax: +49 341 97-32269<br />
+E-Mail: elze[@]informatik.uni-leipzig.de
 
-    Universität Leipzig
-    Institut für Informatik
-    Abt. Betriebliche Informationssysteme
-    Augustusplatz 10
-    04109 Leipzig
-    Deutschland
-[http://bis.uni-leipzig.de](http://bis.uni-leipzig.de)
+Universität Leipzig<br />
+Institut für Informatik<br />
+Abt. Betriebliche Informationssysteme<br />
+Augustusplatz 10<br />
+04109 Leipzig<br />
+Deutschland<br />
+[bis.uni-leipzig.de](http://bis.uni-leipzig.de)
 
 Die Universität Leipzig ist eine Körperschaft des öffentlichen Rechts. Sie wird vertreten durch den Rektor. Weitere Informationen, insbesondere zur Aufsichtsbehörde, finden sich im [Impressum der Universität Leipzig](http://www.uni-leipzig.de/info/impressum.html).
 
-    InfAI - Institut für Angewandte Informatik e.V. 
-    Aninstitut an der Universität Leipzig
-    Neumarkt 20, 04109 Leipzig
-[http://www.infai.org](http://www.infai.org)
+InfAI - Institut für Angewandte Informatik e.V. <br />
+Aninstitut an der Universität Leipzig<br />
+Neumarkt 20, 04109 Leipzig<br />
+[www.infai.org](http://www.infai.org)
 
 # HAFTUNGSHINWEIS
 
@@ -77,95 +74,95 @@ Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendu
 
 * [Maxi Bley . www.bleystift.de](http://bleystift.de) - Screendesign
 * [Lars Eidam - LE-HelpDesk](https://github.com/larseidam) - Umsetzung PHP/HTML/CSS"""^^sysont:Markdown ;
-            ns1:template "imprint" .
+            ns0:template "imprint" .
 
-ns2:Header a foaf:Document ;
-           ns1:headline "– ein Framework zur Informationsvermittlung und zum Wissensmanagement für komplexe Erkrankungen"@de, "– A Framework for Knowledge Engineering and Management on complex Diseases"@en ;
-           ns1:title "dispedia.de" .
+ns1:Header a foaf:Document ;
+           ns0:headline "– ein Framework zur Informationsvermittlung und zum Wissensmanagement für komplexe Erkrankungen"@de, "– A Framework for Knowledge Engineering and Management on complex Diseases"@en ;
+           ns0:title "dispedia.de" .
 
-ns2:Home a foaf:Document ;
+ns1:Home a foaf:Document ;
          rdfs:label "HOME" ;
-         ns1:languageContent "Dispedia ist ein Framework zur Informationsvermittlung und zum Wissensmanagement für den komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt semantische Technologien, um einerseits Patienten zu beschreiben, die an einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den speziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der differenzierten Zuordnung der Fakten zu den individuellen Informatoinsbedürfnissen ermöglicht Dispedia eine Informationsvermittlung, die am Typ des Empfängers, seinem Charakter sowie seiner persönlichen Einstellung ausgerichtet ist. Die Beispielerkrankung, an der das Framework anfänglich ausgerichtet war ist die Amyotrophe Lateralsclerose (ALS)."@de, "Dispedia is a framework for information brokering and knowledge management in the complex field of rare diseases. On the one hand, the Dispedia framework uses semantic technologies to describe patients affected by rare diseases, and on the other hand, to record expertise concerning these particular diseases in machine-processable form. In addition to the differentiated attribution of facts to the individual need for information, Dispedia enables information brokering which adjusts to the type of recipient, its character as well as its personal attitude. The framework was initially geared to an exemplified disease, Amyotrophe Lateralsclerose (ALS)."@en ;
-         ns1:headline "WAS IST DISPEDIA?"@de, "WHAT IS DISPEDIA?"@en ;
-         ns1:tableContentR1C1 "ISSUE"@en, "THEMA"@de ;
-         ns1:image "/extensions/site/../../htdocs//dispedia/img/informationFlow_en.png"@en, "/extensions/site/../../htdocs//dispedia/img/informationFlow_de.png"@de ;
-         ns1:tableContentR2C3 "Das Dispedia Vokabular ist ein auf RDF basierendes Datenmodell, über welches Informationen über Patienten mit Informationen über seltene Erkrankungen in Beziehung gesetzt werden und in maschinen lesbarer Form hinterlegt sind."@de, "The Dispedia vocabulary is a data model based on RDF by which information about patients is correlated with information about rare diseases and entered in machine-processable form."@en ;
-         ns1:tableContentR3C1 "Knowledge Management" ;
-         ns1:tableContentR3C2 "Dispedia wiki"@en, "Dispedia Wiki"@de ;
-         ns1:tableContentR3C3 "Auf der Basis des Ontologie-Browsers Ontowiki wurde das Dispedia Wiki entwickelt. Das Dispedia Wiki dient zur Beschaffung, Nutzung und Weiterverwendung von Informationen auf der Basis der Dispedia Ontologie. (vgl. 1.1)"@de, "The Dispedia wiki was developed on the basis of the ontology browser “Ontowiki”. It was designed for the acquisition, application and further use of information based on the Dispedia ontology. (cf. 1.1)"@en ;
-         ns1:tableContentR4C1 "Rare Diseases" ;
-         ns1:tableContentR4C2 "Dispedia architecture"@en, "Dispedia Architektur"@de ;
-         ns1:tableContentR4C3 "Das zugrunde gelegte Dispedia Schema kann durch die semantische Formalisierung in RDF von Maschinen interpretiert und mit anderen Vokabularen kombiniert werden. Die Kombination entsteht durch die Verlinkung der entsprechenden Vokabulare. Auf diese Weise werden Klassifikationen zur Kodierung, zur Patientenbeschreibung sowie zur Beschreibung des Expertenwissens integriert. Durch die Einbeziehung von E-Commerce Schemen wird es möglich weitere Akteure plattformübergreifend zu integrieren. Die Dispedia Architektur kann je nach Anwendungsfocus als Kommunikationsunterstützug zwischen Patient und Versorgern im Internet als auch im Intranet verwendet werden."@de, "Due to the semantic formalization in RDF, the underlain Dispedia schema can be interpreted by machines and combined with other vocabulary. The combination arises out of the link of corresponding vocabulary. That way, classifications for coordination, patient description as well as for the description of expertise are integrated. Further actors can be integrated across platforms due to the inclusion of e-commerce schemes. Depending on the application focus, the Dispedia architecture can be used as communication support between patient and provider on the internet as well as on the intranet."@en ;
-         ns1:tableContentRows "4"^^xsd:integer ;
-         ns1:tableContentColumns "3"^^xsd:integer ;
-         ns1:tableContentR1C2 "BEREICH"@de, "AREA"@en ;
-         ns1:tableContentR1C3 "BESCHREIBUNG"@de, "DESCRIPTION"@en ;
-         ns1:tableContentR2C1 "Knowledge Engineering" ;
-         ns1:tableContentR2C2 "Dispedia Vokabular/Ontologie/Schema"@de, "Dispedia vocabulary/ontology/schema"@en .
+         ns0:languageContent "Dispedia ist ein Framework zur Informationsvermittlung und zum Wissensmanagement für den komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt semantische Technologien, um einerseits Patienten zu beschreiben, die an einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den speziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der differenzierten Zuordnung der Fakten zu den individuellen Informatoinsbedürfnissen ermöglicht Dispedia eine Informationsvermittlung, die am Typ des Empfängers, seinem Charakter sowie seiner persönlichen Einstellung ausgerichtet ist. Die Beispielerkrankung, an der das Framework anfänglich ausgerichtet war ist die Amyotrophe Lateralsclerose (ALS)."@de, "Dispedia is a framework for information brokering and knowledge management in the complex field of rare diseases. On the one hand, the Dispedia framework uses semantic technologies to describe patients affected by rare diseases, and on the other hand, to record expertise concerning these particular diseases in machine-processable form. In addition to the differentiated attribution of facts to the individual need for information, Dispedia enables information brokering which adjusts to the type of recipient, its character as well as its personal attitude. The framework was initially geared to an exemplified disease, Amyotrophe Lateralsclerose (ALS)."@en ;
+         ns0:headline "WAS IST DISPEDIA?"@de, "WHAT IS DISPEDIA?"@en ;
+         ns0:tableContentR1C1 "ISSUE"@en, "THEMA"@de ;
+         ns0:image "/extensions/site/../../htdocs//dispedia/img/informationFlow_en.png"@en, "/extensions/site/../../htdocs//dispedia/img/informationFlow_de.png"@de ;
+         ns0:tableContentR2C3 "Das Dispedia Vokabular ist ein auf RDF basierendes Datenmodell, über welches Informationen über Patienten mit Informationen über seltene Erkrankungen in Beziehung gesetzt werden und in maschinen lesbarer Form hinterlegt sind."@de, "The Dispedia vocabulary is a data model based on RDF by which information about patients is correlated with information about rare diseases and entered in machine-processable form."@en ;
+         ns0:tableContentR3C1 "Knowledge Management" ;
+         ns0:tableContentR3C2 "Dispedia wiki"@en, "Dispedia Wiki"@de ;
+         ns0:tableContentR3C3 "Auf der Basis des Ontologie-Browsers Ontowiki wurde das Dispedia Wiki entwickelt. Das Dispedia Wiki dient zur Beschaffung, Nutzung und Weiterverwendung von Informationen auf der Basis der Dispedia Ontologie. (vgl. 1.1)"@de, "The Dispedia wiki was developed on the basis of the ontology browser “Ontowiki”. It was designed for the acquisition, application and further use of information based on the Dispedia ontology. (cf. 1.1)"@en ;
+         ns0:tableContentR4C1 "Rare Diseases" ;
+         ns0:tableContentR4C2 "Dispedia architecture"@en, "Dispedia Architektur"@de ;
+         ns0:tableContentR4C3 "Das zugrunde gelegte Dispedia Schema kann durch die semantische Formalisierung in RDF von Maschinen interpretiert und mit anderen Vokabularen kombiniert werden. Die Kombination entsteht durch die Verlinkung der entsprechenden Vokabulare. Auf diese Weise werden Klassifikationen zur Kodierung, zur Patientenbeschreibung sowie zur Beschreibung des Expertenwissens integriert. Durch die Einbeziehung von E-Commerce Schemen wird es möglich weitere Akteure plattformübergreifend zu integrieren. Die Dispedia Architektur kann je nach Anwendungsfocus als Kommunikationsunterstützug zwischen Patient und Versorgern im Internet als auch im Intranet verwendet werden."@de, "Due to the semantic formalization in RDF, the underlain Dispedia schema can be interpreted by machines and combined with other vocabulary. The combination arises out of the link of corresponding vocabulary. That way, classifications for coordination, patient description as well as for the description of expertise are integrated. Further actors can be integrated across platforms due to the inclusion of e-commerce schemes. Depending on the application focus, the Dispedia architecture can be used as communication support between patient and provider on the internet as well as on the intranet."@en ;
+         ns0:tableContentRows "4"^^<http://www.w3.org/2001/XMLSchema#integer> ;
+         ns0:tableContentColumns "3"^^<http://www.w3.org/2001/XMLSchema#integer> ;
+         ns0:tableContentR1C2 "BEREICH"@de, "AREA"@en ;
+         ns0:tableContentR1C3 "BESCHREIBUNG"@de, "DESCRIPTION"@en ;
+         ns0:tableContentR2C1 "Knowledge Engineering" ;
+         ns0:tableContentR2C2 "Dispedia Vokabular/Ontologie/Schema"@de, "Dispedia vocabulary/ontology/schema"@en .
 
-<http://www.dispedia.local/Site/Navigation/Header> a ns1:Navigation ;
-                                                   rdf:_1 ns2:Contact ;
+<http://www.dispedia.local/Site/Navigation/Header> a ns0:Navigation ;
+                                                   rdf:_1 ns1:Contact ;
                                                    rdfs:label "Header Navigation" .
 
-<http://www.dispedia.local/Site/Navigation/Main> a ns1:Navigation ;
-                                                 rdf:_1 ns2:Home ;
-                                                 rdf:_2 ns2:Schema ;
+<http://www.dispedia.local/Site/Navigation/Main> a ns0:Navigation ;
+                                                 rdf:_1 ns1:Home ;
+                                                 rdf:_2 ns1:Schema ;
                                                  rdf:_3 <http://www.dispedia.local/page/DEMO> ;
                                                  rdfs:label "Main Navigation" .
 
-<http://www.dispedia.local/Site/Navigation/Schemata> a ns1:Navigation ;
+<http://www.dispedia.local/Site/Navigation/Schemata> a ns0:Navigation ;
                                                      rdf:_1 <http://www.dispedia.local/Site/Schema/DispediaCore> ;
                                                      rdfs:label "Schemata Navigation" .
 
-ns2:NotFound a foaf:Document ;
+ns1:NotFound a foaf:Document ;
              rdfs:label "404" ;
-             ns1:languageContent "Diese Seite ist nicht erreichbar."@de, "Either the site you are trying to reach is not available anymore on this server, or you have tried to access a 'dead' link."@en ;
-             ns1:headline "Site not found"@en, "Seite nicht gefunden"@de .
+             ns0:languageContent "Diese Seite ist nicht erreichbar."@de, "Either the site you are trying to reach is not available anymore on this server, or you have tried to access a 'dead' link."@en ;
+             ns0:headline "Site not found"@en, "Seite nicht gefunden"@de .
 
-ns2:Schema a foaf:Document ;
+ns1:Schema a foaf:Document ;
            rdfs:label "SCHEMA" ;
-           ns1:languageContent "Die Dispedia Architektur besteht aus einer Kern-Ontologie, die die Datensätze zur Integration von Informationen über Patienten und Informationen für Patienten mit seltene Erkrankungen. Das Dispedia Schema (siehe Abbildung) ist unter der Domain www.dispedia.de dereferenzierbar. Für die Verwendung bzw. Instanziierung des Schemas werden die verwendeten Ontologien gegliedert. Da die Sicht auf Patienten und die Beschreibung derer in sehr heterogener Weise, je nach beteiligtem Akteur (z.B. Arzt, Therapeut, Krankenkasse) geschieht, sieht das Dispedia Schema eine Integration von indivduellen Beschreibungen vor. Im Beispiel Amytrophe Lateralsclerose ist diese zum Beispiel die ALS-Functional Rating Scale. Als weitere Ontologie wird die krankheitsspezifische Sammlung von Lösungsvorschlägen für eine bestimmte Krankheit vorgehalten. Im Beispiel ALS ist das Expertenwissen unter der Domain als.dispedia.de zu verwenden. Dieses Konzept ermöglicht eine logische Erweiterung der Wissensbestände um weitere krankheitsspezifische Informationspools, die dann adäquat unter den jeweilen Domains zu finden sind. Die Server-Architektur kann sowohl webbasiert als auch als interne Variante installiert werden."@de, "The Dispedia architecture consists of a core ontology which stores data sets for the integration of information about patients and information for patients with rare diseases. The Dispedia schema (cf. figure 2) is dereferenceable under the domain www.dispedia.de. The used ontologies are structured for the application or, respectively, the instantiation of the schema. As the view on patients and their description take place in a very heterogeneous manner, according to the involved actors (e.g., doctor, therapist, health insurance), the Dispedia schema provides an integration of individual descriptions. For the example of Amytrophe Lateralsclerose, this could be the ALS-Functional Rating Scale. The disease- specific collection of suggested solutions of a particular disease is used as an additional ontology. In the case of ALS, the expertise is found under the domain. This concept enables a logical extension of knowledge for the development of further disease-specific information pools, which then can be adequately found under the respective domains. Furthermore, the server architecture can be installed both web-based and as internal alternative."@en ;
-           ns1:headline "SCHEMA"@en, "SCHEMA"@de ;
-           ns1:image "/extensions/site/../../htdocs/dispedia/img/dispediaOverview.png" ;
-           ns1:template "schemata" ;
-           ns1:downloadHeadline "Download" ;
-           ns1:documentation "Documentation"@en, "Dokumentation"@de .
+           ns0:languageContent "Die Dispedia Architektur besteht aus einer Kern-Ontologie, die die Datensätze zur Integration von Informationen über Patienten und Informationen für Patienten mit seltene Erkrankungen. Das Dispedia Schema (siehe Abbildung) ist unter der Domain www.dispedia.de dereferenzierbar. Für die Verwendung bzw. Instanziierung des Schemas werden die verwendeten Ontologien gegliedert. Da die Sicht auf Patienten und die Beschreibung derer in sehr heterogener Weise, je nach beteiligtem Akteur (z.B. Arzt, Therapeut, Krankenkasse) geschieht, sieht das Dispedia Schema eine Integration von indivduellen Beschreibungen vor. Im Beispiel Amytrophe Lateralsclerose ist diese zum Beispiel die ALS-Functional Rating Scale. Als weitere Ontologie wird die krankheitsspezifische Sammlung von Lösungsvorschlägen für eine bestimmte Krankheit vorgehalten. Im Beispiel ALS ist das Expertenwissen unter der Domain als.dispedia.de zu verwenden. Dieses Konzept ermöglicht eine logische Erweiterung der Wissensbestände um weitere krankheitsspezifische Informationspools, die dann adäquat unter den jeweilen Domains zu finden sind. Die Server-Architektur kann sowohl webbasiert als auch als interne Variante installiert werden."@de, "The Dispedia architecture consists of a core ontology which stores data sets for the integration of information about patients and information for patients with rare diseases. The Dispedia schema (cf. figure 2) is dereferenceable under the domain www.dispedia.de. The used ontologies are structured for the application or, respectively, the instantiation of the schema. As the view on patients and their description take place in a very heterogeneous manner, according to the involved actors (e.g., doctor, therapist, health insurance), the Dispedia schema provides an integration of individual descriptions. For the example of Amytrophe Lateralsclerose, this could be the ALS-Functional Rating Scale. The disease- specific collection of suggested solutions of a particular disease is used as an additional ontology. In the case of ALS, the expertise is found under the domain. This concept enables a logical extension of knowledge for the development of further disease-specific information pools, which then can be adequately found under the respective domains. Furthermore, the server architecture can be installed both web-based and as internal alternative."@en ;
+           ns0:headline "SCHEMA"@en, "SCHEMA"@de ;
+           ns0:image "/extensions/site/../../htdocs/dispedia/img/dispediaOverview.png" ;
+           ns0:template "schemata" ;
+           ns0:downloadHeadline "Download" ;
+           ns0:documentation "Documentation"@en, "Dokumentation"@de .
 
-<http://www.dispedia.local/Site/Schema/DispediaCore> a ns1:Schema ;
+<http://www.dispedia.local/Site/Schema/DispediaCore> a ns0:Schema ;
                                                      rdfs:label "Dispedia Schema Browser" ;
-                                                     ns1:download <http://www.dispedia.local/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> ;
-                                                     ns1:file "dispediaCore_de.html"@de, "dispediaCore_en.html"@en ;
-                                                     ns1:downloadLabel "Dispedia Core Files" ;
-                                                     ns1:template "schema" ;
-                                                     ns1:downloadText "Das Dispedia Schema enthält die Systemklassen der Informationsflüsse, d.h. Klassen zur Beschreibung des Patienten sowie Klassen zur Beschreibung von Indikationen. Zum Dispedia Schema gehört die Core Ontology sowie Erweiterungsontologien, die bekannte Entwicklungsbereiche offen halten. Für die Beschreibung des Gesundheitszustandes des Patienten können verschiedene standardisierte Klassifikationen zur Beurteilung herange-zogen werden. Die bisher realisierten Beschreibungsschemen werden über die jeweiligen Wrapper eingebunden. Zum Dispedia Schema gehört demzufolge die disCoreWrap-perAlsfrs.xml. Dieser Teil der Ontology, der die Klassifikation nach ALSFRS einbindet sowie die disCoreWrapperIcf.xml, welche die Klassifikation nach ICF einbindet. Standardisierte Klassifikationen zu nicht medizinischen Umfeldkategorien wie z.B. Wohnraum-Eigenschaften gibt es bisher nicht, diese sind hier über die Datei dispediaCoreConditions.xml eingebunden. Dieses Vokabular muss perspektivisch erweitert und standardisiert werden."@de, "The Dispedia schema contains the system classes of information flows meaning classes for the description of patients as well as classes for the description of indications. The Core Ontology and extended ontologies, which leave out established development areas, are part of the Dispedia schema. For the description of the patients’ state of health, different standardized classifications can be used for evaluation. The description schemata realized so far are integrated via the respective wrapper. Hence, the disCoreWrapperAlsfrs.xml, which is a part of the ontology integrating the classification according to ALFERS, and the disCoreWrapperIcf.xml integrating the classification according to ICF belong to the Dispedia schema as well. Standardized classifications for non-medical environment categories, e.g., housing properties, do not exist up to now. These categories are integrated via the file dispediaCoreConditions.xml. This vocabulary has to be perspectively extended and standardized."@en .
+                                                     ns0:download <http://www.dispedia.local/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> ;
+                                                     ns0:file "dispediaCore_de.html"@de, "dispediaCore_en.html"@en ;
+                                                     ns0:downloadLabel "Dispedia Core Files" ;
+                                                     ns0:template "schema" ;
+                                                     ns0:downloadText "Das Dispedia Schema enthält die Systemklassen der Informationsflüsse, d.h. Klassen zur Beschreibung des Patienten sowie Klassen zur Beschreibung von Indikationen. Zum Dispedia Schema gehört die Core Ontology sowie Erweiterungsontologien, die bekannte Entwicklungsbereiche offen halten. Für die Beschreibung des Gesundheitszustandes des Patienten können verschiedene standardisierte Klassifikationen zur Beurteilung herange-zogen werden. Die bisher realisierten Beschreibungsschemen werden über die jeweiligen Wrapper eingebunden. Zum Dispedia Schema gehört demzufolge die disCoreWrap-perAlsfrs.xml. Dieser Teil der Ontology, der die Klassifikation nach ALSFRS einbindet sowie die disCoreWrapperIcf.xml, welche die Klassifikation nach ICF einbindet. Standardisierte Klassifikationen zu nicht medizinischen Umfeldkategorien wie z.B. Wohnraum-Eigenschaften gibt es bisher nicht, diese sind hier über die Datei dispediaCoreConditions.xml eingebunden. Dieses Vokabular muss perspektivisch erweitert und standardisiert werden."@de, "The Dispedia schema contains the system classes of information flows meaning classes for the description of patients as well as classes for the description of indications. The Core Ontology and extended ontologies, which leave out established development areas, are part of the Dispedia schema. For the description of the patients’ state of health, different standardized classifications can be used for evaluation. The description schemata realized so far are integrated via the respective wrapper. Hence, the disCoreWrapperAlsfrs.xml, which is a part of the ontology integrating the classification according to ALFERS, and the disCoreWrapperIcf.xml integrating the classification according to ICF belong to the Dispedia schema as well. Standardized classifications for non-medical environment categories, e.g., housing properties, do not exist up to now. These categories are integrated via the file dispediaCoreConditions.xml. This vocabulary has to be perspectively extended and standardized."@en .
 
-ns2:ServiceOntology a ns1:Schema ;
+ns1:ServiceOntology a ns0:Schema ;
                     rdfs:label "Service Ontology" ;
-                    ns1:file "serviceOntology.html" ;
-                    ns1:template "schema" .
+                    ns0:file "serviceOntology.html" ;
+                    ns0:template "schema" .
 
-ns2:ServiceOntologyHC a ns1:Schema ;
+ns1:ServiceOntologyHC a ns0:Schema ;
                       rdfs:label "Service Ontology HC" ;
-                      ns1:file "serviceOntologyHC.html" ;
-                      ns1:template "schema" .
+                      ns0:file "serviceOntologyHC.html" ;
+                      ns0:template "schema" .
 
-ns2:Welcome rdfs:label "Willkommen"@de, "Welcome"@en .
+ns1:Welcome rdfs:label "Willkommen"@de, "Welcome"@en .
 
-<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> a ns1:SchemaDownload ;
+<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> a ns0:SchemaDownload ;
                                                                             rdfs:label "disCoreWrapperAlsfrs.xml" ;
-                                                                            ns1:index "3"^^xsd:integer .
+                                                                            ns0:index "3"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
-<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf> a ns1:SchemaDownload ;
+<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf> a ns0:SchemaDownload ;
                                                                          rdfs:label "disCoreWrapperIcf.xml" ;
-                                                                         ns1:index "4"^^xsd:integer .
+                                                                         ns0:index "4"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
-<http://www.dispedia.local/dispedia/download?ontology=dispediaCore> a ns1:SchemaDownload ;
+<http://www.dispedia.local/dispedia/download?ontology=dispediaCore> a ns0:SchemaDownload ;
                                                                     rdfs:label "dispediaCore.xml" ;
-                                                                    ns1:index "1"^^xsd:integer .
+                                                                    ns0:index "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
-<http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> a ns1:SchemaDownload ;
+<http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> a ns0:SchemaDownload ;
                                                                               rdfs:label "dispediaCoreConditions.xml" ;
-                                                                              ns1:index "2"^^xsd:integer .
+                                                                              ns0:index "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
 rdf:_1 a rdfs:ContainerMembershipProperty ;
        rdfs:label "1." .
@@ -200,4 +197,4 @@ rdf:_9 a rdfs:ContainerMembershipProperty ;
 rdf:type a owl:ObjectProperty ;
          rdfs:label "typ"@de, "type"@en .
 
-foaf:Document ns1:classTemplate "document" .
+foaf:Document ns0:classTemplate "document" .
