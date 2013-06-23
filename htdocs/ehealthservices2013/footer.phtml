@@ -1,7 +1,7 @@
 <div id="footer">
     
     <div id="footerDivPartner">
-        <?php echo $this->link(array('uri' => 'http://www.ehealth-services-2013.de/Partners', 'tag' => 'span', 'class' => 'footerLink')); ?>
+        <span class="footerLink">PARTNER</span>
     </div>
     <div id="footerDivImpressum">
         <?php echo $this->link(array('uri' => 'http://www.ehealth-services-2013.de/Impressum', 'tag' => 'span', 'class' => 'footerLink')); ?>
@@ -19,7 +19,8 @@
                         ?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Partner> .
                         ?resourceUri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
                         ?resourceUri <http://xmlns.com/foaf/0.1/homepage> ?homepageUrl .
-                    }';
+                    }
+                    ORDER BY ASC(?resourceUri)';
                     $partners = $this->querylist($queryForPartnerss, 'ehealthservices2013/items/partner.phtml');
                     echo $partners
                     ?>

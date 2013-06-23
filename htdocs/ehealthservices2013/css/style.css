@@ -26,10 +26,10 @@ body {
     background-image: linear-gradient(top, #21576b 0%, #007891 100%);
 }
 #header {
-    background-image: url(/htdocs/dispedia/img/dispedia_Logo_Bildmarke_transparent.png);
+    background-image: url(/htdocs/ehealthservices2013/img/SEeH_website2013_Header_1600px.png);
+    background-position: 0 0.5em;
     background-repeat: no-repeat;
-    background-position: 115% 0;
-    background-size: 250px auto;
+    background-size: 100% auto;
     
 }
 #header,
@@ -44,8 +44,7 @@ body {
 }
 
 /* grey text */
-#headerLang,
-#headerTitle .second {
+#headerLang{
     color: #93A0A7;
 }
 /* dark grey text */
@@ -53,7 +52,7 @@ body {
      color: #6d6d6d;
 }
 /* darker grey text */
-#footer a {
+#footer * {
      color: #949494;
 }
 /* blue text */
@@ -62,7 +61,6 @@ body {
     color: #00A3C6;
 }
 /* dark blue text */
-#headerTitle .first,
 #headerText,
 #mainNavigation a {
     color: #21576b;
@@ -72,17 +70,21 @@ body {
 footer {
     color: #FFF;
 }
-/* font-family */
-#headerTitle,
+/* font-family Varela Round */
 #headerText,
-#mainNavigation a,
-.content h1,
-#footer {
+.content h1 {
     font-family: 'Varela Round', sans-serif;
 }
 
+/* font-family Varela Round */
+#mainNavigation a,
+.content,
+#footer {
+    font-family: 'Droid Sans', sans-serif;
+}
+
 .wrapper {
-    width: 70%;
+    width: 57em;
     margin: 0px auto;
 }
 
@@ -92,46 +94,23 @@ footer {
 }
 
 #header {
-    min-height: 11em;
-    padding: 0.5em;
-    padding-right: 0.9em;
-}
-
-#headerImage img {
-    height: 120px;
-    padding-left: 40px;
-    padding-top: 10px;
-    vertical-align: middle;
-}
-
-#headerTitle {
-    float: left;
-}
-#headerTitle .first {
-    float: left;
-    font-size: 4em;
-    padding-left: 0.3em;
-}
-#headerTitle .second {
-    float: left;
-    font-size: 1.2em;
-    margin-left: 1em;
-    margin-top: 0.7em;
-}
-#headerTitle .second span {
-    vertical-align: middle;
+    height: 10.3em;
+    padding: 0.5em 0.9em 0em 0.5em;
 }
 
 #headerText {
     font-size: 1.8em;
     float: right;
+    line-height: 1.2em;
     text-align: right;
 }
 #headerText .headerTextHeadline {
-    margin-top: 2em;
+    margin-top: 0.7em;
 }
 #headerText span.highlighted {
     font-size: 0.852em;
+    line-height: 1em;
+    vertical-align: top;
 }
 
 #mainNavigation {
@@ -171,7 +150,6 @@ footer {
 
 .content {
     min-height: 15em;
-    overflow: auto;
     padding: 0.9em;
 }
 
@@ -242,6 +220,7 @@ footer {
     padding: 0em 1em;
 }
 #footerDivPartnerLogos a img {
+    border: solid black 0px;
     height: auto;
     width: 100%;
 }
