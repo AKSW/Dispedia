@@ -24,7 +24,7 @@ ns3:Anmeldung a foaf:Document ;
               ns0:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax möglich. Hier finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
 0341/9732329<br />
 <br />
-Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu.<br />
+Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu. Weitere Details sind dem Fax-Dokument zu entnehmen.<br />
 <br />
 Teilnahmegebühren belaufen sich auf:<br />
 • Frühbucher: 590€<br />
@@ -34,13 +34,11 @@ Teilnahmegebühren belaufen sich auf:<br />
 ns3:Header a foaf:Document ;
            rdfs:label "Header" ;
            ns0:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
-Integrierte Versorgung Quo Vadis?</span><br />26. September '13<br />Universität Leipzig"""@de ;
-           ns0:title "SEeH" ;
-           ns0:titleline "Service Engineering<br />for eHealth" .
+Integrierte Versorgung Quo Vadis?</span><br />26. September '13<br />Universität Leipzig"""@de .
 
 ns3:Home a foaf:Document ;
          rdfs:label "HOME" ;
-         ns0:languageContent "Unter dem Motto „eHealth Services – Nutzen für den Patienten“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
+         ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung Quo Vadis?“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
          ns0:headline "Workshop eHealth" ;
          ns0:template "home" .
 
@@ -49,26 +47,14 @@ ns3:Impressum a foaf:Document ;
               ns0:headline "Impressum" ;
               ns0:content """# IMPRESSUM
 
-**Romy Elze**
+Telefon: +49 341 97-32304<br />
+Telefax: +49 341 97-32269<br />
+E-Mail: elze[@]informatik.uni-leipzig.de
 
-Telefon: [+49 341 97-32304](tel:+493419732304)<br />
-Telefax: [+49 341 97-32269](tel:+493419732269)<br />
-E-Mail: [elze@informatik.uni-leipzig.de](mailto:elze@informatik.uni-leipzig.de)
-
-    Universität Leipzig
-    Institut für Informatik
-    Abt. Betriebliche Informationssysteme
-    Augustusplatz 10
-    04109 Leipzig
-    Deutschland
-[http://bis.uni-leipzig.de](http://bis.uni-leipzig.de)
-
-Die Universität Leipzig ist eine Körperschaft des öffentlichen Rechts. Sie wird vertreten durch den Rektor. Weitere Informationen, insbesondere zur Aufsichtsbehörde, finden sich im [Impressum der Universität Leipzig](http://www.uni-leipzig.de/info/impressum.html).
-
-    InfAI - Institut für Angewandte Informatik e.V. 
-    Aninstitut an der Universität Leipzig
-    Neumarkt 20, 04109 Leipzig
-[http://www.infai.org](http://www.infai.org)
+InfAI - Institut für Angewandte Informatik e.V. <br />
+Aninstitut an der Universität Leipzig<br />
+Neumarkt 20, 04109 Leipzig<br />
+[www.infai.org](http://www.infai.org)
 
 # HAFTUNGSHINWEIS
 
@@ -108,7 +94,7 @@ Abt. Betriebliche Informationssysteme<br />
 <br />
 Nicole Michel<br />
 <br />
-E-Mail: … (folgt noch)""" ;
+E-Mail: <a href=\"mailto:%6D%69%63%68%65%6C%40%69%6E%66%61%69%2E%6F%72%67\">michel[@]infai.org</a>""" ;
             ns0:headline "Kontakt" .
 
 <http://www.ehealth-services-2013.de/Navigation/Main> a ns0:Navigation ;
@@ -130,10 +116,7 @@ ns1:InfAI a ns3:Partner ;
           foaf:homepage <http://infai.org> ;
           foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/logo-infai.png> .
 
-ns1:Sabre a ns3:Partner ;
-          rdfs:label "Software Agents and Services for Business, Research, and E-Sciences"@en ;
-          foaf:homepage <http://sabre2013.infai.org> ;
-          foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/sabre.png> .
+ns1:Sabre rdfs:label "Software Agents and Services for Business, Research, and E-Sciences"@en .
 
 ns1:UniversityLeipzig a ns3:Partner ;
                       rdfs:label "Universität Leipzig"@de ;
@@ -149,12 +132,6 @@ ns1:vitalServices a ns3:Partner ;
                   rdfs:label "Vital Services" ;
                   foaf:homepage <http://www.vital-services.de/> ;
                   foaf:logo <http://www.ehealth-services-2013.de/htdocs/ehealthservices2013/img/logo.vital.services.GmbH.RGB.gross.jpg> .
-
-ns3:Partners a foaf:Document ;
-             rdfs:label "PARTNER" ;
-             ns0:headline "Partner" ;
-             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Partner>.\" template=\"partner\"}}"^^sysont:Markdown ;
-             ns0:template "partner" .
 
 ns3:Programm a foaf:Document ;
              rdfs:label "PROGRAMM" ;
