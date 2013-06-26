@@ -244,8 +244,8 @@
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;containsProposalComponent">
-        <rdfs:label xml:lang="de">enthält Aktion</rdfs:label>
-        <rdfs:label xml:lang="en">contains action</rdfs:label>
+        <rdfs:label xml:lang="de">enthält Komponente</rdfs:label>
+        <rdfs:label xml:lang="en">contains component</rdfs:label>
         <rdfs:comment xml:lang="de">Die Objekteigenschaft weist eine Vorschlags-Komponente einem Vorschlag zu.</rdfs:comment>
         <rdfs:comment xml:lang="en">The ObjectProperty assigns an proposal component to a proposal.</rdfs:comment>
         <rdfs:domain rdf:resource="&dispediao;Proposal"/>
@@ -300,8 +300,8 @@
         <rdfs:label xml:lang="en">contains Proposal Description Text</rdfs:label>
         <rdfs:comment xml:lang="de">Diese Objekteigenschaft ordnet einer Vorschlags-Komponente einen Informationstext zu.</rdfs:comment>
         <rdfs:comment xml:lang="en">This ObjectProperty assigns a proposal description to a proposal component.</rdfs:comment>
-        <rdfs:range rdf:resource="&dispediao;ProposalComponent"/>
-        <rdfs:domain rdf:resource="&dispediao;ProposalDescription"/>
+        <rdfs:domain rdf:resource="&dispediao;ProposalComponent"/>
+        <rdfs:range rdf:resource="&dispediao;ProposalDescription"/>
         <rdfs:subPropertyOf rdf:resource="&dispediao;contains"/>
     </owl:ObjectProperty>
 
@@ -333,8 +333,8 @@
     </owl:ObjectProperty>
 
     <owl:ObjectProperty rdf:about="&dispediao;successorOfProposalComponent">
-        <rdfs:label xml:lang="de">Nachfolger der Handlung</rdfs:label>
-        <rdfs:label xml:lang="en">successor of action</rdfs:label>
+        <rdfs:label xml:lang="de">Nachfolger der Komponente</rdfs:label>
+        <rdfs:label xml:lang="en">successor of component</rdfs:label>
         <rdfs:comment xml:lang="de">Diese Objekteigenschaft beschreibt eine Vorschlags-Komponente als zeitlichen Nachfolger einer anderen Vorschlags-Komponente.</rdfs:comment>
         <rdfs:comment xml:lang="en">This ObjectProperty describes a proposal component as the successor of an other proposal component.</rdfs:comment>
         <rdfs:range rdf:resource="&dispediao;ProposalComponent"/>

@@ -11,12 +11,11 @@
  */
 
 // this is the standard template data
-$templateData = $this->templateData;
 ?><!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $templateData['title'] ?> &mdash; <?php echo $this->siteConfig['name'] ?></title>
+    <title><?php echo $this->templateData['title'] ?> &mdash; <?php echo $this->siteConfig['name'] ?></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,7 +29,9 @@ $templateData = $this->templateData;
     
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo $this->baseUri ?>/css/style.css" title="Standard" />
-    <!-- <link type="text/css" href="<?php echo $this->baseUri ?>/css/bootstrap.css" rel="stylesheet" /> -->
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" type="text/css" media="all" href="<?php echo $this->baseUri ?>/css/style_ie_5.5-8.css" title="Standard" />
+    <![endif]--> 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -63,8 +64,15 @@ $templateData = $this->templateData;
                 );
             echo $this->navigationList($navOptions);
         ?>
+
+        <div id="logo-LtdAI">
+            <a href="http://infai.org/de/Veranstaltungen">
+                <img src="/htdocs/ehealthservices2013/img/logo-LtdAI.jpg">
+            </a>
+        </div>
+     
         <?php echo $this->renderx(); ?>
-        
+
         <div class="clear"></div>
         <?php echo $this->partial('ehealthservices2013/footer.phtml', $this->templateData) ?>
     </div>

@@ -1,0 +1,9 @@
+#header {
+    background: url('/htdocs/ehealthservices2013/img/SEeH_website2013_Header_1600px.png');
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://ehealth-services-2013.local/htdocs/ehealthservices2013/img/SEeH_website2013_Header_1600px.png',sizingMethod='scale');
+    -ms-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://ehealth-services-2013.local/htdocs/ehealthservices2013/img/SEeH_website2013_Header_1600px.png',sizingMethod='scale');
+}
+
+#mainNavigation .nav {
+    background-color: #FFF;
+}

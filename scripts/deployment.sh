@@ -14,10 +14,6 @@ sed -i $REPLACEREGEX $SITECONFIG
 ONTOWIKICONFIG="config.ini.dummy"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
 
-# change dispedia site header resource from local to de
-ONTOWIKICONFIG="htdocs/dispedia/header.phtml"
-sed -i $REPLACEREGEX $ONTOWIKICONFIG
-
 
 ########### eHealthServices2013 Site ###########
 # change eHealthServices2013 Site Ontology URIs from local to de
@@ -32,12 +28,4 @@ sed -i $REPLACEREGEX $SITECONFIG
 
 # change Ontowiki config.ini.dummy namespace eHealthServices2013 Site Ontology from local to de
 ONTOWIKICONFIG="config.ini.dummy"
-sed -i $REPLACEREGEX $ONTOWIKICONFIG
-
-# change ehealthservices2013 site header resource from local to de
-ONTOWIKICONFIG="htdocs/ehealthservices2013/header.phtml"
-sed -i $REPLACEREGEX $ONTOWIKICONFIG
-
-# change ehealthservices2013 site footer resource from local to de
-ONTOWIKICONFIG="htdocs/ehealthservices2013/footer.phtml"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
