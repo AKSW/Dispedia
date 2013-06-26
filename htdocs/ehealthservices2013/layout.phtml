@@ -65,8 +65,15 @@ $templateData = $this->templateData;
                 );
             echo $this->navigationList($navOptions);
         ?>
+
+        <div id="logo-LtdAI">
+            <a href="http://infai.org/de/Veranstaltungen">
+                <img src="/htdocs/ehealthservices2013/img/logo-LtdAI.jpg">
+            </a>
+        </div>
+     
         <?php echo $this->renderx(); ?>
-        
+
         <div class="clear"></div>
         <?php echo $this->partial('ehealthservices2013/footer.phtml', $this->templateData) ?>
     </div>
