@@ -30,7 +30,9 @@ $templateData = $this->templateData;
     
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo $this->baseUri ?>/css/style.css" title="Standard" />
-    <!-- <link type="text/css" href="<?php echo $this->baseUri ?>/css/bootstrap.css" rel="stylesheet" /> -->
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" type="text/css" media="all" href="<?php echo $this->baseUri ?>/css/style_ie_5.5-8.css" title="Standard" />
+    <![endif]--> 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

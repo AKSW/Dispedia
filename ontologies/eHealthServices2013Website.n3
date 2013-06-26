@@ -128,6 +128,11 @@ ns1:eVAA a ns3:Partner ;
          foaf:homepage <http://www.evaaa.de/> ;
          foaf:logo <http://www.ehealth-services-2013.local/htdocs/ehealthservices2013/img/logo.eVAA.mit.text.RGB.jpg> .
 
+ns1:imise a ns3:Partner ;
+          rdfs:label "Institut für Medizinische Informatik, Statistik und Epidemiologie"@de ;
+          foaf:homepage <http://www.imise.uni-leipzig.de> ;
+          foaf:logo <http://www.ehealth-services-2013.local/htdocs/ehealthservices2013/img/logo-imise.png> .
+
 ns1:vitalServices a ns3:Partner ;
                   rdfs:label "Vital Services" ;
                   foaf:homepage <http://www.vital-services.de/> ;

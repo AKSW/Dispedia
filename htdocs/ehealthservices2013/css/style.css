@@ -117,6 +117,7 @@ footer {
     height: 3em;
     margin-top: 1px;
     width: 100%;
+    display: block;
 }
 
 #mainNavigation ul {
@@ -218,6 +219,9 @@ footer {
 }
 #footerDivPartnerLogos table td {
     padding: 0em 1em;
+}
+#footerDivPartnerLogos table td:first-child {
+    width: 25%;
 }
 #footerDivPartnerLogos a img {
     border: solid black 0px;
