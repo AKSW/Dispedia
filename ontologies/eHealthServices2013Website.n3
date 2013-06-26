@@ -34,11 +34,11 @@ Teilnahmegebühren belaufen sich auf:<br />
 ns3:Header a foaf:Document ;
            rdfs:label "Header" ;
            ns0:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
-Integrierte Versorgung Quo Vadis?</span><br />26. September '13<br />Universität Leipzig"""@de .
+Integrierte Versorgung quo vadis?</span><br />26. September '13<br />Universität Leipzig"""@de .
 
 ns3:Home a foaf:Document ;
          rdfs:label "HOME" ;
-         ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung Quo Vadis?“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
+         ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
          ns0:headline "Workshop eHealth" ;
          ns0:template "home" .
 
