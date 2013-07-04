@@ -84,7 +84,7 @@ class DispediaController extends OntoWiki_Controller_Component
         */
         
        // An welche Adresse sollen die Mails gesendet werden?
-       $zieladresse = 'lars.eidam@googlemail.com';
+       $zieladresse = 'lars.eidam@studserv.uni-leipzig.de';
        
        // Welche Adresse soll als Absender angegeben werden?
        // (Manche Hoster lassen diese Angabe vor dem Versenden der Mail ueberschreiben)
@@ -98,7 +98,7 @@ class DispediaController extends OntoWiki_Controller_Component
        
        // Zu welcher Seite soll als "Danke-Seite" weitergeleitet werden?
        // Wichtig: Sie muessen hier eine gueltige HTTP-Adresse angeben!
-       $urlDankeSeite = 'http://www.ehealth-services-2013.local/Danke.html';
+       $urlDankeSeite = '/Danke.html';
        
        // Welche(s) Zeichen soll(en) zwischen dem Feldnamen und dem angegebenen Wert stehen?
        $trenner = ":\t"; // Doppelpunkt + Tabulator
