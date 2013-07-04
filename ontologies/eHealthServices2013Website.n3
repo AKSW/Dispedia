@@ -12,6 +12,7 @@
 @prefix ns2: <http://creativecommons.org/ns#> .
 @prefix ns1: <http://www.ehealth-services-2013.local/Partner/> .
 @prefix ns3: <http://www.ehealth-services-2013.local/> .
+@prefix ns4: <http://www.ehealth-services-2013.local/p/> .
 
 <> a owl:Ontology ;
    rdfs:label "eHealth Services 2013 Website" ;
@@ -21,15 +22,21 @@
 
 ns3:Anmeldung a foaf:Document ;
               rdfs:label "ANMELDUNG" ;
-              ns0:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax möglich. Hier finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
+              ns0:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax oder Online-Formular möglich.<br /><br /><a href=\"http://www.ehealth-services-2013.local/dispedia/downloadpdf?name=faxanmeldung\">Hier</a> finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
 0341/9732329<br />
 <br />
 Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu. Weitere Details sind dem Fax-Dokument zu entnehmen.<br />
-<br />
+<!--<br />
 Teilnahmegebühren belaufen sich auf:<br />
 • Frühbucher: 590€<br />
-• Normal: 690€"""@de ;
-              ns0:headline "Anmeldung" .
+• Normal: 690€-->"""@de ;
+              ns0:headline "Anmeldung" ;
+              ns0:template "registration" .
+
+ns3:Danke a foaf:Document ;
+          rdfs:label "DANKE" ;
+          ns0:languageContent "Vielen Dank für Ihre Anmeldung"@de ;
+          ns0:headline "Vielen Dank" .
 
 ns3:Header a foaf:Document ;
            rdfs:label "Header" ;
@@ -38,7 +45,7 @@ Integrierte Versorgung quo vadis?</span><br />26. September '13<br />Universitä
 
 ns3:Home a foaf:Document ;
          rdfs:label "HOME" ;
-         ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am 26.09.2013 ein eintägiger Workshop statt, zu dem Referenten aus den verschieden Bereichen des Gesundheitswesens (Wissenschaft, Nutzer, Politik und Industrie) Einblick in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen geben. Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten,  neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
+         ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am 26.09.2013 ein eintägiger Workshop in Leipzig statt. Die Referenten werden Einblicke in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen aus den Blickwinkeln der Wissenschaft, der Nutzer, der Politik und der Industrie geben. Die Schwerpunktthemen des Workshops sind innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten, neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
          ns0:headline "Workshop eHealth" ;
          ns0:template "home" .
 
@@ -92,9 +99,9 @@ ns3:Kontakt a foaf:Document ;
 Institut für Informatik<br />
 Abt. Betriebliche Informationssysteme<br />
 <br />
-Nicole Michel<br />
+Ulrike Weber<br />
 <br />
-E-Mail: <a href=\"mailto:%6D%69%63%68%65%6C%40%69%6E%66%61%69%2E%6F%72%67\">michel[@]infai.org</a>""" ;
+E-Mail: <a href=\"mailto:%75%77%65%62%65%72%40%69%6E%66%6F%72%6D%61%74%69%6B%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">uweber[@]informatik.uni-leipzig.de</a>""" ;
             ns0:headline "Kontakt" .
 
 <http://www.ehealth-services-2013.local/Navigation/Main> a ns0:Navigation ;
@@ -141,37 +148,58 @@ ns1:vitalServices a ns3:Partner ;
 ns3:Programm a foaf:Document ;
              rdfs:label "PROGRAMM" ;
              ns0:headline "Programm" ;
-             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.local/Program>.\" template=\"program\"}}"^^sysont:Markdown ;
+             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.local/Program>.\" orderby=\"ASC(?resourceUri)\" template=\"program\"}}"^^sysont:Markdown ;
              ns0:template "program" .
 
-<http://www.ehealth-services-2013.local/Programm/EroeffnungundBegrueßung> a ns3:Program ;
-                                                                           rdfs:label "Eröffnung und Begrüßung der Teilnehmer"@de ;
-                                                                           ns0:referent "Vorname Name" ;
-                                                                           ns0:time "10.00 – 12.00 Uhr" ;
-                                                                           ns0:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
-komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt
-semantische Technologien, um einerseits Patienten zu beschreiben, die an
-einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den spe-
-ziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der
-differenzierten."""^^sysont:Markdown .
+<http://www.ehealth-services-2013.local/Programm/1FinanzierungvoneHealthDienstleistungen> a ns3:Program ;
+                                                                                          rdfs:label "Finanzierung von eHealth Dienstleistungen, (Telemedizin, elektronische Beratung, u.a.)"@de ;
+                                                                                          ns0:referent " " ;
+                                                                                          ns0:time "9:00 – 10:45" ;
+                                                                                          ns0:content " "^^sysont:Markdown ;
+                                                                                          ns4:view "Krankenkassen / Politik"@de .
 
-<http://www.ehealth-services-2013.local/Programm/Programmpunkt1> a ns3:Program ;
-                                                                 rdfs:label "Programmpunkt 1"@de ;
-                                                                 ns0:referent "Vorname Name" ;
-                                                                 ns0:time "13.00 – 13.30 Uhr" ;
-                                                                 ns0:content """Workshop zur Informationsvermittlung und zum Wissensmanagement für den
-komplexen Bereich seltener Erkrankungen. Das Dispedia Framework nutzt
-semantische Technologien, um einerseits Patienten zu beschreiben, die an
-einer seltenen Erkrankung leiden und andererseits Expertenwissen zu den spe-
-ziellen Krankheiten in maschinen-verständlicher Form zu erfassen. Neben der
-differenzierten Zu"""^^sysont:Markdown .
+<http://www.ehealth-services-2013.local/Programm/2KrankenhausinformationssystemeundderenambulanteVernetzung> a ns3:Program ;
+                                                                                                             rdfs:label "Krankenhausinformationssysteme und deren ambulante Vernetzung (Ambulante Einweisung, Überleitung)"@de ;
+                                                                                                             ns0:time "11:00– 12:30" ;
+                                                                                                             ns0:content " "^^sysont:Markdown ;
+                                                                                                             ns4:view "Softwareanbieter KIS"@de .
+
+<http://www.ehealth-services-2013.local/Programm/3AktuellerStanddermedizinischenInfrastruktur> a ns3:Program ;
+                                                                                               rdfs:label "Aktueller Stand der medizinischen Infrastruktur (EFA, Telematikinfrastruktur)"@de ;
+                                                                                               ns0:time "13:30 – 15:00" ;
+                                                                                               ns0:content " "^^sysont:Markdown ;
+                                                                                               ns4:view "technische Gesamtplanung"@de .
+
+<http://www.ehealth-services-2013.local/Programm/4MedizinischeDienstleistungenausPatientensicht> a ns3:Program ;
+                                                                                                 rdfs:label "Medizinische Dienstleistungen aus Patientensicht (Studienergebnisse komplexe Krankheitsverläufe)"@de ;
+                                                                                                 ns0:time "15:15 – 16:30" ;
+                                                                                                 ns0:content " "^^sysont:Markdown ;
+                                                                                                 ns4:view "Patientensicht"@de .
+
+<http://www.ehealth-services-2013.local/Programm/EroeffnungundBegrueßung> rdfs:label "Eröffnung und Begrüßung der Teilnehmer"@de .
+
+<http://www.ehealth-services-2013.local/Programm/Programmpunkt1> rdfs:label "Programmpunkt 1"@de .
+
+<http://www.ehealth-services-2013.local/Referente/1TestReferees> a ns3:Referente ;
+                                                                 rdfs:label "Test Referent"@de ;
+                                                                 ns0:content "Test Referent Text"^^sysont:Markdown .
+
+<http://www.ehealth-services-2013.local/Referente/2TestReferees> a ns3:Referente ;
+                                                                 rdfs:label "Test Referent 2"@de ;
+                                                                 ns0:content "Test Referent Text"^^sysont:Markdown .
+
+<http://www.ehealth-services-2013.local/Referente/3TestReferees> a ns3:Referente ;
+                                                                 rdfs:label "Test Referent 3"@de ;
+                                                                 ns0:content "Test Referent Text"^^sysont:Markdown .
 
 ns3:Referenten a foaf:Document ;
                rdfs:label "REFERENTEN" ;
-               ns0:languageContent ""@de ;
-               ns0:headline "Referenten" .
+               ns0:headline "Referenten" ;
+               ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.local/Referente>.\" orderby=\"ASC(?resourceUri)\" template=\"referente\"}}"^^sysont:Markdown ;
+               ns0:template "program" .
 
 ns3:Veranstaltungsort a foaf:Document ;
                       rdfs:label "VERANSTALTUNGSORT" ;
                       ns0:languageContent ""@de ;
-                      ns0:headline "Veranstaltungsort" .
+                      ns0:headline "Veranstaltungsort" ;
+                      ns0:template "location" .

@@ -1,0 +1,36 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<div class="content">
+    <br /><br />
+    <?php
+        // uses headline property for headline
+        echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'h1'));
+        
+        // uses languageContent property for main content
+        echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/languageContent', 'tag' => 'p', 'class' => 'about'));
+    ?>
+    <div id="map_canvas"></div>
+</div>
+<div class="contentSeparator"></div>
+
+<script>
+$().ready(function() {
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(51.338629, 12.378588);
+    var mapCanvas = document.getElementById('map_canvas');
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 14,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        title:"Hello World!"
+    });
+    marker.setMap(map);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+});
+</script>
