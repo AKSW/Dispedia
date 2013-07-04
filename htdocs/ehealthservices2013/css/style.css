@@ -43,7 +43,8 @@ body {
 #footer {
     background-color: #FFF;
 }
-.content .program .name {
+.content .program .name,
+.content .referente .name {
     background-color: #21576b;
 }
 
@@ -71,6 +72,7 @@ body {
 }
 /* white text */
 .content .program .name,
+.content .referente .name,
 footer {
     color: #FFF;
 }
@@ -100,9 +102,15 @@ footer {
 #header {
     height: 10.3em;
     margin-bottom: 1px;
-    padding: 0.5em 0.9em 0em 0.5em;
+    padding: 0.5em 0.5em 0em 0.5em;
 }
-
+#headerImage {
+    display: inline;
+}
+#headerImage img {
+    height: 10em;
+    width: auto;
+}
 #headerText {
     font-size: 1.8em;
     float: right;
@@ -199,10 +207,19 @@ footer {
 
 /* ############### Program ############### */
 .content .program {
-    width: 50%;
+    width: 100%;
+}
+.content .program .time,
+.content .program .view {
+    line-height: 2em;
 }
 .content .program .time {
-    line-height: 2em;
+    float:left;
+}
+.content .program .view {
+    display: inline;
+    font-style: italic;
+    padding-left: 2em;
 }
 .content .program .name {
     font-weight: bold;
@@ -216,6 +233,66 @@ footer {
 .content .program .programContent {
     margin: 0.5em 0 4em;
     text-align: justify;
+}
+
+/* ############### Referente ############### */
+.content .referente {
+    float: left;
+    margin: 1%;
+    width: 48%;
+}
+
+.content .referente .name {
+    font-weight: bold;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 0.5em;
+}
+
+.content .referente .referenteContent {
+    margin: 0.5em 0 4em;
+    text-align: justify;
+}
+
+/* ############### Registration ############### */
+#registrationFormularLabel {
+    margin-top: 2em;
+}
+#registrationFormDiv {
+    margin-left: 2em;
+    margin-top: 1em;
+}
+#registrationForm fieldset {
+    border: 0px solid black;
+}
+#registrationFormDiv .entry {
+    margin-bottom: 0.5em;
+}
+
+#registrationFormDiv .floating {
+    float: left;
+    width: 15em;
+}
+#registrationFormDiv textarea {
+    height: 10em;
+    width: 30em;
+}
+#registrationFormDiv input.error {
+    display: block;
+    border: 1px dotted red;
+}
+#registrationFormDiv label.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+/* ############### Location ############### */
+
+#map_canvas {
+    background-color: #CCC;
+    height: 400px;
+    margin: auto;
+    width: 500px;
 }
 
 /* ############### Footer ############### */
