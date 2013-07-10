@@ -11,9 +11,10 @@
 :this a doap:Project ;
   doap:name "dispedia" ;
   owconfig:privateNamespace <http://ns.ontowiki.net/Extensions/dispedia/> ;
-  owconfig:templates "templates" ;
-  owconfig:languages "languages" ;
+  owconfig:templates "public/templates" ;
+  owconfig:languages "public/languages" ;
   owconfig:enabled "true"^^xsd:boolean ;
+  owconfig:hasModule :Cda2rdf ;
   rdfs:label "Dispedia" ;
   doap:description "" ;
   owconfig:authorLabel "Dispedia" ;
@@ -22,3 +23,7 @@
 :v1-0 a doap:Version ;
   doap:revision "1.0" .
 
+:Cda2rdf a owconfig:Module ;
+  rdfs:label "CDA2RDF Module" ;
+  owconfig:priority "1" ;
+  owconfig:context "extensions.formgenerator.newform" .

@@ -12,6 +12,10 @@
 class DispediaController extends OntoWiki_Controller_Component
 {
     
+    private $_store;
+    private $_translate;
+    private $_ontologies;
+    
     /**
      * init controller
      */     
@@ -19,6 +23,19 @@ class DispediaController extends OntoWiki_Controller_Component
     {
         parent::init();
         
+        $this->_store = Erfurt_App::getInstance()->getStore();
+        
+        $this->_translate = $this->_owApp->translate;
+        
+        // get all models
+        $this->_ontologies = $this->_config->ontologies->toArray();
+        $this->_ontologies = $this->_ontologies['models'];
+        
+        // make model instances
+        foreach ($this->_ontologies as $modelName => $model) {
+            $this->_ontologies[$modelName]['instance'] = $this->_store->getModel($model['namespace']);
+            $namespaces[$model['namespace']] = $modelName;
+        }
     }
     
     public function indexAction()
@@ -136,6 +153,63 @@ class DispediaController extends OntoWiki_Controller_Component
            header("Location: $urlDankeSeite");
            exit;
        }
+    }
+    
+    public function cda2rdfAction()
+    {
+        // disable layout for Ajax requests
+        $this->_helper->layout()->disableLayout();
+        // disable rendering
+        $this->_helper->viewRenderer->setNoRender();
+        
+        $model = $this->_ontologies['dispediaPN']['instance'];
+        // check if user can edit model
+        if (false == $model->isEditable()) {
+            $message = new OntoWiki_Message($model->isEditable() . $this->_translate->_('noModelEdit'), OntoWiki_Message::ERROR);
+            $this->_owApp->appendMessage($message);
+        } else {
+            $upload = new Zend_File_Transfer();
+            if ("application/xml" == $upload->getMimeType()) {
+                $upload->receive();
+                $fileName = $upload->getFileName();
+                
+                $xmlFileContent = simplexml_load_file($fileName);
+                $xmlFileContentStr = $xmlFileContent->asXML();
+                exec("java -jar " . APPLICATION_PATH . "../extensions/dispedia/libraries/cda2rdf/cda2rdf-0.1-jar-with-dependencies.jar --cda2rdf --input='$xmlFileContentStr'", $output);
+                
+                $data = implode($output);
+                $locator = Erfurt_Syntax_RdfParser::LOCATOR_DATASTRING;
+                $filetype = 'auto';
+                $parser = Erfurt_Syntax_RdfParser::rdfParserWithFormat('rdfxml');
+                $retVal = $parser->parse($data, $locator, $this->_ontologies['dispediaPN']['namespace']);
+                
+                foreach ($retVal as $patientUri => $patientProperties) {
+                    $patientExists = $this->_store->sparqlAsk("ASK  { <$patientUri> ?p  ?o }");
+                    if (false == $patientExists) {
+                        if (isset($patientProperties['http://schema.org/familyName'])
+                            && isset($patientProperties['http://schema.org/givenName'])) {
+                            $label = $patientProperties['http://schema.org/givenName'][0]['value'] . ' '
+                                     . $patientProperties['http://schema.org/familyName'][0]['value'];
+                            $retVal[$patientUri]['http://www.w3.org/2000/01/rdf-schema#label'][] = array(
+                                'value' => $label,
+                                'type' => 'literal'
+                            );
+                        }
+                        $model->addMultipleStatements(array($patientUri => $retVal[$patientUri]));
+                        // add log message
+                        $messageStr = $this->_translate->_('patientFile') . " <a href=\"/resource/properties/?r=" . urlencode($patientUri) . "\">" . $label . "</a> " . $this->_translate->_('added');
+                        $message = new OntoWiki_Message(
+                            $messageStr,
+                            OntoWiki_Message::SUCCESS,
+                            array('escape' => false)
+                        );
+                        $this->_owApp->appendMessage($message);
+                    }
+                }
+                
+            }
+        }
+        $this->_redirect("list?init&m=http%3A%2F%2Fpatients.dispedia.de%2F&instancesconfig=%7B%22filter%22%3A%5B%7B%22rdfsclass%22%3A%22http%3A%5C%2F%5C%2Fwww.dispedia.de%5C%2Fo%5C%2FPatient%22%2C%22mode%22%3A%22rdfsclass%22%7D%5D%7D");
     }
 }
 
