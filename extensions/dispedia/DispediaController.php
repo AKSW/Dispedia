@@ -84,7 +84,7 @@ class DispediaController extends OntoWiki_Controller_Component
         */
         
        // An welche Adresse sollen die Mails gesendet werden?
-       $zieladresse = 'lars.eidam@studserv.uni-leipzig.de';
+       $zieladresse = 'uweber@informatik.uni-leipzig.de';
        
        // Welche Adresse soll als Absender angegeben werden?
        // (Manche Hoster lassen diese Angabe vor dem Versenden der Mail ueberschreiben)
