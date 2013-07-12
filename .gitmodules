@@ -16,3 +16,6 @@
 [submodule "extensions/page"]
 	path = extensions/page
 	url = git@github.com:larseidam/page.ontowiki.git
+[submodule "extensions/dispedia/libraries/cda2rdf"]
+	path = extensions/dispedia/libraries/cda2rdf
+	url = git@github.com:kenda/cda2rdf.git

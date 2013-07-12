@@ -37,6 +37,8 @@ class PataproController extends OntoWiki_Controller_Component
     {
         parent::init();
 
+        $this->_store = Erfurt_App::getInstance()->getStore();
+        
         $this->_owApp->getNavigation()->disableNavigation();
 
         $this->_url = $this->_config->urlBase .'patapro/';
@@ -50,7 +52,7 @@ class PataproController extends OntoWiki_Controller_Component
         $namespaces = array();
         // make model instances
         foreach ($this->_ontologies as $modelName => $model) {
-            $this->_ontologies[$modelName]['instance'] = new Erfurt_Rdf_Model($model['namespace']);
+            $this->_ontologies[$modelName]['instance'] = $this->_store->getModel($model['namespace']);
             $namespaces[$model['namespace']] = $modelName;
         }
         $this->_ontologies['namespaces'] = $namespaces;
@@ -61,8 +63,6 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_alsfrsModel = $this->_ontologies['dispediaALS']['instance'];
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
-
-        $this->_store = Erfurt_App::getInstance()->getStore();
 
         // set standard language
         $this->_lang = OntoWiki::getInstance()->config->languages->locale;
