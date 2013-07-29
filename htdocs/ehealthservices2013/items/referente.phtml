@@ -2,6 +2,14 @@
     <?php
         echo $this->literal(array('property' => 'http://www.w3.org/2000/01/rdf-schema#label', 'tag' => 'div', 'class' => 'name'));
         
-        echo $this->literal(array('tag' => 'div', 'class' => 'referenteContent'));
+        echo $this->literal(
+            array(
+                'property' => 'http://ns.ontowiki.net/SysOnt/Site/institution',
+                'tag' => 'div',
+                'class' => 'referenteInstitution',
+                'prefix' => '<div class="referenteProperty">Institution: </div>'
+            )
+        );
+        //echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/vortragstitel', 'tag' => 'div', 'class' => 'referenteVortragstitel'));
     ?>
 </div>

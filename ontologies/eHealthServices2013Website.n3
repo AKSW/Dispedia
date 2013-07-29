@@ -7,7 +7,6 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
 @prefix ns2: <http://creativecommons.org/ns#> .
 @prefix ns1: <http://www.ehealth-services-2013.de/Partner/> .
@@ -22,14 +21,9 @@
 
 ns3:Anmeldung a foaf:Document ;
               rdfs:label "ANMELDUNG" ;
-              ns0:languageContent """Anmeldungen für den Workshop sind ausschließlich per Fax oder Online-Formular möglich.<br /><br /><a href=\"http://www.ehealth-services-2013.de/dispedia/downloadpdf?name=faxanmeldung\">Hier</a> finden Sie das auszufüllende Formular, welches im Anschluss an folgende Fax-Nummer zu schicken ist:<br />
-0341/9732329<br />
+              ns0:languageContent """Anmeldungen für den Workshop sind ausschließlich per Online-Formular möglich.<br />
 <br />
-Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu. Weitere Details sind dem Fax-Dokument zu entnehmen.<br />
-<!--<br />
-Teilnahmegebühren belaufen sich auf:<br />
-• Frühbucher: 590€<br />
-• Normal: 690€-->"""@de ;
+Die Preise folgen in Kürze."""@de ;
               ns0:headline "Anmeldung" ;
               ns0:template "registration" .
 
@@ -47,6 +41,7 @@ ns3:Home a foaf:Document ;
          rdfs:label "HOME" ;
          ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am 26.09.2013 ein eintägiger Workshop in Leipzig statt. Die Referenten werden Einblicke in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen aus den Blickwinkeln der Wissenschaft, der Nutzer, der Politik und der Industrie geben. Die Schwerpunktthemen des Workshops sind innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten, neue Kooperations- und Vergütungsformen sowie neue Berufsbilder im Dienstleistungssektor eHealth."@de ;
          ns0:headline "Workshop eHealth" ;
+         ns0:content "Am Donnerstag den 26.09.2013 von 09:00 bis 18:00 Uhr am Augustusplatz 10 in Leipzig."^^sysont:Markdown ;
          ns0:template "home" .
 
 ns3:Impressum a foaf:Document ;
@@ -147,8 +142,9 @@ ns1:vitalServices a ns3:Partner ;
 
 ns3:Programm a foaf:Document ;
              rdfs:label "PROGRAMM" ;
+             ns0:languageContent "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Program>.\" orderby=\"ASC(?resourceUri)\" template=\"program\"}}" ;
              ns0:headline "Programm" ;
-             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services-2013.de/Program>.\" orderby=\"ASC(?resourceUri)\" template=\"program\"}}"^^sysont:Markdown ;
+             ns0:content "Programm erscheint in Kürze"^^sysont:Markdown ;
              ns0:template "program" .
 
 <http://www.ehealth-services-2013.de/Programm/1FinanzierungvoneHealthDienstleistungen> a ns3:Program ;
@@ -180,17 +176,75 @@ ns3:Programm a foaf:Document ;
 
 <http://www.ehealth-services-2013.de/Programm/Programmpunkt1> rdfs:label "Programmpunkt 1"@de .
 
-<http://www.ehealth-services-2013.de/Referente/1TestReferees> a ns3:Referente ;
-                                                                 rdfs:label "Test Referent"@de ;
-                                                                 ns0:content "Test Referent Text"^^sysont:Markdown .
+<http://www.ehealth-services-2013.de/Programm/Programmpunkt1> rdfs:label "Programmpunkt 1"@de .
 
-<http://www.ehealth-services-2013.de/Referente/2TestReferees> a ns3:Referente ;
-                                                                 rdfs:label "Test Referent 2"@de ;
-                                                                 ns0:content "Test Referent Text"^^sysont:Markdown .
+<http://www.ehealth-services-2013.de/Referente/01SimoneKrautz> a ns3:Referente ;
+                                                                  rdfs:label "Simone Krautz" ;
+                                                                  ns0:position "Projektmanagerin" ;
+                                                                  ns0:institution "Healthy Saxony" ;
+                                                                  ns0:email "<a href=\"mailto:%73%69%6D%6F%6E%65%2E%6B%72%61%75%74%7A%40%68%65%61%6C%74%68%79%2D%73%61%78%6F%6E%79%2E%63%6F%6D \"title=\"E-Mail\">simone.krautz[@]healthy-saxony.com</a>" .
 
-<http://www.ehealth-services-2013.de/Referente/3TestReferees> a ns3:Referente ;
-                                                                 rdfs:label "Test Referent 3"@de ;
-                                                                 ns0:content "Test Referent Text"^^sysont:Markdown .
+<http://www.ehealth-services-2013.de/Referente/02SvenMarx> a ns3:Referente ;
+                                                              rdfs:label "Sven Marx" ;
+                                                              ns0:position "Leiter der Abteilung Datenschutz und Informationssicherheit" ;
+                                                              ns0:institution "Gematik" ;
+                                                              ns0:email "<a href=\"mailto:%53%69%6C%6A%61%2E%4B%6C%75%74%68%40%67%65%6D%61%74%69%6B%2E%64%65 \"title=\"E-Mail\">Frau Kluth, Silja (Silja.Kluth[@]gematik.de)</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/03Prof.Dr.StefanSkonetzki-Cheng> a ns3:Referente ;
+                                                                                   rdfs:label "Prof. Dr. Stefan Skonetzki-Cheng" ;
+                                                                                   ns0:position "Professor für Gesundheitsinformatik, Hochschule Niederrhein; Leiter der Arbeitsgruppe \"Einführung von eGK und HBA in Krankenhäusern\" der GMDS" ;
+                                                                                   ns0:institution "GMDS" ;
+                                                                                   ns0:email "<a href=\"mailto:%73%74%65%66%61%6E%2E%73%6B%6F%6E%65%74%7A%6B%69%2D%63%68%65%6E%67%40%68%73%2D%6E%69%65%64%65%72%72%68%65%69%6E%2E%64%65 \"title=\"E-Mail\">stefan.skonetzki-cheng[@]hs-niederrhein.de</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/04ThomasHeinz> a ns3:Referente ;
+                                                                 rdfs:label "Thomas Heinz" ;
+                                                                 ns0:institution "UKL" ;
+                                                                 ns0:email "<a href=\"mailto:%73%74%65%66%61%6E%2E%73%6D%65%72%73%40%6D%65%64%69%7A%69%6E%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">Kontakt über stefan.smers@medizin.uni-leipzig.de</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/05RuthGausche> a ns3:Referente ;
+                                                                 rdfs:label "Ruth Gausche" ;
+                                                                 ns0:position "Koordination" ;
+                                                                 ns0:institution "CrescNet GmbH" .
+
+<http://www.ehealth-services-2013.de/Referente/06Dr.MarkusWagner> a ns3:Referente ;
+                                                                     rdfs:label "Dr. Markus Wagner" ;
+                                                                     ns0:position "Mitarbeiter in der DV-Systemtechik" ;
+                                                                     ns0:institution "Peter L. Reichertz Institut für Medizinische Informatik" ;
+                                                                     ns0:vortragstitel "Einrichtungsübergreifende Dokumentenkommunikation - Das Konzept der Gesundheitsdatenbank für Niedersachsen" ;
+                                                                     ns0:email "<a href=\"mailto:%6D%61%72%6B%75%73%2E%77%61%67%6E%65%72%40%70%6C%72%69%2E%64%65 \"title=\"E-Mail\">markus.wagner[@]plri.de</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/07FlorianMeißner> a ns3:Referente ;
+                                                                     rdfs:label "Florian Meißner" ;
+                                                                     ns0:position "Geschäftsführer" ;
+                                                                     ns0:institution "Vital Services GmbH" ;
+                                                                     ns0:email "<a href=\"mailto:%6D%65%69%73%73%6E%65%72%40%76%69%74%61%6C%2D%73%65%72%76%69%63%65%73%2E%64%65 \"title=\"E-Mail\">meissner[@]vital-services.de</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/08MarcusBauer> a ns3:Referente ;
+                                                                 rdfs:label "Marcus Bauer" .
+
+<http://www.ehealth-services-2013.de/Referente/09MichaelSchaaf> a ns3:Referente ;
+                                                                   rdfs:label "Michael Schaaf" ;
+                                                                   ns0:institution "IMISE" .
+
+<http://www.ehealth-services-2013.de/Referente/10MarcusNitzschke> a ns3:Referente ;
+                                                                     rdfs:label "Marcus Nitzschke" .
+
+<http://www.ehealth-services-2013.de/Referente/11RomyElze> a ns3:Referente ;
+                                                              rdfs:label "Romy Elze" ;
+                                                              ns0:position "Forschungsgruppenleiter Service Engineering for eHealth (SEeH)" ;
+                                                              ns0:institution "Institut für Angewandte Informatik" .
+
+<http://www.ehealth-services-2013.de/Referente/1TestReferees> rdfs:label "Test Referent"@de .
+
+<http://www.ehealth-services-2013.de/Referente/2TestReferees> rdfs:label "Test Referent 2"@de .
+
+<http://www.ehealth-services-2013.de/Referente/3Prof.Dr.StefanSkonetzki-Cheng> ns0:email "<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;%73%74%65%66%61%6E%2E%73%6B%6F%6E%65%74%7A%6B%69%2D%63%68%65%6E%67%40%68%73%2D%6E%69%65%64%65%72%72%68%65%69%6E%2E%64%65 \"title=\"&#x45;&#x2d;&#x4d;&#x61;&#x69;&#x6c;\">&#x73;&#x74;&#x65;&#x66;&#x61;&#x6e;&#x2e;&#x73;&#x6b;&#x6f;&#x6e;&#x65;&#x74;&#x7a;&#x6b;&#x69;&#x2d;&#x63;&#x68;&#x65;&#x6e;&#x67;[&#x40;]&#x68;&#x73;&#x2d;&#x6e;&#x69;&#x65;&#x64;&#x65;&#x72;&#x72;&#x68;&#x65;&#x69;&#x6e;&#x2e;&#x64;&#x65;</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/3TestReferees> rdfs:label "Test Referent 3"@de .
+
+<http://www.ehealth-services-2013.de/Referente/4ThomasHeinz> ns0:email "<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;%73%74%65%66%61%6E%2E%73%6D%65%72%73%40%6D%65%64%69%7A%69%6E%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"&#x45;&#x2d;&#x4d;&#x61;&#x69;&#x6c;\">&#x4b;&#x6f;&#x6e;&#x74;&#x61;&#x6b;&#x74; &#xfc;&#x62;&#x65;&#x72; &#x73;&#x74;&#x65;&#x66;&#x61;&#x6e;&#x2e;&#x73;&#x6d;&#x65;&#x72;&#x73;&#x40;&#x6d;&#x65;&#x64;&#x69;&#x7a;&#x69;&#x6e;&#x2e;&#x75;&#x6e;&#x69;&#x2d;&#x6c;&#x65;&#x69;&#x70;&#x7a;&#x69;&#x67;&#x2e;&#x64;&#x65;</a>" .
+
+<http://www.ehealth-services-2013.de/Referente/7FlorianMeißner> ns0:email "<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;%6D%65%69%73%73%6E%65%72%40%76%69%74%61%6C%2D%73%65%72%76%69%63%65%73%2E%64%65 \"title=\"&#x45;&#x2d;&#x4d;&#x61;&#x69;&#x6c;\">&#x6d;&#x65;&#x69;&#x73;&#x73;&#x6e;&#x65;&#x72;[&#x40;]&#x76;&#x69;&#x74;&#x61;&#x6c;&#x2d;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2e;&#x64;&#x65;</a>" .
 
 ns3:Referenten a foaf:Document ;
                rdfs:label "REFERENTEN" ;
@@ -200,6 +254,30 @@ ns3:Referenten a foaf:Document ;
 
 ns3:Veranstaltungsort a foaf:Document ;
                       rdfs:label "VERANSTALTUNGSORT" ;
-                      ns0:languageContent ""@de ;
                       ns0:headline "Veranstaltungsort" ;
+                      ns0:content """Augustusplatz 10  
+04109 Leipzig  
+<br />
+  
+**Anreise mit dem Auto**
+
+Über die A 9:  Abfahrt Großkugel auf die B6 Richtung Zentrum  
+Über die A 14: Abfahrt Leipzig-Mitte auf die B2 abfahren in Richtung Zentrum  
+Über die A 38: Abfahr Leipzig-Südwest Richtung Zentrum  
+Folgen Sie dann dem Innenstadtring bis zum Augustusplatz. Unter dem Augustusplatz befindet sich eine Tiefgarage, in der Sie gegen Gebühr parken können.  
+<br />
+
+**Anreise mit dem Flugzeug**
+
+Der Flughafen Leipzig/Halle ist etwa 20 km vom Stadtzentrum entfernt.  
+Zwischen dem Flughafen Leipzig/Halle und dem Hauptbahnhof fahren halbstündlich Züge mit einer Fahrtzeit von ca. 15 Minuten.  
+<br />
+
+**Anreise mit dem Zug**
+
+Die Universitätsgebäude am Augustusplatz sind in 5 Minunten Fußweg vom Leipziger Hauptbahnhof zu erreichen. Folgen Sie der Nikolaistraße oder der Goethestraße Richtung City-Hochaus.  
+Mit den Straßenbahnlinien 10 (Richtung Lößnig), 11 (Richtung Markkleeberg) oder 16 (Richtung Lößnig), 4 (Richtung Stötteritz), 7 (Richtung Sommerfeld), 12 (Richtung Johannisplatz) oder 15 (Richtung Meusdorf) eine Haltestelle bis Augustusplatz fahren.  
+<br />
+
+Für Hilfe bei der Hotelbuchung wenden Sie sich bitte an <a href=\"mailto:%75%77%65%62%65%72%40%69%6E%66%6F%72%6D%61%74%69%6B%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">uweber[@]informatik.uni-leipzig.de</a>"""^^sysont:Markdown ;
                       ns0:template "location" .
