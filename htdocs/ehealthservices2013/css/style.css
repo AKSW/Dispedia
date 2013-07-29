@@ -201,8 +201,13 @@ footer {
 }
 
 /* ############### Home ############### */
-.content#home p {
+.content#home .about{
     -moz-columns: 2;
+}
+
+.content#home .underline {
+    margin-top: 2em;
+    text-align: center;
 }
 
 /* ############### Program ############### */
@@ -239,6 +244,7 @@ footer {
 .content .referente {
     float: left;
     margin: 1%;
+    min-height: 6em;
     width: 48%;
 }
 
@@ -249,9 +255,15 @@ footer {
     padding-left: 0.5em;
 }
 
-.content .referente .referenteContent {
-    margin: 0.5em 0 4em;
+.content .referente .referenteProperty,
+.content .referente .referenteInstitution,
+.content .referente .referenteVortragstitel {
+    margin: 0.5em 0.5em;
     text-align: justify;
+}
+
+.content .referente .referenteProperty {
+    float: left;
 }
 
 /* ############### Registration ############### */
@@ -292,6 +304,7 @@ footer {
     background-color: #CCC;
     height: 400px;
     margin: auto;
+    margin-top: 2em;
     width: 500px;
 }
 
