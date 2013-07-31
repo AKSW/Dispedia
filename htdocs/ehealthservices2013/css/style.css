@@ -358,3 +358,10 @@ footer {
 #imprint ul {
     list-style-type: none;
 }
+.content .contactContent {
+    float: left;
+}
+.content .contactImage {
+    height: 9em;
+    margin-left: 4em;
+}
