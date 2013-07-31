@@ -11,7 +11,7 @@
 @prefix ns0: <http://creativecommons.org/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix ns1: <http://ns.ontowiki.net/SysOnt/Site/> .
-@prefix ns2: <http://www.dispedia.local/Site/> .
+@prefix ns2: <http://www.dispedia.de/Site/> .
 
 <urn:dispedia:pn> a sysont:Model ;
                   sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "dct=http://purl.org/dc/terms/", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dispediao=http://www.dispedia.de/o/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "alsfrs=http://als.dispedia.de/frs/", "icf=http://who.int/icf#", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/", "ekb=http://als.dispedia.de/", "s=http://schema.org/", "dispediapn=urn:dispedia:pn/", "patient=http://patients.dispedia.de/" ;
@@ -29,7 +29,7 @@ sysont:Debug a sysont:Action ;
    owl:imports <http://ns.ontowiki.net/SysOnt/> ;
    rdfs:comment "This is your OntoWiki configuration model. You can configure model based access control and some actions here." ;
    owl:versionInfo <http://code.google.com/p/ontowiki/source/list?path=/erfurt/src/Erfurt/include/SysOntLocal.rdf> ;
-   sysont:prefix "sysont=http://ns.ontowiki.net/SysOnt/", "foaf=http://xmlns.com/foaf/0.1/", "sioc=http://rdfs.org/sioc/ns#", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "dct=http://purl.org/dc/terms/", "ns0=http://creativecommons.org/ns#", "xsd=http://www.w3.org/2001/XMLSchema#", "ns1=http://ns.ontowiki.net/SysOnt/Site/", "ns2=http://www.dispedia.local/Site/" .
+   sysont:prefix "sysont=http://ns.ontowiki.net/SysOnt/", "foaf=http://xmlns.com/foaf/0.1/", "sioc=http://rdfs.org/sioc/ns#", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "dct=http://purl.org/dc/terms/", "ns0=http://creativecommons.org/ns#", "xsd=http://www.w3.org/2001/XMLSchema#", "ns1=http://ns.ontowiki.net/SysOnt/Site/", "ns2=http://www.dispedia.de/Site/" .
 
 <http://ns.ontowiki.net/SysOnt/> a owl:Ontology, sysont:Model ;
                                  sysont:hidden "1"^^xsd:integer ;
