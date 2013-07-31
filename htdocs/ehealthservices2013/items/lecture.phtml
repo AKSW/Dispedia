@@ -1,0 +1,57 @@
+<div class="lecture">
+    <div class="referent">
+        <div class="referentLabel">Referent:</div>
+        <div>
+            <?php
+                $status = $this->literal(
+                    array(
+                        'property' => 'http://ns.ontowiki.net/SysOnt/Site/status',
+                        'tag' => 'span',
+                        'class' => 'status',
+                        'iprefix' => ' (',
+                        'isuffix' => ')'
+                    )
+                );
+                echo $this->literal(
+                    array(
+                        'property' => 'http://www.w3.org/2000/01/rdf-schema#label',
+                        'tag' => 'div',
+                        'class' => 'referentText',
+                        'isuffix' => $status
+                    )
+                );
+                $position = $this->literal(
+                    array(
+                        'property' => 'http://ns.ontowiki.net/SysOnt/Site/position',
+                        'tag' => 'span',
+                        'class' => 'position',
+                        'prefix' => ', '
+                    )
+                );
+                echo $this->literal(
+                    array(
+                        'property' => 'http://ns.ontowiki.net/SysOnt/Site/institution',
+                        'tag' => 'div',
+                        'class' => 'institution',
+                        'iprefix' => '(',
+                        'isuffix' => $position . ')'
+                    )
+                );
+            ?>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="title">
+        <div class="titleLabel">Titel:</div>
+        <?php
+            echo $this->literal(
+                array(
+                    'property' => 'http://ns.ontowiki.net/SysOnt/Site/vortragstitel',
+                    'tag' => 'div',
+                    'class' => 'vortragstitel'
+                )
+            );
+        ?>
+    </div>
+    <div class="clear"></div>
+</div>

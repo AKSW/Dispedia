@@ -12,8 +12,6 @@ $().ready(function() {
                 email: true,
 				equalTo: "#Email"
             },
-            Telefonnummer: "required",
-            Institution: "required",
             StrasseHausnummer: "required",
             PLZ: "required",
             Ort: "required"

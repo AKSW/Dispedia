@@ -212,6 +212,7 @@ footer {
 
 /* ############### Program ############### */
 .content .program {
+    margin-bottom: 2em;
     width: 100%;
 }
 .content .program .time,
@@ -232,11 +233,20 @@ footer {
     line-height: 2em;
     padding-left: 0.5em;
 }
-.content .program .referent {
-    line-height: 2.5em;
+.content .program .lectures {
+    margin-left: 1em;
 }
-.content .program .programContent {
-    margin: 0.5em 0 4em;
+.content .program .lectures .referent {
+    padding-top: 1em;
+}
+.content .program .lectures .referentLabel,
+.content .program .lectures .titleLabel {
+    float: left;
+    height: 2em;
+    width: 5em;
+}
+.content .program .vortragstitel {
+    margin: 0.5em 0 1em;
     text-align: justify;
 }
 
