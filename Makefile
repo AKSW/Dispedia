@@ -319,6 +319,9 @@ kb-install:
 
 dispedia-deploy:
 	scripts/deployment.sh
+    
+dispedia-toLocal:
+	scripts/toLocal.sh
 
 update-docs:
 
