@@ -2,15 +2,27 @@
     <?php
         echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/time', 'tag' => 'div', 'class' => 'time'));
         
-        echo $this->literal(array('property' => 'http://www.ehealth-services-2013.local/p/view', 'tag' => 'div', 'class' => 'view'));
+        echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/view', 'tag' => 'div', 'class' => 'view'));
     ?>
     <div class="clear"></div>
     <?php
         echo $this->literal(array('property' => 'http://www.w3.org/2000/01/rdf-schema#label', 'tag' => 'div', 'class' => 'name'));
-        
-        echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/referent', 'tag' => 'div', 'class' => 'referent', 'iprefix' => 'Referent: '));
-        
-        echo $this->literal(array('tag' => 'div', 'class' => 'programContent'));
-        
     ?>
+    <div class="lectures">
+        <?php
+            // prepare lecture rows
+            $queryForLectures = '
+            PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+            SELECT DISTINCT ?resourceUri
+            WHERE {
+                ?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ns.ontowiki.net/SysOnt/Site/Referente> .
+                <' . $this->resourceUri . '> ?number ?resourceUri .
+                ?resourceUri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+            }
+            ORDER BY ASC(?number)';
+            $lectures = $this->querylist($queryForLectures, 'ehealthservices2013/items/lecture.phtml');
+            echo $lectures;
+        ?>
+    </div>
+        
 </div>
