@@ -187,6 +187,11 @@ footer {
     border-bottom: 1px solid #21576b;
 }
 
+.content ul {
+    list-style: none;
+    margin-left: 1em;
+}
+
 /* ############### Document ############### */
 
 .aboutimg{
