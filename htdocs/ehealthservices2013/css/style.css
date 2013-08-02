@@ -238,15 +238,16 @@ footer {
 }
 .content .program .lectures .referent {
     padding-top: 1em;
+    padding-bottom: 0.5em;
 }
 .content .program .lectures .referentLabel,
 .content .program .lectures .titleLabel {
     float: left;
-    height: 2em;
+    height: 1.2em;
     width: 5em;
 }
 .content .program .vortragstitel {
-    margin: 0.5em 0 1em;
+    padding-bottom: 0.5em;
     text-align: justify;
 }
 

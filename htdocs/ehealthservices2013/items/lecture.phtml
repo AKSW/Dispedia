@@ -12,14 +12,6 @@
                         'isuffix' => ')'
                     )
                 );
-                echo $this->literal(
-                    array(
-                        'property' => 'http://www.w3.org/2000/01/rdf-schema#label',
-                        'tag' => 'div',
-                        'class' => 'referentText',
-                        'isuffix' => $status
-                    )
-                );
                 $position = $this->literal(
                     array(
                         'property' => 'http://ns.ontowiki.net/SysOnt/Site/position',
@@ -28,13 +20,21 @@
                         'prefix' => ', '
                     )
                 );
-                echo $this->literal(
+                $institution = $this->literal(
                     array(
                         'property' => 'http://ns.ontowiki.net/SysOnt/Site/institution',
-                        'tag' => 'div',
+                        'tag' => 'span',
                         'class' => 'institution',
-                        'iprefix' => '(',
+                        'iprefix' => ' (',
                         'isuffix' => $position . ')'
+                    )
+                );
+                echo $this->literal(
+                    array(
+                        'property' => 'http://www.w3.org/2000/01/rdf-schema#label',
+                        'tag' => 'div',
+                        'class' => 'referentText',
+                        'isuffix' => $status . $institution
                     )
                 );
             ?>
