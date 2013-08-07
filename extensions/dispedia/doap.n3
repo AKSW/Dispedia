@@ -27,4 +27,4 @@
 :Cda2rdf a owconfig:Module ;
   rdfs:label "CDA2RDF Module" ;
   owconfig:priority "1" ;
-  owconfig:context "extensions.formgenerator.newform" .
+  owconfig:context "extensions.formgenerator.cda2rdf.newform" .
