@@ -11,6 +11,7 @@
 :this a doap:Project ;
   doap:name "dispedia" ;
   owconfig:privateNamespace <http://ns.ontowiki.net/Extensions/dispedia/> ;
+  owconfig:pluginEvent event:onDrugCheck ;
   owconfig:templates "public/templates" ;
   owconfig:languages "public/languages" ;
   owconfig:enabled "true"^^xsd:boolean ;

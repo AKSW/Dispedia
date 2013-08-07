@@ -16,6 +16,10 @@
         <de>Hier können Sie Daten zu einem Vorschlag erfassen.</de>
         <en>Here you can insert proposal information.</en>
     </description>
+    
+    <events>
+        <trigger>onDrugCheck</trigger>
+    </events>
 
     <sections>
 
