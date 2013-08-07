@@ -20,6 +20,7 @@
 
     <module>
         <context>cda2rdf</context>
+        <context>rdf2cda</context>
     </module>
     
     <sections>

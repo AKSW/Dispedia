@@ -211,5 +211,34 @@ class DispediaController extends OntoWiki_Controller_Component
         }
         $this->_redirect("list?init&m=http%3A%2F%2Fpatients.dispedia.de%2F&instancesconfig=%7B%22filter%22%3A%5B%7B%22rdfsclass%22%3A%22http%3A%5C%2F%5C%2Fwww.dispedia.de%5C%2Fo%5C%2FPatient%22%2C%22mode%22%3A%22rdfsclass%22%7D%5D%7D");
     }
+    
+    public function rdf2cdaAction()
+    {
+        // disable layout for Ajax requests
+        $this->_helper->layout()->disableLayout();
+        // disable rendering
+        $this->_helper->viewRenderer->setNoRender();
+        
+        $model = $this->_ontologies['dispediaPN']['instance'];
+        $selectedResource = $this->_owApp->__get("selectedResource");
+        $modelResource = $model->getResource($selectedResource->getIri());
+        $modelResourceRdfStr = $modelResource->serialize();
+        
+        // get label for filename
+        $titleHelper = new OntoWiki_Model_TitleHelper();
+        $titleHelper->reset();
+        $titleHelper->addResource($modelResource->getIri());
+        $modelResourceLabel = $titleHelper->getTitle($modelResource->getIri());
+        
+        // transform rdf to cda
+        exec("java -jar " . APPLICATION_PATH . "../extensions/dispedia/libraries/cda2rdf/cda2rdf-0.1-jar-with-dependencies.jar --rdf2cda --input='$modelResourceRdfStr'", $output);
+
+        if (false !== isset($selectedResource))
+        {
+            header('Content-Type: text/xml');
+            header('Content-Disposition: attachment; filename="' . $modelResourceLabel . '.xml"');
+            echo implode("\n",$output);
+        }
+    }
 }
 

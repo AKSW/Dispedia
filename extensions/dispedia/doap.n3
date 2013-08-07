@@ -16,6 +16,7 @@
   owconfig:languages "public/languages" ;
   owconfig:enabled "true"^^xsd:boolean ;
   owconfig:hasModule :Cda2rdf ;
+  owconfig:hasModule :Rdf2cda ;
   rdfs:label "Dispedia" ;
   doap:description "" ;
   owconfig:authorLabel "Dispedia" ;
@@ -28,3 +29,8 @@
   rdfs:label "CDA2RDF Module" ;
   owconfig:priority "1" ;
   owconfig:context "extensions.formgenerator.cda2rdf.newform" .
+
+:Rdf2cda a owconfig:Module ;
+  rdfs:label "RDS2CDA Module" ;
+  owconfig:priority "1" ;
+  owconfig:context "extensions.formgenerator.rdf2cda.form" .

@@ -1,4 +1,5 @@
 addPatientFile;Patientenakte hinzufügen
+getPatientFile;Patientenakte speichern
 patientFile;Patientenakte für
 added;hinzugefügt
 add;Hochladen
