@@ -6,7 +6,7 @@
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License (GPL)
  */
 
-class Cda2rdfModule extends OntoWiki_Module
+class Rdf2cdaModule extends OntoWiki_Module
 {
     /**
      * Label of article resource type
@@ -31,11 +31,11 @@ class Cda2rdfModule extends OntoWiki_Module
         $baseJavascriptPath = $basePath .'public/js/';
         
         $this->view->headScript()
-            ->appendFile($baseJavascriptPath. 'cda2rdf.js', 'text/javascript');
+            ->appendFile($baseJavascriptPath. 'rdf2cda.js', 'text/javascript');
         
         $this->view->headLink()   
             ->appendStylesheet(
-                $baseCSSPath . 'cda2rdf.css',
+                $baseCSSPath . 'rdf2cda.css',
                 'screen',
                 true,
                 array()
@@ -47,7 +47,7 @@ class Cda2rdfModule extends OntoWiki_Module
      */
     public function getTitle()
     {
-        return $this->_owApp->translate->_('addPatientFile');
+        return $this->_owApp->translate->_('getPatientFile');
     }
 
     /**
@@ -64,7 +64,9 @@ class Cda2rdfModule extends OntoWiki_Module
 
     public function getContents()
     {
-        return $this->render('public/templates/dispedia/modules/cda2rdf');
+        return $this->render(
+            'public/templates/dispedia/modules/rdf2cda'
+        );
     }
 }
 

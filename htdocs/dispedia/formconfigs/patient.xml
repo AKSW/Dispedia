@@ -18,6 +18,11 @@
         <en>Here you can add / edit a patient.</en>
     </description>
 
+    <module>
+        <context>cda2rdf</context>
+        <context>rdf2cda</context>
+    </module>
+    
     <sections>
 
         <!-- A new section -->
