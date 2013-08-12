@@ -835,7 +835,7 @@
 
     <owl:Class rdf:about="&dispediao;DrugInteraction">
         <rdfs:label xml:lang="de">Interaktion</rdfs:label>
-        <rdfs:label xml:lang="en">interaction</rdfs:label>
+        <rdfs:label xml:lang="en">Interaction</rdfs:label>
         <rdfs:comment xml:lang="de">Eine Interaktion zwischen zwei Arzneimittel-Wirkstoffen. Die beteiligten Wirkstoffe können innerhalb der selben Vorschlagskomponente, innerhalb des selben Vorschlags oder zwischen einem Arzneimittel-Produkt und einem Vorschlag vorkommen. </rdfs:comment>
         <rdfs:comment xml:lang="en">An interaction between two active ingredients of a drug. The affected ingredients may occur within a proposal component, within a proposal or between a drug product and a proposal.</rdfs:comment>
     </owl:Class>

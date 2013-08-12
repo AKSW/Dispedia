@@ -93,7 +93,7 @@
      -->
     <owl:Class rdf:about="&seohc;DrugProduct">
         <rdfs:label xml:lang="de">Arzneimittel-Produkt</rdfs:label>
-        <rdfs:label xml:lang="en">drug product</rdfs:label>
+        <rdfs:label xml:lang="en">Drug product</rdfs:label>
         <rdfs:description xml:lang="de">Ein Arzneimittel-Produkt beschreibt ein konkretes Arzneimittel eines Herstellers.</rdfs:description>
         <rdfs:description xml:lang="en">A drug product describes a concrete drug of a vendor.</rdfs:description>
         <rdfs:subClassOf rdf:resource="&gr;ProductOrService"/>
