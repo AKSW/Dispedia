@@ -1,10 +1,10 @@
 <div class="program">
     <?php
-        echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/time', 'tag' => 'div', 'class' => 'time'));
+        $time = $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/time', 'tag' => 'span', 'class' => 'time', 'suffix' => ' '));
     ?>
     <div class="clear"></div>
     <?php
-        echo $this->literal(array('property' => 'http://www.w3.org/2000/01/rdf-schema#label', 'tag' => 'div', 'class' => 'name'));
+        echo $this->literal(array('property' => 'http://www.w3.org/2000/01/rdf-schema#label', 'tag' => 'div', 'class' => 'name', 'iprefix' => $time));
     ?>
     <div class="lectures">
         <?php

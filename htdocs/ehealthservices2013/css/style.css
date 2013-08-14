@@ -220,16 +220,10 @@ footer {
     margin-bottom: 2em;
     width: 100%;
 }
-.content .program .time,
-.content .program .view {
-    line-height: 2em;
-}
-.content .program .time {
-    float:left;
-}
 .content .program .view {
     display: inline;
     font-style: italic;
+    line-height: 2em;
     padding-left: 2em;
 }
 .content .program .name {
