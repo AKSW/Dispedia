@@ -33,7 +33,9 @@ class DispediaController extends OntoWiki_Controller_Component
         
         // make model instances
         foreach ($this->_ontologies as $modelName => $model) {
-            $this->_ontologies[$modelName]['instance'] = $this->_store->getModel($model['namespace']);
+            if ($this->_store->isModelAvailable($model['namespace'])) {
+                $this->_ontologies[$modelName]['instance'] = $this->_store->getModel($model['namespace']);
+            }
             $namespaces[$model['namespace']] = $modelName;
         }
     }
