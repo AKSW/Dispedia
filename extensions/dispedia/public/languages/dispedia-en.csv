@@ -5,3 +5,4 @@ added;added
 add;Upload
 abort;Cancel
 noModelEdit;no userrights edit this knowledge base
+actionNotAllowed;Action not allowed for this User
