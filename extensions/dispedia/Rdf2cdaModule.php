@@ -11,19 +11,19 @@ class Rdf2cdaModule extends OntoWiki_Module
     /**
      * Label of article resource type
      */
-    protected $_model;
+    protected $_store;
     protected $_newArticleResourceTypeLabel = '';
 
     public function init ()
     {
         parent::init();
         
+        
         $this->_store = Erfurt_App::getInstance()->getStore();
         
         // get all models
         $this->_ontologies = $this->_config->ontologies->toArray();
         $this->_ontologies = $this->_ontologies['models'];
-        $this->_model = $this->_store->getModel($this->_ontologies['dispediaPN']['namespace']);
         
         // include javascript files
         $basePath = $this->_config->staticUrlBase . 'extensions/dispedia/';
@@ -55,11 +55,17 @@ class Rdf2cdaModule extends OntoWiki_Module
      */
     public function shouldShow()
     {
-        if (true == $this->_model->isEditable()) {
-            return true;
+        if ($this->_store->isModelAvailable($this->_ontologies['dispediaPN']['namespace'])) {
+            $model = $this->_store->getModel($this->_ontologies['dispediaPN']['namespace']);
+            if (
+                true == $model->isEditable()
+                && Erfurt_App::getInstance()->getAc()->isActionAllowed('rdf2cda')
+            ) {
+                return true;
+            }
         }
 
-        return false;
+        return true;
     }
 
     public function getContents()

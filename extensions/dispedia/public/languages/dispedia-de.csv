@@ -5,3 +5,4 @@ added;hinzugefügt
 add;Hochladen
 abort;Abbruch
 noModelEdit;keine ausreichenden Benutzerrechte zum bearbeiten der Wissensbasis
+actionNotAllowed;Aktion kann von dem Benutzer nicht ausgeführt werden
