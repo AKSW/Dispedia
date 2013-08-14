@@ -61,9 +61,15 @@ class PataproController extends OntoWiki_Controller_Component
         $this->_ontologies['namespaces'] = $namespaces;
 
         //TODO:change this to global ontology array
-        $this->_patientModel = $this->_ontologies['dispediaPatient']['instance'];
-        $this->_dispediaModel = $this->_ontologies['dispediaCore']['instance'];
-        $this->_alsfrsModel = $this->_ontologies['dispediaALS']['instance'];
+        if ($this->_store->isModelAvailable($this->_ontologies['dispediaPatient']['namespace'])) {
+            $this->_patientModel = $this->_ontologies['dispediaPatient']['instance'];
+        }
+        if ($this->_store->isModelAvailable($this->_ontologies['dispediaCore']['namespace'])) {
+            $this->_dispediaModel = $this->_ontologies['dispediaCore']['instance'];
+        }
+        if ($this->_store->isModelAvailable($this->_ontologies['dispediaALS']['namespace'])) {
+            $this->_alsfrsModel = $this->_ontologies['dispediaALS']['instance'];
+        }
         $this->_titleHelper = new OntoWiki_Model_TitleHelper ($this->_alsfrsModel);
         $this->_translate = $this->_owApp->translate;
 
