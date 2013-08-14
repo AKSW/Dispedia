@@ -14,6 +14,8 @@ sed -i $REPLACEREGEX $SITECONFIG
 ONTOWIKICONFIG="config.ini.dummy"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
 
+make update-docs NAME=dispediaCore
+
 
 ########### eHealthServices2013 Site ###########
 # change eHealthServices2013 Site Ontology URIs from local to de
