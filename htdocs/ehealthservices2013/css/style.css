@@ -227,6 +227,7 @@ footer {
     padding-left: 2em;
 }
 .content .program .name {
+    font-size: 95%;
     font-weight: bold;
     height: 2em;
     line-height: 2em;
