@@ -63,16 +63,16 @@
     <dispediao:Patient rdf:about="&dispediapn;12345678/">
         <s:jobTitle>Handwerker</s:jobTitle>
         <s:gender xml:lang="en">male</s:gender>
-        <dispediao:hasHealthState rdf:resource="&patients;HSMaxMustermann20100213154641"/>
-        <dispediao:hasHealthState rdf:resource="&patients;HSMaxMustermann20100420104641"/>
+        <dispediao:hasHealthState rdf:resource="&patients;HS20100213154641"/>
+        <dispediao:hasHealthState rdf:resource="&patients;HS20100420104641"/>
         <dispediao:hasDisease rdf:resource="&patients;ALSDisease"/>
     </dispediao:Patient>
 
-    <rdf:Description rdf:about="&patients;HSMaxMustermann20100213154641">
+    <rdf:Description rdf:about="&patients;HS20100213154641">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
         <dispediao:hasDate rdf:datatype="&xsd;dateTime">2010-05-13 15:46:41</dispediao:hasDate>
-        <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20100213154641"/>
-        <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20100213154641"/>
+        <dispediao:includesHealthProperties rdf:resource="&patients;PS20100213154641"/>
+        <dispediao:includesSymptoms rdf:resource="&patients;SS20100213154641"/>
         <dispediao:isPending rdf:resource="&ekbi;UseWalkingFrame"/>
         <dispediao:isPending rdf:resource="&ekbi;UseFeedingCup"/>
         <dispediao:isPending rdf:resource="&ekbi;StomachTube"/>
@@ -81,17 +81,17 @@
         <dispediao:readProposalDescription rdf:resource="&ekbi;LWDetails"/>
     </rdf:Description>
 
-    <rdf:Description rdf:about="&patients;HSMaxMustermann20100420104641">
+    <rdf:Description rdf:about="&patients;HS20100420104641">
         <rdf:type rdf:resource="&diswrap-icf;ICFHealthState"/>
         <dispediao:hasDate rdf:datatype="&xsd;dateTime">2010-04-20 10:46:41</dispediao:hasDate>
-        <diswrap-icf:includesICFSymptoms rdf:resource="&patients;SSMaxMustermann20100420104641"/>
+        <diswrap-icf:includesICFSymptoms rdf:resource="&patients;SS20100420104641"/>
         <dispediao:isPending rdf:resource="&ekbi;Move"/>
         <dispediao:isPending rdf:resource="&ekbi;SeverelyHandicappedPass"/>
         <dispediao:isPending rdf:resource="&ekbi;Logopedics"/>
         <dispediao:isPending rdf:resource="&ekbi;UseWheelChair"/>
     </rdf:Description>
 
-    <rdf:Description rdf:about="&patients;PSMaxMustermann20100213154641">
+    <rdf:Description rdf:about="&patients;PS20100213154641">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSPropertySet"/>
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o1_4"/>
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o3_4"/>
@@ -103,7 +103,7 @@
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o12_4"/>
     </rdf:Description>
 
-    <rdf:Description rdf:about="&patients;SSMaxMustermann20100213154641">
+    <rdf:Description rdf:about="&patients;SS20100213154641">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSSymptomSet"/>
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o2_4"/>
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o4_4"/>
@@ -112,7 +112,7 @@
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o11_4"/>
     </rdf:Description>
 
-    <rdf:Description rdf:about="&patients;SSMaxMustermann20100420104641">
+    <rdf:Description rdf:about="&patients;SS20100420104641">
         <rdf:type rdf:resource="&diswrap-icf;ICFSymptomSet"/>
         <diswrap-icf:damagedBodyFunctionStrength2 rdf:resource="&icf;b510"/>
         <diswrap-icf:damagedBodyFunctionStrength2 rdf:resource="&icf;b7301"/>
@@ -126,16 +126,16 @@
     <dispediao:Patient rdf:about="&dispediapn;87654321/">
         <s:jobTitle>Kauffrau</s:jobTitle>
         <s:gender xml:lang="en">female</s:gender>
-        <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120603100555"/>
-        <dispediao:hasHealthState rdf:resource="&patients;HSMaxiMusterfrau20120820181326"/>
+        <dispediao:hasHealthState rdf:resource="&patients;HS20120603100555"/>
+        <dispediao:hasHealthState rdf:resource="&patients;HS20120820181326"/>
         <dispediao:hasDisease rdf:resource="&patients;ALSDisease"/>
     </dispediao:Patient>
     
-    <rdf:Description rdf:about="&patients;HSMaxiMusterfrau20120603100555">
+    <rdf:Description rdf:about="&patients;HS20120603100555">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
         <dispediao:hasDate rdf:datatype="&xsd;dateTime">2012-06-03 10:05:55</dispediao:hasDate>
-        <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20120603100555"/>
-        <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20120603100555"/>
+        <dispediao:includesHealthProperties rdf:resource="&patients;PS20120603100555"/>
+        <dispediao:includesSymptoms rdf:resource="&patients;SS20120603100555"/>
         <dispediao:isPending rdf:resource="&ekbi;UseWalkingFrame"/>
         <dispediao:accepts rdf:resource="&ekbi;UseFeedingCup"/>
         <dispediao:denies rdf:resource="&ekbi;StomachTube"/>
@@ -144,7 +144,7 @@
         <dispediao:readProposalDescription rdf:resource="&ekbi;LWDetails"/>
     </rdf:Description>
 
-    <rdf:Description rdf:about="&patients;PSMaxMustermann20120603100555">
+    <rdf:Description rdf:about="&patients;PS20120603100555">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSPropertySet"/>
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o1_4"/>
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o3_2"/>
@@ -156,7 +156,7 @@
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o12_2"/>
     </rdf:Description>
     
-    <rdf:Description rdf:about="&patients;SSMaxMustermann20120603100555">
+    <rdf:Description rdf:about="&patients;SS20120603100555">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSSymptomSet"/>
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o2_2"/>
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o4_1"/>
@@ -165,17 +165,17 @@
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o11_4"/>
     </rdf:Description>
     
-    <rdf:Description rdf:about="&patients;HSMaxiMusterfrau20120820181326">
+    <rdf:Description rdf:about="&patients;HS20120820181326">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSHealthState"/>
         <dispediao:hasDate rdf:datatype="&xsd;dateTime">2012-08-20 18:13:26</dispediao:hasDate>
-        <dispediao:includesHealthProperties rdf:resource="&patients;PSMaxMustermann20120820181326"/>
-        <dispediao:includesSymptoms rdf:resource="&patients;SSMaxMustermann20120820181326"/>
+        <dispediao:includesHealthProperties rdf:resource="&patients;PS20120820181326"/>
+        <dispediao:includesSymptoms rdf:resource="&patients;SS20120820181326"/>
         <dispediao:isPending rdf:resource="&ekbi;Move"/>
         <dispediao:isPending rdf:resource="&ekbi;Logopedics"/>
         <dispediao:isPending rdf:resource="&ekbi;UseWheelChair"/>
     </rdf:Description>
 
-    <rdf:Description rdf:about="&patients;PSMaxMustermann20120820181326">
+    <rdf:Description rdf:about="&patients;PS20120820181326">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSPropertySet"/>
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o1_1"/>
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o3_2"/>
@@ -187,7 +187,7 @@
         <diswrap-alsfrs:containsPropertyOption rdf:resource="&alsfrs;i/option/o12_2"/>
     </rdf:Description>
     
-    <rdf:Description rdf:about="&patients;SSMaxMustermann20120820181326">
+    <rdf:Description rdf:about="&patients;SS20120820181326">
         <rdf:type rdf:resource="&diswrap-alsfrs;ALSFRSSymptomSet"/>
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o2_2"/>
         <diswrap-alsfrs:containsSymptomOption rdf:resource="&alsfrs;i/option/o4_1"/>
