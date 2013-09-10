@@ -41,7 +41,7 @@
     <owl:Ontology rdf:about="&dispedia;">
         <rdfs:label xml:lang="de">Dispedia Vokabular (Kern Ontologie)</rdfs:label>
         <rdfs:label xml:lang="en">Dispedia Vocabulary (Core Ontology)</rdfs:label>
-        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7.0.0001</owl:versionInfo>
         <rdfs:comment xml:lang="de">Diese Ontologie (Vokabular) enthält alle Kern-Konzepte des Dispedia Informationslogistik Systems.</rdfs:comment>
         <rdfs:comment xml:lang="en">This is the Core Ontology of the Dispedia Information Logistics System. All concepts are included needed to represent
             information for and about the patient.</rdfs:comment>
@@ -719,7 +719,7 @@
         <rdfs:label xml:lang="de">ALS</rdfs:label>
         <rdfs:label xml:lang="en">ALS</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Disease"/>
-        <owl:equivalentClass rdf:resource="http://purl.bioontology.org/ontology/ICD10/G12.2"/>
+        <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/ICD10/G12.2"/>
         <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/SNOMEDCT/86044005"/>
         <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/MSH/D000690"/>
         <rdfs:subClassOf rdf:resource="http://purl.bioontology.org/ontology/MEDLINEPLUS/T135"/>
