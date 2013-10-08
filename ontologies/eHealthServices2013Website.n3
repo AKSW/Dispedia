@@ -6,6 +6,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -92,6 +93,12 @@ ns3:Veranstaltungen a foaf:Document ;
 <br />
 **Externe Veranstaltungen**  
 <br />
+*14.10.2013*
+
+* Fachtagung [*Datenschutz in der Medizin - Update 2013 II*](http://www.update-bdsg.com/html/14-10-2013.html), Braunstraße 16
+04347 Leipzig
+
+<br />
 *07./08.11.2013*
 
 * [*4. Nationaler Fachkongress Telemedizin*, \"Telemedizin - Potenziale für eine patientenorientierte Medizin durch Vernetzung\"](http://www.telemedizinkongress.de), Ellington Hotel Berlin"""^^sysont:Markdown .
@@ -102,12 +109,18 @@ ns3:Veranstaltungen a foaf:Document ;
 
 <http://www.ehealth-services-2013.local/Referente/7FlorianMeißner> ns0:email "<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;%6D%65%69%73%73%6E%65%72%40%76%69%74%61%6C%2D%73%65%72%76%69%63%65%73%2E%64%65 \"title=\"&#x45;&#x2d;&#x4d;&#x61;&#x69;&#x6c;\">&#x6d;&#x65;&#x69;&#x73;&#x73;&#x6e;&#x65;&#x72;[&#x40;]&#x76;&#x69;&#x74;&#x61;&#x6c;&#x2d;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2e;&#x64;&#x65;</a>" .
 
+<http://www.ehealth-services-2013.local/newResource/c8ded543bc8d1c259f72f9ffe024020b> a ns0:Referente ;
+                                                                                   rdfs:label "Thomas Heinz " ;
+                                                                                   ns0:institution "Universitätsklinikum Leipzig AöR" ;
+                                                                                   ns0:vortragstitel "Teleradiologie am Universitätsklinikum – ein Bericht aus der Praxis" .
+
 ns3:Home a foaf:Document ;
          rdfs:label "HOME" ;
          ns0:template "home" ;
-         ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am 26.09.2013 ein eintägiger Workshop in Leipzig statt. Die Referenten werden Einblicke in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen aus den Blickwinkeln der Wissenschaft, der Nutzer, der Politik und der Industrie geben. Die Schwerpunktthemen des Workshops sind innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten sowie neue Kooperations- und Vergütungsformen im eHealth-Sektor."@de ;
-         ns0:headline "Workshop eHealth" ;
-         ns0:content "Am Donnerstag den 26.09.2013 von 09:00 bis 18:00 Uhr am Augustusplatz 10 in Leipzig."^^sysont:Markdown .
+         ns0:languageContent """<b>! Der Workshop ist auf den 13.03.2014 verschoben !</b>
+<p>
+Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am 13.03.2014 ein eintägiger Workshop in Leipzig statt. Die Referenten werden Einblicke in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen aus den Blickwinkeln der Wissenschaft, der Nutzer, der Politik und der Industrie geben. Die Schwerpunktthemen des Workshops sind innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten sowie neue Kooperations- und Vergütungsformen im eHealth-Sektor."""@de ;
+         ns0:headline "Workshop eHealth" .
 
 ns3:NotFound a foaf:Document ;
              rdfs:label "404" ;
@@ -116,7 +129,7 @@ ns3:NotFound a foaf:Document ;
 
 <> a owl:Ontology ;
    rdfs:label "eHealth Services 2013 Website" ;
-   owl:versionInfo "0.1.0.0001" ;
+   owl:versionInfo "0.1.0.0002" ;
    dct:contributor "Romy Elze", "Lars Eidam", "Marcus Nitzschke" ;
    ns2:license <http://creativecommons.org/licenses/by/3.0/> .
 
@@ -124,9 +137,9 @@ ns3:Anmeldung a foaf:Document ;
               rdfs:label "ANMELDUNG" ;
               ns0:template "registration" ;
               ns0:languageContent """Die Preise für eine Teilnahme am Workshop eHealth Services betragen:  <br /><br />
-<b>140 € für Frühbucher</b> bis zum 31.8.13<br />
-<b> 230 € im Normaltarif </b> vom 1.9.13 bis zum 15.9.13<br />
-<b> 270 € für Spätbucher</b> ab dem 16.9.13
+<b>   99 € für Frühbucher</b> bis zum 30.11.13<br />
+<b> 160 € im Normaltarif </b> vom 1.12.13 bis zum 28.2.14<br />
+<b> 190 € für Spätbucher</b> ab dem 1.3.14
  <br /><br />
 Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu. """@de ;
               ns0:headline "Anmeldung" .
@@ -134,7 +147,7 @@ Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnah
 ns3:Header a foaf:Document ;
            rdfs:label "Header" ;
            ns0:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
-Integrierte Versorgung quo vadis?</span><br />26. September '13<br />Universität Leipzig"""@de .
+Integrierte Versorgung quo vadis?</span><br />13. März '14<br />Universität Leipzig"""@de .
 
 ns3:Impressum a foaf:Document ;
               rdfs:label "IMPRESSUM" ;
