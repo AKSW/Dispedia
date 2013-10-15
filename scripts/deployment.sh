@@ -17,17 +17,17 @@ sed -i $REPLACEREGEX $ONTOWIKICONFIG
 make update-docs NAME=dispediaCore
 
 
-########### eHealthServices2013 Site ###########
-# change eHealthServices2013 Site Ontology URIs from local to de
-REPLACEREGEX='s/http:\/\/www\.ehealth-services-2013\.local/http:\/\/www\.ehealth-services-2013\.de/g'
+########### eHealthServices Site ###########
+# change eHealthServices Site Ontology URIs from local to com
+REPLACEREGEX='s/http:\/\/www\.ehealth-services\.local/http:\/\/www\.ehealth-services\.com/g'
 ONTOLOGYFOLDER="ontologies"
-ONTOLOGYFILE="eHealthServices2013Website.n3"
+ONTOLOGYFILE="eHealthServicesWebsite.n3"
 sed -i $REPLACEREGEX $ONTOLOGYFOLDER/$ONTOLOGYFILE
 
-# change Site config.ini URLs from local to de
-SITECONFIG="htdocs/ehealthservices2013/config.ini"
+# change Site config.ini URLs from local to com
+SITECONFIG="htdocs/ehealthservices/config.ini"
 sed -i $REPLACEREGEX $SITECONFIG
 
-# change Ontowiki config.ini.dummy namespace eHealthServices2013 Site Ontology from local to de
+# change Ontowiki config.ini.dummy namespace eHealthServices Site Ontology from local to com
 ONTOWIKICONFIG="config.ini.dummy"
 sed -i $REPLACEREGEX $ONTOWIKICONFIG
