@@ -53,7 +53,7 @@
     <?php endforeach; ?>>
     
     <div class="wrapper">
-        <?php echo $this->partial('ehealthservices2013/header.phtml', $this->templateData) ?>
+        <?php echo $this->partial('ehealthservices/header.phtml', $this->templateData) ?>
         <?php
             $navOptions = array(
                 'navResource' => $this->wikiBaseUrl . 'Navigation/Main',
@@ -67,14 +67,14 @@
 
         <div id="logo-LtdAI">
             <a href="http://infai.org/de/Veranstaltungen">
-                <img src="/htdocs/ehealthservices2013/img/logo-LtdAI.jpg">
+                <img src="/htdocs/ehealthservices/img/logo-LtdAI.jpg">
             </a>
         </div>
      
         <?php echo $this->renderx(); ?>
 
         <div class="clear"></div>
-        <?php echo $this->partial('ehealthservices2013/footer.phtml', $this->templateData) ?>
+        <?php echo $this->partial('ehealthservices/footer.phtml', $this->templateData) ?>
     </div>
 </body>
 </html>

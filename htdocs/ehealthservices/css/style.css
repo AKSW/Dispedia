@@ -30,7 +30,7 @@ body {
     background-image: linear-gradient(top, #21576b 0%, #007891 100%);
 }
 #header {
-    background-image: url(/htdocs/ehealthservices2013/img/SEeH_website2013_Header_1600px.png);
+    background-image: url(/htdocs/ehealthservices/img/SEeH_website2013_Header_1600px.png);
     background-position: 0 0.5em;
     background-repeat: no-repeat;
     background-size: 100% auto;

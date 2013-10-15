@@ -21,7 +21,7 @@
                         ?resourceUri <http://xmlns.com/foaf/0.1/homepage> ?homepageUrl .
                     }
                     ORDER BY ASC(?resourceUri)';
-                    $partners = $this->querylist($queryForPartnerss, 'ehealthservices2013/items/partner.phtml');
+                    $partners = $this->querylist($queryForPartnerss, 'ehealthservices/items/partner.phtml');
                     echo $partners
                     ?>
                 </tr>

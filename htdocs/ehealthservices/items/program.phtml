@@ -18,7 +18,7 @@
                 ?resourceUri <http://www.w3.org/2000/01/rdf-schema#label> ?label .
             }
             ORDER BY ASC(?number)';
-            $lectures = $this->querylist($queryForLectures, 'ehealthservices2013/items/lecture.phtml');
+            $lectures = $this->querylist($queryForLectures, 'ehealthservices/items/lecture.phtml');
             echo $lectures;
         ?>
     </div>
