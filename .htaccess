@@ -11,7 +11,11 @@
 # rewriting by enabling mod_rewrite in your apache config.
 <IfModule mod_rewrite.c>
     RewriteEngine On
-
+    
+    # rule for domain change from ehealth-services-2013.de to ehealth-services.com, can be deleted if the old domain is canceled
+    RewriteCond %{HTTP_HOST} ehealth-services-2013.de$ [NC]
+    RewriteRule ^(.*)$ http://www.ehealth-services.com/$1 [L,R=301]
+    
     # This gives ontowiki an easy hint that rewrite is enabled
     <IfModule mod_env.c>
         SetEnv ONTOWIKI_APACHE_MOD_REWRITE_ENABLED 1
