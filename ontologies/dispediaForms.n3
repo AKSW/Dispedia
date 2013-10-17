@@ -1,0 +1,102 @@
+# Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
+
+@base <http://forms.dispedia.de/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ns0: <http://forms.dispedia.de/c/> .
+@prefix ns1: <http://forms.dispedia.de/p/> .
+
+<> a owl:Ontology ;
+   rdfs:label "Dispedia Forms"@en, "Dispedia Formulare"@de ;
+   owl:imports <http://www.dispedia.de/> .
+
+ns0:Form a owl:Class ;
+         rdfs:label "Formular"@de, "Form"@en .
+
+<http://forms.dispedia.de/o/ALSFRS> a ns0:Form ;
+                                    rdfs:label "ALSFRS Klassifikation"@de, "ALSFRS classification"@en ;
+                                    ns1:Filename "alsfrs" ;
+                                    ns1:usefulForClass <http://www.dispedia.de/o/Patient> .
+
+<http://forms.dispedia.de/o/Address> a ns0:Form ;
+                                     rdfs:label "Adresse"@de, "Address"@en ;
+                                     ns1:Filename "address" .
+
+<http://forms.dispedia.de/o/AssistiveProduct> a ns0:Form ;
+                                              rdfs:label "Assistenzprodukt"@de, "Assistive Product"@en ;
+                                              ns1:Filename "assistiveproduct" .
+
+<http://forms.dispedia.de/o/BusinessEntity> a ns0:Form ;
+                                            rdfs:label "Business Entity"@de, "Business Entity"@en ;
+                                            ns1:Filename "businessentity" .
+
+<http://forms.dispedia.de/o/Drug> a ns0:Form ;
+                                  rdfs:label "Arznei"@de, "Drug"@en ;
+                                  ns1:Filename "drug" .
+
+<http://forms.dispedia.de/o/Formality> a ns0:Form ;
+                                       rdfs:label "Formalität"@de, "Formality"@en ;
+                                       ns1:Filename "formality" .
+
+<http://forms.dispedia.de/o/GeoCoordinates> a ns0:Form ;
+                                            rdfs:label "Geokoordinaten"@de, "Geo Coordinates"@en ;
+                                            ns1:Filename "geocoordinates" .
+
+<http://forms.dispedia.de/o/MedicalDevice> a ns0:Form ;
+                                           rdfs:label "Medizinprodukt"@de, "Medical Device"@en ;
+                                           ns1:Filename "medicaldevice" .
+
+<http://forms.dispedia.de/o/Organization> a ns0:Form ;
+                                          rdfs:label "Organisation"@de, "Organization"@en ;
+                                          ns1:Filename "organization" .
+
+<http://forms.dispedia.de/o/OrganizationCategory> a ns0:Form ;
+                                                  rdfs:label "Organisationskategorie"@de, "organisation category"@en ;
+                                                  ns1:Filename "organizationCategory" .
+
+<http://forms.dispedia.de/o/Patient> a ns0:Form ;
+                                     rdfs:label "Patient"@de, "Patient"@en ;
+                                     ns1:Filename "patient" ;
+                                     ns1:usefulForClass <http://www.dispedia.de/o/Patient> .
+
+<http://forms.dispedia.de/o/Person> a ns0:Form ;
+                                    rdfs:label "Person"@de, "Person"@en ;
+                                    ns1:Filename "person" ;
+                                    ns1:usefulForClass <http://www.dispedia.de/o/Patient>, <http://www.dispedia.de/o/Person> .
+
+<http://forms.dispedia.de/o/Physician> a ns0:Form ;
+                                       rdfs:label "Physician"@en, "Arzt"@de ;
+                                       ns1:Filename "physician" .
+
+<http://forms.dispedia.de/o/PostalAddress> a ns0:Form ;
+                                           rdfs:label "Adresse"@de, "Address"@en ;
+                                           ns1:Filename "postaladdress" .
+
+<http://forms.dispedia.de/o/Proposal> a ns0:Form ;
+                                      rdfs:label "Vorschlag"@de, "Proposal"@en ;
+                                      ns1:Filename "proposal" .
+
+<http://forms.dispedia.de/o/ProposalComponent> a ns0:Form ;
+                                               rdfs:label "Vorschlagskomponente"@de, "Proposal Component"@en ;
+                                               ns1:Filename "proposalcomponent" .
+
+<http://forms.dispedia.de/o/ProposalDescription> a ns0:Form ;
+                                                 rdfs:label "Vorschlagstext"@de, "Proposal Description"@en ;
+                                                 ns1:Filename "proposaldescription" .
+
+<http://forms.dispedia.de/o/Service> a ns0:Form ;
+                                     rdfs:label "Dienstleistung"@de, "Service"@en ;
+                                     ns1:Filename "service" .
+
+<http://forms.dispedia.de/o/ServiceCategory> a ns0:Form ;
+                                             rdfs:label "Servicekategorie"@de, "service category"@en ;
+                                             ns1:Filename "serviceCategory" .
+
+ns1:Filename a owl:DatatypeProperty ;
+             rdfs:label "Dateiname"@de, "Filename"@en ;
+             rdfs:domain ns0:Form .
+
+ns1:usefulForClass a owl:ObjectProperty ;
+                   rdfs:label "nützlich für Klasse"@de, "useful for class"@en ;
+                   rdfs:domain ns0:Form .
