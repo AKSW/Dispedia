@@ -3,6 +3,9 @@
         // uses headline property for headline
         echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/headline', 'tag' => 'h1'));
         
+        // uses infoline property for infoline
+        echo $this->literal(array('property' => 'http://ns.ontowiki.net/SysOnt/Site/infoline', 'tag' => 'span', 'class' => 'programInfoline'));
+        
         // prepare main content (uses default content properties)
         echo $this->literal(array('tag' => 'div', 'class' => 'content'));
     ?>

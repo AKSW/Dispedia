@@ -16,8 +16,7 @@
                     array(
                         'property' => 'http://ns.ontowiki.net/SysOnt/Site/position',
                         'tag' => 'span',
-                        'class' => 'position',
-                        'prefix' => ', '
+                        'class' => 'position'
                     )
                 );
                 $institution = $this->literal(
@@ -26,9 +25,12 @@
                         'tag' => 'span',
                         'class' => 'institution',
                         'iprefix' => ' (',
-                        'isuffix' => $position . ')'
+                        'isuffix' => ("" != $position ? ', ' : '') . $position . ')'
                     )
                 );
+                if ("" == $institution) {
+                    $institution = ' (' . $position . ')';
+                }
                 echo $this->literal(
                     array(
                         'property' => 'http://www.w3.org/2000/01/rdf-schema#label',
