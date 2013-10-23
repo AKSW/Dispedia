@@ -1,9 +1,6 @@
-[submodule "libraries/RDFauthor"]
-	path = libraries/RDFauthor
-	url = git@github.com:AKSW/RDFauthor.git
-[submodule "libraries/Erfurt"]
-	path = libraries/Erfurt
-	url = git@github.com:AKSW/Erfurt.git
+[submodule "application"]
+	path = application
+	url = git@github.com:AKSW/OntoWiki.git
 [submodule "extensions/formgenerator"]
 	path = extensions/formgenerator
 	url = git@github.com:AKSW/forms.ontowiki.git
