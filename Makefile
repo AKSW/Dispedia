@@ -18,6 +18,9 @@ install:
 	git submodule init
 	git submodule update
 	cp config.ini.dummy application/config.ini
+	# init ontowiki
+	cd application; \
+	make install
 	# generate symlinks
 	scripts/generate_symlinks.sh
 	# add ignore paths
