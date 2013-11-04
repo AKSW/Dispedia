@@ -9,7 +9,9 @@ do
 done
 
 # theme symlink
+rm -rf application/extensions/themes/dispedia
 ln -s ../../../themes/dispedia application/extensions/themes/dispedia
 
 # site extension symlink
+rm -rf application/htdocs
 ln -s ../htdocs application/htdocs
