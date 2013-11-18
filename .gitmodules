@@ -16,3 +16,6 @@
 [submodule "extensions/dispedia/libraries/cda2rdf"]
 	path = extensions/dispedia/libraries/cda2rdf
 	url = git@github.com:kenda/cda2rdf.git
+[submodule "extensions/kbmanager"]
+	path = extensions/kbmanager
+	url = git@github.com:larseidam/kbmanager.ontowiki.git
