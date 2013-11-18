@@ -4,8 +4,10 @@ default: help
 
 help:
 	@echo "  install ........................ install dispedia"
+	@echo "  install-submodule .............. install required submodule"
+	@echo "  install-ontowiki ............... install ontowiki"
+	@echo "  add-symlinks-n-ignore........... generate symlinks and ignore file"
 	@echo "  update ......................... update dispedia"
-	@echo "  generate-symlinks............... generate symlinks"
 	@echo "  install-owcli .................. install owcli"
 	@echo "  install-kb ..................... install/update knowledgebases"
 	@echo "  deploy-changes ................. make dispedia.de deployment"
@@ -15,24 +17,27 @@ help:
 # top level target
 # Dispedia
 
-install:
+install: install-submodule install-ontowiki add-symlinks-n-ignore
+
+install-submodule:
 	git submodule init
 	git submodule update
-	cp config.ini.dummy application/config.ini
+
+install-ontowiki:
 	# init ontowiki
 	cd application; \
 	make install
+	cp config.ini.dummy application/config.ini
+
+add-symlinks-n-ignore:
 	# add ignore paths
 	cp -f scripts/application_exclude .git/modules/application/info/exclude
 	# generate symlinks
-	generate-symlinks
-
+	scripts/generate_symlinks.sh
+	
 update:
 	git pull
 	git submodule update
-
-generate-symlinks:
-	scripts/generate_symlinks.sh
 
 install-owcli:
 	scripts/install_script.sh -i
