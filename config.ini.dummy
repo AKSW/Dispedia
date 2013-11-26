@@ -111,7 +111,7 @@ themes.path = "extensions/themes"
 
 title.prefix = "Dispedia - Information system for rare diseases"
 
-ontologies.folder = "ontologies"
+ontologies.folder = "../ontologies"
 ontologies.models.dispediaCore.namespace = "http://www.dispedia.de/"
 ontologies.models.dispediaCore.files[] = "dispediaCore.xml"
 ontologies.models.dispediaCore.files[] = "dispediaCoreConditions.xml"
