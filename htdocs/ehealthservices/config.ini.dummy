@@ -1,0 +1,5 @@
+model="http://www.ehealth-services.de/"
+index = "http://www.ehealth-services.de/Home"
+error = "http://www.ehealth-services.de/NotFound"
+name = "WORKSHOP eHealth Services 2014 - Integrierte Versorgung quo vadis?"
+name_short = 'eHealth-Services-2014'

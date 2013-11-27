@@ -1,0 +1,5 @@
+model="http://www.dispedia.de/Site"
+index = "http://www.dispedia.de/Site/Home"
+error = "http://www.dispedia.de/Site/NotFound1"
+name = "Dispedia Seite"
+name_short = 'Dispedia'
