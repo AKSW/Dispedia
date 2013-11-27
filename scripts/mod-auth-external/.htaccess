@@ -1,0 +1,7 @@
+### NOTE: This is needed to be included in /etc/apache2/mods-enabled/authnz_external.load or .conf
+#DefineExternalAuth ontowiki pipe /path/to/dispedia/scripts/mod-auth-external/ontowiki.php
+AuthType Basic
+AuthName OntoWiki
+AuthBasicProvider external
+AuthExternal ontowiki
+Require valid-user

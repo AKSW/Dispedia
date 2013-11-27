@@ -1,9 +1,6 @@
-[submodule "libraries/RDFauthor"]
-	path = libraries/RDFauthor
-	url = git@github.com:AKSW/RDFauthor.git
-[submodule "libraries/Erfurt"]
-	path = libraries/Erfurt
-	url = git@github.com:AKSW/Erfurt.git
+[submodule "application"]
+	path = application
+	url = git@github.com:AKSW/OntoWiki.git
 [submodule "extensions/formgenerator"]
 	path = extensions/formgenerator
 	url = git@github.com:AKSW/forms.ontowiki.git
@@ -19,3 +16,6 @@
 [submodule "extensions/dispedia/libraries/cda2rdf"]
 	path = extensions/dispedia/libraries/cda2rdf
 	url = git@github.com:kenda/cda2rdf.git
+[submodule "extensions/kbmanager"]
+	path = extensions/kbmanager
+	url = git@github.com:larseidam/kbmanager.ontowiki.git
