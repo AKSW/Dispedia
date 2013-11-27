@@ -162,19 +162,6 @@ footer {
     position:absolute;
 }
 
-#logo-LtdAI {
-    margin-left: 45em;
-    padding-top: 0.9em;
-    position: absolute;
-    text-align: right;
-    width: 12em;
-}
-
-#logo-LtdAI a img {
-    padding-right: 1em;
-    width: 120px;
-}
-
 .content {
     min-height: 15em;
     padding: 0.9em;
