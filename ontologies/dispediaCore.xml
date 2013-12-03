@@ -41,7 +41,7 @@
     <owl:Ontology rdf:about="&dispedia;">
         <rdfs:label xml:lang="de">Dispedia Vokabular (Kern Ontologie)</rdfs:label>
         <rdfs:label xml:lang="en">Dispedia Vocabulary (Core Ontology)</rdfs:label>
-        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7.0.0001</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.7.0.0002</owl:versionInfo>
         <rdfs:comment xml:lang="de">Diese Ontologie (Vokabular) enthält alle Kern-Konzepte des Dispedia Informationslogistik Systems.</rdfs:comment>
         <rdfs:comment xml:lang="en">This is the Core Ontology of the Dispedia Information Logistics System. All concepts are included needed to represent
             information for and about the patient.</rdfs:comment>
@@ -422,11 +422,11 @@
         <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an object to an entity for which this object is suitable.</rdfs:comment>
     </owl:ObjectProperty>
 
-    <owl:ObjectProperty rdf:about="&dispediao;suitableForSensible">
-        <rdfs:label xml:lang="de">geeignet für Sensible</rdfs:label>
-        <rdfs:label xml:lang="en">suitable for sensible</rdfs:label>
+    <owl:ObjectProperty rdf:about="&dispediao;suitableForSensitive">
+        <rdfs:label xml:lang="de">geeignet für sensible</rdfs:label>
+        <rdfs:label xml:lang="en">suitable for sensitive</rdfs:label>
         <rdfs:comment xml:lang="de">Diese generische Objekteigenschaft ordnet einer als "sensibel" eingestuften Entität ein Objekt zu, für welche es geeignet ist.</rdfs:comment>
-        <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an object to an entity - classified as sensible - for which this object is suitable.</rdfs:comment>
+        <rdfs:comment xml:lang="en">This generic ObjectProperty assigns an object to an entity - classified as sensitive - for which this object is suitable.</rdfs:comment>
         <rdfs:subPropertyOf rdf:resource="&dispediao;suitableFor"/>
     </owl:ObjectProperty>
 
@@ -542,12 +542,12 @@
     <rdf:Description rdf:nodeID="genid1b">
         <rdf:type rdf:resource="&swrl;ClassAtom"/>
         <swrl:argument1 rdf:resource="&var;y"/>
-        <swrl:classPredicate rdf:resource="&dispediao;SensiblePatient"/>
+        <swrl:classPredicate rdf:resource="&dispediao;SensitivePatient"/>
     </rdf:Description>
 
     <rdf:Description rdf:nodeID="genid2b">
         <rdf:type rdf:resource="&swrl;ClassAtom"/>
-        <swrl:classPredicate  rdf:resource="&dispediao;SensibleProposalDescription"/>
+        <swrl:classPredicate  rdf:resource="&dispediao;SensitiveProposalDescription"/>
         <swrl:argument1  rdf:resource="&var;x"/>
     </rdf:Description>
 
@@ -565,7 +565,7 @@
 
     <rdf:Description rdf:nodeID="genid5b">
         <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
-        <swrl:propertyPredicate  rdf:resource="&dispediao;suitableForSensible"/>
+        <swrl:propertyPredicate  rdf:resource="&dispediao;suitableForSensitive"/>
         <swrl:argument1  rdf:resource="&var;x"/>
         <swrl:argument2  rdf:resource="&var;y"/>
     </rdf:Description>
@@ -773,9 +773,9 @@
         <rdfs:label xml:lang="en">Proposal description</rdfs:label>
     </owl:Class>
 
-    <owl:Class rdf:about="&dispediao;SensibleProposalDescription">
+    <owl:Class rdf:about="&dispediao;SensitiveProposalDescription">
         <rdfs:label xml:lang="de">Information für sensible Personen</rdfs:label>
-        <rdfs:label xml:lang="en">Information for sensible person</rdfs:label>
+        <rdfs:label xml:lang="en">Information for sensitive person</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;ProposalDescription"/>
     </owl:Class>
 
@@ -805,9 +805,9 @@
         <rdfs:subClassOf rdf:resource="&dispediao;Patient"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&dispediao;SensiblePatient">
+    <owl:Class rdf:about="&dispediao;SensitivePatient">
         <rdfs:label xml:lang="de">sensibler Patient</rdfs:label>
-        <rdfs:label xml:lang="en">sensible Patient</rdfs:label>
+        <rdfs:label xml:lang="en">sensitive Patient</rdfs:label>
         <rdfs:subClassOf rdf:resource="&dispediao;Patient"/>
     </owl:Class>
 
