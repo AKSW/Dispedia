@@ -11,30 +11,54 @@
 @prefix sioc: <http://rdfs.org/sioc/ns#> .
 @prefix ns0: <http://creativecommons.org/ns#> .
 @prefix ns1: <http://ns.ontowiki.net/SysOnt/Site/> .
-@prefix ns2: <http://www.dispedia.local/Site/> .
-
-<http://als.dispedia.de/> a sysont:Model ;
-                          sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "seo=http://www.serviceOntology.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "seohc=http://hc.serviceOntology.org/", "seohcs=http://hc.serviceOntology.org/service/", "seohcp=http://hc.serviceOntology.org/provider/" ;
-                          sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
 
 <http://als.dispedia.de/frs/> a sysont:Model ;
-                              sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "te=http://purl.org/dc/terms/", "ns0=http://creativecommons.org/ns#" ;
+                              sysont:prefix "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "te=http://purl.org/dc/terms/" ;
                               sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
 
-<http://hc.dispedia.de/> a sysont:Model ;
-                         sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "seo=http://www.serviceOntology.org/", "gr=http://purl.org/goodrelations/v1#", "s=http://schema.org/", "dispedia=http://www.dispedia.de/", "seohcs=http://hc.serviceOntology.org/service/", "seohcp=http://hc.serviceOntology.org/provider/" ;
-                         sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
-
 <http://hc.serviceOntology.org/> a sysont:Model ;
-                                 sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "seo=http://www.serviceOntology.org/", "s=http://schema.org/", "seohc=http://hc.serviceOntology.org/", "seohcs=http://hc.serviceOntology.org/service/", "seohcp=http://hc.serviceOntology.org/provider/" ;
+                                 sysont:prefix "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "seo=http://www.serviceOntology.org/", "seohc=http://hc.serviceOntology.org/", "s=http://schema.org/", "seohcs=http://hc.serviceOntology.org/service/", "seohcp=http://hc.serviceOntology.org/provider/" ;
                                  sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
 
-<> a owl:Ontology, sysont:Model ;
-   rdfs:label "OntoWiki System Configuration" ;
-   owl:imports <http://ns.ontowiki.net/SysOnt/> ;
-   rdfs:comment "This is your OntoWiki configuration model. You can configure model based access control and some actions here." ;
-   owl:versionInfo <http://code.google.com/p/ontowiki/source/list?path=/erfurt/src/Erfurt/include/SysOntLocal.rdf> ;
-   sysont:prefix "sysont=http://ns.ontowiki.net/SysOnt/", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "dct=http://purl.org/dc/terms/", "sioc=http://rdfs.org/sioc/ns#", "ns0=http://creativecommons.org/ns#", "ns1=http://ns.ontowiki.net/SysOnt/Site/", "ns2=http://www.dispedia.local/Site/" .
+<http://www.dispedia.de/> a sysont:Model ;
+                          sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "dbpedia=http://dbpedia.org/ontology/", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "seo=http://www.serviceOntology.org/", "seohc=http://hc.serviceOntology.org/", "gr=http://purl.org/goodrelations/v1#", "var=urn:swrl#", "swrl=http://www.w3.org/2003/11/swrl#", "s=http://schema.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "alsfrso=http://als.dispedia.de/frs/o/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/" ;
+                          sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://www.dispedia.local/Site> a sysont:Model ;
+                                 sysont:hidden "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
+                                 sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://als.dispedia.de/> a sysont:Model ;
+                          sysont:prefix "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "seo=http://www.serviceOntology.org/", "seohc=http://hc.serviceOntology.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "seohcs=http://hc.serviceOntology.org/service/", "seohcp=http://hc.serviceOntology.org/provider/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/" ;
+                          sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://patients.dispedia.de/> a sysont:Model ;
+                               sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "s=http://schema.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/", "alsfrs=http://als.dispedia.de/frs/", "icf=http://who.int/icf#", "ekb=http://als.dispedia.de/", "dispediapn=urn:dispedia:pn/" ;
+                               sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<urn:dispedia:pn> a sysont:Model ;
+                  sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "s=http://schema.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/", "alsfrs=http://als.dispedia.de/frs/", "icf=http://who.int/icf#", "ekb=http://als.dispedia.de/", "dispediapn=urn:dispedia:pn/", "patient=http://patients.dispedia.de/" ;
+                  sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://hc.dispedia.de/> a sysont:Model ;
+                         sysont:prefix "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "seo=http://www.serviceOntology.org/", "gr=http://purl.org/goodrelations/v1#", "s=http://schema.org/", "dispedia=http://www.dispedia.de/", "seohcs=http://hc.serviceOntology.org/service/", "seohcp=http://hc.serviceOntology.org/provider/" ;
+                         sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://www.serviceOntology.org/> a sysont:Model ;
+                                  sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "seohc=http://hc.serviceOntology.org/", "gr=http://purl.org/goodrelations/v1#", "s=http://schema.org/" ;
+                                  sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://forms.dispedia.de/> a sysont:Model ;
+                            sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://www.ehealth-services.local/> a sysont:Model ;
+                                     sysont:hidden "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
+                                     sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
+
+<http://schema.org/> a sysont:Model ;
+                     sysont:hidden "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
+                     sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "xsd=http://www.w3.org/2001/XMLSchema#", "dct=http://purl.org/dc/terms/", "schema=http://schema.org/" ;
+                     sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
 
 <Admin> a sioc:User ;
         rdfs:label "Admin" ;
@@ -54,20 +78,20 @@
 <DefaultUserGroup> a sioc:Usergroup ;
                    rdfs:label "DefaultUserGroup" ;
                    rdfs:comment "This pre-configured user group can login, register new user and edit all models except the system models." ;
-                   sioc:has_member <Michael>, <Tom>, <Student>, <romy>, <Lars> ;
+                   sioc:has_member <michael>, <tom>, <Student>, <romy>, <lars> ;
                    sysont:denyModelEdit <http://ns.ontowiki.net/SysBase/> ;
                    sysont:grantAccess sysont:RegisterNewUser, sysont:cda2rdf, sysont:Login, sysont:Rollback, sysont:rdf2cda ;
                    sysont:grantModelEdit sysont:AnyModel ;
                    sysont:grantModelView sysont:AnyModel ;
                    sysont:denyModelView <>, <http://ns.ontowiki.net/SysOnt/> .
 
-<Lars> a sioc:User ;
-       foaf:accountName "Lars"^^xsd:string ;
+<lars> a sioc:User ;
+       foaf:accountName "lars"^^xsd:string ;
        sysont:userPassword "78182e1dd2df0d4f1bb3a7f8e6be80ecef50d513" ;
        sioc:email <mailto:larseidam@googlemail.com> .
 
-<Michael> a sioc:User ;
-          foaf:accountName "Michael"^^xsd:string ;
+<michael> a sioc:User ;
+          foaf:accountName "michael"^^xsd:string ;
           sysont:userPassword "680990854eb710e7b862cb1311578dcb090aa92f" ;
           sioc:email <mailto:martin@informatik.uni-leipzig.de> .
 
@@ -76,8 +100,8 @@
           sysont:userPassword "cd332476f86fd9f6b64722ea58c92201c153ec07" ;
           sioc:email <mailto:student@dispedia.de> .
 
-<Tom> a sioc:User ;
-      foaf:accountName "Tom"^^xsd:string ;
+<tom> a sioc:User ;
+      foaf:accountName "tom"^^xsd:string ;
       sysont:userPassword "4cccad64c5f8bdc90f6f25f78fb1c4360e7f85ea" ;
       sioc:email <mailto:tommichael.hesse@googlemail.com> ;
       sysont:recoveryHash "5a8b3be6fddb880406d2f0ce85decefc" .
@@ -96,14 +120,14 @@
         sysont:userPassword "7cf7eddb174125539dd241cd745391694250e526" ;
         sioc:email <mailto:guest@dispedia.de> .
 
-<http://localhost/OntoWiki/Config/newResource/b5fa37fc5c73b8b1aaa89d7083a4ad64> a sioc:Usergroup ;
-                                                                                rdfs:label "GuestUserGroup" ;
-                                                                                rdfs:comment "A Usergroup for all system guests." ;
-                                                                                sioc:has_member <guest> ;
-                                                                                sysont:denyModelEdit sysont:AnyModel ;
-                                                                                sysont:grantAccess sysont:Login ;
-                                                                                sysont:grantModelView sysont:AnyModel ;
-                                                                                sysont:denyModelView <>, <http://ns.ontowiki.net/SysOnt/> .
+<GuestUserGroup> a sioc:Usergroup ;
+                 rdfs:label "GuestUserGroup" ;
+                 rdfs:comment "A Usergroup for all system guests." ;
+                 sioc:has_member <guest> ;
+                 sysont:denyModelEdit sysont:AnyModel ;
+                 sysont:grantAccess sysont:Login ;
+                 sysont:grantModelView sysont:AnyModel ;
+                 sysont:denyModelView <>, <http://ns.ontowiki.net/SysOnt/> .
 
 <romy> a sioc:User ;
        foaf:accountName "romy"^^xsd:string ;
@@ -114,15 +138,6 @@
          foaf:accountName "ulrike"^^xsd:string ;
          sysont:userPassword "4db8cd6d157f63f527bd640149f31367d56c331a" ;
          sioc:email <mailto:uweber@informatik.uni-leipzig.de> .
-
-<http://ns.ontowiki.net/SysBase/> a sysont:Model ;
-                                  sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "sioc=http://rdfs.org/sioc/ns#", "skos=http://www.w3.org/2004/02/skos/core#", "sioct=http://rdfs.org/sioc/types#", "dc=http://purl.org/dc/elements/1.1/", "dcterms=http://purl.org/dc/terms/", "rel=http://purl.org/vocab/relationship/", "vs=http://www.w3.org/2003/06/sw-vocab-status/ns#" ;
-                                  sysont:hidden "1"^^xsd:integer .
-
-<http://ns.ontowiki.net/SysOnt/> a owl:Ontology, sysont:Model ;
-                                 sysont:prefix "sysont=http://ns.ontowiki.net/SysOnt/", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "sioc=http://rdfs.org/sioc/ns#" ;
-                                 sysont:isLarge "1"^^xsd:integer ;
-                                 sysont:hidden "1"^^xsd:integer .
 
 sysont:Anonymous sysont:denyModelEdit sysont:AnyModel ;
                  sysont:grantAccess sysont:ModelExport ;
@@ -154,37 +169,3 @@ sysont:cda2rdf a sysont:Action ;
 
 sysont:rdf2cda a sysont:Action ;
                rdfs:label "RDF2CDA Converter" .
-
-<http://patients.dispedia.de/> a sysont:Model ;
-                               sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "s=http://schema.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "alsfrs=http://als.dispedia.de/frs/", "icf=http://who.int/icf#", "ekb=http://als.dispedia.de/", "dispediapn=urn:dispedia:pn/" ;
-                               sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
-
-<http://schema.org/> a sysont:Model ;
-                     sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "dct=http://purl.org/dc/terms/", "schema=http://schema.org/" ;
-                     sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> ;
-                     sysont:hidden "1"^^xsd:integer .
-
-<http://www.dispedia.de/> a sysont:Model ;
-                          sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "dbpedia=http://dbpedia.org/ontology/", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "seo=http://www.serviceOntology.org/", "gr=http://purl.org/goodrelations/v1#", "var=urn:swrl#", "swrl=http://www.w3.org/2003/11/swrl#", "s=http://schema.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "alsfrso=http://als.dispedia.de/frs/o/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/", "seohc=http://hc.serviceOntology.org/" ;
-                          sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
-
-<http://www.dispedia.de/Site> a sysont:Model ;
-                              sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "dct=http://purl.org/dc/terms/", "ns0=http://ns.ontowiki.net/SysOnt/Site/", "ns2=http://creativecommons.org/ns#", "ns3=http://www.ehealth-services-2013.de/", "ns1=http://www.dispedia.de/Site/" ;
-                              sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> ;
-                              sysont:hidden "1"^^xsd:integer .
-
-<http://www.dispedia.local/Site> a sysont:Model ;
-                                 sysont:prefix "foaf=http://xmlns.com/foaf/0.1/", "ns0=http://ns.ontowiki.net/SysOnt/Site/", "ns1=http://www.dispedia.local/Site/" .
-
-<http://www.ehealth-services-2013.de/> a sysont:Model ;
-                                       sysont:prefix "sysont=http://ns.ontowiki.net/SysOnt/", "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "dct=http://purl.org/dc/terms/", "vs=http://www.w3.org/2003/06/sw-vocab-status/ns#", "ns0=http://ns.ontowiki.net/SysOnt/Site/", "ns2=http://creativecommons.org/ns#", "ns3=http://www.ehealth-services-2013.de/", "ns1=http://www.ehealth-services-2013.de/Partner/" ;
-                                       sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> ;
-                                       sysont:hidden "1"^^xsd:integer .
-
-<http://www.serviceOntology.org/> a sysont:Model ;
-                                  sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "gr=http://purl.org/goodrelations/v1#", "s=http://schema.org/", "seohc=http://hc.serviceOntology.org/" ;
-                                  sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .
-
-<urn:dispedia:pn> a sysont:Model ;
-                  sysont:prefix "rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#", "rdfs=http://www.w3.org/2000/01/rdf-schema#", "foaf=http://xmlns.com/foaf/0.1/", "owl=http://www.w3.org/2002/07/owl#", "xsd=http://www.w3.org/2001/XMLSchema#", "ccns=http://creativecommons.org/ns#", "dct=http://purl.org/dc/terms/", "dispediao=http://www.dispedia.de/o/", "s=http://schema.org/", "diswrap-alsfrs=http://www.dispedia.de/wrapper/alsfrs/", "diswrap-icd10=http://www.dispedia.de/wrapper/icd10/", "diswrap-icf=http://www.dispedia.de/wrapper/Icf/", "ekbi=http://als.dispedia.de/i/", "dispedia=http://www.dispedia.de/", "alsfrs=http://als.dispedia.de/frs/", "icf=http://who.int/icf#", "ekb=http://als.dispedia.de/", "patient=http://patients.dispedia.de/", "dispediapn=urn:dispedia:pn/" ;
-                  sysont:hiddenImports <http://ns.ontowiki.net/SysBase/> .

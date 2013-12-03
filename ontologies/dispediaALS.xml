@@ -36,7 +36,7 @@
     <owl:Ontology rdf:about="&ekb;">
         <rdfs:label xml:lang="de">ALS Experten-Wissensbasis</rdfs:label>
         <rdfs:label xml:lang="en">ALS Expert Knowledge Base</rdfs:label>
-        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.3</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="&rdf;PlainLiteral">0.3.0.001</owl:versionInfo>
         <owl:imports rdf:resource="&dispedia;"/>
         <rdfs:comment xml:lang="de">Expertenwissen: Vorschläge und damit zusammenhängende Informationen</rdfs:comment>
         <rdfs:comment xml:lang="en">Expert Knowledge Base: Proposals and related information</rdfs:comment>
@@ -257,7 +257,7 @@
     </rdf:Description>
     
     <rdf:Description rdf:about="&ekbi;logisticHouseHunting">
-        <rdf:type rdf:resource="&dispediao;SensibleProposalDescription"/>
+        <rdf:type rdf:resource="&dispediao;SensitiveProposalDescription"/>
         <rdfs:label xml:lang="de">Logistik der Wohnungsuche</rdfs:label>
         <rdfs:label xml:lang="en">logistic of the hunting process</rdfs:label>
         <dispediao:content xml:lang="en">Organize the logistic of the hunting process</dispediao:content>
