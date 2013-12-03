@@ -1,6 +1,6 @@
 # Exported with the Erfurt API - http://aksw.org/Projects/Erfurt
 
-@base <http://www.dispedia.local/Site> .
+@base <http://www.dispedia.de/Site> .
 @prefix sysont: <http://ns.ontowiki.net/SysOnt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -8,14 +8,14 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
-@prefix ns1: <http://www.dispedia.local/Site/> .
+@prefix ns1: <http://www.dispedia.de/Site/> .
 @prefix ns2: <http://creativecommons.org/ns#> .
 
 ns0:Schema a owl:Class .
 
 ns0:SchemaDownload a owl:Class .
 
-<http://www.dispedia.local/Site> a owl:Ontology ;
+<http://www.dispedia.de/Site> a owl:Ontology ;
                                  rdfs:label "Dispedia Website" ;
                                  owl:versionInfo "0.1" ;
                                  dct:contributor "Romy Elze", "Lars Eidam", "Marcus Nitzschke" ;
@@ -100,18 +100,18 @@ ns1:Home a foaf:Document ;
          ns0:tableContentR2C1 "Knowledge Engineering" ;
          ns0:tableContentR2C2 "Dispedia Vokabular/Ontologie/Schema"@de, "Dispedia vocabulary/ontology/schema"@en .
 
-<http://www.dispedia.local/Site/Navigation/Header> a ns0:Navigation ;
+<http://www.dispedia.de/Site/Navigation/Header> a ns0:Navigation ;
                                                    rdf:_1 ns1:Contact ;
                                                    rdfs:label "Header Navigation" .
 
-<http://www.dispedia.local/Site/Navigation/Main> a ns0:Navigation ;
+<http://www.dispedia.de/Site/Navigation/Main> a ns0:Navigation ;
                                                  rdf:_1 ns1:Home ;
                                                  rdf:_2 ns1:Schema ;
-                                                 rdf:_3 <http://www.dispedia.local/page/DEMO> ;
+                                                 rdf:_3 <http://www.dispedia.de/page/DEMO> ;
                                                  rdfs:label "Main Navigation" .
 
-<http://www.dispedia.local/Site/Navigation/Schemata> a ns0:Navigation ;
-                                                     rdf:_1 <http://www.dispedia.local/Site/Schema/DispediaCore> ;
+<http://www.dispedia.de/Site/Navigation/Schemata> a ns0:Navigation ;
+                                                     rdf:_1 <http://www.dispedia.de/Site/Schema/DispediaCore> ;
                                                      rdfs:label "Schemata Navigation" .
 
 ns1:NotFound a foaf:Document ;
@@ -128,9 +128,9 @@ ns1:Schema a foaf:Document ;
            ns0:downloadHeadline "Download" ;
            ns0:documentation "Documentation"@en, "Dokumentation"@de .
 
-<http://www.dispedia.local/Site/Schema/DispediaCore> a ns0:Schema ;
+<http://www.dispedia.de/Site/Schema/DispediaCore> a ns0:Schema ;
                                                      rdfs:label "Dispedia Schema Browser" ;
-                                                     ns0:download <http://www.dispedia.local/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf>, <http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> ;
+                                                     ns0:download <http://www.dispedia.de/dispedia/download?ontology=dispediaCore>, <http://www.dispedia.de/dispedia/download?ontology=dispediaCoreConditions>, <http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperIcf>, <http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperAlsfrs> ;
                                                      ns0:file "dispediaCore_de.html"@de, "dispediaCore_en.html"@en ;
                                                      ns0:downloadLabel "Dispedia Core Files" ;
                                                      ns0:template "schema" ;
@@ -148,19 +148,19 @@ ns1:ServiceOntologyHC a ns0:Schema ;
 
 ns1:Welcome rdfs:label "Willkommen"@de, "Welcome"@en .
 
-<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperAlsfrs> a ns0:SchemaDownload ;
+<http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperAlsfrs> a ns0:SchemaDownload ;
                                                                             rdfs:label "disCoreWrapperAlsfrs.xml" ;
                                                                             ns0:index "3"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
-<http://www.dispedia.local/dispedia/download?ontology=disCoreWrapperIcf> a ns0:SchemaDownload ;
+<http://www.dispedia.de/dispedia/download?ontology=disCoreWrapperIcf> a ns0:SchemaDownload ;
                                                                          rdfs:label "disCoreWrapperIcf.xml" ;
                                                                          ns0:index "4"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
-<http://www.dispedia.local/dispedia/download?ontology=dispediaCore> a ns0:SchemaDownload ;
+<http://www.dispedia.de/dispedia/download?ontology=dispediaCore> a ns0:SchemaDownload ;
                                                                     rdfs:label "dispediaCore.xml" ;
                                                                     ns0:index "1"^^<http://www.w3.org/2001/XMLSchema#integer> .
 
-<http://www.dispedia.local/dispedia/download?ontology=dispediaCoreConditions> a ns0:SchemaDownload ;
+<http://www.dispedia.de/dispedia/download?ontology=dispediaCoreConditions> a ns0:SchemaDownload ;
                                                                               rdfs:label "dispediaCoreConditions.xml" ;
                                                                               ns0:index "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
 

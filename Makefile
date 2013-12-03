@@ -11,7 +11,6 @@ help:
 	@echo "  install-owcli .................. install owcli"
 	@echo "  install-kb ..................... install/update knowledgebases"
 	@echo "  deploy-changes ................. make dispedia.de deployment"
-	@echo "  dev-changes .................... change dispedia.de to dev"
 	@echo "  update-docs NAME=<ontology>..... update documentation files"
 
 # top level target
@@ -47,9 +46,6 @@ install-kb:
 
 deploy-changes:
 	scripts/deployment.sh
-    
-dev-changes:
-	scripts/toDev.sh
 
 
 CHANGED = $(shell git diff --name-only ontologies/$(NAME).*)
