@@ -301,7 +301,7 @@ class Proposal
      * add a new patient proposal allocation to the knowlegebase with all
      * resources, they are needed
      */
-    private function addProposals ( $patientUri, $proposalUris )
+    public function addProposals ( $patientUri, $proposalUris )
     {
 		$messages = array();
 		$healthstates = $this->_patientHelper->getAllHealthstates($patientUri);
@@ -321,7 +321,7 @@ class Proposal
     /**
      * remove all proposalallocations to a specific patient in the knowlegebase
      */
-    private function removeProposals($patientUri, $proposalUris)
+    public function removeProposals($patientUri, $proposalUris)
     {
 		$messages = array();
 		$healthstates = $this->_patientHelper->getAllHealthstates($patientUri);

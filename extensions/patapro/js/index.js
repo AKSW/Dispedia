@@ -38,14 +38,21 @@ function getHealthstate(selectHealthstate)
     });
 }
 
-function loadProposalBoxCheck(proposalUri, patientUri, proposalMd5, status)
+function loadProposalBoxCheck(proposalUri, patientUri, proposalMd5)
 {
-    if($('#input' + proposalMd5).is(':checked'))
-        loadProposalBox(proposalUri, patientUri, proposalMd5, status)
+    if($('#input' + proposalMd5).is(':checked')) {
+        loadProposalBox(proposalUri, patientUri, proposalMd5)
+    } else {
+        $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status", "delete");
+        submitProposalBox(proposalMd5, patientUri,proposalUri);
+        $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status", "new");
+        updateStatus(proposalMd5);
+    }
 }
 
-function loadProposalBox(proposalUri, patientUri, proposalMd5, status)
+function loadProposalBox(proposalUri, patientUri, proposalMd5)
 {
+    status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
     if ('new' == status)
     {
         $('#input' + proposalMd5).attr('checked', true);
@@ -98,25 +105,33 @@ function showProposalBox()
 /**
  * close proposal box
  */
-function submitProposalBox() 
+function submitProposalBox(proposalMd5, patientUri, proposalUri) 
 {
+    status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
+    if ("delete" == status) {
+        postData = "patientUri=" + patientUri + "&proposalUri=" + proposalUri;
+    } else {
+        postData = $('#descriptionReceivedStatus').serialize();
+    }
     // send formulas to submit action on server
     $.ajax({
-        async:true,
-        data: $('#descriptionReceivedStatus').serialize() + "&do=save",
+        async:false,
+        data: postData + "&do=save&status=" + status,
         dataType: "json",
         type: "POST",
         url: url + "patapro/proposaldata/",
     
         // complete, no errors
-        success: function ( res ) 
+        success: function ( res )
         {
-            console.log ("response");
-            console.log ( res );
-    
             proposalboxdata = {};
             
             closeProposalBox();
+            status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
+            if ('new' == status) {
+                $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status", "isPending");
+                updateStatus(proposalMd5);
+            }
             
         },
         
@@ -137,8 +152,22 @@ function submitProposalBox()
 /**
  * close proposal box
  */
-function closeProposalBox() 
+function closeProposalBox(proposalMd5) 
 {
     $('#box').empty();
     $.modal.close();
+    
+    status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
+    if ('new' == status) {
+        $('#input' + proposalMd5).attr('checked', false);
+    }
+}
+
+/**
+ * set a new status for a proposal
+ */
+function updateStatus(proposalMd5)
+{
+    status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
+    $("tr#" + proposalMd5 + " td#proposalStatus span").html(statusArray[status]);
 }

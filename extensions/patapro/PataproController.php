@@ -128,10 +128,19 @@ class PataproController extends OntoWiki_Controller_Component
         {
             // get a list of all healthstates
             $this->view->healthstates = $this->_patient->getAllHealthstates($currentPatient);
-
+            
             // only if no healthstates was found for this patient
             if ( 0 < count($this->view->healthstates) )
             {
+                // set array with status translations
+                $statusArray = array(
+                    'isPending' => $this->_translate->_('isPending'),
+                    'accepts' => $this->_translate->_('accepts'),
+                    'denies' => $this->_translate->_('denies'),
+                    'new' => ""
+                );
+                $this->view->statusArray = $statusArray;
+                
                 // build toolbar
                 $toolbar = $this->_owApp->toolbar;
                 $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
@@ -218,10 +227,10 @@ class PataproController extends OntoWiki_Controller_Component
                 //add buttons to toolbar
                 $toolbar = $this->_owApp->toolbar;
                 $toolbar->appendButton(OntoWiki_Toolbar :: SAVE, array(
-                    'url'  => 'javascript:submitProposalBox();'
+                    'url'  => "javascript:submitProposalBox('" . md5($proposalUri) . "', '" . urlencode($proposalUri) . "', '" . urlencode($patientUri) . "');"
                 ));
                 $toolbar->appendButton(OntoWiki_Toolbar :: CANCEL, array(
-                    'url'  => 'javascript:closeProposalBox();'
+                    'url'  => "javascript:closeProposalBox('" . md5($proposalUri) . "');"
                 ));
                 $this->view->boxtoolbar = $toolbar->__toString();
 
@@ -251,6 +260,11 @@ class PataproController extends OntoWiki_Controller_Component
             }
             else
             {
+                if ('new' == $status) {
+                    $this->_proposal->addProposals($patientUri, array($proposalUri));
+                } elseif  ('delete' == $status) {
+                    $this->_proposal->removeProposals($patientUri, array($proposalUri));
+                }
                 $jsonResponse = "";
                 $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
                 $proposalDescriptionReceivedStatusOld = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
@@ -292,7 +306,7 @@ class PataproController extends OntoWiki_Controller_Component
         }
         else
         {
-            echo "noproposaluri";
+            echo json_encode("noproposaluri");
         }
 
     }
