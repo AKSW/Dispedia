@@ -91,7 +91,7 @@ function showProposalBox()
     $('#box').modal({
         minWidth:750,
         persist : true,
-        appendTo : '.content'
+        appendTo : '#patapro'
     });
 }
 

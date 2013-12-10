@@ -68,11 +68,13 @@ table {
 
 .simplemodal-overlay {
   background-color:#000;
+  z-index: 100000 !important;
 }
 
 .simplemodal-container {
   background-color:#fff;
   minWidth:750px;
+  z-index: 100001 !important;
 }
 
 .simplemodal-data {
