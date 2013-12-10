@@ -50,36 +50,15 @@ class DispediaController extends OntoWiki_Controller_Component
     
     public function downloadAction()
     {
+        $ontologyFolder = $this->_config->ontologies->toArray();
+        $ontologyFolder = $ontologyFolder['folder'];
         $ontologyName = $this->getParam('ontology', '');
-        $arrFiles = scandir('ontologies');
+        $arrFiles = scandir($ontologyFolder);
         if (false !== array_search($ontologyName . '.xml', $arrFiles))
         {
             header('Content-Type: text/xml');
             header('Content-Disposition: attachment; filename="' . $ontologyName . '.xml"');
-            readfile('ontologies/' . $ontologyName . '.xml');
-        }
-        
-        // disable layout for Ajax requests
-        $this->_helper->layout()->disableLayout();
-        // disable rendering
-        $this->_helper->viewRenderer->setNoRender();
-    }
-    
-    public function downloadpdfAction()
-    {
-        $pdfName = $this->getParam('name', '');
-        $arrFiles = scandir('htdocs/ehealthservices2013/data');
-        
-        if (false !== array_search($pdfName . '.pdf', $arrFiles))
-        {
-            header('Content-Type: application/pdf');
-            header('Content-Disposition: attachment; filename="' . $pdfName . '.pdf"');
-            header("Content-Type: application/force-download");
-            header("Content-Type: application/octet-stream");
-            header("Content-Type: application/download");
-            header("Content-Description: File Transfer");            
-            header("Content-Length: " . filesize('htdocs/ehealthservices2013/data/' . $pdfName . '.pdf'));
-            readfile('htdocs/ehealthservices2013/data/' . $pdfName . '.pdf');
+            readfile($ontologyFolder . '/' . $ontologyName . '.xml');
         }
         
         // disable layout for Ajax requests
