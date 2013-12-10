@@ -80,16 +80,16 @@ class DispediaController extends OntoWiki_Controller_Component
         * 
         * Das Skript bitte in UTF-8 abspeichern (ohne BOM).
         */
-        
+
        // An welche Adresse sollen die Mails gesendet werden?
-       $zieladresse = 'uweber@informatik.uni-leipzig.de';
+       $zieladresse = $this->_privateConfig->registrationmail->destAddress;
        
        // Welche Adresse soll als Absender angegeben werden?
        // (Manche Hoster lassen diese Angabe vor dem Versenden der Mail ueberschreiben)
-       $absenderadresse = 'anmeldung@ehealth-services-2013.de';
+       $absenderadresse = 'anmeldung@ehealth-services.com';
        
        // Welcher Absendername soll verwendet werden?
-       $absendername = 'eHealth Service 2013 Anmeldungs Formular';
+       $absendername = 'eHealth Service Anmeldungs Formular';
        
        // Welchen Betreff sollen die Mails erhalten?
        $betreff = 'Anmeldung';
