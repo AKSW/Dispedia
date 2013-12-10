@@ -24,6 +24,10 @@ class FormsMainMenuController extends OntoWiki_Controller_Component
      */
     public function setmenuAction()
     {
+        // disable layout for Ajax requests
+        $this->_helper->layout()->disableLayout();
+        // disable rendering
+        $this->_helper->viewRenderer->setNoRender();
         
         $menuName = urldecode($this->getParam ('menuName'));
         
