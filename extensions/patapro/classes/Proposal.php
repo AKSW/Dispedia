@@ -67,7 +67,8 @@ class Proposal
 		$proposaldescriptions['read'] = array();
 		
 		$results = $this->_store->sparqlQuery (
-			'PREFIX swrl:<http://www.w3.org/2003/11/swrl#>
+			'PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+			PREFIX swrl:<http://www.w3.org/2003/11/swrl#>
 			SELECT ?property ?description
 			WHERE {
 			  ?classAtomPatientType swrl:classPredicate <' . $patientType . '> .
@@ -79,7 +80,7 @@ class Proposal
 			  ?propertyAtom swrl:propertyPredicate ?property .
 			  ?restAtomList  rdf:first ?classAtomDescriptionType .
 			  ?classAtomDescriptionType swrl:classPredicate ?description .
-			}'
+			};'
 		);
 		
 		$proposalComponents = $this->getProposalData($proposalUri);
@@ -89,7 +90,7 @@ class Proposal
 			foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
 			{
 				foreach($proposalDescription['type'] as $proposalDescriptionType)
-					if ($proposalDescriptionType == $results[0]['description'])
+					if (isset($results[0]['description']) && $proposalDescriptionType == $results[0]['description'])
 						$proposaldescriptions['received'][$proposalDescriptionUri] = $proposalDescriptionUri;
 			}
 		}
