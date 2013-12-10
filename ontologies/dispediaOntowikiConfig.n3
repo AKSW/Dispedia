@@ -126,6 +126,7 @@
                  sioc:has_member <guest> ;
                  sysont:denyModelEdit sysont:AnyModel ;
                  sysont:grantAccess sysont:Login ;
+                 sysont:grantAccess sysont:Formgenerator ;
                  sysont:grantModelView sysont:AnyModel ;
                  sysont:denyModelView <>, <http://ns.ontowiki.net/SysOnt/> .
 
@@ -164,6 +165,9 @@ sysont:RegisterNewUser sysont:rawConfig "defaultGroup=http://localhost/OntoWiki/
 
 sysont:Rollback sysont:rawConfig "global=on" .
 
+sysont:Formgenerator a sysont:Action ;
+               rdfs:label "Formgenerator" .
+               
 sysont:cda2rdf a sysont:Action ;
                rdfs:label "CDA2RDF Converter" .
 
