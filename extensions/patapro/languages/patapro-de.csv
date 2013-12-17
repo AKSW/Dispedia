@@ -17,10 +17,11 @@ denieds;abgelehnte
 pending;unentschlossen
 accept;annehmen
 denies;ablehnen
-save;Speichern
 nopatientselected;Kein Patient ausgewählt.
 noHealthstateFound;Kein Gesundheitszustand gefunden.
 added;gespeichert
 deleted;gelöscht
 visibility;Sichtbarkeit
 close;Schliessen
+proposalDescription;Vorschlagsbeschreibung
+saved;gespeichert

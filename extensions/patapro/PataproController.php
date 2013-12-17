@@ -236,14 +236,18 @@ class PataproController extends OntoWiki_Controller_Component
             }
             else
             {
+                $messages = array();
+                $jsonResponse = array();
+                $jsonResponse['error'] = 0;
+                $jsonResponse['messages'] = array();
                 if ('new' == $status) {
-                    $this->_proposal->addProposals($patientUri, array($proposalUri));
+                    $messages = $this->_proposal->addProposals($patientUri, array($proposalUri));
                 } elseif  ('delete' == $status) {
-                    $this->_proposal->removeProposals($patientUri, array($proposalUri));
+                    $messages = $this->_proposal->removeProposals($patientUri, array($proposalUri));
                 }
-                $jsonResponse = "";
                 $proposal['components'] = $this->_proposal->getProposalData($proposalUri);
                 $proposalDescriptionReceivedStatusOld = $this->_proposal->getPatientProposalDescription($patientUri, $proposalUri);
+                $updated = false;
                 foreach ($proposal['components']['data'] as $proposalDescriptions)
                 {
                     foreach ($proposalDescriptions as $proposalDescriptionUri => $proposalDescription)
@@ -258,6 +262,7 @@ class PataproController extends OntoWiki_Controller_Component
                                     "http://www.dispedia.de/o/receivedProposalDescription",
                                     $proposalDescriptionUri
                                 );
+                                $updated = true;
                             }
                         }
                         else
@@ -271,12 +276,21 @@ class PataproController extends OntoWiki_Controller_Component
                                         "http://www.dispedia.de/o/receivedProposalDescription",
                                         $proposalDescriptionUri
                                 );
-
+                                $updated = true;
                             }
                         }
                     }
                 }
-
+                if ($updated) {
+                    $messages[] = new OntoWiki_Message($this->_translate->_('proposalDescription') . " " . $this->_translate->_('saved'), OntoWiki_Message::SUCCESS);
+                }
+                foreach ($messages as $message)
+                {
+                    $jsonResponse['messages'][] = array(
+                        'type' => $message->getType(),
+                        'text' => $message->getText()
+                    );
+                }
                 echo json_encode($jsonResponse);
             }
         }

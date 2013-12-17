@@ -14,12 +14,17 @@
     var url = '<?php echo $this->url; ?>';
     var healthstates = '<?php echo (isset($this->healthstates) ? json_encode($this->healthstates) : "") ?>';
     var statusArray = $.parseJSON('<?php echo json_encode($this->statusArray) ?>');
+    var messages = new Array();
 </script>
 <!-- set the title of the action -->
 <?php $this->placeholder('main.window.title')->set($this->_translate->_('patient proposal allocation')); ?>
 <div id="box"></div>
-<div class="firstHeadline"><?php echo $this->_translate->_('patient proposal allocation'); ?></div>
-<div class="secondHeadline"><?php echo $this->_translate->_('allocate proposals to a patient'); ?></div>
+<div class="headline">
+    <div class="firstHeadline"><?php echo $this->_translate->_('patient proposal allocation'); ?></div>
+    <div class="secondHeadline"><?php echo $this->_translate->_('allocate proposals to a patient'); ?></div>
+</div>
+<div id="messageBox"></div>
+<div class="clear"></div>
 <?php if ("" != $this->currentPatient && 0 < count($this->healthstates)) { reset($this->healthstates); ?>
     <form method="post" action="" id="patapro">
         <table id="main">

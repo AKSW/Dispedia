@@ -313,7 +313,7 @@ class Proposal
 				'http://www.dispedia.de/o/isPending',
 				$proposalUri
 			);
-			$messages[] = new OntoWiki_Message($proposalUri . " " . $this->_translate->_('added'), OntoWiki_Message::SUCCESS);			
+			$messages[] = new OntoWiki_Message($proposalUri . " " . $this->_translate->_('added'), OntoWiki_Message::SUCCESS);
 		}	
 		return $messages;
     }
@@ -483,13 +483,15 @@ class Proposal
             $o = array('value' => $o, 'type' => $type);
         }
         // aremove a triple form datastore
-        return $this->_store->deleteMatchingStatements(
+        $deletedStatements = $this->_store->deleteMatchingStatements(
             (string) $this->_patientModel,
             $s,
             $p,
             $o,
             $options
-       );
+        );
+
+        return $deletedStatements;
     }
 
 }

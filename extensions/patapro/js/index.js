@@ -126,6 +126,14 @@ function submitProposalBox(proposalMd5, patientUri, proposalUri)
         {
             proposalboxdata = {};
             
+            if (0 == res.error && 0 < res.messages.length) {
+                if (0 < messages.length) {
+                    messages = messages.concat(res.messages);
+                } else {
+                    messages = messages.concat(res.messages);
+                    showMessage();
+                }
+            }
             closeProposalBox();
             status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
             if ('new' == status) {
@@ -147,6 +155,20 @@ function submitProposalBox(proposalMd5, patientUri, proposalUri)
             console.log ( "complete" );
         }
     });
+}
+
+function showMessage()
+{
+    if (0 < messages.length) {
+        message = messages.shift();
+        $('#messageBox').append('<div class="messagebox ' + message.type + '"> ' + message.text + '</div>');
+        $('#messageBox').fadeIn(700).delay(2000).slideUp(700, function() {hideMessage();});
+    }
+}
+function hideMessage()
+{
+    $('#messageBox').empty();
+    showMessage();
 }
 
 /**

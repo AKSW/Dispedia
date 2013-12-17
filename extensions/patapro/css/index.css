@@ -12,6 +12,9 @@
     clear:both;
 }
 
+.headline {
+    float:left;
+}
 .firstHeadline {
     font-size:22px;
     margin-left:10px;
@@ -20,6 +23,13 @@
 .secondHeadline {
     margin-top:5px;
     margin-left:20px;
+}
+
+#messageBox {
+    display: none;
+    float: right;
+    margin-top: 20px;
+    width: 50%;
 }
 
 table#main {
