@@ -283,6 +283,12 @@ footer {
     float: left;
     width: 15em;
 }
+
+#registrationFormDiv select#Student {
+    text-align: center;
+    width: 200px;
+}
+
 #registrationFormDiv textarea {
     height: 10em;
     width: 30em;
