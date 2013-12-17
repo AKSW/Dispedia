@@ -140,30 +140,6 @@ class PataproController extends OntoWiki_Controller_Component
                     'new' => ""
                 );
                 $this->view->statusArray = $statusArray;
-                
-                // build toolbar
-                $toolbar = $this->_owApp->toolbar;
-                $toolbar->appendButton(OntoWiki_Toolbar :: SUBMIT, array(
-                    'name' => 'Save'
-                ));
-                $this->view->placeholder('main.window.toolbar')->set($toolbar);
-
-                if ( 'save' == $this->getParam ('do', '') )
-                {
-                    $newProposals = $this->getParam ('proposals', array());
-                    foreach ($newProposals as $proposalNumber => $newProposal)
-                    {
-                        $newProposals[$proposalNumber] = urldecode($newProposal);
-                    }
-                    $this->addMessages(
-                            $this->_proposal->saveProposals (
-                            $currentPatient,
-                            $newProposals,
-                            json_decode(urldecode($this->getParam ('oldProposals', array())))
-                        )
-                    );
-                    $this->addMessages(new OntoWiki_Message($this->_translate->_('patient proposal allocation') . " " . $this->_translate->_('saved'), OntoWiki_Message::SUCCESS));
-                }
 
                 $allProposals = $this->_proposal->getAllProposals();
                 $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
