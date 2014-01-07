@@ -42,10 +42,7 @@ class DispediaController extends OntoWiki_Controller_Component
     
     public function indexAction()
     {
-        // disable layout for Ajax requests
-        $this->_helper->layout()->disableLayout();
-        // disable rendering
-        $this->_helper->viewRenderer->setNoRender();
+        $this->_redirect('dispedia/demo', array());
     }
     
     public function downloadAction()
@@ -253,6 +250,11 @@ class DispediaController extends OntoWiki_Controller_Component
             );
             $this->_owApp->appendMessage($message);
         }
+    }
+    
+    public function demoAction()
+    {
+        $this->_owApp->getNavigation()->disableNavigation();
     }
 }
 
