@@ -107,7 +107,7 @@ ns1:Home a foaf:Document ;
 <http://www.dispedia.de/Site/Navigation/Main> a ns0:Navigation ;
                                                  rdf:_1 ns1:Home ;
                                                  rdf:_2 ns1:Schema ;
-                                                 rdf:_3 <http://www.dispedia.de/page/DEMO> ;
+                                                 rdf:_3 <http://www.dispedia.de/dispedia/DEMO> ;
                                                  rdfs:label "Main Navigation" .
 
 <http://www.dispedia.de/Site/Navigation/Schemata> a ns0:Navigation ;
