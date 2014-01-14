@@ -56,7 +56,7 @@
                             <th><?php echo $this->_translate->_('status'); ?></th>
                             <th><?php echo $this->_translate->_('correspondence'); ?></th>
                         </tr>
-                        <tr><td class="trPatientProposal" id="trAllocated" colspan="4"><?php echo $this->_translate->_('allocated'); ?> <?php echo $this->_translate->_('proposals'); ?></td></tr>
+                        <tr class="secondHeadline trPatientProposal" id="trAllocated"><td colspan="4"><?php echo $this->_translate->_('allocated'); ?> <?php echo $this->_translate->_('proposals'); ?></td></tr>
                         <?php foreach ($this->patientProposals as $proposalUri => $proposal) { ?>
                             <tr class="trPatientProposal" id="<?php echo md5($proposalUri) ?>" >
                                 <td id="proposalCheck">
@@ -83,7 +83,7 @@
                             </tr>
                         <?php } ?>
                         <tr id="seperator"><td colspan="4"></td></tr>
-                        <tr class="secondHeadline"><td colspan="4"><?php echo $this->_translate->_('notAllocated'); ?> <?php echo $this->_translate->_('proposals'); ?></td></tr>
+                        <tr class="secondHeadline" id="trNotAllocated"><td colspan="4"><?php echo $this->_translate->_('notAllocated'); ?> <?php echo $this->_translate->_('proposals'); ?></td></tr>
                         <?php foreach ($this->proposals as $proposalUri => $proposal) { ?>
                             <tr id="<?php echo md5($proposalUri) ?>">
                                 <td id="proposalCheck">
