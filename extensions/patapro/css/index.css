@@ -73,6 +73,15 @@ table#proposal th{
     font-style:italic;
     font-size:14px;
 }
+tr#secondHeadline {
+    margin-bottom: 10px;
+}
+.trPatientProposal {
+    background-color: #E9E9E9;
+}
+tr#seperator {
+    height: 20px;
+}
 #proposalCheck {
     text-align:center;
     width:10%;

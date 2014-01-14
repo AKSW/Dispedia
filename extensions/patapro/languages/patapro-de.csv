@@ -25,3 +25,5 @@ visibility;Sichtbarkeit
 close;Schliessen
 proposalDescription;Vorschlagsbeschreibung
 saved;gespeichert
+allocated;zugewiesene
+notAllocated;nicht zugewiesene

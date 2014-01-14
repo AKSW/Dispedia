@@ -101,12 +101,12 @@ class PataproController extends OntoWiki_Controller_Component
 
         return $resources;
     }
-
+    
     /**
       * Action to make proposal for a patient
       */
     public function indexAction ()
-    {
+    {        
         $this->view->headLink()->appendStylesheet($this->_componentUrlBase .'css/index.css');
         $this->view->headScript()->appendFile($this->_componentUrlBase .'js/index.js');
 
@@ -144,13 +144,6 @@ class PataproController extends OntoWiki_Controller_Component
                 $allProposals = $this->_proposal->getAllProposals();
                 $patientProposals = $this->_proposal->getAllDecisinProposals($currentPatient);
 
-                foreach ($allProposals as $proposalUri => $proposal)
-                {
-                    if (isset($patientProposals[$proposalUri]))
-                        $allProposals[$proposalUri] = $patientProposals[$proposalUri];
-                }
-
-
                 $lastAlsFrsHealthstateUri = '';
 
                 //get the options from the last alsfrs healthstate (alsfrs because only for this classification exist a compare algorithm)
@@ -168,15 +161,34 @@ class PataproController extends OntoWiki_Controller_Component
                 if (0 < count($patientOptions))
                 {
                     // compare the patient proposals with the template proposals
+                    $patientProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $patientProposals);
                     $allProposals = $this->_proposal->calcCorrespondenceProposals($patientOptions['uriList'], $allProposals);
+                }
+                
+                uasort($allProposals, $this->build_sorter('label'));
+
+                $sortArray = array();
+                $sortArrayIndex = 0;
+                
+                foreach ($allProposals as $proposalUri => $proposal)
+                {
+                    if (isset($patientProposals[$proposalUri]))
+                        unset($allProposals[$proposalUri]);
+                    $sortArray[md5($proposalUri)] = $sortArrayIndex;
+                    $sortArrayIndex++;
                 }
 
                 foreach ($allProposals as $proposalUri => $proposal)
                 {
                     $allProposals[$proposalUri]['components'] = $this->_proposal->getProposalData($proposalUri);
                 }
+                
+                uasort($patientProposals, $this->build_sorter('status', 'label'));
+                uasort($allProposals, $this->build_sorter('correspondence', 'label', null, true, false, false));
 
+                $this->view->sortArray = $sortArray;
                 $this->view->patientUri = $currentPatient;
+                $this->view->patientProposals = $patientProposals;
                 $this->view->proposals = $allProposals;
             }
             else
@@ -186,6 +198,64 @@ class PataproController extends OntoWiki_Controller_Component
         {
             $this->addMessages(new OntoWiki_Message($this->_translate->_('nopatientselected'), OntoWiki_Message::WARNING));
         }
+    }
+    
+    /**
+     * sort a proposal array
+     */
+    private function build_sorter($key, $key2 = null, $key3 = null, $inverse = false, $inverse2 = false, $inverse3 = false) {
+        return function($a, $b) use ($key, $key2, $key3, $inverse, $inverse2, $inverse3) {
+            if(!function_exists("sortValues")) {
+                function sortValues($a, $b) {
+                    if (is_float($a)) {
+                        $array = array();
+                        $array[0] = $a;
+                        $array[1] = $b;
+                        if (sort($array)) {
+                            if ($a == $array[0])
+                                return -1;
+                            else
+                                return 1;
+                        }
+                    } else
+                        return strcasecmp($a, $b);
+                }
+            }
+            if ($inverse) {
+                $first = $b[$key];
+                $second = $a[$key];
+            } else {
+                $first = $a[$key];
+                $second = $b[$key];
+            }
+            
+            if (null === $key2 && null === $key3) {
+                return sortValues($first, $second);
+            } else {
+                if ($inverse2) {
+                    $first2 = $b[$key2];
+                    $second2 = $a[$key2];
+                } else {
+                    $first2 = $a[$key2];
+                    $second2 = $b[$key2];
+                }
+                
+                if (null === $key3)
+                    return (0 == sortValues($first, $second) ? sortValues($first2, $second2) : sortValues($first, $second));
+                else {
+                    if ($inverse3) {
+                        $first3 = $b[$key3];
+                        $second3 = $a[$key3];
+                    } else {
+                        $first3 = $a[$key3];
+                        $second3 = $b[$key3];
+                    }
+                    
+                    $return_value = (0 == sortValues($first2, $second2) ? sortValues($first3, $second3) : $this->sortValues($first2, $second2));
+                    return (0 == sortValues($first, $second) ? $return_value : sortValues($first, $second));
+                }
+            }
+        };
     }
 
     /**

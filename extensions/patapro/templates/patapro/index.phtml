@@ -14,6 +14,7 @@
     var url = '<?php echo $this->url; ?>';
     var healthstates = '<?php echo (isset($this->healthstates) ? json_encode($this->healthstates) : "") ?>';
     var statusArray = $.parseJSON('<?php echo json_encode($this->statusArray) ?>');
+    var sortArray = $.parseJSON('<?php echo json_encode($this->sortArray) ?>');
     var messages = new Array();
 </script>
 <!-- set the title of the action -->
@@ -55,8 +56,9 @@
                             <th><?php echo $this->_translate->_('status'); ?></th>
                             <th><?php echo $this->_translate->_('correspondence'); ?></th>
                         </tr>
-                        <?php foreach ($this->proposals as $proposalUri => $proposal) { ?> 
-                             <tr id="<?php echo md5($proposalUri) ?>">
+                        <tr><td class="trPatientProposal" id="trAllocated" colspan="4"><?php echo $this->_translate->_('allocated'); ?> <?php echo $this->_translate->_('proposals'); ?></td></tr>
+                        <?php foreach ($this->patientProposals as $proposalUri => $proposal) { ?>
+                            <tr class="trPatientProposal" id="<?php echo md5($proposalUri) ?>" >
                                 <td id="proposalCheck">
                                     <input id="input<?php echo md5($proposalUri); ?>" type="checkbox"
                                         <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
@@ -75,7 +77,35 @@
                                     <span data-status="<?php echo (isset($proposal['status']) ? $proposal['status'] : "new") ?>"><?php echo (isset($proposal['status']) ? $proposal['statusLabel'] : ""); ?></span>
                                 </td>
                                 <td id="proposalCorrespondence">
-                                    <div class="correspondence corDivBottom"></div><div style="width:<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>px" class="correspondence corDivTop"></div>
+                                    <div class="correspondence corDivBottom"></div>
+                                    <div class="correspondence corDivTop" data-correspondence="<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>" style="width:<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>px"></div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        <tr id="seperator"><td colspan="4"></td></tr>
+                        <tr class="secondHeadline"><td colspan="4"><?php echo $this->_translate->_('notAllocated'); ?> <?php echo $this->_translate->_('proposals'); ?></td></tr>
+                        <?php foreach ($this->proposals as $proposalUri => $proposal) { ?>
+                            <tr id="<?php echo md5($proposalUri) ?>">
+                                <td id="proposalCheck">
+                                    <input id="input<?php echo md5($proposalUri); ?>" type="checkbox"
+                                        <?php echo (isset($proposal['status']) && "isPending" != $proposal['status'] ? "disabled=\"disabled\"" : ""); ?>
+                                        name="proposals[]" value="<?php echo urlencode($proposalUri); ?>"
+                                        onchange="javascript:loadProposalBoxCheck('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>','<?php echo md5($proposalUri) ?>')"
+                                        <?php echo (isset($proposal['status']) ? "checked=\"checked\"" : ""); ?>
+                                    >
+                                </td>
+                                <td id="proposalName">
+                                    <span<?php echo (isset ($proposal['correspondence']) && 0 < $proposal['correspondence'] ? ' style="font-weight:bold"' : ''); ?>><?php echo $proposal['label']; ?></span>
+                                    <a href="javascript:loadProposalBox('<?php echo urlencode($proposalUri) ?>', '<?php echo urlencode($this->patientUri) ?>','<?php echo md5($proposalUri) ?>')">
+                                        <img src="<?php echo $this->url; ?>../extensions/themes/dispedia/images/icon-edit.png">
+                                    </a>
+                                </td>
+                                <td id="proposalStatus">
+                                    <span data-status="<?php echo (isset($proposal['status']) ? $proposal['status'] : "new") ?>"><?php echo (isset($proposal['status']) ? $proposal['statusLabel'] : ""); ?></span>
+                                </td>
+                                <td id="proposalCorrespondence">
+                                    <div class="correspondence corDivBottom"></div>
+                                    <div class="correspondence corDivTop" data-correspondence="<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>" style="width:<?php echo (isset ($proposal['correspondence']) ? $proposal['correspondence'] : 0); ?>px"></div>
                                 </td>
                             </tr>
                         <?php } ?>

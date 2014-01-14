@@ -192,4 +192,37 @@ function updateStatus(proposalMd5)
 {
     status = $("tr#" + proposalMd5 + " td#proposalStatus span").attr("data-status");
     $("tr#" + proposalMd5 + " td#proposalStatus span").html(statusArray[status]);
+    insertAfterProposal = '';
+    proposals = $("tr:not(#" + proposalMd5 + ") > td#proposalStatus span[data-status='" + status + "']").parent().parent();
+    proposalCorrespondence = parseInt($('#' + proposalMd5 + ' td div[data-correspondence]').attr('data-correspondence'), 10);
+    if ('new' == status && proposalCorrespondence > 0) {
+        $.each(proposals, function(index,value) {
+            valueCorrespondence = parseInt($('#' + $(value).attr('id') + ' td div[data-correspondence]').attr('data-correspondence'), 10);
+            if (valueCorrespondence > proposalCorrespondence) {
+                insertAfterProposal = value;
+            }
+        });
+    } else {
+        $.each(proposals, function(index,value) {
+            valueCorrespondence = $('#' + $(value).attr('id') + ' td div[data-correspondence]').attr('data-correspondence');
+            if ('new' != status || 0 == valueCorrespondence) {
+                if (sortArray[proposalMd5] > sortArray[$(value).attr('id')]
+                    && ('' == insertAfterProposal
+                    || sortArray[$(insertAfterProposal).attr('id')] < sortArray[$(value).attr('id')])) {
+                    insertAfterProposal = value;
+                }
+            }
+        });
+    }
+    if ('' == insertAfterProposal) {
+        $(proposals).first().before($('#' + proposalMd5));
+    } else {
+        $(insertAfterProposal).after($('#' + proposalMd5));
+    }
+    if ('new' == status) {
+        $("tr#" + proposalMd5).removeClass('trPatientProposal');
+    } else {
+        $("tr#" + proposalMd5).addClass('trPatientProposal');
+    }
+    
 }
