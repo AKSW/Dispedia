@@ -276,17 +276,20 @@ footer {
     border: 0px solid black;
 }
 #registrationFormDiv .entry {
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
 }
 
 #registrationFormDiv .floating {
     float: left;
     width: 15em;
 }
-
+#registrationFormDiv div.label {
+    width: 15em;
+}
+#registrationFormDiv select#TeilnehmerNennung,
 #registrationFormDiv select#Student {
     text-align: center;
-    width: 200px;
+    width: 180px;
 }
 
 #registrationFormDiv textarea {

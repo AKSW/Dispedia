@@ -16,25 +16,34 @@
             <fieldset>
                 <div class="entry"><div class="label">Titel</div><input type="text" name="Titel" /></div>
                 <div class="entry floating"><div class="label">Vorname</div><input type="text" id="Vorname" name="Vorname"/></div>
-                <div class="entry"><div class="label">Nachname</div><input type="text" id="Nachname" name="Nachname" /></div>
+                <div class="entry floating"><div class="label">Nachname</div><input type="text" id="Nachname" name="Nachname" /></div>
                 <div class="clear"></div>
                 <div class="entry floating"><div class="label">Email-Adresse</div><input type="text" id="Email" name="Email" /></div>
-                <div class="entry"><div class="label">Email-Adresse (wiederholen)</div><input type="text" id="Email2" name="Email2" /></div>
+                <div class="entry floating"><div class="label">Email-Adresse (wiederholen)</div><input type="text" id="Email2" name="Email2" /></div>
                 <div class="clear"></div>
-                <div class="entry"><div class="label">Telefonnummer</div><input type="text" id="Telefonnummer" name="Telefonnummer" /></div>
+                <div class="entry floating"><div class="label">Telefonnummer</div><input type="text" id="Telefonnummer" name="Telefonnummer" /></div>
+                <div class="entry floating">
+                    <div class="label">Ich stimme der Nennung als Teilnehmer auf der Webseite zu?</div>
+                    <select id="TeilnehmerNennung" name="TeilnehmerNennung">
+                        <option selected="selected">ja</option>
+                        <option>nein</option>
+                    </select>
+                </div>
+                <div class="clear"></div>
                 <div class="entry floating"><div class="label">Institution</div><input type="text" id="Institution" name="Institution" /></div>
-                <div class="entry">
+                <div class="entry floating">
                     <div class="label">Sind Sie Student?</div>
                     <select id="Student" name="Student">
                         <option>ja</option>
                         <option selected="selected">nein</option>
                     </select>
                 </div>
+                <div class="clear"></div>
                 <div class="entry floating"><div class="label">Straße/Hausnummer</div><input type="text" id="StrasseHausnummer" name="StrasseHausnummer" /></div>
-                <div class="entry"><div class="label">Adresszusatz</div><input type="text" id="Adresszusatz" name="Adresszusatz" /></div>
+                <div class="entry floating"><div class="label">Adresszusatz</div><input type="text" id="Adresszusatz" name="Adresszusatz" /></div>
                 <div class="clear"></div>
                 <div class="entry floating"><div class="label">PLZ</div><input type="text" id="PLZ" name="PLZ" /></div>
-                <div class="entry"><div class="label">Ort</div><input type="text" id="Ort" name="Ort" /></div>
+                <div class="entry floating"><div class="label">Ort</div><input type="text" id="Ort" name="Ort" /></div>
                 <div class="clear"></div>
                 <div class="entry"><div class="label">Anmerkung</div><textarea id="Anmerkung" name="Anmerkung"></textarea></div>
                 <div class="sendButton"><input type="submit" class="submit" value="Abschicken" /></div>
