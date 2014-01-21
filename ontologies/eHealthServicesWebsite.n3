@@ -2,55 +2,61 @@
 
 @base <http://www.ehealth-services.com/> .
 @prefix sysont: <http://ns.ontowiki.net/SysOnt/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix ns0: <http://ns.ontowiki.net/SysOnt/Site/> .
 @prefix ns2: <http://creativecommons.org/ns#> .
 @prefix ns1: <http://www.ehealth-services.com/Partner/> .
+@prefix ns3: <http://www.ehealth-services.com/> .
 
 <> a owl:Ontology ;
    rdfs:label "eHealth Services Website" ;
    owl:versionInfo "0.1.0.0003" ;
-   dct:contributor "Romy Elze", "Lars Eidam", "Marcus Nitzschke" ;
+   dct:contributor "Romy Elze", "Marcus Nitzschke", "Lars Eidam" ;
    ns2:license <http://creativecommons.org/licenses/by/3.0/> .
 
-<Anmeldung> a foaf:Document ;
-            rdfs:label "ANMELDUNG" ;
-            ns0:languageContent """Die Preise für eine Teilnahme am Workshop eHealth Services betragen:  <br /><br />
-<b>   99 € für Frühbucher</b> bis zum 30.11.13<br />
-<b> 160 € im Normaltarif </b> vom 1.12.13 bis zum 28.2.14<br />
-<b> 190 € für Spätbucher</b> ab dem 1.3.14
- <br /><br />
-Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu. """@de ;
-            ns0:headline "Anmeldung" ;
-            ns0:template "registration" .
+ns3:Anmeldung a foaf:Document ;
+              rdfs:label "ANMELDUNG" ;
+              ns0:template "registration" ;
+              ns0:headline "Anmeldung für den Workshop" ;
+              ns0:languageContent """Die Preise für eine Teilnahme am Workshop eHealth Services betragen:  <br /><br />
+<b>   99 € für Frühbucher</b> bis zum 31.01.14<br />
+<b> 109 € im Normaltarif </b> vom 01.02.14 bis zum 28.02.14<br />
+<b> 119 € für Spätbucher</b> ab dem 01.03.14 <br /> 
+<b> 30 € für Studenten </b>bitte Studentenausweis zur Veranstaltung mitbringen! <br />
+<b> 55 € als Netzwerkpartner </b>bitte Netzwerkcode unter Anmerkungen angeben<br /><br />
+Nach Eingang Ihrer Anmeldung, schicken wir Ihnen eine Rechnung über die Teilnahmegebühren zu. """@de .
 
-<Danke> a foaf:Document ;
-        rdfs:label "DANKE" ;
-        ns0:languageContent "Vielen Dank für Ihre Anmeldung"@de ;
-        ns0:headline "Vielen Dank" .
+ns3:Danke a foaf:Document ;
+          rdfs:label "DANKE" ;
+          ns0:headline "Vielen Dank" ;
+          ns0:languageContent """Ihre Anmeldung zum Workshop eHealth Services 2014 war erfolgreich.
+<br/>
+In Kürze erhalten Sie die Bestätigung per Email."""@de .
 
-<Header> a foaf:Document ;
-         rdfs:label "Header" ;
-         ns0:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
+ns3:Header a foaf:Document ;
+           rdfs:label "Header" ;
+           ns0:headline """WORKSHOP eHealth Services<br ><span class=\"highlighted\">
 Integrierte Versorgung quo vadis?</span><br />13. März '14<br />Universität Leipzig"""@de .
 
-<Home> a foaf:Document ;
-       rdfs:label "HOME" ;
-       ns0:languageContent "Unter dem Motto „eHealth Services - Integrierte Versorgung quo vadis?“ findet am Donnerstag, den 13.03.2014 ein eintägiger Workshop in Leipzig statt. Die Referenten werden Einblicke in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen aus den Blickwinkeln der Wissenschaft, der Nutzer, der Politik und der Industrie geben. Die Schwerpunktthemen des Workshops sind innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten sowie neue Kooperations- und Vergütungsformen im eHealth-Sektor."@de ;
-       ns0:headline "Workshop eHealth" ;
-       ns0:content """#### Donnerstag, 13. März 2014 von 09:00 Uhr bis 18:00 Uhr in Leipzig <br><br>
+ns3:Home a foaf:Document ;
+         rdfs:label "HOME" ;
+         ns0:content """#### Donnerstag, 13. März 2014 von 09:00 Uhr bis 18:00 Uhr in Leipzig <br><br>
 
 <p align=\"left\"> Vom 13. bis 16. März findet ebenfalls die Leipziger Buchmesse statt. Nutzen Sie die Gelegenheit auch diese zu besuchen! </p>"""^^sysont:Markdown ;
-       ns0:template "home" .
+         ns0:template "home" ;
+         ns0:headline "Workshop eHealth-Services 2014" ;
+         ns0:languageContent """EHealth ist als neues und vielversprechendes Thema häufig diskutiert und Grundlage zahlreicher Visionen. Es ist ein Themengebiet dessen Grenzen und  Potentiale noch nicht vollständig abgesteckt sind. Dabei entstehen jeden Tag neue Ideen, die medizinische Versorgung durch computergestützte und internetbasierte Techniken zu verbessern und effizienter zu gestalten, so dass der entstehende Benefit den Patienten, Ärzten und Krankenhäusern, dem Gesundheitssystem und Angehörigen zugutekommt.   <br /><br />
 
-<Impressum> a foaf:Document ;
-            rdfs:label "IMPRESSUM" ;
-            ns0:headline "Impressum" ;
-            ns0:content """# IMPRESSUM
+In unserem Workshop „eHealth Services - Integrierte Versorgung quo vadis?“ werden die Referenten Einblicke in die aktuellen Trends und Potentiale elektronischer Gesundheitsdienstleistungen aus den Blickwinkeln der Wissenschaft, der Nutzer, der Politik und der Industrie geben. Er findet am Donnerstag, den 13.03.2014 als eintägiger Workshop in Leipzig statt. Unsere Schwerpunktthemen sind dabei innovative Patientenkommunikation, Stärkung der Versorgungskompetenzen für die Beteiligten sowie neue Kooperations- und Vergütungsformen im eHealth-Sektor."""@de .
+
+ns3:Impressum a foaf:Document ;
+              rdfs:label "IMPRESSUM" ;
+              ns0:content """# IMPRESSUM
 
 Telefon: +49 341 97-32304<br />
 Telefax: +49 341 97-32269<br />
@@ -89,126 +95,125 @@ Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendu
 
 * [Maxi Bley . www.bleystift.de](http://bleystift.de) - Screendesign
 * [Lars Eidam - LE-HelpDesk](https://github.com/larseidam) - Umsetzung PHP/HTML/CSS"""^^sysont:Markdown ;
-            ns0:template "imprint" .
+              ns0:template "imprint" ;
+              ns0:headline "Impressum" .
 
-<Kontakt> a foaf:Document ;
-          rdfs:label "KONTAKT" ;
-          ns0:languageContent """Universität Leipzig<br />
+ns3:Kontakt a foaf:Document ;
+            rdfs:label "KONTAKT" ;
+            ns0:template "contact" ;
+            ns0:headline "Kontakt" ;
+            ns0:languageContent """Universität Leipzig<br />
 Institut für Informatik<br />
 Abt. Betriebliche Informationssysteme<br />
 <br />
 Ulrike Weber<br />
 <br />
 E-Mail: <a href=\"mailto:%75%77%65%62%65%72%40%69%6E%66%6F%72%6D%61%74%69%6B%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">uweber[@]informatik.uni-leipzig.de</a>""" ;
-          ns0:headline "Kontakt" ;
-          ns0:image "/extensions/site/../../htdocs//ehealthservices/img/logo-SEeH-contact.png" ;
-          ns0:template "contact" .
+            ns0:image "/extensions/site/../../htdocs//ehealthservices/img/logo-SEeH-contact.png" .
 
 <http://www.ehealth-services.com/Navigation/Main> a ns0:Navigation ;
-                                                    rdf:_1 <Home> ;
-                                                    rdf:_2 <Programm> ;
-                                                    rdf:_3 <Veranstaltungen> ;
-                                                    rdf:_4 <Veranstaltungsort> ;
-                                                    rdf:_5 <Anmeldung> ;
-                                                    rdfs:label "Main Navigation" ;
-                                                    rdf:_6 <Kontakt> .
+                                                  rdf:_1 ns3:Home ;
+                                                  rdf:_2 ns3:Programm ;
+                                                  rdf:_3 ns3:Veranstaltungen ;
+                                                  rdf:_4 ns3:Veranstaltungsort ;
+                                                  rdf:_5 ns3:Anmeldung ;
+                                                  rdfs:label "Main Navigation" ;
+                                                  rdf:_6 ns3:TEILNEHMER ;
+                                                  rdf:_7 ns3:Kontakt .
 
-<NotFound> a foaf:Document ;
-           rdfs:label "404" ;
-           ns0:languageContent "Diese Seite ist nicht erreichbar."@de, "Either the site you are trying to reach is not available anymore on this server, or you have tried to access a 'dead' link."@en ;
-           ns0:headline "Site not found"@en, "Seite nicht gefunden"@de .
+ns3:NotFound a foaf:Document ;
+             rdfs:label "404" ;
+             ns0:headline "Site not found"@en, "Seite nicht gefunden"@de ;
+             ns0:languageContent "Diese Seite ist nicht erreichbar."@de, "Either the site you are trying to reach is not available anymore on this server, or you have tried to access a 'dead' link."@en .
 
-ns1:InfAI a <Partner> ;
+ns1:InfAI a ns3:Partner ;
           rdfs:label "Instituts für Angewandte Informatik e. V"@de ;
           foaf:homepage <http://infai.org> ;
           foaf:logo <http://www.ehealth-services.com/htdocs/ehealthservices/img/logo-infai.png> .
 
 ns1:Sabre rdfs:label "Software Agents and Services for Business, Research, and E-Sciences"@en .
 
-ns1:UniversityLeipzig a <Partner> ;
+ns1:UniversityLeipzig a ns3:Partner ;
                       rdfs:label "Universität Leipzig"@de ;
                       foaf:homepage <http://www.uni-leipzig.de/> ;
                       foaf:logo <http://www.ehealth-services.com/htdocs/ehealthservices/img/logo-unileipzig.png> .
 
-ns1:eVAA a <Partner> ;
+ns1:eVAA a ns3:Partner ;
          rdfs:label "Europäischen Vereinigung für Vitalität und Aktives Altern e.V."@de ;
          foaf:homepage <http://www.evaaa.de/> ;
          foaf:logo <http://www.ehealth-services.com/htdocs/ehealthservices/img/logo.eVAA.mit.text.RGB.jpg> .
 
-ns1:imise a <Partner> ;
+ns1:imise a ns3:Partner ;
           rdfs:label "Institut für Medizinische Informatik, Statistik und Epidemiologie"@de ;
           foaf:homepage <http://www.imise.uni-leipzig.de> ;
           foaf:logo <http://www.ehealth-services.com/htdocs/ehealthservices/img/logo-imise.png> .
 
-ns1:vitalServices a <Partner> ;
+ns1:vitalServices a ns3:Partner ;
                   rdfs:label "Vital Services" ;
                   foaf:homepage <http://www.vital-services.de/> ;
                   foaf:logo <http://www.ehealth-services.com/htdocs/ehealthservices/img/logo.vital.services.GmbH.RGB.gross.jpg> .
 
-<Programm> a foaf:Document ;
-           rdfs:label "PROGRAMM" ;
-           ns0:headline "Programm" ;
-           ns0:infoline "Änderungen im Programm sind möglich."@de ;
-           ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ns.ontowiki.net/SysOnt/Site/Program>. ?resourceUri <http://ns.ontowiki.net/SysOnt/Site/number> ?number.\" orderby=\"ASC(?number)\" template=\"program\"}}"^^sysont:Markdown ;
-           ns0:template "program" .
+ns3:Programm a foaf:Document ;
+             rdfs:label "PROGRAMM" ;
+             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://ns.ontowiki.net/SysOnt/Site/Program>. ?resourceUri <http://ns.ontowiki.net/SysOnt/Site/number> ?number.\" orderby=\"ASC(?number)\" template=\"program\"}}"^^sysont:Markdown ;
+             ns0:template "program" ;
+             ns0:headline "Programm" ;
+             ns0:infoline "Änderungen im Programm sind möglich."@de .
 
 <http://www.ehealth-services.com/Programm/AktuellerStanddermedizinischenInfrastruktur> a ns0:Program ;
-                                                                                         rdf:_1 <http://www.ehealth-services.com/Referente/SvenMarx> ;
-                                                                                         rdf:_2 <http://www.ehealth-services.com/Referente/Prof.Dr.StefanSkonetzki-Cheng> ;
-                                                                                         rdf:_3 <http://www.ehealth-services.com/Referente/FlorianMeißner> ;
-                                                                                         rdfs:label "Aktueller Stand der medizinischen Infrastruktur (EFA, Telematikinfrastruktur)"@de ;
-                                                                                         ns0:time "10:45 – 12:15" ;
-                                                                                         ns0:number "3"^^<http://www.w3.org/2001/XMLSchema#integer> ;
-                                                                                         ns0:view "technische Gesamtplanung"@de .
+                                                                                       rdf:_1 <http://www.ehealth-services.com/Referente/Krankenhausgesellschaft> ;
+                                                                                       rdf:_2 <http://www.ehealth-services.com/Referente/RuthGausche> ;
+                                                                                       rdf:_3 <http://www.ehealth-services.com/Referente/Dr.MarkusWagner> ;
+                                                                                       rdfs:label "eHealth Projekte- Erfahrungsberichte aus der Praxis I "@de ;
+                                                                                       ns0:time "11:00 – 12:30" ;
+                                                                                       ns0:number "3"^^xsd:integer ;
+                                                                                       ns0:view "technische Gesamtplanung"@de .
 
 <http://www.ehealth-services.com/Programm/EroeffnungundBegrueßung> rdfs:label "Eröffnung und Begrüßung der Teilnehmer"@de .
 
 <http://www.ehealth-services.com/Programm/FinanzierungvoneHealthDienstleistungen> a ns0:Program ;
-                                                                                    rdf:_1 <http://www.ehealth-services.com/Referente/SozialministeriumSachsen> ;
-                                                                                    rdf:_2 <http://www.ehealth-services.com/Referente/PriceWaterhouseCoopers> ;
-                                                                                    rdf:_3 <http://www.ehealth-services.com/Referente/Krankenhausgesellschaft> ;
-                                                                                    rdfs:label "eHealth-Projekte aktuell"@de ;
-                                                                                    ns0:time "09:00 – 10:30" ;
-                                                                                    ns0:number "1"^^<http://www.w3.org/2001/XMLSchema#integer> ;
-                                                                                    ns0:view "Krankenkassen / Politik"@de .
+                                                                                  rdf:_1 <http://www.ehealth-services.com/Referente/SozialministeriumSachsen> ;
+                                                                                  rdf:_2 <http://www.ehealth-services.com/Referente/PriceWaterhouseCoopers> ;
+                                                                                  rdf:_3 <http://www.ehealth-services.com/Referente/SvenMarx> ;
+                                                                                  rdfs:label "eHealth Forschung – Möglichkeiten und Rahmenbedingungen"@de ;
+                                                                                  ns0:time "09:00 – 10:45" ;
+                                                                                  ns0:number "1"^^xsd:integer ;
+                                                                                  ns0:view "Krankenkassen / Politik"@de .
 
 <http://www.ehealth-services.com/Programm/MedizinischeDienstleistungenausPatientensicht> a ns0:Program ;
-                                                                                           rdf:_1 <http://www.ehealth-services.com/Referente/ThomasWerchau> ;
-                                                                                           rdf:_2 <http://www.ehealth-services.com/Referente/MichaelSchaaf> ;
-                                                                                           rdf:_3 <http://www.ehealth-services.com/Referente/MarcusNitzschke> ;
-                                                                                           rdf:_4 <http://www.ehealth-services.com/Referente/Prof.Dr.HaraldEnglisch> ;
-                                                                                           rdfs:label """Medizinische Dienstleistungen aus Patientensicht (Studienergebnisse komplexe 
-Krankheitsverläufe)"""@de ;
-                                                                                           ns0:time "15:30 – 17:00" ;
-                                                                                           ns0:number "7"^^<http://www.w3.org/2001/XMLSchema#integer> ;
-                                                                                           ns0:view "Patientensicht"@de .
+                                                                                         rdf:_1 <http://www.ehealth-services.com/Referente/Prof.Dr.HaraldEnglisch> ;
+                                                                                         rdf:_2 <http://www.ehealth-services.com/Referente/MichaelSchaaf> ;
+                                                                                         rdf:_3 <http://www.ehealth-services.com/Referente/MarcusNitzschke> ;
+                                                                                         rdfs:label "eHealth Services – Technische Konzepte für die Zukunft "@de ;
+                                                                                         ns0:time "15:30 – 17:00" ;
+                                                                                         ns0:number "7"^^xsd:integer ;
+                                                                                         ns0:view "Patientensicht"@de .
 
 <http://www.ehealth-services.com/Programm/Pause> a ns0:Program ;
-                                                   rdfs:label "Mittagspause" ;
-                                                   ns0:time "12:15 – 13:30" ;
-                                                   ns0:number "4"^^<http://www.w3.org/2001/XMLSchema#integer> .
+                                                 rdfs:label "Mittagspause" ;
+                                                 ns0:time "12:15 – 13:30" ;
+                                                 ns0:number "4"^^xsd:integer .
 
 <http://www.ehealth-services.com/Programm/Pause1> a ns0:Program ;
-                                                    rdfs:label "Kaffeepause" ;
-                                                    ns0:time "10:30 – 10:45" ;
-                                                    ns0:number "2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+                                                  rdfs:label "Kaffeepause" ;
+                                                  ns0:time "10:30 – 10:45" ;
+                                                  ns0:number "2"^^xsd:integer .
 
 <http://www.ehealth-services.com/Programm/Pause3> a ns0:Program ;
-                                                    rdfs:label "Pause" ;
-                                                    ns0:time "15:00 – 15:30" ;
-                                                    ns0:number "6"^^<http://www.w3.org/2001/XMLSchema#integer> .
+                                                  rdfs:label "Pause" ;
+                                                  ns0:time "15:00 – 15:30" ;
+                                                  ns0:number "6"^^xsd:integer .
 
 <http://www.ehealth-services.com/Programm/Programmpunkt1> rdfs:label "Programmpunkt 1"@de .
 
 <http://www.ehealth-services.com/Programm/StationaereundambulanteVernetzung> a ns0:Program ;
-                                                                               rdf:_1 <http://www.ehealth-services.com/Referente/RuthGausche> ;
-                                                                               rdf:_2 <http://www.ehealth-services.com/Referente/Dr.MarkusWagner> ;
-                                                                               rdf:_3 <http://www.ehealth-services.com/Referente/MarcusBauer> ;
-                                                                               rdf:_4 <http://www.ehealth-services.com/Referente/ThomasHeinz> ;
-                                                                               rdfs:label "Stationäre und ambulante Vernetzung (Ambulante Einweisung, Überleitung)"@de ;
-                                                                               ns0:time "13:30 – 15:00" ;
-                                                                               ns0:number "5"^^<http://www.w3.org/2001/XMLSchema#integer> ;
-                                                                               ns0:view "Softwareanbieter"@de .
+                                                                             rdf:_1 <http://www.ehealth-services.com/Referente/ThomasWerchau> ;
+                                                                             rdf:_2 <http://www.ehealth-services.com/Referente/ThomasHeinz> ;
+                                                                             rdf:_3 <http://www.ehealth-services.com/Referente/FlorianMeißner> ;
+                                                                             rdfs:label "eHealth Projekte- Erfahrungsberichte aus der Praxis II"@de ;
+                                                                             ns0:time "13:30 – 15:00" ;
+                                                                             ns0:number "5"^^xsd:integer ;
+                                                                             ns0:view "Softwareanbieter"@de .
 
 <http://www.ehealth-services.com/Referente/3Prof.Dr.StefanSkonetzki-Cheng> ns0:email "<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;%73%74%65%66%61%6E%2E%73%6B%6F%6E%65%74%7A%6B%69%2D%63%68%65%6E%67%40%68%73%2D%6E%69%65%64%65%72%72%68%65%69%6E%2E%64%65 \"title=\"&#x45;&#x2d;&#x4d;&#x61;&#x69;&#x6c;\">&#x73;&#x74;&#x65;&#x66;&#x61;&#x6e;&#x2e;&#x73;&#x6b;&#x6f;&#x6e;&#x65;&#x74;&#x7a;&#x6b;&#x69;&#x2d;&#x63;&#x68;&#x65;&#x6e;&#x67;[&#x40;]&#x68;&#x73;&#x2d;&#x6e;&#x69;&#x65;&#x64;&#x65;&#x72;&#x72;&#x68;&#x65;&#x69;&#x6e;&#x2e;&#x64;&#x65;</a>" .
 
@@ -217,175 +222,165 @@ Krankheitsverläufe)"""@de ;
 <http://www.ehealth-services.com/Referente/7FlorianMeißner> ns0:email "<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;%6D%65%69%73%73%6E%65%72%40%76%69%74%61%6C%2D%73%65%72%76%69%63%65%73%2E%64%65 \"title=\"&#x45;&#x2d;&#x4d;&#x61;&#x69;&#x6c;\">&#x6d;&#x65;&#x69;&#x73;&#x73;&#x6e;&#x65;&#x72;[&#x40;]&#x76;&#x69;&#x74;&#x61;&#x6c;&#x2d;&#x73;&#x65;&#x72;&#x76;&#x69;&#x63;&#x65;&#x73;&#x2e;&#x64;&#x65;</a>" .
 
 <http://www.ehealth-services.com/Referente/BenKraufmann> a ns0:Referente ;
-                                                           rdfs:label "N. N. " ;
-                                                           ns0:status "angefragt" ;
-                                                           ns0:institution "Fraunhofer-Institut für Offene Kommunikationssysteme FOKUS" ;
-                                                           ns0:vortragstitel "Aktueller Stand der eHealth Planungsstudie Interoperabilität (BMG)" .
+                                                         rdfs:label "N. N. " ;
+                                                         ns0:status "angefragt" ;
+                                                         ns0:institution "Fraunhofer-Institut für Offene Kommunikationssysteme FOKUS" ;
+                                                         ns0:vortragstitel "Aktueller Stand der eHealth Planungsstudie Interoperabilität (BMG)" .
 
 <http://www.ehealth-services.com/Referente/Dr.MarkusWagner> a ns0:Referente ;
-                                                              rdfs:label "Dr. Markus Wagner" ;
-                                                              ns0:position "Projektleiter Intersektorale Kommunikation, Geschäftsführer der Gesundheitsdatenbank für Niedersachsen UG" ;
-                                                              ns0:institution "Braunschweiger Informatik- und Technologie-Zentrum (BITZ)" ;
-                                                              ns0:vortragstitel "Einrichtungsübergreifende Dokumentenkommunikation - Das Konzept der Gesundheitsdatenbank für Niedersachsen" ;
-                                                              ns0:email "<a href=\"mailto:%6D%61%72%6B%75%73%2E%77%61%67%6E%65%72%40%70%6C%72%69%2E%64%65 \"title=\"E-Mail\">markus.wagner[@]plri.de</a>" .
+                                                            rdfs:label "Dr. Markus Wagner" ;
+                                                            ns0:email "<a href=\"mailto:%6D%61%72%6B%75%73%2E%77%61%67%6E%65%72%40%70%6C%72%69%2E%64%65 \"title=\"E-Mail\">markus.wagner[@]plri.de</a>" ;
+                                                            ns0:institution "Braunschweiger Informatik- und Technologie-Zentrum (BITZ)" ;
+                                                            ns0:vortragstitel "Einrichtungsübergreifende Dokumentenkommunikation - Das Konzept der Gesundheitsdatenbank für Niedersachsen" ;
+                                                            ns0:position "Projektleiter Intersektorale Kommunikation, Geschäftsführer der Gesundheitsdatenbank für Niedersachsen UG" .
 
 <http://www.ehealth-services.com/Referente/FlorianMeißner> a ns0:Referente ;
-                                                              rdfs:label "Florian Meißner" ;
-                                                              ns0:position "Geschäftsführer" ;
-                                                              ns0:institution "vital.services GmbH" ;
-                                                              ns0:vortragstitel "Vernetzte Versorgung im ländlichen Raum - das Krankenhaus neuen Typus" ;
-                                                              ns0:email "<a href=\"mailto:%6D%65%69%73%73%6E%65%72%40%76%69%74%61%6C%2D%73%65%72%76%69%63%65%73%2E%64%65 \"title=\"E-Mail\">meissner[@]vital-services.de</a>" .
+                                                            rdfs:label "Florian Meißner" ;
+                                                            ns0:email "<a href=\"mailto:%6D%65%69%73%73%6E%65%72%40%76%69%74%61%6C%2D%73%65%72%76%69%63%65%73%2E%64%65 \"title=\"E-Mail\">meissner[@]vital-services.de</a>" ;
+                                                            ns0:institution "vital.services GmbH" ;
+                                                            ns0:vortragstitel "Vernetzte Versorgung im ländlichen Raum - das Krankenhaus neuen Typus" ;
+                                                            ns0:position "Geschäftsführer" .
 
 <http://www.ehealth-services.com/Referente/Krankenhausgesellschaft> a ns0:Referente ;
-                                                                      rdfs:label "Priv.-Doz. Dr. med. Guntram W. Ickenstein" ;
-                                                                      ns0:position "Fachgruppenleiter Neuromedizin, Ärztlicher Direktor der Privatklinik" ;
-                                                                      ns0:institution "HELIOS Klinikum Aue" ;
-                                                                      ns0:vortragstitel "Telemedizinisches Schlaganfall-Netzwerk TNS-NET Südwestsachsen" .
+                                                                    rdfs:label "Priv.-Doz. Dr. med. Guntram W. Ickenstein" ;
+                                                                    ns0:institution "HELIOS Klinikum Aue" ;
+                                                                    ns0:vortragstitel "Telemedizinisches Schlaganfall-Netzwerk TNS-NET Südwestsachsen" ;
+                                                                    ns0:position "Fachgruppenleiter Neuromedizin, Ärztlicher Direktor der Privatklinik" .
 
 <http://www.ehealth-services.com/Referente/MarcusBauer> a ns0:Referente ;
-                                                          rdfs:label "Marcus Bauer" ;
-                                                          ns0:institution "Institut für Medizinische Informatik, Statistik und Epidemiologie (IMISE)" ;
-                                                          ns0:vortragstitel "Potenzialanalyse der elektronischen Gesundheitskarte für einrichtungsübergreifende Behandlungspfade aus der Perspektive der Patienten" .
+                                                        rdfs:label "Marcus Bauer" ;
+                                                        ns0:institution "Institut für Medizinische Informatik, Statistik und Epidemiologie (IMISE)" ;
+                                                        ns0:vortragstitel "Potenzialanalyse der elektronischen Gesundheitskarte für einrichtungsübergreifende Behandlungspfade aus der Perspektive der Patienten" .
 
 <http://www.ehealth-services.com/Referente/MarcusNitzschke> a ns0:Referente ;
-                                                              rdfs:label "Marcus Nitzschke, Romy Elze" ;
-                                                              ns0:institution "SEeH" ;
-                                                              ns0:vortragstitel "Das Gesundheissystem und seine Potentiale im Linked Open Data - ein Ausblick" .
+                                                            rdfs:label "Marcus Nitzschke, Romy Elze" ;
+                                                            ns0:institution "SEeH" ;
+                                                            ns0:vortragstitel "Das Gesundheissystem und seine Potentiale im Linked Open Data - ein Ausblick" .
 
 <http://www.ehealth-services.com/Referente/MichaelSchaaf> a ns0:Referente ;
-                                                            rdfs:label "Michael Schaaf" ;
-                                                            ns0:institution "Institut für Medizinische Informatik, Statistik und Epidemiologie (IMISE)" ;
-                                                            ns0:vortragstitel "Referenzmodell für die standardisierte, einrichtungsübergreifenden Dokumentation in der Notfallversorgung (Notfalldatensatz)" .
+                                                          rdfs:label "Michael Schaaf" ;
+                                                          ns0:institution "Institut für Medizinische Informatik, Statistik und Epidemiologie (IMISE)" ;
+                                                          ns0:vortragstitel "Referenzmodell für die standardisierte, einrichtungsübergreifenden Dokumentation in der Notfallversorgung (Notfalldatensatz)" .
 
 <http://www.ehealth-services.com/Referente/PriceWaterhouseCoopers> a ns0:Referente ;
-                                                                     rdfs:label "Christoph Ellsel" ;
-                                                                     ns0:position "Senior Consultant" ;
-                                                                     ns0:institution "PricewaterhouseCoopers AG" ;
-                                                                     ns0:vortragstitel "EU-Finanzierung von Forschungs- und Entwicklungsprojekten" .
+                                                                   rdfs:label "Christoph Ellsel" ;
+                                                                   ns0:institution "PricewaterhouseCoopers AG" ;
+                                                                   ns0:vortragstitel "EU-Finanzierung von Forschungs- und Entwicklungsprojekten" ;
+                                                                   ns0:position "Senior Consultant" .
 
 <http://www.ehealth-services.com/Referente/Prof.Dr.HaraldEnglisch> a ns0:Referente ;
-                                                                     rdfs:label "Prof. Dr. Harald Englisch" ;
-                                                                     ns0:position "Vorstandsvorsitzender Gesundheit Mitteldeutschland e. V., Chefredakteur Gesundheit-Sachsen.de + Gesundheit-Thüringen.de" ;
-                                                                     ns0:vortragstitel "Gesundheitsportale in Mitteldeutschland" .
+                                                                   rdfs:label "Prof. Dr. Harald Englisch" ;
+                                                                   ns0:vortragstitel "Gesundheitsportale in Mitteldeutschland" ;
+                                                                   ns0:position "Vorstandsvorsitzender Gesundheit Mitteldeutschland e. V., Chefredakteur Gesundheit-Sachsen.de + Gesundheit-Thüringen.de" .
 
 <http://www.ehealth-services.com/Referente/Prof.Dr.StefanSkonetzki-Cheng> a ns0:Referente ;
-                                                                            rdfs:label "Prof. Dr. Stefan Skonetzki-Cheng" ;
-                                                                            ns0:position "Professor für Gesundheitsinformatik an der Hochschule Niederrhein" ;
-                                                                            ns0:institution "GMDS-AG zur eGK" ;
-                                                                            ns0:vortragstitel "eGK aus wissenschaftlicher Sicht" ;
-                                                                            ns0:email "<a href=\"mailto:%73%74%65%66%61%6E%2E%73%6B%6F%6E%65%74%7A%6B%69%2D%63%68%65%6E%67%40%68%73%2D%6E%69%65%64%65%72%72%68%65%69%6E%2E%64%65 \"title=\"E-Mail\">stefan.skonetzki-cheng[@]hs-niederrhein.de</a>" .
+                                                                          rdfs:label "Prof. Dr. Stefan Skonetzki-Cheng" ;
+                                                                          ns0:email "<a href=\"mailto:%73%74%65%66%61%6E%2E%73%6B%6F%6E%65%74%7A%6B%69%2D%63%68%65%6E%67%40%68%73%2D%6E%69%65%64%65%72%72%68%65%69%6E%2E%64%65 \"title=\"E-Mail\">stefan.skonetzki-cheng[@]hs-niederrhein.de</a>" ;
+                                                                          ns0:institution "GMDS-AG zur eGK" ;
+                                                                          ns0:vortragstitel "eGK aus wissenschaftlicher Sicht" ;
+                                                                          ns0:position "Professor für Gesundheitsinformatik an der Hochschule Niederrhein" .
 
 <http://www.ehealth-services.com/Referente/RomyElze> a ns0:Referente ;
-                                                       rdfs:label "Romy Elze" ;
-                                                       ns0:position "Forschungsgruppenleiter Service Engineering for eHealth (SEeH)" ;
-                                                       ns0:institution "SEeH" ;
-                                                       ns0:vortragstitel "Patienteninformationsysteme (zusammen mit M.Nitzschke)" .
+                                                     rdfs:label "Romy Elze" ;
+                                                     ns0:institution "SEeH" ;
+                                                     ns0:vortragstitel "Patienteninformationsysteme (zusammen mit M.Nitzschke)" ;
+                                                     ns0:position "Forschungsgruppenleiter Service Engineering for eHealth (SEeH)" .
 
 <http://www.ehealth-services.com/Referente/RuthGausche> a ns0:Referente ;
-                                                          rdfs:label "Ruth Gausche" ;
-                                                          ns0:position "Koordination" ;
-                                                          ns0:institution "CrescNet GmbH" ;
-                                                          ns0:vortragstitel "CrescNet - ein pädiatrisches Netz zwischen Behandlungsbegleitung und wissenschaftlicher Fragestellung" .
+                                                        rdfs:label "Ruth Gausche" ;
+                                                        ns0:institution "CrescNet GmbH" ;
+                                                        ns0:vortragstitel "CrescNet - ein pädiatrisches Netz zwischen Behandlungsbegleitung und wissenschaftlicher Fragestellung" ;
+                                                        ns0:position "Koordination" .
 
 <http://www.ehealth-services.com/Referente/SozialministeriumSachsen> a ns0:Referente ;
-                                                                       rdfs:label "Regina Rösler, Claudia Keppler" ;
-                                                                       ns0:institution "Sächsisches Staatsministerium für Soziales und Verbraucherschutz" ;
-                                                                       ns0:vortragstitel "Statusbericht von Telematik-Projekten in Sachsen im Jahr 2013" .
+                                                                     rdfs:label "Volker Köhn" ;
+                                                                     ns0:institution "Sächsisches Staatsministerium für Soziales und Verbraucherschutz" ;
+                                                                     ns0:vortragstitel "Europäische Innovationspartnerschaft" .
 
 <http://www.ehealth-services.com/Referente/SvenMarx> a ns0:Referente ;
-                                                       rdfs:label "Sven Marx" ;
-                                                       ns0:position "Leiter der Abteilung Datenschutz und Informationssicherheit" ;
-                                                       ns0:institution "Gematik" ;
-                                                       ns0:vortragstitel "Telematikinfrastruktur und elektronische Gesundheitskarte – Plattform für zukunftsorientierte Telemedizinprojekte " ;
-                                                       ns0:email "<a href=\"mailto:%53%69%6C%6A%61%2E%4B%6C%75%74%68%40%67%65%6D%61%74%69%6B%2E%64%65 \"title=\"E-Mail\">Frau Kluth, Silja (Silja.Kluth[@]gematik.de)</a>" .
+                                                     rdfs:label "Bruno Schnaars" ;
+                                                     ns0:email "<a href=\"mailto:%53%69%6C%6A%61%2E%4B%6C%75%74%68%40%67%65%6D%61%74%69%6B%2E%64%65 \"title=\"E-Mail\">Frau Kluth, Silja (Silja.Kluth[@]gematik.de)</a>" ;
+                                                     ns0:institution "Gematik" ;
+                                                     ns0:vortragstitel "Telematikinfrastruktur und elektronische Gesundheitskarte – Plattform für zukunftsorientierte Telemedizinprojekte " ;
+                                                     ns0:position "Bereich Test & Zulassung" .
 
 <http://www.ehealth-services.com/Referente/ThomasHeinz> a ns0:Referente ;
-                                                          rdfs:label "Thomas Heinz " ;
-                                                          ns0:institution "Universitätsklinikum Leipzig (UKL)" ;
-                                                          ns0:vortragstitel "Teleradiologie am Universitätsklinikum – ein Bericht aus der Praxis" ;
-                                                          ns0:email "<a href=\"mailto:%73%74%65%66%61%6E%2E%73%6D%65%72%73%40%6D%65%64%69%7A%69%6E%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">Kontakt über stefan.smers@medizin.uni-leipzig.de</a>" .
+                                                        rdfs:label "Thomas Heinz " ;
+                                                        ns0:email "<a href=\"mailto:%73%74%65%66%61%6E%2E%73%6D%65%72%73%40%6D%65%64%69%7A%69%6E%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">Kontakt über stefan.smers@medizin.uni-leipzig.de</a>" ;
+                                                        ns0:institution "Universitätsklinikum Leipzig AöR" ;
+                                                        ns0:vortragstitel "Teleradiologie am Universitätsklinikum – ein Bericht aus der Praxis" .
 
 <http://www.ehealth-services.com/Referente/ThomasWerchau> a ns0:Referente ;
-                                                            rdfs:label "Thomas Werchau" ;
-                                                            ns0:position "Geschäftsführer" ;
-                                                            ns0:institution "St. Georg IT GmbH" ;
-                                                            ns0:vortragstitel "Telematik am Klinikum St. Georg gGmbH" .
+                                                          rdfs:label "Thomas Werchau" ;
+                                                          ns0:institution "St. Georg IT Gesellschaft mbH" ;
+                                                          ns0:vortragstitel "Telematik am Klinikum St. Georg gGmbH" ;
+                                                          ns0:position "Geschäftsführer" .
 
 <http://www.ehealth-services.com/Referente/UniMarburgSoftwareAriba> a ns0:Referente ;
-                                                                      rdfs:label "N. N." ;
-                                                                      ns0:status "angefragt" ;
-                                                                      ns0:vortragstitel "Patientenorientierte Entscheidungsfindung für Herz-Kreislaufpatienten – Die Software ARRIBA" .
+                                                                    rdfs:label "N. N." ;
+                                                                    ns0:status "angefragt" ;
+                                                                    ns0:vortragstitel "Patientenorientierte Entscheidungsfindung für Herz-Kreislaufpatienten – Die Software ARRIBA" .
 
-<Referenten> a foaf:Document ;
-             rdfs:label "REFERENTEN" ;
-             ns0:headline "Referenten" ;
-             ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services.com/Referente>.\" orderby=\"ASC(?resourceUri)\" template=\"referente\"}}"^^sysont:Markdown ;
-             ns0:template "program" .
+ns3:Referenten a foaf:Document ;
+               rdfs:label "REFERENTEN" ;
+               ns0:content "{{query where=\"?resourceUri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.ehealth-services.com/Referente>.\" orderby=\"ASC(?resourceUri)\" template=\"referente\"}}"^^sysont:Markdown ;
+               ns0:template "program" ;
+               ns0:headline "Referenten" .
 
-<Veranstaltungen> a foaf:Document ;
-                  rdfs:label "VERANSTALTUNGEN" ;
-                  ns0:headline "Veranstaltungen"@de ;
-                  ns0:content """Das [Xing Profil](https://www.xing.com/events/workshop-ehealth-services-2013-integrierte-versorgung-quo-vadis-1275722 \"Xing Profil\") des Workshops  
-<br />
-***Veranstaltungen der Leipziger Tage der Angewandten Informatik***  
-<br />
-*23. September 2013*
+ns3:TEILNEHMER a foaf:Document ;
+               rdfs:label "TEILNEHMER" ;
+               ns0:content """Teilnehmer sind unter anderem: <br /> <br />
+<p style=\"line-height: 150%\">
+Gerd Arnold,  <a href=\"http://www.evermind.de/\" target=\"_blank\">evermind GmbH</a><br />
+Katrin Berger, <a href=\"http://www.consulting.ktberger.de\"target=\"_blank\">ktberger-consulting</a>  <br />
+Jens Dieckerhoff, <a href=\"http://www.vitaservices.de\"target=\"_blank\">Vitaservices GmbH & Co.KG</a> <br />
+Christoph Ellsel, <a href=\"http://www.pwc.de/de/index.jhtml\"target=\"_blank\">PricewaterhouseCoopers AG</a> <br />
+Romy Elze, <a href=\"http://infai.org/de/Aktuelles\"target=\"_blank\">Institut für Angewandte Informatik e.V., Services Engineering for eHealth</a> <br />
+Prof. Dr. Harald Englisch, <a href=\"http://www.gesundheit-sachsen.de/index.php\"target=\"_blank\">Gesundheit-Sachsen.de</a> <br />
+Ruth Gausche, <a href=\"http://crescnet.org/cgi-bin/index.pl\"target=\"_blank\">CrescNet GmbH</a><br />
+<!--Iman Gharib<br /> -->
+Thomas Heinz, <a href=\"http://www.uniklinikum-leipzig.de/\" target=\"_blank\">Universitätsklinikum Leipzig AöR</a><br />
+Priv.-Doz. Dr. med. Guntram W. Ickenstein, <a href=\"http://www.helios-kliniken.de/klinik/aue.html\"target=\"_blank\">HELIOS Klinikum Aue</a><br />
+Volker Köhn, <a href=\"http://www.sms.sachsen.de/\"target=\"_blank\">Sächsisches Staatsministerium für Soziales und Verbraucherschutz</a><br />
+Florian Meißner, <a href=\"http://www.vital-services.de/\"target=\"_blank\">vital.services GmbH</a><br />
+Dr. Axel-C. Ngonga Ngomo, <a href=\"http://bis.informatik.uni-leipzig.de/de/Aktuelles\"target=\"_blank\">Universität Leipzig, Institut für Informatik, Abteilung Betriebliche Informationssysteme</a><br />
+Marcus Nitzschke, <a href=\"http://bis.informatik.uni-leipzig.de/de/Aktuelles\"target=\"_blank\">Universität Leipzig, Institut für Informatik, Abteilung Betriebliche Informationssysteme</a><br />
+Michael Schaaf, <a href=\"http://www.imise.uni-leipzig.de/\"target=\"_blank\">Institut für Medizinische Informatik, Statistik und Epidemiologie (IMISE)</a><br />
+Bruno Schnaars, <a href=\"http://www.gematik.de/cms/de/startseite/index.jsp\"target=\"_blank\">Gematik</a><br />
+Gunter Schwarz, <a href=\"http://www.mogic.com\" target=\"_blank\">Mogic GmbH</a><br />
+Prof. Dr. Martin Staemmler; <a href=\"http://www.fh-stralsund.de/fh_stralsund/powerslave,id,73,nodeid,.html\" target=\"_blank\">Fachhochschule Stralsund, Fachbereich Elektrotechnik & Informatik</a><br />
+Dr. Markus Wagner, <a href=\"http://www.bitz.it/\" target=\"_blank\">Braunschweiger Informatik- und Technologie-Zentrum (BITZ)</a><br />
+Ulrike Weber, <a href=\"http://infai.org/de/Aktuelles\" target=\"_blank\">Institut für Angewandte Informatik e. V., Services Engineering for eHealth</a><br />
+Christoph Weidner, <a href=\"http://www.evermind.de/\" target=\"_blank\">evermind GmbH</a><br />
+Thomas Werchau, <a href=\"http://www.sanktgeorg.de/stgeorgitgesellschaftmbh.html\" target=\"_blank\">St. Georg IT Gesellschaft mbH</a><br />
+</p>"""^^sysont:Markdown ;
+               ns0:headline "Teilnehmer" .
 
-* [Energy EcoSystems Konferenz 2013 (EES2013)](http://infai.org/de/Veranstaltungen/ees/)
+ns3:Veranstaltungen a foaf:Document ;
+                    rdfs:label "VERANSTALTUNGEN" ;
+                    ns0:content """Das [Xing Profil](https://www.xing.com/events/workshop-ehealth-services-2013-integrierte-versorgung-quo-vadis-1275722 \"Xing Profil\") des Workshops  
+<br /><br /> <br /> 
 
-* [Leipziger Semantic Web Tag 2013](http://aksw.org/Events/2013/LeipzigerSemanticWebTag.html)
+<big>[Leipziger Tage der Angewandten Informatik](http://infai.org/de/Veranstaltungen) vom 25.02. bis 27.03.2014 in Leipzig </big><br /> <br /> 
 
-* [Qualitative Methoden in der Informatik und Wirtschaftswissenschaften Leipzig 2013](http://transkriptz.de/qmiwleipzig/willkommen-qmiw/)  
+<b>25. bis 28. Februar 2014</b> <br /> 
+  [MoodleMaharaMoot 2014](http://moodlemoot.moodle.de/)<br /> <br /> 
 
-<br />
-*24. September 2013*
+**17. bis 18. März 2014**<br /> 
+  [1. eBusiness-Tage in Mitteldeutschland 2014](http://www.ebusiness-lotse-mitteldeutschland.de/veranstaltungen/1-ebusiness-tage-mitteldeutschland/) <br /> <br /> 
 
-* [Energy EcoSystems Konferenz 2013 (EES2013)](http://infai.org/de/Veranstaltungen/ees/)
+**27. März 2014**<br /> 
+  [9. Fachgespräch](http://www.energy-ecosystems.de/fachgespraeche/)  - Wirtschaftliche Energieverbrauchsabrechnung von großflächig verteilten Systemen (Stadtbeleuchtungen, Verkehrstelematik, E-Mobility"""^^sysont:Markdown ;
+                    ns0:headline "Veranstaltungen"@de .
 
-* [Leipziger Semantic Web Tag 2013](http://aksw.org/Events/2013/LeipzigerSemanticWebTag.html)
+ns3:Veranstaltungsort a foaf:Document ;
+                      rdfs:label "VERANSTALTUNGSORT" ;
+                      ns0:content """<big>Augustusplatz 10  
+04109 Leipzig  <br /> <br />
 
-* [International Symposium on Service Science](http://isss.uni-leipzig.de/index.php/german/Home.html)
-
-* [Crowddesign und Crowdfunding: Neue Wege des nachhaltigen Wirtschaftens und die Rolle der Technik](http://sabre2013.infai.org/crowdsourcing_crowddesign_und_crowdfunding)
-
-* [OWL-Vokabulare im Kontext digitaler Forschungskollaboration](http://aksw.org/Events/2013/DigitaleForschungskollaboration.html)  
-
-<br />
-*25. September 2013*
-
-* [Modellgetriebene Entwicklung und Normung in der Energiewirtschaft](http://infai.org/de/Veranstaltungen/mdaenergy)  
-
-<br />
-*26. September 2013*
-
-* [Geschäftsprozesse modellieren und optimieren mit Open Source-Werkzeugen – Am Beispiel der bflow* Toolbox](http://www.bflow.org/)
-* [IT Automotive Forum 2013](http://www.it-automotive.org/)  
-
-<br />
-*27. September 2013*
-
-* [Erstes Symposium für neue IT in Leipzig](http://www.informatik-dv.com/symposium/ESITL/)  
-  
-<br />
-<br />
-**Externe Veranstaltungen**  
-<br />
-*14.10.2013*
-
-* Fachtagung [*Datenschutz in der Medizin - Update 2013 II*](http://www.update-bdsg.com/html/14-10-2013.html), Braunstraße 16
-04347 Leipzig
-
-<br />
-*07./08.11.2013*
-
-* [*4. Nationaler Fachkongress Telemedizin*, \"Telemedizin - Potenziale für eine patientenorientierte Medizin durch Vernetzung\"](http://www.telemedizinkongress.de), Ellington Hotel Berlin"""^^sysont:Markdown .
-
-<Veranstaltungsort> a foaf:Document ;
-                    rdfs:label "VERANSTALTUNGSORT" ;
-                    ns0:headline "Veranstaltungsort" ;
-                    ns0:content """Augustusplatz 10  
-04109 Leipzig  
-<br />
+Felix Klein Hörsaal <br />
+im 5. Stock des Paulinums der Universität Leipzig </big>
+<br /><br /><br />
   
 **Anreise mit dem Auto**
 
@@ -408,4 +403,5 @@ Mit den Straßenbahnlinien 10 (Richtung Lößnig), 11 (Richtung Markkleeberg) od
 <br />
 
 Für Hilfe bei der Hotelbuchung wenden Sie sich bitte an <a href=\"mailto:%75%77%65%62%65%72%40%69%6E%66%6F%72%6D%61%74%69%6B%2E%75%6E%69%2D%6C%65%69%70%7A%69%67%2E%64%65 \"title=\"E-Mail\">uweber[@]informatik.uni-leipzig.de</a>"""^^sysont:Markdown ;
-                    ns0:template "location" .
+                      ns0:template "location" ;
+                      ns0:headline "Veranstaltungsort" .

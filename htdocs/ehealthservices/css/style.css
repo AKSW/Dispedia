@@ -130,7 +130,7 @@ footer {
     display: block;
     float: left;
     height: 3em;
-    /*#width: 80%;*/
+    width: 100%;
 }
 
 #mainNavigation ul {
