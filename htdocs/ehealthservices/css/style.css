@@ -281,11 +281,12 @@ footer {
 
 #registrationFormDiv .floating {
     float: left;
-    width: 15em;
+    width: 18em;
 }
 #registrationFormDiv div.label {
     width: 15em;
 }
+#registrationFormDiv select#ClusterRegistrierung,
 #registrationFormDiv select#TeilnehmerNennung,
 #registrationFormDiv select#Student {
     text-align: center;
