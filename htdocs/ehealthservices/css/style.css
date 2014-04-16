@@ -235,7 +235,9 @@ footer {
 }
 .content .program .vortragstitel {
     padding-bottom: 0.5em;
-    text-align: justify;
+    /*text-align: justify;*/
+    width: 90%;
+    float:left;
 }
 
 /* ############### Referente ############### */
@@ -264,6 +266,10 @@ footer {
     float: left;
 }
 
+.referentText {
+    width: 90%;
+    float: left;
+}
 /* ############### Registration ############### */
 #registrationFormularLabel {
     margin-top: 2em;
