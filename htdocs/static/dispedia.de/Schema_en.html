@@ -1,0 +1,86 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:dc="http://purl.org/dc/terms/" xmlns:foaf="http://xmlns.com/foaf/0.1/">
+<head>
+    <meta charset="UTF-8">
+    <title>SCHEMA &mdash; Dispedia Seite</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="generator" content="OntoWiki 0.9.7" />
+
+    <link rel="alternate" type="application/rdf+xml" href="Schema.rdf" />
+    <link rel="pingback" href="http://www.dispedia.de/pingback/ping" />
+
+    <link rel="foaf:primaryTopic" href="Schema" />
+    
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" title="Standard" />
+    <!-- <link type="text/css" href="css/bootstrap.css" rel="stylesheet" /> -->
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jcanvas.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+<body
+             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"             xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"             xmlns:owl="http://www.w3.org/2002/07/owl#"             xmlns:sysont="http://ns.ontowiki.net/SysOnt/"             xmlns:foaf="http://xmlns.com/foaf/0.1/"             xmlns:xsd="http://www.w3.org/2001/XMLSchema#"             xmlns:dct="http://purl.org/dc/terms/"             xmlns:ns0="http://creativecommons.org/ns#"             xmlns:ns1="http://ns.ontowiki.net/SysOnt/Site/"             xmlns:ns2=""             xmlns:ns3="http://www.dispedia.de/wrapper/alsfrs/"    >
+    
+    <div class="wrapper">
+        <div id="header">
+    <div id="headerImage">
+        <img src="img/dispedia_logo.png" alt="Dispedia logo" />
+    </div>
+    <nav class="nav-collapse" id="headerNavigation"><ul class="nav" >
+<li><a href="Contact.html">CONTACT</a></li>
+</ul>
+<!-- /#nav-header --></nav>
+    <div id="headerLang">
+        <a href="Schema_en.html"><img src="img/en.png" title="english"/></a>
+        |
+        <a href="Schema.html"><img src="img/de.png" title="deutsch"/></a>
+    </div>
+    <div id="headerText">
+        <span class='headerTextTitle' property='ns1:title'>dispedia.de</span>        <span class='headerTextHeadline' property='ns1:headline'>– A Framework for Knowledge Engineering and Management on complex Diseases</span>    </div>
+    <div class="clear"></div>
+</div>        <!-- if a specific schema is show then schema should be active in main navi -->
+                <nav class="contentSeparator" id="mainNavigation"><ul class="nav" >
+<li><a href="Home_en.html">HOME</a></li>
+<li class="active"><a href="Schema_en.html">SCHEMA</a></li>
+
+</ul>
+<!-- /#nav-main --></nav>
+        <div class="content">
+    <h1 class='' property='ns1:headline'>SCHEMA</h1><img class="aboutimg" alt="infologistic" about="ns2:Schema" property="ns1:image" resource="img/dispediaOverview.png" src="img/dispediaOverview.png" /><p class='about' property='ns1:languageContent'>The Dispedia architecture consists of a core ontology which stores data sets for the integration of information about patients and information for patients with rare diseases. The Dispedia schema (cf. figure 2) is dereferenceable under the domain www.dispedia.de. The used ontologies are structured for the application or, respectively, the instantiation of the schema. As the view on patients and their description take place in a very heterogeneous manner, according to the involved actors (e.g., doctor, therapist, health insurance), the Dispedia schema provides an integration of individual descriptions. For the example of Amytrophe Lateralsclerose, this could be the ALS-Functional Rating Scale. The disease- specific collection of suggested solutions of a particular disease is used as an additional ontology. In the case of ALS, the expertise is found under the domain. This concept enables a logical extension of knowledge for the development of further disease-specific information pools, which then can be adequately found under the respective domains. Furthermore, the server architecture can be installed both web-based and as internal alternative.</p>    <br />
+    <!-- Schema Navigation -->
+    <h2 class='' property='ns1:documentation'>Documentation</h2><nav class="nav-collapse" id="schemas"><ul class="nav" >
+<li><a href="DispediaCore_en.html">Dispedia Schema Browser</a></li>
+</ul>
+<!-- /#nav-schemata --></nav>
+    <!-- Schema Downloads -->
+    <h2 class='' property='ns1:downloadHeadline'>Download</h2>    <div id="downloads">
+        <h3>Dispedia Core Files</h3><div class='downloadText' property='ns1:downloadText'>The Dispedia schema contains the system classes of information flows meaning classes for the description of patients as well as classes for the description of indications. The Core Ontology and extended ontologies, which leave out established development areas, are part of the Dispedia schema. For the description of the patients’ state of health, different standardized classifications can be used for evaluation. The description schemata realized so far are integrated via the respective wrapper. Hence, the disCoreWrapperAlsfrs.xml, which is a part of the ontology integrating the classification according to ALFERS, and the disCoreWrapperIcf.xml integrating the classification according to ICF belong to the Dispedia schema as well. Standardized classifications for non-medical environment categories, e.g., housing properties, do not exist up to now. These categories are integrated via the file dispediaCoreConditions.xml. This vocabulary has to be perspectively extended and standardized.</div><ul><li>
+<a class="schemaDownloads" href='http://file.dispedia.de/dispediaCore.xml'>dispediaCore.xml</a>
+</li>
+<li>
+<a class="schemaDownloads" href='http://file.dispedia.de/dispediaCoreConditions.xml'>dispediaCoreConditions.xml</a>
+</li>
+<li>
+<a class="schemaDownloads" href='http://file.dispedia.de/disCoreWrapperAlsfrs.xml'>disCoreWrapperAlsfrs.xml</a>
+</li>
+<li>
+<a class="schemaDownloads" href='http://file.dispedia.de/disCoreWrapperIcf.xml'>disCoreWrapperIcf.xml</a>
+</li>
+</ul>    </div>
+</div>        
+        <div class="clear"></div>
+        <footer>
+            <p>&copy; Dispedia 2015</p>
+        </footer>
+    </div>
+</body>
+</html>
+

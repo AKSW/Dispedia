@@ -1,0 +1,371 @@
+* { margin: 0; padding: 0; }
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+img {
+    border: 0px solid black;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    /* bootstrap.min.css überschreiben */
+    font-family: Helvetica, Arial, sans-serif !important;
+    /* bootstrap.min.css überschreiben */
+    font-size: 100% !important;
+}
+
+/* ############### Colors, Fonts and Images ############### */
+/* background-color */
+body {
+    background-color: #21576b;
+    background-image: -webkit-linear-gradient(top, #21576b 0%, #007891 100%); 
+    background-image: -moz-linear-gradient(top, #21576b 0%, #007891 100%); 
+    background-image: -o-linear-gradient(top, #21576b 0%, #007891 100%); 
+    background-image: linear-gradient(top, #21576b 0%, #007891 100%);
+}
+#header {
+    background-image: url(/htdocs/ehealthservices/img/SEeH_website2013_Header_1600px.png);
+    background-position: 0 0.5em;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    
+}
+#header,
+#mainNavigation,
+.contentSeparator,
+.content,
+#footer {
+    background-color: #FFF;
+}
+.content .program .name,
+.content .referente .name {
+    background-color: #21576b;
+}
+
+/* grey text */
+#headerLang{
+    color: #93A0A7;
+}
+/* dark grey text */
+.content {
+     color: #6d6d6d;
+}
+/* darker grey text */
+#footer * {
+     color: #949494;
+}
+/* blue text */
+#headerText span.highlighted,
+.content h1 {
+    color: #00A3C6;
+}
+/* dark blue text */
+#headerText,
+#mainNavigation a {
+    color: #21576b;
+}
+/* white text */
+.content .program .name,
+.content .referente .name,
+footer {
+    color: #FFF;
+}
+/* font-family Varela Round */
+#headerText,
+.content h1 {
+    font-family: 'Varela Round', sans-serif;
+}
+
+/* font-family Varela Round */
+#mainNavigation a,
+.content,
+#footer {
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.wrapper {
+    width: 57em;
+    margin: 0px auto;
+}
+
+.contentSeparator {
+    height: 1.5em;
+    margin-bottom: 1px;
+}
+
+#header {
+    height: 10.3em;
+    margin-bottom: 1px;
+    padding: 0.5em 0.5em 0em 0.5em;
+}
+#headerImage {
+    display: inline;
+}
+#headerImage img {
+    height: 10em;
+    width: auto;
+}
+#headerText {
+    font-size: 1.8em;
+    float: right;
+    line-height: 1.2em;
+    text-align: right;
+}
+#headerText .headerTextHeadline {
+    margin-top: 0.7em;
+}
+#headerText span.highlighted {
+    font-size: 0.852em;
+    line-height: 1em;
+    vertical-align: top;
+}
+
+#mainNavigation {
+    display: block;
+    float: left;
+    height: 3em;
+    width: 100%;
+}
+
+#mainNavigation ul {
+    height: inherit;
+    list-style-type: none;
+}
+
+#mainNavigation li {
+    height: inherit;
+    float:left;
+    line-height: 2.5em;
+}
+#mainNavigation ul li:first-child a {
+    border-left: 0px solid #21576b;
+}
+#mainNavigation a {
+    border-left: 1px solid #21576b;
+    font-size: 0.8em;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+#mainNavigation li.active {
+    font-weight: bold;
+}
+#mainNavigation li.active canvas {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    float: left;
+    position:absolute;
+}
+
+.content {
+    min-height: 15em;
+    padding: 0.9em;
+}
+
+.content h1 {
+    font-size: 3em;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #21576b;
+}
+
+.content ul {
+    list-style: none;
+    margin-left: 1em;
+}
+
+/* ############### Document ############### */
+
+.aboutimg{
+    float: right;
+    max-width: 400px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.about{
+    text-align: justify;
+}
+
+/* ############### Home ############### */
+.content#home .about{
+    -moz-columns: 2;
+}
+
+.content#home .underline {
+    margin-top: 2em;
+    text-align: center;
+}
+
+/* ############### Program ############### */
+.content .program {
+    margin-bottom: 2em;
+    width: 100%;
+}
+.content .program .view {
+    display: inline;
+    font-style: italic;
+    line-height: 2em;
+    padding-left: 2em;
+}
+.content .program .name {
+    font-size: 95%;
+    font-weight: bold;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 0.5em;
+}
+.content .program .lectures {
+    margin-left: 1em;
+}
+.content .program .lectures .referent {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+.content .program .lectures .referentLabel,
+.content .program .lectures .titleLabel {
+    float: left;
+    height: 1.2em;
+    width: 5em;
+}
+.content .program .vortragstitel {
+    padding-bottom: 0.5em;
+    /*text-align: justify;*/
+    width: 90%;
+    float:left;
+}
+
+/* ############### Referente ############### */
+.content .referente {
+    float: left;
+    margin: 1%;
+    min-height: 6em;
+    width: 48%;
+}
+
+.content .referente .name {
+    font-weight: bold;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 0.5em;
+}
+
+.content .referente .referenteProperty,
+.content .referente .referenteInstitution,
+.content .referente .referenteVortragstitel {
+    margin: 0.5em 0.5em;
+    text-align: justify;
+}
+
+.content .referente .referenteProperty {
+    float: left;
+}
+
+.referentText {
+    width: 90%;
+    float: left;
+}
+/* ############### Registration ############### */
+#registrationFormularLabel {
+    margin-top: 2em;
+}
+#registrationFormDiv {
+    margin-left: 2em;
+    margin-top: 1em;
+}
+#registrationForm fieldset {
+    border: 0px solid black;
+}
+#registrationFormDiv .entry {
+    margin-bottom: 1em;
+}
+
+#registrationFormDiv .floating {
+    float: left;
+    width: 18em;
+}
+#registrationFormDiv div.label {
+    width: 15em;
+}
+#registrationFormDiv select#ClusterRegistrierung,
+#registrationFormDiv select#TeilnehmerNennung,
+#registrationFormDiv select#Student {
+    text-align: center;
+    width: 180px;
+}
+
+#registrationFormDiv textarea {
+    height: 10em;
+    width: 30em;
+}
+#registrationFormDiv input.error {
+    display: block;
+    border: 1px dotted red;
+}
+#registrationFormDiv label.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+/* ############### Location ############### */
+
+#map_canvas {
+    background-color: #CCC;
+    height: 400px;
+    margin: auto;
+    margin-top: 2em;
+    width: 500px;
+}
+
+/* ############### Footer ############### */
+#footer {
+    font-size: 0.8em;
+    padding: 1.5em;
+}
+
+#footer a {
+    text-decoration: none;
+}
+#footer #footerDivPartner,
+#footerDivPartnerLogos {
+    float: left;
+}
+
+#footerDivPartnerLogos table {
+    margin: 1em 2em;
+}
+#footerDivPartnerLogos table td {
+    padding: 0em 1em;
+}
+#footerDivPartnerLogos table td:first-child {
+    width: 25%;
+}
+#footerDivPartnerLogos a img {
+    border: solid black 0px;
+    height: auto;
+    width: 100%;
+}
+#footer #footerDivImpressum {
+    float: right;
+}
+
+/* ############### Imprint/Contact ############### */
+#imprint p,
+#imprint pre {
+    margin-bottom: 20px;
+}
+#imprint ul {
+    list-style-type: none;
+}
+.content .contactContent {
+    float: left;
+}
+.content .contactImage {
+    height: 9em;
+    margin-left: 4em;
+}

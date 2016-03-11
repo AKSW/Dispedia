@@ -1,0 +1,423 @@
+* { margin: 0; padding: 0; }
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    /* bootstrap.min.css überschreiben */
+    font-family: Helvetica, Arial, sans-serif !important;
+    /* bootstrap.min.css überschreiben */
+    font-size: 100% !important;
+}
+
+/* ############### Colors, Fonts and Images ############### */
+/* background-color */
+body {
+    background-color: #00a3c6;
+    background-image: -webkit-linear-gradient(top, #00a3c6 0%, #007891 100%); 
+    background-image: -moz-linear-gradient(top, #00a3c6 0%, #007891 100%); 
+    background-image: -o-linear-gradient(top, #00a3c6 0%, #007891 100%); 
+    background-image: linear-gradient(top, #00a3c6 0%, #007891 100%);
+}
+#header {
+    background-image: url(/htdocs/dispedia/img/dispedia_Logo_Bildmarke_transparent.png);
+    background-repeat: no-repeat;
+    background-position: 115% 0;
+    background-size: 250px auto;
+    
+}
+#header,
+.content,
+.schemaContent .span3,
+.schemaContent .span9 .schema-header,
+.schemaContent .span9 .headlines,
+.schemaContent .span9 .term {
+    background-color: #FFF;
+}
+.schemaContent {
+    background-color: transparent;
+}
+
+/* grey text */
+#headerLang,
+#headerNavigation .nav li a,
+.headerTextHeadline,
+.content,
+.schemaContent .span3 a,
+.schemaContent .span9 .term h3 a,
+.schemaContent .span9 .term table tr td.propertyClass {
+    color: #93A0A7;
+}
+/* blue text */
+.headerTextTitle,
+.content h1,
+.schemaContent .headlines,
+.schemaContent .span9 .term ul li span.listPoint,
+.schemaContent .span9 .term table tr td a,
+.schemaContent .span9 .term ul.specificTypes li a{
+    color: #00A3C6;
+}
+/* white text */
+footer {
+    color: #FFF;
+}
+/* black text */
+.schemaContent .span9 .term h5,
+.schemaContent .span9 .term ul li a,
+.schemaContent .span9 .term table tr td {
+    color: #000;
+}
+/* font-family */
+#headerText,
+#mainNavigation a,
+.content h1,
+.schemaContent .span9 .term h3,
+.schemaContent .span9 .term ul li span.listPoint,
+footer {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.schemaContent .span9 .term h3 abbr {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.wrapper {
+    width: 70%;
+    margin: 0px auto;
+}
+
+.contentSeparator {
+    height: 1.5em;
+}
+
+#header {
+    min-height: 11em;
+    padding: 0.5em;
+    padding-right: 0.9em;
+}
+
+#headerImage {
+    float: left;
+}
+#headerImage img {
+    padding-top: 5px;
+    vertical-align: middle;
+}
+
+#headerLang {
+    float: right;
+    font-size: 0.9em;
+    height: 2em;
+}
+#headerLang a img{
+    vertical-align: middle;
+    /* for IE */
+    border: solid black 0px;
+}
+
+#headerNavigation {
+    float: right;
+}
+#headerNavigation .nav li {
+    padding-left: 1em;
+    list-style-type: none;
+}
+#headerNavigation .nav li a {
+    text-decoration: none;
+    font-size: 0.7em;
+}
+#headerText {
+    margin-top: 6.9em;
+    font-size: 1.1em;
+    text-align: right;
+}
+.headerTextTitle {
+    padding-left: 13em;
+}
+
+#mainNavigation{
+    width: 100%;
+}
+
+#mainNavigation ul{
+    height: inherit;
+    list-style-type: none;
+    vertical-align: middle;
+}
+
+#mainNavigation li {
+    height: inherit;
+    float:left;
+}
+#mainNavigation ul li:first-child a {
+    border-left: 0px solid #FFFFFF;
+}
+#mainNavigation a {
+    border-left: 1px solid #FFFFFF;
+    color: #FFF;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+#mainNavigation li.active canvas {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    float: left;
+    position:absolute;
+    z-index: -1;
+}
+
+.content {
+    overflow: auto;
+    padding: 0.9em;
+}
+
+.content h1 {
+    font-size: 3em;
+    font-weight: lighter;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #93A0A7;
+}
+
+#schemas, #downloads {
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+#schemas h2 {
+    margin-bottom: 10px;
+}
+#schemas ul.nav {
+    list-style: none;
+}
+
+#downloads .downloadText {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: justify;
+}
+#downloads ul {
+    list-style: none;
+}
+
+.schemaContent {
+    overflow: inherit;
+    padding: 0em;
+}
+
+.schemaContent h1 {
+    border: solid 0px black;
+}
+
+.schemaContent .span3 {
+    float: left;
+    width: 19%;
+}
+
+.schemaContent .span3 ul {
+    list-style-type: none;
+}
+
+.schemaContent .span3 li {
+    padding: 5px 15px;
+}
+
+.schemaContent .span3 a {
+    font-size: 0.9em;
+    text-decoration: none;
+    white-space: wrap;
+}
+
+.schemaContent .span3 .nav-header {
+    padding: 15px 15px;
+    
+}
+
+.schemaContent .span3 li:first-child {
+    border-bottom: solid 1px #93A0A7;
+    margin-bottom: 10px;
+}
+
+.schemaContent .span3 li:last-child {
+    border-top: solid 1px #93A0A7;
+    margin-top: 10px;
+}
+
+.schemaContent .span9 .schema-header,
+.schemaContent .span9 .headlines,
+.schemaContent .span9 .term  {
+    padding: 1em;
+}
+    
+.schemaContent .span9 .headlines,
+.schemaContent .span9 .term,
+.schemaContent .span9 .row {
+    margin-top: 10px;
+}
+
+.schemaContent .span9 {
+    float: right;
+    width: 80%;
+}
+
+.schemaContent .span9 .headlines {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.schemaContent .span9 .row {
+    float: right;
+    text-align: right;
+}
+
+.schemaContent .span9 .row .offset8 {
+    position: relative;
+    right: -44px;
+}
+
+.schemaContent .span9 .row canvas {
+    background-color: white;
+    vertical-align: middle;   
+}
+
+.schemaContent .span9 .term a {
+    text-decoration: none;
+}
+
+.schemaContent .span9 .term h3 {
+    font-weight: lighter;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.schemaContent .span9 .term h3 abbr {
+    font-weight: bold;
+}
+
+.schemaContent .span9 .term ul.superClass {
+    border-bottom: solid 1px #93A0A7;
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+
+.schemaContent .span9 .term ul.superClass li span.listPoint {
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+.schemaContent .span9 .term ul.superClass li a {
+    font-size: 0.9em;
+}
+
+.schemaContent .span9 .term table {
+    border-collapse: collapse;
+    font-size: 0.8em;
+    table-layout: auto;
+    width: 100%;
+}
+
+.schemaContent .span9 .term table thead tr th,
+.schemaContent .span9 .term table tr td {
+    text-align: left;
+}
+
+.schemaContent .span9 .term table thead tr th,
+.schemaContent .span9 .term table tr td.propertyClass {
+    font-weight: bold;
+}
+
+.schemaContent .span9 .term table th:first-child {
+    min-width: 20%;
+}
+
+.schemaContent .span9 .term table th:last-child {
+    width: 60%;
+}
+
+
+.schemaContent .span9 .term table thead tr th {
+    padding: 10px 0px 0px;
+}
+
+.schemaContent .span9 .term table tr td {
+    line-height: 1.7em;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.schemaContent .span9 .term table tr td.propertyClass {
+    border-bottom: solid 1px #93A0A7;
+    padding: 15px 0px 5px;
+}
+
+.schemaContent .span9 .term .specificTypes,
+.schemaContent .span9 .term ul.specificTypes li {
+    font-size: 0.9em;
+}
+.schemaContent .span9 .term div.specificTypes {
+    margin-top: 10px;
+}
+.schemaContent .span9 .term ul.specificTypes {
+    list-style-type: none;
+}
+.schemaContent .span9 .term ul.specificTypes li {
+    font-weight: bold;
+}
+
+.aboutimg{
+    float: right;
+    max-width: 400px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.about{
+    text-align: justify;
+}
+
+/* ############### Table Home ############### */
+#modules{
+    clear: right;
+    border-collapse:collapse;
+}
+
+#modules thead th {
+    border-bottom: 1px solid #93A0A7;
+    font-size: 0.9em;
+    padding: 5px;
+    text-align: left;
+}
+
+#modules thead th:first-child {
+    width: 20%
+}
+
+#modules thead th:last-child {
+    width: 60%
+}
+
+#modules tbody td {
+    font-size: 0.8em;
+    vertical-align: top;
+    padding: 5px;
+    text-align: justify;
+}
+
+footer {
+    text-align: right;
+}
+
+/* ############### Imprint/Contact ############### */
+#imprint p,
+#imprint pre {
+    margin-bottom: 20px;
+}
+#imprint ul {
+    list-style-type: none;
+}
